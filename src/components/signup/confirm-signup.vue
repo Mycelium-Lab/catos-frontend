@@ -7,15 +7,11 @@
         <div class="text-and-button">
           <div class="text">
             <div class="checkbox-parent">
-              <img class="checkbox-icon" alt="" src="./public/checkbox.svg" />
-
               <div class="div9">
                 Подтверждаю, что имею право представлять свою организацию
               </div>
             </div>
             <div class="checkbox-parent">
-              <img class="checkbox-icon" alt="" src="./public/checkbox.svg" />
-
               <div class="div9">
                 Продолжая, я соглашаюсь, что моя организация имеет право
                 оказания услуг кредиторской деятельности
@@ -43,12 +39,6 @@
                 <div class="ru">RU</div>
               </div>
               <div class="iconsmobile-parent">
-                <img
-                  class="iconsmobile"
-                  alt=""
-                  src="./public/iconsmobile.svg"
-                />
-
                 <div class="alessowaitsongmailcom">+390-999-00-01</div>
               </div>
             </div>
@@ -66,8 +56,6 @@
             </div>
             <div class="fields-password-and-mail3">
               <div class="iconsmail-group">
-                <img class="iconsmobile" alt="" src="./public/iconsmail1.svg" />
-
                 <div class="alessowaitsongmailcom">AlessoWaitson@gmail.com</div>
               </div>
             </div>
@@ -75,29 +63,15 @@
           <div class="fieldsregistration-options2">
             <div class="fields-password-and-mail4">
               <div class="iconsmail-group">
-                <img class="iconsmobile" alt="" src="./public/iconslock1.svg" />
-
                 <div class="n">3345еЕN$</div>
-                <img
-                  class="iconspassword1"
-                  alt=""
-                  src="./public/iconspassword1.svg"
-                />
               </div>
             </div>
             <div class="fields-password-and-mail5">
               <div class="iconsmail-group">
-                <img class="iconsmobile" alt="" src="./public/iconslock2.svg" />
-
                 <div class="n1">
                   <span class="n2">3345еЕN$ </span>
                   <span>|</span>
                 </div>
-                <img
-                  class="iconspassword1"
-                  alt=""
-                  src="./public/iconspassword2.svg"
-                />
               </div>
             </div>
             <div class="div16">
@@ -128,8 +102,6 @@
           </div>
           <div class="fields-password-and-mail6">
             <div class="iconsmail-group">
-              <img class="iconsmobile" alt="" src="./public/iconsmobile.svg" />
-
               <div class="div21">Введите код:</div>
             </div>
           </div>
@@ -188,8 +160,6 @@
         </div>
         <div class="fields-password-and-mail6">
           <div class="iconsmail-group">
-            <img class="iconsmobile" alt="" src="./public/iconsmobile.svg" />
-
             <div class="div21">Введите код:</div>
           </div>
         </div>

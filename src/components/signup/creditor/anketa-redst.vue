@@ -103,12 +103,6 @@
                             alt=""
                             src="../public/vector.svg"
                           />
-
-                          <img
-                            class="iconsfile-child"
-                            alt=""
-                            src="../public/vector-245.svg"
-                          />
                         </div>
                       </div>
                       <div class="frame-wrapper">
@@ -145,12 +139,6 @@
                             class="vector-icon"
                             alt=""
                             src="../public/vector.svg"
-                          />
-
-                          <img
-                            class="iconsfile-child"
-                            alt=""
-                            src="../public/vector-245.svg"
                           />
                         </div>
                       </div>

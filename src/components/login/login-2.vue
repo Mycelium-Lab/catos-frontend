@@ -26,8 +26,6 @@
       <div class="fields-password-and-mail-parent">
         <div class="fields-password-and-mail">
           <div class="iconsmail-parent">
-            <img class="iconsmail" alt="" src="./public/iconsmail.svg" />
-
             <div class="div4">Ваша почта</div>
           </div>
         </div>
@@ -38,8 +36,6 @@
       <div class="fields-password-and-mail-parent">
         <div class="fields-password-and-mail1">
           <div class="iconsmail-parent">
-            <img class="iconsmail" alt="" src="./public/iconslock.svg" />
-
             <div class="div4">Введите пароль</div>
             <!--<img
               class="iconspassword"

@@ -43,12 +43,6 @@
                 <div class="iconsfile">
                   <img class="vector-icon" alt="" src="./public/vector.svg" />
 
-                  <img
-                    class="iconsfile-child"
-                    alt=""
-                    src="./public/vector-245.svg"
-                  />
-
                   <div class="jpg">JPG</div>
                 </div>
               </div>

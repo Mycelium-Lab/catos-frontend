@@ -20,8 +20,6 @@
       </div>
       <div class="fields-password-and-mail2">
         <div class="iconsmobile-parent">
-          <img class="iconsmobile" alt="" src="./public/iconsmobile.svg" />
-
           <div class="div11">Введите код:</div>
         </div>
       </div>
@@ -39,7 +37,7 @@
       <div class="frame-group">
         <div class="frame-container">
           <div class="iconssend-parent">
-            <img class="iconssend" alt="" src="./public/iconssend.svg" />
+            />
 
             <div class="div14">Отправить код повторно:</div>
           </div>
@@ -48,8 +46,6 @@
           </div>
         </div>
         <div class="iconssend-parent">
-          <img class="iconsmobile" alt="" src="./public/iconsedit1.svg" />
-
           <div class="div14">Именить номер</div>
         </div>
       </div>

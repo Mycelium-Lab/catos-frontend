@@ -212,11 +212,6 @@
                         <div class="frame-inner"></div>
                       </div>
                       <div class="icon-inner"></div>
-                      <img
-                        class="vector-icon"
-                        alt=""
-                        src="../public/vector-246.svg"
-                      />
 
                       <div class="icon-child1"></div>
                       <div class="icon-child2"></div>
@@ -248,12 +243,6 @@
                           class="vector-icon1"
                           alt=""
                           src="../public/vector.svg"
-                        />
-
-                        <img
-                          class="iconsfile-child"
-                          alt=""
-                          src="../public/vector-245.svg"
                         />
 
                         <div class="jpg">JPG</div>
@@ -324,11 +313,6 @@
                               <div class="frame-child7"></div>
                             </div>
                             <div class="icon-child11"></div>
-                            <img
-                              class="icon-child12"
-                              alt=""
-                              src="../public/vector-2461.svg"
-                            />
 
                             <div class="icon-child13"></div>
                             <div class="icon-child14"></div>
@@ -362,12 +346,6 @@
                           class="vector-icon1"
                           alt=""
                           src="../public/vector.svg"
-                        />
-
-                        <img
-                          class="iconsfile-child"
-                          alt=""
-                          src="../public/vector-245.svg"
                         />
 
                         <div class="jpg">JPG</div>
