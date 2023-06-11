@@ -1,0 +1,39 @@
+@import url("../base/fills.scss");
+@import url("../base/gradients.scss");
+
+$primary-button-bg: rgba(255, 219, 109, 1);
+$primary-button-active-bg: rgba(251, 204, 63, 1);
+$primary-button-disable-bg: rgba(224, 219, 205, 1);
+$secondary-button-bg: $purple;
+$secondary-button-active-bg: $purple-active;
+$secondary-button-disable-bg: rgba(159, 146, 175, 0.3000000119);
+
+$small-primary-button-bg: rgba(87, 126, 247, 0.9599999785);
+$small-primary-button-active-bg: rgba(48, 98, 253, 1);
+$secondary-button-bg: $purple;
+$secondary-button-active-bg: $purple-active;
+$small-outline-button-active-bg: rgba(87, 126, 247, 0.2399999946);
+
+$trash-button-bg: $primary-dark;
+
+$b-primary_text: $primary-dark;
+$b-primary_active-text: $primary-dark;
+$b-primary_disable-text: rgba(59, 59, 59, 0.5);
+$b-secondary_text: rgba(243, 243, 243, 1);
+$b-secondary_active-text: rgba(243, 243, 243, 1);
+$b-secondary_disable-text: rgba(59, 59, 59, 0.5);
+
+$b-small-primary_text: rgba(254, 254, 254, 1);
+$b-small-primary_active-text: rgba(254, 254, 254, 1);
+$b-secondary_text: rgba(243, 243, 243, 1);
+$b-secondary_active-text: rgba(243, 243, 243, 1);
+$b-small-outline_active-text: $primary-dark;
+
+$b-trash_text: rgba(255, 255, 255, 1);
+
+$b-primary_active-border: rgba(0, 0, 0, 0.14);
+$b-secondary_active-border: rgba(0, 0, 0, 0.14);
+$b-secondary_disable-border: rgba(0, 0, 0, 0.14);
+
+$b-small-outline_border: rgba(87, 126, 247, 0.9599999785);
+$b-small-outline_active-border: rgba(87, 126, 247, 0.9599999785);

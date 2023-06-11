@@ -1,0 +1,26 @@
+@import url("../../base/fills/fills.scss");
+@import url("../../base/gradients/tabs-status-gardients.scss");
+
+$st_green-bg-active: rgba(165, 146, 221, 0.1);
+$st_blue-bg-active: rgba(165, 146, 221, 0.1);
+$st_purple-bg-active: rgba(165, 146, 221, 0.1);
+$st_yellow-bg-active: rgba(165, 146, 221, 0.1);
+$st_red-bg-active: rgba(165, 146, 221, 0.1);
+
+$st_green-text-active: $primary-dark;
+$st_blue-text-active: $primary-dark;
+$st_purple-text-active: $primary-dark;
+$st_yellow-text-active: $primary-dark;
+$st_red-text-active: $primary-dark;
+
+$st_green-element-back: $tsg-outline-green;
+$st_blue-element-back: $tsg-blue-green;
+$st_purple-element-back: $tsg-purple-green;
+$st_yellow-element-back: $tsg-yellow-green;
+$st_red-element-back: $tsg-red-green;
+
+$st_green-element-front: $tsg-inner-green;
+$st_blue-element-front: $tsg-inner-green;
+$st_purple-element-front: $tsg-inner-green;
+$st_yellow-element-front: $tsg-inner-green;
+$st_red-element-front: $tsg-inner-green;

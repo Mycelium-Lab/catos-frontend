@@ -1,0 +1,23 @@
+@import url("../../../base/fills/fills.scss");
+
+$b-icon_direction-bg: rgba(245, 249, 255, 1);
+$b-icon_direction-bg-active: rgba(242, 242, 246, 1);
+// $slide-bg: rgba(245, 247, 249, 1);
+// $slide-bg-active: rgba(242, 242, 246, 1);
+$b-icon_share-bg: rgba(165, 146, 221, 0.1);
+$b-icon_share-bg-active: rgba(168, 101, 255, 1);
+$b-icon_copy-bg: rgba(165, 146, 221, 0.1);
+$b-icon_copy-bg-active: rgba(153, 238, 191, 1);
+$b-icon_transition-bg: rgba(246, 244, 252, 0.5);
+$b-icon_transition-bg-active: rgba(193, 172, 255, 0.2);
+
+$b-icon_direction-text: $primary-dark;
+$b-icon_share-text: rgba(59, 59, 59, 0.8);
+$b-icon_share-text-active: rgba(239, 239, 239, 0.93);
+$b-icon_copy-text: rgba(59, 59, 59, 0.8);
+$b-icon_copy-text-active: rgba(59, 59, 59, 0.8);
+$b-icon_transition-text: rgba(59, 59, 59, 1);
+$b-icon_transition-bg-text: rgba(59, 59, 59, 1);
+
+$b-icon_direction-border: rgba(46, 58, 89, 0.04);
+$b-icon_transition-border: rgba(46, 58, 89, 0.2);

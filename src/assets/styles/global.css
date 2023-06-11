@@ -1,0 +1,97 @@
+body {
+  margin: 0;
+  line-height: normal;
+  font-family: Inter, "Source Sans Pro";
+  box-sizing: border-box;
+}
+
+:root {
+  /* fonts */
+  --inter-small-12: Inter;
+
+  /* font sizes */
+  --inter-small-12-size: 0.75rem;
+  --font-size-base: 1rem;
+  --font-size-3xs: 0.63rem;
+  --font-size-sm: 0.875rem;
+  --font-size-6xl: 1.56rem;
+  --font-size-mini: 0.94rem;
+  --font-size-5xs-9: 0.49rem;
+  --font-size-xs: 0.75rem;
+
+  /* Colors */
+  --m3-sys-light-on-primary: #fff;
+  --color-tomato: #eb4335;
+  --m3-sys-light-on-surface-variant: #49454f;
+  --colors-dark-dark-50: #2e3a59;
+  --color-darkslategray-100: #3b3b3b;
+  --color-darkslategray-400: rgba(59, 59, 59, 0.58);
+  --color-darkslategray-200: rgba(46, 58, 89, 0.2);
+  --color-darkslategray-300: rgba(46, 58, 89, 0.36);
+  --color-darkslategray-500: rgba(59, 59, 59, 0.5);
+  --color-darkslategray-600: rgba(59, 59, 59, 0.7);
+  --color-mediumaquamarine: #70ca98;
+  --catos-secondary: #a592dd;
+  --color-plum-100: rgba(165, 146, 221, 0.1);
+  --color-plum-200: rgba(165, 146, 221, 0.07);
+  --color-plum-300: rgba(165, 146, 221, 0.5);
+  --color-black: #000;
+  --color-aliceblue: rgba(237, 244, 255, 0.3);
+  --color-ghostwhite: #f5f9ff;
+  --color-khaki-200: #fdd674;
+  --color-khaki-100: #fed26a;
+  --m3-sys-light-primary-container: #eaddff;
+  --color-lavender-100: #e6ddff;
+  --m3-sys-light-surface-variant: #e7e0ec;
+  --color-lavender-200: rgba(230, 221, 255, 0.07);
+  --color-lavender-300: rgba(230, 221, 255, 0.3);
+  --color-red: #ff0000;
+  --m3-sys-light-outline: #79747e;
+  --colors-dark-dark: #262626;
+  --catos-gray: #1f1f1f;
+  --color-gray-100: #1c1d21;
+  --m3-sys-light-on-surface: #1c1b1f;
+  --color-gray-200: rgba(0, 0, 0, 0.38);
+  --color-gray-300: rgba(0, 0, 0, 0.04);
+  --color-aquamarine: #99eebf;
+  --field-stroke: #656060;
+  --m3-sys-light-primary: #6750a4;
+  --m3-sys-light-surface: #fffbfe;
+  --color-dodgerblue: #4e95ff;
+  --color-tan: #958463;
+  --color-goldenrod: #fdc228;
+
+  /* Gaps */
+  --gap-5xs: 0.5rem;
+  --gap-4xs: 0.56rem;
+  --gap-9xs: 0.25rem;
+
+  /* Paddings */
+  --padding-3xs: 0.63rem;
+  --padding-xs: 0.75rem;
+  --padding-9xs: 0.25rem;
+  --padding-sm: 0.88rem;
+
+  /* border radiuses */
+  --br-81xl: 100px;
+  --br-8xs-1: 4.1px;
+  --br-xs: 8px;
+  --br-mini: 15px;
+  --br-base: 16px;
+  --br-5xl: 24px;
+  --br-21xl: 40px;
+}
+
+*,
+*::before,
+*::after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  /* Убирает прокрутку по горизонтале, для мобильной версии */
+  overflow-x: hidden;
+}

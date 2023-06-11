@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)https://www.locofy.ai/builder/648430ae83fc21c243a06b41?screen=344%3A5061 -->
+<html edit=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="initial-scale=1, width=device-width">
+  <title></title>
+  <meta name="description" content=""><style>#_lbb i {
+        position: absolute;
+        display: block;
+        width: 6px;
+        height: 6px;
+        background-color: #fff;
+        border: 1px solid #457eff;
+        border-radius: 50%;
+      }
+      #_lbb i:first-child {
+        top: -3px;
+        left: -3px;
+      }
+      #_lbb i:nth-child(2) {
+        top: -3px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      #_lbb i:nth-child(3) {
+        top: -3px;
+        right: -3px;
+      }
+      #_lbb i:nth-child(4) {
+        top: 50%;
+        left: -3px;
+        transform: translateY(-50%);
+      }
+      #_lbb i:nth-child(5) {
+        top: 50%;
+        right: -3px;
+        transform: translateY(-50%);
+      }
+      #_lbb i:nth-child(6) {
+        bottom: -3px;
+        left: -3px;
+      }
+      #_lbb i:nth-child(7) {
+        bottom: -3px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      #_lbb i:last-child {
+        bottom: -3px;
+        right: -3px;
+      }
+      html[edit] #__app *:not([data-locofyid]) {
+        pointer-events: none !important;
+      }
+      html[edit] #__app *[data-locofyid] {
+        pointer-events: auto;
+      }
+.activeUsersGroup {
+    pointer-events: none;
+    z-index: 100;
+  }
+  [class*="activeUsers-"]{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 100;
+  }
+  .activeUser{
+    background: #fff;
+    padding: 0 3px;
+    height: 13px;
+    line-height: 13px;
+    border-radius: 2px 2px 0 0;
+    max-width: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: Arial;
+    font-size: 10px;
+    color: #fff;
+    z-index: 100;
+  }
+  html:not([edit]) .activeUsersGroup,
+  html:not([edit]) .activeUser  {
+    display: none;
+  }</style>
+      <script>function _run() {
+    const pe = 'parentElement', d = document, bb = d.createElement("div"), _es = bb.style;
+    const body = d.body, docElem = d.documentElement;
+    bb.setAttribute("id", "_lbb");
+    bb.setAttribute("style", "display: none; background: rgba(69, 126, 255, 0.4); border: 1px solid #457EFF; z-index: 2147483647; position: fixed; top: 0; left: 0; pointer-events: none;");
+    bb.innerHTML += '<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>';
+    body.prepend(bb);
+    let mode = "edit", curEl;
+
+    function align(el, notify) {
+      // console.log('el', el);
+      if(el && mode === 'edit' && el.getAttribute) {
+        if(bb && !bb[pe]) body.prepend(bb);
+
+        const elId = el.getAttribute("data-locofyid");
+        notify && window.parent.postMessage({ info: [{id: elId}] });
+
+        const scrollTop = docElem.scrollTop || body.scrollTop;
+        const scrollLeft = docElem.scrollLeft || body.scrollLeft;        
+        const bounds = el.getBoundingClientRect();
+        const currentLeft = bounds.left + scrollLeft;
+        const currentTop = bounds.top + scrollTop;
+        const currentWidth = bounds.width;
+        const currentHeight = bounds.height;
+        _es.left = currentLeft - scrollLeft + "px";
+        _es.top = currentTop - scrollTop + "px";
+        _es.width = currentWidth + "px";
+        _es.height = currentHeight + "px";
+        _es.display = el && el[pe] && el[pe][pe] !== body ? 'block': 'none';
+      } else {
+        _es.display = 'none';
+      }
+    }
+
+    let unObserve;
+    const docObs = new ResizeObserver(() => align(curEl));
+
+    function observe(newEl, notify) {
+      if(newEl === curEl) return;
+      if(newEl) { 
+        unObserve && unObserve();
+
+        const ro = new ResizeObserver(entries => align(entries[0].target));
+        ro.observe(newEl);         
+
+        let lastPosition = newEl.getBoundingClientRect();
+        const interval = setInterval(() => {
+          const newPosition = newEl.getBoundingClientRect();
+          if (newPosition.x !== lastPosition.x || newPosition.y !== lastPosition.y) {
+            lastPosition = newPosition;
+            align(newEl);
+            _es.transition = 'all 0.2s ease-out';
+          } else _es.transition = '';
+        }, 100);
+
+        unObserve = () => { ro.unobserve(newEl); clearInterval(interval); };
+      }
+      curEl = newEl;
+      align(newEl, notify);
+    }
+    docObs.observe(body);
+
+    window.addEventListener("scroll", () => align(curEl));
+    d.addEventListener("mousedown", e => {
+      window.parent.postMessage({ clicked: true });
+      let el = e.target, ev;
+      if (el && mode === "edit" && el.getAttribute) {
+        e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation(); 
+        el.blur && el.blur();
+
+        const id = el.getAttribute("data-locofyid");
+        id && observe(el, true);
+
+        if(el) {
+          ev = (e) => {e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation(); };
+          el.addEventListener("click", ev);
+        }
+      }
+
+      const mouseUp = (e) => {
+        d.removeEventListener("mouseup", mouseUp);
+        d.removeEventListener("mouseleave", mouseUp);
+        el && ev && setTimeout(() => el.removeEventListener("click", ev), 10);
+      };
+  
+      d.addEventListener("mouseup", mouseUp);
+      d.addEventListener("mouseleave", mouseUp);
+    });
+
+    window.addEventListener("message", (e) => {
+      const data = (e && e.data) || {};
+     if (data.type === 2) return;
+     const selectedId = data.selectedNodeId;
+
+     if (selectedId) {
+       if (mode !== "edit") { _es.display = "none"; return; }
+      const target = d.querySelector("[data-locofyid='" + selectedId + "']");
+      observe(target);    
+     } else if (!selectedId && !data.mode && !data.scrollToSelectedNode) {
+      _es.display = "none";
+     } else if (data.mode === "edit") {
+      mode = "edit";
+      _es.display = "block";
+     } else if (data.mode === "preview") {
+      mode = "preview";
+      _es.display = "none";
+    }
+    });
+   }
+   if(document.readyState !== 'loading') _run();
+   else window.addEventListener("DOMContentLoaded", _run);
+function renderActiveUserNodes (evt) {
+    const data = evt.data;
+    if(data.type !== 2) return;
+
+    const users = data.message;
+    const scale = data.scale;
+    const userId = data.userId;        
+    let activeNodes = users;
+    const obs = window.__auobs = window.__auobs || [];
+    const activeUsrGElem = document.getElementsByClassName('activeUsersGroup');
+    const activeUsrElem = document.getElementsByClassName('activeUsers');
+    
+    while (activeUsrGElem.length > 0) activeUsrGElem[0].remove();
+    while (activeUsrElem.length > 0) activeUsrElem[0].remove();
+    while (obs.length > 0) obs.shift().unobserve(document.body);
+
+    if(activeNodes && activeNodes[0]) {
+      for(let k = 0; k<activeNodes.length; k++) {
+        const node = activeNodes[k], id = node.id, nElem = document.querySelectorAll('[data-locofyid="' + id + '"]')[0] || null;
+        if (typeof(nElem) != 'undefined' && nElem != null) {
+          const alignActiveUser = (isResizeObs) => {
+            const bc = nElem.getBoundingClientRect();
+            const top = window.pageYOffset + bc.top;
+            const nodeWidth = nElem.offsetWidth;
+            const nodeHeight = nElem.offsetHeight;
+            const left = Math.round(window.pageXOffset + bc.left);  
+
+            let ug = document.getElementById("activeUsersGroup-" + id);
+            if(!ug){
+              ug = document.createElement("div");
+              document.body.append(ug);
+            }
+            ug.setAttribute("id", "activeUsersGroup-" + id);
+            ug.setAttribute("class", "activeUsersGroup activeUsersGroup-" + id);
+            ug.setAttribute("style", "position: absolute; top: " + top + "px; left: " + left + "px; width: " + nodeWidth + "px; height: " + nodeHeight + "px;");
+            ug.style.border = '1px solid ' + node.users[0].color;  
+
+            let ex = document.getElementById("activeUsers-" + id);
+            let ue = ex || document.createElement("div");
+            ue.setAttribute("id", "activeUsers-" + id);
+            ue.setAttribute("class", "activeUsers activeUsers-" + id);
+            ue.setAttribute("style", "position: absolute; top: " + Math.round(top - 13/scale) + "px; left: " + left + "px; width: " + nodeWidth + "px;");
+            let iH = '';
+            node.users.forEach((user, index, array) => {  
+              if(nElem && !isResizeObs) {
+                const id = 'activeuser' + user.userId;
+                const userS = document.getElementById(id);
+                const name = user.userId === userId ? 'You' : user.name;
+                const bg = 'background-color: ' + user.color + ';';
+                const fs = 'font-size: ' + Math.round(10 / scale) + 'px;';
+                const h = 'height: ' + Math.round(13 / scale) + 'px;';
+                const lh = 'line-height: ' + Math.round(13 / scale) + 'px;';
+                iH += '<div class="activeUser" id=' + id + ' style="' + bg + fs + h + lh + '">' + name + '</div>';
+              }
+              iH && (ue.innerHTML  = iH);
+            });
+            !ex && document.body.append(ue);
+          }
+          alignActiveUser();
+          const docObs = new ResizeObserver(() => alignActiveUser(1));
+          docObs.observe(document.body);
+          obs.push(docObs);
+        }
+      }
+    } else {
+      // console.log('No user found', users);
+    }
+  }
+
+  function _onloadfn() {
+    window.addEventListener("message", renderActiveUserNodes, false);
+  }
+  if(document.readyState !== 'loading') _onloadfn();
+  else window.onload = _onloadfn</script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700&amp;display=swap">
+
+  <style>
+  
+  html[edit] {
+    overflow: hidden;
+  }
+  
+  body {
+    margin: 0;
+    line-height: normal;
+  }
+  
+  input, button, textarea, select {
+          font: inherit;
+         }
+  html[edit] body > *:nth-child(2) {
+    max-width: unset;
+    max-height: unset;
+    top: unset;
+    left: unset;
+    right: unset;
+    bottom: unset;
+  }
+  @keyframes _ripple-kf {
+    0% {
+        transform: scale(0.4) rotateZ(0deg);
+        opacity: 0;        
+    }
+    100% {
+        transform: scale(1.1) rotateZ(0deg);
+        opacity: 1;
+    }
+  }
+  ._ripple {
+    width: 22px;
+    height: 22px;
+    background: url("data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBoZWlnaHQ9IjIwIiB2aWV3Qm94PSIwIDAgMjAgMjAiIHdpZHRoPSIyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBzdHJva2U9IiM0NTdlZmYiIHN0cm9rZS13aWR0aD0iMS4zMzMzMyI+PGNpcmNsZSBjeD0iOS43MzI0IiBjeT0iOS41NDUzMyIgcj0iMi41Ii8+PGNpcmNsZSBjeD0iOS43MzIzOCIgY3k9IjkuNTQ1NDkiIG9wYWNpdHk9Ii41IiByPSI1LjY2NjY3Ii8+PGNpcmNsZSBjeD0iOS43MzIzOSIgY3k9IjkuNTQ1NDEiIG9wYWNpdHk9Ii4yIiByPSI4LjgzMzMzIi8+PC9nPjwvc3ZnPg==") no-repeat center;
+    animation: 0.8s ease 0s infinite normal none _ripple-kf;
+  }
+  .div {
+position: absolute;
+width: 12.82%;
+top: 80.79%;
+left: 43.59%;
+font-size: 0.75em;
+text-decoration: underline;
+color: #b9a1f8;
+display: flex;
+align-items: center;
+}
+.div1 {
+position: absolute;
+top: 78.72%;
+left: 31.03%;
+font-size: 0.75em;
+font-weight: 500;
+}
+.iphone-13-13-pro-66-child {
+position: absolute;
+height: 67.15%;
+width: 102.82%;
+top: -4.44%;
+right: -1.79%;
+bottom: 37.29%;
+left: -1.03%;
+}
+.page-title {
+position: absolute;
+top: 14.05%;
+left: 40.26%;
+font-size: 1.56em;
+line-height: 1.12em;
+}
+.catos {
+position: absolute;
+top: 16.94%;
+left: 20.77%;
+font-size: 1em;
+line-height: 1.75em;
+font-weight: 500;
+}
+.iphone-13-13-pro-66-item {
+position: absolute;
+height: 18.74%;
+width: 59.49%;
+top: 0%;
+right: 0%;
+bottom: 81.26%;
+left: 40.51%;
+max-width: 100%;
+overflow: hidden;
+max-height: 100%;
+}
+.p {
+margin: 0;
+}
+.div2 {
+position: absolute;
+top: 3%;
+left: 17.35%;
+font-size: 0.88em;
+line-height: 130%;
+text-align: center;
+}
+.imagepersones-icon {
+position: relative;
+width: 4.5em;
+height: 4.5em;
+}
+.div3 {
+position: relative;
+font-size: 1em;
+line-height: 1.75em;
+font-weight: 500;
+background: linear-gradient(#3b3b3b, #3b3b3b), #a592dd;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+display: flex;
+align-items: center;
+width: 15.56em;
+}
+.div4 {
+align-self: stretch;
+position: relative;
+font-size: 0.75em;
+line-height: 1.33em;
+font-weight: 300;
+}
+.description {
+width: 13.96em;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+justify-content: flex-start;
+gap: 0.25em;
+}
+.description-and-image {
+width: 20.13em;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: flex-start;
+gap: 0.56em;
+}
+.component-19 {
+border-radius: 16px;
+border: 0.5px solid rgba(46, 58, 89, 0.2);
+box-sizing: border-box;
+width: 21.38em;
+height: 7.65em;
+display: flex;
+flex-direction: column;
+padding: 0.75em 0em 0.88em;
+align-items: center;
+justify-content: center;
+}
+.imagepersones-icon1 {
+position: relative;
+width: 4.5em;
+height: 4.5em;
+object-fit: cover;
+}
+.div5 {
+position: relative;
+font-size: 1em;
+line-height: 1.56em;
+font-weight: 500;
+display: flex;
+align-items: center;
+width: 15.31em;
+}
+.div6 {
+align-self: stretch;
+position: relative;
+font-size: 0.75em;
+line-height: 1.33em;
+font-weight: 300;
+color: #3b3b3b;
+}
+.component-191 {
+border-radius: 16px;
+border: 1px solid rgba(165, 146, 221, 0.4);
+box-sizing: border-box;
+width: 21.38em;
+height: 7.65em;
+display: flex;
+flex-direction: column;
+padding: 0.75em 0em 0.88em;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+color: #1f1f1f;
+}
+.imagepersones-child {
+position: absolute;
+top: -0.06em;
+left: 0em;
+border-radius: 50%;
+background-color: #fdc228;
+width: 4.5em;
+height: 4.5em;
+}
+.icons-bluegreengold-buildingle1 {
+position: absolute;
+height: 100%;
+width: 100%;
+top: 0%;
+right: 0%;
+bottom: 0%;
+left: 0%;
+max-width: 100%;
+overflow: hidden;
+max-height: 100%;
+object-fit: cover;
+}
+.icons-bluegreengold-buildingle {
+position: absolute;
+top: 0.56em;
+left: 0.5em;
+width: 3.52em;
+height: 3.5em;
+}
+.div7 {
+position: relative;
+font-size: 1em;
+line-height: 120%;
+font-weight: 500;
+background: linear-gradient(#3b3b3b, #3b3b3b), #a592dd;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+display: flex;
+align-items: center;
+width: 15.56em;
+}
+.span {
+font-weight: 300;
+}
+.div8 {
+align-self: stretch;
+position: relative;
+font-size: 0.75em;
+line-height: 1.33em;
+}
+.icons-bluegreengold-paper {
+position: absolute;
+top: 0.56em;
+left: 0.56em;
+width: 3.4em;
+height: 3.38em;
+}
+.div9 {
+position: relative;
+font-size: 1em;
+line-height: 1.19em;
+font-weight: 500;
+display: flex;
+align-items: center;
+width: 15.56em;
+}
+.catos2 {
+letter-spacing: -0.01em;
+}
+.catos-txt {
+line-break: anywhere;
+width: 100%;
+}
+.catos1 {
+position: relative;
+font-size: 0.75em;
+line-height: 1.33em;
+font-weight: 300;
+color: #3b3b3b;
+display: flex;
+align-items: center;
+width: 19.67em;
+}
+.component-193 {
+border-radius: 16px;
+border: 0.5px solid rgba(46, 58, 89, 0.2);
+box-sizing: border-box;
+width: 21.38em;
+height: 7.65em;
+display: flex;
+flex-direction: column;
+padding: 0.75em 0em 0.88em;
+align-items: center;
+justify-content: center;
+color: #1f1f1f;
+}
+.component-19-parent {
+position: absolute;
+top: 5.13em;
+left: 1.56em;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+justify-content: flex-start;
+gap: 1.19em;
+}
+.div10 {
+position: relative;
+font-size: 0.75em;
+letter-spacing: 1px;
+line-height: 130%;
+font-weight: 500;
+}
+.div11 {
+position: relative;
+font-size: 0.75em;
+text-decoration: underline;
+line-height: 130%;
+color: #a592dd;
+display: flex;
+align-items: center;
+width: 4.18em;
+}
+.group {
+position: absolute;
+top: 40.88em;
+left: 7.63em;
+height: 2.88em;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+gap: 1.13em;
+color: #1f1f1f;
+}
+.parent {
+position: absolute;
+top: 14.06em;
+left: -0.06em;
+border-radius: 40px 40px 0px 0px;
+background-color: #fff;
+width: 24.5em;
+height: 54.13em;
+overflow-y: auto;
+}
+.loader {
+position: absolute;
+top: 0.13em;
+left: 2.63em;
+border-radius: 24px;
+background-color: #f5f9ff;
+border: 1px solid rgba(0, 0, 0, 0.03);
+box-sizing: border-box;
+width: 7.69em;
+height: 1.5em;
+opacity: 0.51;
+}
+.loader1 {
+position: absolute;
+top: 0em;
+left: 2.63em;
+border-radius: 24px;
+background-color: #f5f9ff;
+width: 3.44em;
+height: 1.75em;
+}
+.div12 {
+position: relative;
+font-size: 0.5em;
+line-height: 120%;
+font-weight: 500;
+}
+.container {
+position: absolute;
+top: 0.56em;
+left: 7.19em;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: flex-start;
+gap: 0.44em;
+}
+.div14 {
+position: absolute;
+top: 0.36em;
+left: 3.93em;
+font-size: 0.88em;
+line-height: 120%;
+font-weight: 500;
+color: #2e3a59;
+}
+.loader-parent {
+position: absolute;
+top: 4.13em;
+left: 12.56em;
+width: 10.31em;
+height: 1.75em;
+opacity: 0;
+color: #958463;
+}
+.group-icon {
+position: absolute;
+height: 2.92%;
+width: 6.92%;
+top: 55.06%;
+right: 4.1%;
+bottom: 42.02%;
+left: 88.97%;
+max-width: 100%;
+overflow: hidden;
+max-height: 100%;
+}
+.battery-icon {
+position: absolute;
+height: 25.76%;
+width: 6.24%;
+top: 39.39%;
+right: 7.61%;
+bottom: 34.85%;
+left: 86.15%;
+max-width: 100%;
+overflow: hidden;
+max-height: 100%;
+}
+.wifi-icon {
+position: relative;
+width: 0.95em;
+height: 0.69em;
+}
+.mobile-signal-icon {
+position: relative;
+width: 1.06em;
+height: 0.67em;
+}
+.div15 {
+position: absolute;
+height: 85.71%;
+width: 100%;
+top: 9.52%;
+left: 0%;
+font-size: 0.94em;
+letter-spacing: -0.02em;
+font-weight: 100;
+display: flex;
+align-items: flex-end;
+justify-content: center;
+}
+.time-style {
+position: absolute;
+height: 47.73%;
+width: 13.85%;
+top: 27.27%;
+right: 80.77%;
+bottom: 25%;
+left: 5.38%;
+}
+.time-style1 {
+position: absolute;
+height: 47.73%;
+width: 13.85%;
+top: 27.27%;
+right: 80.77%;
+bottom: 25%;
+left: 5.38%;
+display: none;
+color: #fff;
+}
+.ui-bars-status-bars-white {
+position: absolute;
+top: 0em;
+left: 0em;
+width: 24.38em;
+height: 2.75em;
+text-align: center;
+color: #1c1c1c;
+}
+.iphone-13-13-pro-66 {
+position: relative;
+background-color: #fdd674;
+width: 100%;
+height: 60.5em;
+overflow: hidden;
+text-align: left;
+color: #3b3b3b;
+font-family: Inter;
+}
+
+
+  
+  </style>
+  
+  
+  </head>
+
+  <body><div id="_lbb" style="display: none; background: rgba(69, 126, 255, 0.4); border: 1px solid #457EFF; z-index: 2147483647; position: fixed; top: 0; left: 0; pointer-events: none;"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  
+    <div class="iphone-13-13-pro-66" data-locofyid="344:5061">
+      <div class="div" data-locofyid="344:5062">Войдите</div>
+      <div class="div1" data-locofyid="344:5063">Уже зарегистрированы?</div>
+      <div class="iphone-13-13-pro-66-child" data-locofyid="344:5064">
+      </div>
+      <b class="page-title" data-locofyid="344:5065">Войти</b>
+      <div class="catos" data-locofyid="344:5066">Добро пожаловать в CATOS!</div>
+      <img class="iphone-13-13-pro-66-item" alt="" src="./966b039a-6d37-498f-81ab-a63b4411bb0a_1686120654475398473" data-locofyid="344:5067" data-locofyformat="svg">
+      
+      <div class="parent" data-locofyid="344:5070">
+        <div class="div2" data-locofyid="344:5071">
+          <p class="p" data-locofyid="344:5071-1">Выберите роль в качестве которой</p>
+          <p class="p" data-locofyid="344:5071-3">вы хотите присоединиться к проекту:</p>
+        </div>
+        <div class="component-19-parent" data-locofyid="344:5072">
+          <div class="component-19" data-locofyid="344:5073">
+            <div class="description-and-image" data-locofyid="I344:5073;297:8851">
+              <img class="imagepersones-icon" alt="" src="./bba8b388-a3f1-46b4-8b55-277173efc753_1686393134766491681" data-locofyid="I344:5073;297:8852" data-locofyformat="svg">
+              
+              <div class="description" data-locofyid="I344:5073;297:8853">
+                <div class="div3" data-locofyid="I344:5073;297:8854">Пользователь</div>
+                <div class="div4" data-locofyid="I344:5073;297:8855">Выберите эту роль, если вы хотели бы брать и гасить займы в любой точке мира и на лучших условиях</div>
+              </div>
+            </div>
+          </div>
+          <div class="component-191" id="component19Container1" data-locofyite="" data-locofyid="344:5074">
+            <div class="description-and-image" data-locofyid="I344:5074;297:8799">
+              <img class="imagepersones-icon1" alt="" src="./a14a92ff-36ff-4516-9685-e45a01782287_1686120654475673426" data-locofyid="I344:5074;297:8848" data-locofyformat="png">
+              
+              <div class="description" data-locofyid="I344:5074;297:8801">
+                <div class="div5" data-locofyid="I344:5074;297:8802">Кредитор-инвестор</div>
+                <div class="div6" data-locofyid="I344:5074;297:8803">Выберите эту роль, если вы хотели бы получать доходность на депозит путем инвестирования в пуллы</div>
+              </div>
+            </div>
+          </div>
+          <div class="component-19" data-locofyid="344:5075">
+            <div class="description-and-image" data-locofyid="I344:5075;297:8851">
+              <div class="imagepersones-icon" data-locofyid="I344:5075;297:8852">
+                <div class="imagepersones-child" data-locofyid="I344:5075;297:8852;297:8836">
+                </div>
+                <div class="icons-bluegreengold-buildingle" data-locofyid="I344:5075;297:8852;297:8834">
+                  <img class="icons-bluegreengold-buildingle1" alt="" src="./5acea31a-67d9-4060-9f5a-59c33e8543df_1686120654475772560" data-locofyid="I344:5075;297:8852;297:8834;73:107" data-locofyformat="png">
+                  
+                </div>
+              </div>
+              <div class="description" data-locofyid="I344:5075;297:8853">
+                <div class="div7" data-locofyid="I344:5075;297:8854">Финансовая организация</div>
+                <div class="div8" data-locofyid="I344:5075;297:8855">
+                  <span class="span" data-locofyid="I344:5075;297:8855-1">Если вы представитель кредитной финансовой организации, станьте партнером. Создайте и управляйте собственным кредитным пулом на платформе</span>
+                  <span data-locofyid="I344:5075;297:8855-2"> CATOS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="component-193" data-locofyid="1183:67773">
+            <div class="description-and-image" data-locofyid="1183:67774">
+              <div class="imagepersones-icon" data-locofyid="1183:67775">
+                <div class="imagepersones-child" data-locofyid="I1183:67775;297:8838">
+                </div>
+                <div class="icons-bluegreengold-paper" data-locofyid="I1183:67775;297:8841">
+                  <img class="icons-bluegreengold-buildingle1" alt="" src="./e3ae3a51-56b0-4ec3-9111-39dd087577a2_1686120654475849051" data-locofyid="I1183:67775;297:8841;73:114" data-locofyformat="png">
+                  
+                </div>
+              </div>
+              <div class="description" data-locofyid="1183:67776">
+                <div class="div9" data-locofyid="1183:67777">Коллекторское агентство</div>
+                <div class="catos1" data-locofyid="1183:67778">
+                  <span class="catos-txt" data-locofyid="">Если вы представитель коллекторской организации с хорошей репутацией
+                    <span class="catos2" data-locofyid="1183:67778-1">, станьте парнером и выкупайте просроченные задолженнности на платформе CATOS</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="group" data-locofyid="344:5077">
+          <div class="div10" data-locofyid="344:5078">Уже зарегистрированы?</div>
+          <div class="div11" data-locofyid="344:5079">Войдите</div>
+        </div>
+      </div>
+      <div class="loader-parent" data-locofyid="344:5080">
+        <div class="loader" data-locofyid="344:5081">
+        </div>
+        <div class="loader1" data-locofyid="344:5082">
+        </div>
+        <div class="container" data-locofyid="344:5083">
+          <div class="div12" data-locofyid="344:5084">из</div>
+          <div class="div12" data-locofyid="344:5085">100%</div>
+        </div>
+        <div class="div14" data-locofyid="344:5086">20%</div>
+      </div>
+      <img class="group-icon" alt="" src="data:image/gif;base64,R0lGODlhAQABAHAAACH5BAUAAAAALAAAAAABAAEAAAICRAEAOw==" data-locofyid="344:5087" data-locofyformat="svg">
+      
+      <div class="ui-bars-status-bars-white" data-locofyid="344:5195">
+        <img class="battery-icon" alt="" src="./1a590b2a-ad61-466b-83db-1e69456876d6_1686120654475932859" data-locofyid="344:5196" data-locofyformat="svg">
+        
+        <img class="wifi-icon" alt="" src="./dc40e529-6563-444e-956d-733d1bb106cc_1686120654476021435" data-locofyid="344:5200" data-locofyformat="svg">
+        
+        <img class="mobile-signal-icon" alt="" src="./7a02df6d-9a27-4fea-ab1f-dbf83e1c3f48_1686120654476114423" data-locofyid="344:5204" data-locofyformat="svg">
+        
+        <div class="time-style" data-locofyid="344:5209">
+          <div class="div15" data-locofyid="344:5210">9:41</div>
+        </div>
+        <div class="time-style1" data-locofyid="344:5211">
+          <div class="div15" data-locofyid="344:5212">9:41</div>
+        </div>
+      </div>
+    </div><script>
+          var component19Container1 = document.getElementById("component19Container1");
+          if(component19Container1) {
+            component19Container1.addEventListener("click", function (e) {
+              location.protocol === 'file:' ? alert('"Change page" actions do not work in this preview. Please sync to builder to test your interactions.') : window.parent.postMessage("~PID|415:5535");
+          e.stopPropagation();
+          e.preventDefault();
+            });
+          }</script>
+  <script>
+    var w = window;
+    setTimeout(function(){ w.parent.postMessage("RENDERED"); }, 10)
+    var resizeObserver = new ResizeObserver(entries => {
+      const body = entries[0].target;
+      const height = Math.ceil(body.scrollHeight);
+      if(!height) return;
+      w.parent.postMessage(`~HEIGHT|${height}`);
+    });
+    resizeObserver.observe(document.body);
+    
+  function _showRipples() {
+    const doc = document;
+    const w = window;
+    const sx = w.scrollX || w.pageXOffset;
+    const sy = w.scrollY || w.pageYOffset;
+
+    const list = doc.querySelectorAll('[data-locofyite]');
+    for(let i=0; i<list.length; i++) {
+        const e = list[i];
+        const rect = e.getBoundingClientRect();
+        const r = doc.createElement('div');
+        r.classList.add('_ripple');
+        const x = (rect.x-14) + sx;
+        const y = (rect.y-14) + sy;
+        const style = "z-index: 99999; position: absolute; left: " + x + "px; top: " + y + "px;";
+        r.style = style;
+        //console.log(r);
+        doc.body.appendChild(r);
+        setTimeout(() => r.remove(), 2500);
+    }
+  }
+  function _removeRipples() {
+    const list = document.querySelectorAll('._ripple');
+    for(let i=0; i<list.length; i++) {
+      list[i].remove();
+    }
+  }
+  document.addEventListener("mousedown", function(e) {
+    if(document.body.parentElement.hasAttribute('edit')) return;
+    const t = e.target;
+    let tp = t;
+    if(tp.classList.contains('portalPopupOverlay')) return;
+    
+    while(tp) {
+      if(tp.getAttribute('data-locofyite') !== null) return;
+      const cl = tp.classList;
+      if(cl.contains('MuiModal-root')) return;
+      tp = tp.parentElement;
+    }
+    _removeRipples();
+    _showRipples();
+  });
+  </script>
+  
+  
+    
+</body></html>
