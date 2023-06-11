@@ -24,7 +24,7 @@ const { variant } = defineProps({
 });
 const emit = defineEmits(["clicked"]);
 const active = ref(false);
-const content = computed((): ButtonIconTranslation => {
+const content = computed((): any => {
   const textList = Object.values(ButtonIconTranslation);
   return getButtonContent(textList, variant);
 });

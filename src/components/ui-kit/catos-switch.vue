@@ -96,7 +96,7 @@
   </ul>-->
 </template>
 
-<script setup></script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {

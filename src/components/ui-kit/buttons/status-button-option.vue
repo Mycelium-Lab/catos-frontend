@@ -45,7 +45,7 @@ const emit = defineEmits(["selected"]);
 const isOpen = ref(false);
 const index = ref(variantIndex);
 
-const content = computed((): StatusTranslation => {
+const content = computed((): any => {
   const textList = Object.values(StatusTranslation);
   return getButtonContent(textList, index.value);
 });

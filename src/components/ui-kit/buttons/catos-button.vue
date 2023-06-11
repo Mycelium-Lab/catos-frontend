@@ -11,7 +11,7 @@
   </button>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const { variant, content, disabled } = defineProps({
   variant: {
     type: String,

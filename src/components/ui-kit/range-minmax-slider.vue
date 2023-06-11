@@ -8,7 +8,7 @@
       :max="max"
       :value="minValue"
       :step="step"
-      @input="({ target }) => (sliderMinValue = parseFloat(target.value))"
+      @input="(ev: any) => (sliderMinValue = parseFloat(ev.target.value))"
     />
     <input
       type="range"
@@ -18,7 +18,7 @@
       :max="max"
       :value="maxValue"
       :step="step"
-      @input="({ target }) => (sliderMaxValue = parseFloat(target.value))"
+      @input="(ev: any) => (sliderMinValue = parseFloat(ev.target.value))"
     />
   </div>
   <!--<div class="minmax-inputs">
@@ -27,7 +27,7 @@
   </div> -->
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, ref, watchEffect } from "vue";
 const { min, max, step, minValue, maxValue } = defineProps({
   min: {
@@ -54,12 +54,12 @@ const { min, max, step, minValue, maxValue } = defineProps({
 
 const emit = defineEmits(["update:minValue", "update:maxValue"]);
 
-const slider = ref(null);
+const slider = ref();
 const sliderMinValue = ref(minValue);
 const sliderMaxValue = ref(maxValue);
 
 // function to get the percentage of a value between the min and max values
-const getPercent = (value, min, max) => {
+const getPercent = (value: any, min: any, max: any) => {
   return ((value - min) / (max - min)) * 100;
 };
 
@@ -69,8 +69,8 @@ const sliderDifference = computed(() => {
 });
 
 // function to set the css variables for width, left, and right
-const setCSSProps = (width, left, right) => {
-  slider.value.style.setProperty("--width", `${width}%`);
+const setCSSProps = (width: any, left: any, right: any) => {
+  slider?.value?.style?.setProperty("--width", `${width}%`);
   slider.value.style.setProperty("--progressLeft", `${left}%`);
   slider.value.style.setProperty("--progressRight", `${right}%`);
 };
