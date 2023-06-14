@@ -1,50 +1,52 @@
 <template>
-  <div
-    v-if="variant === 'square'"
-    class="catos-wrapper__checkbox_square"
-    @click="() => (checked = !checked)"
-  >
+  <div>
     <div
-      :class="checked ? 'catos__checkbox_square_checked' : ''"
-      class="catos__checkbox_square catos__checkbox"
-    ></div>
-    <img
-      v-if="checked"
-      class="check-mark check-mark_square"
-      src="../../assets/images/ui-kit/check-mark-square.svg"
-      alt="checkbox mark"
-    />
-  </div>
+      v-if="variant === 'square'"
+      class="catos-wrapper__checkbox_square"
+      @click="() => (checked = !checked)"
+    >
+      <div
+        :class="checked ? 'catos__checkbox_square_checked' : ''"
+        class="catos__checkbox_square catos__checkbox"
+      ></div>
+      <img
+        v-if="checked"
+        class="check-mark check-mark_square"
+        src="../../assets/images/ui-kit/check-mark-square.svg"
+        alt="checkbox mark"
+      />
+    </div>
 
-  <div
-    v-if="variant === 'rounded'"
-    class="catos-wrapper__checkbox_rounded"
-    @click="() => (checked = !checked)"
-  >
     <div
-      :class="checked ? 'catos__checkbox_rounded_checked' : ''"
-      class="catos__checkbox_rounded catos__checkbox"
-    ></div>
-    <img
-      v-if="checked"
-      class="check-mark check-mark_rounded"
-      src="../../assets/images/ui-kit/сheck-mark-rounded.svg"
-      alt="checkbox mark"
-    />
-  </div>
-  <!--TODO: Проработать радиобаттон. Активным должен быть только один-->
-  <div
-    v-if="variant === 'radiobutton'"
-    class="catos-wrapper__radiobutton"
-    @click="() => (checked = !checked)"
-  >
-    <img src="../../assets/images/ui-kit/radiobutton.svg" alt="radiobutton" />
-    <img
-      v-if="checked"
-      class="check-mark catos__radiobutton_acive"
-      src="../../assets/images/ui-kit/radiobutton-active.svg"
-      alt="ckecked radiobutton"
-    />
+      v-if="variant === 'rounded'"
+      class="catos-wrapper__checkbox_rounded"
+      @click="() => (checked = !checked)"
+    >
+      <div
+        :class="checked ? 'catos__checkbox_rounded_checked' : ''"
+        class="catos__checkbox_rounded catos__checkbox"
+      ></div>
+      <img
+        v-if="checked"
+        class="check-mark check-mark_rounded"
+        src="../../assets/images/ui-kit/сheck-mark-rounded.svg"
+        alt="checkbox mark"
+      />
+    </div>
+    <!--TODO: Проработать радиобаттон. Активным должен быть только один-->
+    <div
+      v-if="variant === 'radiobutton'"
+      class="catos-wrapper__radiobutton"
+      @click="() => (checked = !checked)"
+    >
+      <img src="../../assets/images/ui-kit/radiobutton.svg" alt="radiobutton" />
+      <img
+        v-if="checked"
+        class="check-mark catos__radiobutton_acive"
+        src="../../assets/images/ui-kit/radiobutton-active.svg"
+        alt="ckecked radiobutton"
+      />
+    </div>
   </div>
 </template>
 
@@ -89,7 +91,9 @@ const checked = ref(false);
   box-sizing: border-box;
   flex-shrink: 0;
   height: 1.5rem;
-  margin: 0rem 1.5rem 0.2rem 0rem;
+  //ПОЧЕМУ Я СНАЧАЛ УСТАНОВИЛ ТАКИЕ ЗНАЧЕНИ?
+  //margin: 0rem 1.5rem 0.2rem 0rem;
+
   overflow: hidden;
   position: relative;
   width: 1.5rem;

@@ -8,7 +8,7 @@
       :max="max"
       :value="minValue"
       :step="step"
-      @input="(ev: any) => (sliderMinValue = parseFloat(ev.target.value))"
+      @input="handleEvent"
     />
     <input
       type="range"
@@ -18,17 +18,18 @@
       :max="max"
       :value="maxValue"
       :step="step"
-      @input="(ev: any) => (sliderMinValue = parseFloat(ev.target.value))"
+      @input="handleEvent"
     />
   </div>
-  <!--<div class="minmax-inputs">
+  <div class="minmax-inputs">
     <input type="number" :step="step" v-model="sliderMinValue" />
     <input type="number" :step="step" v-model="sliderMaxValue" />
-  </div> -->
+  </div>
 </template>
-
 <script setup lang="ts">
 import { computed, ref, watchEffect } from "vue";
+
+// define component props for the slider component
 const { min, max, step, minValue, maxValue } = defineProps({
   min: {
     type: Number,
@@ -52,9 +53,11 @@ const { min, max, step, minValue, maxValue } = defineProps({
   },
 });
 
+// define emits for the slider component
 const emit = defineEmits(["update:minValue", "update:maxValue"]);
 
-const slider = ref();
+// define refs for the slider element and the slider values
+const slider = ref<HTMLDivElement>();
 const sliderMinValue = ref(minValue);
 const sliderMaxValue = ref(maxValue);
 
@@ -70,9 +73,13 @@ const sliderDifference = computed(() => {
 
 // function to set the css variables for width, left, and right
 const setCSSProps = (width: any, left: any, right: any) => {
-  slider?.value?.style?.setProperty("--width", `${width}%`);
-  slider.value.style.setProperty("--progressLeft", `${left}%`);
-  slider.value.style.setProperty("--progressRight", `${right}%`);
+  slider?.value?.style.setProperty("--width", `${width}%`);
+  slider?.value?.style.setProperty("--progressLeft", `${left}%`);
+  slider?.value?.style.setProperty("--progressRight", `${right}%`);
+};
+const handleEvent = (event: Event) => {
+  const result = (event.target as HTMLInputElement).value;
+  sliderMinValue.value = Number(result);
 };
 
 // watchEffect to emit the updated values, and update the css variables

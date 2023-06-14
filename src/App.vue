@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import catosCheckbox from "./components/ui-kit/catos-checkbox.vue";
 import catosSwitch from "./components/ui-kit/catos-switch.vue";
 import rangeMinmaxSlider from "./components/ui-kit/range-minmax-slider.vue";
@@ -37,6 +37,23 @@ import Success from "./components/signup/success.vue";
 import Support from "./components/signup/support.vue";
 import AcceptedRequest from "./components/signup/accepted-request.vue";
 
+import ButtomSheet from "./components/ui-kit/bottomsheet.vue";
+
+import Default from "./components/layouts/Default.vue";
+import Green from "./components/layouts/Green.vue";
+import Red from "./components/layouts/Red.vue";
+
+const route = useRoute();
+
+/* const layout = computed(() => {
+  console.log(route.meta.layout);
+  return route.meta.layout || "default-layout";
+});
+*/
+
+const sliderMin = ref(50);
+const sliderMax = ref(80);
+
 /*const variant = ref(ButtonSliderVariant.dashboard);
 const place = ref("Выберите страну проживания:");
 const value = ref("");
@@ -44,11 +61,14 @@ const options = {
   sng: ["Россия", "Украина", "Казахстан", "Белорусь"],
   euro: ["Польша", "Латвия", "Молдова", "Литва", "Шведция"],
 };*/
-import { RouterView } from "vue-router";
+
+import { RouterView, useRoute } from "vue-router";
 </script>
 
 <template>
   <router-view></router-view>
+
+  <!--<router-view></router-view>-->
   <!--<catos-select
     :placeholder="place"
     :options="options"

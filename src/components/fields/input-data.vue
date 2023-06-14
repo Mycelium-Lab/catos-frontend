@@ -1,11 +1,24 @@
 <template>
   <div class="catos-fields__wrapper">
     <input
+      :value="value"
       class="catos-fields"
+      :readonly="readonly"
       :placeholder="mutatePlaceholder"
       @focus="handleFocus"
       @blur="handleBlur"
       :type="type"
+      :style="
+        left
+          ? { paddingLeft: '3.3em' }
+          : background && border
+          ? { backgroundColor: `${background}`, border }
+          : background
+          ? { backgroundColor: `${background}` }
+          : border
+          ? { border }
+          : ''
+      "
     />
     <div class="catos-fields__inner-icon_left">
       <slot name="left-icon" />
@@ -23,6 +36,21 @@ const { placeholder } = defineProps({
     type: String,
   },
   type: {
+    type: String,
+  },
+  left: {
+    type: Boolean,
+  },
+  background: {
+    type: String,
+  },
+  border: {
+    type: String,
+  },
+  readonly: {
+    type: Boolean,
+  },
+  value: {
     type: String,
   },
 });

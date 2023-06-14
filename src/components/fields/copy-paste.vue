@@ -72,7 +72,8 @@ const handleBlur = () => {
 
 <style scoped>
 .catos-fields__wrapper {
-  width: 300px;
+  /* width: 300px;*/
+  width: 100%;
   position: relative;
   margin-top: 20px;
 }
@@ -80,13 +81,13 @@ const handleBlur = () => {
   border-radius: var(--br-xs);
   border: none;
   box-sizing: border-box;
-  width: 18.75rem;
+  width: 100%;
   height: 2.5rem;
   overflow: hidden;
   font-size: var(--font-size-xs);
   color: rgba(46, 58, 89, 1);
-  padding: 0 var(--padding-xs);
-  padding-left: 3.8em;
+  padding: 0 18%;
+
   font-weight: 600;
   outline: none;
   line-height: 14px;
@@ -94,7 +95,7 @@ const handleBlur = () => {
 }
 .catos-fields__label {
   position: absolute;
-  top: 1em;
+  top: 1.1em;
   left: 1em;
   color: rgba(59, 59, 59, 0.5);
   font-family: var(--inter-small-12);
@@ -107,7 +108,8 @@ const handleBlur = () => {
   justify-content: center;
   position: absolute;
   top: 0;
-  right: 0;
+  /* !1 */
+  right: 0em;
   width: 3em;
   height: 2.5em;
   background-color: rgba(230, 221, 255, 1);

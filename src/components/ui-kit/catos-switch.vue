@@ -1,9 +1,7 @@
 <template>
   <!--Привести к идеальному виду -->
-  <input id="s2" type="checkbox" class="switch-10" checked />
-  <input id="s2" type="checkbox" class="switch-10" />
-  <input id="s2" type="checkbox" class="switch-10" checked disabled />
-  <input id="s2" type="checkbox" class="switch-10" disabled />
+  <input id="s2" type="checkbox" class="switch-10" :checked="checked" />
+
   <!--<div class="switch">
     <div class="handle-container">
       <div class="handle"></div>
@@ -96,7 +94,14 @@
   </ul>-->
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { checked } = defineProps({
+  checked: {
+    type: Boolean,
+    default: false,
+  },
+});
+</script>
 
 <style scoped lang="scss">
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {

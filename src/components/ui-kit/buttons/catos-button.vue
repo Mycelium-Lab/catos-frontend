@@ -44,6 +44,8 @@ const { variant, content, disabled } = defineProps({
   position: relative;
   white-space: nowrap;
   width: 21.375em;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .catos-button_primary {
   background-color: #ffdb6d;

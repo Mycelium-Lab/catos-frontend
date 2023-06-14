@@ -114,7 +114,7 @@ watch(isOpen, () => {
   border: 0.5px solid #2e3a59;
   border-radius: 16px;
   font-size: var(--font-size-sm);
-  width: 20.857142857142857em;
+  width: 100%;
   padding: 0.785714285714286em 0.857142857142857em;
   display: flex;
   height: 3.357142857142857em;

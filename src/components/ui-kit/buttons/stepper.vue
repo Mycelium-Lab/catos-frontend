@@ -3,7 +3,7 @@
     <div class="loader-HGg" id="I996:28341;394:5428">
       <div class="numbers-yvC" id="I996:28341;394:5429">
         <div class="item--YCc" id="I996:28341;394:5430">из</div>
-        <div class="item-7-qhW">7</div>
+        <div class="item-7-qhW">{{ quantity }}</div>
       </div>
     </div>
     <div class="steps-7f2" :class="`steps-7f2_${current}`">

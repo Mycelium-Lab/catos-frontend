@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { setting } from "./settings";
+import { wallet } from "./wallet";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -104,6 +106,27 @@ const router = createRouter({
       name: "accepted-request",
       component: () => import("../components/signup/accepted-request.vue"),
     },
+    setting[0],
+    setting[1],
+    setting[2],
+    setting[3],
+    setting[4],
+    setting[5],
+    setting[6],
+    setting[7],
+    setting[8],
+    setting[9],
+    setting[10],
+    setting[11],
+    wallet[0],
+    wallet[1],
+    wallet[2],
+    wallet[3],
+    wallet[4],
+    wallet[5],
+    wallet[6],
+    wallet[7],
+    wallet[8],
   ],
 });
 
