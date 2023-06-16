@@ -329,11 +329,9 @@
 .bg3 {
   top: 0;
   background-color: rgba(166, 146, 221, 0.2);
-  .blur {
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
-  }
-
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
   height: 30vh;
   width: 100vw;
   position: absolute;
