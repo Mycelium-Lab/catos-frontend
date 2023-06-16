@@ -481,7 +481,7 @@ const title = computed(() => {
   text-align: center;
 }
 .parent {
-  top: 12em;
+  top: 10em;
   left: -0.06em;
   border-radius: 40px 40px 0 0;
   background-color: #fff;

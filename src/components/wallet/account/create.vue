@@ -1,7 +1,7 @@
 <template>
   <modal>
     <div class="header">
-      <div class="div28">Создание счетв</div>
+      <div class="div28">Создание счета</div>
     </div>
     <div class="swipe-down"></div>
     <div class="des-1-2">

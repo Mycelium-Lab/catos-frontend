@@ -112,7 +112,7 @@ import { useRouter } from "vue-router";
   position: relative;
   background-color: #fff;
   width: 100%;
-  height: 844px;
+  height: 100vh;
   overflow: hidden;
   text-align: left;
   font-size: 12px;

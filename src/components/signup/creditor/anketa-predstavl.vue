@@ -2193,7 +2193,7 @@ const options = {
   background-color: #fdd674;
   width: 100%;
   height: 225.63em;
-  overflow-y: auto;
+  overflow-y: hidden;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;

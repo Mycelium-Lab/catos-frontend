@@ -59,7 +59,7 @@
     </div>
     <div class="component-wrapper">
       <div class="frame-container">
-        <div class="frame-div">
+        <div class="frame-div-accounts">
           <div class="frame-parent1">
             <div class="field-info">
               <div class="title1">
@@ -524,12 +524,12 @@ const options = {
 }
 .component-wrapper,
 .frame-container,
-.frame-div {
+.frame-div-accounts {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
-.frame-div {
+.frame-div-accounts {
   border-radius: 12px;
   background-color: rgba(165, 146, 221, 0.1);
   padding: 0.75em 1.31em;
