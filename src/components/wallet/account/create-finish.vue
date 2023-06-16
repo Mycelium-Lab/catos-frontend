@@ -3,8 +3,8 @@
     <div class="frame-group">
       <div class="frame-container">
         <div class="frame-div">
-          <div class="header-parent">
-            <div class="header">
+          <div class="header-parent-create-finish">
+            <div class="header-create-finish">
               <div class="div8">Счет на:</div>
             </div>
             <div class="header1">
@@ -60,7 +60,7 @@
         </div>
       </div>
     </div>
-    <div class="des-and-bbn">
+    <div class="des-and-bbn-create-finish">
       <div class="text-and-button">
         <router-link
           class="buttons-tabs"
@@ -97,7 +97,7 @@ import copyPaste from "@/components/fields/copy-paste.vue";
   line-height: 130%;
   font-weight: 600;
 }
-.header {
+.header-create-finish {
   border-radius: 6px;
   width: 100%;
   display: flex;
@@ -128,7 +128,7 @@ import copyPaste from "@/components/fields/copy-paste.vue";
   align-items: center;
   justify-content: center;
 }
-.header-parent {
+.header-parent-create-finish {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -370,7 +370,7 @@ import copyPaste from "@/components/fields/copy-paste.vue";
 }
 .frame-group {
   position: relative;
-  top: 3em;
+  top: 1.5em;
   gap: 1.31em;
   padding: 0 24px;
 }
@@ -401,7 +401,7 @@ import copyPaste from "@/components/fields/copy-paste.vue";
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
 }
-.des-and-bbn,
+.des-and-bbn-create-finish,
 .text-and-button {
   display: flex;
   flex-direction: column;
@@ -413,7 +413,7 @@ import copyPaste from "@/components/fields/copy-paste.vue";
   width: 100%;
   gap: 0.81em;
 }
-.des-and-bbn {
+.des-and-bbn-create-finish {
   position: absolute;
   top: 36.94em;
   left: 6vw;

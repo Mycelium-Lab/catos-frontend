@@ -9,8 +9,9 @@
       id="groupContainer"
       :to="{ name: 'roles', state: { title: 'Войти' } }"
     >
-      <div class="group-child"></div>
-      <b class="b">Войти</b>
+      <div class="group-child">
+        <b class="b">Войти</b>
+      </div>
     </router-link>
     <div class="catos">Добро пожаловать в Catos!</div>
     <router-link
@@ -54,7 +55,7 @@ import { useRouter } from "vue-router";
   position: absolute;
 }
 .group-child {
-  height: 100%;
+  height: 50px;
   width: 100%;
   top: 0;
   right: 0;
@@ -62,10 +63,11 @@ import { useRouter } from "vue-router";
   left: 0;
   border-radius: 20px;
   background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .b {
-  top: 22%;
-  left: 41%;
   line-height: 28px;
   color: var(--color-darkslategray-100);
 }

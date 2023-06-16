@@ -58,8 +58,8 @@
       </div>
     </div>
     <div class="component-wrapper">
-      <div class="frame-container">
-        <div class="frame-div-accounts">
+      <div class="frame-container-checks">
+        <div class="frame-checks">
           <div class="frame-parent1">
             <div class="field-info">
               <div class="title1">
@@ -523,13 +523,13 @@ const options = {
   font-family: Lato;
 }
 .component-wrapper,
-.frame-container,
-.frame-div-accounts {
+.frame-container-checks,
+.frame-checks {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
-.frame-div-accounts {
+.frame-checks {
   border-radius: 12px;
   background-color: rgba(165, 146, 221, 0.1);
   padding: 0.75em 1.31em;
@@ -537,7 +537,7 @@ const options = {
   align-items: flex-start;
   gap: 0.63em;
 }
-.frame-container {
+.frame-container-checks {
   align-items: center;
 }
 .component-wrapper {

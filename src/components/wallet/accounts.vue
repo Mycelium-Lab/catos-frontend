@@ -236,7 +236,7 @@ const isDetail = ref(false);
   display: flex;
   flex-direction: row;
   padding: 0.25em 0.75em;
-  box-sizing: border-box;
+
   align-items: center;
   justify-content: center;
 }
@@ -254,7 +254,7 @@ const isDetail = ref(false);
   left: 0;
   border-radius: 16px;
   border: 0.5px solid rgba(165, 146, 221, 0.4);
-  box-sizing: border-box;
+
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -284,7 +284,7 @@ const isDetail = ref(false);
   display: flex;
   flex-direction: row;
   padding: 0.63em 0.75em;
-  box-sizing: border-box;
+
   align-items: center;
   justify-content: center;
   gap: 0.38em;
@@ -316,7 +316,7 @@ const isDetail = ref(false);
   flex-direction: row;
   text-decoration: none;
   color: #ffff;
-  box-sizing: border-box;
+
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
 }
@@ -325,7 +325,7 @@ const isDetail = ref(false);
   flex-direction: column;
   text-align: center;
   color: #f3f3f3;
-  padding: 0 21px px;
+  padding: 0 21px;
   position: relative;
   top: 5em;
 }
@@ -350,7 +350,7 @@ const isDetail = ref(false);
   display: flex;
   flex-direction: row;
   padding: 0 0.38em;
-  box-sizing: border-box;
+
   align-items: center;
   justify-content: space-between;
 }
@@ -407,7 +407,7 @@ const isDetail = ref(false);
   border-radius: 8px;
   background-color: #fff;
   border: 1px solid #ececf2;
-  box-sizing: border-box;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -466,7 +466,7 @@ const isDetail = ref(false);
   align-self: stretch;
   position: relative;
   border-top: 1px solid rgba(165, 146, 221, 0.1);
-  box-sizing: border-box;
+
   height: 0.06em;
 }
 .img-icon {
@@ -511,7 +511,6 @@ const isDetail = ref(false);
 .frame-container {
   border-radius: 10px;
   border: 1px solid rgba(165, 146, 221, 0.08);
-  box-sizing: border-box;
   width: 100%;
   padding: 1.25em 0.75em;
   justify-content: center;
@@ -543,7 +542,7 @@ const isDetail = ref(false);
   position: relative;
   top: 4.56em;
   align-items: center;
-  gap: 2em;
+  gap: 1.3em;
   color: #8181a5;
   padding: 0 24px;
 }
@@ -594,7 +593,7 @@ const isDetail = ref(false);
   display: flex;
   flex-direction: row;
   padding: 0.25em 0.44em;
-  box-sizing: border-box;
+
   align-items: center;
   justify-content: center;
   gap: 0.5em;
@@ -712,7 +711,7 @@ const isDetail = ref(false);
   display: flex;
   flex-direction: row;
   padding: 0.25em;
-  box-sizing: border-box;
+
   align-items: center;
   justify-content: center;
   z-index: 2;
@@ -732,7 +731,7 @@ const isDetail = ref(false);
   display: flex;
   flex-direction: row;
   padding: 0.25em 0 0.25em 0.25em;
-  box-sizing: border-box;
+
   align-items: flex-start;
   justify-content: flex-start;
   color: #3b3b3b;

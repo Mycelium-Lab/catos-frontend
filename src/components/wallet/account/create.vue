@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-    <div class="frame-wrapper">
+    <div class="frame-wrapper-accounts">
       <div class="buttonnext-wrapper">
         <router-link
           class="buttonnext"
@@ -68,10 +68,10 @@
         </router-link>
       </div>
     </div>
-    <div class="component-wrapper">
-      <div class="frame-container">
-        <div class="frame-div">
-          <div class="frame-parent1">
+    <div class="component-wrapper-accounts">
+      <div class="frame-container-accounts">
+        <div class="frame-accounts">
+          <div class="frame-parent-account">
             <div class="field-info">
               <div class="title1">
                 <span>Описание к счету:</span>
@@ -98,8 +98,8 @@
             <catos-switch checked></catos-switch>
           </div>
         </div>
-        <div class="frmae-div-1 frame-div">
-          <div class="frame-parent1">
+        <div class="frmae-div-1 frame-accounts">
+          <div class="frame-parent-account">
             <div class="field-info">
               <div class="title1">
                 <span>Укажите скрытое сообщение:</span>
@@ -417,7 +417,7 @@ const options = {
   -webkit-tap-highlight-color: transparent;
 }
 .buttonnext-wrapper,
-.frame-wrapper {
+.frame-wrapper-accounts {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -427,9 +427,9 @@ const options = {
   justify-content: center;
   width: 100%;
 }
-.frame-wrapper {
+.frame-wrapper-accounts {
   position: relative;
-  top: 31.5em;
+  top: 27em;
   justify-content: flex-start;
   text-align: center;
   color: #f3f3f3;
@@ -447,6 +447,7 @@ const options = {
   width: 25em;
   & span {
     color: #3b3b3b;
+    font-weight: 400;
   }
 }
 .description {
@@ -454,7 +455,7 @@ const options = {
   color: #3b3b3b;
   width: 100%;
 }
-.frame-parent1 {
+.frame-parent-account {
   display: flex;
   flex-direction: column;
   padding: 0 0 0.3em;
@@ -553,25 +554,26 @@ const options = {
   font-family: Lato;
   width: 100%;
 }
-.component-wrapper,
-.frame-container,
-.frame-div {
+.component-wrapper-accounts,
+.frame-container-accounts,
+.frame-accounts {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
-.frame-div {
+.frame-accounts {
   border-radius: 12px;
   background-color: rgba(165, 146, 221, 0.1);
   padding: 0.75em 1.31em;
   box-sizing: border-box;
   align-items: flex-start;
   gap: 0.63em;
+  width: 100% !important;
 }
-.frame-container {
+.frame-container-accounts {
   align-items: center;
 }
-.component-wrapper {
+.component-wrapper-accounts {
   position: relative;
   top: 70px;
   color: #78789a;

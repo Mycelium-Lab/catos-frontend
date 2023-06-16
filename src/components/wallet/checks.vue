@@ -22,10 +22,10 @@
           </div>
         </div>
       </div>
-      <div class="buttonnext-wrapper">
-        <router-link class="buttonnext" :to="{ name: 'checks-create' }">
+      <div class="buttonnext-wrapper-checks">
+        <div class="buttonnext-checks" @click="toCreateCheck">
           <b class="ton-kepeer">Создать чек</b>
-        </router-link>
+        </div>
       </div>
       <div class="descrioption-parent">
         <div class="descrioption">
@@ -221,7 +221,12 @@ import { ref } from "vue";
 import modal from "@/components/ui-kit/modal.vue";
 //Отрисовать детали корректно
 import detail from "@/components/wallet/check/detail.vue";
+import { useRouter } from "vue-router";
 const isDetail = ref(false);
+const router = useRouter();
+const toCreateCheck = () => {
+  router.push({ name: "checks-create" });
+};
 </script>
 
 <styles scoped lang="scss">
@@ -303,13 +308,13 @@ const isDetail = ref(false);
   font-size: 1em;
   line-height: 1.75em;
 }
-.buttonnext,
-.buttonnext-wrapper {
+.buttonnext-checks,
+.buttonnext-wrapper-checks {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.buttonnext {
+.buttonnext-checks {
   border-radius: 20px;
   background: linear-gradient(89.77deg, #9747ff, #ad6fff);
   width: 100%;
@@ -323,7 +328,7 @@ const isDetail = ref(false);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
 }
-.buttonnext-wrapper {
+.buttonnext-wrapper-checks {
   width: 100%;
   flex-direction: column;
   text-align: center;
