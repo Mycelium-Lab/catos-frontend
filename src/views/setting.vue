@@ -32,12 +32,13 @@
         </div>
         <div class="fields-and-photo-and-name">
           <div class="photo-and-name">
-            <div class="photo" @click="changeEmail">
+            <div class="photo">
               <img
                 class="img-icon"
                 alt=""
                 src="./public/img@2x.png"
                 id="imgImage"
+                @click="() => (isLoadPhoto = !isLoadPhoto)"
                 v-if="!isLoadPhoto"
               />
 
@@ -50,6 +51,7 @@
                     class="upload-cloud-icon"
                     alt=""
                     src="@/assets/images/uploadcloud.svg"
+                    @click="() => (isLoadPhoto = !isLoadPhoto)"
                   />
 
                   <div class="div4">Загрузить фото</div>
@@ -163,6 +165,10 @@ import { useRouter } from "vue-router";
 const isLoadPhoto = ref(false);
 
 const router = useRouter();
+
+const editPhoto = () => {
+  router.push({ name: "edit-photo" });
+};
 
 const changePassword = () => {
   router.push({ name: "change-password" });

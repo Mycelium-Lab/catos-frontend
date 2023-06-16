@@ -40,7 +40,7 @@ const toSetting = () => {
   overflow: hidden;
 }
 .decor-2-off {
-  top: 11.5em;
+  top: 10em;
   left: 1.4em;
   width: 87%;
   z-index: 10;
@@ -58,7 +58,7 @@ const toSetting = () => {
   letter-spacing: 0.01em;
   line-height: 130%;
   font-weight: 500;
-  top: 3em;
+  top: 2.5em;
 }
 .iconsstatus-transaction {
   position: relative;
@@ -67,7 +67,7 @@ const toSetting = () => {
   overflow: hidden;
   flex-shrink: 0;
   z-index: 20;
-  top: 4em;
+  top: 2.5em;
 }
 .group,
 .status-reg {
@@ -91,7 +91,7 @@ const toSetting = () => {
   padding: 0.63em 0.88em;
   box-sizing: border-box;
   justify-content: center;
-  height: 45vh;
+  height: 314px;
   background-color: #fff;
 }
 .text {
@@ -126,7 +126,7 @@ const toSetting = () => {
 }
 .des-and-bbn {
   position: absolute;
-  top: 23em;
+  top: 22em;
   left: 11vw;
   border-radius: 16px;
   background-color: #f9fbff;
