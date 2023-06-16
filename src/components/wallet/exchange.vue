@@ -44,14 +44,7 @@
           <div class="fieldsinput-wrapper">
             <div class="fieldsinput2">
               <div class="iconsmail-group">
-                <img class="iconsmail1" alt="" src="./public/iconsmail2.svg" />
-
                 <div class="div14">≈45 556 USD</div>
-                <img
-                  class="iconsedit-outline"
-                  alt=""
-                  src="./public/iconseditoutline.svg"
-                />
               </div>
             </div>
           </div>
@@ -89,14 +82,7 @@
           <div class="fieldsinput-wrapper">
             <div class="fieldsinput5">
               <div class="iconsmail-group">
-                <img class="iconsmail1" alt="" src="./public/iconsmail2.svg" />
-
                 <div class="div14">≈45 556 USD</div>
-                <img
-                  class="iconsedit-outline"
-                  alt=""
-                  src="./public/iconseditoutline.svg"
-                />
               </div>
             </div>
           </div>
@@ -131,7 +117,7 @@ const isSuccess = ref(false);
 }
 .header {
   position: absolute;
-  top: 2.5em;
+  top: 1.5em;
   left: 2.81em;
   border-radius: 8px;
   width: 77vw;
@@ -188,14 +174,14 @@ const isSuccess = ref(false);
   border-radius: 11px;
   border: 1px solid rgba(165, 146, 221, 0.1);
   box-sizing: border-box;
-  width: 88vw;
+  width: 87.7vw;
   flex-direction: row;
   padding: 0.63em 0.88em;
 }
 .frame-wrapper {
   position: absolute;
   top: 21.19em;
-  left: 1.5em;
+  padding: 0px 30px;
   flex-direction: column;
 }
 .ton-kepeer {
@@ -376,8 +362,7 @@ const isSuccess = ref(false);
   position: absolute;
   top: 0.77em;
   left: -0.03em;
-  width: 21.44em;
-  height: 0.06em;
+  width: 100%;
 }
 .swap-icon {
   position: relative;
@@ -394,14 +379,13 @@ const isSuccess = ref(false);
   width: 30vw;
   display: flex;
   flex-direction: row;
-  padding: 0 0.63em;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
 }
 .divided-switch {
   position: relative;
-  width: 21.38em;
+  width: 100%;
   height: 1.5em;
 }
 .span7 {
@@ -445,12 +429,11 @@ const isSuccess = ref(false);
   justify-content: center;
 }
 .frame-container {
-  position: absolute;
-  top: 6.06em;
-  left: 6vw;
-  justify-content: flex-start;
-  gap: 1.5em;
-  width: 88vw;
+  position: relative;
+  top: 5em;
+  gap: 2em;
+  padding: 0px 24px;
+  padding-bottom: 20px;
 }
 .header-parent {
   position: relative;

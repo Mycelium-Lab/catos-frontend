@@ -16,13 +16,11 @@
           <div class="catos-container">
             <p class="p">
               Ваш запрос принят <span class="span">, </span>модерация CATOS
-              ответит
+              ответит вам в самое ближайшее время
             </p>
-            <p class="p">вам в самое ближайшее время</p>
           </div>
         </div>
       </div>
-      <div class="swipe-down"></div>
     </div>
 
     <router-link class="buttonback" to="" @click="$router.go(-1)">
@@ -57,10 +55,10 @@
 .buttonnext {
   position: absolute;
   top: 17.19em;
-  left: 2.81em;
+  left: 11vw;
   border-radius: 20px;
   background-color: #ffdb6d;
-  width: 18.75em;
+  width: 77vw;
   height: 3em;
   overflow: hidden;
   flex-direction: row;
@@ -78,9 +76,8 @@
 .header {
   position: absolute;
   top: 2.69em;
-  left: 2.81em;
   border-radius: 7px;
-  width: 18.75em;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   padding: 0.44em 0;
@@ -116,7 +113,7 @@
 }
 .catos-wrapper {
   border-radius: 16px;
-  width: 18.75em;
+  width: 77vw;
   padding: 0.5em 0.25em;
   box-sizing: border-box;
   align-items: flex-end;
@@ -124,19 +121,11 @@
 .component-17-parent {
   position: absolute;
   top: 6.25em;
-  left: 2.81em;
+  left: 11vw;
   align-items: center;
   gap: 1.44em;
   color: rgba(59, 59, 59, 0.96);
-}
-.swipe-down {
-  position: absolute;
-  top: 0.75em;
-  left: 10.88em;
-  border-radius: 25px;
-  background-color: #cad0e4;
-  width: 2.63em;
-  height: 0.31em;
+  width: 77vw;
 }
 .buttonnext-parent {
   position: absolute;
@@ -146,7 +135,7 @@
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
-  width: 24.38em;
+  width: 100vw;
   height: 45.44em;
   overflow: hidden;
 }
@@ -208,7 +197,7 @@
 }
 .buttonback {
   top: 3.63em;
-  left: 1.5em;
+  left: 1em;
   border-radius: 9px;
   width: 6.38em;
   text-align: left;

@@ -76,7 +76,6 @@
       <div class="header">
         <div class="div15">Служба поддержки</div>
       </div>
-      <div class="swipe-down"></div>
     </div>
 
     <router-link class="buttonback" to="" @click="$router.go(-1)">
@@ -240,7 +239,7 @@ import catosTextarea from "../../components/fields/catos-textarea.vue";
   color: rgba(46, 58, 89, 0.36);
 }
 .frame-div {
-  width: 18.75em;
+  width: 100%;
   gap: 0.5em;
 }
 .frame-inner {
@@ -383,6 +382,7 @@ import catosTextarea from "../../components/fields/catos-textarea.vue";
   left: 2.81em;
   gap: 1.38em;
   text-align: left;
+  width: 77vw;
 }
 .b1,
 .buttonnext {
@@ -403,7 +403,7 @@ import catosTextarea from "../../components/fields/catos-textarea.vue";
   left: 2.81em;
   border-radius: 20px;
   background-color: #ffdb6d;
-  width: 18.75em;
+  width: 77vw;
   height: 3em;
   overflow: hidden;
   flex-direction: row;
@@ -425,9 +425,9 @@ import catosTextarea from "../../components/fields/catos-textarea.vue";
 .header {
   position: absolute;
   top: 2.69em;
-  left: 2.81em;
+
   border-radius: 7px;
-  width: 18.75em;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   padding: 0.44em 0;
@@ -435,15 +435,7 @@ import catosTextarea from "../../components/fields/catos-textarea.vue";
   align-items: center;
   justify-content: center;
 }
-.swipe-down {
-  position: absolute;
-  top: 0.75em;
-  left: 10.88em;
-  border-radius: 25px;
-  background-color: #cad0e4;
-  width: 2.63em;
-  height: 0.31em;
-}
+
 .battery-icon,
 .frame-group {
   position: absolute;
@@ -456,7 +448,7 @@ import catosTextarea from "../../components/fields/catos-textarea.vue";
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
-  width: 24.38em;
+  width: 100vw;
   height: 45.44em;
 }
 
@@ -482,7 +474,7 @@ import catosTextarea from "../../components/fields/catos-textarea.vue";
 }
 .buttonback {
   top: 3.63em;
-  left: 1.5em;
+  left: 1em;
   border-radius: 9px;
   width: 6.38em;
   text-align: left;

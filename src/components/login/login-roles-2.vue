@@ -3,11 +3,7 @@
     <div class="div">Войдите</div>
     <div class="div1">Уже зарегистрированы?</div>
     <div class="iphone-13-13-pro-66-child"></div>
-    <b
-      class="page-title"
-      :style="title === 'Войти' ? { left: '40.26%' } : { left: '30.26%' }"
-      >{{ title }}</b
-    >
+    <b class="page-title">{{ title }}</b>
     <div class="catos">Добро пожаловать в CATOS!</div>
     <img class="iphone-13-13-pro-66-item" alt="" src="./public/group-36.svg" />
 
@@ -118,10 +114,10 @@
               <div class="catos1">
                 <span class="catos-txt"
                   >Если вы представитель коллекторской организации с хорошей
-                  репутацией
-                  <span class="catos2"
-                    >, станьте парнером и выкупайте просроченные задолженнности
-                    на платформе CATOS</span
+                  репутацией,
+                  <span class="catos2">
+                    станьте парнером и выкупайте просроченные задолженнности на
+                    платформе CATOS</span
                   >
                 </span>
               </div>
@@ -131,7 +127,7 @@
       </div>
       <div class="group">
         <div class="div10">Уже зарегистрированы?</div>
-        <div class="div11">Войдите</div>
+        <router-link :to="{ name: 'login' }" class="div11">Войдите</router-link>
       </div>
     </div>
     <div class="loader-parent">
@@ -186,16 +182,22 @@ const title = computed(() => {
 .catos,
 .page-title {
   position: absolute;
-  top: 14.05%;
+  top: 12vh;
   font-size: 1.56em;
   line-height: 1.12em;
+  left: 20vw;
+  width: 90vw;
+  text-align: center;
+  left: 7vw;
 }
 .catos {
-  top: 16.94%;
-  left: 20.77%;
+  top: 16vh;
+  left: 7vw;
   font-size: 1em;
   line-height: 1.75em;
   font-weight: 500;
+  width: 90.6vw;
+  text-align: center;
 }
 .iphone-13-13-pro-66-item {
   position: absolute;
@@ -219,6 +221,7 @@ const title = computed(() => {
   font-size: 0.88em;
   line-height: 130%;
   text-align: center;
+  width: 67.5%;
 }
 .imagepersones-icon {
   position: relative;
@@ -265,7 +268,7 @@ const title = computed(() => {
   border-radius: 16px;
   border: 0.5px solid rgba(46, 58, 89, 0.2);
   box-sizing: border-box;
-  width: 21.38em;
+  width: 100%;
   height: 7.65em;
   display: flex;
   flex-direction: column;
@@ -312,7 +315,7 @@ const title = computed(() => {
   text-decoration: none;
 
   box-sizing: border-box;
-  width: 21.38em;
+  width: 100%;
   height: 7.65em;
   display: flex;
   flex-direction: column;
@@ -398,7 +401,6 @@ const title = computed(() => {
   letter-spacing: -0.01em;
 }
 .catos-txt {
-  line-break: anywhere;
   width: 100%;
 }
 .catos1,
@@ -413,18 +415,18 @@ const title = computed(() => {
   line-height: 1.33em;
   font-weight: 300;
   color: #3b3b3b;
-  width: 19.67em;
+  width: 19.05em;
 }
 .component-193 {
   border-radius: 16px;
   border: 0.5px solid rgba(46, 58, 89, 0.2);
   box-sizing: border-box;
-  width: 21.38em;
+  width: 100%;
   height: 7.65em;
   flex-direction: column;
   padding: 0.75em 0 0.88em;
   justify-content: center;
-  color: #1f1f1f;
+  color: #3b3b3b;
   &:hover {
     background: rgba(165, 146, 221, 0.08);
     border: 1px solid rgba(165, 146, 221, 0.4);
@@ -433,14 +435,15 @@ const title = computed(() => {
 }
 .component-19-parent {
   position: absolute;
-  top: 5.13em;
-  left: 1.56em;
+  top: 6.8em;
+  left: 6.5vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   gap: 1.19em;
   text-decoration: none;
+  width: 87.7vw;
 }
 .div10,
 .div11 {
@@ -457,31 +460,35 @@ const title = computed(() => {
   color: #a592dd;
   display: flex;
   align-items: center;
-  width: 4.18em;
+  width: 100%;
+  justify-content: center;
 }
 .group,
 .parent {
   position: absolute;
 }
 .group {
-  top: 40.88em;
-  left: 7.63em;
+  top: 42.88em;
+  left: 25vw;
   height: 2.88em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 1.13em;
+  gap: 0.5em;
   color: #1f1f1f;
+  width: 50vw;
+  text-align: center;
 }
 .parent {
-  top: 14.06em;
+  top: 12em;
   left: -0.06em;
   border-radius: 40px 40px 0 0;
   background-color: #fff;
-  width: 24.5em;
+  width: 100.6vw;
   height: 54.13em;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .loader,
 .loader1 {
@@ -613,5 +620,28 @@ const title = computed(() => {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+}
+@media (max-width: 385px) {
+  .description-and-image {
+    justify-content: center;
+  }
+  .description {
+    width: 65%;
+  }
+  .catos1,
+  .div8,
+  .div4,
+  .div5 {
+    width: auto;
+  }
+  .component-193 {
+    height: 9.65em;
+  }
+  .component-19-parent {
+    gap: 1em;
+  }
+  .group {
+    top: 45.5em;
+  }
 }
 </style>

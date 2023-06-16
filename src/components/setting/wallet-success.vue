@@ -25,9 +25,9 @@
       <div class="frame-wrapper">
         <div class="frame-container">
           <div class="buttonnext-parent">
-            <div class="buttonnext">
+            <router-link class="buttonnext" :to="{ name: 'setting' }">
               <b class="ton-kepeer">Продолжить</b>
-            </div>
+            </router-link>
           </div>
         </div>
       </div>
@@ -149,6 +149,10 @@ import modal from "../ui-kit/modal.vue";
   overflow: hidden;
   flex-direction: row;
   box-sizing: border-box;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+  color: #fff;
 }
 .buttonnext,
 .buttonnext1,

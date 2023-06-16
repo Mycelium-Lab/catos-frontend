@@ -1,126 +1,114 @@
 <template>
-  <div class="bg1"></div>
+  <modal>
+    <div class="decor-parent">
+      <div class="decor"></div>
+      <div class="frame-parent3">
+        <div class="job-title-wrapper">
+          <div class="job-title1">Изменение пароля</div>
+        </div>
+        <div class="fields-parent">
+          <div class="fields">
+            <div class="fieldsregistration-options1">
+              <div class="fieldsregistration-options-child"></div>
+              <div class="text-and-fill1">
+                <div class="div28"></div>
+              </div>
+              <span class="div29">
+                Текущий пароль можно посмотреть в настройках профиля
+              </span>
+              <input-data
+                :style="{ width: '77vw', top: '1.6em', left: '1em' }"
+                placeholder="Введите текущий пароль"
+                type="password"
+              >
+                <template v-slot:right-icon>
+                  <img
+                    src="@/assets/images/password.png"
+                    :style="{ width: '1.13em', height: '1.13em' }"
+                  />
+                </template>
+              </input-data>
 
-  <div class="decor-parent">
-    <div class="decor"></div>
-    <div class="frame-parent3">
-      <div class="job-title-wrapper">
-        <div class="job-title1">Изменение пароля</div>
-      </div>
-      <div class="fields-parent">
-        <div class="fields">
-          <div class="fieldsregistration-options1">
-            <div class="fieldsregistration-options-child"></div>
-            <div class="text-and-fill1">
-              <div class="div28"></div>
-            </div>
-            <div class="div29">
-              Укажите новую почту на которую будет отправлен код
-            </div>
-            <input-data
-              :style="{ width: '74vw', top: '1.6em', left: '1.3em' }"
-              placeholder="Введите текущий пароль"
-            >
-              <template v-slot:right-icon>
-                <img
-                  src="@/assets/images/password.png"
-                  :style="{ width: '1.13em', height: '1.13em' }"
-                />
-              </template>
-            </input-data>
-            <div class="div29">
-              Укажите новую почту на которую будет отправлен код
-            </div>
-            <input-data
-              :style="{ width: '74vw', top: '4em', left: '1.3em' }"
-              placeholder="Введите новый пароль"
-            >
-              <template v-slot:right-icon>
-                <img
-                  src="@/assets/images/password.png"
-                  :style="{ width: '1.13em', height: '1.13em' }"
-                />
-              </template>
-            </input-data>
-            <div class="div29">
-              Укажите новую почту на которую будет отправлен код
-            </div>
-            <input-data
-              :style="{ width: '74vw', top: '5.8em', left: '1.3em' }"
-              placeholder="Повтоорите новый пароль"
-            >
-              <template v-slot:right-icon>
-                <img
-                  :style="{ width: '1.13em', height: '1.13em' }"
-                  src="@/assets/images/password.png"
-                />
-              </template>
-            </input-data>
-            <catos-button
-              @click="() => (isChange = true)"
-              :style="{ width: '74vw', top: '7.5em', left: '1.3em' }"
-              >Изменить пароль</catos-button
-            >
+              <input-data
+                :style="{ width: '77vw', top: '3.9em', left: '1em' }"
+                placeholder="Введите новый пароль"
+                type="password"
+              >
+                <template v-slot:right-icon>
+                  <img
+                    src="@/assets/images/password.png"
+                    :style="{ width: '1.13em', height: '1.13em' }"
+                  />
+                </template>
+              </input-data>
 
-            <span class="link__restore" @click="() => (isRestore = true)"
-              >Восстановить пароль?</span
-            >
+              <input-data
+                :style="{ width: '77vw', top: '5.1em', left: '1em' }"
+                placeholder="Повтоорите новый пароль"
+                type="password"
+              >
+                <template v-slot:right-icon>
+                  <img
+                    :style="{ width: '1.13em', height: '1.13em' }"
+                    src="@/assets/images/password.png"
+                  />
+                </template>
+              </input-data>
+              <catos-button
+                :style="{
+                  width: '77vw',
+                  top: '6.8em',
+                  left: '1em',
+                  marginRight: '0em',
+                }"
+                @click="toProfile"
+                >Изменить пароль</catos-button
+              >
+
+              <span class="link__restore" @click="toRestore"
+                >Восстановить пароль?</span
+              >
+            </div>
           </div>
-          <img class="icon1" alt="" src="./public/icon.svg" />
+        </div>
+      </div>
+      <div class="instance-wrapper">
+        <div class="frame-parent5">
+          <div class="name-parent">
+            <div class="div42">
+              <span class="span8">Если у вас возникли дополнительные </span
+              >вопросы или нашли ошибку нашей системе обратитесь в службу
+              поддержки
+            </div>
+          </div>
+          <div class="frame-wrapper">
+            <div class="message-circle-parent">
+              <img
+                class="iconsmobile"
+                alt=""
+                src="@/assets/images/messagecircle.svg"
+              />
+
+              <div class="div43">Служба поддержки</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="instance-wrapper">
-      <div class="frame-parent5">
-        <div class="name-parent">
-          <div class="div42">
-            <span class="span8">Если у вас возникли дополнительные </span
-            >вопросы или нашли ошибку нашей системе обратитесь в службу
-            поддержки
-          </div>
-        </div>
-        <div class="frame-wrapper">
-          <div class="message-circle-parent">
-            <img
-              class="iconsmobile"
-              alt=""
-              src="@/assets/images/messagecircle.svg"
-            />
-
-            <div class="div43">Служба поддержки</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <button class="buttonback" @click="handleClose">
-    <div class="div44">Назад</div>
-    <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
-  </button>
-  <!--Подумать как вернуть в профиль из успешного попапа о смене пароля, миную текущий попап-->
-  <success-change-password
-    v-if="isChange"
-    @close="() => (isChange = false)"
-    @return="() => (isChange = false)"
-  ></success-change-password>
-  <restore-password
-    v-if="isRestore"
-    @close="() => (isRestore = false)"
-  ></restore-password>
+  </modal>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import inputData from "@/components/fields/input-data.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
-import successChangePassword from "@/components/setting/success-change-password.vue";
-import restorePassword from "./restore-password.vue";
-
-const isChange = ref(false);
-const isRestore = ref(false);
-const emit = defineEmits(["close"]);
-const handleClose = () => {
-  emit("close");
+import modal from "../ui-kit/modal.vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const toProfile = () => {
+  router.push({ name: "setting" });
+};
+const toRestore = () => {
+  router.push({ name: "restore-password" });
 };
 </script>
 
@@ -832,12 +820,14 @@ const handleClose = () => {
   color: rgba(93, 104, 123, 0.9);
 }
 .decor {
-  top: 3.75em;
-  left: 1em;
+  top: 3.4em;
+  /* left: 6vw; */
   border-radius: 20px;
   border: 0.5px solid rgba(46, 58, 89, 0.2);
-  width: 90%;
-  height: 24.69em;
+  /* width: 88vw; */
+  height: 22.69em;
+  position: relative;
+  margin: 0px 24px;
 }
 .job-title1 {
   position: relative;
@@ -858,7 +848,7 @@ const handleClose = () => {
   width: 100%;
   top: calc(50% - 49.5px);
   right: 0;
-  left: 0;
+  left: 0em;
   backdrop-filter: blur(5px);
   border: none;
   box-sizing: border-box;
@@ -885,13 +875,13 @@ const handleClose = () => {
   justify-content: flex-start;
 }
 .div29 {
-  width: 84.21%;
-  top: 72.48%;
+  width: 77vw;
+  top: 67%;
   left: 6.14%;
   font-size: 0.63em;
   line-height: 120%;
   font-weight: 300;
-  color: #78789a;
+  color: rgba(59, 59, 59, 0.58);
   align-items: center;
 }
 .koa {
@@ -1189,10 +1179,11 @@ const handleClose = () => {
 }
 .frame-parent3 {
   position: absolute;
-  top: 3em;
-  left: 1.5em;
+  top: 2.5em;
+  left: 0;
   height: 34.06em;
   gap: 0.38em;
+  width: 100%;
 }
 .span8 {
   letter-spacing: 0.01em;
@@ -1220,7 +1211,7 @@ const handleClose = () => {
 }
 .frame-wrapper {
   border-radius: 16px;
-  width: 18.75em;
+  width: 100%;
   height: 2.5em;
   display: flex;
   flex-direction: column;
@@ -1228,6 +1219,7 @@ const handleClose = () => {
   justify-content: center;
   text-align: left;
   color: #2c56c0;
+  border: 1px solid rgba(165, 146, 221, 0.15);
 }
 .frame-parent5,
 .instance-wrapper {
@@ -1238,20 +1230,22 @@ const handleClose = () => {
 }
 .frame-parent5 {
   gap: 0.75em;
+  text-align: center;
 }
 .instance-wrapper {
   position: absolute;
-  top: 38.19em;
-  left: 2.81em;
+  top: 28em;
+  left: 11vw;
   color: rgba(59, 59, 59, 0.54);
+  width: 77vw;
 }
 .decor-parent {
   position: absolute;
   top: 0em;
   left: 0;
-  border-radius: 24px 24px 0 0;
+
   background-color: #fff;
-  border: 1px solid rgba(46, 58, 89, 0.2);
+
   box-sizing: border-box;
   width: 100vw;
   height: 50.88em;
@@ -1302,7 +1296,7 @@ const handleClose = () => {
 .link__restore {
   position: absolute;
   width: 74vw;
-  top: 25.3em;
+  top: 24.3em;
   left: 1.7em;
   font-size: var(--font-size-xs);
   color: #737373;

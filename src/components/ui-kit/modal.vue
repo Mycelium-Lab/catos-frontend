@@ -70,6 +70,9 @@ const options = {
   height: 2.5em;
   top: 2.6em;
   left: 0em;
+  color: rgba(59, 59, 59, 1);
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .nav-buttons {
   position: absolute;
@@ -80,6 +83,8 @@ const options = {
   align-items: center;
   justify-content: flex-start;
   z-index: 100;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .div {
   position: relative;

@@ -3,13 +3,9 @@
     <div class="counters-graph-web">
       <div class="bg"></div>
       <div class="component-26">
-        <img class="share-icon" alt="" src="./public/share.svg" />
-
         <div class="number">Поделиться</div>
       </div>
       <div class="component-261">
-        <img class="share-icon" alt="" src="./public/copy.svg" />
-
         <div class="number">Скопировать</div>
       </div>
       <div class="title-frame">
@@ -18,8 +14,6 @@
     </div>
     <div class="field-">
       <div class="svg-gobbler-2-1-parent">
-        <img class="svg-gobbler-2-1" alt="" src="./public/svggobbler-2-1.svg" />
-
         <div class="name">
           <div class="invoice-aa-04-19-18">Чек отправлен</div>
           <div class="new-madieton-llc">Описание статуса:</div>
@@ -29,13 +23,7 @@
         <div class="total">10 TON</div>
         <div class="paid">Отправлено</div>
       </div>
-      <div class="arrows-table">
-        <img
-          class="chevron-right-icon"
-          alt=""
-          src="./public/chevronright.svg"
-        />
-      </div>
+      <div class="arrows-table"></div>
     </div>
     <div class="div15" id="popuptext">Закрыть</div>
   </div>

@@ -201,6 +201,7 @@ const role = computed(() => window.history.state?.role);
   font-size: 0.75em;
   line-height: 130%;
   font-weight: 300;
+  width: 100%;
 }
 .component-20-parent {
   align-self: stretch;
@@ -209,12 +210,13 @@ const role = computed(() => window.history.state?.role);
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.5em;
+  width: 100%;
 }
 .p {
   margin: 0;
 }
 .component-20-group {
-  width: 21.38em;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -223,6 +225,7 @@ const role = computed(() => window.history.state?.role);
 }
 .frame-group {
   gap: 1.38em;
+  width: 100%;
 }
 .frame-group,
 .text,
@@ -233,13 +236,14 @@ const role = computed(() => window.history.state?.role);
   justify-content: flex-start;
 }
 .text {
-  width: 21.38em;
+  width: 100%;
   gap: 0.88em;
 }
 .text-and-button {
   position: absolute;
   top: 29.75em;
   left: 0;
+  width: 100%;
 }
 .fieldsregistration-options-child {
   position: absolute;
@@ -279,7 +283,7 @@ const role = computed(() => window.history.state?.role);
 }
 .div13 {
   position: absolute;
-  width: 84.21%;
+  width: 100%;
   top: 66.97%;
   left: 6.14%;
   font-size: 0.63em;
@@ -333,7 +337,7 @@ const role = computed(() => window.history.state?.role);
 }
 .fieldsregistration-options {
   position: relative;
-  width: 21.38em;
+  width: 100%;
   height: 6.81em;
 }
 .div16,
@@ -351,7 +355,6 @@ const role = computed(() => window.history.state?.role);
   justify-content: flex-start;
 }
 .div16 {
-  width: 84.21%;
   top: 62.39%;
   left: 6.14%;
   font-size: 0.63em;
@@ -402,7 +405,7 @@ const role = computed(() => window.history.state?.role);
   border-radius: 16px;
   border: 0.5px solid rgba(46, 58, 89, 0.2);
   box-sizing: border-box;
-  width: 21.38em;
+  width: 100%;
   height: 7.31em;
 }
 .div17 {
@@ -468,7 +471,7 @@ const role = computed(() => window.history.state?.role);
   border-radius: 16px;
   border: 0.5px solid rgba(46, 58, 89, 0.2);
   box-sizing: border-box;
-  width: 21.38em;
+  width: 100%;
   height: 11.19em;
 }
 .fieldsregistration-options-parent {
@@ -480,12 +483,13 @@ const role = computed(() => window.history.state?.role);
   align-items: flex-end;
   justify-content: flex-start;
   gap: 1.5em;
+  width: 100%;
 }
 .div8 {
   position: absolute;
   top: 2.25em;
-  left: 1.5em;
-  width: 21.38em;
+  left: 6vw;
+  width: 87.7vw;
   height: 40.13em;
 }
 .fieldsregistration-options-item {
@@ -716,7 +720,7 @@ const role = computed(() => window.history.state?.role);
   left: 0;
   border-radius: 40px 40px 0 0;
   background-color: #fff;
-  width: 24.38em;
+  width: 100vw;
   height: 48.25em;
 }
 .b1 {
@@ -736,10 +740,10 @@ const role = computed(() => window.history.state?.role);
 }
 .buttonnext {
   top: 56.13em;
-  left: 1.5em;
+  left: 6vw;
   border-radius: 20px;
   background-color: #ffdb6d;
-  width: 21.38em;
+  width: 87.7vw;
   height: 3em;
   overflow: hidden;
   display: flex;
@@ -804,7 +808,7 @@ const role = computed(() => window.history.state?.role);
 }
 .slidersteps {
   top: 4.19em;
-  left: 12.56em;
+  right: 1em;
   width: 10.31em;
   color: #958463;
 }
@@ -820,12 +824,13 @@ const role = computed(() => window.history.state?.role);
 .page-title-parent {
   position: absolute;
   top: 0.63em;
-  left: 4.25em;
+  left: 5vw;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
   gap: 7.56em;
+  width: 90vw;
 }
 .div40,
 .header {
@@ -861,7 +866,7 @@ const role = computed(() => window.history.state?.role);
 }
 .buttonback {
   top: 3.81em;
-  left: 1.5em;
+  left: 1em;
   border-radius: 9px;
   width: 6.38em;
   color: #3b3b3b;
@@ -935,6 +940,7 @@ const role = computed(() => window.history.state?.role);
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+  overflow-x: hidden;
 }
 .phone-field {
   position: relative;

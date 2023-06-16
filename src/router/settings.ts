@@ -10,6 +10,26 @@ export const setting = [
     component: () => import("../components/setting/edit-photo.vue"),
   },
   {
+    path: "/setting/change-email",
+    name: "change-email",
+    component: () => import("../components/setting/change-email.vue"),
+  },
+  {
+    path: "/setting/change-phone",
+    name: "change-phone",
+    component: () => import("../components/setting/change-phone.vue"),
+  },
+  {
+    path: "/setting/change-password",
+    name: "change-password",
+    component: () => import("../components/setting/change-password.vue"),
+  },
+  {
+    path: "/setting/restore-password",
+    name: "restore-password",
+    component: () => import("../components/setting/restore-password.vue"),
+  },
+  {
     path: "/setting/transactions",
     name: "transaction-history",
     component: () => import("../components/setting/transaction-history.vue"),

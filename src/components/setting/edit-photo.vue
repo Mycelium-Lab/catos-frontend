@@ -46,7 +46,6 @@
               </router-link>
             </catos-button>
           </div>
-          <img class="icon1" alt="" src="./public/icon.svg" />
         </div>
       </div>
     </div>

@@ -27,7 +27,6 @@
                 @selected="ev => (value = ev)"
               ></catos-select>
             </div>
-            <img class="frame-child" alt="" src="./public/line-28.svg" />
           </div>
           <div class="frame-div">
             <div class="frame-wrapper">
@@ -45,15 +44,11 @@
           </div>
           <div class="frame-wrapper1">
             <div class="frame-wrapper2">
-              <router-link
-                class="buttonnext-group"
-                to=""
-                @click="$router.go(-1)"
-              >
-                <div class="buttonnext">
-                  <b class="ton-kepeer">Отправить</b>
-                </div>
-              </router-link>
+              <div class="buttonnext-group">
+                <router-link class="buttonnext" to="" @click="$router.go(-1)">
+                  <b class="ton-kepeer">Пополнить через Tokenkeeper</b>
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
@@ -713,10 +708,13 @@ const options = {
   flex-shrink: 0;
   display: flex;
   flex-direction: row;
-  padding: 0.5em 7.25em;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
+  color: #fff;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .div13 {
   position: relative;
@@ -787,7 +785,7 @@ const options = {
 }
 .header1 {
   position: absolute;
-  top: 2.5em;
+  top: 1.5em;
   left: 2.81em;
   border-radius: 8px;
   width: 77vw;
@@ -1014,9 +1012,7 @@ const options = {
   gap: 0.5em;
   width: 100%;
 }
-.fieldsinputchoise-parent {
-  gap: 1.75em;
-}
+
 .alert-triangle-icon,
 .div20 {
   position: relative;
@@ -1130,11 +1126,11 @@ const options = {
   position: relative;
 }
 .frame-container {
-  position: absolute;
-  top: 5.81em;
-  left: 5vw;
+  position: relative;
+  top: 5em;
   gap: 1em;
-  width: 90vw;
+  padding: 0px 24px;
+  padding-bottom: 50px;
 }
 .header-parent,
 .swipe-down1 {
@@ -1155,6 +1151,7 @@ const options = {
   overflow: hidden;
   width: 100vw;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 .div22 {
   position: absolute;
@@ -1181,6 +1178,9 @@ const options = {
   height: 2.5em;
   top: 2.6em;
   left: 0em;
+  color: rgba(59, 59, 59, 1);
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .nav-buttons {
   position: absolute;
@@ -1238,7 +1238,7 @@ const options = {
 .wrapper3 {
   position: absolute;
   top: -1.38em;
-  left: 37vw;
+  left: 36vw;
   background-color: #fff;
   width: 4.19em;
   display: flex;

@@ -57,7 +57,7 @@ const { variantIndex } = defineProps({
 .button-slider {
   &_left {
     position: absolute;
-    left: 2.9em;
+    left: 15%;
     top: 0.5em;
     z-index: 100;
     &::after {
@@ -79,7 +79,7 @@ const { variantIndex } = defineProps({
   }
   &_right {
     position: absolute;
-    right: 2.5em;
+    right: 10%;
     top: 0.5em;
     z-index: 100;
     &::after {
@@ -219,7 +219,7 @@ input[type="checkbox"] {
     }
     &:checked {
       --ab: var(--active-inner);
-      --x: 144px;
+      --x: 101%;
     }
     &:checked:after {
       width: 50%;

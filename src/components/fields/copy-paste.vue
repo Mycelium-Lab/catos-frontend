@@ -86,7 +86,8 @@ const handleBlur = () => {
   overflow: hidden;
   font-size: var(--font-size-xs);
   color: rgba(46, 58, 89, 1);
-  padding: 0 18%;
+  /*padding: 0 18%;*/
+  padding-left: 12px;
 
   font-weight: 600;
   outline: none;

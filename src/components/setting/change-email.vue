@@ -1,269 +1,166 @@
 <template>
-  <!--<div class="div8">
-    <img class="bg-icon" alt="" src="@/assets/bg/bg.png" />
-
-    <div class="header">
-      <div class="div11">Профиль</div>
-    </div>
-    <div class="tables-contacts-grid-01-parent">
-      <div class="tables-contacts-grid-01">
-        <div class="tags-grey-parent">
-          <div class="tags-grey">
-            <img class="bg-hover-icon" alt="" src="./public/bg-hover.svg" />
-
-            <b class="tag">Кредитор</b>
-          </div>
-          <div class="buttons-icon-outline-arr">
-            <div class="bg"></div>
-            <div class="icon"></div>
-          </div>
-        </div>
-        <div class="tags-grey1">
-          <img class="bg-hover-icon" alt="" src="./public/bg-hover.svg" />
-
-          <b class="tag">Кредитор</b>
-        </div>
-        <div class="frame-group">
-          <div class="img-parent">
-            <div class="img">
-              <img class="img-icon" alt="" src="./public/img@2x.png" />
-
-              <img class="status-icon" alt="" src="./public/status.svg" />
-            </div>
-            <div class="name-parent">
-              <b class="name">Валентин Иванович Бабаев</b>
-              <div class="job-title">Кредитор</div>
-            </div>
-          </div>
-          <div class="frame-container">
-            <div class="frame-div">
-              <div class="iconsmail-group">
-                <img
-                  class="iconsmobile"
-                  alt=""
-                  src="@/assets/images/iconsmail.svg"
-                />
-
-                <div class="alesso-waitsongmailcom">
-                  Alesso Waitson@gmailcom
-                </div>
-              </div>
-              <img
-                class="iconsedit-outline"
-                alt=""
-                src="./public/iconseditoutline.svg"
-              />
-            </div>
-            <div class="frame-parent1">
-              <div class="iconsmail-group">
-                <img
-                  class="iconsmobile"
-                  alt=""
-                  src="./public/iconsmobile.svg"
-                />
-
-                <div class="div12">+390-999-00-01</div>
-              </div>
-              <img
-                class="iconsedit-outline"
-                alt=""
-                src="./public/iconseditoutline.svg"
-              />
-            </div>
-            <div class="frame-parent1">
-              <div class="iconsmail-group">
-                <img class="iconsmobile" alt="" src="./public/iconslock1.svg" />
-
-                <div class="group">
-                  <div class="div13">**********</div>
-                  <img
-                    class="iconspassword1"
-                    alt=""
-                    src="./public/iconspassword1.svg"
-                  />
-                </div>
-              </div>
-              <img
-                class="iconsedit-outline"
-                alt=""
-                src="./public/iconseditoutline.svg"
-              />
-            </div>
-          </div>
+  <modal>
+    <div class="fieldsregistration-options">
+      <div class="fields-password-and-mail2">
+        <div class="iconslock-container">
+          <div class="div18">Пароль</div>
         </div>
       </div>
-    </div>-->
-  <div class="bg1"></div>
-  <div class="fieldsregistration-options">
-    <div class="fields-password-and-mail2">
-      <div class="iconslock-container">
-        <img class="iconsmobile" alt="" src="./public/iconslock2.svg" />
-
-        <div class="div18">Пароль</div>
-        <img class="iconspassword1" alt="" src="./public/iconspassword2.svg" />
+      <div class="fields-password-and-mail3">
+        <div class="iconslock-container">
+          <div class="div18">Пароль</div>
+        </div>
       </div>
-    </div>
-    <div class="fields-password-and-mail3">
-      <div class="iconslock-container">
-        <img class="iconsmobile" alt="" src="./public/iconslock3.svg" />
-
-        <div class="div18">Пароль</div>
-        <img class="iconspassword1" alt="" src="./public/iconspassword3.svg" />
-      </div>
-    </div>
-    <div class="div20">
-      <span>Придумайте пароль</span>
-      <span class="span">*</span>
-    </div>
-    <div class="div21">
-      <span>Повторите пароль </span>
-      <span class="span">*</span>
-    </div>
-    <div class="text-and-fill">
-      <div class="div22">
-        <span>Пароль </span>
+      <div class="div20">
+        <span>Придумайте пароль</span>
         <span class="span">*</span>
       </div>
-    </div>
-  </div>
-  <div class="decor-parent">
-    <div class="decor"></div>
-    <div class="frame-parent3">
-      <div class="job-title-wrapper">
-        <div class="job-title1">Смена почты</div>
+      <div class="div21">
+        <span>Повторите пароль </span>
+        <span class="span">*</span>
       </div>
-      <div class="fields-parent">
-        <div class="fields">
-          <div class="fieldsregistration-options1">
-            <div class="fieldsregistration-options-child"></div>
-            <div class="text-and-fill1">
-              <div class="div28">
-                <span>Новая почта </span>
-                <span class="span">*</span>
-              </div>
-            </div>
-            <div class="div29">
-              Укажите новую почту на которую будет отправлен код
-            </div>
-            <input-data
-              :left="true"
-              :style="{ width: '74vw', top: '1.6em', left: '1.3em' }"
-              placeholder="Ваш email"
-            >
-              <template v-slot:left-icon>
-                <img src="@/assets/images/iconsmail.svg" />
-              </template>
-            </input-data>
-          </div>
-          <img class="icon1" alt="" src="./public/icon.svg" />
+      <div class="text-and-fill">
+        <div class="div22">
+          <span>Пароль </span>
+          <span class="span">*</span>
         </div>
-        <div class="div30">
-          <div class="fieldsregistration-options2">
-            <div class="fieldsregistration-options-item"></div>
-            <div class="text-and-fill1">
-              <div class="div28">
-                <span>Подтверждение почты </span>
-                <span class="span">*</span>
-              </div>
-            </div>
-            <div class="fields-password-and-mail5">
-              <div class="iconslock-container">
-                <img
-                  class="iconsmobile"
-                  alt=""
-                  src="./public/iconsmobile1.svg"
-                />
-
-                <div class="div32">Введите код:</div>
-              </div>
-            </div>
-            <a
-              class="koahyan123gmailcom"
-              href="mailto:Koa.Hyan123@gmail.com"
-              target="_blank"
-            >
-              <span>Код отправлен на номер:</span>
-              <span class="koahyan123gmailcom1"> Koa.Hyan123@gmail.com</span>
-            </a>
-            <div class="div33">
-              <span>Примерное время </span>
-              <span class="span5">ожидания</span>
-              <span>:</span>
-              <span class="span6"> </span>
-              <span class="koahyan123gmailcom1">1 мин</span>
-            </div>
-            <div class="fieldsregistration-options-inner">
-              <div class="frame-parent4">
-                <div class="group">
-                  <img
-                    class="iconssend"
-                    alt=""
-                    src="@/assets/images/iconssend.svg"
-                  />
-
-                  <div class="div34">Отправить код повторно:</div>
-                </div>
-                <div class="frame">
-                  <div class="div35">60 сек</div>
+      </div>
+    </div>
+    <div class="decor-parent">
+      <div class="decor"></div>
+      <div class="frame-parent3">
+        <div class="job-title-wrapper">
+          <div class="job-title1">Смена почты</div>
+        </div>
+        <div class="fields-parent">
+          <div class="fields">
+            <div class="fieldsregistration-options1">
+              <div class="fieldsregistration-options-child"></div>
+              <div class="text-and-fill1">
+                <div class="div28">
+                  <span>Новая почта </span>
+                  <span class="span">*</span>
                 </div>
               </div>
-            </div>
-            <div class="inputfields">
-              <input maxlength="1" class="component-4" />
-              <input maxlength="1" class="component-4" />
-              <input maxlength="1" class="component-4" />
-              <input maxlength="1" class="component-4" />
-              <input maxlength="1" class="component-4" />
-            </div>
-          </div>
-          <!--<div class="div41">Введите отправленный код поторно</div>-->
-        </div>
-        <div class="des-and-bbn">
-          <div class="text-and-button">
-            <div class="buttons-tabs" id="buttonsTabsContainer">
-              <div class="text">Изменить почту</div>
-            </div>
-            <div class="buttons-tabs1" @click="handleClose">
-              <div class="text">Отмена</div>
+              <div class="div29">
+                Укажите новую почту на которую будет отправлен код
+              </div>
+              <input-data
+                :left="true"
+                :style="{ width: '74vw', top: '1.6em', left: '1.3em' }"
+                placeholder="Ваш email"
+              >
+                <template v-slot:left-icon>
+                  <img src="@/assets/images/iconsmail.svg" />
+                </template>
+              </input-data>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="instance-wrapper">
-      <div class="frame-parent5">
-        <div class="name-parent">
-          <div class="div42">
-            <span class="span8">Если у вас возникли дополнительные </span
-            >вопросы или нашли ошибку нашей системе обратитесь в службу
-            поддержки
-          </div>
-        </div>
-        <div class="frame-wrapper">
-          <div class="message-circle-parent">
-            <img
-              class="iconsmobile"
-              alt=""
-              src="@/assets/images/messagecircle.svg"
-            />
+          <div class="div30">
+            <div class="fieldsregistration-options2">
+              <div class="fieldsregistration-options-item"></div>
+              <div class="text-and-fill1">
+                <div class="div28">
+                  <span>Подтверждение почты </span>
+                  <span class="span">*</span>
+                </div>
+              </div>
+              <div class="fields-password-and-mail5">
+                <div class="iconslock-container">
+                  <div class="div32">Введите код:</div>
+                </div>
+              </div>
+              <a
+                class="koahyan123gmailcom"
+                href="mailto:Koa.Hyan123@gmail.com"
+                target="_blank"
+              >
+                <span>Код отправлен на номер:</span>
+                <span class="koahyan123gmailcom1"> Koa.Hyan123@gmail.com</span>
+              </a>
+              <div class="div33">
+                <span>Примерное время </span>
+                <span class="span5">ожидания</span>
+                <span>:</span>
+                <span class="span6"> </span>
+                <span class="koahyan123gmailcom1">1 мин</span>
+              </div>
+              <div class="fieldsregistration-options-inner">
+                <div class="frame-parent4">
+                  <div class="group">
+                    <img
+                      class="iconssend"
+                      alt=""
+                      src="@/assets/images/iconssend.svg"
+                    />
 
-            <div class="div43">Служба поддержки</div>
+                    <div class="div34">Отправить код повторно:</div>
+                  </div>
+                  <div class="frame">
+                    <div class="div35">60 сек</div>
+                  </div>
+                </div>
+              </div>
+              <div class="inputfields">
+                <input maxlength="1" class="component-4" />
+                <input maxlength="1" class="component-4" />
+                <input maxlength="1" class="component-4" />
+                <input maxlength="1" class="component-4" />
+                <input maxlength="1" class="component-4" />
+              </div>
+            </div>
+            <!--<div class="div41">Введите отправленный код поторно</div>-->
+          </div>
+          <div class="des-and-bbn">
+            <div class="text-and-button">
+              <div class="buttons-tabs" id="buttonsTabsContainer">
+                <div class="text">Изменить почту</div>
+              </div>
+              <div class="buttons-tabs1" @click="handleClose">
+                <div class="text">Отмена</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="instance-wrapper">
+        <div class="frame-parent5">
+          <div class="name-parent">
+            <div class="div42">
+              <span class="span8">Если у вас возникли дополнительные </span
+              >вопросы или нашли ошибку нашей системе обратитесь в службу
+              поддержки
+            </div>
+          </div>
+          <div class="frame-wrapper">
+            <div class="message-circle-parent">
+              <img
+                class="iconsmobile"
+                alt=""
+                src="@/assets/images/messagecircle.svg"
+              />
+
+              <div class="div43">Служба поддержки</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <button class="buttonback" @click="handleClose">
-    <div class="div44">Назад</div>
-    <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
-  </button>
+    <button class="buttonback" @click="handleClose">
+      <div class="div44">Назад</div>
+      <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
+    </button>
+  </modal>
 </template>
 
 <script setup lang="ts">
+import modal from "../ui-kit/modal.vue";
 import inputData from "@/components/fields/input-data.vue";
-const emit = defineEmits(["close"]);
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 const handleClose = () => {
-  emit("close");
+  router.push({ name: "setting" });
 };
 </script>
 
@@ -975,11 +872,11 @@ const handleClose = () => {
   color: rgba(93, 104, 123, 0.9);
 }
 .decor {
-  top: 3.75em;
-  left: 1em;
+  top: 3.4em;
+  margin: 0 10px;
   border-radius: 20px;
   border: 0.5px solid rgba(46, 58, 89, 0.2);
-  width: 90%;
+  position: relative;
   height: 31.69em;
 }
 .job-title1 {
@@ -1000,8 +897,6 @@ const handleClose = () => {
   position: absolute;
   width: 100%;
   top: calc(50% - 49.5px);
-  right: 0;
-  left: 0;
   border-radius: 15px;
   backdrop-filter: blur(5px);
   border: 0.5px solid rgba(46, 58, 89, 0.2);
@@ -1332,8 +1227,8 @@ const handleClose = () => {
 }
 .frame-parent3 {
   position: absolute;
-  top: 3em;
-  left: 1.5em;
+  top: 2.5em;
+  left: 7vw;
   height: 34.06em;
   gap: 0.38em;
 }
@@ -1363,7 +1258,7 @@ const handleClose = () => {
 }
 .frame-wrapper {
   border-radius: 16px;
-  width: 18.75em;
+  width: 100%;
   height: 2.5em;
   display: flex;
   flex-direction: column;
@@ -1371,6 +1266,7 @@ const handleClose = () => {
   justify-content: center;
   text-align: left;
   color: #2c56c0;
+  border: 1px solid rgba(165, 146, 221, 0.15);
 }
 .frame-parent5,
 .instance-wrapper {
@@ -1384,17 +1280,16 @@ const handleClose = () => {
 }
 .instance-wrapper {
   position: absolute;
-  top: 38.19em;
-  left: 2.81em;
+  top: 37.19em;
+  left: 9vw;
   color: rgba(59, 59, 59, 0.54);
+  width: 80vw;
 }
 .decor-parent {
   position: absolute;
   top: 0em;
   left: 0;
-  border-radius: 24px 24px 0 0;
   background-color: #fff;
-  border: 1px solid rgba(46, 58, 89, 0.2);
   box-sizing: border-box;
   width: 100vw;
   height: 50.88em;

@@ -41,9 +41,9 @@
         </div>
       </div>
       <div class="buttonnext-parent">
-        <div class="buttonnext">
+        <router-link class="buttonnext" :to="{ name: 'authentication-save' }">
           <b class="ton-kepeer">Продолжить</b>
-        </div>
+        </router-link>
         <div class="div10">
           <p class="p">Если приложение установлено,</p>
           <p class="p">жмите продолжить</p>
@@ -201,6 +201,10 @@ import modal from "../ui-kit/modal.vue";
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
+  color: #fff;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .div10 {
   position: relative;

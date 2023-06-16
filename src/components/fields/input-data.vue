@@ -8,6 +8,7 @@
       @focus="handleFocus"
       @blur="handleBlur"
       :type="type"
+      @input="selected"
       :style="
         left
           ? { paddingLeft: '3.3em' }
@@ -17,6 +18,8 @@
           ? { backgroundColor: `${background}` }
           : border
           ? { border }
+          : simulate
+          ? { backgroundColor: 'transparent', border: 'none' }
           : ''
       "
     />
@@ -31,7 +34,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-const { placeholder } = defineProps({
+const { placeholder, simulate } = defineProps({
   placeholder: {
     type: String,
   },
@@ -53,7 +56,11 @@ const { placeholder } = defineProps({
   value: {
     type: String,
   },
+  simulate: {
+    type: Boolean,
+  },
 });
+const emit = defineEmits(["selected"]);
 const mutatePlaceholder = ref(placeholder);
 const handleFocus = () => {
   switch (mutatePlaceholder.value) {
@@ -83,6 +90,11 @@ const handleBlur = () => {
       break;
     default:
       break;
+  }
+};
+const selected = (ev: any) => {
+  if (simulate) {
+    emit("selected", ev.target.value);
   }
 };
 </script>
@@ -129,4 +141,10 @@ const handleBlur = () => {
 .catos-fields:focus::placeholder {
   color: rgba(0, 0, 0, 0.06);
 }
+
+/*input[type="date"]::-webkit-calendar-picker-indicator {
+  color: transparent;
+  background: none;
+  z-index: 1;
+}*/
 </style>

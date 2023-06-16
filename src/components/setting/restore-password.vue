@@ -1,110 +1,101 @@
 <template>
-  <div class="bg1"></div>
+  <modal>
+    <div class="decor-parent">
+      <div class="decor"></div>
+      <div class="frame-parent3">
+        <div class="job-title-wrapper">
+          <div class="job-title1">Восстановление пароля</div>
+        </div>
+        <div class="fields-parent">
+          <div class="fields">
+            <div class="fieldsregistration-options1">
+              <div class="fieldsregistration-options-child"></div>
+              <div class="text-and-fill1">
+                <div class="div28">
+                  <span>Номер телефона </span>
+                  <span class="span">*</span>
+                </div>
+              </div>
+              <div class="div29">
+                Укажите номер на который вы зарегистрированы
+              </div>
+              <input-data
+                :left="true"
+                :style="{ width: '74vw', top: '1.6em', left: '1.3em' }"
+                placeholder="Ваш номер телефона"
+              >
+                <template v-slot:left-icon>
+                  <img src="@/assets/images/iconsmobile.svg" />
+                </template>
+              </input-data>
+            </div>
+          </div>
 
-  <div class="decor-parent">
-    <div class="decor"></div>
-    <div class="frame-parent3">
-      <div class="job-title-wrapper">
-        <div class="job-title1">Восстановление пароля</div>
+          <div class="fields">
+            <div class="fieldsregistration-options1">
+              <div class="fieldsregistration-options-child"></div>
+              <div class="text-and-fill1">
+                <div class="div28">
+                  <span>Электронная почта</span>
+                  <span class="span">*</span>
+                </div>
+              </div>
+              <div class="div29">
+                Или укажите email на который вы зарегистрированы
+              </div>
+              <input-data
+                :left="true"
+                :style="{ width: '74vw', top: '1.6em', left: '1.3em' }"
+                placeholder="Ваш номер телефона"
+              >
+                <template v-slot:left-icon>
+                  <img src="@/assets/images/iconsmail.svg" />
+                </template>
+              </input-data>
+            </div>
+          </div>
+
+          <div class="des-and-bbn">
+            <div class="text-and-button">
+              <div class="buttons-tabs" id="buttonsTabsContainer">
+                <div class="text">Изменить и отправить новый пароль</div>
+              </div>
+              <div class="buttons-tabs" id="buttonsTabsContainer">
+                <div class="text">Выслать текущий пароль</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="fields-parent">
-        <div class="fields">
-          <div class="fieldsregistration-options1">
-            <div class="fieldsregistration-options-child"></div>
-            <div class="text-and-fill1">
-              <div class="div28">
-                <span>Номер телефона </span>
-                <span class="span">*</span>
-              </div>
+      <div class="instance-wrapper">
+        <div class="frame-parent5">
+          <div class="name-parent">
+            <div class="div42">
+              <span class="span8">Если у вас возникли дополнительные </span
+              >вопросы или нашли ошибку нашей системе обратитесь в службу
+              поддержки
             </div>
-            <div class="div29">
-              Укажите номер на который вы зарегистрированы
-            </div>
-            <input-data
-              :left="true"
-              :style="{ width: '74vw', top: '1.6em', left: '1.3em' }"
-              placeholder="Ваш номер телефона"
-            >
-              <template v-slot:left-icon>
-                <img src="@/assets/images/iconsmobile.svg" />
-              </template>
-            </input-data>
           </div>
-          <img class="icon1" alt="" src="./public/icon.svg" />
-        </div>
+          <div class="frame-wrapper">
+            <div class="message-circle-parent">
+              <img
+                class="iconsmobile"
+                alt=""
+                src="@/assets/images/messagecircle.svg"
+              />
 
-        <div class="fields">
-          <div class="fieldsregistration-options1">
-            <div class="fieldsregistration-options-child"></div>
-            <div class="text-and-fill1">
-              <div class="div28">
-                <span>Электронная почта</span>
-                <span class="span">*</span>
-              </div>
-            </div>
-            <div class="div29">
-              Или укажите email на который вы зарегистрированы
-            </div>
-            <input-data
-              :left="true"
-              :style="{ width: '74vw', top: '1.6em', left: '1.3em' }"
-              placeholder="Ваш номер телефона"
-            >
-              <template v-slot:left-icon>
-                <img src="@/assets/images/iconsmail.svg" />
-              </template>
-            </input-data>
-          </div>
-          <img class="icon1" alt="" src="./public/icon.svg" />
-        </div>
-
-        <div class="des-and-bbn">
-          <div class="text-and-button">
-            <div class="buttons-tabs" id="buttonsTabsContainer">
-              <div class="text">Изменить и отправить новый пароль</div>
-            </div>
-            <div class="buttons-tabs1" @click="handleClose">
-              <div class="text">Отмена</div>
+              <div class="div43">Служба поддержки</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="instance-wrapper">
-      <div class="frame-parent5">
-        <div class="name-parent">
-          <div class="div42">
-            <span class="span8">Если у вас возникли дополнительные </span
-            >вопросы или нашли ошибку нашей системе обратитесь в службу
-            поддержки
-          </div>
-        </div>
-        <div class="frame-wrapper">
-          <div class="message-circle-parent">
-            <img
-              class="iconsmobile"
-              alt=""
-              src="@/assets/images/messagecircle.svg"
-            />
-
-            <div class="div43">Служба поддержки</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <button class="buttonback" @click="handleClose">
-    <div class="div44">Назад</div>
-    <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
-  </button>
+  </modal>
 </template>
 
 <script setup lang="ts">
 import inputData from "@/components/fields/input-data.vue";
-const emit = defineEmits(["close"]);
-const handleClose = () => {
-  emit("close");
-};
+import modal from "../ui-kit/modal.vue";
 </script>
 
 <style scoped>
@@ -806,12 +797,12 @@ const handleClose = () => {
   color: rgba(93, 104, 123, 0.9);
 }
 .decor {
-  top: 3.75em;
-  left: 1em;
+  top: 3.4em;
   border-radius: 20px;
   border: 0.5px solid rgba(46, 58, 89, 0.2);
-  width: 90%;
   height: 26.69em;
+  position: relative;
+  margin: 0px 10px;
 }
 .job-title1 {
   position: relative;
@@ -1106,13 +1097,15 @@ const handleClose = () => {
   letter-spacing: 0.02em;
   line-height: 120%;
   font-weight: 500;
+  text-align: center;
+  padding: 7.5px 12px;
 }
 .buttons-tabs,
 .buttons-tabs1 {
   align-self: stretch;
   border-radius: 25px;
   box-sizing: border-box;
-  height: 2em;
+
   display: flex;
   flex-direction: row;
 
@@ -1163,7 +1156,7 @@ const handleClose = () => {
 }
 .frame-parent3 {
   position: absolute;
-  top: 3em;
+  top: 2.5em;
   left: 1.5em;
   height: 34.06em;
   gap: 0.38em;
@@ -1194,7 +1187,7 @@ const handleClose = () => {
 }
 .frame-wrapper {
   border-radius: 16px;
-  width: 18.75em;
+  width: 100%;
   height: 2.5em;
   display: flex;
   flex-direction: column;
@@ -1202,6 +1195,7 @@ const handleClose = () => {
   justify-content: center;
   text-align: left;
   color: #2c56c0;
+  border: 1px solid rgba(165, 146, 221, 0.15);
 }
 .frame-parent5,
 .instance-wrapper {
@@ -1211,21 +1205,22 @@ const handleClose = () => {
   justify-content: flex-start;
 }
 .frame-parent5 {
+  width: 100%;
   gap: 0.75em;
+  text-align: center;
 }
 .instance-wrapper {
   position: absolute;
-  top: 33.19em;
-  left: 2.81em;
+  top: 32em;
+  left: 11vw;
   color: rgba(59, 59, 59, 0.54);
+  width: 77vw;
 }
 .decor-parent {
   position: absolute;
   top: 0em;
   left: 0;
-  border-radius: 24px 24px 0 0;
   background-color: #fff;
-  border: 1px solid rgba(46, 58, 89, 0.2);
   box-sizing: border-box;
   width: 100vw;
   height: 50.88em;

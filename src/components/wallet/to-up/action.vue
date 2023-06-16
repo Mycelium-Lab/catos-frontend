@@ -56,7 +56,7 @@
             <div class="div31">Кошелек для пополнения:</div>
           </div>
           <copyPaste
-            :style="{ width: '77vw' }"
+            :style="{ width: '77vw', marginTop: '0px' }"
             value="EQCoqrqUMQCKKZTBFCQ0VzgOf 
 С2K3ieCVOecUmPSFclu2HQJ"
           >

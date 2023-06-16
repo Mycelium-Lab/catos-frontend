@@ -47,7 +47,7 @@
             </div>
 
             <catos-button
-              @click="handleReturn"
+              @click="toProfile"
               :style="{ width: '74vw', top: '13em', left: '1.3em' }"
               >Вернуться в профиль</catos-button
             >
@@ -57,20 +57,15 @@
       </div>
     </div>
   </div>
-  <button class="buttonback" @click="handleClose">
-    <div class="div44">Назад</div>
-    <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
-  </button>
 </template>
 
 <script setup lang="ts">
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
-const emit = defineEmits(["close", "return"]);
-const handleClose = () => {
-  emit("close");
-};
-const handleReturn = () => {
-  emit("return");
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+const toProfile = () => {
+  router.push({ name: "setting" });
 };
 </script>
 
@@ -1193,9 +1188,9 @@ const handleReturn = () => {
   position: absolute;
   top: 0em;
   left: 0;
-  border-radius: 24px 24px 0 0;
+
   background-color: #fff;
-  border: 1px solid rgba(46, 58, 89, 0.2);
+
   box-sizing: border-box;
   width: 100vw;
   height: 50.88em;

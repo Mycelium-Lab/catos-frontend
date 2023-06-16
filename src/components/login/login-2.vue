@@ -1,12 +1,17 @@
 <template>
   <div class="iphone-68">
-    <img class="iphone-68-child" alt="" src="./public/group-3611.svg" />
+    <div class="image-wrapp">
+      <img class="iphone-68-child" alt="" src="./public/group-3611.svg" />
+    </div>
 
     <div class="headeer">
       <b class="page-title">Войти в CATOS</b>
       <div class="div">Рады снова вас видеть!</div>
     </div>
-    <div class="catos-parent">
+    <div
+      class="catos-parent"
+      :style="activeForm === 'phone' ? { top: '34em' } : ''"
+    >
       <div class="catos">Первый раз в CATOS?</div>
       <router-link
         class="div1"
@@ -14,59 +19,77 @@
         >Зарегистрируйтесь</router-link
       >
     </div>
-    <div class="parent">
-      <div class="div2" id="text2">По номеру телефона</div>
-      <div class="wrapper">
-        <div class="div3">По электронной почте</div>
+
+    <div class="method">
+      <div
+        class="method_email"
+        @click="() => (activeForm = 'email')"
+        :class="activeForm === 'email' ? 'method_email_active' : ''"
+      >
+        По электронной почте
       </div>
-      <div class="frame-child"></div>
-      <div class="frame-item"></div>
+      <div
+        class="method_phone"
+        @click="() => (activeForm = 'phone')"
+        :class="activeForm === 'phone' ? 'method_phone_active' : ''"
+      >
+        По номеру телефона
+      </div>
     </div>
     <div class="frame-parent">
-      <div class="fields-password-and-mail-parent">
-        <div class="fields-password-and-mail">
-          <div class="iconsmail-parent">
-            <div class="div4">Ваша почта</div>
-          </div>
-        </div>
-        <div class="email-wrapper">
-          <div class="email">Email</div>
-        </div>
-      </div>
-      <div class="fields-password-and-mail-parent">
-        <div class="fields-password-and-mail1">
-          <div class="iconsmail-parent">
-            <div class="div4">Введите пароль</div>
-            <!--<img
-              class="iconspassword"
-              alt=""
-              src="./public/iconspassword.svg"
-            />-->
-          </div>
-        </div>
-        <div class="email-wrapper">
-          <div class="email">Пароль</div>
-        </div>
-      </div>
+      <input-data
+        v-if="activeForm === 'email'"
+        placeholder="Ваша почта"
+        :style="{ position: 'relative', zIndex: '1000', width: '100%' }"
+      ></input-data>
+
+      <input-data
+        v-if="activeForm === 'email'"
+        placeholder="Введите пароль"
+        :style="{ position: 'relative', zIndex: '1000', width: '100%' }"
+      ></input-data>
+      <input-data
+        v-if="activeForm === 'phone'"
+        placeholder="Ваш номер телефона"
+        :style="{ position: 'relative', zIndex: '1000', width: '100%' }"
+      ></input-data>
     </div>
-    <div class="iphone-68-item"></div>
-    <div class="group-parent">
-      <div class="rectangle-parent">
-        <div class="group-child"></div>
-        <b class="b">Вход</b>
-      </div>
-      <div class="div7">Забыли пароль?</div>
+    <div
+      class="iphone-68-item"
+      :style="activeForm === 'phone' ? { height: '24.18%' } : ''"
+    ></div>
+    <div
+      class="group-parent"
+      :style="activeForm === 'phone' ? { top: '54%' } : ''"
+    >
+      <router-link
+        :to="{
+          name: activeForm === 'phone' ? 'phone-confirmation' : 'setting',
+        }"
+        :style="{ textDecoration: 'none' }"
+      >
+        <catos-button
+          :style="{ height: '45px', width: '70vw', marginRight: '0' }"
+          >Вход</catos-button
+        >
+      </router-link>
+
+      <div v-if="activeForm === 'email'" class="div7">Забыли пароль?</div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+import catosButton from "../ui-kit/buttons/catos-button.vue";
+import inputData from "../fields/input-data.vue";
+const activeForm = ref("email");
+</script>
 
 <style scoped lang="scss">
 .iphone-68-child {
   position: absolute;
   top: -11em;
-  right: 4.32%;
   overflow: hidden;
 }
 .div,
@@ -83,14 +106,16 @@
   font-weight: 500;
 }
 .headeer {
-  position: absolute;
+  position: relative;
   top: 12.94em;
-  left: 6.31em;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 0.81em;
+  width: 300px;
+  margin: 0 auto;
 }
 .catos,
 .div1 {
@@ -107,9 +132,9 @@
   color: #4e95ff;
 }
 .catos-parent {
-  position: absolute;
-  top: 41.75em;
-  left: 7.5em;
+  position: relative;
+  top: 38em;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -127,6 +152,7 @@
   left: 55.67%;
   font-weight: 300;
   cursor: pointer;
+  border-bottom: 2px solid gray;
 }
 .div3 {
   position: relative;
@@ -140,6 +166,7 @@
   align-items: center;
   justify-content: flex-start;
   color: #3b3b3b;
+  border-bottom: 2px solid green;
 }
 .frame-child,
 .frame-item {
@@ -275,8 +302,8 @@
   color: rgba(46, 58, 89, 0.36);
 }
 .iphone-68-item {
-  height: 33.18%;
-  width: 87.69%;
+  height: 31.18%;
+  width: 87.7vw;
   top: 42.18%;
   right: 6.15%;
   bottom: 24.64%;
@@ -291,7 +318,7 @@
   position: absolute;
 }
 .group-child {
-  height: 100%;
+  height: 45px;
   width: 100%;
   top: 0;
   right: 0;
@@ -321,9 +348,9 @@
 }
 .group-parent {
   position: absolute;
-  height: 9.12%;
+
   width: 76.92%;
-  top: 62.44%;
+  top: 60.44%;
   right: 11.28%;
   bottom: 28.44%;
   left: 11.79%;
@@ -342,5 +369,56 @@
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+}
+.method {
+  position: relative;
+  top: 13.5em;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 2px solid rgba(230, 221, 255, 1);
+  width: 300px;
+  margin: 0 auto;
+  padding-bottom: 0.3em;
+  &_email {
+    font-size: 12px;
+    color: rgba(59, 59, 59, 1);
+  }
+  &_email::after {
+    content: "";
+    display: block;
+    border-bottom: 2px solid rgba(230, 221, 255, 1);
+    position: relative;
+    top: 0.6em;
+  }
+  &_email_active::after {
+    content: "";
+    display: block;
+    border-bottom: 2px solid rgba(254, 210, 106, 1);
+    position: relative;
+    top: 0.6em;
+  }
+  &_phone {
+    font-size: 12px;
+    color: rgba(59, 59, 59, 1);
+  }
+  &_phone::after {
+    content: "";
+    display: block;
+    border-bottom: 2px solid rgba(230, 221, 255, 1);
+    position: relative;
+    top: 0.6em;
+  }
+  &_phone_active::after {
+    content: "";
+    display: block;
+    border-bottom: 2px solid rgba(254, 210, 106, 1);
+    position: relative;
+    top: 0.6em;
+  }
+}
+.image-wrapp {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
 }
 </style>

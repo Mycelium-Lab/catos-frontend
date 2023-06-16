@@ -33,9 +33,7 @@
           </div>
           <div class="fieldsinputchoise-parent">
             <div class="fieldsinputchoise">
-              <div class="goa-filejpg">
-                Область <span class="span29">, </span>край
-              </div>
+              <div class="goa-filejpg">Область, край</div>
               <catos-select
                 placeholder="Россия"
                 :options="options"
@@ -149,7 +147,7 @@
                   <span class="span1">* </span>
                 </div>
                 <div class="fields-password-and-mail-wrapper">
-                  <input-data placeholder="01.02.2022"></input-data>
+                  <input-data type="date" placeholder="01.02.2022"></input-data>
                 </div>
               </div>
             </div>
@@ -193,6 +191,7 @@
                 </div>
                 <div class="fields-password-and-mail-parent1">
                   <input-data
+                    type="date"
                     placeholder="01.02.1994"
                     :style="{ width: '100%' }"
                   ></input-data>
@@ -212,13 +211,31 @@
                 <span class="span1">* </span>
               </div>
               <div class="frame-parent17">
-                <div class="radiobutton-parent">
-                  <catos-checkbox variant="radiobutton"></catos-checkbox>
+                <div
+                  class="radiobutton-parent"
+                  @click="
+                    () => (isSelectedRadioButton1 = !isSelectedRadioButton1)
+                  "
+                >
+                  <catos-checkbox
+                    :select="isSelectedRadioButton1"
+                    variant="radiobutton"
+                    :key="String(isSelectedRadioButton1)"
+                  ></catos-checkbox>
 
                   <div class="text">Мужской</div>
                 </div>
-                <div class="radiobutton-group">
-                  <catos-checkbox variant="radiobutton"></catos-checkbox>
+                <div
+                  class="radiobutton-group"
+                  @click="
+                    () => (isSelectedRadioButton2 = !isSelectedRadioButton2)
+                  "
+                >
+                  <catos-checkbox
+                    :select="isSelectedRadioButton2"
+                    variant="radiobutton"
+                    :key="String(isSelectedRadioButton2)"
+                  ></catos-checkbox>
 
                   <div class="text">Женский</div>
                 </div>
@@ -239,7 +256,6 @@
       >
         <b class="b2">Сохранить и продожить</b>
       </router-link>
-      <div class="swipe-down"></div>
     </div>
     <div class="slidersteps">
       <div class="loader6"></div>
@@ -248,7 +264,7 @@
         <div class="div113">7</div>
       </div>
       <div class="steps">
-        <div class="div67">5 шаг</div>
+        <div class="div67">4 шаг</div>
       </div>
     </div>
     <router-link to="" @click="$router.go(-1)" class="buttonback">
@@ -264,6 +280,8 @@ import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
+const isSelectedRadioButton1 = ref(false);
+const isSelectedRadioButton2 = ref(false);
 const value = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
@@ -771,7 +789,7 @@ const options = {
 }
 .header,
 .parent9 {
-  width: 14.88em;
+  width: 69%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -828,6 +846,7 @@ const options = {
   flex-direction: column;
   align-items: flex-start;
   gap: 1.38em;
+  width: 88%;
 }
 .fieldsinputchoise-parent,
 .parent11,
@@ -856,6 +875,7 @@ const options = {
 .frame-parent3 {
   align-items: flex-start;
   gap: 0.75em;
+  width: 100%;
 }
 .frame-parent2,
 .wrapper4 {
@@ -868,6 +888,7 @@ const options = {
   flex-direction: column;
   align-items: flex-start;
   gap: 1em;
+  width: 88%;
 }
 .registration-options {
   position: absolute;
@@ -1676,7 +1697,7 @@ const options = {
   position: absolute;
   top: 39.31em;
   left: 0;
-  width: 21.38em;
+  width: 100%;
   height: 38.19em;
 }
 .text14 {
@@ -1769,12 +1790,13 @@ const options = {
 .frame-parent15 {
   align-self: stretch;
   gap: 1.25em;
+  width: 88%;
 }
 .parent31 {
   position: absolute;
   top: 19.31em;
   left: 1.31em;
-  width: 18.75em;
+  width: 100%;
   gap: 1.5em;
 }
 .div104 {
@@ -1813,7 +1835,7 @@ const options = {
   z-index: 100;
 }
 .parent37 {
-  width: 18.75em;
+  width: 100%;
   height: 4em;
   gap: 0.5em;
 }
@@ -1822,6 +1844,7 @@ const options = {
   top: 2.31em;
   left: 1.31em;
   gap: 1.38em;
+  width: 88%;
 }
 .radiobutton-icon {
   position: relative;
@@ -1855,7 +1878,7 @@ const options = {
   position: absolute;
   top: 12.31em;
   left: 1.31em;
-  width: 18.75em;
+  width: 88%;
   flex-direction: column;
   justify-content: flex-start;
   gap: 0.5em;
@@ -1886,20 +1909,18 @@ const options = {
 .div102 {
   position: absolute;
   top: 0;
-  width: 21.38em;
+  width: 100%;
   height: 17.31em;
 }
 .div102 {
   left: 0;
 }
-.div101 {
-  left: calc(50% - 171px);
-}
+
 .registration-options-parent {
   position: absolute;
   top: 10.5em;
-  left: 1.5em;
-  width: 21.38em;
+  left: 6vw;
+  width: 87.7%;
   height: 77.56em;
 }
 .b2 {
@@ -1913,7 +1934,7 @@ const options = {
   left: 1.5em;
   border-radius: 20px;
   background-color: #fdd674;
-  width: 21.38em;
+  width: 88%;
   height: 3em;
   overflow: hidden;
   display: flex;
@@ -1943,7 +1964,7 @@ const options = {
   left: 0;
   border-radius: 40px 40px 0 0;
   background-color: #fff;
-  width: 24.38em;
+  width: 100vw;
   height: 100.94em;
 }
 .battery-icon {
@@ -2020,7 +2041,7 @@ const options = {
   left: 1.75em;
   border-radius: 19px;
   background-color: #f5f9ff;
-  width: 6.19em;
+  width: 5.44em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2029,7 +2050,7 @@ const options = {
 }
 .slidersteps {
   top: 4.19em;
-  left: 12.56em;
+  right: 1em;
   width: 10.31em;
   color: #958463;
 }
@@ -2071,5 +2092,6 @@ const options = {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+  overflow-x: hidden;
 }
 </style>

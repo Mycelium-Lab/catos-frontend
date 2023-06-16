@@ -43,8 +43,8 @@ import { useRouter } from "vue-router";
   overflow: hidden;
 }
 .page-title {
-  top: 67.06%;
-  left: 31.79%;
+  top: 50vh;
+  left: 32vw;
   font-size: 50px;
   line-height: 28px;
 }
@@ -73,10 +73,10 @@ import { useRouter } from "vue-router";
   position: absolute;
   height: 5.92%;
   width: 76.92%;
-  top: 80.57%;
+  top: 65vh;
   right: 11.54%;
   bottom: 13.51%;
-  left: 11.54%;
+  left: 12vw;
   cursor: pointer;
   font-size: 18px;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
@@ -89,7 +89,7 @@ import { useRouter } from "vue-router";
   line-height: 28px;
 }
 .catos {
-  top: 611px;
+  top: 57vh;
   left: 99px;
   font-size: 14px;
   font-weight: 500;
@@ -97,7 +97,7 @@ import { useRouter } from "vue-router";
 }
 .catos1,
 .div {
-  top: 761px;
+  top: 75vh;
 }
 .div {
   left: 207px;

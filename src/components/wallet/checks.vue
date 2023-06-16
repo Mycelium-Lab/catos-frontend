@@ -14,11 +14,7 @@
           </div>
         </div>
         <div class="des">
-          <img
-            class="des-child"
-            alt=""
-            src="@/assets/images/frame-1817887@2x.png"
-          />
+          <img class="des-child" alt="" src="@/assets/images/dialog.png" />
 
           <div class="div11">
             Отправляйте криптовалюту используя виртуальные чеки. Забудьте про
@@ -27,9 +23,9 @@
         </div>
       </div>
       <div class="buttonnext-wrapper">
-        <div class="buttonnext">
+        <router-link class="buttonnext" :to="{ name: 'checks-create' }">
           <b class="ton-kepeer">Создать чек</b>
-        </div>
+        </router-link>
       </div>
       <div class="descrioption-parent">
         <div class="descrioption">
@@ -40,11 +36,13 @@
           <div class="frame-container">
             <div class="frame-div">
               <div class="svg-gobbler-2-1-group">
-                <img
-                  class="svg-gobbler-2-11"
-                  alt=""
-                  src="./public/svggobbler-2-11.svg"
-                />
+                <div class="svg-wrapper">
+                  <img
+                    class="svg-gobbler-2-11"
+                    alt=""
+                    src="@/assets/images/invoice.svg"
+                  />
+                </div>
 
                 <div class="ticked-id-parent">
                   <b class="ticked-id">Чек #207</b>
@@ -58,8 +56,9 @@
                 id="buttonsIconOutlineArr"
                 @click="() => (isDetail = true)"
               >
-                <div class="bg1"></div>
-                <div class="icon"></div>
+                <div class="bg1">
+                  <img src="@/assets/images/more.png" />
+                </div>
               </div>
             </div>
             <div class="frame-parent1">
@@ -72,7 +71,11 @@
               </div>
               <div class="frame-inner"></div>
               <div class="author">
-                <img class="img-icon" alt="" src="./public/img@2x.png" />
+                <img
+                  class="img-icon"
+                  alt=""
+                  src="@/assets/images/edit-photo.png"
+                />
 
                 <div class="author1">Валентин Иванович</div>
               </div>
@@ -81,11 +84,13 @@
           <div class="frame-container">
             <div class="frame-div">
               <div class="svg-gobbler-2-1-group">
-                <img
-                  class="svg-gobbler-2-11"
-                  alt=""
-                  src="./public/svggobbler-2-11.svg"
-                />
+                <div class="svg-wrapper">
+                  <img
+                    class="svg-gobbler-2-11"
+                    alt=""
+                    src="@/assets/images/invoice.svg"
+                  />
+                </div>
 
                 <div class="ticked-id-parent">
                   <b class="ticked-id">Чек #207</b>
@@ -95,8 +100,9 @@
                 </div>
               </div>
               <div class="buttons-icon-outline-arr" id="buttonsIconOutlineArr1">
-                <div class="bg1"></div>
-                <div class="icon"></div>
+                <div class="bg1">
+                  <img src="@/assets/images/more.png" />
+                </div>
               </div>
             </div>
             <div class="frame-parent1">
@@ -106,7 +112,11 @@
               </div>
               <div class="frame-inner"></div>
               <div class="author">
-                <img class="img-icon" alt="" src="./public/img@2x.png" />
+                <img
+                  class="img-icon"
+                  alt=""
+                  src="@/assets/images/edit-photo.png"
+                />
 
                 <div class="author1">Валентин Иванович</div>
               </div>
@@ -115,11 +125,13 @@
           <div class="frame-container">
             <div class="frame-div">
               <div class="svg-gobbler-2-1-group">
-                <img
-                  class="svg-gobbler-2-11"
-                  alt=""
-                  src="./public/svggobbler-2-11.svg"
-                />
+                <div class="svg-wrapper">
+                  <img
+                    class="svg-gobbler-2-11"
+                    alt=""
+                    src="@/assets/images/invoice.svg"
+                  />
+                </div>
 
                 <div class="ticked-id-parent">
                   <b class="ticked-id">Чек #206</b>
@@ -127,8 +139,9 @@
                 </div>
               </div>
               <div class="buttons-icon-outline-arr">
-                <div class="bg1"></div>
-                <div class="icon"></div>
+                <div class="bg1">
+                  <img src="@/assets/images/more.png" />
+                </div>
               </div>
             </div>
             <div class="frame-parent1">
@@ -138,7 +151,11 @@
               </div>
               <div class="frame-inner"></div>
               <div class="author">
-                <img class="img-icon" alt="" src="./public/img@2x.png" />
+                <img
+                  class="img-icon"
+                  alt=""
+                  src="@/assets/images/edit-photo.png"
+                />
 
                 <div class="author1">Валентин Иванович</div>
               </div>
@@ -153,12 +170,12 @@
         <div class="counters-graph-web">
           <div class="bg"></div>
           <div class="component-26">
-            <img class="share-icon" alt="" src="./public/share.svg" />
+            <!--<img class="share-icon" alt="" src="./public/share.svg" />-->
 
             <div class="number">Поделиться</div>
           </div>
           <div class="component-261">
-            <img class="share-icon" alt="" src="./public/copy.svg" />
+            <!-- <img class="share-icon" alt="" src="./public/copy.svg" /> -->
 
             <div class="number">Скопировать</div>
           </div>
@@ -168,11 +185,11 @@
         </div>
         <div class="field-">
           <div class="svg-gobbler-2-1-parent">
-            <img
+            <!--<img
               class="svg-gobbler-2-1"
               alt=""
               src="./public/svggobbler-2-1.svg"
-            />
+            />-->
 
             <div class="name">
               <div class="invoice-aa-04-19-18">Чек отправлен</div>
@@ -184,11 +201,11 @@
             <div class="paid">Отправлено</div>
           </div>
           <div class="arrows-table">
-            <img
+            <!--<img
               class="chevron-right-icon"
               alt=""
               src="./public/chevronright.svg"
-            />
+            />-->
           </div>
         </div>
         <div class="div8" id="popuptext">Закрыть</div>
@@ -216,7 +233,7 @@ const isDetail = ref(false);
 }
 .header {
   position: absolute;
-  top: 2.5em;
+  top: 1.5em;
   border-radius: 8px;
   width: 100%;
   display: flex;
@@ -300,14 +317,18 @@ const isDetail = ref(false);
   overflow: hidden;
   flex-shrink: 0;
   flex-direction: row;
-
+  text-decoration: none;
+  color: #ffff;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .buttonnext-wrapper {
   width: 100%;
   flex-direction: column;
   text-align: center;
   color: #f3f3f3;
+  padding: 0 21px;
 }
 .details1,
 .number2 {
@@ -337,8 +358,8 @@ const isDetail = ref(false);
 .svg-gobbler-2-11 {
   position: relative;
   border-radius: 10px;
-  width: 2.38em;
-  height: 2.38em;
+  width: 14px;
+  height: 13px;
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -388,6 +409,9 @@ const isDetail = ref(false);
   background-color: #fff;
   border: 1px solid #ececf2;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .icon {
   top: calc(50% - 9px);
@@ -515,13 +539,12 @@ const isDetail = ref(false);
   width: 100%;
 }
 .des-1-2-parent {
-  position: absolute;
-  top: 5.56em;
-  left: 4vw;
+  position: relative;
+  top: 4.56em;
   align-items: center;
   gap: 2em;
   color: #8181a5;
-  width: 90vw;
+  padding: 0 24px;
 }
 .bg,
 .header-parent {
@@ -726,5 +749,15 @@ const isDetail = ref(false);
   text-align: left;
   color: rgba(59, 59, 59, 0.8);
   font-family: Inter;
+}
+.svg-wrapper {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 38px;
+  height: 38px;
+  background-color: rgba(165, 146, 221, 0.1);
+  border: 0.5px solid rgba(165, 146, 221, 0.05);
+  border-radius: 10px;
 }
 </styles>

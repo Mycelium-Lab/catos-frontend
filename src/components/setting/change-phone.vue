@@ -1,171 +1,160 @@
 <template>
-  <div class="bg1"></div>
-  <div class="fieldsregistration-options">
-    <div class="fields-password-and-mail2">
-      <div class="iconslock-container">
-        <img class="iconsmobile" alt="" src="./public/iconslock2.svg" />
-
-        <div class="div18">Пароль</div>
-        <img class="iconspassword1" alt="" src="./public/iconspassword2.svg" />
+  <modal>
+    <div class="fieldsregistration-options">
+      <div class="fields-password-and-mail2">
+        <div class="iconslock-container">
+          <div class="div18">Пароль</div>
+        </div>
       </div>
-    </div>
-    <div class="fields-password-and-mail3">
-      <div class="iconslock-container">
-        <img class="iconsmobile" alt="" src="./public/iconslock3.svg" />
-
-        <div class="div18">Пароль</div>
-        <img class="iconspassword1" alt="" src="./public/iconspassword3.svg" />
+      <div class="fields-password-and-mail3">
+        <div class="iconslock-container">
+          <div class="div18">Пароль</div>
+        </div>
       </div>
-    </div>
-    <div class="div20">
-      <span>Придумайте пароль</span>
-      <span class="span">*</span>
-    </div>
-    <div class="div21">
-      <span>Повторите пароль </span>
-      <span class="span">*</span>
-    </div>
-    <div class="text-and-fill">
-      <div class="div22">
-        <span>Пароль </span>
+      <div class="div20">
+        <span>Придумайте пароль</span>
         <span class="span">*</span>
       </div>
-    </div>
-  </div>
-  <div class="decor-parent">
-    <div class="decor"></div>
-    <div class="frame-parent3">
-      <div class="job-title-wrapper">
-        <div class="job-title1">Смена номера телефона</div>
+      <div class="div21">
+        <span>Повторите пароль </span>
+        <span class="span">*</span>
       </div>
-      <div class="fields-parent">
-        <div class="fields">
-          <div class="fieldsregistration-options1">
-            <div class="fieldsregistration-options-child"></div>
-            <div class="text-and-fill1">
-              <div class="div28">
-                <span>Новая почта </span>
-                <span class="span">*</span>
-              </div>
-            </div>
-            <div class="div29">
-              Укажите новую почту на которую будет отправлен код
-            </div>
-            <input-data
-              :left="true"
-              :style="{ width: '74vw', top: '1.6em', left: '1.3em' }"
-              placeholder="Ваш номер телефона"
-            >
-              <template v-slot:left-icon>
-                <img src="@/assets/images/iconsmobile.svg" />
-              </template>
-            </input-data>
-          </div>
-          <img class="icon1" alt="" src="./public/icon.svg" />
+      <div class="text-and-fill">
+        <div class="div22">
+          <span>Пароль </span>
+          <span class="span">*</span>
         </div>
-        <div class="div30">
-          <div class="fieldsregistration-options2">
-            <div class="fieldsregistration-options-item"></div>
-            <div class="text-and-fill1">
-              <div class="div28">
-                <span>Подтверждение почты </span>
-                <span class="span">*</span>
-              </div>
-            </div>
-            <div class="fields-password-and-mail5">
-              <div class="iconslock-container">
-                <img
-                  class="iconsmobile"
-                  alt=""
-                  src="./public/iconsmobile1.svg"
-                />
-
-                <div class="div32">Введите код:</div>
-              </div>
-            </div>
-            <a
-              class="koahyan123gmailcom"
-              href="mailto:Koa.Hyan123@gmail.com"
-              target="_blank"
-            >
-              <span>Код отправлен на номер:</span>
-              <span class="koahyan123gmailcom1"> Koa.Hyan123@gmail.com</span>
-            </a>
-            <div class="div33">
-              <span>Примерное время </span>
-              <span class="span5">ожидания</span>
-              <span>:</span>
-              <span class="span6"> </span>
-              <span class="koahyan123gmailcom1">1 мин</span>
-            </div>
-            <div class="fieldsregistration-options-inner">
-              <div class="frame-parent4">
-                <div class="group">
-                  <img
-                    class="iconssend"
-                    alt=""
-                    src="@/assets/images/iconssend.svg"
-                  />
-
-                  <div class="div34">Отправить код повторно:</div>
-                </div>
-                <div class="frame">
-                  <div class="div35">60 сек</div>
+      </div>
+    </div>
+    <div class="decor-parent">
+      <div class="decor"></div>
+      <div class="frame-parent3">
+        <div class="job-title-wrapper">
+          <div class="job-title1">Смена номера телефона</div>
+        </div>
+        <div class="fields-parent">
+          <div class="fields">
+            <div class="fieldsregistration-options1">
+              <div class="fieldsregistration-options-child"></div>
+              <div class="text-and-fill1">
+                <div class="div28">
+                  <span>Введите новый номер телефона </span>
+                  <span class="span">*</span>
                 </div>
               </div>
-            </div>
-            <div class="inputfields">
-              <input maxlength="1" class="component-4" />
-              <input maxlength="1" class="component-4" />
-              <input maxlength="1" class="component-4" />
-              <input maxlength="1" class="component-4" />
-              <input maxlength="1" class="component-4" />
-            </div>
-          </div>
-          <!--<div class="div41">Введите отправленный код поторно</div>-->
-        </div>
-        <div class="des-and-bbn">
-          <div class="text-and-button">
-            <div class="buttons-tabs" id="buttonsTabsContainer">
-              <div class="text">Изменить номер телефона</div>
-            </div>
-            <div class="buttons-tabs1" @click="handleClose">
-              <div class="text">Отмена</div>
+              <div class="div29">
+                Укажите новый номер на который будет отправлен код
+              </div>
+              <input-data
+                :left="true"
+                :style="{ width: '74vw', top: '1.6em', left: '1.3em' }"
+                placeholder="Ваш номер телефона"
+              >
+                <template v-slot:left-icon>
+                  <img src="@/assets/images/iconsmobile.svg" />
+                </template>
+              </input-data>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="instance-wrapper">
-      <div class="frame-parent5">
-        <div class="name-parent">
-          <div class="div42">
-            <span class="span8">Если у вас возникли дополнительные </span
-            >вопросы или нашли ошибку нашей системе обратитесь в службу
-            поддержки
-          </div>
-        </div>
-        <div class="frame-wrapper">
-          <div class="message-circle-parent">
-            <img
-              class="iconsmobile"
-              alt=""
-              src="@/assets/images/messagecircle.svg"
-            />
+          <div class="div30">
+            <div class="fieldsregistration-options2">
+              <div class="fieldsregistration-options-item"></div>
+              <div class="text-and-fill1">
+                <div class="div28">
+                  <span>Подтверждение номерв </span>
+                  <span class="span">*</span>
+                </div>
+              </div>
+              <div class="fields-password-and-mail5">
+                <div class="iconslock-container">
+                  <div class="div32">Введите код:</div>
+                </div>
+              </div>
+              <a
+                class="koahyan123gmailcom"
+                href="mailto:Koa.Hyan123@gmail.com"
+                target="_blank"
+              >
+                <span>Код отправлен на номер:</span>
+                <span class="koahyan123gmailcom1"> +7 (999) 215-43-26</span>
+              </a>
+              <div class="div33">
+                <span>Примерное время </span>
+                <span class="span5">ожидания</span>
+                <span>:</span>
+                <span class="span6"> </span>
+                <span class="koahyan123gmailcom1">1 мин</span>
+              </div>
+              <div class="fieldsregistration-options-inner">
+                <div class="frame-parent4">
+                  <div class="group">
+                    <img
+                      class="iconssend"
+                      alt=""
+                      src="@/assets/images/iconssend.svg"
+                    />
 
-            <div class="div43">Служба поддержки</div>
+                    <div class="div34">Отправить код повторно:</div>
+                  </div>
+                  <div class="frame">
+                    <div class="div35">60 сек</div>
+                  </div>
+                </div>
+              </div>
+              <div class="inputfields">
+                <input maxlength="1" class="component-4" />
+                <input maxlength="1" class="component-4" />
+                <input maxlength="1" class="component-4" />
+                <input maxlength="1" class="component-4" />
+                <input maxlength="1" class="component-4" />
+              </div>
+            </div>
+            <!--<div class="div41">Введите отправленный код поторно</div>-->
+          </div>
+          <div class="des-and-bbn">
+            <div class="text-and-button">
+              <div class="buttons-tabs" id="buttonsTabsContainer">
+                <div class="text">Изменить номер телефона</div>
+              </div>
+              <div class="buttons-tabs1" @click="handleClose">
+                <div class="text">Отмена</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="instance-wrapper">
+        <div class="frame-parent5">
+          <div class="name-parent">
+            <div class="div42">
+              <span class="span8">Если у вас возникли дополнительные </span
+              >вопросы или нашли ошибку нашей системе обратитесь в службу
+              поддержки
+            </div>
+          </div>
+          <div class="frame-wrapper">
+            <div class="message-circle-parent">
+              <img
+                class="iconsmobile"
+                alt=""
+                src="@/assets/images/messagecircle.svg"
+              />
+
+              <div class="div43">Служба поддержки</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <button class="buttonback" @click="handleClose">
-    <div class="div44">Назад</div>
-    <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
-  </button>
+    <button class="buttonback" @click="handleClose">
+      <div class="div44">Назад</div>
+      <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
+    </button>
+  </modal>
 </template>
 
 <script setup lang="ts">
+import modal from "../ui-kit/modal.vue";
 import inputData from "@/components/fields/input-data.vue";
 const emit = defineEmits(["close"]);
 const handleClose = () => {
@@ -881,12 +870,12 @@ const handleClose = () => {
   color: rgba(93, 104, 123, 0.9);
 }
 .decor {
-  top: 3.75em;
-  left: 1em;
+  top: 3.4em;
   border-radius: 20px;
   border: 0.5px solid rgba(46, 58, 89, 0.2);
-  width: 90%;
   height: 31.69em;
+  margin: 0px 10px;
+  position: relative;
 }
 .job-title1 {
   position: relative;
@@ -1005,7 +994,7 @@ const handleClose = () => {
   backdrop-filter: blur(5px);
   border: 0.5px solid rgba(46, 58, 89, 0.4);
   box-sizing: border-box;
-  height: 11.38em;
+  height: 11.8em;
 }
 .div32 {
   flex: 1;
@@ -1225,6 +1214,8 @@ const handleClose = () => {
   align-items: flex-start;
   text-align: right;
   color: #fefefe;
+  position: relative;
+  top: 0.5em;
 }
 .fields-parent,
 .frame-parent3 {
@@ -1238,8 +1229,8 @@ const handleClose = () => {
 }
 .frame-parent3 {
   position: absolute;
-  top: 3em;
-  left: 1.5em;
+  top: 2.5em;
+  left: 7vw;
   height: 34.06em;
   gap: 0.38em;
 }
@@ -1269,7 +1260,7 @@ const handleClose = () => {
 }
 .frame-wrapper {
   border-radius: 16px;
-  width: 18.75em;
+  width: 100%;
   height: 2.5em;
   display: flex;
   flex-direction: column;
@@ -1277,6 +1268,7 @@ const handleClose = () => {
   justify-content: center;
   text-align: left;
   color: #2c56c0;
+  border: 1px solid rgba(165, 146, 221, 0.15);
 }
 .frame-parent5,
 .instance-wrapper {
@@ -1287,20 +1279,22 @@ const handleClose = () => {
 }
 .frame-parent5 {
   gap: 0.75em;
+  text-align: center;
 }
 .instance-wrapper {
   position: absolute;
   top: 38.19em;
-  left: 2.81em;
+  left: 9vw;
   color: rgba(59, 59, 59, 0.54);
+  width: 80vw;
 }
 .decor-parent {
   position: absolute;
   top: 0em;
   left: 0;
-  border-radius: 24px 24px 0 0;
+
   background-color: #fff;
-  border: 1px solid rgba(46, 58, 89, 0.2);
+
   box-sizing: border-box;
   width: 100vw;
   height: 50.88em;

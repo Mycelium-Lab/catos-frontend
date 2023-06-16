@@ -18,7 +18,7 @@
             <img
               class="replace-me-icon"
               alt=""
-              src="./public/replace-me@2x.png"
+              src="@/assets/images/replace-me@2x.png"
             />
           </div>
         </div>
@@ -27,21 +27,33 @@
             <div class="frame">
               <div class="div10">Ссылка на получение счета:</div>
             </div>
-            <copy-paste :style="{ width: '90%' }"></copy-paste>
+            <copy-paste :style="{ marginTop: '0em' }">
+              <template v-slot:icon>
+                <img src="@/assets/images/iconscopy.svg" alt="" />
+              </template>
+            </copy-paste>
           </div>
         </div>
       </div>
       <div class="frame-parent2">
         <div class="component-27-wrapper">
           <div class="component-27">
-            <img class="share-icon" alt="" src="./public/share.svg" />
+            <img
+              class="share-icon"
+              alt=""
+              src="@/assets/images/iconsshare.svg"
+            />
 
             <div class="number">Поделиться</div>
           </div>
         </div>
         <div class="frame-wrapper">
           <div class="trash-2-parent">
-            <img class="trash-2-icon" alt="" src="./public/trash2.svg" />
+            <img
+              class="trash-2-icon"
+              alt=""
+              src="@/assets/images/iconstrash.svg"
+            />
 
             <div class="div11">Удалить счет</div>
           </div>
@@ -50,12 +62,16 @@
     </div>
     <div class="des-and-bbn">
       <div class="text-and-button">
-        <div class="buttons-tabs" id="buttonsTabsContainer">
+        <router-link
+          class="buttons-tabs"
+          id="buttonsTabsContainer"
+          :to="{ name: 'accounts' }"
+        >
           <div class="text">К счетам</div>
-        </div>
-        <div class="buttons-tabs1">
+        </router-link>
+        <router-link class="buttons-tabs1" :to="{ name: 'wallet' }">
           <div class="text">В кошелек</div>
-        </div>
+        </router-link>
       </div>
     </div>
   </modal>
@@ -131,7 +147,6 @@ import copyPaste from "@/components/fields/copy-paste.vue";
   color: rgba(59, 59, 59, 0.6);
   text-align: center;
   justify-content: center;
-  width: 88vwm;
 }
 .frame-div {
   flex-direction: column;
@@ -265,7 +280,7 @@ import copyPaste from "@/components/fields/copy-paste.vue";
 .info {
   align-items: flex-start;
   color: #000;
-  width: 88vw;
+  width: 100%;
 }
 .frame-container {
   border-radius: 14px;
@@ -354,11 +369,10 @@ import copyPaste from "@/components/fields/copy-paste.vue";
   color: #fff;
 }
 .frame-group {
-  position: absolute;
-  top: 3.81em;
-  left: 1.5em;
-  width: 88vw;
+  position: relative;
+  top: 3em;
   gap: 1.31em;
+  padding: 0 24px;
 }
 .text {
   position: relative;
@@ -382,6 +396,10 @@ import copyPaste from "@/components/fields/copy-paste.vue";
   padding: 0.44em 5.5em;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
+  color: rgba(85, 85, 98, 1);
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .des-and-bbn,
 .text-and-button {
@@ -397,7 +415,7 @@ import copyPaste from "@/components/fields/copy-paste.vue";
 }
 .des-and-bbn {
   position: absolute;
-  top: 39.94em;
+  top: 36.94em;
   left: 6vw;
   border-radius: 16px;
   background-color: #f9fbff;

@@ -45,6 +45,7 @@
                 <div class="fields-password-and-mail-container">
                   <input-data
                     :style="{ width: '100%' }"
+                    type="date"
                     placeholder="01.02.2022"
                   ></input-data>
                   <div class="iconscalendar-wrapper">
@@ -172,7 +173,7 @@
                   <div class="div29">Владеете ли вы более 25% кампании?</div>
                 </div>
               </div>
-              <button-slider></button-slider>
+              <button-slider :style="{ width: '100%' }"></button-slider>
             </div>
           </div>
           <div class="child"></div>
@@ -929,7 +930,7 @@ const options = {
   position: absolute;
   top: 40.81em;
   left: 1.31em;
-  width: 18.75em;
+  width: 77vw;
   gap: 1.5em;
 }
 .span10,
@@ -1093,7 +1094,7 @@ const options = {
   color: #f8f8ff;
 }
 .text-and-button {
-  width: 18em;
+  width: 100%;
   align-items: flex-start;
   gap: 0.81em;
   color: #3b3b3b;
@@ -1118,7 +1119,7 @@ const options = {
   position: absolute;
   top: 2.31em;
   left: 1.31em;
-  width: 18.75em;
+  width: 87%;
   align-items: center;
   gap: 1.75em;
   z-index: 10;
@@ -1156,12 +1157,12 @@ const options = {
   position: absolute;
   top: -2.31em;
   left: 0;
-  width: 21.38em;
+  width: 88.7vw;
   height: 41.44em;
 }
 .div8 {
   top: 11em;
-  left: 1.5em;
+  left: 6vw;
   height: 59.06em;
 }
 .b1,
@@ -1187,7 +1188,7 @@ const options = {
   left: 1.5em;
   border-radius: 20px;
   background-color: #ffdb6d;
-  width: 21.38em;
+  width: 88.7vw;
   height: 3em;
   overflow: hidden;
   flex-direction: row;
@@ -1275,7 +1276,7 @@ const options = {
   flex-direction: column;
   align-items: flex-start;
   gap: 1.38em;
-  width: 18.75em;
+  width: 88%;
 }
 .fieldsinputchoise-parent,
 .parent11,
@@ -1304,6 +1305,7 @@ const options = {
 .frame-parent3 {
   align-items: flex-start;
   gap: 0.75em;
+  width: 100%;
 }
 .frame-parent2,
 .wrapper5 {
@@ -1316,12 +1318,13 @@ const options = {
   flex-direction: column;
   align-items: flex-start;
   gap: 1em;
+  width: 88%;
 }
 .registration-options {
   position: absolute;
   top: 72.31em;
-  left: 1.5em;
-  width: 21.38em;
+  left: 6vw;
+  width: 87.7vw;
   height: 37.63em;
 }
 .registration-options-item {
@@ -1346,12 +1349,13 @@ const options = {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 1em;
+  width: 88%;
 }
 .registration-options1 {
   position: absolute;
   top: 111.94em;
   left: 1.5em;
-  width: 21.38em;
+  width: 87.8vw;
   height: 43.31em;
 }
 .registration-options-inner {
@@ -1385,7 +1389,7 @@ const options = {
   font-weight: 300;
   display: flex;
   align-items: center;
-  width: 24.5em;
+  width: 100%;
 }
 .icon-child {
   position: absolute;
@@ -1722,6 +1726,7 @@ const options = {
   align-items: flex-start;
   gap: 0.63em;
   z-index: 1;
+  width: 100%;
 }
 .div72 {
   position: absolute;
@@ -1743,7 +1748,7 @@ const options = {
 .organizmloader {
   border-radius: 16px;
   background-color: rgba(237, 244, 255, 0.3);
-  width: 18.75em;
+  width: 88%;
   padding: 3em 0.75em 1.25em;
   box-sizing: border-box;
   align-items: flex-start;
@@ -1758,6 +1763,7 @@ const options = {
   align-items: center;
   gap: 1.13em;
   color: rgba(59, 59, 59, 0.9);
+  width: 88%;
 }
 .frame-child11 {
   position: absolute;
@@ -1962,7 +1968,7 @@ const options = {
 .organizmloader1 {
   border-radius: 16px;
   background-color: rgba(237, 244, 255, 0.3);
-  width: 18.75em;
+  width: 88%;
   overflow: hidden;
   padding: 3em 0.75em 1.25em;
   box-sizing: border-box;
@@ -1977,18 +1983,20 @@ const options = {
   align-items: center;
   gap: 1.13em;
   color: rgba(59, 59, 59, 0.9);
+  width: 88%;
 }
 .div76 {
   position: absolute;
   top: 50.83em;
-  left: 2.75em;
+  left: 11vw;
   font-size: 0.75em;
   line-height: 0.83em;
   font-weight: 300;
+  width: 73%;
 }
 .registration-options2 {
   position: relative;
-  width: 21.38em;
+  width: 87.8vw;
   height: 28.81em;
 }
 .registration-options-wrapper {
@@ -2007,8 +2015,8 @@ const options = {
   left: 0;
   border-radius: 40px 40px 0 0;
   background-color: #fff;
-  width: 24.38em;
-  height: 213.44em;
+  width: 100vw;
+  height: 225.44em;
 }
 .page-title1 {
   color: #3b3b3b;
@@ -2026,18 +2034,18 @@ const options = {
 .page-title-parent {
   position: absolute;
   top: 0.63em;
-  left: 5.44em;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
   gap: 7.56em;
+  width: 100%;
 }
 .battery-icon,
 .header1 {
   position: absolute;
   height: 1.33%;
-  width: 300px;
+  width: 100;
   top: 3.55%;
   right: -0.26%;
   bottom: 95.12%;
@@ -2147,7 +2155,7 @@ const options = {
 }
 .slidersteps {
   top: 4.19em;
-  left: 12.56em;
+  right: 1em;
   width: 10.31em;
   color: #958463;
 }
@@ -2173,7 +2181,7 @@ const options = {
 }
 .buttonback {
   top: 3.81em;
-  left: 1.5em;
+  left: 1em;
   border-radius: 9px;
   width: 6.38em;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
@@ -2189,5 +2197,26 @@ const options = {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+  overflow-x: hidden;
+}
+@media (max-width: 371px) {
+  .child {
+    height: 43.06em;
+  }
+  .group {
+    top: 42.81em;
+  }
+  .registration-options {
+    top: 74.31em;
+  }
+  .registration-options1 {
+    top: 114.94em;
+  }
+  .registration-options-wrapper {
+    top: 161.25em;
+  }
+  .buttonnext {
+    top: 214em;
+  }
 }
 </style>

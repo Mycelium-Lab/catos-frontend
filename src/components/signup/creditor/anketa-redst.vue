@@ -93,7 +93,10 @@
             <div class="x-forms">
               <div class="organizmloader">
                 <div class="frame-group">
-                  <loader-field class="loader-file"></loader-field>
+                  <loader-field
+                    :style="{ width: '100%', paddingBottom: '0.1em' }"
+                    class="loader-file"
+                  ></loader-field>
                   <div class="text-parent">
                     <div class="icons-parent">
                       <div class="icons">
@@ -172,7 +175,10 @@
               </div>
               <div class="organizmloader1">
                 <div class="business-registration-proof-group">
-                  <loader-field class="loader-file"></loader-field>
+                  <loader-field
+                    class="loader-file"
+                    :style="{ width: '100%', paddingBottom: '0.1em' }"
+                  ></loader-field>
                 </div>
                 <div class="checkbox-parent">
                   <catos-checkbox></catos-checkbox>
@@ -183,11 +189,16 @@
               </div>
               <div class="organizmloader2">
                 <div class="business-registration-proof-group">
-                  <loader-field class="loader-file"></loader-field>
+                  <loader-field
+                    class="loader-file"
+                    :style="{ width: '100%', paddingBottom: '0.1em' }"
+                  ></loader-field>
                 </div>
                 <input-data
+                  background="transparent"
+                  border="1px solid rgba(101, 96, 96, 1)"
                   placeholder="Тип фалйа"
-                  :style="{ width: '85%', left: '6.9%', bottom: '3%' }"
+                  :style="{ width: '86.8%', left: '5vw' }"
                 ></input-data>
               </div>
             </div>
@@ -312,12 +323,12 @@ const options = {
 .page-title-parent {
   position: absolute;
   top: 0.63em;
-  left: 6em;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
   gap: 7.56em;
+  width: 100%;
 }
 .header {
   position: absolute;
@@ -338,7 +349,7 @@ const options = {
   backdrop-filter: blur(5px);
   border: 0.5px solid #2e3a59;
   box-sizing: border-box;
-  height: 32.75em;
+  height: 33.75em;
 }
 .span {
   color: red;
@@ -379,11 +390,14 @@ const options = {
   height: 1.5em;
 }
 .text-parent {
+  position: relative;
   align-self: stretch;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  width: 87.1%;
+  left: 6vw;
 }
 .fields-password-and-mail2 {
   border-radius: 16px;
@@ -409,6 +423,7 @@ const options = {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.5em;
+  width: 100%;
 }
 .iconsedit-outline {
   position: relative;
@@ -459,12 +474,13 @@ const options = {
   left: 1.31em;
   justify-content: flex-start;
   gap: 1.38em;
+  width: 88%;
 }
 .registration-options {
   position: absolute;
   top: 0;
   left: 0;
-  width: 21.38em;
+  width: 100%;
   height: 32.94em;
 }
 .registration-options-item {
@@ -668,6 +684,7 @@ const options = {
 }
 .frame-group {
   gap: 0.63em;
+  width: 100%;
 }
 .business-registration-proof-group,
 .organizmloader {
@@ -678,6 +695,8 @@ const options = {
   background-color: rgba(237, 244, 255, 0.3);
   overflow: hidden;
   color: #fff;
+  width: 100%;
+  height: 12.7em;
 }
 .business-registration-proof-group {
   gap: 1.06em;
@@ -705,6 +724,8 @@ const options = {
   align-items: center;
   gap: 0.94em;
   color: #000;
+  position: relative;
+  left: 5vw;
 }
 .organizmloader1 {
   border-radius: 16px;
@@ -713,6 +734,7 @@ const options = {
   flex-direction: column;
   align-items: flex-start;
   gap: 1em;
+  height: 10.2em;
 }
 .div26 {
   position: relative;
@@ -748,17 +770,18 @@ const options = {
   background-color: rgba(237, 244, 255, 0.3);
   overflow: hidden;
   gap: 0.63em;
+  height: 10.57em;
 }
 .x-forms {
   position: absolute;
   top: 2.25em;
   left: 1.31em;
-  width: 18.75em;
+  width: 87%;
   gap: 2em;
 }
 .registration-options1 {
   position: relative;
-  width: 21.38em;
+  width: 100%;
   height: 40.69em;
 }
 .declaration {
@@ -854,12 +877,13 @@ const options = {
   gap: 1.25em;
 }
 .text-declaration {
-  width: 21.38em;
+  width: 100%;
 }
 .registration-options-parent {
   position: absolute;
-  top: 36.25em;
+  top: 37.25em;
   left: 0;
+  width: 88.7vw;
 }
 .b1 {
   position: relative;
@@ -877,7 +901,7 @@ const options = {
   width: 21.38em;
 }
 .buttonnext {
-  top: 91.44em;
+  top: 92.44em;
   left: 0;
   border-radius: 20px;
   background-color: #ffdb6d;
@@ -895,11 +919,13 @@ const options = {
   color: var(--color-darkslategray-100);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
+  width: 88.7vw;
 }
 .div8 {
   top: 8.75em;
-  left: 1.5em;
+  left: 5.5vw;
   height: 94.44em;
+  width: 87.8%;
 }
 .icons3dorganization {
   position: relative;
@@ -941,7 +967,6 @@ const options = {
   position: absolute;
   top: 2.25em;
   left: 1.5em;
-  width: 20.06em;
   flex-direction: row;
   gap: 0.75em;
 }
@@ -951,9 +976,10 @@ const options = {
   left: 0;
   border-radius: 40px 40px 0 0;
   background-color: #fff;
-  width: 24.38em;
+  width: 100vw;
   height: 106.5em;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .battery-icon {
   position: absolute;
@@ -1060,7 +1086,7 @@ const options = {
 }
 .slidersteps {
   top: 4.19em;
-  left: 12.56em;
+  right: 1em;
   width: 10.31em;
   color: #958463;
 }
@@ -1086,7 +1112,7 @@ const options = {
 }
 .buttonback {
   top: 3.81em;
-  left: 1.5em;
+  left: 1em;
   border-radius: 9px;
   width: 6.38em;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
@@ -1102,5 +1128,6 @@ const options = {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+  overflow-x: hidden;
 }
 </style>

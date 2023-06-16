@@ -14,7 +14,7 @@
     </div>
     <div class="des-and-bbn" id="desAndBbn">
       <div class="text-and-button">
-        <div class="buttons-tabs">
+        <div class="buttons-tabs" @click="toSetting">
           <div class="text">Вернуться в настройки</div>
         </div>
       </div>
@@ -24,6 +24,11 @@
 
 <script setup lang="ts">
 import catosButton from "../ui-kit/buttons/catos-button.vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const toSetting = () => {
+  router.push({ name: "setting" });
+};
 </script>
 
 <style scoped lang="scss">
@@ -35,7 +40,7 @@ import catosButton from "../ui-kit/buttons/catos-button.vue";
   overflow: hidden;
 }
 .decor-2-off {
-  top: 10.8em;
+  top: 11.5em;
   left: 1.4em;
   width: 87%;
   z-index: 10;
@@ -53,7 +58,7 @@ import catosButton from "../ui-kit/buttons/catos-button.vue";
   letter-spacing: 0.01em;
   line-height: 130%;
   font-weight: 500;
-  top: -1.3em;
+  top: 3em;
 }
 .iconsstatus-transaction {
   position: relative;
@@ -62,7 +67,7 @@ import catosButton from "../ui-kit/buttons/catos-button.vue";
   overflow: hidden;
   flex-shrink: 0;
   z-index: 20;
-  top: -1em;
+  top: 4em;
 }
 .group,
 .status-reg {
@@ -116,15 +121,16 @@ import catosButton from "../ui-kit/buttons/catos-button.vue";
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .des-and-bbn {
   position: absolute;
-  top: 22em;
+  top: 23em;
   left: 11vw;
   border-radius: 16px;
   background-color: #f9fbff;
   width: 77vw;
-
   padding: 0.75em;
   box-sizing: border-box;
   cursor: pointer;

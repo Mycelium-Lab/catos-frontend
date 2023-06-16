@@ -42,8 +42,19 @@
                   <span class="span2">* </span>
                 </div>
                 <div class="fields-password-and-mail-container">
-                  <input-data placeholder="01.02.2022"></input-data>
+                  <input-data type="date" placeholder="01.02.2022"></input-data>
                   <div class="iconscalendar-wrapper">
+                    <!--<input-data
+                      :simulate="true"
+                      type="date"
+                      placeholder="01.02.1994"
+                      :style="{
+                        width: '100%',
+                        position: 'relative',
+                        right: '0.5em',
+                      }"
+                      @selected="e => (date = e)"
+                    ></input-data>-->
                     <img
                       class="iconscalendar"
                       alt=""
@@ -119,14 +130,28 @@
                 </div>
                 <div class="fields-password-and-mail-container">
                   <input-data
+                    type="date"
                     placeholder="01.02.1994"
                     :style="{ width: '100%' }"
+                    :value="date"
                   ></input-data>
                   <div class="iconscalendar-wrapper">
+                    <!--<input-data
+                      :simulate="true"
+                      type="date"
+                      placeholder="01.02.1994"
+                      :style="{
+                        width: '100%',
+                        position: 'relative',
+                        right: '0.5em',
+                      }"
+                      @selected="e => (date = e)"
+                    ></input-data>-->
                     <img
                       class="iconscalendar"
                       alt=""
                       src="../public/iconscalendar.svg"
+                      :style="{ position: 'absolute' }"
                     />
                   </div>
                 </div>
@@ -137,13 +162,30 @@
                   <span class="span2">* </span>
                 </div>
                 <div class="frame-parent1">
-                  <div class="radiobutton-parent">
-                    <catos-checkbox variant="radiobutton"></catos-checkbox>
+                  <div
+                    class="radiobutton-parent"
+                    @click="
+                      () => (isSelectedRadioButton1 = !isSelectedRadioButton1)
+                    "
+                  >
+                    <catos-checkbox
+                      :select="isSelectedRadioButton1"
+                      variant="radiobutton"
+                      :key="String(isSelectedRadioButton1)"
+                    ></catos-checkbox>
                     <div class="text">Мужской</div>
                   </div>
-                  <div class="radiobutton-group">
-                    <catos-checkbox variant="radiobutton"></catos-checkbox>
-
+                  <div
+                    class="radiobutton-group"
+                    @click="
+                      () => (isSelectedRadioButton2 = !isSelectedRadioButton2)
+                    "
+                  >
+                    <catos-checkbox
+                      :select="isSelectedRadioButton2"
+                      variant="radiobutton"
+                      :key="String(isSelectedRadioButton2)"
+                    ></catos-checkbox>
                     <div class="text">Женский</div>
                   </div>
                 </div>
@@ -666,7 +708,7 @@
         <div class="div78">7</div>
       </div>
       <div class="steps">
-        <div class="div68">4 шаг</div>
+        <div class="div68">3 шаг</div>
       </div>
     </div>
     <router-link to="" @click="$router.go(-1)" class="buttonback">
@@ -686,7 +728,10 @@ import inputData from "../../../components/fields/input-data.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
 const role = computed(() => window.history.state?.role);
+const isSelectedRadioButton1 = ref(false);
+const isSelectedRadioButton2 = ref(false);
 const value = ref("");
+const date = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
@@ -917,12 +962,13 @@ const options = {
 .frame-group {
   align-self: stretch;
   gap: 1.25em;
+  width: 88%;
 }
 .group {
   position: absolute;
   top: 28.63em;
   left: 1.31em;
-  width: 18.75em;
+  width: 100%;
   gap: 1.5em;
 }
 .span10,
@@ -980,7 +1026,7 @@ const options = {
   font-size: 0.75em;
 }
 .parent8 {
-  width: 18.75em;
+  width: 100%;
   height: 4em;
   display: flex;
   flex-direction: column;
@@ -1012,6 +1058,7 @@ const options = {
   padding: 0 3.75em 0 0;
   align-items: flex-start;
   justify-content: space-between;
+  width: 100%;
 }
 .fieldsinput-parent,
 .parent10 {
@@ -1022,12 +1069,13 @@ const options = {
   z-index: 100;
 }
 .parent10 {
-  width: 18.75em;
+  width: 100%;
   gap: 0.5em;
 }
 .fieldsinput-parent {
   height: 24.38em;
   gap: 1.38em;
+  width: 100%;
 }
 .child,
 .inner {
@@ -1036,7 +1084,7 @@ const options = {
 .inner {
   top: 2.31em;
   left: 1.31em;
-  width: 18.75em;
+  width: 88%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1074,7 +1122,7 @@ const options = {
   position: absolute;
   top: -2.31em;
   left: 0;
-  width: 21.38em;
+  width: 87.7vw;
   height: 28.44em;
 }
 .div8 {
@@ -1101,7 +1149,7 @@ const options = {
   left: 1.5em;
   border-radius: 20px;
   background-color: #ffdb6d;
-  width: 21.38em;
+  width: 88vw;
   height: 3em;
   overflow: hidden;
   flex-direction: row;
@@ -1140,7 +1188,7 @@ const options = {
 }
 .header,
 .parent11 {
-  width: 14.88em;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1151,7 +1199,7 @@ const options = {
   position: absolute;
   top: 2.25em;
   left: 1.5em;
-  width: 21.38em;
+  width: 100%;
   flex-direction: row;
   align-items: center;
   gap: 0.75em;
@@ -1205,6 +1253,7 @@ const options = {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.25em;
+  width: 100%;
 }
 .fieldsinputchoise-parent {
   position: absolute;
@@ -1213,6 +1262,7 @@ const options = {
   flex-direction: column;
   align-items: flex-start;
   gap: 1.38em;
+  width: 88%;
 }
 .fieldsinputchoise-parent,
 .parent13,
@@ -1241,6 +1291,7 @@ const options = {
 .frame-parent3 {
   align-items: flex-start;
   gap: 0.75em;
+  width: 100%;
 }
 .frame-parent2,
 .wrapper4 {
@@ -1253,12 +1304,13 @@ const options = {
   flex-direction: column;
   align-items: flex-start;
   gap: 1em;
+  width: 88%;
 }
 .registration-options {
   position: absolute;
   top: 60.38em;
   left: 1.5em;
-  width: 21.38em;
+  width: 87.7%;
   height: 37.75em;
 }
 .registration-options-item {
@@ -1284,6 +1336,7 @@ const options = {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 1.38em;
+  width: 88%;
 }
 .frame-parent5 {
   top: 29.5em;
@@ -1293,7 +1346,7 @@ const options = {
   position: absolute;
   top: 100.63em;
   left: 1.5em;
-  width: 21.38em;
+  width: 87.7%;
   height: 43.31em;
 }
 .registration-options-inner {
@@ -1327,7 +1380,7 @@ const options = {
   font-weight: 300;
   display: flex;
   align-items: center;
-  width: 24.5em;
+  width: 100%;
 }
 .icon-child {
   position: absolute;
@@ -1619,6 +1672,7 @@ const options = {
   flex-direction: column;
   gap: 0.63em;
   z-index: 0;
+  width: 100%;
 }
 .rectangle-container {
   flex-direction: row;
@@ -1673,6 +1727,7 @@ const options = {
   align-items: flex-start;
   gap: 0.63em;
   z-index: 1;
+  width: 100%;
 }
 .div71 {
   position: absolute;
@@ -1690,11 +1745,12 @@ const options = {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  width: 88%;
 }
 .organizmloader {
   border-radius: 16px;
   background-color: rgba(237, 244, 255, 0.3);
-  width: 18.75em;
+  width: 100%;
   padding: 3em 0.75em 1.25em;
   box-sizing: border-box;
   align-items: flex-start;
@@ -1895,6 +1951,7 @@ const options = {
 .parent25 {
   display: flex;
   justify-content: flex-start;
+  width: 88%;
 }
 .loader5 {
   border-radius: 24px;
@@ -1913,7 +1970,7 @@ const options = {
 .organizmloader1 {
   border-radius: 16px;
   background-color: rgba(237, 244, 255, 0.3);
-  width: 18.75em;
+  width: 100%;
   overflow: hidden;
   padding: 3em 0.75em 1.25em;
   box-sizing: border-box;
@@ -1936,10 +1993,11 @@ const options = {
   font-size: 0.75em;
   line-height: 0.83em;
   font-weight: 300;
+  width: 100%;
 }
 .registration-options2 {
   position: relative;
-  width: 21.38em;
+  width: 100%;
   height: 28.81em;
 }
 .registration-options-wrapper {
@@ -1951,6 +2009,7 @@ const options = {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  width: 87.7%;
 }
 .form-registration-46 {
   position: absolute;
@@ -1958,14 +2017,14 @@ const options = {
   left: 0;
   border-radius: 40px 40px 0 0;
   background-color: #fff;
-  width: 24.38em;
+  width: 100vw;
   height: 213.44em;
 }
 .page-title1 {
   position: relative;
   font-size: 1.25em;
   line-height: 1.4em;
-  left: 3.5em;
+  left: 1vw;
 }
 .page-title-wrapper {
   position: absolute;
@@ -1980,11 +2039,12 @@ const options = {
 .header1 {
   position: absolute;
   height: 1.38%;
-  width: 100.51%;
+  width: 100vw;
   top: 3.67%;
   right: -0.26%;
   bottom: 94.95%;
   left: -0.26%;
+  text-align: center;
 }
 .battery-icon {
   height: 25.76%;
@@ -2059,7 +2119,7 @@ const options = {
   left: 1.75em;
   border-radius: 19px;
   background-color: #f5f9ff;
-  width: 5.44em;
+  width: 4.5em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2068,7 +2128,7 @@ const options = {
 }
 .slidersteps {
   top: 4.19em;
-  left: 12.56em;
+  right: 1em;
   width: 10.31em;
   color: #958463;
 }
@@ -2136,5 +2196,6 @@ const options = {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+  overflow-x: hidden;
 }
 </style>

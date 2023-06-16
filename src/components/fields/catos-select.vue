@@ -117,7 +117,7 @@ watch(isOpen, () => {
   width: 100%;
   padding: 0.785714285714286em 0.857142857142857em;
   display: flex;
-  height: 3.357142857142857em;
+  height: 40px;
   align-items: center;
   &_active,
   &_active input {

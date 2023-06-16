@@ -1,14 +1,19 @@
 <template>
   <div class="iphone-70" id="iPhone70">
-    <img class="iphone-70-child" alt="" src="./public/group-3611.svg" />
-
+    <div class="image-wrapp">
+      <img class="iphone-70-child" alt="" src="./public/group-3611.svg" />
+    </div>
     <div class="headeer1">
       <b class="page-title1">Войти в CATOS</b>
       <div class="div8">Рады снова вас видеть!</div>
     </div>
     <div class="catos-group">
       <div class="catos1">Первый раз в CATOS?</div>
-      <div class="div9">Зарегистрируйтесь</div>
+      <router-link
+        :to="{ name: 'roles', state: { title: 'Регистрация' } }"
+        class="div9"
+        >Зарегистрируйтесь</router-link
+      >
     </div>
     <div class="fieldsregistration-options">
       <div class="fieldsregistration-options-child"></div>
@@ -37,8 +42,7 @@
       <div class="frame-group">
         <div class="frame-container">
           <div class="iconssend-parent">
-            />
-
+            <img class="iconssend" alt="" src="./public/iconssend.svg" />
             <div class="div14">Отправить код повторно:</div>
           </div>
           <div class="frame">
@@ -46,6 +50,7 @@
           </div>
         </div>
         <div class="iconssend-parent">
+          <img class="iconsmobile" alt="" src="./public/iconsedit1.svg" />
           <div class="div14">Именить номер</div>
         </div>
       </div>
@@ -66,7 +71,6 @@
 .iphone-70-child {
   position: absolute;
   top: -11em;
-  right: 4.32%;
   overflow: hidden;
 }
 .div8,
@@ -83,14 +87,16 @@
   font-weight: 500;
 }
 .headeer1 {
-  position: absolute;
+  position: relative;
   top: 12.94em;
-  left: 6.31em;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 0.81em;
+  width: 300px;
+  margin: 0 auto;
 }
 .catos1,
 .div9 {
@@ -108,13 +114,13 @@
 }
 .catos-group {
   position: absolute;
-  top: 34.94em;
-  left: 7.5em;
+  top: 33.94em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 0.75em;
+  width: 100vw;
 }
 .fieldsregistration-options-child {
   position: absolute;
@@ -321,8 +327,8 @@
 .fieldsregistration-options {
   position: absolute;
   top: 18.38em;
-  left: 1.5em;
-  width: 21.38em;
+  left: 6vw;
+  width: 87.7vw;
   height: 13.69em;
 }
 .iphone-70 {
@@ -335,5 +341,16 @@
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+}
+.image-wrapp {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+}
+@media (max-width: 375px) {
+  .component-4 {
+    width: 2.3em;
+    height: 2.3em;
+  }
 }
 </style>

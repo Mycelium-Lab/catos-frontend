@@ -62,7 +62,6 @@
               1 <span class="span">, </span>520 транзакции
             </div>
           </div>
-          <img class="icon1" alt="" src="./public/icon.svg" />
         </div>
       </div>
     </div>

@@ -7,11 +7,7 @@
     <div class="des-1-2-parent">
       <div class="des-1-2">
         <div class="des">
-          <img
-            class="des-child"
-            alt=""
-            src="@/assets/images/frame-1817887@2x.png"
-          />
+          <img class="des-child" alt="" src="@/assets/images/dialog.png" />
 
           <div class="div11">
             Здесь вы можете создать счёт для получения оплаты или сбора средств
@@ -20,24 +16,30 @@
         </div>
       </div>
       <div class="buttonnext-wrapper">
-        <div class="buttonnext">
+        <router-link class="buttonnext" :to="{ name: 'accounts-create' }">
           <b class="ton-kepeer">Создать счет</b>
-        </div>
+        </router-link>
       </div>
       <div class="descrioption-parent">
+        <div class="buttons-group">
+          <div class="active">Мои счета</div>
+          <div>Все счета</div>
+        </div>
         <div class="descrioption">
-          <div class="number2">Активные счета</div>
+          <div class="number2">Активные Счета</div>
           <div class="details1">Детали</div>
         </div>
         <div class="frame-group">
           <div class="frame-container">
             <div class="frame-div">
               <div class="svg-gobbler-2-1-group">
-                <img
-                  class="svg-gobbler-2-11"
-                  alt=""
-                  src="./public/svggobbler-2-11.svg"
-                />
+                <div class="svg-wrapper">
+                  <img
+                    class="svg-gobbler-2-11"
+                    alt=""
+                    src="@/assets/images/invoice.svg"
+                  />
+                </div>
 
                 <div class="ticked-id-parent">
                   <b class="ticked-id">Счет #207</b>
@@ -46,21 +48,31 @@
                   </div>
                 </div>
               </div>
-              <div class="buttons-icon-outline-arr" id="buttonsIconOutlineArr">
-                <div class="bg1"></div>
-                <div class="icon"></div>
+              <div
+                class="buttons-icon-outline-arr"
+                id="buttonsIconOutlineArr"
+                @click="() => (isDetail = true)"
+              >
+                <div class="bg1">
+                  <img src="@/assets/images/more.png" />
+                </div>
               </div>
             </div>
             <div class="frame-parent1">
               <div class="title-parent">
                 <div class="title1">Счет на 10 TON</div>
                 <div class="description">
-                  <p class="p">Авансовый платеж по заказу</p>
+                  <p class="p">Мой первый чек для бабули, привет</p>
+                  <p class="p1">моя бабуля!</p>
                 </div>
               </div>
               <div class="frame-inner"></div>
               <div class="author">
-                <img class="img-icon" alt="" src="./public/img@2x.png" />
+                <img
+                  class="img-icon"
+                  alt=""
+                  src="@/assets/images/edit-photo.png"
+                />
 
                 <div class="author1">Валентин Иванович</div>
               </div>
@@ -69,11 +81,13 @@
           <div class="frame-container">
             <div class="frame-div">
               <div class="svg-gobbler-2-1-group">
-                <img
-                  class="svg-gobbler-2-11"
-                  alt=""
-                  src="./public/svggobbler-2-11.svg"
-                />
+                <div class="svg-wrapper">
+                  <img
+                    class="svg-gobbler-2-11"
+                    alt=""
+                    src="@/assets/images/invoice.svg"
+                  />
+                </div>
 
                 <div class="ticked-id-parent">
                   <b class="ticked-id">Счет #207</b>
@@ -83,8 +97,9 @@
                 </div>
               </div>
               <div class="buttons-icon-outline-arr" id="buttonsIconOutlineArr1">
-                <div class="bg1"></div>
-                <div class="icon"></div>
+                <div class="bg1">
+                  <img src="@/assets/images/more.png" />
+                </div>
               </div>
             </div>
             <div class="frame-parent1">
@@ -94,7 +109,11 @@
               </div>
               <div class="frame-inner"></div>
               <div class="author">
-                <img class="img-icon" alt="" src="./public/img@2x.png" />
+                <img
+                  class="img-icon"
+                  alt=""
+                  src="@/assets/images/edit-photo.png"
+                />
 
                 <div class="author1">Валентин Иванович</div>
               </div>
@@ -103,11 +122,13 @@
           <div class="frame-container">
             <div class="frame-div">
               <div class="svg-gobbler-2-1-group">
-                <img
-                  class="svg-gobbler-2-11"
-                  alt=""
-                  src="./public/svggobbler-2-11.svg"
-                />
+                <div class="svg-wrapper">
+                  <img
+                    class="svg-gobbler-2-11"
+                    alt=""
+                    src="@/assets/images/invoice.svg"
+                  />
+                </div>
 
                 <div class="ticked-id-parent">
                   <b class="ticked-id">Счет #206</b>
@@ -115,8 +136,9 @@
                 </div>
               </div>
               <div class="buttons-icon-outline-arr">
-                <div class="bg1"></div>
-                <div class="icon"></div>
+                <div class="bg1">
+                  <img src="@/assets/images/more.png" />
+                </div>
               </div>
             </div>
             <div class="frame-parent1">
@@ -126,7 +148,11 @@
               </div>
               <div class="frame-inner"></div>
               <div class="author">
-                <img class="img-icon" alt="" src="./public/img@2x.png" />
+                <img
+                  class="img-icon"
+                  alt=""
+                  src="@/assets/images/edit-photo.png"
+                />
 
                 <div class="author1">Валентин Иванович</div>
               </div>
@@ -141,12 +167,12 @@
         <div class="counters-graph-web">
           <div class="bg"></div>
           <div class="component-26">
-            <img class="share-icon" alt="" src="./public/share.svg" />
+            <!--<img class="share-icon" alt="" src="./public/share.svg" />-->
 
             <div class="number">Поделиться</div>
           </div>
           <div class="component-261">
-            <img class="share-icon" alt="" src="./public/copy.svg" />
+            <!-- <img class="share-icon" alt="" src="./public/copy.svg" /> -->
 
             <div class="number">Скопировать</div>
           </div>
@@ -156,11 +182,11 @@
         </div>
         <div class="field-">
           <div class="svg-gobbler-2-1-parent">
-            <img
+            <!--<img
               class="svg-gobbler-2-1"
               alt=""
               src="./public/svggobbler-2-1.svg"
-            />
+            />-->
 
             <div class="name">
               <div class="invoice-aa-04-19-18">Счет отправлен</div>
@@ -172,21 +198,27 @@
             <div class="paid">Отправлено</div>
           </div>
           <div class="arrows-table">
-            <img
+            <!--<img
               class="chevron-right-icon"
               alt=""
               src="./public/chevronright.svg"
-            />
+            />-->
           </div>
         </div>
         <div class="div8" id="popuptext">Закрыть</div>
       </div>
     </div>
+
+    <detail v-if="isDetail"></detail>
   </modal>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import modal from "@/components/ui-kit/modal.vue";
+//Отрисовать детали корректно
+import detail from "@/components/wallet/check/detail.vue";
+const isDetail = ref(false);
 </script>
 
 <styles scoped lang="scss">
@@ -198,7 +230,7 @@ import modal from "@/components/ui-kit/modal.vue";
 }
 .header {
   position: absolute;
-  top: 2.5em;
+  top: 1.5em;
   border-radius: 8px;
   width: 100%;
   display: flex;
@@ -261,7 +293,7 @@ import modal from "@/components/ui-kit/modal.vue";
 .des-1-2 {
   position: relative;
   width: 100%;
-  height: 7.56em;
+  height: auto;
 }
 .ton-kepeer {
   position: relative;
@@ -282,14 +314,20 @@ import modal from "@/components/ui-kit/modal.vue";
   overflow: hidden;
   flex-shrink: 0;
   flex-direction: row;
-
+  text-decoration: none;
+  color: #ffff;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .buttonnext-wrapper {
   width: 100%;
   flex-direction: column;
   text-align: center;
   color: #f3f3f3;
+  padding: 0 21px px;
+  position: relative;
+  top: 5em;
 }
 .details1,
 .number2 {
@@ -319,8 +357,8 @@ import modal from "@/components/ui-kit/modal.vue";
 .svg-gobbler-2-11 {
   position: relative;
   border-radius: 10px;
-  width: 2.38em;
-  height: 2.38em;
+  width: 14px;
+  height: 13px;
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -370,6 +408,9 @@ import modal from "@/components/ui-kit/modal.vue";
   background-color: #fff;
   border: 1px solid #ececf2;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .icon {
   top: calc(50% - 9px);
@@ -495,15 +536,16 @@ import modal from "@/components/ui-kit/modal.vue";
   gap: 1.25em;
   font-family: Lato;
   width: 100%;
+  position: relative;
+  top: 6em;
 }
 .des-1-2-parent {
-  position: absolute;
-  top: 5.56em;
-  left: 4vw;
+  position: relative;
+  top: 4.56em;
   align-items: center;
   gap: 2em;
   color: #8181a5;
-  width: 90vw;
+  padding: 0 24px;
 }
 .bg,
 .header-parent {
@@ -708,5 +750,32 @@ import modal from "@/components/ui-kit/modal.vue";
   text-align: left;
   color: rgba(59, 59, 59, 0.8);
   font-family: Inter;
+}
+.svg-wrapper {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 38px;
+  height: 38px;
+  background-color: rgba(165, 146, 221, 0.1);
+  border: 0.5px solid rgba(165, 146, 221, 0.05);
+  border-radius: 10px;
+}
+.buttons-group {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  text-align: center;
+  & div {
+    color: rgba(129, 129, 165, 1);
+    font-family: Inter;
+    font-size: 14px;
+    padding: 11px 46.5px 12px 46.5px;
+  }
+  & .active {
+    border: 1px solid #ececf2;
+    border-radius: 8px;
+    color: #1c1d21;
+  }
 }
 </styles>

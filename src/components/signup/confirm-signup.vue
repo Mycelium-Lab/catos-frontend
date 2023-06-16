@@ -749,13 +749,14 @@ const role = computed(() => window.history.state?.role);
   position: absolute;
   top: 0;
   left: 0;
-  width: 21.38em;
+  width: 100%;
   height: 13.69em;
 }
 .div19 {
   top: 2.25em;
-  left: 1.5em;
+  left: 6vw;
   height: 13.75em;
+  width: 88%;
 }
 .ruadelaryagmailcom {
   position: absolute;
@@ -819,7 +820,7 @@ const role = computed(() => window.history.state?.role);
   position: absolute;
   top: 17.44em;
   left: 1.5em;
-  width: 21.38em;
+  width: 88%;
   height: 13.69em;
 }
 .registration-options-child {
@@ -1383,10 +1384,10 @@ const role = computed(() => window.history.state?.role);
 .buttonnext {
   position: absolute;
   top: 33.44em;
-  left: 1.5em;
+  left: 10vw;
   border-radius: 20px;
   background-color: #ffdb6d;
-  width: 21.38em;
+  width: 77vw;
   height: 3em;
   overflow: hidden;
   flex-direction: row;
@@ -1400,7 +1401,7 @@ const role = computed(() => window.history.state?.role);
   left: 0;
   border-radius: 40px 40px 0 0;
   background-color: #fff;
-  width: 24.38em;
+  width: 100vw;
   height: 38.88em;
 }
 .div67 {
@@ -1425,7 +1426,7 @@ const role = computed(() => window.history.state?.role);
 }
 .buttonback {
   top: 3.81em;
-  left: 1.5em;
+  left: 1em;
   border-radius: 9px;
   width: 6.38em;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
@@ -1445,12 +1446,13 @@ const role = computed(() => window.history.state?.role);
 .page-title-parent {
   position: absolute;
   top: 0.63em;
-  left: 3em;
+  left: 11vw;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
   gap: 7.56em;
+  width: 77vw;
 }
 .header {
   position: absolute;
@@ -1572,7 +1574,7 @@ const role = computed(() => window.history.state?.role);
 }
 .slidersteps {
   top: 4.19em;
-  left: 12.56em;
+  right: 1em;
   width: 10.31em;
   color: #958463;
 }
@@ -1584,5 +1586,11 @@ const role = computed(() => window.history.state?.role);
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+}
+@media (max-width: 370px) {
+  .component-4 {
+    width: 2.2em;
+    height: 2.2em;
+  }
 }
 </style>

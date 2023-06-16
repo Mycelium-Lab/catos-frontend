@@ -79,7 +79,7 @@
                 </div>
                 <div class="div20">Владеете ли вы более 25% кампании?</div>
               </div>
-              <button-slider></button-slider>
+              <button-slider :style="{ width: '100%' }"></button-slider>
             </div>
           </div>
         </div>
@@ -292,6 +292,7 @@
                 </div>
                 <div class="fields-password-and-mail-wrapper">
                   <input-data
+                    type="date"
                     placeholder="01.02.2022"
                     :style="{ width: '100%' }"
                   ></input-data>
@@ -318,7 +319,6 @@
       <router-link class="buttonnext1" to="connect-wallet">
         <b class="b2">Сохранить и продожить</b>
       </router-link>
-      <div class="swipe-down"></div>
     </div>
     <div class="slidersteps">
       <div class="loader6"></div>
@@ -406,6 +406,7 @@ const options = {
 .fieldsinput {
   justify-content: flex-start;
   gap: 0.5em;
+  width: 100%;
 }
 .span6 {
   line-height: 130%;
@@ -518,6 +519,7 @@ const options = {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.25em;
+  width: 100%;
 }
 .fill-for-active-button {
   position: absolute;
@@ -602,7 +604,7 @@ const options = {
   line-height: 110%;
   display: flex;
   align-items: center;
-  width: 21.31em;
+  width: 100%;
 }
 .div22 {
   font-size: 0.75em;
@@ -905,6 +907,7 @@ const options = {
   flex-direction: column;
   align-items: flex-start;
   gap: 1.38em;
+  width: 88%;
 }
 .fieldsinputchoise-parent,
 .parent11,
@@ -933,6 +936,7 @@ const options = {
 .frame-parent3 {
   align-items: flex-start;
   gap: 0.75em;
+  width: 100%;
 }
 .frame-parent2,
 .wrapper4 {
@@ -945,6 +949,7 @@ const options = {
   flex-direction: column;
   align-items: flex-start;
   gap: 1em;
+  width: 88%;
 }
 .registration-options {
   position: absolute;
@@ -1721,7 +1726,7 @@ const options = {
 }
 .fieldsinput6,
 .fieldsinput7 {
-  width: 18.75em;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1768,6 +1773,7 @@ const options = {
   left: 1.25em;
   justify-content: flex-start;
   gap: 1.38em;
+  width: 87.5%;
 }
 .frame-child19 {
   position: absolute;
@@ -1800,7 +1806,7 @@ const options = {
   flex-direction: column;
 }
 .text-and-button1 {
-  width: 18em;
+  width: 100%;
   gap: 0.81em;
 }
 .des-and-bbn1 {
@@ -1809,7 +1815,7 @@ const options = {
   left: 1.31em;
   border-radius: 16px;
   background-color: #f9fbff;
-  width: 18.75em;
+  width: 87.5%;
   padding: 0.75em;
   box-sizing: border-box;
 }
@@ -1817,7 +1823,7 @@ const options = {
   position: absolute;
   top: 0;
   left: 0;
-  width: 21.38em;
+  width: 100%;
   height: 25.88em;
 }
 .registration-options-child1 {
@@ -1830,7 +1836,7 @@ const options = {
   backdrop-filter: blur(5px);
   border: 0.5px solid rgba(46, 58, 89, 0.4);
   box-sizing: border-box;
-  height: 38em;
+  height: 38.5em;
 }
 .text14,
 .text15 {
@@ -1877,9 +1883,9 @@ const options = {
 }
 .registration-options3 {
   position: absolute;
-  top: 47.63em;
+  top: 48.63em;
   left: 0;
-  width: 21.38em;
+  width: 88.7vw;
   height: 38.19em;
 }
 .registration-options-child2 {
@@ -1902,9 +1908,9 @@ const options = {
 }
 .registration-options4 {
   position: absolute;
-  top: 87.56em;
+  top: 89em;
   left: 0;
-  width: 21.38em;
+  width: 88.7vw;
   height: 32.94em;
 }
 .fields-password-and-mail46 {
@@ -1990,19 +1996,20 @@ const options = {
 .frame-parent17 {
   align-self: stretch;
   gap: 1.25em;
+  width: 100%;
 }
 .parent35 {
   position: absolute;
   top: 27.63em;
   left: 1.31em;
-  width: 18.75em;
+  width: 77vw;
   gap: 1.5em;
 }
 .frame-parent12 {
   position: absolute;
   top: 9.63em;
   left: 1.5em;
-  width: 21.38em;
+  width: 88vw;
   height: 121.25em;
 }
 .b2 {
@@ -2012,11 +2019,11 @@ const options = {
 }
 .buttonnext1 {
   position: absolute;
-  top: 132.38em;
+  top: 133.38em;
   left: 1.5em;
   border-radius: 20px;
   background-color: #fdd674;
-  width: 21.38em;
+  width: 87.7vw;
   height: 3em;
   overflow: hidden;
   display: flex;
@@ -2030,15 +2037,7 @@ const options = {
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
 }
-.swipe-down {
-  position: absolute;
-  top: 0.75em;
-  left: 10.88em;
-  border-radius: 25px;
-  background-color: #cad0e4;
-  width: 2.63em;
-  height: 0.31em;
-}
+
 .form-registration-56 {
   position: absolute;
   top: 8em;
@@ -2153,7 +2152,7 @@ const options = {
 }
 .slidersteps {
   top: 4.19em;
-  left: 12.56em;
+  right: 1em;
   width: 10.31em;
   color: #958463;
 }
@@ -2179,7 +2178,7 @@ const options = {
 }
 .buttonback {
   top: 3.81em;
-  left: 1.5em;
+  left: 1em;
   border-radius: 9px;
   width: 6.38em;
   color: #3b3b3b;
@@ -2195,5 +2194,23 @@ const options = {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+  overflow-x: hidden;
+}
+@media (max-width: 371px) {
+  .frame-child19 {
+    height: 27.06em;
+  }
+  .parent35 {
+    top: 29em;
+  }
+  .registration-options3 {
+    top: 49.5em;
+  }
+  .registration-options4 {
+    top: 90em;
+  }
+  .buttonnext1 {
+    top: 134em;
+  }
 }
 </style>

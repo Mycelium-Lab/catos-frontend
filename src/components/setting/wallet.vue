@@ -38,10 +38,10 @@
       <div class="frame-wrapper">
         <div class="frame-container">
           <div class="buttonnext-parent">
-            <div class="buttonnext">
+            <div class="buttonnext" @click="next">
               <b class="ton-kepeer">Изменить кошелек</b>
             </div>
-            <div class="buttonnext1">
+            <div class="buttonnext1" @click="cancel">
               <div class="div11">Отмена</div>
             </div>
           </div>
@@ -52,7 +52,16 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from "vue-router";
 import modal from "../ui-kit/modal.vue";
+
+const router = useRouter();
+const cancel = () => {
+  router.push({ name: "setting" });
+};
+const next = () => {
+  router.push({ name: "setting-wallet-scan" });
+};
 </script>
 
 <style scoped>
@@ -98,13 +107,13 @@ import modal from "../ui-kit/modal.vue";
   width: 30vw;
 }
 .div9 {
-  position: absolute;
-  top: 49.58em;
-  left: 9em;
+  position: relative;
+  top: 43.58em;
   font-size: 0.75em;
   text-decoration: underline;
   letter-spacing: 0.01em;
   line-height: 130%;
+  text-align: center;
   color: rgba(87, 126, 247, 0.96);
 }
 .swipe-down {
@@ -197,6 +206,10 @@ import modal from "../ui-kit/modal.vue";
   justify-content: flex-start;
   gap: 0.38em;
   width: 100%;
+  text-decoration: none;
+  color: #fff;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .frame-container {
   align-self: stretch;

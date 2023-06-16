@@ -32,7 +32,7 @@
         </div>
         <div class="fields-and-photo-and-name">
           <div class="photo-and-name">
-            <div class="photo" @click="() => (isLoadPhoto = true)">
+            <div class="photo" @click="changeEmail">
               <img
                 class="img-icon"
                 alt=""
@@ -74,7 +74,7 @@
                 class="iconsedit-outline"
                 alt=""
                 src="./public/iconseditoutline.svg"
-                @click="() => (isChangeEmail = true)"
+                @click="changeEmail"
               />
             </div>
             <div class="frame-parent">
@@ -86,7 +86,7 @@
                 class="iconsedit-outline"
                 alt=""
                 src="./public/iconseditoutline.svg"
-                @click="() => (isChangePhone = true)"
+                @click="changePhone"
               />
             </div>
             <div class="frame-container">
@@ -107,7 +107,7 @@
                 alt=""
                 src="./public/iconseditoutline.svg"
                 id="iconseditOutline2"
-                @click="() => (isChangePassword = true)"
+                @click="changePassword"
               />
             </div>
           </div>
@@ -122,25 +122,25 @@
           <div class="api">История транзакций</div>
           <img class="iconchange" alt="" src="./public/iconchange.svg" />
         </router-link>
-        <div
+        <router-link
           class="field-button"
           id="fieldButtonContainer1"
-          @click="() => (isScrinnig = true)"
+          :to="{ name: 'scrinning' }"
         >
           <div class="api">Настроить API</div>
           <img class="iconchange" alt="" src="./public/iconchange.svg" />
-        </div>
-        <div class="field-button2">
+        </router-link>
+        <router-link class="field-button" :to="{ name: 'setting-wallet' }">
           <div class="api">Изменить кошелек</div>
           <img class="iconchange" alt="" src="./public/iconchange.svg" />
-        </div>
-        <div class="field-button2">
+        </router-link>
+        <div class="field-button">
           <div class="api">Изменить данные компании</div>
           <img class="iconchange" alt="" src="./public/iconchange.svg" />
         </div>
         <div class="field-button-switch">
           <div class="div10">Двухфакторная авторизация</div>
-          <catos-switch />
+          <catos-switch @toggle="activeAuth" />
         </div>
         <div class="tags-grey2">
           <!--<img class="bg-hover-icon" alt="" src="./public/bg-hover.svg" />-->
@@ -149,18 +149,7 @@
         </div>
       </div>
     </div>
-    <change-email
-      v-if="isChangeEmail"
-      @close="() => (isChangeEmail = false)"
-    ></change-email>
-    <change-phone
-      v-if="isChangePhone"
-      @close="() => (isChangePhone = false)"
-    ></change-phone>
-    <change-password
-      v-if="isChangePassword"
-      @close="() => (isChangePassword = false)"
-    ></change-password>
+    <app-bar></app-bar>
   </default-setting>
 </template>
 
@@ -168,24 +157,30 @@
 import { ref } from "vue";
 import defaultSetting from "@/components/layouts/default-setting.vue";
 import catosSwitch from "@/components/ui-kit/catos-switch.vue";
-import changeEmail from "@/components/setting/change-email.vue";
-import changePhone from "@/components/setting/change-phone.vue";
-import changePassword from "@/components/setting/change-password.vue";
-import bottomSheet from "@/components/ui-kit/bottomsheet.vue";
-import scrinning from "@/components/setting/scrinning.vue";
-import authentication from "@/components/setting/authentication.vue";
+import appBar from "@/components/ui-kit/app-bar.vue";
 import { useRouter } from "vue-router";
 
-const isChangeEmail = ref(false);
-const isChangePhone = ref(false);
-const isChangePassword = ref(false);
 const isLoadPhoto = ref(false);
-const isScrinnig = ref(false);
-const isAuth = ref(false);
 
 const router = useRouter();
 
-const upload = (ev: any) => {
+const changePassword = () => {
+  router.push({ name: "change-password" });
+};
+
+const changeEmail = () => {
+  router.push({ name: "change-email" });
+};
+const changePhone = () => {
+  router.push({ name: "change-phone" });
+};
+
+const activeAuth = (ev: any) => {
+  if (ev) {
+    setTimeout(() => router.push({ name: "authentication" }), 300);
+  }
+};
+const upload = () => {
   router.push({ name: "edit-photo" });
 };
 </script>
@@ -1160,7 +1155,8 @@ const upload = (ev: any) => {
   opacity: 0;
   right: 0.1em;
 }
-.field-button {
+.field-button,
+.field-button2 {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
 }

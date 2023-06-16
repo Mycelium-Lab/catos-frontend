@@ -61,14 +61,14 @@
             <div class="frame-parent">
               <div class="usd_action usd-parent">
                 <div class="usd_graph usd">
-                  <router-link :to="{ name: 'to-up' }">
+                  <router-link :to="{ name: 'to-up' }" class="btn">
                     <catos-button
                       variant="fourth"
                       :style="{ width: '72.634vw' }"
                       >Пополнить</catos-button
                     >
                   </router-link>
-                  <router-link :to="{ name: 'withrow' }">
+                  <router-link :to="{ name: 'withrow' }" class="btn">
                     <catos-button
                       variant="fourth"
                       :style="{ width: '72.634vw' }"
@@ -76,7 +76,7 @@
                     >
                   </router-link>
 
-                  <router-link :to="{ name: 'exchange' }">
+                  <router-link :to="{ name: 'exchange' }" class="btn">
                     <catos-button
                       variant="fourth"
                       :style="{ width: '72.634vw' }"
@@ -93,54 +93,35 @@
         <router-link
           class="field-button"
           id="fieldButtonContainer"
-          :to="{ name: 'transaction-history' }"
+          :to="{ name: 'checks' }"
         >
           <div class="api">Чеки</div>
           <img class="iconchange" alt="" src="./public/iconchange.svg" />
         </router-link>
-        <div
+        <router-link
           class="field-button"
           id="fieldButtonContainer1"
-          @click="() => (isScrinnig = true)"
+          :to="{ name: 'accounts' }"
         >
           <div class="api">Счета</div>
           <img class="iconchange" alt="" src="./public/iconchange.svg" />
-        </div>
-        <div class="field-button2">
+        </router-link>
+        <router-link class="field-button" :to="{ name: 'transaction-history' }">
           <div class="api">История транзакций</div>
           <img class="iconchange" alt="" src="./public/iconchange.svg" />
-        </div>
+        </router-link>
       </div>
     </div>
+    <app-bar></app-bar>
   </default-wallet>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import defaultWallet from "@/components/layouts/default-wallet.vue";
-import catosSwitch from "@/components/ui-kit/catos-switch.vue";
-import changeEmail from "@/components/setting/change-email.vue";
-import changePhone from "@/components/setting/change-phone.vue";
-import changePassword from "@/components/setting/change-password.vue";
-import bottomSheet from "@/components/ui-kit/bottomsheet.vue";
-import scrinning from "@/components/setting/scrinning.vue";
-import authentication from "@/components/setting/authentication.vue";
-import { useRouter } from "vue-router";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
-import toUp from "@/components/wallet/toUp.vue";
-
-const isChangeEmail = ref(false);
-const isChangePhone = ref(false);
-const isChangePassword = ref(false);
-const isLoadPhoto = ref(false);
+import appBar from "@/components/ui-kit/app-bar.vue";
 const isScrinnig = ref(false);
-const isAuth = ref(false);
-
-const router = useRouter();
-
-const upload = (ev: any) => {
-  router.push({ name: "edit-photo" });
-};
 </script>
 
 <style scoped lang="scss">
@@ -1213,5 +1194,10 @@ const upload = (ev: any) => {
 .usd_action {
   background: #f9fbff;
   padding: 0.88em 0.5em;
+}
+.btn {
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 </style>

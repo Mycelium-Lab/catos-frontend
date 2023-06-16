@@ -25,9 +25,7 @@
             <div class="fields-copypaste">
               <label class="field-label">Вебхук для заявок и займов</label>
               <img class="field-info" src="@/assets/images/info.svg" />
-              <copy-paste
-                :style="{ width: '86%', position: 'relative', left: '5vw' }"
-              >
+              <copy-paste :style="{ width: '100%', position: 'relative' }">
                 <template v-slot:icon>
                   <img src="@/assets/images/iconscopy.svg" alt="" />
                 </template>
@@ -36,9 +34,7 @@
             <div class="fields-copypaste_last fields-copypaste">
               <label class="field-label">Ссылка для ответов:</label>
               <img class="field-info" src="@/assets/images/info.svg" />
-              <copy-paste
-                :style="{ width: '86%', position: 'relative', left: '5vw' }"
-              >
+              <copy-paste :style="{ width: '100%', position: 'relative' }">
                 <template v-slot:icon>
                   <img src="@/assets/images/iconscopy.svg" alt="" />
                 </template>
@@ -49,18 +45,17 @@
       </div>
       <div class="fieldsregistration-options1">
         <catos-button
-          @click="() => (isSuccess = true)"
-          :style="{ width: '86vw', top: '1em', left: '1.4em' }"
+          :style="{ width: '100%', top: '1em' }"
           variant="secondary"
+          @click="() => (isSuccess = true)"
         >
           Сохранить
         </catos-button>
-        <span class="cancel">Отмена</span>
+        <span class="cancel" @click="cancel">Отмена</span>
         <a class="doc">Документация и инструкции</a>
       </div>
     </div>
-
-    <fail-scrinning v-if="isSuccess"></fail-scrinning>
+    <success v-if="isSuccess"></success>
   </modal>
 </template>
 
@@ -68,10 +63,15 @@
 import { ref } from "vue";
 import catosButton from "../ui-kit/buttons/catos-button.vue";
 import copyPaste from "../fields/copy-paste.vue";
-import failScrinning from "./fail-scrinning.vue";
-import successScrinning from "./success-scrinning.vue";
 import modal from "../ui-kit/modal.vue";
+import { useRouter } from "vue-router";
+import success from "./success-scrinning.vue";
 const isSuccess = ref(false);
+
+const router = useRouter();
+const cancel = () => {
+  router.push({ name: "setting" });
+};
 </script>
 
 <style scoped lang="scss">
@@ -874,10 +874,11 @@ const isSuccess = ref(false);
 }
 .fieldsregistration-options1 {
   position: relative;
-  width: 100%;
+  width: 77vw;
   height: 6.81em;
   z-index: 0;
-  top: 22em;
+  top: 18.5em;
+  margin: 0 auto;
 }
 .icon1 {
   position: absolute;
@@ -1344,6 +1345,8 @@ const isSuccess = ref(false);
   bottom: 4em;
   display: flex;
   flex-direction: column;
+  width: 77vw;
+  margin: 0 auto;
   & .field-label {
     align-self: start;
     position: relative;
@@ -1357,7 +1360,7 @@ const isSuccess = ref(false);
     width: 1em;
     height: 1em;
     position: absolute;
-    right: 2.3em;
+    right: 2.3vw;
     top: 0.7em;
   }
 }
@@ -1365,14 +1368,13 @@ const isSuccess = ref(false);
 .doc {
   display: block;
   position: relative;
-  top: 2em;
-  left: 1.6em;
-  width: 86vw;
+  top: 3.5em;
   color: #2626269e;
   font-size: var(--font-size-sm);
+  text-align: center;
 }
 .doc {
-  top: 3em;
+  top: 5.5em;
   color: rgba(87, 126, 247, 0.96);
   text-decoration: underline;
 }

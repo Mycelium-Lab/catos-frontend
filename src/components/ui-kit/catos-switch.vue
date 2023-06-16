@@ -1,6 +1,13 @@
 <template>
   <!--Привести к идеальному виду -->
-  <input id="s2" type="checkbox" class="switch-10" :checked="checked" />
+  <input
+    id="s2"
+    type="checkbox"
+    class="switch-10"
+    :checked="checked"
+    @change="handle"
+    v-model="isActive"
+  />
 
   <!--<div class="switch">
     <div class="handle-container">
@@ -95,12 +102,18 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 const { checked } = defineProps({
   checked: {
     type: Boolean,
     default: false,
   },
 });
+const emit = defineEmits(["toggle"]);
+const isActive = ref(checked);
+const handle = () => {
+  emit("toggle", isActive.value);
+};
 </script>
 
 <style scoped lang="scss">

@@ -6,7 +6,7 @@
     <div class="swipe-down"></div>
     <div class="des-1-2">
       <div class="des">
-        <img class="des-child" alt="" src="./public/frame-1817887@2x.png" />
+        <img class="des-child" alt="" src="@/assets/images/dialog.png" />
 
         <div class="div9">
           Здесь вы можете создать чек для мгновенной отправки криптовалюты
@@ -52,9 +52,9 @@
     </div>
     <div class="frame-wrapper">
       <div class="buttonnext-wrapper">
-        <div class="buttonnext">
+        <router-link class="buttonnext" :to="{ name: 'wallet' }">
           <b class="ton-kepeer">Создать чек</b>
-        </div>
+        </router-link>
       </div>
     </div>
     <div class="component-wrapper">
@@ -67,16 +67,20 @@
                 <span class="span4"> (не обязательно)</span>
               </div>
             </div>
-            <div class="description">Мой первый чек для бабул|</div>
+            <textarea class="description-area"></textarea>
           </div>
-          <div class="frame-inner"></div>
+          <!--<div class="frame-inner"></div>-->
           <div class="div13">
             Пользователи увидят это описание, когда вы поделитесь чеком, так же
             можно показать или скрыть кто поделился
           </div>
           <div class="author-parent">
             <div class="author">
-              <img class="img-icon" alt="" src="./public/img@2x.png" />
+              <img
+                class="img-icon"
+                alt=""
+                src="@/assets/images/edit-photo.png"
+              />
 
               <div class="author1">Валентин Иванович</div>
             </div>
@@ -88,24 +92,13 @@
     <div class="frame-parent2">
       <div class="group">
         <div class="div14">Добавить пароль к чеку (не обязательно)</div>
-        <img
-          class="container-click"
-          alt=""
-          src="./public/container--click.svg"
-        />
+        <img class="container-click" alt="" src="@/assets/images/info.svg" />
       </div>
-      <div class="field-copykey">
-        <div class="text-1">
-          <div class="key">Key:</div>
-        </div>
-        <div class="code">
-          <div class="cahrjj3">
-            <span class="span5">123345</span>
-            <span class="span6">| </span>
-          </div>
-        </div>
-        <img class="iconchange1" alt="" src="./public/iconchange1.svg" />
-      </div>
+      <copy-paste :style="{ marginTop: '0em' }">
+        <template v-slot:icon>
+          <img src="@/assets/images/iconscopy.svg" />
+        </template>
+      </copy-paste>
     </div>
   </modal>
 </template>
@@ -116,6 +109,7 @@ import modal from "@/components/ui-kit/modal.vue";
 import inputData from "@/components/fields/input-data.vue";
 import catosSelect from "@/components/fields/catos-select.vue";
 import catosSwitch from "@/components/ui-kit/catos-switch.vue";
+import copyPaste from "@/components/fields/copy-paste.vue";
 const value = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
@@ -132,7 +126,7 @@ const options = {
 }
 .header {
   position: absolute;
-  top: 2.5em;
+  top: 1.5em;
   left: 4vw;
   border-radius: 8px;
   width: 88vw;
@@ -165,8 +159,7 @@ const options = {
 }
 .des,
 .des-1-2 {
-  position: absolute;
-  width: 88vw;
+  position: relative;
 }
 .des {
   top: 0;
@@ -182,9 +175,9 @@ const options = {
   gap: 0.5em;
 }
 .des-1-2 {
-  top: 5.56em;
-  left: 1.3em;
+  top: 4.56em;
   height: 4.13em;
+  padding: 0 24px;
 }
 .p {
   margin: 0;
@@ -316,14 +309,13 @@ const options = {
   line-height: 130%;
 }
 .title-wrapper {
-  width: 18.75em;
-  display: flex;
-  flex-direction: row;
   padding: 0 0.63em;
   box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
+  left: 0em;
   color: #8181a5;
+  position: relative;
+  top: 0;
+  margin: 0 auto;
 }
 .fieldsinput-parent {
   display: flex;
@@ -365,15 +357,15 @@ const options = {
   gap: 0.94em;
 }
 .field-info-parent {
-  position: absolute;
-  top: 10.69em;
-  left: 5vw;
+  position: relative;
+  top: 6em;
+
   border-radius: 14px;
   border: 1px solid rgba(165, 146, 221, 0.1);
   overflow: hidden;
   padding: 1.25em 1.31em;
   gap: 1.5em;
-  width: 88vw;
+  margin: 0 24px;
 }
 .ton-kepeer {
   position: relative;
@@ -392,6 +384,10 @@ const options = {
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .buttonnext-wrapper,
 .frame-wrapper {
@@ -405,13 +401,12 @@ const options = {
   width: 100%;
 }
 .frame-wrapper {
-  position: absolute;
-  top: 43.5em;
-  left: 4vw;
-  width: 88vw;
+  position: relative;
+  top: 27em;
   justify-content: flex-start;
   text-align: center;
   color: #f3f3f3;
+  padding: 0px 24px;
 }
 .span4 {
   color: rgba(120, 120, 154, 0.5);
@@ -526,7 +521,6 @@ const options = {
   gap: 0.63em;
   color: #1c1d21;
   font-family: Lato;
-  width: 100%;
 }
 .component-wrapper,
 .frame-container,
@@ -538,22 +532,19 @@ const options = {
 .frame-div {
   border-radius: 12px;
   background-color: rgba(165, 146, 221, 0.1);
-  width: 88vw;
   padding: 0.75em 1.31em;
   box-sizing: border-box;
   align-items: flex-start;
   gap: 0.63em;
 }
-.component-wrapper,
 .frame-container {
   align-items: center;
 }
 .component-wrapper {
-  position: absolute;
-  top: 25.75em;
-  left: 1.5em;
-  align-items: flex-start;
+  position: relative;
+  top: 70px;
   color: #78789a;
+  padding: 0px 24px;
 }
 .div14 {
   position: relative;
@@ -641,14 +632,14 @@ const options = {
   color: rgba(59, 59, 59, 0.5);
 }
 .frame-parent2 {
-  position: absolute;
-  top: 38em;
-  left: calc(50% - 171px);
-  width: 88vw;
+  position: relative;
+  top: 6em;
+
   flex-direction: column;
   align-items: flex-start;
   gap: 0.5em;
   text-align: center;
+  padding: 0px 24px;
 }
 .header-parent {
   position: relative;
@@ -661,5 +652,13 @@ const options = {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+}
+.description-area {
+  outline: none;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(165, 146, 221, 0.1);
+  width: 100%;
+  padding-bottom: 10px;
 }
 </style>

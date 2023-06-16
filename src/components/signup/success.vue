@@ -115,9 +115,9 @@
   left: -0.26%;
 }
 .component-17-icon {
-  position: absolute;
+  position: relative;
   top: 6.06em;
-  left: 9.56em;
+
   width: 5.38em;
   height: 5.38em;
   overflow: hidden;
@@ -132,7 +132,7 @@
 .frame {
   border-radius: 16px;
   background-color: rgba(165, 146, 221, 0.07);
-  width: 18.75em;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 0.5em;
@@ -159,7 +159,7 @@
 .catos-group {
   border-radius: 16px;
   background-color: rgba(165, 146, 221, 0.07);
-  width: 18.75em;
+  width: 100%;
   padding: 0.5em 0.25em;
   box-sizing: border-box;
   align-items: flex-end;
@@ -169,6 +169,7 @@
 .frame-container {
   align-items: flex-start;
   gap: 1.25em;
+  width: 100%;
 }
 .b1 {
   position: relative;
@@ -178,7 +179,7 @@
 .buttonnext {
   border-radius: 20px;
   background: linear-gradient(89.77deg, #9747ff, #ad6fff);
-  width: 18.75em;
+  width: 77vw;
   height: 3em;
   overflow: hidden;
   flex-shrink: 0;
@@ -220,6 +221,7 @@
   line-height: 130%;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
+  color: rgba(44, 86, 192, 1);
 }
 .message-circle-parent {
   display: flex;
@@ -230,14 +232,15 @@
 }
 .frame-wrapper {
   border-radius: 16px;
-  width: 18.75em;
+  width: 77vw;
   height: 2.5em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: left;
-  color: #2c56c0;
+  color: rgba(44, 86, 192, 1);
+  border: 1px solid rgba(165, 146, 221, 0.15);
 }
 .frame-div,
 .frame-group {
@@ -249,12 +252,14 @@
 .frame-div {
   gap: 0.75em;
   color: rgba(59, 59, 59, 0.54);
+  width: 77vw;
 }
 .frame-group {
   position: absolute;
   top: 14.13em;
   left: 2.81em;
   gap: 2em;
+  width: 77vw;
 }
 .div11 {
   position: relative;
@@ -264,7 +269,7 @@
 .wrapper2 {
   position: absolute;
   top: 1.25em;
-  left: 18.94em;
+  right: 1em;
   display: flex;
   flex-direction: row;
   padding: 0.63em;
@@ -284,9 +289,9 @@
 .header1 {
   position: absolute;
   top: 2.69em;
-  left: 2.81em;
+
   border-radius: 7px;
-  width: 18.75em;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   padding: 0.44em 0;
@@ -300,7 +305,7 @@
   left: 0;
   border-radius: 40px 40px 0 0;
   background-color: #fff;
-  width: 24.38em;
+  width: 100vw;
   height: 45em;
   text-align: center;
 }
@@ -326,7 +331,7 @@
 }
 .buttonback {
   top: 3.63em;
-  left: 1.5em;
+  left: 1em;
   border-radius: 9px;
   width: 6.38em;
   color: #3b3b3b;
@@ -342,5 +347,6 @@
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+  overflow-x: hidden;
 }
 </style>

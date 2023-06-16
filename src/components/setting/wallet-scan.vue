@@ -18,9 +18,9 @@
     </div>
     <div class="or-press-the-the-button-below-parent">
       <div class="scan-the-qr-container">Or press the the button below</div>
-      <div class="buttonnext">
+      <router-link class="buttonnext" :to="{ name: 'setting-wallet-success' }">
         <b class="ton-kepeer">Sign in with Tokenkeeper</b>
-      </div>
+      </router-link>
     </div>
     <div class="we-do-not">
       We do not receive or store your wallet login details, so your TON is safe.
@@ -61,11 +61,11 @@ import modal from "../ui-kit/modal.vue";
   justify-content: flex-start;
 }
 .connect-ton-parent {
-  position: absolute;
+  position: relative;
   top: 2.25em;
-  left: 11vw;
+
   border-radius: 7px;
-  width: 77vw;
+  width: 100%;
   padding: 0.44em 0;
   box-sizing: border-box;
   align-items: center;
@@ -90,13 +90,16 @@ import modal from "../ui-kit/modal.vue";
   object-fit: cover;
 }
 .qr-code-2 {
-  top: 8em;
-  left: 18%;
+  top: 3em;
+  /* left: 18%; */
   border-radius: 29px;
   border: 1px dashed #a592dd;
   box-sizing: border-box;
   width: 15em;
   height: 15em;
+  /* display: none; */
+  position: relative;
+  margin: 0 auto;
 }
 .ton-kepeer {
   position: relative;
@@ -116,11 +119,14 @@ import modal from "../ui-kit/modal.vue";
   align-items: center;
   justify-content: center;
   color: #f3f3f3;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .or-press-the-the-button-below-parent {
-  position: absolute;
-  top: 24.44em;
-  left: 11vw;
+  position: relative;
+  top: 5em;
+  /* left: 11vw; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -128,6 +134,7 @@ import modal from "../ui-kit/modal.vue";
   gap: 0.75em;
   width: 77vw;
   text-align: center;
+  margin: 0 auto;
 }
 .we-do-not {
   position: absolute;

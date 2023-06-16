@@ -26,6 +26,7 @@
               </div>
               <div class="fields-password-and-mail-container">
                 <input-data
+                  type="date"
                   placeholder="01.02.1994"
                   :style="{ width: '100%' }"
                 ></input-data>
@@ -46,12 +47,30 @@
               <span class="span1">* </span>
             </div>
             <div class="frame-group">
-              <div class="radiobutton-parent">
-                <catos-checkbox variant="radiobutton"></catos-checkbox>
+              <div
+                class="radiobutton-parent"
+                @click="
+                  () => (isSelectedRadioButton1 = !isSelectedRadioButton1)
+                "
+              >
+                <catos-checkbox
+                  :select="isSelectedRadioButton1"
+                  variant="radiobutton"
+                  :key="String(isSelectedRadioButton1)"
+                ></catos-checkbox>
                 <div class="div15">Мужской</div>
               </div>
-              <div class="radiobutton-group">
-                <catos-checkbox variant="radiobutton"></catos-checkbox>
+              <div
+                class="radiobutton-group"
+                @click="
+                  () => (isSelectedRadioButton2 = !isSelectedRadioButton2)
+                "
+              >
+                <catos-checkbox
+                  :select="isSelectedRadioButton2"
+                  variant="radiobutton"
+                  :key="String(isSelectedRadioButton2)"
+                ></catos-checkbox>
                 <div class="div15">Женский</div>
               </div>
             </div>
@@ -127,7 +146,7 @@
                 <span class="span1">* </span>
               </div>
               <div class="fields-password-and-mail-wrapper">
-                <input-data placeholder="01.02.2022"></input-data>
+                <input-data type="date" placeholder="01.02.2022"></input-data>
               </div>
             </div>
           </div>
@@ -176,6 +195,8 @@ import inputData from "../../../components/fields/input-data.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
 const value = ref("");
+const isSelectedRadioButton1 = ref(false);
+const isSelectedRadioButton2 = ref(false);
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
@@ -316,7 +337,7 @@ const options = {
   justify-content: flex-start;
 }
 .frame-div {
-  width: 18.75em;
+  width: 100%;
   height: 4em;
   gap: 0.5em;
 }
@@ -326,6 +347,7 @@ const options = {
   left: 1.31em;
   gap: 1.38em;
   z-index: 100;
+  width: 88.5%;
 }
 .radiobutton-icon {
   position: relative;
@@ -365,7 +387,7 @@ const options = {
 .parent2 {
   top: 12.31em;
   left: 1.31em;
-  width: 18.75em;
+  width: 88.5%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -407,12 +429,13 @@ const options = {
 .div8,
 .div9 {
   left: 0;
-  width: 21.38em;
+  width: 100%;
   height: 17.31em;
 }
 .div8 {
   top: 9.25em;
   left: 1.5em;
+  width: 87.7vw;
 }
 .b1,
 .buttonnext {
@@ -429,11 +452,11 @@ const options = {
 }
 .buttonnext {
   position: absolute;
-  top: 47.81em;
+  top: 49.81em;
   left: 1.5em;
   border-radius: 20px;
   background-color: #ffdb6d;
-  width: 21.38em;
+  width: 87.7vw;
   height: 3em;
   overflow: hidden;
   flex-direction: row;
@@ -478,7 +501,7 @@ const options = {
 }
 .header,
 .parent3 {
-  width: 14.88em;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -489,7 +512,7 @@ const options = {
   position: absolute;
   top: 2.25em;
   left: 1.5em;
-  width: 21.38em;
+  width: 100vw;
   flex-direction: row;
   gap: 0.75em;
 }
@@ -658,7 +681,7 @@ const options = {
   position: absolute;
   top: 28.06em;
   left: 2.81em;
-  width: 18.75em;
+  width: 77%;
   gap: 1.5em;
 }
 .form-registration-46 {
@@ -667,7 +690,7 @@ const options = {
   left: 0;
   border-radius: 40px 40px 0 0;
   background-color: #fff;
-  width: 24.38em;
+  width: 100vw;
   height: 60.13em;
 }
 .page-title1 {
@@ -774,7 +797,7 @@ const options = {
 }
 .slidersteps {
   top: 4.19em;
-  left: 12.56em;
+  right: 1em;
   width: 10.31em;
   color: #958463;
 }
@@ -816,5 +839,6 @@ const options = {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+  overflow-x: hidden;
 }
 </style>

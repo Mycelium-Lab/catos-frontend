@@ -132,7 +132,7 @@
         <div class="div21">7</div>
       </div>
       <div class="steps">
-        <div class="div23">4 шаг</div>
+        <div class="div23">5 шаг</div>
       </div>
     </div>
     <router-link class="buttonback" to="" @click="$router.go(-1)">
@@ -170,11 +170,11 @@ const options = {
 }
 .buttonnext {
   position: absolute;
-  top: 57.25em;
-  left: 1.5em;
+  top: 58.25em;
+  left: 6.5vw;
   border-radius: 20px;
   background-color: #ffdb6d;
-  width: 21.38em;
+  width: 87.7vw;
   height: 3em;
   overflow: hidden;
   display: flex;
@@ -215,7 +215,7 @@ const options = {
 }
 .group,
 .header {
-  width: 14.88em;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -226,7 +226,7 @@ const options = {
   position: absolute;
   top: 2.25em;
   left: 1.5em;
-  width: 21.38em;
+  width: 87.8vw;
   flex-direction: row;
   align-items: center;
   gap: 0.75em;
@@ -320,6 +320,7 @@ const options = {
   flex-direction: column;
   align-items: flex-start;
   z-index: 100;
+  width: 87.5%;
 }
 .fieldsinput1 {
   border-radius: 16px;
@@ -369,8 +370,8 @@ const options = {
 .frame-group {
   position: absolute;
   top: 11.5em;
-  left: calc(50% - 171px);
-  width: 21.38em;
+  left: 6vw;
+  width: 87.7vw;
   height: 13.19em;
 }
 .div14 {
@@ -381,20 +382,20 @@ const options = {
 }
 .rectangle-div {
   position: absolute;
-  width: 100%;
+  width: 88.7vw;
   top: calc(50% - 235.5px);
   right: 0;
   left: 0;
   border-radius: 15px;
   border: 0.5px solid rgba(46, 58, 89, 0.4);
   box-sizing: border-box;
-  height: 29.63em;
+  height: 31em;
 }
 .fieldsinputchoise5 {
   position: absolute;
-  top: 24.06em;
-  left: calc(50% - 150px);
-  width: 18.75em;
+  top: 25.06em;
+  left: 5vw;
+  width: 87.5%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -404,8 +405,8 @@ const options = {
 .frame-container {
   position: absolute;
   top: 25.94em;
-  left: calc(50% - 171px);
-  width: 21.38em;
+  left: 6vw;
+  width: 87.7vw;
   height: 29.81em;
 }
 .form-registration-46 {
@@ -414,7 +415,7 @@ const options = {
   left: 0;
   border-radius: 40px 40px 0 0;
   background-color: #fff;
-  width: 24.38em;
+  width: 100vw;
   height: 65.19em;
 }
 .page-title1 {
@@ -512,7 +513,7 @@ const options = {
   left: 1.75em;
   border-radius: 19px;
   background-color: #f5f9ff;
-  width: 5.44em;
+  width: 6em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -521,7 +522,7 @@ const options = {
 }
 .slidersteps {
   top: 4.19em;
-  left: 12.56em;
+  right: 1em;
   width: 10.31em;
   color: #958463;
 }
@@ -547,7 +548,7 @@ const options = {
 }
 .buttonback {
   top: 3.81em;
-  left: 1.5em;
+  left: 1em;
   border-radius: 9px;
   width: 6.38em;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
@@ -563,5 +564,6 @@ const options = {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+  overflow-x: hidden;
 }
 </style>

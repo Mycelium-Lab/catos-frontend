@@ -42,7 +42,7 @@
                   <span class="span2">* </span>
                 </div>
                 <div class="fields-password-and-mail-container">
-                  <input-data placeholder="01.02.2022"></input-data>
+                  <input-data type="date" placeholder="01.02.2022"></input-data>
                   <div class="iconscalendar-wrapper">
                     <img
                       class="iconscalendar"
@@ -118,6 +118,7 @@
               </div>
               <div class="fields-password-and-mail-container">
                 <input-data
+                  type="date"
                   placeholder="01.02.1994"
                   :style="{ width: '100%' }"
                 ></input-data>
@@ -137,12 +138,31 @@
               <span class="span2">* </span>
             </div>
             <div class="frame-parent1">
-              <div class="radiobutton-parent">
-                <catos-checkbox variant="radiobutton"></catos-checkbox>
+              <div
+                class="radiobutton-parent"
+                @click="
+                  () => (isSelectedRadioButton1 = !isSelectedRadioButton1)
+                "
+              >
+                <catos-checkbox
+                  :select="isSelectedRadioButton1"
+                  variant="radiobutton"
+                  :key="String(isSelectedRadioButton1)"
+                ></catos-checkbox>
+
                 <div class="text">Мужской</div>
               </div>
-              <div class="radiobutton-group">
-                <catos-checkbox variant="radiobutton"></catos-checkbox>
+              <div
+                class="radiobutton-group"
+                @click="
+                  () => (isSelectedRadioButton2 = !isSelectedRadioButton2)
+                "
+              >
+                <catos-checkbox
+                  :select="isSelectedRadioButton2"
+                  variant="radiobutton"
+                  :key="String(isSelectedRadioButton2)"
+                ></catos-checkbox>
                 <div class="text">Женский</div>
               </div>
             </div>
@@ -415,6 +435,8 @@ import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
 const role = computed(() => window.history.state?.role);
 const value = ref("");
+const isSelectedRadioButton1 = ref(false);
+const isSelectedRadioButton2 = ref(false);
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
@@ -641,16 +663,18 @@ const options = {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  width: 100%;
 }
 .frame-group {
   align-self: stretch;
   gap: 1.25em;
+  width: 88%;
 }
 .group {
   position: absolute;
   top: 30.19em;
-  left: 1.31em;
-  width: 18.75em;
+  left: 3vw;
+  width: 100%;
   gap: 1.5em;
 }
 .span10,
@@ -717,6 +741,7 @@ const options = {
   flex: 1;
   width: 18.75em;
   gap: 0.5em;
+  width: 100%;
 }
 .fieldsinput-parent {
   position: absolute;
@@ -724,6 +749,7 @@ const options = {
   left: 1.31em;
   gap: 1.38em;
   z-index: 100;
+  width: 88%;
 }
 .radiobutton-icon {
   position: relative;
@@ -757,7 +783,7 @@ const options = {
   position: absolute;
   top: 23.44em;
   left: 1.31em;
-  width: 18.75em;
+  width: 87.7vw;
   flex-direction: column;
   justify-content: flex-start;
   gap: 0.5em;
@@ -795,12 +821,12 @@ const options = {
   position: absolute;
   top: 0;
   left: 0;
-  width: 21.38em;
+  width: 87.7vw;
   height: 28.44em;
 }
 .div8 {
   top: 8.13em;
-  left: 1.5em;
+  left: 6.4vw;
   height: 49.31em;
 }
 .b1,
@@ -823,10 +849,10 @@ const options = {
 .buttonnext {
   position: absolute;
   top: 104.81em;
-  left: 1.5em;
+  left: 6.4vw;
   border-radius: 20px;
   background-color: #ffdb6d;
-  width: 21.38em;
+  width: 87.7vw;
   height: 3em;
   overflow: hidden;
   flex-direction: row;
@@ -860,7 +886,7 @@ const options = {
 }
 .header,
 .parent11 {
-  width: 14.88em;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -871,7 +897,7 @@ const options = {
   position: absolute;
   top: 2.25em;
   left: 1.5em;
-  width: 21.38em;
+  width: 100vw;
   flex-direction: row;
   gap: 0.75em;
 }
@@ -907,7 +933,7 @@ const options = {
   font-weight: 300;
   display: flex;
   align-items: center;
-  width: 24.5em;
+  width: 100%;
 }
 .icon-child {
   position: absolute;
@@ -1212,11 +1238,12 @@ const options = {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  width: 77vw;
 }
 .organizmloader {
   border-radius: 16px;
   background-color: rgba(246, 244, 252, 0.5);
-  width: 18.75em;
+  width: 100%;
   padding: 3em 0.75em 1.25em;
   box-sizing: border-box;
   align-items: flex-start;
@@ -1434,7 +1461,7 @@ const options = {
 .organizmloader1 {
   border-radius: 16px;
   background-color: rgba(246, 244, 252, 0.5);
-  width: 18.75em;
+  width: 100%;
   overflow: hidden;
   padding: 3em 0.75em 1.25em;
   box-sizing: border-box;
@@ -1448,6 +1475,7 @@ const options = {
   left: 0;
   align-items: center;
   gap: 1.13em;
+  width: 100%;
 }
 .div39 {
   position: absolute;
@@ -1462,24 +1490,25 @@ const options = {
   position: absolute;
   top: 22.25em;
   left: 1.31em;
-  width: 18.75em;
+  width: 77vw;
   height: 18.19em;
 }
 .registration-options {
   position: relative;
-  width: 21.38em;
+  width: 100%;
   height: 28.81em;
 }
 .registration-options-wrapper {
   position: absolute;
   top: 60.44em;
-  left: calc(50% - 171px);
+  left: 6.4vw;
   height: 42.38em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   color: rgba(59, 59, 59, 0.9);
+  width: 87.7%;
 }
 .form-registration-46 {
   position: absolute;
@@ -1487,7 +1516,7 @@ const options = {
   left: 0;
   border-radius: 40px 40px 0 0;
   background-color: #fff;
-  width: 24.38em;
+  width: 100vw;
   height: 111.13em;
 }
 .page-title1 {
@@ -1611,7 +1640,7 @@ const options = {
 }
 .slidersteps {
   top: 4.19em;
-  left: 12.56em;
+  right: 1em;
   width: 10.31em;
   color: #958463;
 }
@@ -1637,7 +1666,7 @@ const options = {
 }
 .buttonback {
   top: 3.81em;
-  left: 1.5em;
+  left: 1em;
   border-radius: 9px;
   width: 6.38em;
   color: #3b3b3b;
@@ -1653,5 +1682,6 @@ const options = {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+  overflow-x: hidden;
 }
 </style>

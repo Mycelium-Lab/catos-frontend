@@ -42,11 +42,6 @@
                     <div class="fields-password-and-mail3">
                       <div class="parent3">
                         <div class="div12">08.17.2023</div>
-                        <img
-                          class="iconsedit-outline"
-                          alt=""
-                          src="./public/iconseditoutline.svg"
-                        />
                       </div>
                     </div>
                     <div class="iconscalendar-wrapper" id="frameContainer3">

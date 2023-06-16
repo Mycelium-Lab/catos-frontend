@@ -25,7 +25,7 @@
                 @selected="ev => (value = ev)"
               ></catos-select>
             </div>
-            <img class="frame-child" alt="" src="./public/line-28.svg" />
+            <img class="frame-child" alt="" src="@/assets/images/devider.svg" />
 
             <div class="fieldsinput-parent">
               <div class="fieldsinput">
@@ -52,7 +52,7 @@
                 <span class="ton4">257 324 TON</span>
               </div>
             </div>
-            <img class="frame-child" alt="" src="./public/line-28.svg" />
+            <img class="frame-child" alt="" src="@/assets/images/devider.svg" />
 
             <div class="fieldsinput2">
               <div class="div18">Укажите адресс кошелька получателя:</div>
@@ -61,7 +61,11 @@
                 :style="{ width: '100%' }"
               >
                 <template v-slot:right-icon>
-                  <img src="@/assets/images/iconsmail.svg" />
+                  <img
+                    src="@/components/login/public/iconsedit1.svg"
+                    :width="20"
+                    :height="20"
+                  />
                 </template>
               </input-data>
             </div>
@@ -843,7 +847,7 @@ const options = {
 }
 .header1 {
   position: absolute;
-  top: 2.5em;
+  top: 1.5em;
   left: 2.81em;
   border-radius: 8px;
   width: 77vw;
@@ -1094,7 +1098,7 @@ const options = {
 .alert-triangle-parent {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: self-end;
   justify-content: flex-start;
   gap: 0.63em;
 }
@@ -1179,17 +1183,17 @@ const options = {
 .frame-container,
 .frame-div {
   align-items: flex-start;
-  gap: 1.13em;
+  gap: 1.5em;
 }
 .frame-div {
   width: 100%;
 }
 .frame-container {
-  position: absolute;
-  top: 5.81em;
-  left: 2.81em;
-  gap: 2.5em;
-  width: 77vw;
+  position: relative;
+  top: 5em;
+  gap: 3em;
+  padding: 0px 45px;
+  padding-bottom: 20px;
 }
 .header-parent,
 .swipe-down1 {
@@ -1236,6 +1240,9 @@ const options = {
   height: 2.5em;
   top: 2.6em;
   left: 0em;
+  color: rgba(59, 59, 59, 1);
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .nav-buttons {
   position: absolute;

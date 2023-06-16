@@ -91,10 +91,6 @@
     </div>
     <div class="header">
       <div class="page-title-parent">
-        <b class="page-title1">Регистрация кредитора</b>
-        <b class="page-title1">Подтверждение регистрации</b>
-        <b class="page-title1">Анкета организации</b>
-        <b class="page-title4">Анкета представителя</b>
         <b class="page-title1">Экран подключения кошелька</b>
       </div>
     </div>
@@ -120,7 +116,6 @@
         We do not receive or store your wallet login details, so your TON is
         safe.
       </div>
-      <div class="swipe-down"></div>
     </div>
     <div class="slidersteps">
       <div class="loader"></div>
@@ -212,13 +207,13 @@
   color: #767676;
 }
 .component-18 {
-  position: absolute;
+  position: relative;
   top: 6.75em;
-  left: 2.81em;
-  width: 18.75em;
+  width: 300px;
   height: 5.56em;
   text-align: left;
   color: rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
 }
 .div10 {
   align-self: stretch;
@@ -231,9 +226,9 @@
 .group {
   position: absolute;
   top: 2.25em;
-  left: 2.81em;
+  left: 0;
   border-radius: 7px;
-  width: 18.75em;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   padding: 0.44em 0;
@@ -443,7 +438,7 @@
   left: 0;
   border-radius: 40px 40px 0 0;
   background-color: #fff;
-  width: 24.38em;
+  width: 100vw;
   height: 50.06em;
   color: rgba(59, 59, 59, 0.96);
 }
@@ -459,7 +454,7 @@
 .page-title-parent {
   position: absolute;
   top: 0.63em;
-  left: -88.87em;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -488,7 +483,7 @@
   backdrop-filter: blur(2px);
   border: 1px solid rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
-  width: 24.44em;
+  width: 100vw;
   height: 50.06em;
   overflow: hidden;
 }
@@ -503,9 +498,9 @@
 .frame-div {
   position: absolute;
   top: 2.25em;
-  left: 2.81em;
+
   border-radius: 7px;
-  width: 18.75em;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   padding: 0.44em 0;
@@ -532,7 +527,7 @@
 }
 .qr-code-2 {
   top: calc(50% - 195.5px);
-  left: calc(50% - 119.5px);
+  left: calc(50% - 120px);
   border-radius: 29px;
   border: 1px dashed #a592dd;
   box-sizing: border-box;
@@ -546,7 +541,7 @@
   line-height: 120%;
   font-weight: 300;
   display: inline-block;
-  width: 25em;
+  width: 100%;
 }
 .buttonnext1 {
   align-self: stretch;
@@ -568,8 +563,8 @@
 .or-press-the-the-button-below-parent {
   position: absolute;
   top: 24.94em;
-  left: 2.88em;
-  width: 18.75em;
+  left: 11vw;
+  width: 77vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -580,15 +575,16 @@
 .we-do-not {
   position: absolute;
   top: 41.42em;
-  left: 6em;
+  left: 18vw;
   font-size: 0.75em;
   letter-spacing: 0.01em;
   line-height: 120%;
   font-weight: 300;
   color: rgba(59, 59, 59, 0.7);
   display: inline-block;
-  width: 20.67em;
+  width: 64vw;
 }
+
 .swipe-down {
   position: absolute;
   top: 0.75em;
@@ -610,7 +606,7 @@
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.13);
   box-sizing: border-box;
-  width: 24.44em;
+  width: 100vw;
   height: 41.19em;
 }
 .battery-icon {
@@ -721,7 +717,7 @@
 }
 .slidersteps {
   top: 4em;
-  left: 12.56em;
+  right: 1em;
   width: 10.31em;
   text-align: left;
   color: #958463;
@@ -765,5 +761,6 @@
   text-align: center;
   color: #3b3b3b;
   font-family: Inter;
+  overflow-x: hidden;
 }
 </style>

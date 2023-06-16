@@ -99,10 +99,6 @@
     </div>
     <div class="header">
       <div class="page-title-parent">
-        <b class="page-title1">Регистрация кредитора</b>
-        <b class="page-title1">Подтверждение регистрации</b>
-        <b class="page-title1">Анкета организации</b>
-        <b class="page-title4">Анкета представителя</b>
         <b class="page-title1">Экран подключения кошелька</b>
       </div>
     </div>
@@ -187,13 +183,14 @@
   color: #767676;
 }
 .component-18 {
-  position: absolute;
+  position: relative;
   top: 6.75em;
-  left: 2.81em;
-  width: 18.75em;
+
+  width: 295px;
   height: 5.56em;
   text-align: left;
   color: rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
 }
 .div10,
 .div11 {
@@ -212,9 +209,9 @@
 .group {
   position: absolute;
   top: 2.25em;
-  left: 2.81em;
+  left: 6vw;
   border-radius: 7px;
-  width: 18.75em;
+  width: 87.7vw;
   display: flex;
   flex-direction: column;
   padding: 0.44em 0;
@@ -232,10 +229,10 @@
 .buttonnext {
   position: absolute;
   top: 23.06em;
-  left: 2.81em;
+  left: 11vw;
   border-radius: 20px;
   background: linear-gradient(89.77deg, #9747ff, #ad6fff);
-  width: 18.75em;
+  width: 77vw;
   height: 3em;
   overflow: hidden;
   display: flex;
@@ -269,6 +266,7 @@
   top: 19.92em;
   left: 3.75em;
   font-weight: 300;
+  width: 77vw;
 }
 .catos1,
 .faq2 {
@@ -278,7 +276,7 @@
 .catos1 {
   line-height: 130%;
   font-weight: 300;
-  width: 19.25em;
+  width: 80%;
   flex-shrink: 0;
   z-index: 0;
 }
@@ -286,11 +284,10 @@
   position: absolute;
   margin: 0 !important;
   height: 100%;
-  width: calc(100% - 261px);
+  width: 39ox;
   top: 0;
   right: 0;
   bottom: 0;
-  left: 16.31em;
   max-width: 100%;
   overflow: hidden;
   max-height: 100%;
@@ -299,7 +296,7 @@
 .catos-group {
   border-radius: 8px;
   background-color: rgba(165, 146, 221, 0.07);
-  width: 18.75em;
+  width: 100%;
   height: 3.63em;
   overflow: hidden;
   flex-shrink: 0;
@@ -312,7 +309,6 @@
   position: relative;
 }
 .ton-keeper-txt-container {
-  line-break: anywhere;
   width: 70%;
   &_preview {
     width: 100%;
@@ -339,6 +335,7 @@
 .frame-group {
   gap: 1em;
   color: #3b3b3b;
+  width: 77vw;
 }
 .faq1 {
   gap: 0.38em;
@@ -407,14 +404,14 @@
   flex-direction: column;
 }
 .download {
-  width: 18.75em;
+  width: 77vw;
   gap: 1.06em;
   color: #3b3b3b;
 }
 .faq {
   position: absolute;
   top: 28.56em;
-  left: 2.81em;
+  left: 11vw;
   gap: 2em;
   text-align: left;
 }
@@ -424,7 +421,7 @@
   left: 0;
   border-radius: 40px 40px 0 0;
   background-color: #fff;
-  width: 24.38em;
+  width: 100vw;
   height: 53.56em;
   text-align: center;
   color: rgba(59, 59, 59, 0.96);
@@ -438,7 +435,7 @@
 .page-title4 {
   color: rgba(59, 59, 59, 0.67);
 }
-.page-title-parent {
+/*.page-title-parent {
   position: absolute;
   top: 0.63em;
   left: -88.87em;
@@ -447,16 +444,16 @@
   align-items: flex-start;
   justify-content: center;
   gap: 7.56em;
-}
+}*/
 .battery-icon,
 .header {
   position: absolute;
   height: 4.56%;
-  width: 100.51%;
+  width: 100vw;
   top: 12.16%;
-  right: -0.26%;
   bottom: 83.29%;
-  left: -0.26%;
+  text-align: center;
+  text-align: center;
 }
 .battery-icon {
   height: 25.76%;
@@ -546,7 +543,7 @@
 }
 .slidersteps {
   top: 4.19em;
-  left: 12.56em;
+  right: 1em;
   width: 10.31em;
   color: #958463;
 }
@@ -572,7 +569,7 @@
 }
 .buttonback {
   top: 3.81em;
-  left: 1.5em;
+  left: 1em;
   border-radius: 9px;
   width: 6.38em;
   color: #3b3b3b;
