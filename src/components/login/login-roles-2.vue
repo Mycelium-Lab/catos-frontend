@@ -126,8 +126,22 @@
         </router-link>
       </div>
       <div class="group">
-        <div class="div10">Уже зарегистрированы?</div>
-        <router-link :to="{ name: 'login' }" class="div11">Войдите</router-link>
+        <div class="div10">
+          {{
+            title === "Войти"
+              ? "Еще не зарегистрированы?"
+              : "Уже зарегистрированы?"
+          }}
+        </div>
+        <router-link
+          v-if="title === 'Войти'"
+          :to="{ name: 'home', state: { title: 'Регистрация' } }"
+          class="div11"
+          >Зарегистрируйтесь</router-link
+        >
+        <router-link v-else :to="{ name: 'login' }" class="div11"
+          >Войдите</router-link
+        >
       </div>
     </div>
     <div class="loader-parent">
@@ -325,6 +339,8 @@ const title = computed(() => {
   cursor: pointer;
   color: #1f1f1f;
   border: 0.5px solid rgba(46, 58, 89, 0.2);
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
   &:hover {
     background: rgba(165, 146, 221, 0.08);
     border: 1px solid rgba(165, 146, 221, 0.4);
@@ -408,6 +424,8 @@ const title = computed(() => {
   display: flex;
   align-items: center;
   text-decoration: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .catos1 {
   position: relative;
@@ -462,6 +480,8 @@ const title = computed(() => {
   align-items: center;
   width: 100%;
   justify-content: center;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .group,
 .parent {

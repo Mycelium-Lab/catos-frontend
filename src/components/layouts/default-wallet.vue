@@ -311,6 +311,7 @@
   color: #3b3b3b;
   font-family: Inter;
   overflow-x: hidden;
+  margin-bottom: 3em;
 }
 .content {
   position: relative;

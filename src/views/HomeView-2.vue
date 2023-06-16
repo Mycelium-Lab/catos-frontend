@@ -24,9 +24,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { useRouter } from "vue-router";
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .iphone-13-13-pro-68-child {
@@ -105,6 +103,8 @@ import { useRouter } from "vue-router";
   left: 207px;
   text-decoration: underline;
   color: #025de7;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .catos1 {
   left: 66px;

@@ -3,7 +3,7 @@
     <ul class="bar-list">
       <li class="item">
         <router-link class="navigation" to="/">
-          <img src="@/assets/home-not-active.svg" alt="" />
+          <img class="pull-img" src="@/assets/home-not-active.svg" alt="" />
           <span class="name">Пуллы</span>
         </router-link>
       </li>
@@ -77,7 +77,8 @@ const currentPage = computed(() => {
   margin: 0em;
   width: 100%;
   margin: 0 auto;
-  padding: 20px 32px 20px 32px;
+  padding: 30px 32px 20px 32px;
+  z-index: 100;
 }
 .navigation {
   position: relative;
@@ -89,14 +90,16 @@ const currentPage = computed(() => {
   font-size: 10px;
   color: rgba(48, 51, 55, 0.9);
   font-weight: 300;
-  top: 0em;
+  top: -0.8em;
   position: relative;
 }
 
-.navigation img {
-  width: 30px;
-  height: 30px;
+.item {
+  width: 53px;
+  height: 53px;
 }
-.bar-list .item {
+.pull-img {
+  width: 26px;
+  height: 30px;
 }
 </style>
