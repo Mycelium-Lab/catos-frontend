@@ -6,13 +6,21 @@
     <input :class="`slider_${ButtonSliderVariant[variantIndex]} slider`" />
     <ul class="slider__nav">
       <li
-        v-for="index in Object.keys(Loans).filter(key => !isNaN(Number(key)))"
+        v-for="index in Object.keys(
+          role === 'creditor' ? Loans : LoansBorrower
+        ).filter(key => !isNaN(Number(key)))"
         key="index"
         :class="
-          Number(index) === 0
+          activeTab === Number(index) && Number(index) === 0
+            ? `button-slider_left_${ButtonSliderVariant[variantIndex]} button-slider_left active`
+            : Number(index) === 0
             ? `button-slider_left_${ButtonSliderVariant[variantIndex]} button-slider_left`
+            : activeTab === Number(index) && Number(index) === 1
+            ? `button-slider_middle_${ButtonSliderVariant[variantIndex]} button-slider_middle active`
             : Number(index) === 1
-            ? `button-slider_middle_${ButtonSliderVariant[variantIndex]} button-slider_middle`
+            ? `button-slider_middle_${ButtonSliderVariant[variantIndex]} button-slider_middle `
+            : activeTab === Number(index) && Number(index) === 2
+            ? `button-slider_right_${ButtonSliderVariant[variantIndex]} button-slider_right active`
             : `button-slider_right_${ButtonSliderVariant[variantIndex]} button-slider_right`
         "
         :style="
@@ -22,10 +30,14 @@
         "
         @click="ev => goTo(ev, Number(index))"
       >
-        {{ Loans[Number(index)] }}
+        {{
+          role === "creditor"
+            ? Loans[Number(index)]
+            : LoansBorrower[Number(index)]
+        }}
       </li>
     </ul>
-    <span
+    <!--<span
       class="slider-tab"
       :style="{
         transform: `translateX(${to}px)`,
@@ -40,20 +52,27 @@
           : 'slider-tab_left'
       "
     >
-    </span>
+    </span>-->
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import { ButtonSliderVariant } from "@/types/buttons-props";
-import { Loans } from "@/types/tabs/tabs";
+import { Loans, LoansBorrower } from "@/types/tabs/tabs";
+
 const { variantIndex } = defineProps({
   variantIndex: {
     type: Number,
     default: 1,
   },
+  role: {
+    type: String,
+    default: "creditor",
+  },
 });
+const emmit = defineEmits(["onSlide"]);
+
 const activeTab = ref(0);
 // активная таба по умолчанию, в мобильной версии смещена на 3 px
 const from = ref(3);
@@ -62,6 +81,7 @@ const goTo = (ev: any, index: number) => {
   activeTab.value = index;
   to.value = ev.target.offsetLeft;
   to.value = to.value - from.value;
+  emmit("onSlide", index);
 };
 </script>
 
@@ -71,13 +91,12 @@ const goTo = (ev: any, index: number) => {
   color: rgba(181, 181, 195, 1);
   position: relative;
   width: 24.4285714286em;
+
   &_loans {
     font-weight: 400;
-    width: 21.429em;
     color: rgba(129, 129, 165, 1);
-  }
-  &_loans {
-    width: 24.429em;
+    width: 88vw;
+    margin: 0 auto;
   }
 }
 .button-slider {
@@ -90,14 +109,14 @@ const goTo = (ev: any, index: number) => {
     -webkit-tap-highlight-color: transparent;
   }
   &_left {
-    margin-left: 3px;
-    width: 7.214285714285714em;
+    margin-left: 2px;
+    width: 30%;
   }
   &_middle {
-    width: 7.285714285714286em;
+    width: 30%;
   }
   &_right {
-    width: 9.571428571428571em;
+    width: 30%;
     margin-right: 2px;
   }
 }
@@ -121,13 +140,14 @@ const goTo = (ev: any, index: number) => {
   background: rgba(253, 214, 116, 1);
   border-radius: var(--br-base);
   &_left {
-    width: 7.214285714285714em;
+    width: 30%;
   }
   &_middle {
-    width: 7.285714285714286em;
+    width: 30%;
+    left: 1px;
   }
   &_right {
-    width: 9.571428571428571em;
+    width: 40%;
   }
 }
 .slider {
@@ -160,6 +180,26 @@ const goTo = (ev: any, index: number) => {
 input {
   &.slider {
     border-radius: 100px;
+  }
+}
+.slider__nav {
+  .active {
+    position: relative;
+    top: -1.1em;
+  }
+  & .active:before {
+    content: "";
+    position: relative;
+    top: 1.68em;
+    display: block;
+    width: 100%;
+    height: 31px;
+    background: rgba(253, 214, 116, 1);
+    border-radius: var(--br-base);
+    z-index: -10;
+    /* transform: translateX(10px);
+    transition-timing-function: ease-out;
+    transition: 0.3s;*/
   }
 }
 </style>

@@ -5,7 +5,24 @@
       <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
     </div>
   </router-link>
-  <default-wallet-overlay>
+
+  <default-pulls-overlay v-if="from === 'pulls'">
+    <div class="div">
+      <div class="header-parent">
+        <slot></slot>
+      </div>
+    </div>
+  </default-pulls-overlay>
+
+  <default-pulls-overlay v-else-if="from === 'prolong'">
+    <div class="div">
+      <div class="header-parent">
+        <slot></slot>
+      </div>
+    </div>
+  </default-pulls-overlay>
+
+  <default-wallet-overlay v-else>
     <div class="div">
       <div class="header-parent">
         <slot></slot>
@@ -18,6 +35,12 @@
 import { ref } from "vue";
 
 import defaultWalletOverlay from "../layouts/default-wallet-overlay.vue";
+import defaultPullsOverlay from "../layouts/default-pulls-overlay.vue";
+
+const { from } = defineProps({
+  from: { type: String },
+});
+console.log(from);
 const value = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
@@ -68,7 +91,7 @@ const options = {
   background-color: rgba(251, 251, 251, 0.42);
   width: 6.38em;
   height: 2.5em;
-  top: 2.6em;
+  top: 1.6em;
   left: 0em;
   color: rgba(59, 59, 59, 1);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
@@ -91,7 +114,7 @@ const options = {
   background-color: #fff;
   width: 100%;
   height: 80vh;
-
+  margin-bottom: 12em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;

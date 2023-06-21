@@ -15,6 +15,7 @@
     "@types/hammerjs": "^2.0.41",
     "@typescript-eslint/parser": "^5.59.9",
     "@webzlodimir/vue-bottom-sheet": "^2.0.2",
+    "chart.js": "2.9.4",
     "pinia": "^2.0.36",
     "vue": "^3.3.2",
     "vue-router": "^4.2.0"

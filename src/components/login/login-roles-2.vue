@@ -95,7 +95,7 @@
           class="component-193"
           :to="{
             name: title === 'Войти' ? 'login' : 'start',
-            state: { title: 'Регистрация заемщика', role: 'borrower' },
+            state: { title: 'Регистрация заемщика', role: 'collector' },
           }"
         >
           <div class="description-and-image">

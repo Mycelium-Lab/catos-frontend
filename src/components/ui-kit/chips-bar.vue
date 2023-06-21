@@ -2,9 +2,17 @@
   <div>
     <span class="choise-title"> Выбор сортировки: </span>
     <ul class="sort-list">
-      <li class="chips_add chips" @click="() => (activeChip = -1)">
-        <div class="edit-field" contenteditable="true">Создать</div>
-        <img src="@/assets/images/iconsadd.svg" />
+      <li class="chips_add chips">
+        <div class="edit-field">Создать</div>
+        <img
+          src="@/assets/images/iconsadd.svg"
+          @click="
+            () => {
+              activeEdit(true);
+              activeChip = -1;
+            }
+          "
+        />
       </li>
       <li
         v-for="(chip, i) in chips"
@@ -13,8 +21,11 @@
         :class="activeChip === i ? 'chips_active' : ''"
         @click="() => (activeChip = i)"
       >
-        <div class="edit-field" contenteditable="true">{{ chip }}</div>
+        <div class="edit-field">
+          {{ chip }}
+        </div>
         <img
+          @click="() => activeEdit(false)"
           :src="`/src/assets/images/iconseditoutline-${
             activeChip === i ? 'white.svg' : 'black.svg'
           }`"
@@ -28,12 +39,18 @@
 import { ref } from "vue";
 const chips = ["Транзакция 2", "Сортировка 1"];
 const activeChip = ref(-1);
+const emit = defineEmits(["onEdit"]);
+
+const activeEdit = (isCreate: any) => {
+  emit("onEdit", isCreate);
+};
 </script>
 
 <style scoped lang="scss">
 .choise-title {
   font-size: var(--font-size-sm);
   font-weight: 300;
+  color: #2e3a59;
 }
 .sort-list {
   padding-left: 0em;
@@ -60,6 +77,7 @@ const activeChip = ref(-1);
   white-space: nowrap;
   font-weight: 400;
   position: relative;
+  height: 28px;
   gap: 1em;
   & input {
     outline: none;
@@ -79,5 +97,14 @@ const activeChip = ref(-1);
     background: #a865ff;
     color: #ffffff;
   }
+}
+.edit-widnow {
+  position: relative;
+  width: 77vw;
+  border: 13px;
+  z-index: 1000;
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 12px 12px rgba(151, 71, 255, 0.04);
 }
 </style>

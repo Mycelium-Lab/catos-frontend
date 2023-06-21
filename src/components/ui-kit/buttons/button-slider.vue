@@ -5,21 +5,32 @@
   >
     <input
       type="checkbox"
-      :class="`slider_${ButtonSliderVariant[variantIndex]} slider`"
+      :class="`slider_${ButtonSliderVariant[variantIndex]}_label_${isSide}  slider_${ButtonSliderVariant[variantIndex]} slider`"
+      @change="handleChange"
     />
     <span
       :class="`button-slider_left_${ButtonSliderVariant[variantIndex]} button-slider_left`"
+      :style="
+        isSide === 'left'
+          ? { color: '#3b3b3b' }
+          : { color: 'rgb(129, 129, 165' }
+      "
+      @click="() => handle('left')"
       >{{
-        ButtonSliderVariant[variantIndex] === "dashboard"
-          ? "Кол-во займов"
-          : "Владею"
+        ButtonSliderVariant[variantIndex] === "dashboard" ? tabs[0] : "Владею"
       }}</span
     >
     <span
+      @click="() => handle('right')"
+      :style="
+        isSide === 'right'
+          ? { color: '#3b3b3b' }
+          : { color: 'rgb(129, 129, 165' }
+      "
       :class="`button-slider_right_${ButtonSliderVariant[variantIndex]} button-slider_right`"
       >{{
         ButtonSliderVariant[variantIndex] === "dashboard"
-          ? "Займы в TON"
+          ? tabs[1]
           : "Не владею"
       }}</span
     >
@@ -27,13 +38,34 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import { ButtonSliderVariant } from "@/types/buttons-props";
 const { variantIndex } = defineProps({
   variantIndex: {
     type: Number,
     default: 0,
   },
+  tabs: {
+    type: Array,
+    default: [],
+  },
 });
+
+const isSide = ref("left");
+const handle = (side: any) => {
+  isSide.value = side;
+  const currentSlide = side === "left" ? 0 : 1;
+  emit("onSlide", currentSlide);
+};
+
+const emit = defineEmits(["onSlide"]);
+
+const handleChange = (ev: any) => {
+  isSide.value = ev.target.checked ? "right" : "left";
+
+  const currentSlide = Number(ev.target.checked);
+  emit("onSlide", currentSlide);
+};
 </script>
 
 <style scoped lang="scss">
@@ -47,8 +79,10 @@ const { variantIndex } = defineProps({
   &_dashboard,
   &_loans {
     font-weight: 400;
-    width: 21.429em;
+    width: 77vw;
     color: rgba(129, 129, 165, 1);
+    position: relative;
+    margin: 0 auto;
   }
   &_loans {
     width: 24.429em;
@@ -57,7 +91,7 @@ const { variantIndex } = defineProps({
 .button-slider {
   &_left {
     position: absolute;
-    left: 15%;
+    left: 8%;
     top: 0.5em;
     z-index: 100;
     &::after {
@@ -71,7 +105,8 @@ const { variantIndex } = defineProps({
     }
     &_dashboard {
       top: 0.65em;
-      left: 1.6em;
+
+      width: clamp(110px, 26.7vw, 100%);
       &::after {
         display: none;
       }
@@ -79,9 +114,10 @@ const { variantIndex } = defineProps({
   }
   &_right {
     position: absolute;
-    right: 10%;
+    right: 8%;
     top: 0.5em;
     z-index: 100;
+    width: 26.2vw;
     &::after {
       content: "";
       width: 100%;
@@ -93,7 +129,7 @@ const { variantIndex } = defineProps({
     }
     &_dashboard {
       top: 0.65em;
-      right: 2.2em;
+
       &::after {
         display: none;
       }
@@ -241,9 +277,20 @@ input[type="checkbox"] {
     }
     &_dashboard {
       &:checked {
-        --x: 146px;
+        --x: 99%;
       }
       &:not(:checked) {
+        --ab: var(--active-inner);
+        --x: 3px;
+      }
+    }
+    &_dashboard_label_right {
+      &:after {
+        --x: 99%;
+      }
+    }
+    &_dashboard_label_left {
+      &:after {
         --ab: var(--active-inner);
         --x: 3px;
       }
@@ -262,6 +309,13 @@ input[type="radio"] {
   }
   &:checked {
     --s: 0.5;
+  }
+}
+@media (max-width: 365px) {
+  .button-slider__wrapper {
+    &_dashboard {
+      width: 260px;
+    }
   }
 }
 </style>

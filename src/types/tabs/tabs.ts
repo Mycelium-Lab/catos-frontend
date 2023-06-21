@@ -3,3 +3,9 @@ export enum Loans {
   Займы,
   Маркетплейс,
 }
+
+export enum LoansBorrower {
+  Активные,
+  Погашенные,
+  Проданные,
+}

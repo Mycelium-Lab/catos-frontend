@@ -3,7 +3,7 @@
     <div
       v-if="variant === 'square'"
       class="catos-wrapper__checkbox_square"
-      @click="() => (checked = !checked)"
+      @click="change"
     >
       <div
         :class="checked ? 'catos__checkbox_square_checked' : ''"
@@ -57,7 +57,14 @@ const props = defineProps({
   select: { type: Boolean, default: false },
 });
 
+const emit = defineEmits(["onChange"]);
+
 const checked = ref(false);
+
+const change = () => {
+  checked.value = !checked.value;
+  emit("onChange", checked.value);
+};
 </script>
 
 <style scoped lang="scss">

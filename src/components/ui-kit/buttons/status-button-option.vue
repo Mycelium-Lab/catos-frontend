@@ -80,10 +80,10 @@ const select = (ev: any) => {
   height: 3.078em;
   justify-content: center;
   line-height: 1.75;
-  margin-right: 8.3rem;
+
   position: relative;
   white-space: nowrap;
-  width: 23.077em;
+  width: 77vw;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
@@ -118,8 +118,15 @@ const select = (ev: any) => {
   margin: 0em;
   margin-top: 0.875rem;
   padding: 0em;
-  width: 23.077em;
+  width: 77vw;
   cursor: pointer;
+  position: absolute;
+  top: 4em;
+  z-index: 1000;
+  background: #ffff;
+  border: 1px solid gray;
+  border-radius: 20px;
+  padding-top: 10px;
 }
 .status-option {
   text-align: center;

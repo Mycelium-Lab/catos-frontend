@@ -10,6 +10,7 @@
       <div class="pan-area" ref="pan">
         <div class="bar" ref="bar" :style="{ backgroundColor: barColor }"></div>
       </div>
+      <span class="close" @click="close">Закрыть</span>
       <div class="contents">
         <slot></slot>
       </div>
@@ -158,6 +159,10 @@ export default {
     setState(state: any) {
       this.state = state;
     },
+
+    close() {
+      this.$emit("onClose");
+    },
   },
 
   watch: {
@@ -166,6 +171,9 @@ export default {
     },
 
     state(newState) {
+      if (newState === "open") {
+        this.$emit("onOpen");
+      }
       if (this.sheetState !== newState) {
         this.$emit("input", newState);
       }
@@ -249,5 +257,13 @@ export default {
   max-height: 100%;
   padding-bottom: calc(100vh * 0.2);
   box-sizing: border-box;
+}
+.close {
+  color: rgba(38, 38, 38, 0.62);
+  font-size: 10px;
+  font-weight: 400;
+  position: absolute;
+  top: 3em;
+  right: 2em;
 }
 </style>

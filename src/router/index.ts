@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { dashboardDepositor, dashboardСreditor } from "./dashboard";
+import { borrowerLoans, loans } from "./loans";
+import { borrower, collector, creditor, depositor } from "./pulls";
 import { setting } from "./settings";
 import { wallet } from "./wallet";
 
@@ -106,6 +109,12 @@ const router = createRouter({
       name: "accepted-request",
       component: () => import("../components/signup/accepted-request.vue"),
     },
+    {
+      path: "/chart",
+      name: "accepted-request",
+      component: () => import("../components/dashboard/chart.vue"),
+    },
+
     setting[0],
     setting[1],
     setting[2],
@@ -131,6 +140,45 @@ const router = createRouter({
     wallet[6],
     wallet[7],
     wallet[8],
+    creditor[0],
+    creditor[1],
+    creditor[2],
+    creditor[3],
+    creditor[4],
+    creditor[5],
+    creditor[6],
+    creditor[7],
+    creditor[8],
+    creditor[9],
+    borrower[0],
+    borrower[1],
+    borrower[2],
+    borrower[3],
+    borrower[4],
+    borrower[5],
+    depositor[0],
+    depositor[1],
+    depositor[2],
+    depositor[3],
+    collector[0],
+    collector[1],
+    collector[2],
+    loans[0],
+    loans[1],
+    loans[2],
+    loans[3],
+    dashboardСreditor[0],
+    dashboardСreditor[1],
+    dashboardСreditor[2],
+    dashboardDepositor[0],
+    dashboardDepositor[1],
+    borrowerLoans[0],
+    borrowerLoans[1],
+    borrowerLoans[2],
+    borrowerLoans[3],
+    borrowerLoans[4],
+    borrowerLoans[5],
+    borrowerLoans[6],
   ],
 });
 

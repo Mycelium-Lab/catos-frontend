@@ -1,4 +1,8 @@
 <template>
+  <div class="minmax-inputs">
+    <input type="number" :step="step" v-model="sliderMinValue" readonly />
+    <input type="number" :step="step" v-model="sliderMaxValue" readonly />
+  </div>
   <div ref="slider" class="custom-slider minmax">
     <input
       type="range"
@@ -8,7 +12,12 @@
       :max="max"
       :value="minValue"
       :step="step"
-      @input="handleEvent"
+      @input="
+        ({ target }) => {
+          // @ts-ignore
+          handle(target);
+        }
+      "
     />
     <input
       type="range"
@@ -18,18 +27,18 @@
       :max="max"
       :value="maxValue"
       :step="step"
-      @input="handleEvent"
+      @input="
+        ({ target }) => {
+          // @ts-ignore
+          handle(target);
+        }
+      "
     />
-  </div>
-  <div class="minmax-inputs">
-    <input type="number" :step="step" v-model="sliderMinValue" />
-    <input type="number" :step="step" v-model="sliderMaxValue" />
   </div>
 </template>
 <script setup lang="ts">
 import { computed, ref, watchEffect } from "vue";
 
-// define component props for the slider component
 const { min, max, step, minValue, maxValue } = defineProps({
   min: {
     type: Number,
@@ -57,12 +66,13 @@ const { min, max, step, minValue, maxValue } = defineProps({
 const emit = defineEmits(["update:minValue", "update:maxValue"]);
 
 // define refs for the slider element and the slider values
-const slider = ref<HTMLDivElement>();
+const slider = ref(null);
 const sliderMinValue = ref(minValue);
 const sliderMaxValue = ref(maxValue);
 
 // function to get the percentage of a value between the min and max values
-const getPercent = (value: any, min: any, max: any) => {
+// @ts-ignore
+const getPercent = (value, min, max) => {
   return ((value - min) / (max - min)) * 100;
 };
 
@@ -72,14 +82,14 @@ const sliderDifference = computed(() => {
 });
 
 // function to set the css variables for width, left, and right
-const setCSSProps = (width: any, left: any, right: any) => {
-  slider?.value?.style.setProperty("--width", `${width}%`);
-  slider?.value?.style.setProperty("--progressLeft", `${left}%`);
-  slider?.value?.style.setProperty("--progressRight", `${right}%`);
-};
-const handleEvent = (event: Event) => {
-  const result = (event.target as HTMLInputElement).value;
-  sliderMinValue.value = Number(result);
+// @ts-ignore
+const setCSSProps = (width, left, right) => {
+  // @ts-ignore
+  slider.value.style.setProperty("--width", `${width}%`);
+  // @ts-ignore
+  slider.value.style.setProperty("--progressLeft", `${left}%`);
+  // @ts-ignore
+  slider.value.style.setProperty("--progressRight", `${right}%`);
 };
 
 // watchEffect to emit the updated values, and update the css variables
@@ -99,6 +109,15 @@ watchEffect(() => {
     setCSSProps(differencePercent, leftPercent, rightPercent);
   }
 });
+const handle = (target: any) => {
+  if (target.id === "min") {
+    sliderMinValue.value = parseFloat(target.value);
+  } else if (target.id === "max") {
+    sliderMaxValue.value = parseFloat(target.value);
+  }
+  //sliderMinValue = parseFloat(target.value);
+  // sliderMinValue.value = parseFloat(target.value);
+};
 </script>
 
 <style scoped>
@@ -201,6 +220,11 @@ watchEffect(() => {
 }
 
 .minmax-inputs input {
-  width: 50px;
+  width: 41.4vw;
+  height: 40px;
+  padding: 6px 24px 6px 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  background: rgba(246, 244, 252, 1);
 }
 </style>

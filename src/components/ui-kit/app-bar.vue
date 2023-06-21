@@ -2,14 +2,20 @@
   <div class="bar">
     <ul class="bar-list">
       <li class="item">
-        <router-link class="navigation" to="/">
-          <img class="pull-img" src="@/assets/home-not-active.svg" alt="" />
+        <router-link class="navigation" :to="{ name: 'pulls' }">
+          <img v-if="currentPage === 'pulls'" src="@/assets/home.svg" alt="" />
+          <img v-else src="@/assets/home-not-active.svg" alt="" />
           <span class="name">Пуллы</span>
         </router-link>
       </li>
       <li class="item">
-        <router-link class="navigation" to="/">
-          <img src="@/assets/basket.svg" alt="" />
+        <router-link class="navigation" :to="{ name: 'loans' }">
+          <img
+            v-if="currentPage === 'loans'"
+            src="@/assets/basket.svg"
+            alt=""
+          />
+          <img v-else src="@/assets/basket-not-active.svg" alt="" />
           <span class="name">Займы</span>
         </router-link>
       </li>
@@ -66,6 +72,7 @@ const currentPage = computed(() => {
   border-radius: 20px 20px 0px 0px;
   position: fixed;
   bottom: 0em;
+  z-index: 1000;
 }
 .bar-list {
   display: flex;

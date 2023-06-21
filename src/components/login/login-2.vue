@@ -64,7 +64,18 @@
     >
       <router-link
         :to="{
-          name: activeForm === 'phone' ? 'phone-confirmation' : 'setting',
+          name:
+            activeForm === 'phone'
+              ? 'phone-confirmation'
+              : role === 'borrower'
+              ? 'pulls-borrower'
+              : role === 'depositor'
+              ? 'pulls-depositor'
+              : role === 'creditor'
+              ? 'pulls'
+              : role === 'collector'
+              ? 'pulls-collector'
+              : '',
         }"
         :style="{ textDecoration: 'none' }"
       >
@@ -80,10 +91,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import catosButton from "../ui-kit/buttons/catos-button.vue";
 import inputData from "../fields/input-data.vue";
 const activeForm = ref("email");
+const role = computed(() => {
+  console.log(window.history.state.role);
+  return window.history.state.role;
+});
 </script>
 
 <style scoped lang="scss">

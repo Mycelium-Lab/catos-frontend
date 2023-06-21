@@ -1,7 +1,5 @@
 <template>
-  <span :class="`status-tag_${variant}`" class="status-tag">
-    {{ content }}
-  </span>
+  <span :class="`status-tag_${variant}`" class="status-tag"> {{ text }} </span>
 </template>
 
 <script setup lang="ts">
@@ -10,6 +8,9 @@ const { variant } = defineProps({
   variant: {
     type: String,
     default: "approved",
+  },
+  text: {
+    type: String,
   },
 });
 
@@ -22,6 +23,8 @@ const content = computed(() =>
     ? "Ожидание"
     : variant === "forsales"
     ? "Продается"
+    : variant === "reject-loans"
+    ? "Просрочен повторно"
     : ""
 );
 </script>
@@ -38,10 +41,9 @@ const content = computed(() =>
   height: 3.078em;
   justify-content: center;
   line-height: 1.75;
-  margin-right: 8.3rem;
   position: relative;
   white-space: nowrap;
-  width: 9.231em;
+  width: 77vw;
   cursor: pointer;
   &_approved {
     background: rgba(229, 254, 229, 1);
