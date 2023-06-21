@@ -23,21 +23,6 @@
 
     <div class="des-and-bbn_bottom des-and-bbn" id="desAndBbn">
       <div class="text-and-button">
-        <catos-button
-          v-if="variant === 2"
-          variant="fourth"
-          :style="{ width: '97%', marginBottom: '1em' }"
-          @click="toWallet"
-          >Зарегистрироваться как инвестор</catos-button
-        >
-        <catos-button
-          v-if="variant === 2"
-          variant="fourth"
-          :style="{ width: '97%', marginBottom: '1em' }"
-          @click="toWallet"
-          >Войти как инвестор</catos-button
-        >
-
         <div class="buttos-tabs_action buttons-tabs" @click="toHistory">
           <div class="text">Продолжить</div>
         </div>
@@ -53,13 +38,6 @@ import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 const router = useRouter();
 import { ModalImages } from "@/types/modal-props";
 
-const { title, count, subtitle, variant } = defineProps({
-  title: { type: String },
-  count: { type: String },
-  subtitle: { type: String },
-  variant: { type: Number, required: true },
-});
-
 const emit = defineEmits(["onModal"]);
 const action = computed(() => {
   return window.history.state.action;
@@ -71,10 +49,6 @@ const handleStatus = () => {
 
 const toHistory = () => {
   router.push({ name: "transaction-history" });
-};
-
-const getImageUrl = () => {
-  return ModalImages[variant];
 };
 
 const toWallet = () => {

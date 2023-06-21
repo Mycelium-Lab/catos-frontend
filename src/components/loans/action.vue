@@ -231,7 +231,7 @@
 
         <div class="frame-parent6">
           <div
-            v-if="сurrentStatus !== 'repaid' || сurrentStatus !== 'overdue'"
+            v-if="currentStatus !== 'repaid' || currentStatus !== 'overdue'"
             class="frame-parent7"
           >
             <div class="parent1">
