@@ -3,6 +3,12 @@ body {
   line-height: normal;
   font-family: Inter, "Source Sans Pro";
   box-sizing: border-box;
+  /*min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 140);*/
+}
+
+#app {
+  overflow: hidden;
 }
 
 :root {
