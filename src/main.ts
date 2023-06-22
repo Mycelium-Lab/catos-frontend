@@ -11,4 +11,7 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 
+let vh = window.innerHeight / 100;
+document.documentElement.style.setProperty("--vh", `${vh}px`);
+
 app.mount("#app");
