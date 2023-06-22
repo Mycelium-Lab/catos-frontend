@@ -320,7 +320,7 @@
 .content {
   position: relative;
   min-height: 100vh;
-  min-height: calc(var(--vh, 1vh) * 120);
+  min-height: calc(var(--vh, 1vh) * 130);
   top: 34vw;
 }
 .bg3 {
