@@ -64,6 +64,16 @@ export const borrower = [
     component: () => import("../views/pulls/borrower.vue"),
   },
   {
+    path: "/pulls/borrower-filter",
+    name: "pulls-borrower-filter",
+    component: () => import("../components/pulls/borrower/borrower-filter.vue"),
+  },
+  {
+    path: "/pulls/borrower-sort",
+    name: "pulls-borrower-sort",
+    component: () => import("../components/pulls/borrower/borrower-sort.vue"),
+  },
+  {
     path: "/pulls/borrower/detail",
     name: "pulls-borrower-detail",
     component: () => import("../components/pulls/borrower/detail-other.vue"),
@@ -131,5 +141,16 @@ export const collector = [
     path: "/pulls/collector-debt-detail",
     name: "pulls-collector-debt-detail",
     component: () => import("../components/pulls/collector/debt-detail.vue"),
+  },
+  {
+    path: "/pulls/collector-filter",
+    name: "pulls-collector-filter",
+    component: () =>
+      import("../components/pulls/collector/collector-filter.vue"),
+  },
+  {
+    path: "/pulls/collector-sort",
+    name: "pulls-collector-sort",
+    component: () => import("../components/pulls/collector/collector-sort.vue"),
   },
 ];

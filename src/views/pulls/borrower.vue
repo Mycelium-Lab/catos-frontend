@@ -53,10 +53,10 @@ const curentWindow = ref("all");
 const router = useRouter();
 
 const toSort = () => {
-  router.push({ name: "pulls-sort" });
+  router.push({ name: "pulls-borrower-sort" });
 };
 const toFilter = () => {
-  router.push({ name: "pulls-filter" });
+  router.push({ name: "pulls-borrower-filter" });
 };
 
 const toggleSlide = (slideIndex: any) => {
@@ -502,6 +502,8 @@ const toggleSlide = (slideIndex: any) => {
   font-size: 0.88em;
   line-height: 0.71em;
   font-weight: 300;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .menu-2-icon {
   position: relative;
@@ -1316,7 +1318,7 @@ const toggleSlide = (slideIndex: any) => {
   position: relative;
   background-color: #fff;
   width: 100%;
-  height: 61.13em;
+  height: 55.13em;
   overflow: hidden;
   text-align: center;
   color: #3b3b3b;
