@@ -2,15 +2,25 @@
   <div class="custom-slider">
     <slot name="left-label"></slot>
     <slot name="right-label"></slot>
-    <input
-      :value="sliderValue"
-      @input="({ target }) => handle(target)"
-      :min="min"
-      :max="max"
-      :step="step"
-      type="number"
-      class="input"
-    />
+    <div
+      :class="
+        inputLabel
+          ? `input-wrapper_${inputLabel} input-wrapper`
+          : 'input-wrapper'
+      "
+    >
+      <input
+        @input="({ target }) => handle(target)"
+        :min="min"
+        :max="max"
+        :step="step"
+        v-model="sliderValue"
+        type="number"
+        class="input"
+      />
+      {{ inputLabel === "percent" ? `${parseValue}%` : parseValue }}
+    </div>
+
     <input
       ref="slider"
       :value="sliderValue"
@@ -24,7 +34,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, watchEffect } from "vue";
+import { ref, watchEffect, computed } from "vue";
 
 // define component props for the slider component
 const { min, max, step, modelValue } = defineProps({
@@ -44,6 +54,9 @@ const { min, max, step, modelValue } = defineProps({
     type: Number,
     default: 50,
   },
+  inputLabel: {
+    type: String,
+  },
 });
 
 // define emits for the slider component
@@ -54,6 +67,17 @@ const emit = defineEmits(["update:modelValue"]);
 // @ts-ignore
 const sliderValue = ref(modelValue);
 const slider = ref(null);
+
+const parseValue = computed(() => {
+  const arrValue = String(sliderValue.value).split("");
+  console.log(arrValue.length);
+  if (String(sliderValue.value).length === 4) {
+    arrValue.splice(1, 0, " ");
+  } else if (String(sliderValue.value).length > 4) {
+    arrValue.splice(2, 0, " ");
+  }
+  return arrValue.join("");
+});
 
 // function to get the progress of the slider
 // @ts-ignore
@@ -141,7 +165,7 @@ const handle = (target: any) => {
   z-index: 1;
 }
 .input {
-  background: rgba(246, 244, 252, 1);
+  /* background: rgba(246, 244, 252, 1);
   border: 1px solid rgba(0, 0, 0, 0.03);
   border-radius: 16px;
   height: 40px;
@@ -155,5 +179,47 @@ const handle = (target: any) => {
   position: relative;
   margin: 0 auto;
   color: #2e3a59;
+  */
+
+  width: 1%;
+  height: 40px;
+
+  outline: none;
+  border: none;
+  background: transparent;
+  font-size: 15.273px;
+  color: transparent;
+}
+
+.input-wrapper_ton::after {
+  content: "TON";
+}
+.input-wrapper_day::after {
+  content: "дней";
+}
+.input-wrapper::after,
+.input-wrapper::before {
+  position: absolute;
+}
+.input-wrapper {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 53%;
+  height: 40px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  background: #f6f4fc;
+  font-size: 15.273px;
+  padding: 6px 55px 6px 24px;
+  gap: 3vw;
+  margin: 0 auto;
+}
+.input-wrapper_ton::after {
+  right: 7vw;
+}
+.input-wrapper_day::after {
+  right: 9.5vw;
 }
 </style>

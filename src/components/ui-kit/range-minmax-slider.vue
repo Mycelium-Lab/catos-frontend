@@ -1,7 +1,17 @@
 <template>
   <div class="minmax-inputs">
-    <input type="number" :step="step" v-model="sliderMinValue" readonly />
-    <input type="number" :step="step" v-model="sliderMaxValue" readonly />
+    <div
+      :class="inputLabel ? `min-input_${inputLabel} min-input` : 'min-input'"
+    >
+      {{ inputLabel === "percent" ? `${parseMin}%` : parseMin }}
+      <input type="number" :step="step" v-model="sliderMinValue" readonly />
+    </div>
+    <div
+      :class="inputLabel ? `max-input_${inputLabel} max-input` : 'max-input'"
+    >
+      {{ inputLabel === "percent" ? `${parseMax}%` : parseMax }}
+      <input type="number" :step="step" v-model="sliderMaxValue" readonly />
+    </div>
   </div>
   <div ref="slider" class="custom-slider minmax">
     <input
@@ -39,7 +49,7 @@
 <script setup lang="ts">
 import { computed, ref, watchEffect } from "vue";
 
-const { min, max, step, minValue, maxValue } = defineProps({
+const { min, max, step, minValue, maxValue, inputLabel } = defineProps({
   min: {
     type: Number,
     default: 0,
@@ -60,6 +70,9 @@ const { min, max, step, minValue, maxValue } = defineProps({
     type: Number,
     default: 80,
   },
+  inputLabel: {
+    type: String,
+  },
 });
 
 // define emits for the slider component
@@ -69,6 +82,28 @@ const emit = defineEmits(["update:minValue", "update:maxValue"]);
 const slider = ref(null);
 const sliderMinValue = ref(minValue);
 const sliderMaxValue = ref(maxValue);
+
+const parseMin = computed(() => {
+  const arrValue = String(sliderMinValue.value).split("");
+  console.log(arrValue.length);
+  if (String(sliderMinValue.value).length === 4) {
+    arrValue.splice(1, 0, " ");
+  } else if (String(sliderMinValue.value).length > 4) {
+    arrValue.splice(2, 0, " ");
+  }
+  return arrValue.join("");
+});
+
+const parseMax = computed(() => {
+  const arrValue = String(sliderMaxValue.value).split("");
+  console.log(arrValue.length);
+  if (String(sliderMaxValue.value).length === 4) {
+    arrValue.splice(1, 0, " ");
+  } else if (String(sliderMaxValue.value).length > 4) {
+    arrValue.splice(2, 0, " ");
+  }
+  return arrValue.join("");
+});
 
 // function to get the percentage of a value between the min and max values
 // @ts-ignore
@@ -127,7 +162,7 @@ const handle = (target: any) => {
 
 .custom-slider {
   --trackHeight: 0.125rem;
-  --thumbRadius: 1rem;
+  --thumbRadius: 1.3rem;
 }
 
 /* style the input element with type "range" */
@@ -171,7 +206,7 @@ const handle = (target: any) => {
 
 .custom-slider input[type="range"]::-webkit-slider-thumb {
   position: relative;
-  /* top: 50%; 
+  /* top: 50%;
   transform: translate(0, -50%);
   */
   width: var(--thumbRadius);
@@ -189,7 +224,7 @@ const handle = (target: any) => {
   height: var(--trackHeight);
   background: rgba(151, 71, 255, 0.2);
   border-radius: 999px;
-  margin: 0.5rem 0;
+  margin: 0.8rem 0;
   --progressLeft: 0%;
   --progressRight: 0%;
 }
@@ -220,11 +255,81 @@ const handle = (target: any) => {
 }
 
 .minmax-inputs input {
+  width: 1%;
+  height: 40px;
+
+  outline: none;
+  border: none;
+  background: transparent;
+  font-size: 15.273px;
+  color: transparent;
+}
+
+.min-input,
+.max-input {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
   width: 41.4vw;
   height: 40px;
-  padding: 6px 24px 6px 24px;
   border-radius: 16px;
   border: 1px solid rgba(0, 0, 0, 0.03);
-  background: rgba(246, 244, 252, 1);
+  background: #f6f4fc;
+  font-size: 15.273px;
+  padding: 6px 24px 6px 24px;
+  gap: 3vw;
+}
+.min-input {
+  gap: 3vw;
+}
+.max-input_ton::after {
+  content: "TON";
+}
+.max-input_percent::before {
+  content: "до";
+}
+.max-input_percent::after {
+  content: "макс";
+}
+.max-input_day::before {
+  content: "до";
+}
+.max-input_day::after {
+  content: "дней";
+}
+.min-input_ton::after {
+  content: "TON";
+}
+.min-input_percent::after {
+  content: "мин";
+}
+.min-input_percent::before {
+  content: "от";
+}
+.min-input_day::after {
+  content: "дней";
+}
+.min-input_day::before {
+  content: "от";
+}
+.max-input::after,
+.max-input::before,
+.min-input::after,
+.min-input::before {
+  position: absolute;
+  color: rgba(46, 58, 89, 0.4);
+}
+.max-input::after,
+.min-input::after {
+  right: 6vw;
+}
+.max-input::before,
+.min-input::before {
+  left: 6.5vw;
+}
+.min-input::before {
+  position: absolute;
+  color: rgba(46, 58, 89, 0.4);
 }
 </style>
