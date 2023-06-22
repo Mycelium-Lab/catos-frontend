@@ -1,158 +1,163 @@
 <template>
   <div class="pull-stats">
-    <div class="pull-stats-child"></div>
-    <div class="filtr">
-      <div class="frame">
-        <div class="div9">Задолжность №1223</div>
+    <div class="pull-stats-child">
+      <div class="filtr">
+        <div class="frame">
+          <div class="div9">Задолжность №1223</div>
+        </div>
       </div>
-    </div>
-    <div class="pull-stats1">
-      <div class="frame-group">
-        <div class="frame-container">
-          <div class="frame-inner"></div>
-          <div class="buttons-tabs-parent">
-            <div class="buttons-tabs">
-              <div class="ton-parent">
-                <div class="div10">Текущий долг:</div>
-                <div class="ton">50 000 TON</div>
-              </div>
-              <img
-                v-if="variant === 'marketplace'"
-                class="pie-chart-icon"
-                alt=""
-                src="@/assets/images/pie-chart.svg"
-              />
-              <img
-                v-else
-                class="pie-chart-icon"
-                alt=""
-                src="@/assets/images/activity-svgrepo.svg"
-              />
-              <div class="status">
+      <div class="pull-stats1">
+        <div class="frame-group">
+          <div class="frame-container">
+            <div class="frame-inner"></div>
+            <div class="buttons-tabs-parent">
+              <div class="buttons-tabs">
+                <div class="ton-parent">
+                  <div class="div10">Текущий долг:</div>
+                  <div class="ton">50 000 TON</div>
+                </div>
                 <img
                   v-if="variant === 'marketplace'"
-                  src="@/assets/images/red-status.svg"
+                  class="pie-chart-icon"
+                  alt=""
+                  src="@/assets/images/pie-chart.svg"
                 />
-                <img v-else src="@/assets/images/yellow-status.svg" />
-                <span class="status-title">{{
-                  variant === "marketplace" ? "Просрочен" : "Не погашен"
-                }}</span>
-                <div class="chevron-wrapper" v-if="variant !== 'marketplace'">
-                  <img src="@/assets/images/chevron-right-mini.svg" />
+                <img
+                  v-else
+                  class="pie-chart-icon"
+                  alt=""
+                  src="@/assets/images/activity-svgrepo.svg"
+                />
+                <div class="status">
+                  <img
+                    v-if="variant === 'marketplace'"
+                    src="@/assets/images/red-status.svg"
+                  />
+                  <img v-else src="@/assets/images/yellow-status.svg" />
+                  <span class="status-title">{{
+                    variant === "marketplace" ? "Просрочен" : "Не погашен"
+                  }}</span>
+                  <div class="chevron-wrapper" v-if="variant !== 'marketplace'">
+                    <img src="@/assets/images/chevron-right-mini.svg" />
+                  </div>
+                </div>
+              </div>
+              <div class="frame-div">
+                <div class="percent-parent">
+                  <img
+                    class="percent-icon"
+                    alt=""
+                    src="@/assets/images/percent.svg"
+                  />
+
+                  <div class="div11">1 день = 1%</div>
+                </div>
+                <div class="percent-parent">
+                  <img
+                    class="percent-icon"
+                    alt=""
+                    src="@/assets/images/clock.svg"
+                  />
+
+                  <div class="div11">
+                    Просрочен <br />
+                    на 9 дней
+                  </div>
+                </div>
+                <div class="percent-parent">
+                  <img
+                    class="percent-icon"
+                    alt=""
+                    src="@/assets/images/activity.svg"
+                  />
+
+                  <div class="div11">ROI = 75%</div>
                 </div>
               </div>
             </div>
-            <div class="frame-div">
-              <div class="percent-parent">
-                <img
-                  class="percent-icon"
-                  alt=""
-                  src="@/assets/images/percent.svg"
-                />
+          </div>
+          <div class="frame-parent1_my frame-parent1">
+            <div class="creditlabel">Кредитор:</div>
 
-                <div class="div11">1 день = 1%</div>
+            <catos-checkbox
+              :style="{ top: '0.2em', position: 'relative' }"
+              variant="radiobutton"
+            ></catos-checkbox>
+            <div class="creditoption">Деньги до зарплаты</div>
+          </div>
+
+          <div class="frame-parent2">
+            <div class="frame-parent3">
+              <div class="roi-wrapper">
+                <div class="roi">Ставка:</div>
               </div>
-              <div class="percent-parent">
-                <img
-                  class="percent-icon"
-                  alt=""
-                  src="@/assets/images/clock.svg"
-                />
+              <div class="ton-wrapper">
+                <div class="div16">1% в день</div>
+              </div>
+            </div>
+            <div class="line-div"></div>
+            <div class="frame-parent3">
+              <div class="roi-wrapper">
+                <div class="roi">На срок:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="div16">до 30 дней</div>
+              </div>
+            </div>
+            <div class="line-div"></div>
+            <div class="frame-parent3">
+              <div class="roi-wrapper">
+                <div class="roi">Беспроцентный период:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="div16">3 дня</div>
+              </div>
+            </div>
+          </div>
+          <div class="percent-group">
+            <img
+              class="percent-icon1"
+              alt=""
+              src="@/assets/images/percent.svg"
+            />
 
-                <div class="div11">
-                  Просрочен <br />
-                  на 9 дней
+            <div class="div24">
+              {{
+                variant === "marketplace"
+                  ? "Проценты будут начисляться после выкупа"
+                  : "Проценты заемщику начисляются"
+              }}
+              <br v-if="variant === 'marketplace'" />
+              с 12 апреля 2023 года
+            </div>
+          </div>
+        </div>
+        <div
+          class="des-and-bbn"
+          :style="
+            variant !== 'marketplace'
+              ? { position: 'relative', top: '-0.5rm' }
+              : {}
+          "
+        >
+          <div class="text-and-button-parent">
+            <div class="text-and-button">
+              <div
+                v-if="variant === 'marketplace'"
+                class="buttons-tabs2"
+                id="buttonsTabsContainer3"
+              >
+                <div class="text2" @click="toPay">
+                  <div>Купить</div>
                 </div>
               </div>
-              <div class="percent-parent">
-                <img
-                  class="percent-icon"
-                  alt=""
-                  src="@/assets/images/activity.svg"
-                />
-
-                <div class="div11">ROI = 75%</div>
+              <div
+                class="buttons-tabs2"
+                id="buttonsTabsContainer4"
+                @click="toDetail"
+              >
+                <div class="text3" @click="toDetail">Подробнее</div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="frame-parent1_my frame-parent1">
-          <div class="creditlabel">Кредитор:</div>
-
-          <catos-checkbox
-            :style="{ top: '0.2em', position: 'relative' }"
-            variant="radiobutton"
-          ></catos-checkbox>
-          <div class="creditoption">Деньги до зарплаты</div>
-        </div>
-
-        <div class="frame-parent2">
-          <div class="frame-parent3">
-            <div class="roi-wrapper">
-              <div class="roi">Ставка:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="div16">1% в день</div>
-            </div>
-          </div>
-          <div class="line-div"></div>
-          <div class="frame-parent3">
-            <div class="roi-wrapper">
-              <div class="roi">На срок:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="div16">до 30 дней</div>
-            </div>
-          </div>
-          <div class="line-div"></div>
-          <div class="frame-parent3">
-            <div class="roi-wrapper">
-              <div class="roi">Беспроцентный период:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="div16">3 дня</div>
-            </div>
-          </div>
-        </div>
-        <div class="percent-group">
-          <img class="percent-icon1" alt="" src="@/assets/images/percent.svg" />
-
-          <div class="div24">
-            {{
-              variant === "marketplace"
-                ? "Проценты будут начисляться после выкупа"
-                : "Проценты заемщику начисляются"
-            }}
-            <br v-if="variant === 'marketplace'" />
-            с 12 апреля 2023 года
-          </div>
-        </div>
-      </div>
-      <div
-        class="des-and-bbn"
-        :style="
-          variant !== 'marketplace'
-            ? { position: 'relative', top: '-0.5rm' }
-            : {}
-        "
-      >
-        <div class="text-and-button-parent">
-          <div class="text-and-button">
-            <div
-              v-if="variant === 'marketplace'"
-              class="buttons-tabs2"
-              id="buttonsTabsContainer3"
-            >
-              <div class="text2" @click="() => (isBuy = true)">
-                <div>Купить</div>
-              </div>
-            </div>
-            <div
-              class="buttons-tabs2"
-              id="buttonsTabsContainer4"
-              @click="toDetail"
-            >
-              <div class="text3" @click="toDetail">Подробнее</div>
             </div>
           </div>
         </div>
@@ -169,7 +174,7 @@
         <liquidity-management></liquidity-management>
       </bottomsheet>
     -->
-  <payment v-if="isBuy"></payment>
+  <!--<payment v-if="isBuy"></payment>-->
 </template>
 
 <script setup lang="ts">
@@ -182,15 +187,34 @@ const { variant } = defineProps({
 });
 
 const emit = defineEmits(["onBottomsheet", "onModal"]);
-const isBuy = ref(false);
+// const isBuy = ref(false);
 const router = useRouter();
 
 const toDetail = () => {
+  console.log(variant);
   router.push({
     name:
       variant === "marketplace"
         ? "pulls-collector-detail"
         : "pulls-collector-debt-detail",
+  });
+};
+
+const toPay = () => {
+  router.push({
+    name: "pulls-borrower-get-loan-payment",
+    state: {
+      subTitle:
+        "Scan the QR code and pay 20 000 TON with Tonkeeper using sAzx..okRjINg",
+      title: "Take the loan",
+      actionTitle: "Make transaction with Tokenkeeper",
+      bottomSubTitle: "policy",
+      from: "collector",
+      modal: {
+        title: "Транзакция успешно выполнена",
+        variant: 0,
+      },
+    },
   });
 };
 
@@ -248,7 +272,8 @@ const handleOpen = () => {
   border-radius: 15px;
   backdrop-filter: blur(5px);
   border: 0.5px solid rgba(46, 58, 89, 0.4);
-  height: 32.94em;
+  /* height: 32.94em; */
+  position: relative;
 }
 .div9 {
   position: relative;
@@ -269,7 +294,7 @@ const handleOpen = () => {
 .filtr,
 .frame-inner {
   position: absolute;
-  top: 0;
+  top: -0.8em;
 }
 .filtr {
   left: 1em;
@@ -383,7 +408,7 @@ const handleOpen = () => {
 }
 .buttons-tabs-parent {
   position: absolute;
-  top: 0.94em;
+  top: -0.15em;
   left: 0.81em;
   flex-direction: row;
   align-items: center;
@@ -609,19 +634,19 @@ const handleOpen = () => {
   box-sizing: border-box;
   align-items: flex-start;
   text-align: right;
+  margin-bottom: 1.38em;
   color: #f8f8ff;
 }
 .pull-stats1 {
-  position: relative;
-  top: 1.81em;
   align-items: center;
   gap: 0.88em;
   margin: 0px auto;
+  margin-top: 2em;
 }
 .pull-stats {
   position: relative;
-  top: 8em;
-  height: 33.56em;
+  top: 9em;
+  height: auto;
   text-align: left;
   margin: 0px 24px;
 }

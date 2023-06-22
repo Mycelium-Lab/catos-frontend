@@ -1,329 +1,316 @@
 <template>
-  <div class="div8">
-    <div class="header">
-      <div class="div15">Задолженности</div>
+  <modal from="collector">
+    <div class="wrapper6">
+      <div class="div33">Информация о задолженности #12345</div>
+    </div>
+    <div class="frame-parent7">
+      <div class="header-wrapper">
+        <div class="header1">
+          <div class="div33">Основная информация</div>
+        </div>
+      </div>
+      <div class="frame-wrapper1">
+        <div class="frame-parent8">
+          <div class="parent1">
+            <div class="div35">Кредитор:</div>
+            <div class="group">
+              <catos-checkbox variant="radiobutton"></catos-checkbox>
+              <div class="div36">Деньги до зарплаты</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Статус:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">Не погашен</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Текущий долг:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">49 000 TON</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Ставка:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">1 % в день</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Просрочен на:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">9 дней</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Цена покупки:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">9 000 TON</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="frame-parent12">
+      <div class="header-wrapper">
+        <div class="header1">
+          <div class="div33">Параметры займа</div>
+        </div>
+      </div>
+      <div class="frame-wrapper1">
+        <div class="frame-parent8">
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Тело займа:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">40 000 TON</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Накопленный процент:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">10 000 TON</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Выплачено по долгу:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">1 000 TON</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Одобренный лимит:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">до 40 000 TON</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">На срок:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">до 30 дней</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Беспроцентный лимит:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">3 дня</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Взят:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">31.12.2023, 16.00</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Пролонгирован:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">01.02.2024, 19.20</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Выкуплен:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">01.04.2024, 19.20</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="frame-parent5">
-      <div class="menu-2-parent" id="frameContainer24">
-        <div class="div21">
-          <span>Фильтр </span>
-          <span class="span">(1)</span>
+    <div class="frame-parent13 frame-parent12">
+      <div class="header-wrapper">
+        <div class="header1">
+          <div class="div33">Информация о заемщике</div>
         </div>
       </div>
-      <div class="menu-2-parent" id="frameContainer25">
-        <div class="div21">
-          <span>Сортировка </span>
-          <span class="span">(1)</span>
+      <div class="frame-wrapper1">
+        <div class="frame-parent8">
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Имя:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">Иван Васильев</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Проживает в:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">Москва</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Возраст:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">37 лет</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Годовой доход:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">2 400 00 руб.</div>
+            </div>
+          </div>
+          <div class="line-div"></div>
+          <div class="frame-parent2">
+            <div class="wrapper1">
+              <div class="div35">Сфера деятельности:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div38">Программист</div>
+            </div>
+          </div>
+
+          <div class="load-wrapper" @click="() => (isLoad = true)">
+            <img src="@/assets/images/iconspdf.svg" />
+            <span>Скачать полную анкету</span>
+            <div>
+              <div class="chevron-wrapper">
+                <img src="@/assets/images/chevron-right-mini.svg" />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="table-svgrepo-com-2-parent">
-        <div class="div21">Вид</div>
       </div>
     </div>
 
-    <div class="bg"></div>
-    <div class="swipe-down-parent">
-      <div class="wrapper6">
-        <div class="div33">Информация о задолженности #12345</div>
-      </div>
-      <div class="frame-parent7">
-        <div class="header-wrapper">
-          <div class="header1">
-            <div class="div33">Основная информация</div>
+    <div class="frame-parent28">
+      <div class="frame-parent29">
+        <div class="frame-child16"></div>
+        <div class="buttons-tabs-group">
+          <div class="buttons-tabs3">
+            <div class="ton-parent">
+              <div class="div68">Стоимость:</div>
+              <div class="ton6">20 000 TON</div>
+            </div>
+            <img
+              class="pie-chart-icon"
+              alt=""
+              src="@/assets/images/pie-chart.svg"
+            />
           </div>
-        </div>
-        <div class="frame-wrapper1">
-          <div class="frame-parent8">
-            <div class="parent1">
-              <div class="div35">Кредитор:</div>
-              <div class="group">
-                <catos-checkbox variant="radiobutton"></catos-checkbox>
-                <div class="div36">Деньги до зарплаты</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Статус:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">Не погашен</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Текущий долг:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">49 000 TON</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Ставка:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">1 % в день</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Просрочен на:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">9 дней</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Цена покупки:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">9 000 TON</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="frame-parent12">
-        <div class="header-wrapper">
-          <div class="header1">
-            <div class="div33">Параметры займа</div>
-          </div>
-        </div>
-        <div class="frame-wrapper1">
-          <div class="frame-parent8">
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Тело займа:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">40 000 TON</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Накопленный процент:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">10 000 TON</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Выплачено по долгу:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">1 000 TON</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Одобренный лимит:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">до 40 000 TON</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">На срок:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">до 30 дней</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Беспроцентный лимит:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">3 дня</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Взят:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">31.12.2023, 16.00</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Пролонгирован:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">01.02.2024, 19.20</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Выкуплен:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">01.04.2024, 19.20</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="frame-parent13 frame-parent12">
-        <div class="header-wrapper">
-          <div class="header1">
-            <div class="div33">Информация о заемщике</div>
-          </div>
-        </div>
-        <div class="frame-wrapper1">
-          <div class="frame-parent8">
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Имя:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">Иван Васильев</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Проживает в:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">Москва</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Возраст:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">37 лет</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Годовой доход:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">2 400 00 руб.</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="wrapper1">
-                <div class="div35">Сфера деятельности:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div38">Программист</div>
-              </div>
-            </div>
-
-            <div class="load-wrapper">
-              <img src="@/assets/images/iconspdf.svg" />
-              <span>Скачать полную анкету</span>
-              <div>
-                <div class="chevron-wrapper">
-                  <img src="@/assets/images/chevron-right-mini.svg" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="frame-parent28">
-        <div class="frame-parent29">
-          <div class="frame-child16"></div>
-          <div class="buttons-tabs-group">
-            <div class="buttons-tabs3">
-              <div class="ton-parent">
-                <div class="div68">Стоимость:</div>
-                <div class="ton6">20 000 TON</div>
-              </div>
+          <div class="frame-div">
+            <div class="percent-parent">
               <img
-                class="pie-chart-icon"
+                class="percent-icon"
                 alt=""
-                src="@/assets/images/pie-chart.svg"
+                src="@/assets/images/percent.svg"
               />
+
+              <div class="div18">1 день = 1%</div>
             </div>
-            <div class="frame-div">
-              <div class="percent-parent">
-                <img
-                  class="percent-icon"
-                  alt=""
-                  src="@/assets/images/percent.svg"
-                />
+            <div class="percent-parent">
+              <img
+                class="percent-icon"
+                alt=""
+                src="@/assets/images/clock.svg"
+              />
 
-                <div class="div18">1 день = 1%</div>
-              </div>
-              <div class="percent-parent">
-                <img
-                  class="percent-icon"
-                  alt=""
-                  src="@/assets/images/clock.svg"
-                />
+              <div class="div18">3 дня = 0%</div>
+            </div>
+            <div class="percent-parent">
+              <img
+                class="percent-icon"
+                alt=""
+                src="@/assets/images/activity-svgrepo-mini.svg"
+              />
 
-                <div class="div18">3 дня = 0%</div>
-              </div>
-              <div class="percent-parent">
-                <img
-                  class="percent-icon"
-                  alt=""
-                  src="@/assets/images/activity-svgrepo-mini.svg"
-                />
-
-                <div class="div18">На 30 дней</div>
-              </div>
+              <div class="div18">На 30 дней</div>
             </div>
           </div>
         </div>
-        <div class="des-and-bbn1">
-          <div class="text-and-button-wrapper" @click="() => (isBuy = true)">
-            <div class="text-and-button">
-              <div class="buttons-tabs1">
-                <div class="text">Реконструировать</div>
-              </div>
+      </div>
+      <div class="des-and-bbn1">
+        <div class="text-and-button-wrapper" @click="() => (isBuy = true)">
+          <div class="text-and-button">
+            <div class="buttons-tabs1">
+              <div class="text">Реконструировать</div>
             </div>
           </div>
-          <div class="text-and-button-container">
-            <div class="text-and-button">
-              <div class="buttons-tabs2">
-                <div class="text3">Отмена</div>
-              </div>
+        </div>
+        <div class="text-and-button-container">
+          <div class="text-and-button" @click="toBack">
+            <div class="buttons-tabs2">
+              <div class="text3">Отмена</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="buttonback">
-      <div class="div71">Назад</div>
-    </div>
-  </div>
-  <payment v-if="isBuy"></payment>
+
+    <payment v-if="isBuy"></payment>
+    <load-modal
+      v-if="isLoad"
+      variant="form"
+      @on-close="() => (isLoad = false)"
+    ></load-modal>
+  </modal>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import payment from "@/components/pulls/borrower/payment.vue";
 import catosCheckbox from "@/components/ui-kit/catos-checkbox.vue";
+import loadModal from "@/components/base/load-modal.vue";
+import modal from "@/components/ui-kit/modal.vue";
 const isBuy = ref(false);
+
+const isLoad = ref(false);
+const router = useRouter();
+const toBack = () => {
+  router.go(-1);
+};
 </script>
 
 <style scoped lang="scss">
