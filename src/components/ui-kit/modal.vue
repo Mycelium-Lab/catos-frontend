@@ -6,7 +6,10 @@
     </div>
   </router-link>
 
-  <default-pulls-overlay v-if="from === 'pulls'">
+  <default-pulls-overlay v-if="from === 'pulls' || from === 'collector'">
+    <template v-slot:title>
+      {{ from === "pulls" ? " Кредитные пуллы" : "Задолжности" }}
+    </template>
     <div class="div">
       <div class="header-parent">
         <slot></slot>
@@ -32,7 +35,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+
+onMounted(() => {
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+});
 
 import defaultWalletOverlay from "../layouts/default-wallet-overlay.vue";
 import defaultPullsOverlay from "../layouts/default-pulls-overlay.vue";
@@ -74,7 +82,8 @@ const options = {
   position: relative;
   background-color: #fff;
   width: 100%;
-  height: 80vh;
+  height: 100vh; /* фолбэк для браузеров, которые не поддерживают пользовательские свойства */
+  height: calc(var(--vh, 1vh) * 100);
 
   text-align: left;
   color: #3b3b3b;
@@ -108,21 +117,6 @@ const options = {
   z-index: 100;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
-}
-.div {
-  position: relative;
-  background-color: #fff;
-  width: 100%;
-  height: 80vh;
-  margin-bottom: 12em;
-  text-align: left;
-  color: #3b3b3b;
-  font-family: Inter;
-  overflow-x: hidden;
-  z-index: 2000;
-  border-top-right-radius: 30px;
-  border-top-left-radius: 30px;
-  font-size: 1rem;
 }
 .div22 {
   position: absolute;
