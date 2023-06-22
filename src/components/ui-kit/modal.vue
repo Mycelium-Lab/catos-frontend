@@ -1,7 +1,7 @@
 <template>
   <router-link class="nav-buttons" to="" @click="$router.go(-1)">
     <div class="buttonback">
-      <div class="div22">Назад123</div>
+      <div class="div22">Назад22</div>
       <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
     </div>
   </router-link>
@@ -86,7 +86,6 @@ const options = {
   //height: calc(var(--vh, 1vh) * 100);
 
   min-height: 100vh;
-  min-height: calc(var(--vh, 1vh) * 100);
 
   text-align: left;
   color: #3b3b3b;

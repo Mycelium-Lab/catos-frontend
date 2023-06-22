@@ -3,7 +3,9 @@
     <div class="bg3"></div>
     <div class="inner">
       <div class="header">
-        <div class="div11">Кредитные пуллы</div>
+        <div class="div11">
+          <slot name="title"></slot>
+        </div>
       </div>
     </div>
     <section class="content"><slot /></section>
@@ -300,11 +302,10 @@
   overflow: hidden;
 }
 .div8 {
-  position: absolute;
+  position: relative;
   top: 3.6em;
   left: 0.2em;
   min-width: 100%;
-  height: 59.38em;
   overflow-y: auto;
   text-align: center;
   color: #3b3b3b;
@@ -315,11 +316,11 @@
   font-size: 0.63em;
   line-height: 120%;
   font-weight: 300;
-  height: 100vh;
 }
 .content {
   position: relative;
-
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 120);
   top: 34vw;
 }
 .bg3 {
