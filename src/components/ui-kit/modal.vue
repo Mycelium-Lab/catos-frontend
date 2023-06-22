@@ -90,7 +90,7 @@ const options = {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
-  overflow-x: hidden;
+  overflow: hidden;
   z-index: 2000;
   border-top-right-radius: 30px;
   border-top-left-radius: 30px;
