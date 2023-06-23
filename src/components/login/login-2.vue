@@ -96,7 +96,7 @@ import catosButton from "../ui-kit/buttons/catos-button.vue";
 import inputData from "../fields/input-data.vue";
 const activeForm = ref("email");
 const role = computed(() => {
-  console.log(window.history.state.role);
+  localStorage.setItem("role", JSON.stringify(window.history.state.role));
   return window.history.state.role;
 });
 </script>
