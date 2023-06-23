@@ -1,69 +1,95 @@
 <template>
-  <div
-    :class="isOpen ? 'catos-select_active catos-select' : 'catos-select'"
-    @click="() => (isOpen = !isOpen)"
-    data-element="select"
-  >
-    <input
-      :value="value || placeholder"
-      :class="
-        value
-          ? 'catos-select_input_fill catos-select_input'
-          : 'catos-select_input'
-      "
-      type="text"
-      readonly
+  <div class="catos-select-wrapper">
+    <div
+      :class="isOpen ? 'catos-select_active catos-select' : 'catos-select'"
+      @click="() => (isOpen = !isOpen)"
       data-element="select"
-    />
-    <img
-      src="../../assets/images/ui-kit/chevron-double.svg"
-      alt="chevron-double"
-      data-element="select"
-    />
+    >
+      <input
+        :value="value || placeholder"
+        :class="
+          value
+            ? 'catos-select_input_fill catos-select_input'
+            : 'catos-select_input'
+        "
+        type="text"
+        readonly
+        data-element="select"
+      />
+      <img
+        src="../../assets/images/ui-kit/chevron-double.svg"
+        alt="chevron-double"
+        data-element="select"
+      />
+    </div>
+    <ul
+      v-if="isOpen"
+      :style="{ width: `${optionWidth}vw` }"
+      class="catos-select__options"
+    >
+      <template v-if="Array.isArray(options)">
+        <li
+          v-for="(option, index) in options"
+          :key="index"
+          class="catos-select__option"
+          data-element="option"
+        >
+          <input
+            class="catos-option_input"
+            :value="option"
+            @click="getOption"
+            readonly
+            data-element="option"
+          />
+        </li>
+      </template>
+      <template v-else="!Array.isArray(options)">
+        <li data-element="option">
+          <p class="catos-select__options_name" data-element="option">
+            Страны СНГ
+          </p>
+          <ul class="catos-select__options_group" data-element="option">
+            <li
+              v-for="(option, index) in options?.sng"
+              :key="index"
+              class="catos-select__option"
+              data-element="option"
+            >
+              <input
+                class="catos-option_input"
+                :value="option"
+                @click="getOption"
+                readonly
+                data-element="option"
+              />
+            </li>
+          </ul>
+        </li>
+        <li data-element="option">
+          <p class="catos-select__options_name" data-element="option">
+            Страны Еврозоны
+          </p>
+          <ul class="catos-select__options_group" data-element="option">
+            <li
+              v-for="(option, index) in options?.euro"
+              :key="index"
+              class="catos-select__option"
+              data-element="option"
+              :class="options?.euro.length - 1 === index ? 'last' : ''"
+            >
+              <input
+                class="catos-option_input"
+                :value="option"
+                @click="getOption"
+                readonly
+                data-element="option"
+              />
+            </li>
+          </ul>
+        </li>
+      </template>
+    </ul>
   </div>
-  <ul v-if="isOpen" class="catos-select__options">
-    <li data-element="option">
-      <p class="catos-select__options_name" data-element="option">Страны СНГ</p>
-      <ul class="catos-select__options_group" data-element="option">
-        <li
-          v-for="(option, index) in options?.sng"
-          :key="index"
-          class="catos-select__option"
-          data-element="option"
-        >
-          <input
-            class="catos-option_input"
-            :value="option"
-            @click="getOption"
-            readonly
-            data-element="option"
-          />
-        </li>
-      </ul>
-    </li>
-    <li data-element="option">
-      <p class="catos-select__options_name" data-element="option">
-        Страны Еврозоны
-      </p>
-      <ul class="catos-select__options_group" data-element="option">
-        <li
-          v-for="(option, index) in options?.euro"
-          :key="index"
-          class="catos-select__option"
-          data-element="option"
-          :class="options?.euro.length - 1 === index ? 'last' : ''"
-        >
-          <input
-            class="catos-option_input"
-            :value="option"
-            @click="getOption"
-            readonly
-            data-element="option"
-          />
-        </li>
-      </ul>
-    </li>
-  </ul>
 </template>
 
 <script setup lang="ts">
@@ -77,6 +103,9 @@ const { placeholder } = defineProps({
   },
   value: {
     type: String,
+  },
+  optionWidth: {
+    type: Number,
   },
 });
 
@@ -109,6 +138,9 @@ watch(isOpen, () => {
 </script>
 
 <style scoped lang="scss">
+.catos-select-wrapper {
+  position: relative;
+}
 .catos-select {
   position: relative;
   border: 0.5px solid #2e3a59;
@@ -129,7 +161,6 @@ watch(isOpen, () => {
   }
 }
 .catos-select__options {
-  width: 18.25em;
   border: 1px solid rgba(0, 0, 0, 0.04);
   border-radius: var(--br-base);
   padding: 0px;
@@ -140,7 +171,7 @@ watch(isOpen, () => {
   position: absolute;
   z-index: 100;
   background: #fff;
-  top: 4.3em;
+  top: 3.3em;
   &_name {
     font-size: var(--font-size-sm);
     color: rgba(46, 58, 89, 1);
