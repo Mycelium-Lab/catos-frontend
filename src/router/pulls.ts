@@ -10,10 +10,9 @@ export const creditor = [
     component: () => import("../components/pulls/creditor/detail-personal.vue"),
   },
   {
-    path: "/pulls/personal",
-    name: "pulls-personal",
-    component: () =>
-      import("../components/pulls/creditor/personal/personal.vue"),
+    path: "/pulls/detail",
+    name: "pulls-detail",
+    component: () => import("../components/pulls/creditor/detail-other.vue"),
   },
   {
     path: "/pulls/filter",
