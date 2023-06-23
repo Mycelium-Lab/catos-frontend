@@ -11,23 +11,16 @@
         fontSize: '12px',
         width: '87.7vw',
       }"
-      :variantIndex="2"
+      :variantIndex="3"
       :tabs="['Маркетплейс', 'Выкупленные задолжности']"
+      :variant="getCurentWindow"
       @on-slide="toggleSlide"
     ></button-slider>
     <div class="frame-parent9">
       <div class="menu-2-parent" id="frameContainer33">
         <img class="frame-icon" alt="" src="@/assets/images/iconsfilter.svg" />
 
-        <div
-          class="div25"
-          @click="
-            () => {
-              isFilter = true;
-              isAppBar = false;
-            }
-          "
-        >
+        <div class="div25" @click="toFilter">
           <span>Фильтр </span>
           <span class="span2">(1)</span>
         </div>
@@ -35,15 +28,7 @@
       <div class="menu-2-parent" id="frameContainer34">
         <img class="menu-2-icon" alt="" src="@/assets/images/iconssort.svg" />
 
-        <div
-          class="div25"
-          @click="
-            () => {
-              isSort = true;
-              isAppBar = false;
-            }
-          "
-        >
+        <div class="div25" @click="toSort">
           <span>Сортировка </span>
           <span class="span2">(1)</span>
         </div>
@@ -53,37 +38,43 @@
     <collector-list
       :style="{ top: '8.5em' }"
       :variant="curentWindow"
+      :key="curentWindow"
       @on-bottomsheet="(ev: any) => isBackSide = ev"
       @on-modal="() => (isBackSide = true)"
     ></collector-list>
-    <bottomsheet v-if="isFilter || isSort" defaultState="open">
-      <Filter v-if="isFilter"></Filter>
-      <Sort v-if="isSort"></Sort>
-    </bottomsheet>
+
     <app-bar v-if="isAppBar"></app-bar>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
-import bottomsheet from "@/components/ui-kit/bottomsheet.vue";
 import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import collectorList from "@/components/pulls/collector/collector-list.vue";
-
 import appBar from "@/components/ui-kit/app-bar.vue";
-import Filter from "@/components/pulls/filter.vue";
-import Sort from "@/components/pulls/sort.vue";
+
+const getCurentWindow = computed(() => {
+  console.log(window.history.state.curentWindow);
+  return window.history.state.curentWindow;
+});
 
 const isBackSide = ref(false);
-const curentWindow = ref("all");
-const isFilter = ref(false);
-const isSort = ref(false);
+const curentWindow = ref(
+  getCurentWindow.value ? getCurentWindow.value : "marketplace"
+);
+
 const isAppBar = ref(true);
 
 const router = useRouter();
-const toCreatePull = () => {
-  router.push({ name: "pulls-create" });
+const toSort = () => {
+  router.push({ name: "pulls-collector-sort" });
+};
+const toFilter = () => {
+  router.push({
+    name: "pulls-collector-filter",
+    state: { variant: curentWindow.value },
+  });
 };
 
 const toggleSlide = (slideIndex: any) => {
@@ -529,6 +520,8 @@ const toggleSlide = (slideIndex: any) => {
   font-size: 0.88em;
   line-height: 0.71em;
   font-weight: 300;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 .menu-2-icon {
   position: relative;
