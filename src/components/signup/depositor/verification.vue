@@ -835,7 +835,7 @@ const options = {
   background-color: #fdd674;
   width: 100%;
   height: 68.5em;
-  overflow-y: auto;
+  overflow: hidden;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
