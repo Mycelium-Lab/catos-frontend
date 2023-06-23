@@ -1279,7 +1279,7 @@ const toScan = () => {
   color: rgba(59, 59, 59, 0.54);
 }
 .decor-parent {
-  position: absolute;
+  position: relative;
   /* top: 0em; */
   left: 0;
   border-radius: 24px 24px 0 0;
