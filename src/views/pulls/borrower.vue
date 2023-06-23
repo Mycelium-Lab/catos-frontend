@@ -1,6 +1,5 @@
 <template>
   <div class="iphone-13-13-" :class="isBackSide ? 'back-side' : ''">
-    <div class="pull"></div>
     <div class="header">
       <div class="div8">Кредитные пуллы</div>
     </div>
@@ -40,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted, watch } from "vue";
 import { useRouter } from "vue-router";
 
 import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
@@ -66,9 +65,35 @@ const toggleSlide = (slideIndex: any) => {
     curentWindow.value = "my";
   }
 };
+
+onMounted(() => {
+  // @ts-ignore
+  document.querySelector("body").style.height = "calc(100vh + 203px)";
+  // @ts-ignore
+  document.querySelector("#app").style.height = "calc(100vh + 203px)";
+  // @ts-ignore
+  // document.querySelector(".iphone-13-13- ").style.minHeight ="calc(100vh + 300px)";
+});
+
+onUnmounted(() => {
+  // @ts-ignore
+  document.querySelector("body").style.height = "auto";
+  // @ts-ignore
+  document.querySelector("#app").style.height = "auto";
+});
+
+watch(curentWindow, newVal => {
+  if (newVal === "my") {
+    // @ts-ignore
+    //document.querySelector("body").style.minHeight ="calc(var(--vh, 1vh) * 100)";
+  } else {
+    // @ts-ignore
+    //document.querySelector("body").style.minHeight ="calc(var(--vh, 1vh) * 100)";
+  }
+});
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .pull {
   position: absolute;
   top: 0;
@@ -1318,11 +1343,17 @@ const toggleSlide = (slideIndex: any) => {
   position: relative;
   background-color: #fff;
   width: 100%;
-  height: 55.13em;
-  overflow: hidden;
+  //min-height: 100vh;
+  // height: calc(var(--vh, 1vh) * 110);
+  //height: calc(8.12px * 110);
+  //  height: 600px;
+
   text-align: center;
   color: #3b3b3b;
   font-family: Inter;
+  /*&_my {
+    height: calc(var(--vh, 1vh) * 100);
+  }*/
 }
 .back-side {
   position: fixed;

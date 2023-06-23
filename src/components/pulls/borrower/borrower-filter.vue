@@ -11,7 +11,7 @@
       }"
       @on-edit="handleEdit"
     ></chips-bar>
-    <div class="decor"></div>
+
     <div class="frame-parent3">
       <div class="fields-parent">
         <ul class="option-list">
@@ -118,7 +118,7 @@
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import catosButton from "../../ui-kit/buttons/catos-button.vue";
 import inputData from "@/components/fields/input-data.vue";
 import catosSelect from "../../fields/catos-select.vue";
@@ -862,12 +862,6 @@ const handleEdit = (ev: any) => {
   text-align: right;
   color: rgba(93, 104, 123, 0.9);
 }
-.decor {
-  left: 1em;
-
-  width: 90%;
-  height: 24em;
-}
 .job-title1 {
   position: relative;
   font-size: 1.13em;
@@ -1282,7 +1276,6 @@ const handleEdit = (ev: any) => {
 .frame-parent3 {
   position: relative;
 
-  height: 100%;
   gap: 0.38em;
   width: 90vw;
   margin: 0 auto;
@@ -1343,11 +1336,10 @@ const handleEdit = (ev: any) => {
   /* top: 0em; */
   left: 0;
   border-radius: 24px 24px 0 0;
-
+  overflow: hidden;
   box-sizing: border-box;
   width: 100vw;
-  min-height: 100vh;
-  min-height: calc(var(--vh, 1vh) * 130);
+  height: calc(var(--vh, 1vh) * 140);
 }
 .div44 {
   left: 3.29em;
