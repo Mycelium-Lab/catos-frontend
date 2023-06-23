@@ -6,9 +6,14 @@
     <div class="fields-parent">
       <div class="fields">
         <div class="parent6">
-          <div class="div47">Сумма займа: TON</div>
+          <div class="div47">Сумма займа:</div>
           <div class="frame-parent14">
-            <range-slider :style="{ width: '60vw', position: 'relative' }">
+            <range-slider
+              :style="{ width: '77vw', position: 'relative' }"
+              inputLabel="ton"
+              :modelValue="13000"
+              :max="50000"
+            >
               <template v-slot:left-label>
                 <span class="left-label"><span>от</span> 0</span>
               </template>
@@ -21,9 +26,14 @@
       </div>
       <div class="fields">
         <div class="parent6">
-          <div class="div47">На срок: Дни</div>
+          <div class="div47">На срок:</div>
           <div class="frame-parent14">
-            <range-slider :style="{ width: '60vw', position: 'relative' }">
+            <range-slider
+              :style="{ width: '77vw', position: 'relative' }"
+              inputLabel="day"
+              :modelValue="7"
+              :max="30"
+            >
               <template v-slot:left-label>
                 <span class="left-label"><span>от</span> 1</span>
               </template>
@@ -45,7 +55,7 @@
           <div class="text5">Получить займ</div>
         </div>
       </div>
-      <div class="text-and-button3">
+      <div class="text-and-button3" @click="toBack">
         <div class="buttons-tabs5">
           <div class="text6">Отмена</div>
         </div>
@@ -130,6 +140,10 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 import rangeSlider from "@/components/ui-kit/range-slider.vue";
 import catosCheckbox from "@/components/ui-kit/catos-checkbox.vue";
+
+const toBack = () => {
+  router.go(-1);
+};
 const next = () => {
   router.push({
     name: "pulls-borrower-get-loan-payment",
@@ -1038,6 +1052,7 @@ const next = () => {
   position: relative;
   font-size: 0.88em;
   line-height: 130%;
+  font-weight: 400;
 }
 .div48 {
   font-size: 0.75em;
@@ -1209,6 +1224,7 @@ const next = () => {
   flex-shrink: 0;
   flex-direction: column;
   color: #f8f8ff;
+  cursor: pointer;
 }
 .text6 {
   position: absolute;
@@ -1675,13 +1691,13 @@ const next = () => {
 }
 .left-label {
   position: absolute;
-  top: 1.2em;
-  left: 0.3vw;
+  top: 1.4em;
+  left: 9.5vw;
 }
 .right-label {
   position: absolute;
-  top: 1.2em;
-  right: -9vw;
+  top: 1.4em;
+  left: 62vw;
   &_day {
     right: -2vw;
   }
