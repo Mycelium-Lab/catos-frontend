@@ -79,6 +79,11 @@ export const borrower = [
     component: () => import("../components/pulls/borrower/detail-other.vue"),
   },
   {
+    path: "/pulls/borrower/detail-my",
+    name: "pulls-borrower-detail-my",
+    component: () => import("../components/pulls/borrower/detail.vue"),
+  },
+  {
     path: "/pulls/borrower/get-loan",
     name: "pulls-borrower-get-loan",
     component: () => import("../components/pulls/borrower/loan.vue"),
