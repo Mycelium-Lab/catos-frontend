@@ -1,60 +1,193 @@
 <template>
   <div class="bar">
     <ul class="bar-list">
-      <li class="item">
-        <router-link class="navigation" :to="{ name: 'pulls' }">
-          <img v-if="currentPage === 'pulls'" src="@/assets/home.svg" alt="" />
-          <img v-else src="@/assets/home-not-active.svg" alt="" />
-          <span class="name">Пуллы</span>
-        </router-link>
-      </li>
-      <li class="item">
-        <router-link class="navigation" :to="{ name: 'loans' }">
-          <img
-            v-if="currentPage === 'loans'"
-            src="@/assets/basket.svg"
-            alt=""
-          />
-          <img v-else src="@/assets/basket-not-active.svg" alt="" />
-          <span class="name">Займы</span>
-        </router-link>
-      </li>
-      <li class="item_dash item">
-        <router-link class="navigation" to="/">
-          <img src="@/assets/news.svg" alt="" />
-          <span class="name">Дашбоард</span>
-        </router-link>
-      </li>
-      <li class="item">
-        <router-link class="navigation" :to="{ name: 'setting' }">
-          <img
-            v-if="currentPage === 'setting'"
-            src="@/assets/setting.svg"
-            alt=""
-          />
-          <img v-else src="@/assets/setting-not-active.svg" alt="" />
-          <span class="name">Настройки</span>
-        </router-link>
-      </li>
-      <li class="item">
-        <router-link class="navigation" :to="{ name: 'wallet' }">
-          <img
-            v-if="currentPage === 'wallet'"
-            src="@/assets/wallet.svg"
-            alt=""
-          />
-          <img v-else src="@/assets/wallet-not-active.svg" alt="" />
-          <span class="name">Кошелек</span>
-        </router-link>
-      </li>
+      <!--COLLECTOR-->
+      <template v-if="role === 'collector'">
+        <li class="item">
+          <router-link class="navigation" :to="{ name: 'pulls-collector' }">
+            <!-- <svg width="34" height="34">
+              <use
+                :class="currentPage === 'pulls-collector' ? 'active' : ''"
+                href="@/assets/home.svg#home"
+              ></use>
+            </svg>
+          -->
+            <img
+              v-if="currentPage === 'pulls-collector'"
+              :style="{ position: 'relative', top: '0.15em' }"
+              src="@/assets/home.svg"
+              alt=""
+            />
+            <img
+              v-else
+              :style="{ position: 'relative', top: '0.15em' }"
+              src="@/assets/home-not-active.svg"
+              alt=""
+            />
+            <span class="name">Задолжности</span>
+          </router-link>
+        </li>
+        <li class="item">
+          <router-link class="navigation" :to="{ name: 'setting' }">
+            <img
+              v-if="currentPage === 'setting'"
+              src="@/assets/iconsuser.svg"
+              alt=""
+            />
+            <img v-else src="@/assets/user-not-active.svg" alt="" />
+            <span class="name">Профиль</span>
+          </router-link>
+        </li>
+        <li class="item">
+          <router-link class="navigation" :to="{ name: 'wallet' }">
+            <img
+              v-if="currentPage === 'wallet'"
+              src="@/assets/wallet.svg"
+              alt=""
+            />
+            <img v-else src="@/assets/wallet-not-active.svg" alt="" />
+            <span class="name">Кошелек</span>
+          </router-link>
+        </li>
+      </template>
+
+      <!--BORROWER-->
+      <template v-else-if="role === 'borrower'">
+        <li class="item">
+          <router-link class="navigation" :to="{ name: 'pulls-borrower' }">
+            <img
+              v-if="currentPage === 'pulls-borrower'"
+              :style="{ position: 'relative', top: '0.15em' }"
+              src="@/assets/home.svg"
+              alt=""
+            />
+            <img
+              v-else
+              :style="{ position: 'relative', top: '0.15em' }"
+              src="@/assets/home-not-active.svg"
+              alt=""
+            />
+            <span class="name">Пуллы</span>
+          </router-link>
+        </li>
+        <li class="item">
+          <router-link class="navigation" :to="{ name: 'loans-borrower' }">
+            <img
+              v-if="currentPage === 'loans-borrower'"
+              src="@/assets/basket.svg"
+              alt=""
+            />
+            <img v-else src="@/assets/basket-not-active.svg" alt="" />
+            <span class="name">Займы</span>
+          </router-link>
+        </li>
+        <li class="item">
+          <router-link class="navigation" :to="{ name: 'setting' }">
+            <img
+              v-if="currentPage === 'setting'"
+              src="@/assets/iconsuser.svg"
+              alt=""
+            />
+            <img v-else src="@/assets/user-not-active.svg" alt="" />
+            <span class="name">Профиль</span>
+          </router-link>
+        </li>
+        <li class="item">
+          <router-link class="navigation" :to="{ name: 'wallet' }">
+            <img
+              v-if="currentPage === 'wallet'"
+              src="@/assets/wallet.svg"
+              alt=""
+            />
+            <img v-else src="@/assets/wallet-not-active.svg" alt="" />
+            <span class="name">Кошелек</span>
+          </router-link>
+        </li>
+      </template>
+
+      <template v-else>
+        <li class="item">
+          <router-link
+            class="navigation"
+            :to="{ name: role === 'creditor' ? 'pulls' : 'pulls-depositor' }"
+          >
+            <img
+              v-if="
+                currentPage === 'pulls' || currentPage === 'pulls-depositor'
+              "
+              src="@/assets/home.svg"
+              alt=""
+            />
+            <img v-else src="@/assets/home-not-active.svg" alt="" />
+            <span class="name">Пуллы</span>
+          </router-link>
+        </li>
+        <li v-if="role === 'creditor'" class="item">
+          <router-link class="navigation" :to="{ name: 'loans' }">
+            <img
+              v-if="currentPage === 'loans'"
+              src="@/assets/basket.svg"
+              alt=""
+            />
+            <img v-else src="@/assets/basket-not-active.svg" alt="" />
+            <span class="name">Займы</span>
+          </router-link>
+        </li>
+        <li class="item_dash item">
+          <router-link
+            class="navigation"
+            :to="{
+              name: role === 'creditor' ? 'dashboard' : 'dashboard-depositor',
+            }"
+          >
+            <img
+              v-if="
+                currentPage === 'dashboard' ||
+                currentPage === 'dashboard-depositor'
+              "
+              src="@/assets/news.svg"
+              alt=""
+            />
+            <img v-else src="@/assets/news-not-active.svg" alt="" />
+            <span class="name">Дашбоард</span>
+          </router-link>
+        </li>
+        <li class="item">
+          <router-link class="navigation" :to="{ name: 'setting' }">
+            <img
+              v-if="currentPage === 'setting'"
+              src="@/assets/setting.svg"
+              alt=""
+            />
+            <img v-else src="@/assets/setting-not-active.svg" alt="" />
+            <span class="name">Настройки</span>
+          </router-link>
+        </li>
+        <li class="item">
+          <router-link class="navigation" :to="{ name: 'wallet' }">
+            <img
+              v-if="currentPage === 'wallet'"
+              src="@/assets/wallet.svg"
+              alt=""
+            />
+            <img v-else src="@/assets/wallet-not-active.svg" alt="" />
+            <span class="name">Кошелек</span>
+          </router-link>
+        </li>
+      </template>
     </ul>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
+
+const role = ref(
+  localStorage.getItem ? JSON.parse(localStorage.getItem("role")!) : ""
+);
+
 const currentPage = computed(() => {
   return route.name;
 });
@@ -77,7 +210,7 @@ const currentPage = computed(() => {
 .bar-list {
   display: flex;
   gap: 16px;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   list-style: none;
   padding: 0em;
@@ -88,17 +221,20 @@ const currentPage = computed(() => {
   z-index: 100;
 }
 .navigation {
+  display: flex;
+  flex-direction: column;
   position: relative;
   text-decoration: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
+  gap: 0.2em;
+  align-items: center;
 }
+
 .name {
   font-size: 10px;
   color: rgba(48, 51, 55, 0.9);
   font-weight: 300;
-  top: -0.8em;
-  position: relative;
 }
 
 .item {
