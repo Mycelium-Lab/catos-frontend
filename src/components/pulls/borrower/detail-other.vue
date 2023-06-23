@@ -1,191 +1,195 @@
 <template>
   <modal from="pulls">
-    <div class="header">Информация о пулле №1223</div>
+    <div class="wrapper">
+      <div class="header">Информация о пулле №1223</div>
 
-    <div class="pull-stats">
-      <div class="pull-stats1">
-        <div class="frame-group">
-          <div class="frame-container">
-            <div class="frame-inner"></div>
-            <div class="buttons-tabs-parent">
-              <div class="buttons-tabs">
-                <div class="ton-parent">
-                  <div class="ton">37 000 TON</div>
-                  <div class="div10">Доступно ликвидности:</div>
-                </div>
-                <img
-                  class="pie-chart-icon"
-                  alt=""
-                  src="@/assets/images/pie-chart.svg"
-                />
-              </div>
-              <div class="frame-div">
-                <div class="percent-parent">
+      <div class="pull-stats">
+        <div class="pull-stats1">
+          <div class="frame-group">
+            <div class="frame-container">
+              <div class="frame-inner"></div>
+              <div class="buttons-tabs-parent">
+                <div class="buttons-tabs">
+                  <div class="ton-parent">
+                    <div class="ton">37 000 TON</div>
+                    <div class="div10">Доступно ликвидности:</div>
+                  </div>
                   <img
-                    class="percent-icon"
+                    class="pie-chart-icon"
                     alt=""
-                    src="@/assets/images/percent.svg"
+                    src="@/assets/images/pie-chart.svg"
                   />
+                </div>
+                <div class="frame-div">
+                  <div class="percent-parent">
+                    <img
+                      class="percent-icon"
+                      alt=""
+                      src="@/assets/images/percent.svg"
+                    />
 
-                  <div class="div11">1 день = 1%</div>
-                </div>
-                <div class="percent-parent">
-                  <img
-                    class="percent-icon"
-                    alt=""
-                    src="@/assets/images/clock.svg"
-                  />
+                    <div class="div11">1 день = 1%</div>
+                  </div>
+                  <div class="percent-parent">
+                    <img
+                      class="percent-icon"
+                      alt=""
+                      src="@/assets/images/clock.svg"
+                    />
 
-                  <div class="div11">3 дня = 0%</div>
-                </div>
-                <div class="percent-parent">
-                  <img
-                    class="percent-icon"
-                    alt=""
-                    src="@/assets/images/activity.svg"
-                  />
+                    <div class="div11">3 дня = 0%</div>
+                  </div>
+                  <div class="percent-parent">
+                    <img
+                      class="percent-icon"
+                      alt=""
+                      src="@/assets/images/activity.svg"
+                    />
 
-                  <div class="div11">ROI = 75%</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="frame-parent1_my frame-parent1">
-            <div class="creditlabel">Кредитор:</div>
-            <catos-checkbox
-              variant="radiobutton"
-              :style="{ position: 'relative', top: '0.1em' }"
-            ></catos-checkbox>
-            <div class="creditoption">CATOS</div>
-          </div>
-          <div class="frame-parent2">
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Ставка:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">1% в день</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">На срок:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">до 30 дней</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Беспроцентный период:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">3 дня</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Всего ликвидности:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">450 000 TON</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Свободно:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">37 000 TON</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">ROI инвесторов:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">75% годовых</div>
-              </div>
-            </div>
-          </div>
-          <div class="percent-group">
-            <img
-              class="percent-icon1"
-              alt=""
-              src="@/assets/images/percent.svg"
-            />
-
-            <div class="div24">Проценты начисляются с 12 апреля 2023 года</div>
-          </div>
-        </div>
-        <!--<div class="des-and-bbn">
-            <div class="text-and-button-parent">
-              <div v-if="variant === 'all'" class="text-and-button">
-                <div class="buttons-tabs1">
-                  <div class="text">Займы</div>
-                </div>
-                <div class="buttons-tabs2" id="buttonsTabsContainer2">
-                  <div class="text1">Аналитика</div>
-                </div>
-              </div>
-              <div class="text-and-button">
-                <div
-                  v-if="variant === 'all'"
-                  class="buttons-tabs2"
-                  id="buttonsTabsContainer3"
-                >
-                  <div class="text2" @click="toManage">
-                    <span class="span">Упр</span>
-                    <span class="span1">. ликвид</span>
+                    <div class="div11">ROI = 75%</div>
                   </div>
                 </div>
-                <div class="buttons-tabs2" id="buttonsTabsContainer4">
-                  <div class="text3">Закрыть</div>
+              </div>
+            </div>
+            <div class="frame-parent1_my frame-parent1">
+              <div class="creditlabel">Кредитор:</div>
+              <catos-checkbox
+                variant="radiobutton"
+                :style="{ position: 'relative', top: '0.1em' }"
+              ></catos-checkbox>
+              <div class="creditoption">CATOS</div>
+            </div>
+            <div class="frame-parent2">
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Ставка:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">1% в день</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">На срок:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">до 30 дней</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Беспроцентный период:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">3 дня</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Всего ликвидности:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">450 000 TON</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Свободно:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">37 000 TON</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">ROI инвесторов:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">75% годовых</div>
                 </div>
               </div>
             </div>
-          </div>-->
-        <div class="des-and-bbn">
-          <div class="text-and-button-parent">
-            <div class="text-and-button">
-              <div
-                class="buttons-tabs2"
-                id="buttonsTabsContainer4"
-                @click="getLoan"
-              >
-                <div class="text3">Получить займ</div>
+            <div class="percent-group">
+              <img
+                class="percent-icon1"
+                alt=""
+                src="@/assets/images/percent.svg"
+              />
+
+              <div class="div24">
+                Проценты начисляются с 12 апреля 2023 года
               </div>
-              <div class="buttons-tabs2" id="buttonsTabsContainer4">
-                <div class="text3" @click="() => (isInvest = true)">
-                  Инвестировать в пулл
+            </div>
+          </div>
+          <!--<div class="des-and-bbn">
+        <div class="text-and-button-parent">
+          <div v-if="variant === 'all'" class="text-and-button">
+            <div class="buttons-tabs1">
+              <div class="text">Займы</div>
+            </div>
+            <div class="buttons-tabs2" id="buttonsTabsContainer2">
+              <div class="text1">Аналитика</div>
+            </div>
+          </div>
+          <div class="text-and-button">
+            <div
+              v-if="variant === 'all'"
+              class="buttons-tabs2"
+              id="buttonsTabsContainer3"
+            >
+              <div class="text2" @click="toManage">
+                <span class="span">Упр</span>
+                <span class="span1">. ликвид</span>
+              </div>
+            </div>
+            <div class="buttons-tabs2" id="buttonsTabsContainer4">
+              <div class="text3">Закрыть</div>
+            </div>
+          </div>
+        </div>
+      </div>-->
+          <div class="des-and-bbn">
+            <div class="text-and-button-parent">
+              <div class="text-and-button">
+                <div
+                  class="buttons-tabs2"
+                  id="buttonsTabsContainer4"
+                  @click="getLoan"
+                >
+                  <div class="text3">Получить займ</div>
                 </div>
-              </div>
-              <div
-                class="buttons-tabs2_back buttons-tabs2"
-                id="buttonsTabsContainer4"
-                @click="toPulls"
-              >
-                <div class="text3">Назад</div>
+                <div class="buttons-tabs2" id="buttonsTabsContainer4">
+                  <div class="text3" @click="() => (isInvest = true)">
+                    Инвестировать в пулл
+                  </div>
+                </div>
+                <div
+                  class="buttons-tabs2_back buttons-tabs2"
+                  id="buttonsTabsContainer4"
+                  @click="toPulls"
+                >
+                  <div class="text3">Назад</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <satusModal
-      v-if="isInvest"
-      :variant="2"
-      title="Получить статус инвестора"
-      subtitle="Чтобы начать инвестировать в кредитные 
+      <satusModal
+        v-if="isInvest"
+        :variant="2"
+        title="Получить статус инвестора"
+        subtitle="Чтобы начать инвестировать в кредитные 
 пулы Catos и получать дополнительную 
 прибыль, нужно зарегистрироваться в качестве кредитора-инвестора в системе."
-    ></satusModal>
+      ></satusModal>
+    </div>
   </modal>
 </template>
 
@@ -213,6 +217,9 @@ const getLoan = () => {
 </script>
 
 <style scoped lang="scss">
+.wrapper {
+  height: 900px;
+}
 .pull {
   position: absolute;
   top: 0;
