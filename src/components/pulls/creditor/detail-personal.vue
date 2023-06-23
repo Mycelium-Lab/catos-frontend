@@ -452,7 +452,6 @@ const toManage = () => {
   position: relative;
   width: 83.6vw;
   height: 5.94em;
-  top: -4em;
 }
 .div14 {
   position: absolute;
@@ -523,7 +522,7 @@ const toManage = () => {
 .roi {
   position: relative;
   font-size: 0.75em;
-  line-height: 0.83em;
+  line-height: 130%;
   font-weight: 300;
 }
 .frame-parent2,
@@ -670,7 +669,7 @@ const toManage = () => {
 }
 .pull-stats1 {
   position: relative;
-  top: 1.81em;
+  top: -2em;
   align-items: center;
   gap: 0.88em;
   margin: 0px auto;
@@ -678,7 +677,7 @@ const toManage = () => {
 .pull-stats {
   position: relative;
   top: 6em;
-  height: 45em;
+  height: 47em;
   text-align: left;
   margin: 0px 24px;
   border: 0.5px solid rgba(46, 58, 89, 0.4);
