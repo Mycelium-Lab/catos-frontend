@@ -1,186 +1,188 @@
 <template>
   <modal from="pulls">
-    <div class="new-pull-parent">
-      <div class="pull-stats">
-        <div class="pull-stats1">
-          <div class="frame-group">
-            <div class="frame">
-              <div class="roi">Всего ликвидности:</div>
+    <div class="wrapper">
+      <div class="new-pull-parent">
+        <div class="pull-stats">
+          <div class="pull-stats1">
+            <div class="frame-group">
+              <div class="frame">
+                <div class="roi">Всего ликвидности:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="ton">1 053 324 TON</div>
+              </div>
             </div>
-            <div class="ton-wrapper">
-              <div class="ton">1 053 324 TON</div>
+            <div class="pull-stats-child"></div>
+            <div class="frame-group">
+              <div class="frame">
+                <div class="roi">Выдано в займ:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="ton">796 000 TON</div>
+              </div>
             </div>
-          </div>
-          <div class="pull-stats-child"></div>
-          <div class="frame-group">
-            <div class="frame">
-              <div class="roi">Выдано в займ:</div>
+            <div class="pull-stats-child"></div>
+            <div class="frame-group">
+              <div class="frame">
+                <div class="roi">Доступно для выдачи:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="ton">257 324 TON</div>
+              </div>
             </div>
-            <div class="ton-wrapper">
-              <div class="ton">796 000 TON</div>
+            <div class="pull-stats-child"></div>
+            <div class="frame-group">
+              <div class="frame">
+                <div class="roi">Доступно для изьятия</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="ton">257 324 TON</div>
+              </div>
             </div>
-          </div>
-          <div class="pull-stats-child"></div>
-          <div class="frame-group">
-            <div class="frame">
-              <div class="roi">Доступно для выдачи:</div>
+            <div class="pull-stats-child"></div>
+            <div class="frame-group">
+              <div class="frame">
+                <div class="roi">Процент невозврата:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="ton">
+                  4
+                  <span class="span">,5%</span>
+                </div>
+              </div>
             </div>
-            <div class="ton-wrapper">
-              <div class="ton">257 324 TON</div>
+            <div class="pull-stats-child"></div>
+            <div class="frame-group">
+              <div class="frame">
+                <div class="roi">Не вернули:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="ton">100 246 TON</div>
+              </div>
             </div>
-          </div>
-          <div class="pull-stats-child"></div>
-          <div class="frame-group">
-            <div class="frame">
-              <div class="roi">Доступно для изьятия</div>
+            <div class="pull-stats-child"></div>
+            <div class="frame-group">
+              <div class="frame">
+                <div class="roi">Продано коллекторам:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="ton">57 273 TON</div>
+              </div>
             </div>
-            <div class="ton-wrapper">
-              <div class="ton">257 324 TON</div>
+            <div class="pull-stats-child"></div>
+            <div class="frame-group">
+              <div class="frame">
+                <div class="roi">На продаже коллекторам:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="ton">33 211 TON</div>
+              </div>
             </div>
-          </div>
-          <div class="pull-stats-child"></div>
-          <div class="frame-group">
-            <div class="frame">
-              <div class="roi">Процент невозврата:</div>
+            <div class="pull-stats-child"></div>
+            <div class="frame-group">
+              <div class="frame">
+                <div class="roi">На продаже коллекторам:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="ton">33 211 TON</div>
+              </div>
             </div>
-            <div class="ton-wrapper">
-              <div class="ton">
-                4
-                <span class="span">,5%</span>
+            <div class="pull-stats-child"></div>
+            <div class="frame-group">
+              <div class="frame">
+                <div class="roi">Общий доход:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="ton">102 311 TON</div>
+              </div>
+            </div>
+            <div class="pull-stats-child"></div>
+            <div class="frame-group">
+              <div class="frame">
+                <div class="roi">ROI:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="ton">72% годовых</div>
+              </div>
+            </div>
+            <div class="pull-stats-child"></div>
+            <div class="frame-group">
+              <div class="frame">
+                <div class="roi">Займов выдано:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="ton">10 547 раз</div>
+              </div>
+            </div>
+            <div class="pull-stats-child"></div>
+            <div class="frame-group">
+              <div class="frame">
+                <div class="roi">Займов погашено:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="ton">3 927 раз</div>
+              </div>
+            </div>
+            <div class="pull-stats-child"></div>
+            <div class="frame-group">
+              <div class="frame">
+                <div class="roi">Займов активно:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="ton">6 468</div>
               </div>
             </div>
           </div>
-          <div class="pull-stats-child"></div>
-          <div class="frame-group">
-            <div class="frame">
-              <div class="roi">Не вернули:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="ton">100 246 TON</div>
-            </div>
-          </div>
-          <div class="pull-stats-child"></div>
-          <div class="frame-group">
-            <div class="frame">
-              <div class="roi">Продано коллекторам:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="ton">57 273 TON</div>
-            </div>
-          </div>
-          <div class="pull-stats-child"></div>
-          <div class="frame-group">
-            <div class="frame">
-              <div class="roi">На продаже коллекторам:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="ton">33 211 TON</div>
-            </div>
-          </div>
-          <div class="pull-stats-child"></div>
-          <div class="frame-group">
-            <div class="frame">
-              <div class="roi">На продаже коллекторам:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="ton">33 211 TON</div>
-            </div>
-          </div>
-          <div class="pull-stats-child"></div>
-          <div class="frame-group">
-            <div class="frame">
-              <div class="roi">Общий доход:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="ton">102 311 TON</div>
-            </div>
-          </div>
-          <div class="pull-stats-child"></div>
-          <div class="frame-group">
-            <div class="frame">
-              <div class="roi">ROI:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="ton">72% годовых</div>
-            </div>
-          </div>
-          <div class="pull-stats-child"></div>
-          <div class="frame-group">
-            <div class="frame">
-              <div class="roi">Займов выдано:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="ton">10 547 раз</div>
-            </div>
-          </div>
-          <div class="pull-stats-child"></div>
-          <div class="frame-group">
-            <div class="frame">
-              <div class="roi">Займов погашено:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="ton">3 927 раз</div>
-            </div>
-          </div>
-          <div class="pull-stats-child"></div>
-          <div class="frame-group">
-            <div class="frame">
-              <div class="roi">Займов активно:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="ton">6 468</div>
-            </div>
-          </div>
-        </div>
-        <div class="pull-stats-child10"></div>
-        <div class="pull-stats-child11"></div>
-        <div class="des-and-bbn">
-          <div class="text-and-button-wrapper">
-            <div class="text-and-button">
-              <div
-                class="buttons-tabs"
-                id="buttonsTabsContainer"
-                @click="() => (isWithrow = true)"
-              >
-                <div class="text">Изьять ликвидность</div>
-              </div>
-              <div
-                class="buttons-tabs"
-                id="buttonsTabsContainer1 "
-                @click="() => (isAdd = true)"
-              >
-                <div class="text1">Добавить ликвидность</div>
-              </div>
-              <div class="buttons-tabs2">
-                <div class="text2">Закрыть</div>
+          <div class="pull-stats-child10"></div>
+          <div class="pull-stats-child11"></div>
+          <div class="des-and-bbn">
+            <div class="text-and-button-wrapper">
+              <div class="text-and-button">
+                <div
+                  class="buttons-tabs"
+                  id="buttonsTabsContainer"
+                  @click="() => (isWithrow = true)"
+                >
+                  <div class="text">Изьять ликвидность</div>
+                </div>
+                <div
+                  class="buttons-tabs"
+                  id="buttonsTabsContainer1 "
+                  @click="() => (isAdd = true)"
+                >
+                  <div class="text1">Добавить ликвидность</div>
+                </div>
+                <div class="buttons-tabs2">
+                  <div class="text2">Закрыть</div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="frame-parent13">
-          <div class="frame-child1"></div>
-          <div class="buttons-tabs-wrapper">
-            <div class="buttons-tabs3">
-              <div class="pie-chart-parent">
-                <img
-                  class="pie-chart-icon"
-                  alt=""
-                  src="@/assets/images/pie-chart.svg"
-                />
+          <div class="frame-parent13">
+            <div class="frame-child1"></div>
+            <div class="buttons-tabs-wrapper">
+              <div class="buttons-tabs3">
+                <div class="pie-chart-parent">
+                  <img
+                    class="pie-chart-icon"
+                    alt=""
+                    src="@/assets/images/pie-chart.svg"
+                  />
 
-                <div class="div26">
-                  <p class="p">Управление ликвидностью</p>
-                  <p class="p">пулл #12345</p>
+                  <div class="div26">
+                    <p class="p">Управление ликвидностью</p>
+                    <p class="p">пулл #12345</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <add v-if="isAdd"></add>
-    <withrow v-if="isWithrow" @on-close="() => (isWithrow = false)"></withrow>
+      <add v-if="isAdd"></add>
+      <withrow v-if="isWithrow" @on-close="() => (isWithrow = false)"></withrow>
+    </div>
   </modal>
 </template>
 
@@ -209,6 +211,9 @@ const toManage = () => {
 </script>
 
 <style scoped>
+.wrapper {
+  height: 800px;
+}
 .swipe-down {
   position: absolute;
   top: 0.75em;
