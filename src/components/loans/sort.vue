@@ -4,7 +4,7 @@
     <span class="close" @click="toBack">Закрыть</span>
     <chips-bar
       :style="{
-        marginTop: '4em',
+        marginTop: '3.8em',
         width: '90vw',
         left: '1.6em',
         position: 'relative',
@@ -13,60 +13,60 @@
     ></chips-bar>
     <div class="decor"></div>
     <div class="frame-parent3">
-      <h4 class="sort-title">Сортировка таблицы:</h4>
+      <h4 class="sort-title">Сортировка:</h4>
       <div class="fields-parent">
         <ul class="option-list">
-          <li>
-            <label class="label">По дате:</label>
-            <ul class="inner-list">
-              <li class="list-item">
-                По возрастанию
-                <catos-checkbox
-                  :style="{ position: 'relative', top: '0.3em' }"
-                  variant="radiobutton"
-                ></catos-checkbox>
-              </li>
-              <li class="list-item">
-                По убыванию
-                <catos-checkbox
-                  :style="{ position: 'relative', top: '0.3em' }"
-                  variant="radiobutton"
-                ></catos-checkbox>
-              </li>
-            </ul>
+          <li class="list-item">
+            По количеству ТОN:
+            <catos-checkbox
+              :style="{ position: 'relative', top: '0.3em' }"
+              variant="radiobutton"
+            ></catos-checkbox>
+          </li>
+          <li class="list-item">
+            По одобренному периоду:
+            <catos-checkbox
+              :style="{ position: 'relative', top: '0.3em' }"
+              variant="radiobutton"
+            ></catos-checkbox>
+          </li>
+          <li class="list-item">
+            По номеру ID:
+            <catos-checkbox
+              :style="{ position: 'relative', top: '0.3em' }"
+              variant="radiobutton"
+            ></catos-checkbox>
+          </li>
+          <li class="list-item">
+            По изменению за день:
+            <catos-checkbox
+              :style="{ position: 'relative', top: '0.3em' }"
+              variant="radiobutton"
+            ></catos-checkbox>
+          </li>
+          <li class="list-item">
+            По имени заявителя от А до Я:
+            <catos-checkbox
+              :style="{ position: 'relative', top: '0.3em' }"
+              variant="radiobutton"
+            ></catos-checkbox>
           </li>
         </ul>
-        <ul class="option-list">
-          <li>
-            <label class="label">По количеству ТОN:</label>
-            <ul class="option-list_filter inner-list">
-              <li class="list-item">
-                По возрастанию
-                <catos-checkbox
-                  :style="{ position: 'relative', top: '0.3em' }"
-                  variant="radiobutton"
-                ></catos-checkbox>
-              </li>
-              <li class="list-item">
-                По убыванию
-                <catos-checkbox
-                  :style="{ position: 'relative', top: '0.3em' }"
-                  variant="radiobutton"
-                ></catos-checkbox>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <h4 class="sort-title">Фильтр транзакций:</h4>
+
+        <h4 class="sort-title">Фильтры:</h4>
         <ul class="filter_switch option-list">
           <li>
             <ul class="inner-list">
               <li class="list-item">
-                Всегда показывать по дате
+                Сначала показывать актуальные
                 <catos-switch></catos-switch>
               </li>
-              <li class="list-item">
-                Всегда показывать по количеству TON
+              <li class="list-item_last list-item">
+                Сначала показывать одобренные
+                <catos-switch></catos-switch>
+              </li>
+              <li class="list-item_last list-item">
+                Сначала показывать в ожидании
                 <catos-switch></catos-switch>
               </li>
             </ul>
@@ -112,19 +112,26 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import { useRouter } from "vue-router";
 import catosCheckbox from "../ui-kit/catos-checkbox.vue";
-import catosSwitch from "../ui-kit/catos-switch.vue";
+import { ref } from "vue";
 import catosButton from "../ui-kit/buttons/catos-button.vue";
 import chipsBar from "../ui-kit/chips-bar.vue";
-import inputData from "@/components/fields/input-data.vue";
+import catosSwitch from "../ui-kit/catos-switch.vue";
+import inputData from "../fields/input-data.vue";
+const emit = defineEmits(["close"]);
+
+const handleClose = () => {
+  emit("close");
+};
 const router = useRouter();
 const toBack = () => {
   router.go(-1);
 };
+
 const isEdit = ref(false);
 const isCreateMode = ref(false);
+
 const handleEdit = (ev: any) => {
   if (ev) {
     isCreateMode.value = true;
@@ -1194,6 +1201,11 @@ const handleEdit = (ev: any) => {
     padding: 0em;
     margin: 0em;
     width: 78.95vw;
+    border-bottom: 1px solid rgba(243, 239, 255, 1);
+
+    &_last {
+      border: none;
+    }
     &_filter .list-item {
       padding-left: 0em;
     }
@@ -1204,30 +1216,29 @@ const handleEdit = (ev: any) => {
     font-size: var(--font-size-sm);
     line-height: 1.2em;
     font-weight: 500;
-    border-bottom: 1px solid rgba(165, 146, 221, 0.08);
     padding-bottom: 1em;
     width: 100%;
   }
   & .inner-list {
     margin-top: 0.8em;
     padding-left: 0em;
-    & .list-item {
-      font-weight: 400;
-      height: 2.66em;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-left: 1.5em;
-      font-size: var(--font-size-xs);
-      border-bottom: 1px solid rgba(165, 146, 221, 0.08);
-      padding-bottom: 1em;
-    }
-    .list-item:not(:first-child) {
-      margin-top: 0.6em;
-    }
-    .list-item:last-child {
-      border: none;
-    }
+  }
+  .list-item {
+    font-weight: 400;
+    height: 2.66em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 14px;
+    border-bottom: 1px solid rgba(165, 146, 221, 0.08);
+    padding-bottom: 1em;
+  }
+  .list-item:not(:first-child) {
+    margin-top: 0.6em;
+  }
+  .list-item:last-child {
+    border: none;
   }
 }
 .filter_switch {
@@ -1236,6 +1247,9 @@ const handleEdit = (ev: any) => {
     padding: 0em !important;
     line-height: 1.5;
     padding-bottom: 1.5em !important;
+    &_last {
+      border: none;
+    }
   }
 
   & .list-item:last-child {
@@ -1246,6 +1260,7 @@ const handleEdit = (ev: any) => {
   position: absolute;
 
   left: 1em;
+
   gap: 0.38em;
   width: 90%;
 }
@@ -1309,7 +1324,7 @@ const handleEdit = (ev: any) => {
   /* border: 1px solid rgba(46, 58, 89, 0.2); */
   box-sizing: border-box;
   width: 100vw;
-  height: 500px;
+  height: 600px;
 }
 .div44 {
   left: 3.29em;
@@ -1371,18 +1386,28 @@ const handleEdit = (ev: any) => {
   margin-left: 2.2em;
   margin-bottom: 0em;
 }
-.close {
-  position: absolute;
-  right: 1em;
-  top: 3em;
-  font-size: 10px;
-  line-height: 100%;
-  /* identical to box height, or 10px */
-
-  letter-spacing: 0.01em;
-
-  color: rgba(38, 38, 38, 0.62);
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
 }
+.option-item-list {
+  list-style: none;
+  padding: 0em;
+  margin: 0em;
+  display: flex;
+  justify-content: space-between;
+}
+.option-label {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(59, 59, 59, 1);
+  padding-bottom: 4px;
+}
+.option {
+  margin-top: 24px;
+}
+//*Edit window*/
 .edit-widnow {
   background: #ffffff;
   position: fixed;
@@ -1429,7 +1454,18 @@ const handleEdit = (ev: any) => {
   position: fixed;
   z-index: 1000;
 }
+.close {
+  position: absolute;
+  right: 1em;
+  top: 3em;
+  font-size: 10px;
+  line-height: 100%;
+  /* identical to box height, or 10px */
 
+  letter-spacing: 0.01em;
+
+  color: rgba(38, 38, 38, 0.62);
+}
 @media (max-width: 375px) {
   .component-4 {
     width: 2.4em;
