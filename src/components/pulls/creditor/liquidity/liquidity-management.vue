@@ -212,7 +212,7 @@ const toManage = () => {
 
 <style scoped>
 .wrapper {
-  height: 800px;
+  height: 1000px;
 }
 .swipe-down {
   position: absolute;
