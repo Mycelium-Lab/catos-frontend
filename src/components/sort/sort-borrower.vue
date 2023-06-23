@@ -47,7 +47,7 @@
                 Сначала показывать по сроку
                 <catos-switch></catos-switch>
               </li>
-              <li class="list-item">
+              <li class="list-item_last list-item">
                 Сначала показывать по кол-ву TON
                 <catos-switch></catos-switch>
               </li>
@@ -59,7 +59,7 @@
         <catos-button
           :style="{ width: '86vw', top: '1em', left: '0.5em' }"
           variant="secondary"
-          @click="handleClose"
+          @click="toBack"
         >
           Применить и сохранить фильтр
         </catos-button>
@@ -1229,6 +1229,9 @@ const handleEdit = (ev: any) => {
     padding: 0em !important;
     line-height: 1.5;
     padding-bottom: 1.5em !important;
+    &_last {
+      border: none;
+    }
   }
 
   & .list-item:last-child {
@@ -1239,7 +1242,7 @@ const handleEdit = (ev: any) => {
   position: absolute;
 
   left: 1em;
-  height: 100%;
+
   gap: 0.38em;
   width: 90%;
 }
@@ -1303,7 +1306,7 @@ const handleEdit = (ev: any) => {
   /* border: 1px solid rgba(46, 58, 89, 0.2); */
   box-sizing: border-box;
   width: 100vw;
-  height: 60.88em;
+  height: 600px;
 }
 .div44 {
   left: 3.29em;
