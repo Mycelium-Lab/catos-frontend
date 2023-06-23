@@ -1,142 +1,144 @@
 <template>
   <modal from="pulls">
-    <div class="pull-stats">
-      <div class="pull-stats-child"></div>
-      <div class="pull-stats1">
-        <div class="frame-group">
-          <div class="frame-container">
-            <div class="frame-inner"></div>
-            <div class="buttons-tabs-parent">
-              <div class="buttons-tabs">
-                <div class="group">
-                  <div class="div8">Займ на:</div>
-                  <div class="ton">13 000 TON</div>
-                </div>
-                <img
-                  class="pie-chart-icon"
-                  alt=""
-                  src="@/assets/images/pie-chart.svg"
-                />
-              </div>
-              <div class="frame-div">
-                <div class="percent-parent">
+    <div class="wrapper">
+      <div class="pull-stats">
+        <div class="pull-stats-child"></div>
+        <div class="pull-stats1">
+          <div class="frame-group">
+            <div class="frame-container">
+              <div class="frame-inner"></div>
+              <div class="buttons-tabs-parent">
+                <div class="buttons-tabs">
+                  <div class="group">
+                    <div class="div8">Займ на:</div>
+                    <div class="ton">13 000 TON</div>
+                  </div>
                   <img
-                    class="percent-icon"
+                    class="pie-chart-icon"
                     alt=""
-                    src="@/assets/images/percent.svg"
+                    src="@/assets/images/pie-chart.svg"
                   />
-
-                  <div class="div9">1 день = 1%</div>
                 </div>
-                <div class="percent-parent">
-                  <img
-                    class="percent-icon"
-                    alt=""
-                    src="@/assets/images/clock.svg"
-                  />
+                <div class="frame-div">
+                  <div class="percent-parent">
+                    <img
+                      class="percent-icon"
+                      alt=""
+                      src="@/assets/images/percent.svg"
+                    />
 
-                  <div class="div10">
-                    <p class="p">Пролонгация</p>
-                    <p class="p">на 30 дней</p>
+                    <div class="div9">1 день = 1%</div>
+                  </div>
+                  <div class="percent-parent">
+                    <img
+                      class="percent-icon"
+                      alt=""
+                      src="@/assets/images/clock.svg"
+                    />
+
+                    <div class="div10">
+                      <p class="p">Пролонгация</p>
+                      <p class="p">на 30 дней</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="frame-parent1">
-            <div class="frame-parent2">
-              <div class="frame">
-                <div class="div11">Ставка:</div>
+            <div class="frame-parent1">
+              <div class="frame-parent2">
+                <div class="frame">
+                  <div class="div11">Ставка:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div12">1% в день</div>
+                </div>
               </div>
-              <div class="ton-wrapper">
-                <div class="div12">1% в день</div>
+              <div class="line-div"></div>
+              <div class="frame-parent2">
+                <div class="frame">
+                  <div class="div11">Беспроцентный период:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div14">
+                    <p class="p2">до 05.02.22, 16:00</p>
+                    <p class="p3">(закончен)</p>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="frame">
-                <div class="div11">Беспроцентный период:</div>
+              <div class="line-div"></div>
+              <div class="frame-parent2">
+                <div class="frame">
+                  <div class="div11">Начисленные проценты:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div12">512 TON</div>
+                </div>
               </div>
-              <div class="ton-wrapper">
-                <div class="div14">
-                  <p class="p2">до 05.02.22, 16:00</p>
-                  <p class="p3">(закончен)</p>
+              <div class="line-div"></div>
+              <div class="frame-parent2">
+                <div class="frame">
+                  <div class="div11">Сумма к возвращению:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div12">13 512 TON</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent2">
+                <div class="frame">
+                  <div class="div11">Доступно для выдачи:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div12">257 547 раз</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent2">
+                <div class="frame">
+                  <div class="div19">Вернуть не позднее:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div14">
+                    <p class="p2">13.02.22, 16:00</p>
+                    <p class="p5">(займ просрочен)</p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="frame">
-                <div class="div11">начисленные проценты:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div12">512 TON</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="frame">
-                <div class="div11">Сумма к возвращению:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div12">13 512 TON</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="frame">
-                <div class="div11">Доступно для выдачи:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div12">257 547 раз</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent2">
-              <div class="frame">
-                <div class="div19">Вернуть не позднее:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div14">
-                  <p class="p2">13.02.22, 16:00</p>
-                  <p class="p5">(займ просрочен)</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="frame-wrapper">
-            <div class="frame-parent8">
-              <div class="info-parent">
-                <img
-                  class="info-icon"
-                  alt=""
-                  src="@/assets/images/iconsinfo.svg"
-                />
+            <div class="frame-wrapper">
+              <div class="frame-parent8">
+                <div class="info-parent">
+                  <img
+                    class="info-icon"
+                    alt=""
+                    src="@/assets/images/iconsinfo.svg"
+                  />
 
-                <div class="div21">Пролонгация займа</div>
-              </div>
-              <div class="div22">
-                Позволяет продлить дату погашения до 30 дней. Для пролонгации
-                займа вам нужно оплатить только начисленные проценты
+                  <div class="div21">Пролонгация займа</div>
+                </div>
+                <div class="div22">
+                  Позволяет продлить дату погашения до 30 дней. Для пролонгации
+                  займа вам нужно оплатить только начисленные проценты
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="wrapper10">
-        <div class="div23">
-          <span>Пролонгация займа </span>
-          <span class="span">#557946</span>
+        <div class="wrapper10">
+          <div class="div23">
+            <span>Пролонгация займа </span>
+            <span class="span">#557946</span>
+          </div>
         </div>
-      </div>
-      <div class="buttonnext" @click="toPay">
-        <b class="ton-kepeer">Оплатить 512 TON и пролонгировтаь</b>
-      </div>
-      <div class="des-and-bbn">
-        <div class="text-and-button-wrapper">
-          <div class="text-and-button">
-            <div class="buttons-tabs1">
-              <div class="text">Вернуться в Мои займы</div>
+        <div class="buttonnext" @click="toPay">
+          <b class="ton-kepeer">Оплатить 512 TON и пролонгировтаь</b>
+        </div>
+        <div class="des-and-bbn">
+          <div class="text-and-button-wrapper">
+            <div class="text-and-button" @click="toLoan">
+              <div class="buttons-tabs1">
+                <div class="text">Вернуться в мои займы</div>
+              </div>
             </div>
           </div>
         </div>
@@ -149,6 +151,9 @@
 import { useRouter } from "vue-router";
 const router = useRouter();
 import modal from "@/components/ui-kit/modal.vue";
+const toLoan = () => {
+  router.push({ name: "loans-borrower" });
+};
 const toPay = () => {
   router.push({
     name: "pulls-borrower-get-loan-scan",
@@ -169,6 +174,9 @@ const toPay = () => {
 </script>
 
 <style scoped>
+.wrapper {
+  height: 900px;
+}
 .frame-inner,
 .pull-stats-child {
   position: absolute;
