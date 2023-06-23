@@ -1,5 +1,5 @@
 <template>
-  <modal>
+  <modal from="pulls">
     <div class="header">Информация о пулле №1223</div>
 
     <div class="pull-stats">
@@ -50,17 +50,13 @@
               </div>
             </div>
           </div>
-          <div class="frame-parent1">
-            <div class="roi-wrapper">
-              <div class="div11">Состояние:</div>
-            </div>
-            <div class="statuspull-wrapper">
-              <div class="statuspull">
-                <div class="div14">
-                  Активен <span class="div14_change div14">[отключить]</span>
-                </div>
-              </div>
-            </div>
+          <div class="frame-parent1_my frame-parent1">
+            <div class="creditlabel">Кредитор:</div>
+            <catos-checkbox
+              variant="radiobutton"
+              :style="{ position: 'relative', top: '0.1em' }"
+            ></catos-checkbox>
+            <div class="creditoption">CATOS</div>
           </div>
           <div class="frame-parent2">
             <div class="frame-parent3">
@@ -157,7 +153,11 @@
         <div class="des-and-bbn">
           <div class="text-and-button-parent">
             <div class="text-and-button">
-              <div class="buttons-tabs2" id="buttonsTabsContainer4">
+              <div
+                class="buttons-tabs2"
+                id="buttonsTabsContainer4"
+                @click="getLoan"
+              >
                 <div class="text3">Получить займ</div>
               </div>
               <div class="buttons-tabs2" id="buttonsTabsContainer4">
@@ -165,15 +165,19 @@
                   Инвестировать в пулл
                 </div>
               </div>
-              <div class="buttons-tabs2" id="buttonsTabsContainer4">
-                <div class="text3">Закрыть</div>
+              <div
+                class="buttons-tabs2_back buttons-tabs2"
+                id="buttonsTabsContainer4"
+                @click="toPulls"
+              >
+                <div class="text3">Назад</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <app-bar></app-bar>
+
     <satusModal
       v-if="isInvest"
       :variant="2"
@@ -192,7 +196,7 @@ import appBar from "@/components/ui-kit/app-bar.vue";
 import modal from "@/components/ui-kit/modal.vue";
 import { useRouter } from "vue-router";
 import satusModal from "@/components/base/status-modal.vue";
-
+import catosCheckbox from "@/components/ui-kit/catos-checkbox.vue";
 const variant = computed(() => {
   return window.history.state.variant;
 });
@@ -200,15 +204,15 @@ const variant = computed(() => {
 const isInvest = ref(false);
 
 const router = useRouter();
-const toManage = () => {
-  router.push({
-    name: "pulls-liquidity-management",
-    state: { variant: variant.value },
-  });
+const toPulls = () => {
+  router.push({ name: "pulls-borrower" });
+};
+const getLoan = () => {
+  router.push({ name: "pulls-borrower-get-loan" });
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .pull {
   position: absolute;
   top: 0;
@@ -402,7 +406,6 @@ const toManage = () => {
   position: relative;
   width: 83.6vw;
   height: 5.94em;
-  top: -4em;
 }
 .div14 {
   position: absolute;
@@ -527,6 +530,8 @@ const toManage = () => {
   flex-direction: column;
   padding: 0 0 0.75em;
   gap: 0.88em;
+  top: -4em;
+  position: relative;
 }
 .text {
   position: absolute;
@@ -564,6 +569,11 @@ const toManage = () => {
   box-sizing: border-box;
   height: 2em;
   cursor: pointer;
+  text-align: center;
+  &_back {
+    background: transparent;
+    color: #3b3b3b;
+  }
 }
 .text-and-button {
   flex: 1;
@@ -581,19 +591,14 @@ const toManage = () => {
 }
 .text2,
 .text3 {
-  position: absolute;
+  position: relative;
   top: 0.5em;
   font-size: 0.88em;
   line-height: 120%;
   font-weight: 500;
-}
-.text2 {
-  left: 1.79em;
-}
-.text3 {
-  left: calc(50% - 41px);
   letter-spacing: 0.02em;
 }
+
 .text-and-button-parent {
   align-self: stretch;
   display: flex;
@@ -611,12 +616,15 @@ const toManage = () => {
 .des-and-bbn {
   border-radius: 16px;
   background-color: #f9fbff;
-  width: 18.75em;
+  width: 77vw;
   padding: 0.75em;
   box-sizing: border-box;
   align-items: flex-start;
   text-align: right;
   color: #f8f8ff;
+  position: relative;
+  top: -4em;
+  margin: 0 auto;
 }
 .pull-stats1 {
   position: relative;
@@ -627,13 +635,12 @@ const toManage = () => {
 }
 .pull-stats {
   position: relative;
-  top: 8em;
-  height: 34em;
+  top: 6em;
+  height: 36em;
   text-align: left;
   margin: 0px 24px;
   border: 0.5px solid rgba(46, 58, 89, 0.4);
   border-radius: 15px;
-  margin-bottom: 13em;
 }
 .frame-icon {
   position: relative;
@@ -1469,5 +1476,35 @@ const toManage = () => {
   text-align: center;
   color: #3b3b3b;
   font-family: Inter;
+}
+
+.frame-parent1 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  gap: 0.75em;
+  width: 77vw;
+  margin: 0 auto;
+}
+.frame-parent1_my {
+  border: 1px solid #f6f4fc;
+  border-radius: 16px;
+  padding: 9px 0px 9px 13px;
+  margin: 0em;
+  align-items: center;
+  height: 40px;
+  width: 80vw;
+  margin: 0 auto;
+}
+.creditlabel,
+.creditoption {
+  color: rgba(59, 59, 59, 1);
+  font-size: 14px;
+  font-weight: 400;
+}
+.creditoption {
+  font-weight: 300;
 }
 </style>

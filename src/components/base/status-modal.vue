@@ -1,6 +1,6 @@
 <template>
   <div class="statusapi">
-    <div class="status-reg">
+    <div class="status-reg" :style="variant === 2 ? { height: '462px' } : {}">
       <div class="group">
         <div class="div8">{{ title }}</div>
         <img
@@ -16,7 +16,9 @@
       <div class="text-and-button">
         <div class="buttons-tabs">
           <div class="count">{{ count }}</div>
-          <div class="status">{{ subtitle }}</div>
+          <div :class="variant === 2 ? 'status_invest status' : 'status'">
+            {{ subtitle }}
+          </div>
         </div>
       </div>
     </div>
@@ -27,20 +29,27 @@
     >
       Просмотр транзакции в Tonscan
     </div>
-    <div class="des-and-bbn_bottom des-and-bbn" id="desAndBbn">
+    <div
+      :class="
+        variant === 2
+          ? 'des-and-bbn_bottom_invest des-and-bbn'
+          : 'des-and-bbn_bottom des-and-bbn'
+      "
+      id="desAndBbn"
+    >
       <div class="text-and-button">
         <catos-button
           v-if="variant === 2"
           variant="fourth"
           :style="{ width: '97%', marginBottom: '1em' }"
-          @click="toWallet"
+          @click="toDepositorSignUp"
           >Зарегистрироваться как инвестор</catos-button
         >
         <catos-button
           v-if="variant === 2"
           variant="fourth"
           :style="{ width: '97%', marginBottom: '1em' }"
-          @click="toWallet"
+          @click="toDepositorPull"
           >Войти как инвестор</catos-button
         >
 
@@ -50,10 +59,12 @@
             () =>
               action === 'Withdraw' && variant === 0
                 ? handleStatus()
+                : variant === 2
+                ? toBorrowerPull()
                 : toHistory()
           "
         >
-          <div class="text">Ок</div>
+          <div class="text">{{ variant === 2 ? "Назад" : "Ок" }}</div>
         </div>
       </div>
     </div>
@@ -83,6 +94,19 @@ const handleStatus = () => {
   emit("onModal");
 };
 
+const toBorrowerPull = () => {
+  router.push({ name: "pulls-borrower" });
+};
+const toDepositorPull = () => {
+  localStorage.setItem("role", JSON.stringify("depositor"));
+  router.push({ name: "pulls-depositor" });
+};
+const toDepositorSignUp = () => {
+  router.push({
+    name: "start",
+    state: { title: "Регистрация инвестора", role: "depositor" },
+  });
+};
 const toHistory = () => {
   router.push({ name: "transaction-history" });
 };
@@ -168,7 +192,7 @@ const toWallet = () => {
   position: relative;
   color: rgba(87, 126, 247, 0.96);
   top: 28em;
-  width: 67.5vw;
+  width: 77vw;
   padding: 0.75em;
   box-sizing: border-box;
   cursor: pointer;
@@ -211,6 +235,11 @@ const toWallet = () => {
         color: rgb(59, 59, 59);
         width: 100%;
         text-align: center;
+        line-height: 130%;
+        &_invest {
+          font-weight: 300;
+          margin-top: 5em;
+        }
       }
     }
   }
@@ -245,6 +274,9 @@ const toWallet = () => {
     display: inline-block;
     text-decoration: underline;
     top: 27.5em;
+  }
+  &_invest {
+    top: 24.5em;
   }
   & .text-and-button {
     width: 100%;
