@@ -86,6 +86,12 @@ const toPulls = () => {
   console.log(role);
   if (role === "borrower") {
     pulls = "pulls-borrower";
+  } else if (role === "depositor") {
+    pulls = "pulls-depositor";
+  } else if (role === "creditor") {
+    pulls = "pulls";
+  } else if (role === "collector") {
+    pulls = "pulls-collector";
   }
   router.push({ name: pulls });
 };
