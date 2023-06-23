@@ -37,7 +37,7 @@
             </div>
           </div>
         </div>
-        <div class="buttonnext" id="buttonNextContainer">
+        <div class="buttonnext" id="buttonNextContainer" @click="toPulls">
           <b class="b1">Выбрать пулл</b>
         </div>
         <div class="frame-div">
@@ -77,7 +77,19 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRouter } from "vue-router";
+const router = useRouter();
+const toPulls = () => {
+  const role = JSON.parse(localStorage.getItem("role")!);
+  let pulls = "";
+  console.log(role);
+  if (role === "borrower") {
+    pulls = "pulls-borrower";
+  }
+  router.push({ name: pulls });
+};
+</script>
 
 <style scoped lang="scss">
 .bg-icon {
@@ -308,6 +320,7 @@
   width: 100vw;
   height: 45em;
   text-align: center;
+  overflow: hidden;
 }
 .div13 {
   position: absolute;
@@ -343,10 +356,9 @@
   background-color: #fdd674;
   width: 100%;
   height: 48.94em;
-  overflow-y: auto;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 </style>

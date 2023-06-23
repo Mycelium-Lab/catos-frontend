@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+
 import { dashboardDepositor, dashboardСreditor } from "./dashboard";
 import { borrowerLoans, loans } from "./loans";
 import { borrower, collector, creditor, depositor } from "./pulls";
@@ -158,6 +159,7 @@ const router = createRouter({
     borrower[5],
     borrower[6],
     borrower[7],
+    borrower[8],
     depositor[0],
     depositor[1],
     depositor[2],
@@ -184,6 +186,10 @@ const router = createRouter({
     borrowerLoans[5],
     borrowerLoans[6],
   ],
+  // @ts-ignore
+  scrollBehavior(to, from, savedPosition) {
+    return { top: 0 };
+  },
 });
 
 export default router;

@@ -776,7 +776,7 @@ const role = computed(() => window.history.state?.role);
 .numbers {
   position: absolute;
   top: 0.56em;
-  left: 7.19em;
+  left: 8.19em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -796,10 +796,10 @@ const role = computed(() => window.history.state?.role);
 }
 .steps {
   top: 0;
-  left: 1.75em;
+  left: 2.75em;
   border-radius: 19px;
   background-color: #f5f9ff;
-  width: 3.25em;
+  width: 4.5em;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -2018,7 +2018,9 @@ const options = {
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 213.44em;
+  /*min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 130);*/
+  height: 3300px;
 }
 .page-title1 {
   position: relative;
@@ -2102,7 +2104,7 @@ const options = {
 .numbers {
   position: absolute;
   top: 0.56em;
-  left: 7.19em;
+  left: 8.19em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -2116,7 +2118,7 @@ const options = {
 }
 .steps {
   top: 0;
-  left: 1.75em;
+  left: 2.75em;
   border-radius: 19px;
   background-color: #f5f9ff;
   width: 4.5em;
@@ -2192,10 +2194,9 @@ const options = {
   background-color: #fdd674;
   width: 100%;
   height: 217.75em;
-  overflow-y: auto;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 </style>
