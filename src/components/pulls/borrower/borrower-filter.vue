@@ -1339,7 +1339,7 @@ const handleEdit = (ev: any) => {
   overflow: hidden;
   box-sizing: border-box;
   width: 100vw;
-  height: calc(var(--vh, 1vh) * 140);
+  height: 900px;
 }
 .div44 {
   left: 3.29em;
