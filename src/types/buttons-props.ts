@@ -34,6 +34,7 @@ export enum ButtonSliderVariant {
   registration,
   loans,
   dashboard,
+  collector,
 }
 
 export type Content = StatusTranslation[] | ButtonIconTranslation[];
