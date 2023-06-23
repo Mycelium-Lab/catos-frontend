@@ -3,12 +3,18 @@ body {
   line-height: normal;
   font-family: Inter, "Source Sans Pro";
   box-sizing: border-box;
+
+  /* overflow: hidden;*/
   /*min-height: 100vh;
-  min-height: calc(var(--vh, 1vh) * 140);*/
+  min-height: calc(var(--vh, 1vh) * 130);*/
 }
 
 #app {
-  overflow: hidden;
+  overflow: scroll;
+
+  /*min-height: 100vh;*/
+  /*min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 130);*/
 }
 
 :root {
@@ -100,4 +106,7 @@ html,
 body {
   /* Убирает прокрутку по горизонтале, для мобильной версии */
   overflow-x: hidden;
+}
+html {
+  overflow-y: scroll;
 }
