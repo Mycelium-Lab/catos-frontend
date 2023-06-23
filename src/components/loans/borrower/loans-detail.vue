@@ -612,7 +612,7 @@
             </div>
           </div>
           <div class="text-and-button-wrapper">
-            <div class="text-and-button5">
+            <div class="text-and-button5" @click="toProlong">
               <div class="buttons-tabs1">
                 <div class="text10">Пролонгировать</div>
               </div>
@@ -635,6 +635,10 @@
 import { useRouter } from "vue-router";
 import catosCheckbox from "@/components/ui-kit/catos-checkbox.vue";
 const router = useRouter();
+
+const toProlong = () => {
+  router.push({ name: "loans-borrower-prolong" });
+};
 const toLoan = () => {
   router.push({ name: "loans-borrower" });
 };
@@ -2763,7 +2767,6 @@ const toRepay = () => {
   background-color: #fff;
   width: 100vw;
   height: 62.31em;
-  overflow-y: auto;
 }
 .div8 {
   position: relative;
