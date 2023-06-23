@@ -1,189 +1,190 @@
 <template>
   <modal from="pulls">
-    <div class="header">Информация о пулле №1223</div>
+    <div class="wrapper">
+      <div class="header">Информация о пулле №1223</div>
 
-    <div class="pull-stats">
-      <div class="pull-stats1">
-        <div class="frame-group">
-          <div class="frame-container">
-            <div class="frame-inner"></div>
-            <div class="buttons-tabs-parent">
-              <div class="buttons-tabs">
-                <div class="ton-parent">
-                  <div class="ton">37 000 TON</div>
-                  <div class="div10">Доступно ликвидности:</div>
-                </div>
-                <img
-                  class="pie-chart-icon"
-                  alt=""
-                  src="@/assets/images/pie-chart.svg"
-                />
-              </div>
-              <div class="frame-div">
-                <div class="percent-parent">
+      <div class="pull-stats">
+        <div class="pull-stats1">
+          <div class="frame-group">
+            <div class="frame-container">
+              <div class="frame-inner"></div>
+              <div class="buttons-tabs-parent">
+                <div class="buttons-tabs">
+                  <div class="ton-parent">
+                    <div class="ton">37 000 TON</div>
+                    <div class="div10">Доступно ликвидности:</div>
+                  </div>
                   <img
-                    class="percent-icon"
+                    class="pie-chart-icon"
                     alt=""
-                    src="@/assets/images/percent.svg"
+                    src="@/assets/images/pie-chart.svg"
                   />
-
-                  <div class="div11">1 день = 1%</div>
                 </div>
-                <div class="percent-parent">
-                  <img
-                    class="percent-icon"
-                    alt=""
-                    src="@/assets/images/clock.svg"
-                  />
+                <div class="frame-div">
+                  <div class="percent-parent">
+                    <img
+                      class="percent-icon"
+                      alt=""
+                      src="@/assets/images/percent.svg"
+                    />
 
-                  <div class="div11">3 дня = 0%</div>
-                </div>
-                <div class="percent-parent">
-                  <img
-                    class="percent-icon"
-                    alt=""
-                    src="@/assets/images/activity.svg"
-                  />
+                    <div class="div11">1 день = 1%</div>
+                  </div>
+                  <div class="percent-parent">
+                    <img
+                      class="percent-icon"
+                      alt=""
+                      src="@/assets/images/clock.svg"
+                    />
 
-                  <div class="div11">ROI = 75%</div>
+                    <div class="div11">3 дня = 0%</div>
+                  </div>
+                  <div class="percent-parent">
+                    <img
+                      class="percent-icon"
+                      alt=""
+                      src="@/assets/images/activity.svg"
+                    />
+
+                    <div class="div11">ROI = 75%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="frame-parent1">
+              <div class="roi-wrapper">
+                <div class="div11">Состояние:</div>
+              </div>
+              <div class="statuspull-wrapper">
+                <div class="statuspull">
+                  <div class="div14">Активен</div>
+                </div>
+              </div>
+            </div>
+            <div class="frame-parent2">
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Ставка:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">1% в день</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">На срок:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">до 30 дней</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Беспроцентный период:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">3 дня</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Всего ликвидности:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">450 000 TON</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Доступно ликвидности:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">37 000 TON</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Доход за 30 дней:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">75% годовых</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">% Проданных займов:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">20%</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Пуллов сгенерировано для инвесторов:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">10 574 раз</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Количество инвесторов:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">130 человек</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Дата создания:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">22. 05. 2023</div>
+                </div>
+              </div>
+            </div>
+            <div class="percent-group">
+              <div class="frame-parent3">
+                <div class="roi-wrapper_tag roi-wrapper">
+                  <div class="roi">Моя ликвидность</div>
+                </div>
+              </div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Всего доходность:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">7 TON</div>
+                </div>
+              </div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Текущая доходность:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">45%</div>
+                </div>
+              </div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Доходность за 30 дней:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">75% годовых</div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="frame-parent1">
-            <div class="roi-wrapper">
-              <div class="div11">Состояние:</div>
-            </div>
-            <div class="statuspull-wrapper">
-              <div class="statuspull">
-                <div class="div14">Активен</div>
-              </div>
-            </div>
-          </div>
-          <div class="frame-parent2">
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Ставка:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">1% в день</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">На срок:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">до 30 дней</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Беспроцентный период:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">3 дня</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Всего ликвидности:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">450 000 TON</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Доступно ликвидности:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">37 000 TON</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Доход за 30 дней:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">75% годовых</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">% Проданных займов:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">20%</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Пуллов сгенерировано для инвесторов:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">10 574 раз</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Количество инвесторов:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">130 человек</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Дата создания:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">22. 05. 2023</div>
-              </div>
-            </div>
-          </div>
-          <div class="percent-group">
-            <div class="frame-parent3">
-              <div class="roi-wrapper_tag roi-wrapper">
-                <div class="roi">Моя ликвидность</div>
-              </div>
-            </div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Всего доходность:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">7 TON</div>
-              </div>
-            </div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Текущая доходность:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">45%</div>
-              </div>
-            </div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Доходность за 30 дней:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">75% годовых</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--<div class="des-and-bbn">
+          <!--<div class="des-and-bbn">
                 <div class="text-and-button-parent">
                   <div v-if="variant === 'all'" class="text-and-button">
                     <div class="buttons-tabs1">
@@ -210,32 +211,33 @@
                   </div>
                 </div>
               </div>-->
-        <div class="des-and-bbn">
-          <div class="text-and-button-parent">
-            <div class="text-and-button">
-              <div
-                class="buttons-tabs2"
-                id="buttonsTabsContainer4"
-                @click="() => (isWithrow = true)"
-              >
-                <div class="text3">Изъять ликвидность</div>
-              </div>
-              <div class="buttons-tabs2" id="buttonsTabsContainer4">
-                <div class="text3" @click="() => (isAdd = true)">
-                  Добавить ликвидность
+          <div class="des-and-bbn">
+            <div class="text-and-button-parent">
+              <div class="text-and-button">
+                <div
+                  class="buttons-tabs2"
+                  id="buttonsTabsContainer4"
+                  @click="() => (isWithrow = true)"
+                >
+                  <div class="text3">Изъять ликвидность</div>
                 </div>
-              </div>
-              <div class="buttons-tabs2" id="buttonsTabsContainer4">
-                <div class="text3">Подробнее</div>
+                <div class="buttons-tabs2" id="buttonsTabsContainer4">
+                  <div class="text3" @click="() => (isAdd = true)">
+                    Добавить ликвидность
+                  </div>
+                </div>
+                <div class="buttons-tabs2" id="buttonsTabsContainer4">
+                  <div class="text3">Подробнее</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <add v-if="isAdd" @on-close="() => (isAdd = false)"></add>
+      <withrow v-if="isWithrow" @on-close="() => (isWithrow = false)"></withrow>
+      <!--<app-bar></app-bar>-->
     </div>
-    <add v-if="isAdd" @on-close="() => (isAdd = false)"></add>
-    <withrow v-if="isWithrow" @on-close="() => (isWithrow = false)"></withrow>
-    <!--<app-bar></app-bar>-->
   </modal>
 </template>
 
@@ -266,6 +268,9 @@ const toManage = () => {
 </script>
 
 <style scoped lang="scss">
+.wrapper {
+  height: 1160px;
+}
 .pull {
   position: absolute;
   top: 0;
