@@ -152,7 +152,7 @@
                 >
                   <div class="text1">Добавить ликвидность</div>
                 </div>
-                <div class="buttons-tabs2">
+                <div class="buttons-tabs2" @click="toBack">
                   <div class="text2">Закрыть</div>
                 </div>
               </div>
@@ -202,6 +202,9 @@ const variant = computed(() => {
 });
 const router = useRouter();
 
+const toBack = () => {
+  router.push({ name: "pulls" });
+};
 const toManage = () => {
   router.push({
     name: "pulls-liquidity-management",

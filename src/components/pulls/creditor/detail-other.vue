@@ -1,129 +1,133 @@
 <template>
-  <modal>
-    <div class="header">Информация о кредиторе</div>
-    <div class="subtitle header">Деньги до зарплаты</div>
-    <div class="pull-stats">
-      <div class="pull-stats1">
-        <div class="frame-group">
-          <div class="frame-container">
-            <div class="frame-inner"></div>
-            <div class="buttons-tabs-parent">
-              <div class="buttons-tabs">
-                <div class="ton-parent">
-                  <div class="ton">37 000 TON</div>
-                  <div class="div10">Доступно ликвидности:</div>
-                </div>
-                <img
-                  class="pie-chart-icon"
-                  alt=""
-                  src="@/assets/images/pie-chart.svg"
-                />
-              </div>
-              <div class="frame-div">
-                <div class="percent-parent">
+  <modal from="pulls">
+    <div class="wrapper">
+      <div class="header">Информация о кредиторе</div>
+      <div class="subtitle header">Деньги до зарплаты</div>
+      <div class="pull-stats">
+        <div class="pull-stats1">
+          <div class="frame-group">
+            <div class="frame-container">
+              <div class="frame-inner"></div>
+              <div class="buttons-tabs-parent">
+                <div class="buttons-tabs">
+                  <div class="ton-parent">
+                    <div class="ton">37 000 TON</div>
+                    <div class="div10">Доступно ликвидности:</div>
+                  </div>
                   <img
-                    class="percent-icon"
+                    class="pie-chart-icon"
                     alt=""
-                    src="@/assets/images/percent.svg"
+                    src="@/assets/images/pie-chart.svg"
                   />
-
-                  <div class="div11">1 день = 1%</div>
                 </div>
-                <div class="percent-parent">
-                  <img
-                    class="percent-icon"
-                    alt=""
-                    src="@/assets/images/clock.svg"
-                  />
+                <div class="frame-div">
+                  <div class="percent-parent">
+                    <img
+                      class="percent-icon"
+                      alt=""
+                      src="@/assets/images/percent.svg"
+                    />
 
-                  <div class="div11">3 дня = 0%</div>
-                </div>
-                <div class="percent-parent">
-                  <img
-                    class="percent-icon"
-                    alt=""
-                    src="@/assets/images/activity.svg"
-                  />
+                    <div class="div11">1 день = 1%</div>
+                  </div>
+                  <div class="percent-parent">
+                    <img
+                      class="percent-icon"
+                      alt=""
+                      src="@/assets/images/clock.svg"
+                    />
 
-                  <div class="div11">ROI = 75%</div>
+                    <div class="div11">3 дня = 0%</div>
+                  </div>
+                  <div class="percent-parent">
+                    <img
+                      class="percent-icon"
+                      alt=""
+                      src="@/assets/images/activity.svg"
+                    />
+
+                    <div class="div11">ROI = 75%</div>
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="frame-parent1">
+              <div class="roi-wrapper">
+                <div class="div11">Состояние:</div>
+              </div>
+              <div class="statuspull-wrapper">
+                <div class="statuspull">
+                  <div class="div14">Активен</div>
+                </div>
+              </div>
+            </div>
+            <div class="frame-parent2">
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Ставка:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">1% в день</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">На срок:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">до 30 дней</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Беспроцентный период:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">3 дня</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Всего ликвидности:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">450 000 TON</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Свободно:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">37 000 TON</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">ROI инвесторов:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">75% годовых</div>
+                </div>
+              </div>
+            </div>
+            <div class="percent-group">
+              <div class="div24">
+                Проценты начисляются с 12 апреля 2023 года
+              </div>
+            </div>
           </div>
-          <div class="frame-parent1">
-            <div class="roi-wrapper">
-              <div class="div11">Состояние:</div>
-            </div>
-            <div class="statuspull-wrapper">
-              <div class="statuspull">
-                <div class="div14">Активен</div>
-              </div>
-            </div>
-          </div>
-          <div class="frame-parent2">
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Ставка:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">1% в день</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">На срок:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">до 30 дней</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Беспроцентный период:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">3 дня</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Всего ликвидности:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">450 000 TON</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">Свободно:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">37 000 TON</div>
-              </div>
-            </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
-              <div class="roi-wrapper">
-                <div class="roi">ROI инвесторов:</div>
-              </div>
-              <div class="ton-wrapper">
-                <div class="div16">75% годовых</div>
-              </div>
-            </div>
-          </div>
-          <div class="percent-group">
-            <div class="div24">Проценты начисляются с 12 апреля 2023 года</div>
-          </div>
-        </div>
-        <div class="des-and-bbn">
-          <div class="text-and-button-parent">
-            <div class="text-and-button">
-              <div class="buttons-tabs1">
-                <div class="text">Закрыть</div>
+          <div class="des-and-bbn">
+            <div class="text-and-button-parent">
+              <div class="text-and-button" @click="toBack">
+                <div class="buttons-tabs2">
+                  <div class="text">Закрыть</div>
+                </div>
               </div>
             </div>
           </div>
@@ -134,10 +138,22 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import modal from "@/components/ui-kit/modal.vue";
+import { useRouter } from "vue-router";
+const variant = computed(() => {
+  return window.history.state.variant;
+});
+const router = useRouter();
+const toBack = () => {
+  router.push({ name: "pulls", state: { variant: variant.value } });
+};
 </script>
 
 <style scoped>
+.wrapper {
+  height: 660px;
+}
 .pull {
   position: absolute;
   top: 0;
@@ -331,7 +347,6 @@ import modal from "@/components/ui-kit/modal.vue";
   position: relative;
   width: 83.6vw;
   height: 5.94em;
-  top: -4em;
 }
 .div14 {
   position: absolute;
@@ -399,7 +414,7 @@ import modal from "@/components/ui-kit/modal.vue";
 .roi {
   position: relative;
   font-size: 0.75em;
-  line-height: 0.83em;
+  line-height: 130%;
   font-weight: 300;
 }
 .frame-parent2,
@@ -455,9 +470,9 @@ import modal from "@/components/ui-kit/modal.vue";
   gap: 0.88em;
 }
 .text {
-  position: absolute;
+  position: relative;
   top: calc(50% - 9px);
-  left: calc(50% - 24.5px);
+  text-align: center;
   font-size: 0.88em;
   letter-spacing: 0.02em;
   line-height: 120%;
@@ -485,11 +500,12 @@ import modal from "@/components/ui-kit/modal.vue";
   align-self: stretch;
   position: relative;
   border-radius: 25px;
-  background-color: rgba(87, 126, 247, 0.96);
+  background: transparent;
   border: 0.5px solid rgba(87, 126, 247, 0.96);
   box-sizing: border-box;
   height: 2em;
   cursor: pointer;
+  color: rgba(85, 85, 98, 1);
 }
 .text-and-button {
   flex: 1;
@@ -546,15 +562,15 @@ import modal from "@/components/ui-kit/modal.vue";
 }
 .pull-stats1 {
   position: relative;
-  top: 1.81em;
+  top: -2em;
   align-items: center;
   gap: 0.88em;
   margin: 0px auto;
 }
 .pull-stats {
   position: relative;
-  top: 8em;
-  height: 33.56em;
+  top: 6em;
+  height: 30.56em;
   text-align: left;
   margin: 0px 24px;
   border: 0.5px solid rgba(46, 58, 89, 0.4);

@@ -226,14 +226,13 @@
           </div>
         </div>
       </div>
-      <app-bar></app-bar>
     </div>
   </modal>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
-import appBar from "@/components/ui-kit/app-bar.vue";
+
 import modal from "@/components/ui-kit/modal.vue";
 import { useRouter } from "vue-router";
 

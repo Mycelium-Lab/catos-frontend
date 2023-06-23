@@ -162,6 +162,7 @@
       </div>
     </div>
   </div>
+
   <!--<bottomsheet
     v-if="isManagement"
     defaultState="open"
@@ -191,7 +192,11 @@ const toLoans = () => {
 };
 
 const toDetail = () => {
-  router.push({ name: "pulls-detail-personal", state: { variant } });
+  if (variant === "all") {
+    router.push({ name: "pulls-detail", state: { variant } });
+  } else {
+    router.push({ name: "pulls-detail-personal", state: { variant } });
+  }
 };
 const toManage = () => {
   router.push({ name: "pulls-liquidity-management" });

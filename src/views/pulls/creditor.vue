@@ -42,6 +42,7 @@
     <creditor-list
       :style="{ top: '10.5em' }"
       :variant="curentWindow"
+      :key="curentWindow"
       @on-bottomsheet="(ev: any) => isBackSide = ev"
       @on-modal="() => (isBackSide = true)"
     ></creditor-list>
