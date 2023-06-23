@@ -18,10 +18,11 @@
               </div>
 
               <catos-select
-                placeholder="Россия"
+                placeholder="Выберите токен"
                 :options="options"
                 :value="value"
-                @selected="(ev: any) => (value = ev)"
+                :optionWidth="77"
+                @selected="ev => (value = ev)"
               ></catos-select>
             </li>
             <li class="option-item">
@@ -34,9 +35,10 @@
                 />
               </div>
               <range-slider
-                :max="700"
-                v-model:min-value="sliderMin"
-                v-model:max-value="sliderMax"
+                :max="30"
+                :modelValue="0.1"
+                rangeWidth="100%"
+                inputLabel="percent"
               ></range-slider>
             </li>
             <li class="option-item_last option-item">
@@ -49,9 +51,9 @@
                 />
               </div>
               <range-slider
-                :max="700"
-                v-model:min-value="sliderMin"
-                v-model:max-value="sliderMax"
+                :max="365"
+                :modelValue="1"
+                rangeWidth="100%"
                 :style="{ marginTop: '1em' }"
               ></range-slider>
             </li>
@@ -74,7 +76,7 @@
               <img src="@/assets/images/iconsstars.svg" />
             </template>
           </catos-button>
-          <button class="btn-cancel">
+          <button class="btn-cancel" @click="toPull">
             <span class="link_back"> Отмена </span>
           </button>
         </div>
@@ -91,8 +93,11 @@ import modal from "@/components/ui-kit/modal.vue";
 import rangeSlider from "@/components/ui-kit/range-slider.vue";
 import { useRouter } from "vue-router";
 
-const sliderMin = ref(50);
-const sliderMax = ref(80);
+const sliderMinPercent = ref(0.1);
+const sliderMaxPercent = ref(30);
+
+const sliderMinDay = ref(1);
+const sliderMaxDay = ref(365);
 
 const value = ref("");
 const options = {
@@ -101,7 +106,9 @@ const options = {
 };
 
 const router = useRouter();
-
+const toPull = () => {
+  router.push({ name: "pulls" });
+};
 const toScan = () => {
   router.push({ name: "pulls-create-scan" });
 };
@@ -1359,6 +1366,7 @@ const toScan = () => {
   }
 }
 .btn-cancel {
+  display: block;
   position: relative;
   top: 2em;
   border: none;
