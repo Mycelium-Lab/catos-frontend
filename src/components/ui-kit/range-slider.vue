@@ -199,7 +199,7 @@ const handle = (target: any) => {
 }
 .input-wrapper::after,
 .input-wrapper::before {
-  position: absolute;
+  position: relative;
 }
 .input-wrapper {
   display: flex;
@@ -212,14 +212,10 @@ const handle = (target: any) => {
   border: 1px solid rgba(0, 0, 0, 0.03);
   background: #f6f4fc;
   font-size: 15.273px;
-  padding: 6px 55px 6px 24px;
   gap: 3vw;
   margin: 0 auto;
 }
 .input-wrapper_ton::after {
-  right: 7vw;
-}
-.input-wrapper_day::after {
-  right: 9.5vw;
+  right: 1vw;
 }
 </style>
