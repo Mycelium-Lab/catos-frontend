@@ -3,6 +3,7 @@
     <slot name="left-label"></slot>
     <slot name="right-label"></slot>
     <div
+      :style="rangeWidth ? { width: `${rangeWidth}` } : {}"
       :class="
         inputLabel
           ? `input-wrapper_${inputLabel} input-wrapper`
@@ -55,6 +56,9 @@ const { min, max, step, modelValue } = defineProps({
     default: 50,
   },
   inputLabel: {
+    type: String,
+  },
+  rangeWidth: {
     type: String,
   },
 });
