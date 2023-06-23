@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="component-25-wrapper">
-        <div class="component-25">
+        <div class="component-25" @click="toPulls">
           <div class="div13">Выбрать другой пулл</div>
           <img
             class="menu-2-icon"
@@ -1371,6 +1371,11 @@
 <script setup lang="ts">
 import appBar from "@/components/ui-kit/app-bar.vue";
 import Chart from "./chart.vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const toPulls = () => {
+  router.push({ name: "pulls" });
+};
 </script>
 
 <style scoped>
@@ -1383,9 +1388,8 @@ import Chart from "./chart.vue";
   font-weight: 600;
 }
 .header6 {
-  position: absolute;
+  position: relative;
   top: 3.5em;
-  left: 2.81em;
   border-radius: 7px;
   width: 18.75em;
   display: flex;
@@ -1394,6 +1398,7 @@ import Chart from "./chart.vue";
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 }
 .trash-icon {
   position: relative;
@@ -1527,7 +1532,7 @@ import Chart from "./chart.vue";
 }
 .tables-light-mode {
   position: relative;
-  top: 8em;
+  top: 6em;
   /* left: 1.47em; */
   border-radius: 16px;
   border: 1px solid #f2f2f2;
@@ -1959,7 +1964,7 @@ import Chart from "./chart.vue";
 }
 .graphsorders-mobile-01-parent {
   position: relative;
-  top: 10.39em;
+  top: 8em;
   /* left: 1.5em; */
   display: flex;
   flex-direction: column;

@@ -139,7 +139,11 @@
             <div class="buttons-tabs1" @click="toLoans">
               <div class="text">Займы</div>
             </div>
-            <div class="buttons-tabs2" id="buttonsTabsContainer2">
+            <div
+              class="buttons-tabs2"
+              id="buttonsTabsContainer2"
+              @click="toAnalytics"
+            >
               <div class="text1">Аналитика</div>
             </div>
           </div>
@@ -187,6 +191,9 @@ const emit = defineEmits(["onBottomsheet", "onModal"]);
 const isManagement = ref(false);
 const router = useRouter();
 
+const toAnalytics = () => {
+  router.push({ name: "dashboard-analytics" });
+};
 const toLoans = () => {
   router.push({ name: "loans", state: { variant } });
 };
