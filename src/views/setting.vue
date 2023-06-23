@@ -6,7 +6,15 @@
           <div class="tags-grey">
             <!--<img class="bg-hover-icon" alt="" src="./public/bg-hover.svg" />-->
 
-            <b class="tag">Кредитор</b>
+            <b class="tag">{{
+              role === "borrower"
+                ? "Заемщик"
+                : role === "collector"
+                ? "Коллектор"
+                : role === "depositor"
+                ? "Инвестор"
+                : "Кредитор"
+            }}</b>
           </div>
           <div class="buttons-icon-outline-arr-parent">
             <div class="buttons-icon-outline-arr">
@@ -28,7 +36,9 @@
         <div class="tags-grey1">
           <!--<img class="bg-hover-icon" alt="" src="./public/bg-hover.svg" />-->
 
-          <b class="tag">Кредитор</b>
+          <b class="tag">{{
+            role === "collector" ? "Коллектор" : "Кредитор"
+          }}</b>
         </div>
         <div class="fields-and-photo-and-name">
           <div class="photo-and-name">
@@ -60,7 +70,17 @@
             </div>
             <div class="name">
               <b class="name1">Валентин Иванович Бабаев</b>
-              <div class="job-title">Кредитор</div>
+              <div class="job-title">
+                {{
+                  role === "borrower"
+                    ? "Заемщик"
+                    : role === "collector"
+                    ? "Коллектор"
+                    : role === "depositor"
+                    ? "Инвестор"
+                    : "Кредитор"
+                }}
+              </div>
             </div>
           </div>
           <div class="fields-edit">
@@ -125,6 +145,7 @@
           <img class="iconchange" alt="" src="./public/iconchange.svg" />
         </router-link>
         <router-link
+          v-if="role === 'creditor'"
           class="field-button"
           id="fieldButtonContainer1"
           :to="{ name: 'scrinning' }"
@@ -136,7 +157,28 @@
           <div class="api">Изменить кошелек</div>
           <img class="iconchange" alt="" src="./public/iconchange.svg" />
         </router-link>
-        <div class="field-button">
+        <router-link
+          v-if="role === 'borrower' || role === 'collector'"
+          class="field-button"
+          id="fieldButtonContainer1"
+          :to="{ name: 'scrinning' }"
+        >
+          <div class="api">Изменить анкету</div>
+          <img class="iconchange" alt="" src="./public/iconchange.svg" />
+        </router-link>
+        <router-link
+          v-if="role === 'collector' || role === 'depositor'"
+          class="field-button"
+          id="fieldButtonContainer1"
+          :to="{ name: 'scrinning' }"
+        >
+          <div class="api">Настроить оповещения</div>
+          <img class="iconchange" alt="" src="./public/iconchange.svg" />
+        </router-link>
+        <div
+          v-if="role === 'creditor' || role === 'depositor'"
+          class="field-button"
+        >
           <div class="api">Изменить данные компании</div>
           <img class="iconchange" alt="" src="./public/iconchange.svg" />
         </div>
@@ -165,6 +207,10 @@ import { useRouter } from "vue-router";
 const isLoadPhoto = ref(false);
 
 const router = useRouter();
+
+const role = ref(
+  localStorage.getItem ? JSON.parse(localStorage.getItem("role")!) : ""
+);
 
 const editPhoto = () => {
   router.push({ name: "edit-photo" });
@@ -309,12 +355,10 @@ const upload = () => {
   max-height: 100%;
 }
 .tag {
-  position: absolute;
-  top: calc(50% - 11px);
-  left: 1.21em;
   font-size: 0.88em;
   line-height: 1.5em;
   font-family: "Lato", sans-serif;
+  text-align: center;
 }
 .tags-grey {
   position: relative;
@@ -322,6 +366,7 @@ const upload = () => {
   height: 2.25em;
   background-color: #f5f5fa;
   border-radius: 8px;
+  padding: 7px;
 }
 .bg {
   position: absolute;
