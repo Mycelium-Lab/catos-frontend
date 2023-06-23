@@ -4,7 +4,7 @@
     <span class="close" @click="toBack">Закрыть</span>
     <chips-bar
       :style="{
-        marginTop: '1.8em',
+        marginTop: '3.8em',
         width: '90vw',
         left: '1.6em',
         position: 'relative',

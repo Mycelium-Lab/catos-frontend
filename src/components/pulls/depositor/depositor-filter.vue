@@ -1,13 +1,13 @@
 <template>
   <div class="decor-parent">
-    <span class="job-title">Сортировать по</span>
+    <span class="job-title">Фильтровать по</span>
     <span class="close" @click="toBack">Закрыть</span>
     <chips-bar
       :style="{
-        marginTop: '3.8em',
         width: '90vw',
-        left: '1.6em',
         position: 'relative',
+        margin: '0 auto',
+        marginTop: '3.8em',
       }"
       @on-edit="handleEdit"
     ></chips-bar>
@@ -15,40 +15,54 @@
     <div class="frame-parent3">
       <div class="fields-parent">
         <ul class="option-list">
+          <li v-if="variant === 'debt'">
+            <label class="label">По статусу:</label>
+            <catos-select
+              placeholder="Выберите статус"
+              :options="options"
+              :value="valueStatus"
+              :optionWidth="87.7"
+              @selected="ev => (valueToken = ev)"
+            ></catos-select>
+          </li>
           <li>
             <label class="label">Доходности:</label>
             <range-minmax-slider
-              :max="30"
-              v-model:min-value="sliderMinBid"
-              v-model:max-value="sliderMaxBid"
-              :style="{ marginTop: '3em' }"
+              :max="10000"
+              v-model:min-value="sliderMinDbt"
+              v-model:max-value="sliderMaxDbt"
+              :style="{ marginTop: '2em' }"
+              inputLabel="ton"
             ></range-minmax-slider>
           </li>
           <li>
             <label class="label">Дневной ставке:</label>
             <range-minmax-slider
               :max="30"
-              v-model:min-value="sliderMinTerm"
-              v-model:max-value="sliderMaxTerm"
+              v-model:min-value="sliderMinBid"
+              v-model:max-value="sliderMaxBid"
               :style="{ marginTop: '2em' }"
+              inputLabel="percent"
             ></range-minmax-slider>
           </li>
           <li>
             <label class="label">Количеству инвесторов:</label>
             <range-minmax-slider
-              :max="30"
-              v-model:min-value="sliderMinPeriod"
-              v-model:max-value="sliderMaxPeriod"
+              :max="10000"
+              v-model:min-value="sliderMinOverdue"
+              v-model:max-value="sliderMaxOverdue"
               :style="{ marginTop: '2em' }"
             ></range-minmax-slider>
           </li>
+
           <li>
-            <label class="label">Бесроцентносу периоду:</label>
+            <label class="label">Беспроцентому периоду:</label>
             <range-minmax-slider
               :max="30"
-              v-model:min-value="sliderMinPercent"
-              v-model:max-value="sliderMaxPercent"
+              v-model:min-value="sliderMinCost"
+              v-model:max-value="sliderMaxCost"
               :style="{ marginTop: '2em' }"
+              inputLabel="percent"
             ></range-minmax-slider>
           </li>
         </ul>
@@ -93,34 +107,36 @@
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import catosButton from "../../ui-kit/buttons/catos-button.vue";
 import inputData from "@/components/fields/input-data.vue";
 import catosSelect from "../../fields/catos-select.vue";
 import chipsBar from "../../ui-kit/chips-bar.vue";
 import rangeMinmaxSlider from "../../ui-kit/range-minmax-slider.vue";
 
-const sliderMinBid = ref(0.3);
+const valueToken = ref("");
+const valuePlace = ref("");
+const valueStatus = ref("");
+const options = ["Россия", "Украина", "Казахстан", "Белорусь"];
+
+const sliderMinDbt = ref(0);
+const sliderMaxDbt = ref(10000);
+
+const sliderMinBid = ref(0.1);
 const sliderMaxBid = ref(30);
 
-const sliderMinTerm = ref(0.3);
-const sliderMaxTerm = ref(30);
+const sliderMinOverdue = ref(1);
+const sliderMaxOverdue = ref(10000);
 
-const sliderMinPeriod = ref(0.3);
-const sliderMaxPeriod = ref(30);
-
-const sliderMinPercent = ref(0.3);
-const sliderMaxPercent = ref(30);
+const sliderMinCost = ref(0.1);
+const sliderMaxCost = ref(30);
 
 const isEdit = ref(false);
 const isCreateMode = ref(false);
 
-const value = ref("");
-const options = {
-  sng: ["Россия", "Украина", "Казахстан"],
-  euro: ["Польша", "Латвия", "Молдова"],
-};
-
+const variant = computed(() => {
+  return window.history.state.variant;
+});
 const router = useRouter();
 const toBack = () => {
   router.go(-1);
@@ -1185,7 +1201,6 @@ const handleEdit = (ev: any) => {
   align-items: center;
 }
 .fields-parent {
-  padding-top: 1em;
   gap: 1em;
   text-align: left;
   width: 87.7vw;
@@ -1202,8 +1217,11 @@ const handleEdit = (ev: any) => {
       padding-left: 0em;
     }
   }
+  li:first-child {
+    padding-top: 2.2em;
+  }
   li {
-    padding-top: 2em;
+    padding-top: 1.5em;
   }
   & li .label {
     display: block;
@@ -1251,12 +1269,12 @@ const handleEdit = (ev: any) => {
   }
 }
 .frame-parent3 {
-  position: absolute;
+  position: relative;
 
-  left: 1em;
   height: 100%;
   gap: 0.38em;
-  width: 90%;
+  width: 90vw;
+  margin: 0 auto;
 }
 .span8 {
   letter-spacing: 0.01em;
