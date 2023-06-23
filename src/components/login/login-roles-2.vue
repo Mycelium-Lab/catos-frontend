@@ -15,6 +15,7 @@
       <div class="component-19-parent">
         <router-link
           class="component-19"
+          @click="() => setRole('borrower')"
           :to="{
             name: title === 'Войти' ? 'login' : 'start',
             state: { title: 'Регистрация заемщика', role: 'borrower' },
@@ -37,6 +38,7 @@
           </div>
         </router-link>
         <router-link
+          @click="() => setRole('depositor')"
           class="component-191"
           :to="{
             name: title === 'Войти' ? 'login' : 'start',
@@ -61,6 +63,7 @@
           </div>
         </router-link>
         <router-link
+          @click="() => setRole('creditor')"
           class="component-193"
           :to="{
             name: title === 'Войти' ? 'login' : 'start',
@@ -93,6 +96,7 @@
         </router-link>
         <router-link
           class="component-193"
+          @click="() => setRole('collector')"
           :to="{
             name: title === 'Войти' ? 'login' : 'start',
             state: { title: 'Регистрация заемщика', role: 'collector' },
@@ -158,6 +162,11 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+
+const setRole = (role: any) => {
+  localStorage.setItem("role", JSON.stringify(role));
+};
+
 //TODO: Переписать на vue router from  компонент name вместо history
 const title = computed(() => {
   return window.history.state.title;
