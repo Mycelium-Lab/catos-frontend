@@ -59,23 +59,22 @@ const options = {
 <style scoped lang="scss">
 .header-parent,
 .swipe-down1 {
-  position: absolute;
+  position: relative;
   top: 0.75em;
   left: 10.81em;
   border-radius: 25px;
   background-color: #cad0e4;
   width: 2.63em;
-  height: 0.31em;
 }
 .header-parent {
   left: 0;
   border-radius: 30px 30px 0 0;
   background-color: #fff;
   box-shadow: 0 12px 12px rgba(151, 71, 255, 0.04);
-  height: 100%;
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 120);
   overflow: hidden;
   width: 100vw;
-  overflow-y: auto;
 }
 
 .div {
