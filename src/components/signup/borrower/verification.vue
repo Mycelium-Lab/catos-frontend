@@ -254,7 +254,7 @@
           name: 'borrower-finish',
         }"
       >
-        <b class="b2">Сохранить и продожить</b>
+        <b class="b2">Сохранить и продолжить</b>
       </router-link>
     </div>
     <div class="slidersteps">
