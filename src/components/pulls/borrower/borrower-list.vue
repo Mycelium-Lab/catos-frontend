@@ -1,6 +1,12 @@
 <template>
   <div :class="variant === 'all' ? 'pull-stats_all pull-stats' : 'pull-stats'">
-    <div class="pull-stats-child"></div>
+    <div
+      :class="
+        variant === 'all'
+          ? 'pull-stats-child'
+          : 'pull-stats-child_my pull-stats-child'
+      "
+    ></div>
     <div class="filtr">
       <div class="frame">
         <div class="div9">Пулл №1223</div>
@@ -126,8 +132,16 @@
                 <div>Взять займ</div>
               </div>
             </div>
-            <div class="buttons-tabs2" id="buttonsTabsContainer4">
-              <div class="text3" @click="toDetail">Подробнее</div>
+            <div
+              class="buttons-tabs2_detail buttons-tabs2"
+              id="buttonsTabsContainer4"
+            >
+              <div
+                class="text3"
+                @click="() => (variant === 'all' ? toDetail() : toMyDetail())"
+              >
+                Подробнее
+              </div>
             </div>
           </div>
         </div>
@@ -161,6 +175,9 @@ const router = useRouter();
 
 const toDetail = () => {
   router.push({ name: "pulls-borrower-detail", state: { variant } });
+};
+const toMyDetail = () => {
+  router.push({ name: "pulls-borrower-detail-my", state: { variant } });
 };
 
 const getLoan = () => {
@@ -216,7 +233,10 @@ const getLoan = () => {
   border-radius: 15px;
   backdrop-filter: blur(5px);
   border: 0.5px solid rgba(46, 58, 89, 0.4);
-  height: 32.94em;
+  height: 32em;
+}
+.pull-stats-child_my {
+  height: 27.5em;
 }
 .div9 {
   position: relative;
@@ -402,6 +422,8 @@ const getLoan = () => {
   padding: 9px 0px 9px 13px;
   margin: 0em;
   align-items: center;
+  height: 40px;
+  width: 100%;
 }
 .div16 {
   flex: 1;
@@ -527,6 +549,12 @@ const getLoan = () => {
   box-sizing: border-box;
   height: 2em;
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+  &_detail {
+    background: transparent;
+    color: #3b3b3b;
+  }
 }
 .text-and-button {
   flex: 1;
@@ -1421,7 +1449,8 @@ const getLoan = () => {
   position: relative;
   background-color: #fff;
   width: 100%;
-  height: 61.13em;
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 130);
   overflow: hidden;
   text-align: center;
   color: #3b3b3b;
