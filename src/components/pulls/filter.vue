@@ -1,63 +1,79 @@
 <template>
   <div class="decor-parent">
-    <span class="job-title">Сортировать по</span>
+    <span class="job-title">Фильтровать по</span>
     <span class="close" @click="toBack">Закрыть</span>
     <chips-bar
       :style="{
-        marginTop: '3.8em',
         width: '90vw',
-        left: '1.6em',
         position: 'relative',
+        margin: '0 auto',
+        marginTop: '3.8em',
       }"
       @on-edit="handleEdit"
     ></chips-bar>
-    <div class="decor"></div>
+
     <div class="frame-parent3">
       <div class="fields-parent">
         <ul class="option-list">
           <li>
-            <label class="label">Настройте токен:</label>
+            <label class="label">Токену:</label>
             <catos-select
-              placeholder="Россия"
+              placeholder="Выберите токен"
               :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
+              :value="valueToken"
+              :optionWidth="87.7"
+              @selected="ev => (valueToken = ev)"
+            ></catos-select>
+          </li>
+          <li v-if="variant === 'debt'">
+            <label class="label">По статусу:</label>
+            <catos-select
+              placeholder="Выберите статус"
+              :options="options"
+              :value="valueStatus"
+              :optionWidth="87.7"
+              @selected="ev => (valueToken = ev)"
             ></catos-select>
           </li>
           <li>
             <label class="label">Дневной ставке:</label>
             <range-minmax-slider
               :max="30"
-              v-model:min-value="sliderMinBid"
-              v-model:max-value="sliderMaxBid"
+              v-model:min-value="sliderMinRange"
+              v-model:max-value="sliderMaxRange"
               :style="{ marginTop: '2em' }"
+              inputLabel="percent"
             ></range-minmax-slider>
           </li>
           <li>
-            <label class="label">Срок:</label>
+            <label class="label">Сроку</label>
             <range-minmax-slider
-              :max="30"
-              v-model:min-value="sliderMinTerm"
-              v-model:max-value="sliderMaxTerm"
+              :max="365"
+              v-model:min-value="sliderMinDay"
+              v-model:max-value="sliderMaxDay"
               :style="{ marginTop: '2em' }"
+              inputLabel="day"
             ></range-minmax-slider>
           </li>
+
           <li>
-            <label class="label">Беспроцентный период:</label>
+            <label class="label">Беспроцентному периоду:</label>
             <range-minmax-slider
               :max="30"
               v-model:min-value="sliderMinPeriod"
               v-model:max-value="sliderMaxPeriod"
               :style="{ marginTop: '2em' }"
+              inputLabel="percent"
             ></range-minmax-slider>
           </li>
           <li>
-            <label class="label">Процент возврата:</label>
+            <label class="label">Проценту возврата:</label>
             <range-minmax-slider
               :max="30"
-              v-model:min-value="sliderMinPercent"
-              v-model:max-value="sliderMaxPercent"
+              v-model:min-value="sliderMinReturn"
+              v-model:max-value="sliderMaxReturn"
               :style="{ marginTop: '2em' }"
+              inputLabel="percent"
             ></range-minmax-slider>
           </li>
         </ul>
@@ -102,34 +118,36 @@
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { ref } from "vue";
-import catosButton from "../ui-kit/buttons/catos-button.vue";
+import { ref, computed } from "vue";
+import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import inputData from "@/components/fields/input-data.vue";
-import catosSelect from "../fields/catos-select.vue";
-import chipsBar from "../ui-kit/chips-bar.vue";
-import rangeMinmaxSlider from "../ui-kit/range-minmax-slider.vue";
+import catosSelect from "@/components/fields/catos-select.vue";
+import chipsBar from "@/components/ui-kit/chips-bar.vue";
+import rangeMinmaxSlider from "@/components/ui-kit/range-minmax-slider.vue";
 
-const sliderMinBid = ref(0.3);
-const sliderMaxBid = ref(30);
+const valueToken = ref("");
+const valuePlace = ref("");
+const valueStatus = ref("");
+const options = ["Россия", "Украина", "Казахстан", "Белорусь"];
 
-const sliderMinTerm = ref(0.3);
-const sliderMaxTerm = ref(30);
+const sliderMinRange = ref(0);
+const sliderMaxRange = ref(30);
 
-const sliderMinPeriod = ref(0.3);
+const sliderMinDay = ref(0);
+const sliderMaxDay = ref(365);
+
+const sliderMinPeriod = ref(0);
 const sliderMaxPeriod = ref(30);
 
-const sliderMinPercent = ref(0.3);
-const sliderMaxPercent = ref(30);
+const sliderMinReturn = ref(0);
+const sliderMaxReturn = ref(30);
 
 const isEdit = ref(false);
 const isCreateMode = ref(false);
 
-const value = ref("");
-const options = {
-  sng: ["Россия", "Украина", "Казахстан"],
-  euro: ["Польша", "Латвия", "Молдова"],
-};
-
+const variant = computed(() => {
+  return window.history.state.variant;
+});
 const router = useRouter();
 const toBack = () => {
   router.go(-1);
@@ -844,12 +862,6 @@ const handleEdit = (ev: any) => {
   text-align: right;
   color: rgba(93, 104, 123, 0.9);
 }
-.decor {
-  left: 1em;
-
-  width: 90%;
-  height: 24em;
-}
 .job-title1 {
   position: relative;
   font-size: 1.13em;
@@ -1194,7 +1206,6 @@ const handleEdit = (ev: any) => {
   align-items: center;
 }
 .fields-parent {
-  padding-top: 1em;
   gap: 1em;
   text-align: left;
   width: 87.7vw;
@@ -1204,12 +1215,18 @@ const handleEdit = (ev: any) => {
     padding: 0em;
     margin: 0em;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
     &_filter .list-item {
       padding-left: 0em;
     }
   }
+  li:first-child {
+    padding-top: 2.2em;
+  }
   li {
-    padding-top: 3.75em;
+    padding-top: 1.5em;
   }
   & li .label {
     display: block;
@@ -1218,10 +1235,9 @@ const handleEdit = (ev: any) => {
     line-height: 1.2em;
     font-weight: 400;
 
-    padding-bottom: 0.715em;
     width: 100%;
     position: relative;
-    top: -2em;
+    top: -1em;
   }
   & .inner-list {
     margin-top: 0.8em;
@@ -1258,12 +1274,11 @@ const handleEdit = (ev: any) => {
   }
 }
 .frame-parent3 {
-  position: absolute;
+  position: relative;
 
-  left: 1em;
-  height: 100%;
   gap: 0.38em;
-  width: 90%;
+  width: 90vw;
+  margin: 0 auto;
 }
 .span8 {
   letter-spacing: 0.01em;
@@ -1321,10 +1336,10 @@ const handleEdit = (ev: any) => {
   /* top: 0em; */
   left: 0;
   border-radius: 24px 24px 0 0;
-
+  overflow: hidden;
   box-sizing: border-box;
   width: 100vw;
-  height: 100vh;
+  height: 900px;
 }
 .div44 {
   left: 3.29em;

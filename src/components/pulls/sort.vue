@@ -1339,7 +1339,7 @@ const handleEdit = (ev: any) => {
   /* border: 1px solid rgba(46, 58, 89, 0.2); */
   box-sizing: border-box;
   width: 100vw;
-  height: 60.88em;
+  height: 55.8em;
 }
 .div44 {
   left: 3.29em;
