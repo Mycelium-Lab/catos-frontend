@@ -16,9 +16,7 @@
           : { color: 'rgb(129, 129, 165' }
       "
       @click="() => handle('left')"
-      >{{
-        ButtonSliderVariant[variantIndex] === "dashboard" ? tabs[0] : "Владею"
-      }}</span
+      >{{ variantIndex !== 0 ? tabs[0] : "Владею" }}</span
     >
     <span
       @click="() => handle('right')"
@@ -28,11 +26,7 @@
           : { color: 'rgb(129, 129, 165' }
       "
       :class="`button-slider_right_${ButtonSliderVariant[variantIndex]} button-slider_right`"
-      >{{
-        ButtonSliderVariant[variantIndex] === "dashboard"
-          ? tabs[1]
-          : "Не владею"
-      }}</span
+      >{{ variantIndex !== 0 ? tabs[1] : "Не владею" }}</span
     >
   </div>
 </template>
@@ -40,7 +34,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { ButtonSliderVariant } from "@/types/buttons-props";
-const { variantIndex } = defineProps({
+const { variantIndex, variant } = defineProps({
   variantIndex: {
     type: Number,
     default: 0,
@@ -49,9 +43,12 @@ const { variantIndex } = defineProps({
     type: Array,
     default: [],
   },
+  variant: {
+    type: String,
+  },
 });
 
-const isSide = ref("left");
+const isSide = ref(variant ? "right" : "left");
 const handle = (side: any) => {
   isSide.value = side;
   const currentSlide = side === "left" ? 0 : 1;
@@ -77,7 +74,8 @@ const handleChange = (ev: any) => {
     width: 20.571428571428571em;
   }
   &_dashboard,
-  &_loans {
+  &_loans,
+  &_collector {
     font-weight: 400;
     width: 77vw;
     color: rgba(129, 129, 165, 1);
@@ -93,7 +91,9 @@ const handleChange = (ev: any) => {
     position: absolute;
     left: 8%;
     top: 0.5em;
-    z-index: 100;
+
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
     &::after {
       content: "";
       position: relative;
@@ -111,13 +111,23 @@ const handleChange = (ev: any) => {
         display: none;
       }
     }
+    &_collector {
+      top: 0.85em;
+      width: clamp(110px, 26.7vw, 100%);
+      left: 4%;
+      &::after {
+        display: none;
+      }
+    }
   }
   &_right {
     position: absolute;
     right: 8%;
-    top: 0.5em;
-    z-index: 100;
+    top: 0.85em;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
     width: 26.2vw;
+
     &::after {
       content: "";
       width: 100%;
@@ -130,6 +140,13 @@ const handleChange = (ev: any) => {
     &_dashboard {
       top: 0.65em;
 
+      &::after {
+        display: none;
+      }
+    }
+    &_collector {
+      top: 0.85em;
+      width: 43vw;
       &::after {
         display: none;
       }
@@ -176,7 +193,8 @@ const handleChange = (ev: any) => {
     font-weight: 500;
     color: white;
   }
-  &:checked ~ .button-slider_right_dashboard {
+  &:checked ~ .button-slider_right_dashboard,
+  &:checked ~ .button-slider_right_collector {
     font-weight: 400;
     color: var(--color-darkslategray-100);
   }
@@ -187,7 +205,8 @@ const handleChange = (ev: any) => {
     font-weight: 500;
     color: white;
   }
-  &:not(:checked) ~ .button-slider_left_dashboard {
+  &:not(:checked) ~ .button-slider_left_dashboard,
+  &:not(:checked) ~ .button-slider_left_collector {
     font-weight: 400;
     color: var(--color-darkslategray-100);
   }
@@ -213,7 +232,8 @@ const handleChange = (ev: any) => {
   }
 }
 .slider {
-  &_dashboard {
+  &_dashboard,
+  &_collector {
     background: rgba(246, 244, 252, 1);
     height: 2.5em;
     border-color: rgba(0, 0, 0, 0.04);
@@ -261,21 +281,49 @@ input[type="checkbox"] {
       width: 50%;
       height: 100%;
     }
-    &_dashboard {
+    &_dashboard,
+    &_collector {
       &:after {
         font-weight: 400;
         background: rgba(253, 214, 116, 1);
-        width: 50%;
+
         height: 91%;
         top: 0.1em;
       }
       &:checked:after {
-        width: 50%;
         height: 91%;
         top: 0.095em;
       }
     }
     &_dashboard {
+      &:after {
+        width: 50%;
+      }
+      &:checked:after {
+        width: 50%;
+      }
+    }
+
+    &_collector {
+      &_label_left {
+        &:after {
+          width: 38%;
+        }
+        &:checked:after {
+          width: 38%;
+        }
+      }
+      &_label_right {
+        &:after {
+          width: 65%;
+        }
+        &:checked:after {
+          width: 65%;
+        }
+      }
+    }
+    &_dashboard,
+    &_collector {
       &:checked {
         --x: 99%;
       }
@@ -289,7 +337,13 @@ input[type="checkbox"] {
         --x: 99%;
       }
     }
-    &_dashboard_label_left {
+    &_collector_label_right {
+      &:after {
+        --x: 52.3%;
+      }
+    }
+    &_dashboard_label_left,
+    &_collector_label_left {
       &:after {
         --ab: var(--active-inner);
         --x: 3px;
@@ -309,6 +363,15 @@ input[type="radio"] {
   }
   &:checked {
     --s: 0.5;
+  }
+}
+@media (max-width: 380px) {
+  .button-slider {
+    &_right {
+      &_collector {
+        width: auto;
+      }
+    }
   }
 }
 @media (max-width: 365px) {
