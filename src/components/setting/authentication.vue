@@ -1,52 +1,54 @@
 <template>
   <modal>
-    <div class="group">
-      <div class="div8">Двухфакторная авторизация</div>
-      <div class="div9">
-        <p class="p">Для большей защиты вашего акаунта</p>
-        <p class="p">используйте двухфакторную</p>
-        <p class="p">авторизацию</p>
-      </div>
-    </div>
-    <div class="google-authentificator-container">
-      <p class="p">
-        <span class="span">Для того</span>, что бы продолжить загрузите
-      </p>
-      <p class="p">и установите приложение Google</p>
-      <p class="p">Authentificator на ваш телефон</p>
-    </div>
-    <img class="connect-child" alt="" src="@/assets/images/dash-one.svg" />
-
-    <img
-      class="iconsstatus-transaction"
-      alt=""
-      src="@/assets/images/authentication.svg"
-    />
-
-    <div class="frame-group">
-      <div class="google-authentificator-io-parent">
-        <div class="google-authentificator-container1">
-          <span>Google Authentificator: </span>
-          <span class="ios">для iOS и для Android</span>
-        </div>
-        <div class="frame-container">
-          <div class="ios-parent">
-            <div class="android">iOS</div>
-            <img class="iconchange" alt="" src="@/assets/images/to.svg" />
-          </div>
-          <div class="ios-parent">
-            <div class="android">Android</div>
-            <img class="iconchange" alt="" src="@/assets/images/to.svg" />
-          </div>
+    <div class="wrapper">
+      <div class="group">
+        <div class="div8">Двухфакторная авторизация</div>
+        <div class="div9">
+          <p class="p">Для большей защиты вашего акаунта</p>
+          <p class="p">используйте двухфакторную</p>
+          <p class="p">авторизацию</p>
         </div>
       </div>
-      <div class="buttonnext-parent">
-        <router-link class="buttonnext" :to="{ name: 'authentication-save' }">
-          <b class="ton-kepeer">Продолжить</b>
-        </router-link>
-        <div class="div10">
-          <p class="p">Если приложение установлено,</p>
-          <p class="p">жмите продолжить</p>
+      <div class="google-authentificator-container">
+        <p class="p">
+          <span class="span">Для того</span>, что бы продолжить загрузите
+        </p>
+        <p class="p">и установите приложение Google</p>
+        <p class="p">Authentificator на ваш телефон</p>
+      </div>
+      <img class="connect-child" alt="" src="@/assets/images/dash-one.svg" />
+
+      <img
+        class="iconsstatus-transaction"
+        alt=""
+        src="@/assets/images/authentication.svg"
+      />
+
+      <div class="frame-group">
+        <div class="google-authentificator-io-parent">
+          <div class="google-authentificator-container1">
+            <span>Google Authentificator: </span>
+            <span class="ios">для iOS и для Android</span>
+          </div>
+          <div class="frame-container">
+            <div class="ios-parent">
+              <div class="android">iOS</div>
+              <img class="iconchange" alt="" src="@/assets/images/to.svg" />
+            </div>
+            <div class="ios-parent">
+              <div class="android">Android</div>
+              <img class="iconchange" alt="" src="@/assets/images/to.svg" />
+            </div>
+          </div>
+        </div>
+        <div class="buttonnext-parent">
+          <router-link class="buttonnext" :to="{ name: 'authentication-save' }">
+            <b class="ton-kepeer">Продолжить</b>
+          </router-link>
+          <div class="div10">
+            <p class="p">Если приложение установлено,</p>
+            <p class="p">жмите продолжить</p>
+          </div>
         </div>
       </div>
     </div>
@@ -59,6 +61,9 @@ import modal from "../ui-kit/modal.vue";
 </script>
 
 <style scoped lang="scss">
+.wrapper {
+  height: 700px;
+}
 .div8 {
   align-self: stretch;
   position: relative;

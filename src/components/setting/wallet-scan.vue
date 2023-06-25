@@ -1,29 +1,35 @@
 <template>
   <modal>
-    <div class="connect-ton-parent">
-      <div class="connect-ton">Connect TON</div>
-      <div class="scan-the-qr-code-and-pay-13-51-wrapper">
-        <div class="scan-the-qr-container">
-          <p class="scan-the-qr">Scan the QR code and pay 13 512 TON</p>
-          <p class="scan-the-qr">with Tonkeeper using</p>
+    <div class="wrapper">
+      <div class="connect-ton-parent">
+        <div class="connect-ton">Connect TON</div>
+        <div class="scan-the-qr-code-and-pay-13-51-wrapper">
+          <div class="scan-the-qr-container">
+            <p class="scan-the-qr">Scan the QR code and pay 13 512 TON</p>
+            <p class="scan-the-qr">with Tonkeeper using</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="qr-code-2">
-      <img
-        class="replace-me-icon"
-        alt=""
-        src="@/assets/images/replace-me@2x.png"
-      />
-    </div>
-    <div class="or-press-the-the-button-below-parent">
-      <div class="scan-the-qr-container">Or press the the button below</div>
-      <router-link class="buttonnext" :to="{ name: 'setting-wallet-success' }">
-        <b class="ton-kepeer">Sign in with Tokenkeeper</b>
-      </router-link>
-    </div>
-    <div class="we-do-not">
-      We do not receive or store your wallet login details, so your TON is safe.
+      <div class="qr-code-2">
+        <img
+          class="replace-me-icon"
+          alt=""
+          src="@/assets/images/replace-me@2x.png"
+        />
+      </div>
+      <div class="or-press-the-the-button-below-parent">
+        <div class="scan-the-qr-container">Or press the the button below</div>
+        <router-link
+          class="buttonnext"
+          :to="{ name: 'setting-wallet-success' }"
+        >
+          <b class="ton-kepeer">Sign in with Tokenkeeper</b>
+        </router-link>
+      </div>
+      <div class="we-do-not">
+        We do not receive or store your wallet login details, so your TON is
+        safe.
+      </div>
     </div>
   </modal>
 </template>
@@ -33,6 +39,9 @@ import modal from "../ui-kit/modal.vue";
 </script>
 
 <style scoped>
+.wrapper {
+  height: 700px;
+}
 .connect-ton {
   align-self: stretch;
   position: relative;

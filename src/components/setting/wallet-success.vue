@@ -1,33 +1,35 @@
 <template>
   <modal>
-    <div class="group">
-      <div class="div8">Кошелек успешно изменен</div>
-    </div>
-    <img
-      class="iconsstatus-transaction"
-      alt=""
-      src="@/assets/images/iconswallet.svg"
-    />
+    <div class="wrapper">
+      <div class="group">
+        <div class="div8">Кошелек успешно изменен</div>
+      </div>
+      <img
+        class="iconsstatus-transaction"
+        alt=""
+        src="@/assets/images/iconswallet.svg"
+      />
 
-    <div class="swipe-down"></div>
-    <div class="frame-group">
-      <div class="frame-div">
-        <div class="div10">Внимание:</div>
-        <div class="catos-wrapper">
-          <div class="catos-container1">
-            <p class="p">
-              Вскоре с вами свяжется менеджер CATOS для подтверждения изменения
-              кошелька. Пока менеджеры CATOS не подтвердят
-            </p>
+      <div class="swipe-down"></div>
+      <div class="frame-group">
+        <div class="frame-div">
+          <div class="div10">Внимание:</div>
+          <div class="catos-wrapper">
+            <div class="catos-container1">
+              <p class="p">
+                Вскоре с вами свяжется менеджер CATOS для подтверждения
+                изменения кошелька. Пока менеджеры CATOS не подтвердят
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="frame-wrapper">
-        <div class="frame-container">
-          <div class="buttonnext-parent">
-            <router-link class="buttonnext" :to="{ name: 'setting' }">
-              <b class="ton-kepeer">Продолжить</b>
-            </router-link>
+        <div class="frame-wrapper">
+          <div class="frame-container">
+            <div class="buttonnext-parent">
+              <router-link class="buttonnext" :to="{ name: 'setting' }">
+                <b class="ton-kepeer">Продолжить</b>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -40,6 +42,9 @@ import modal from "../ui-kit/modal.vue";
 </script>
 
 <style scoped>
+.wrapper {
+  height: 400px;
+}
 .div8 {
   align-self: stretch;
   position: relative;

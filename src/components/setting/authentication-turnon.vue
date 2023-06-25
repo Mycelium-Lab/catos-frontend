@@ -1,43 +1,51 @@
 <template>
   <modal>
-    <div class="group">
-      <div class="div8">Двухфакторная авторизация</div>
-      <div class="div9">
-        Вставьте или напишите ключ доступа сгенерированный для вас приложением
-        Google Authentificator:
-      </div>
-    </div>
-
-    <img class="connect-child" alt="" src="@/assets/images/dash-one.svg" />
-
-    <img
-      class="iconsstatus-transaction"
-      alt=""
-      src="@/assets/images/authentication.svg"
-    />
-
-    <div class="frame-group">
-      <div class="google-authentificator-io-parent">
-        <div class="google-authentificator-container1">
-          <span>Google Authentificator: </span>
-          <span class="ios">введите сгенерированный для вас ключ доступа</span>
-        </div>
-        <div class="frame-container">
-          <copy-paste :style="{ marginTop: '0em' }" value="LKDXOOQCPWAAIAWT">
-            <template v-slot:label> Key: </template>
-            <template v-slot:icon>
-              <img src="@/assets/images/iconscopy.svg"
-            /></template>
-          </copy-paste>
+    <div class="wrapper">
+      <div class="group">
+        <div class="div8">Двухфакторная авторизация</div>
+        <div class="div9">
+          Вставьте или напишите ключ доступа сгенерированный для вас приложением
+          Google Authentificator:
         </div>
       </div>
-      <div class="buttonnext-parent">
-        <router-link
-          class="buttonnext"
-          :to="{ name: 'authentication-success' }"
-        >
-          <b class="ton-kepeer">Включить 2FA</b>
-        </router-link>
+
+      <img class="connect-child" alt="" src="@/assets/images/dash-one.svg" />
+
+      <img
+        class="iconsstatus-transaction"
+        alt=""
+        src="@/assets/images/authentication.svg"
+      />
+
+      <div class="frame-group">
+        <div class="google-authentificator-io-parent">
+          <div class="google-authentificator-container1">
+            <span>Google Authentificator: </span>
+            <span class="ios"
+              >введите сгенерированный для вас ключ доступа</span
+            >
+          </div>
+          <div class="frame-container">
+            <copy-paste
+              :style="{ marginTop: '0em' }"
+              value="LKDXOOQCPWAAIAWT"
+              padding="45"
+            >
+              <template v-slot:label> Key: </template>
+              <template v-slot:icon>
+                <img src="@/assets/images/iconscopy.svg"
+              /></template>
+            </copy-paste>
+          </div>
+        </div>
+        <div class="buttonnext-parent">
+          <router-link
+            class="buttonnext"
+            :to="{ name: 'authentication-success' }"
+          >
+            <b class="ton-kepeer">Включить 2FA</b>
+          </router-link>
+        </div>
       </div>
     </div>
   </modal>
@@ -50,6 +58,9 @@ import modal from "../ui-kit/modal.vue";
 </script>
 
 <style scoped lang="scss">
+.wrapper {
+  height: 700px;
+}
 .div8 {
   align-self: stretch;
   position: relative;

@@ -1,47 +1,50 @@
 <template>
   <modal>
-    <div class="group">
-      <div class="div8">Ваш аккаунт защищиен</div>
-      <div class="div9">
-        Двухфакторная авторизация активирована – ваш аккаунт под двойной защитой
-      </div>
-    </div>
-
-    <img
-      class="connect-child_one connect-child"
-      alt=""
-      src="@/assets/images/success-dash-line-1.svg"
-    />
-    <img
-      class="connect-child_two connect-child"
-      alt=""
-      src="@/assets/images/success-dash-line-2.svg"
-    />
-    <img
-      class="connect-child_three connect-child"
-      alt=""
-      src="@/assets/images/success-dash-line-3.svg"
-    />
-
-    <img
-      class="iconsstatus-transaction"
-      alt=""
-      src="@/assets/images/success-auth.svg"
-    />
-
-    <div class="frame-group">
-      <div class="google-authentificator-io-parent">
-        <div class="google-authentificator-container1">
-          <span class="ios"
-            >Теперь, при входе в Catos с другого устройства вам нужно будет
-            ввести одноразовый код активации из Google Authentificator:
-          </span>
+    <div class="wrapper">
+      <div class="group">
+        <div class="div8">Ваш аккаунт защищиен</div>
+        <div class="div9">
+          Двухфакторная авторизация активирована – ваш аккаунт под двойной
+          защитой
         </div>
       </div>
-      <div class="buttonnext-parent">
-        <router-link class="buttonnext" :to="{ name: 'setting' }">
-          <b class="ton-kepeer">Вернуться на экран профиля</b>
-        </router-link>
+
+      <img
+        class="connect-child_one connect-child"
+        alt=""
+        src="@/assets/images/success-dash-line-1.svg"
+      />
+      <img
+        class="connect-child_two connect-child"
+        alt=""
+        src="@/assets/images/success-dash-line-2.svg"
+      />
+      <img
+        class="connect-child_three connect-child"
+        alt=""
+        src="@/assets/images/success-dash-line-3.svg"
+      />
+
+      <img
+        class="iconsstatus-transaction"
+        alt=""
+        src="@/assets/images/success-auth.svg"
+      />
+
+      <div class="frame-group">
+        <div class="google-authentificator-io-parent">
+          <div class="google-authentificator-container1">
+            <span class="ios"
+              >Теперь, при входе в Catos с другого устройства вам нужно будет
+              ввести одноразовый код активации из Google Authentificator:
+            </span>
+          </div>
+        </div>
+        <div class="buttonnext-parent">
+          <router-link class="buttonnext" :to="{ name: 'setting' }">
+            <b class="ton-kepeer">Вернуться на экран профиля</b>
+          </router-link>
+        </div>
       </div>
     </div>
   </modal>
@@ -52,6 +55,9 @@ import modal from "../ui-kit/modal.vue";
 </script>
 
 <style scoped lang="scss">
+.wrapper {
+  height: 700px;
+}
 .div8 {
   align-self: stretch;
   position: relative;

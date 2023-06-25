@@ -877,7 +877,7 @@ const cancel = () => {
   width: 77vw;
   height: 6.81em;
   z-index: 0;
-  top: 18.5em;
+  top: 19em;
   margin: 0 auto;
 }
 .icon1 {
@@ -1260,7 +1260,7 @@ const cancel = () => {
   color: rgba(59, 59, 59, 0.54);
 }
 .decor-parent {
-  position: absolute;
+  position: relative;
   /* top: 0em; */
   left: 0;
   border-radius: 24px 24px 0 0;
@@ -1331,18 +1331,16 @@ const cancel = () => {
   position: relative;
   right: 1em;
   width: 110%;
-  height: 20vh;
 }
 .scrinning-image {
   position: relative;
-  top: -5.5em;
+  top: -8em;
   left: 32vw;
 }
 .fields-copypaste {
   position: relative;
-  bottom: 4em;
+  bottom: 6em;
   position: relative;
-  bottom: 4em;
   display: flex;
   flex-direction: column;
   width: 77vw;

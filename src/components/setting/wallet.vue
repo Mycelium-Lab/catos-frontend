@@ -1,48 +1,50 @@
 <template>
   <modal>
-    <div class="group">
-      <div class="div8">Изменение кошелька</div>
-      <div class="catos-container">
-        <p class="p">
-          В целях безопасности, после изменения кошелька вам позвонит менеджер
-          CATOS
-        </p>
-        <p class="p">
-          и убедится в том, что это именно вы инициировали изменение кошелька
-        </p>
-      </div>
-    </div>
-    <img
-      class="iconsstatus-transaction"
-      alt=""
-      src="@/assets/images/iconswallet.svg"
-    />
-
-    <div class="div9">Документация и инструкции</div>
-    <div class="swipe-down"></div>
-    <div class="frame-group">
-      <div class="frame-div">
-        <div class="div10">Внимание:</div>
-        <div class="catos-wrapper">
-          <div class="catos-container1">
-            <p class="p">
-              Менеджеры CATOS никогда не спрашивают пароли от вашего аккаунта и
-              никогда
-            </p>
-            <p class="p">
-              не просят код из СМС или коды для двухфакторной авторизации
-            </p>
-          </div>
+    <div class="wrapper">
+      <div class="group">
+        <div class="div8">Изменение кошелька</div>
+        <div class="catos-container">
+          <p class="p">
+            В целях безопасности, после изменения кошелька вам позвонит менеджер
+            CATOS
+          </p>
+          <p class="p">
+            и убедится в том, что это именно вы инициировали изменение кошелька
+          </p>
         </div>
       </div>
-      <div class="frame-wrapper">
-        <div class="frame-container">
-          <div class="buttonnext-parent">
-            <div class="buttonnext" @click="next">
-              <b class="ton-kepeer">Изменить кошелек</b>
+      <img
+        class="iconsstatus-transaction"
+        alt=""
+        src="@/assets/images/iconswallet.svg"
+      />
+
+      <div class="div9">Документация и инструкции</div>
+      <div class="swipe-down"></div>
+      <div class="frame-group">
+        <div class="frame-div">
+          <div class="div10">Внимание:</div>
+          <div class="catos-wrapper">
+            <div class="catos-container1">
+              <p class="p">
+                Менеджеры CATOS никогда не спрашивают пароли от вашего аккаунта
+                и никогда
+              </p>
+              <p class="p">
+                не просят код из СМС или коды для двухфакторной авторизации
+              </p>
             </div>
-            <div class="buttonnext1" @click="cancel">
-              <div class="div11">Отмена</div>
+          </div>
+        </div>
+        <div class="frame-wrapper">
+          <div class="frame-container">
+            <div class="buttonnext-parent">
+              <div class="buttonnext" @click="next">
+                <b class="ton-kepeer">Изменить кошелек</b>
+              </div>
+              <div class="buttonnext1" @click="cancel">
+                <div class="div11">Отмена</div>
+              </div>
             </div>
           </div>
         </div>
@@ -65,6 +67,9 @@ const next = () => {
 </script>
 
 <style scoped>
+.wrapper {
+  height: 600px;
+}
 .div8 {
   align-self: stretch;
   position: relative;

@@ -1,48 +1,54 @@
 <template>
   <modal>
-    <div class="group">
-      <div class="div8">Двухфакторная авторизация</div>
-      <div class="div9">
-        Пожалуйста сохраните ваш ключ доступа: запишите на бумаге, сделайте
-        скриншот или скопируйте
-      </div>
-    </div>
-    <div class="google-authentificator-container">
-      <p class="p">
-        Этот ключ поможет вам восстановить ваш Google Authentication в случае
-        утери или смены телефона
-      </p>
-    </div>
-    <img class="connect-child" alt="" src="@/assets/images/dash-one.svg" />
-
-    <img
-      class="iconsstatus-transaction"
-      alt=""
-      src="@/assets/images/authentication.svg"
-    />
-
-    <div class="frame-group">
-      <div class="google-authentificator-io-parent">
-        <div class="google-authentificator-container1">
-          <span>Google Authentificator: </span>
-          <span class="ios">для iOS и для Android</span>
-        </div>
-        <div class="frame-container">
-          <copy-paste :style="{ marginTop: '0em' }" value="LKDXOOQCPWAAIAWT">
-            <template v-slot:label> Key: </template>
-            <template v-slot:icon>
-              <img src="@/assets/images/iconspaste.svg"
-            /></template>
-          </copy-paste>
+    <div class="wrapper">
+      <div class="group">
+        <div class="div8">Двухфакторная авторизация</div>
+        <div class="div9">
+          Пожалуйста сохраните ваш ключ доступа: запишите на бумаге, сделайте
+          скриншот или скопируйте
         </div>
       </div>
-      <div class="buttonnext-parent">
-        <router-link
-          class="buttonnext"
-          :to="{ name: 'authentication-connect' }"
-        >
-          <b class="ton-kepeer">Сохранил, продолжить</b> </router-link
-        >>
+      <div class="google-authentificator-container">
+        <p class="p">
+          Этот ключ поможет вам восстановить ваш Google Authentication в случае
+          утери или смены телефона
+        </p>
+      </div>
+      <img class="connect-child" alt="" src="@/assets/images/dash-one.svg" />
+
+      <img
+        class="iconsstatus-transaction"
+        alt=""
+        src="@/assets/images/authentication.svg"
+      />
+
+      <div class="frame-group">
+        <div class="google-authentificator-io-parent">
+          <div class="google-authentificator-container1">
+            <span>Google Authentificator: </span>
+            <span class="ios">для iOS и для Android</span>
+          </div>
+          <div class="frame-container">
+            <copy-paste
+              :style="{ marginTop: '0em' }"
+              value="LKDXOOQCPWAAIAWT"
+              padding="45"
+            >
+              <template v-slot:label> Key: </template>
+              <template v-slot:icon>
+                <img src="@/assets/images/iconspaste.svg"
+              /></template>
+            </copy-paste>
+          </div>
+        </div>
+        <div class="buttonnext-parent">
+          <router-link
+            class="buttonnext"
+            :to="{ name: 'authentication-connect' }"
+          >
+            <b class="ton-kepeer">Сохранил, продолжить</b>
+          </router-link>
+        </div>
       </div>
     </div>
   </modal>
@@ -55,6 +61,9 @@ import modal from "../ui-kit/modal.vue";
 </script>
 
 <style scoped lang="scss">
+.wrapper {
+  height: 700px;
+}
 .div8 {
   align-self: stretch;
   position: relative;
