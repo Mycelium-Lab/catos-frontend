@@ -4,27 +4,11 @@
     <div class="fieldsregistration-options">
       <div class="fields-password-and-mail2">
         <div class="iconslock-container">
-          <img class="iconsmobile" alt="" src="./public/iconslock2.svg" />
-
           <div class="div18">Пароль</div>
-          <img
-            class="iconspassword1"
-            alt=""
-            src="./public/iconspassword2.svg"
-          />
         </div>
       </div>
       <div class="fields-password-and-mail3">
-        <div class="iconslock-container">
-          <img class="iconsmobile" alt="" src="./public/iconslock3.svg" />
-
-          <div class="div18">Пароль</div>
-          <img
-            class="iconspassword1"
-            alt=""
-            src="./public/iconspassword3.svg"
-          />
-        </div>
+        <div class="iconslock-container"></div>
       </div>
       <div class="div20">
         <span>Придумайте пароль</span>
@@ -61,7 +45,6 @@
                 >Вернуться в профиль</catos-button
               >
             </div>
-            <img class="icon1" alt="" src="./public/icon.svg" />
           </div>
         </div>
       </div>
