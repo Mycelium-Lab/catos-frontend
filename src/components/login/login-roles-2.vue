@@ -205,7 +205,7 @@ const title = computed(() => {
 .catos,
 .page-title {
   position: absolute;
-  top: 12vh;
+  top: 2em;
   font-size: 1.56em;
   line-height: 1.12em;
   left: 20vw;
@@ -214,7 +214,7 @@ const title = computed(() => {
   left: 7vw;
 }
 .catos {
-  top: 16vh;
+  top: 5em;
   left: 7vw;
   font-size: 1em;
   line-height: 1.75em;

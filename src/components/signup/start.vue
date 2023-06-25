@@ -57,7 +57,12 @@
               class="phone-field"
               placeholder="Ваш номер телефона"
               :style="{ width: '90%' }"
-            ></input-data>
+              :left="true"
+            >
+              <template v-slot:left-icon>
+                <img src="@/assets/images/iconsmobile.svg" />
+              </template>
+            </input-data>
           </div>
           <div class="fieldsregistration-options1">
             <div class="text-and-fill1">
@@ -74,19 +79,36 @@
               class="phone-field"
               placeholder="Ваш email"
               :style="{ width: '90%' }"
-            ></input-data>
+              :left="true"
+            >
+              <template v-slot:left-icon>
+                <img src="@/assets/images/iconsmail.svg" />
+              </template>
+            </input-data>
           </div>
           <div class="fieldsregistration-options2">
             <input-data
               class="password-field phone-field"
               placeholder="Пароль"
               :style="{ width: '90%' }"
-            ></input-data>
+              :left="true"
+              type="password"
+            >
+              <template v-slot:left-icon>
+                <img src="@/assets/images/iconslock.svg" />
+              </template>
+            </input-data>
             <input-data
               class="password-field-repead password-field phone-field"
               placeholder="Пароль"
               :style="{ width: '90%' }"
-            ></input-data>
+              :left="true"
+              type="password"
+            >
+              <template v-slot:left-icon>
+                <img src="@/assets/images/iconslock.svg" />
+              </template>
+            </input-data>
             <div class="div19">
               <span>Придумайте пароль</span>
               <span class="span">*</span>

@@ -24,6 +24,8 @@
                     :options="options"
                     :value="value"
                     @selected="ev => (value = ev)"
+                    :optionWidth="77"
+                    :style="{ width: '100%' }"
                   ></catos-select>
                 </div>
               </div>
@@ -42,7 +44,11 @@
                   <span class="span2">* </span>
                 </div>
                 <div class="fields-password-and-mail-container">
-                  <input-data type="date" placeholder="01.02.2022"></input-data>
+                  <input-data
+                    type="date"
+                    placeholder="01.02.2022"
+                    :style="{ width: '100%' }"
+                  ></input-data>
                   <div class="iconscalendar-wrapper">
                     <img
                       class="iconscalendar"
@@ -83,7 +89,12 @@
               <input-data
                 placeholder="Введите имя"
                 :style="{ width: '100%' }"
-              ></input-data>
+                :right="true"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
             </div>
             <div class="fieldsinput">
               <div class="div18">
@@ -96,7 +107,12 @@
               <input-data
                 placeholder="Введите фамилию"
                 :style="{ width: '100%' }"
-              ></input-data>
+                :right="true"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
             </div>
             <div class="fieldsinput">
               <div class="div22">
@@ -109,7 +125,12 @@
               <input-data
                 placeholder="Введите отчество"
                 :style="{ width: '100%' }"
-              ></input-data>
+                :right="true"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
             </div>
             <div class="parent8">
               <div class="div10">
@@ -1614,7 +1635,7 @@ const options = {
 .numbers {
   position: absolute;
   top: 0.56em;
-  left: 7.19em;
+  left: 8.19em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -1628,10 +1649,10 @@ const options = {
 }
 .steps {
   top: 0;
-  left: 1.75em;
+  left: 2.75em;
   border-radius: 19px;
   background-color: #f5f9ff;
-  width: 4.63em;
+  width: 4.5em;
   display: flex;
   flex-direction: column;
   align-items: center;

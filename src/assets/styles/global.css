@@ -110,17 +110,3 @@ body {
 html {
   overflow-y: scroll;
 }
-
-input,
-textarea,
-select {
-  font-size: 16px;
-}
-
-@media (min-width: 768px) {
-  input,
-  textarea,
-  select {
-    font-size: 14px;
-  }
-}

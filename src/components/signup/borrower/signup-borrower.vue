@@ -24,6 +24,8 @@
                     :options="options"
                     :value="value"
                     @selected="ev => (value = ev)"
+                    :optionWidth="77"
+                    :style="{ width: '100%' }"
                   ></catos-select>
                 </div>
               </div>
@@ -42,7 +44,11 @@
                   <span class="span2">* </span>
                 </div>
                 <div class="fields-password-and-mail-container">
-                  <input-data type="date" placeholder="01.02.2022"></input-data>
+                  <input-data
+                    type="date"
+                    placeholder="01.02.2022"
+                    :style="{ width: '100%' }"
+                  ></input-data>
                   <div class="iconscalendar-wrapper">
                     <!--<input-data
                       :simulate="true"
@@ -95,7 +101,12 @@
                 <input-data
                   placeholder="Введите имя"
                   :style="{ width: '100%' }"
-                ></input-data>
+                  :right="true"
+                >
+                  <template v-slot:right-icon>
+                    <img src="@/assets/images/iconseditoutline-black.svg" />
+                  </template>
+                </input-data>
               </div>
               <div class="fieldsinput">
                 <div class="div18">
@@ -108,6 +119,12 @@
                 <input-data
                   placeholder="Введите фамилию"
                   :style="{ width: '100%' }"
+                  :right="true"
+                >
+                  <template v-slot:right-icon>
+                    <img
+                      src="@/assets/images/iconseditoutline-black.svg"
+                    /> </template
                 ></input-data>
               </div>
               <div class="fieldsinput">
@@ -121,7 +138,12 @@
                 <input-data
                   placeholder="Введите отчество"
                   :style="{ width: '100%' }"
-                ></input-data>
+                  :right="true"
+                >
+                  <template v-slot:right-icon>
+                    <img src="@/assets/images/iconseditoutline-black.svg" />
+                  </template>
+                </input-data>
               </div>
               <div class="parent8">
                 <div class="div10">
@@ -252,6 +274,8 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
@@ -264,6 +288,8 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
@@ -273,6 +299,8 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise1">
@@ -280,6 +308,12 @@
             <input-data
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
+              :right="true"
+            >
+              <template v-slot:right-icon>
+                <img
+                  src="@/assets/images/iconseditoutline-black.svg"
+                /> </template
             ></input-data>
           </div>
         </div>
@@ -344,6 +378,8 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -356,6 +392,8 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
             ></catos-select>
           </div>
           <div class="fieldsinput">
@@ -368,6 +406,8 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
@@ -377,6 +417,8 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise1">
@@ -384,7 +426,12 @@
             <input-data
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
-            ></input-data>
+              :right="true"
+            >
+              <template v-slot:right-icon>
+                <img src="@/assets/images/iconseditoutline-black.svg" />
+              </template>
+            </input-data>
           </div>
         </div>
         <div class="frame-parent5">
@@ -1339,7 +1386,7 @@ const options = {
   width: 88%;
 }
 .frame-parent5 {
-  top: 29.5em;
+  top: 28.5em;
   gap: 1em;
 }
 .registration-options1 {
@@ -2156,7 +2203,7 @@ const options = {
 }
 .buttonback {
   top: 3.81em;
-  left: 1.5em;
+  left: 1em;
   border-radius: 9px;
   width: 6.38em;
   color: #3b3b3b;

@@ -28,6 +28,8 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise1">
@@ -40,6 +42,8 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -50,6 +54,12 @@
               <input-data
                 placeholder="Введите наименование"
                 :style="{ width: '100%' }"
+                :right="true"
+              >
+                <template v-slot:right-icon>
+                  <img
+                    src="@/assets/images/iconseditoutline-black.svg"
+                  /> </template
               ></input-data>
             </div>
             <div class="fieldsinputchoise">
@@ -60,6 +70,12 @@
               <input-data
                 placeholder="Введите номер"
                 :style="{ width: '100%' }"
+                :right="true"
+              >
+                <template v-slot:right-icon>
+                  <img
+                    src="@/assets/images/iconseditoutline-black.svg"
+                  /> </template
               ></input-data>
             </div>
             <div class="fieldsinputchoise">
@@ -70,6 +86,12 @@
               <input-data
                 placeholder="Ленинский пр-т 77, Г. Москва, ..."
                 :style="{ width: '100%' }"
+                :right="true"
+              >
+                <template v-slot:right-icon>
+                  <img
+                    src="@/assets/images/iconseditoutline-black.svg"
+                  /> </template
               ></input-data>
             </div>
             <div class="fieldsinputchoise">
@@ -77,7 +99,12 @@
               <input-data
                 placeholder="catos.ru"
                 :style="{ width: '100%' }"
-              ></input-data>
+                :right="true"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
             </div>
           </div>
         </div>
@@ -199,7 +226,12 @@
                   border="1px solid rgba(101, 96, 96, 1)"
                   placeholder="Тип фалйа"
                   :style="{ width: '86.8%', left: '5vw' }"
-                ></input-data>
+                  :right="true"
+                >
+                  <template v-slot:right-icon>
+                    <img src="@/assets/images/iconseditoutline-black.svg" />
+                  </template>
+                </input-data>
               </div>
             </div>
           </div>

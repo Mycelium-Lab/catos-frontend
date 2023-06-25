@@ -734,13 +734,14 @@ const role = computed(() => window.history.state?.role);
   text-align: center;
 }
 .inputfields {
-  position: absolute;
+  position: relative;
   top: 4.19em;
-  left: 1.25em;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
+  width: 77vw;
+  margin: 0 auto;
   gap: 0.31em;
   color: #2e3a59;
 }

@@ -17,7 +17,12 @@
               <input-data
                 placeholder="Введите ваше имя"
                 :style="{ width: '100%' }"
-              ></input-data>
+                :rigth="true"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
             </div>
             <div class="frame-div">
               <div class="div12">
@@ -128,6 +133,8 @@
                   :options="options"
                   :value="value"
                   @selected="ev => (value = ev)"
+                  :optionWidth="77"
+                  :style="{ width: '100%' }"
                 ></catos-select>
               </div>
             </div>
@@ -146,7 +153,11 @@
                 <span class="span1">* </span>
               </div>
               <div class="fields-password-and-mail-wrapper">
-                <input-data type="date" placeholder="01.02.2022"></input-data>
+                <input-data
+                  type="date"
+                  placeholder="01.02.2022"
+                  :style="{ width: '100%' }"
+                ></input-data>
               </div>
             </div>
           </div>
@@ -168,9 +179,7 @@
         </div>
       </div>
     </div>
-    <div class="header1">
-      <b class="page-title1">Регистрация</b>
-    </div>
+
     <div class="slidersteps">
       <div class="loader"></div>
       <div class="numbers">
@@ -765,7 +774,7 @@ const options = {
 .numbers {
   position: absolute;
   top: 0.56em;
-  left: 7.19em;
+  left: 8.19em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -785,10 +794,10 @@ const options = {
 }
 .steps {
   top: 0;
-  left: 1.75em;
+  left: 2.75em;
   border-radius: 19px;
   background-color: #f5f9ff;
-  width: 5.44em;
+  width: 4.5em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -823,7 +832,7 @@ const options = {
 }
 .buttonback {
   top: 3.81em;
-  left: 1.5em;
+  left: 1em;
   border-radius: 9px;
   width: 6.38em;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);

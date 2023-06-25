@@ -27,6 +27,7 @@
         </div>
       </div>
       <div class="frame-group">
+        <div class="frame-inner"></div>
         <div class="fieldsinputchoise-parent">
           <div class="fieldsinputchoise">
             <div class="div10">
@@ -37,6 +38,8 @@
               placeholder="Выбирите вид занятости"
               :options="options"
               :value="value"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
               @selected="ev => (value = ev)"
             ></catos-select>
           </div>
@@ -45,15 +48,20 @@
             <input-data
               placeholder="В рублях или долларах"
               :style="{ width: '100%' }"
-            ></input-data>
+              :right="true"
+            >
+              <template v-slot:right-icon>
+                <img src="@/assets/images/iconseditoutline-black.svg" />
+              </template>
+            </input-data>
           </div>
         </div>
-        <div class="frame-inner"></div>
         <div class="frame">
           <div class="div12">Вид занятости и доход</div>
         </div>
       </div>
       <div class="frame-container">
+        <div class="rectangle-div"></div>
         <div class="fieldsinputchoise-parent">
           <div class="fieldsinputchoise">
             <div class="div10">
@@ -65,6 +73,8 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -77,6 +87,8 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -89,6 +101,8 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -101,10 +115,11 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
             ></catos-select>
           </div>
         </div>
-        <div class="rectangle-div"></div>
         <div class="frame">
           <div class="div12">Общая информация</div>
         </div>
@@ -118,6 +133,8 @@
             :options="options"
             :value="value"
             @selected="ev => (value = ev)"
+            :optionWidth="77"
+            :style="{ width: '100%' }"
           ></catos-select>
         </div>
       </div>
@@ -170,7 +187,7 @@ const options = {
 }
 .buttonnext {
   position: absolute;
-  top: 58.25em;
+  top: 56.25em;
   left: 6.5vw;
   border-radius: 20px;
   background-color: #ffdb6d;
@@ -319,7 +336,7 @@ const options = {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  z-index: 100;
+  position: relative;
   width: 87.5%;
 }
 .fieldsinput1 {
@@ -369,7 +386,7 @@ const options = {
 }
 .frame-group {
   position: absolute;
-  top: 11.5em;
+  top: 9em;
   left: 6vw;
   width: 87.7vw;
   height: 13.19em;
@@ -389,11 +406,11 @@ const options = {
   border-radius: 15px;
   border: 0.5px solid rgba(46, 58, 89, 0.4);
   box-sizing: border-box;
-  height: 31em;
+  height: 30em;
 }
 .fieldsinputchoise5 {
   position: absolute;
-  top: 25.06em;
+  top: 24.06em;
   left: 5vw;
   width: 87.5%;
   display: flex;
@@ -404,7 +421,7 @@ const options = {
 }
 .frame-container {
   position: absolute;
-  top: 25.94em;
+  top: 24em;
   left: 6vw;
   width: 87.7vw;
   height: 29.81em;

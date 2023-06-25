@@ -9,7 +9,6 @@
           alt=""
           src="../public/icons3dpersona-creditors@2x.png"
         />
-
         <div class="parent9">
           <div class="div75">
             <span class="span51">Пожалуйста проверьте еще раз ваши данные</span
@@ -39,6 +38,8 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
               ></catos-select>
             </div>
             <div class="fieldsinput">
@@ -48,6 +49,8 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -57,6 +60,8 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -64,7 +69,12 @@
               <input-data
                 placeholder="Начните вводить улицу"
                 :style="{ width: '100%' }"
-              ></input-data>
+                :right="true"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
             </div>
           </div>
           <div class="frame-parent2">
@@ -129,6 +139,8 @@
                     :options="options"
                     :value="value"
                     @selected="ev => (value = ev)"
+                    :optionWidth="77"
+                    :style="{ width: '100%' }"
                   ></catos-select>
                 </div>
               </div>
@@ -147,7 +159,11 @@
                   <span class="span1">* </span>
                 </div>
                 <div class="fields-password-and-mail-wrapper">
-                  <input-data type="date" placeholder="01.02.2022"></input-data>
+                  <input-data
+                    type="date"
+                    placeholder="01.02.2022"
+                    :style="{ width: '100%' }"
+                  ></input-data>
                 </div>
               </div>
             </div>
@@ -182,7 +198,12 @@
                 <input-data
                   placeholder="Введите ваше имя"
                   :style="{ width: '100%' }"
-                ></input-data>
+                  :right="true"
+                >
+                  <template v-slot:right-icon>
+                    <img src="@/assets/images/iconseditoutline-black.svg" />
+                  </template>
+                </input-data>
               </div>
               <div class="parent37">
                 <div class="div22">
@@ -883,7 +904,7 @@ const options = {
 }
 .frame-parent2 {
   position: absolute;
-  top: 23.25em;
+  top: 22em;
   left: 1.31em;
   flex-direction: column;
   align-items: flex-start;
@@ -899,7 +920,7 @@ const options = {
 }
 .frame-parent5 {
   position: absolute;
-  top: 27.25em;
+  top: 27em;
   left: 1.31em;
   display: flex;
   flex-direction: column;
@@ -2076,7 +2097,7 @@ const options = {
 }
 .buttonback {
   top: 3.81em;
-  left: 1.5em;
+  left: 1em;
   border-radius: 9px;
   width: 6.38em;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);

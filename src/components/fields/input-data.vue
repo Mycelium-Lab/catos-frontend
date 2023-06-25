@@ -118,6 +118,7 @@ const selected = (ev: any) => {
   line-height: 14px;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
 }
 .catos-fields__inner-icon_left {
   position: absolute;

@@ -169,7 +169,7 @@ watch(isOpen, () => {
   flex-direction: column;
   overflow: scroll;
   position: absolute;
-  z-index: 100;
+  z-index: 1000;
   background: #fff;
   top: 3.3em;
   &_name {

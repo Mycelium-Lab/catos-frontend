@@ -31,7 +31,12 @@
               <input-data
                 placeholder="Валентин Иванович Бабаев"
                 :style="{ width: '100%' }"
-              ></input-data>
+                :right="true"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
             </div>
             <div class="fieldsinput6">
               <div class="div15">
@@ -43,6 +48,8 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
               ></catos-select>
             </div>
             <div class="fieldsinput6">
@@ -50,7 +57,12 @@
               <input-data
                 placeholder="Банкир"
                 :style="{ width: '100%' }"
-              ></input-data>
+                :right="true"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
             </div>
           </div>
           <div class="frame-child19"></div>
@@ -102,6 +114,8 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
               ></catos-select>
             </div>
             <div class="fieldsinput">
@@ -111,6 +125,8 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -120,6 +136,8 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -127,17 +145,20 @@
               <input-data
                 placeholder="Введите улицу"
                 :style="{ width: '100%' }"
-              ></input-data>
+                :right="true"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
             </div>
           </div>
           <div class="frame-parent2">
             <div class="frame-parent3">
               <div class="parent11">
                 <div class="div22">Дом</div>
-                <input-data
-                  placeholder="1"
-                  :style="{ width: '100%' }"
-                ></input-data>
+                <input-data placeholder="1" :style="{ width: '100%' }">
+                </input-data>
               </div>
               <div class="parent11">
                 <div class="div22">Корпус</div>
@@ -185,6 +206,8 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
               ></catos-select>
             </div>
             <div class="fieldsinput">
@@ -200,6 +223,8 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -211,9 +236,14 @@
                 </span>
               </div>
               <input-data
-                placeholder="Введите наименование вашей организации"
+                placeholder="Введите наименование организации"
                 :style="{ width: '100%' }"
-              ></input-data>
+                :right="true"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
             </div>
             <div class="fieldsinputchoise">
               <div class="div9">
@@ -226,7 +256,12 @@
               <input-data
                 placeholder="Введите ОГРН или ОГРНИП"
                 :style="{ width: '100%' }"
-              ></input-data>
+                :right="true"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
             </div>
             <div class="fieldsinputchoise">
               <div class="div9">
@@ -237,16 +272,26 @@
                 </span>
               </div>
               <input-data
-                placeholder="Введите представительства вашей компании"
+                placeholder="Введите адрес компании"
                 :style="{ width: '100%' }"
-              ></input-data>
+                :right="true"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
             </div>
             <div class="fieldsinputchoise">
               <div class="goa-filejpg">Веб-сайт организации</div>
               <input-data
-                placeholder="Введите веб-сайт вашей организации"
+                placeholder="Введите веб-сайт организации"
                 :style="{ width: '100%' }"
-              ></input-data>
+                :right="true"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
             </div>
           </div>
         </div>
@@ -270,6 +315,8 @@
                     :options="options"
                     :value="value"
                     @selected="ev => (value = ev)"
+                    :optionWidth="77"
+                    :style="{ width: '100%' }"
                   ></catos-select>
                 </div>
               </div>
@@ -283,7 +330,12 @@
                 <input-data
                   placeholder="34 446462"
                   :style="{ width: '100%' }"
-                ></input-data>
+                  :right="true"
+                >
+                  <template v-slot:right-icon>
+                    <img src="@/assets/images/iconseditoutline-black.svg" />
+                  </template>
+                </input-data>
               </div>
               <div class="parent37">
                 <div class="div22">
