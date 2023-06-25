@@ -1217,7 +1217,7 @@ import modal from "../ui-kit/modal.vue";
   width: 77vw;
 }
 .decor-parent {
-  position: absolute;
+  position: relative;
   top: 0em;
   left: 0;
   background-color: #fff;

@@ -61,7 +61,7 @@
                   left: '1em',
                   marginRight: '0em',
                 }"
-                @click="toProfile"
+                @click="toSuccess"
                 >Изменить пароль</catos-button
               >
 
@@ -104,8 +104,8 @@ import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import modal from "../ui-kit/modal.vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
-const toProfile = () => {
-  router.push({ name: "setting" });
+const toSuccess = () => {
+  router.push({ name: "success-password" });
 };
 const toRestore = () => {
   router.push({ name: "restore-password" });
@@ -1240,7 +1240,7 @@ const toRestore = () => {
   width: 77vw;
 }
 .decor-parent {
-  position: absolute;
+  position: relative;
   top: 0em;
   left: 0;
 

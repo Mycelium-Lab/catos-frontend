@@ -1,66 +1,77 @@
 <template>
-  <div class="bg1"></div>
-  <div class="fieldsregistration-options">
-    <div class="fields-password-and-mail2">
-      <div class="iconslock-container">
-        <img class="iconsmobile" alt="" src="./public/iconslock2.svg" />
+  <modal>
+    <div class="bg1"></div>
+    <div class="fieldsregistration-options">
+      <div class="fields-password-and-mail2">
+        <div class="iconslock-container">
+          <img class="iconsmobile" alt="" src="./public/iconslock2.svg" />
 
-        <div class="div18">Пароль</div>
-        <img class="iconspassword1" alt="" src="./public/iconspassword2.svg" />
+          <div class="div18">Пароль</div>
+          <img
+            class="iconspassword1"
+            alt=""
+            src="./public/iconspassword2.svg"
+          />
+        </div>
       </div>
-    </div>
-    <div class="fields-password-and-mail3">
-      <div class="iconslock-container">
-        <img class="iconsmobile" alt="" src="./public/iconslock3.svg" />
+      <div class="fields-password-and-mail3">
+        <div class="iconslock-container">
+          <img class="iconsmobile" alt="" src="./public/iconslock3.svg" />
 
-        <div class="div18">Пароль</div>
-        <img class="iconspassword1" alt="" src="./public/iconspassword3.svg" />
+          <div class="div18">Пароль</div>
+          <img
+            class="iconspassword1"
+            alt=""
+            src="./public/iconspassword3.svg"
+          />
+        </div>
       </div>
-    </div>
-    <div class="div20">
-      <span>Придумайте пароль</span>
-      <span class="span">*</span>
-    </div>
-    <div class="div21">
-      <span>Повторите пароль </span>
-      <span class="span">*</span>
-    </div>
-    <div class="text-and-fill">
-      <div class="div22">
-        <span>Пароль </span>
+      <div class="div20">
+        <span>Придумайте пароль</span>
         <span class="span">*</span>
       </div>
-    </div>
-  </div>
-  <div class="decor-parent">
-    <div class="decor"></div>
-    <div class="frame-parent3">
-      <div class="fields-parent">
-        <div class="fields">
-          <div class="fieldsregistration-options1">
-            <div class="text-and-fill1">
-              <img class="success-image" src="@/assets/images/success.svg" />
-              <h3 class="title-info">Пароль успешно изменен</h3>
-              <span class="div28">
-                Пароль повиться в вашем профиле, приятного использования
-              </span>
-            </div>
-
-            <catos-button
-              @click="toProfile"
-              :style="{ width: '74vw', top: '13em', left: '1.3em' }"
-              >Вернуться в профиль</catos-button
-            >
-          </div>
-          <img class="icon1" alt="" src="./public/icon.svg" />
+      <div class="div21">
+        <span>Повторите пароль </span>
+        <span class="span">*</span>
+      </div>
+      <div class="text-and-fill">
+        <div class="div22">
+          <span>Пароль </span>
+          <span class="span">*</span>
         </div>
       </div>
     </div>
-  </div>
+    <div class="decor-parent">
+      <div class="decor"></div>
+      <div class="frame-parent3">
+        <div class="fields-parent">
+          <div class="fields">
+            <div class="fieldsregistration-options1">
+              <div class="text-and-fill1">
+                <img class="success-image" src="@/assets/images/success.svg" />
+                <h3 class="title-info">Пароль успешно изменен</h3>
+                <span class="div28">
+                  Пароль повиться в вашем профиле, приятного использования
+                </span>
+              </div>
+
+              <catos-button
+                @click="toProfile"
+                :style="{ width: '74vw', top: '13em', left: '1.3em' }"
+                >Вернуться в профиль</catos-button
+              >
+            </div>
+            <img class="icon1" alt="" src="./public/icon.svg" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </modal>
 </template>
 
 <script setup lang="ts">
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
+import modal from "../ui-kit/modal.vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 
@@ -1185,7 +1196,7 @@ const toProfile = () => {
   color: rgba(59, 59, 59, 0.54);
 }
 .decor-parent {
-  position: absolute;
+  position: relative;
   top: 0em;
   left: 0;
 

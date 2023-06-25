@@ -1286,7 +1286,7 @@ const handleClose = () => {
   width: 80vw;
 }
 .decor-parent {
-  position: absolute;
+  position: relative;
   top: 0em;
   left: 0;
   background-color: #fff;

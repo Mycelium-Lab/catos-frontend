@@ -25,6 +25,12 @@ export const setting = [
     component: () => import("../components/setting/change-password.vue"),
   },
   {
+    path: "/setting/success-password",
+    name: "success-password",
+    component: () =>
+      import("../components/setting/success-change-password.vue"),
+  },
+  {
     path: "/setting/restore-password",
     name: "restore-password",
     component: () => import("../components/setting/restore-password.vue"),
