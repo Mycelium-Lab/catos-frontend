@@ -70,7 +70,6 @@ const options = {
   left: 0;
   border-radius: 30px 30px 0 0;
   background-color: #fff;
-  box-shadow: 0 12px 12px rgba(151, 71, 255, 0.04);
 
   overflow: hidden;
   width: 100vw;
@@ -100,7 +99,6 @@ const options = {
   background-color: rgba(251, 251, 251, 0.42);
   width: 6.38em;
   height: 2.5em;
-  top: 1.6em;
   left: 0em;
   color: rgba(59, 59, 59, 1);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
@@ -108,7 +106,7 @@ const options = {
 }
 .nav-buttons {
   position: absolute;
-  top: 2em;
+  top: 3em;
   left: 1.5em;
   display: flex;
   flex-direction: row;

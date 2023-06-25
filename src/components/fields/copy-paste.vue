@@ -9,6 +9,7 @@
       :readonly="readonly"
       :value="value"
       :placeholder="placeholder"
+      :style="{ paddingLeft: `${padding}px` }"
     />
     <div class="catos-fields__label">
       <slot name="label" />
@@ -34,6 +35,9 @@ const { placeholder, id } = defineProps({
     default: false,
   },
   value: {
+    type: String,
+  },
+  padding: {
     type: String,
   },
 });
