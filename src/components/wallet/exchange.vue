@@ -1,101 +1,103 @@
 <template>
   <modal>
-    <div class="header">
-      <div class="div8">Обмен</div>
-    </div>
-
-    <div class="frame-wrapper">
-      <div class="frame-group">
-        <div class="subtotal-parent">
-          <div class="subtotal">Курс:</div>
-          <div class="subtotal">Обратный курс:</div>
-          <div class="subtotal">Комиссия</div>
-        </div>
-        <div class="group">
-          <div class="subtotal">
-            <span class="ton">1 TON </span>
-            <span>= 0.006CATOS</span>
-          </div>
-          <div class="subtotal">
-            <span class="ton">1 CATOS</span>
-            <span> = 166.66 TON</span>
-          </div>
-          <div class="subtotal">
-            <span class="ton">0.5%:</span>
-            <span> 0 TON (≈0 USD)</span>
-          </div>
-        </div>
+    <div class="wrapper">
+      <div class="header">
+        <div class="div8">Обмен</div>
       </div>
-    </div>
-    <div class="buttonnext" @click="() => (isSuccess = true)">
-      <b class="ton-kepeer">Отправить</b>
-    </div>
-    <div class="frame-container">
-      <div class="frame-div">
-        <div class="fieldsinput-parent">
-          <div class="fieldsinput">
-            <div class="div12">Отдаете:</div>
-            <input-data
-              border=" 1px solid rgba(165, 146, 221, 0.4)"
-              background="rgba(230, 221, 255, 0.3)"
-              :style="{ width: '100%' }"
-            ></input-data>
+
+      <div class="frame-wrapper">
+        <div class="frame-group">
+          <div class="subtotal-parent">
+            <div class="subtotal">Курс:</div>
+            <div class="subtotal">Обратный курс:</div>
+            <div class="subtotal">Комиссия</div>
           </div>
-          <div class="fieldsinput-wrapper">
-            <div class="fieldsinput2">
-              <div class="iconsmail-group">
-                <div class="div14">≈45 556 USD</div>
-              </div>
+          <div class="group">
+            <div class="subtotal">
+              <span class="ton">1 TON </span>
+              <span>= 0.006CATOS</span>
+            </div>
+            <div class="subtotal">
+              <span class="ton">1 CATOS</span>
+              <span> = 166.66 TON</span>
+            </div>
+            <div class="subtotal">
+              <span class="ton">0.5%:</span>
+              <span> 0 TON (≈0 USD)</span>
             </div>
           </div>
-          <div class="ton2">
-            <span class="ton-txt">
-              <span class="span5">Балланс: </span>
-              <span class="ton3">257 324 TON</span>
-            </span>
-          </div>
         </div>
       </div>
-      <div class="divided-switch">
-        <img
-          class="divided-switch-child"
-          alt=""
-          src="@/assets/images/line-32.svg"
-        />
-
-        <div class="swap-wrapper">
-          <img class="swap-icon" alt="" src="@/assets/images/swap.svg" />
-        </div>
+      <div class="buttonnext" @click="() => (isSuccess = true)">
+        <b class="ton-kepeer">Отправить</b>
       </div>
-      <div class="frame-div">
-        <div class="fieldsinput-parent">
-          <div class="fieldsinput">
-            <div class="div12">Получаете:</div>
-            <input-data
-              :readonly="true"
-              border="1px solid rgba(112, 202, 152, 0.2)"
-              background="rgba(145, 246, 182, 0.3)"
-              :style="{ width: '100%' }"
-              value="12000"
-            ></input-data>
-          </div>
-          <div class="fieldsinput-wrapper">
-            <div class="fieldsinput5">
-              <div class="iconsmail-group">
-                <div class="div14">≈45 556 USD</div>
+      <div class="frame-container">
+        <div class="frame-div">
+          <div class="fieldsinput-parent">
+            <div class="fieldsinput">
+              <div class="div12">Отдаете:</div>
+              <input-data
+                border=" 1px solid rgba(165, 146, 221, 0.4)"
+                background="rgba(230, 221, 255, 0.3)"
+                :style="{ width: '100%' }"
+              ></input-data>
+            </div>
+            <div class="fieldsinput-wrapper">
+              <div class="fieldsinput2">
+                <div class="iconsmail-group">
+                  <div class="div14">≈45 556 USD</div>
+                </div>
               </div>
             </div>
+            <div class="ton2">
+              <span class="ton-txt">
+                <span class="span5">Балланс: </span>
+                <span class="ton3">257 324 TON</span>
+              </span>
+            </div>
           </div>
-          <div class="ton2">
-            <span class="ton-txt">
-              <span class="span5">Балланс: </span>
-              <span class="ton3">257 324 TON</span>
-            </span>
+        </div>
+        <div class="divided-switch">
+          <img
+            class="divided-switch-child"
+            alt=""
+            src="@/assets/images/line-32.svg"
+          />
+
+          <div class="swap-wrapper">
+            <img class="swap-icon" alt="" src="@/assets/images/swap.svg" />
+          </div>
+        </div>
+        <div class="frame-div">
+          <div class="fieldsinput-parent">
+            <div class="fieldsinput">
+              <div class="div12">Получаете:</div>
+              <input-data
+                :readonly="true"
+                border="1px solid rgba(112, 202, 152, 0.2)"
+                background="rgba(145, 246, 182, 0.3)"
+                :style="{ width: '100%' }"
+                value="12000"
+              ></input-data>
+            </div>
+            <div class="fieldsinput-wrapper">
+              <div class="fieldsinput5">
+                <div class="iconsmail-group">
+                  <div class="div14">≈45 556 USD</div>
+                </div>
+              </div>
+            </div>
+            <div class="ton2">
+              <span class="ton-txt">
+                <span class="span5">Балланс: </span>
+                <span class="ton3">257 324 TON</span>
+              </span>
+            </div>
           </div>
         </div>
       </div>
+      <success :style="{ fontSize: '0.6rem' }" v-if="isSuccess"></success>
     </div>
-    <success :style="{ fontSize: '0.6rem' }" v-if="isSuccess"></success>
   </modal>
 </template>
 
@@ -109,6 +111,9 @@ const isSuccess = ref(false);
 </script>
 
 <style scoped lang="scss">
+.wrapper {
+  height: 700px;
+}
 .div8 {
   position: relative;
   font-size: 1em;

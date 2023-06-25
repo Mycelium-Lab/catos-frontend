@@ -23,6 +23,8 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
               ></catos-select>
             </div>
             <img class="frame-child" alt="" src="@/assets/images/devider.svg" />
@@ -1120,6 +1122,7 @@ const options = {
   flex: 1;
   flex-direction: column;
   gap: 0.25em;
+  background: transparent;
   width: 70vw;
 }
 .frame-wrapper {
