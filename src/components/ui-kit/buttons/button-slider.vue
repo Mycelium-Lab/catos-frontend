@@ -11,9 +11,13 @@
     <span
       :class="`button-slider_left_${ButtonSliderVariant[variantIndex]} button-slider_left`"
       :style="
-        isSide === 'left'
+        isSide === 'left' && variantIndex !== 0
           ? { color: '#3b3b3b' }
-          : { color: 'rgb(129, 129, 165' }
+          : isSide === 'left' && variantIndex === 0
+          ? { color: '#F8F8FF' }
+          : isSide !== 'left' && variantIndex !== 0
+          ? { color: 'rgb(129, 129, 165' }
+          : { color: '#d9d9d9' }
       "
       @click="() => handle('left')"
       >{{ variantIndex !== 0 ? tabs[0] : "Владею" }}</span
@@ -21,9 +25,13 @@
     <span
       @click="() => handle('right')"
       :style="
-        isSide === 'right'
+        isSide === 'right' && variantIndex !== 0
           ? { color: '#3b3b3b' }
-          : { color: 'rgb(129, 129, 165' }
+          : isSide === 'right' && variantIndex === 0
+          ? { color: '#F8F8FF' }
+          : isSide !== 'right' && variantIndex !== 0
+          ? { color: 'rgb(129, 129, 165' }
+          : { color: '#d9d9d9' }
       "
       :class="`button-slider_right_${ButtonSliderVariant[variantIndex]} button-slider_right`"
       >{{ variantIndex !== 0 ? tabs[1] : "Не владею" }}</span
@@ -50,6 +58,7 @@ const { variantIndex, variant } = defineProps({
 
 const isSide = ref(variant ? "right" : "left");
 const handle = (side: any) => {
+  console.log(side);
   isSide.value = side;
   const currentSlide = side === "left" ? 0 : 1;
   emit("onSlide", currentSlide);
@@ -70,9 +79,7 @@ const handleChange = (ev: any) => {
   font-size: var(--font-size-sm);
   color: rgba(181, 181, 195, 1);
   position: relative;
-  &_registration {
-    width: 20.571428571428571em;
-  }
+  &_registration,
   &_dashboard,
   &_loans,
   &_collector {
@@ -89,20 +96,24 @@ const handleChange = (ev: any) => {
 .button-slider {
   &_left {
     position: absolute;
-    left: 8%;
+    left: 5%;
     top: 0.5em;
-
+    width: clamp(110px, 26.7vw, 100%);
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-tap-highlight-color: transparent;
-    &::after {
+    text-align: center;
+    /*&::after {
       content: "";
       position: relative;
       bottom: 2px;
       width: 100%;
       height: 0.08em;
       display: block;
-      background: rgba(181, 181, 195, 1);
-    }
+      width: 40%;
+      top: 0.1em;
+      margin: 0 auto;
+      background: #d9d9d9;
+    }*/
     &_dashboard {
       top: 0.65em;
 
@@ -122,13 +133,14 @@ const handleChange = (ev: any) => {
   }
   &_right {
     position: absolute;
-    right: 8%;
-    top: 0.85em;
+    text-align: center;
+    right: 6%;
+    top: 0.5em;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-tap-highlight-color: transparent;
     width: 26.2vw;
 
-    &::after {
+    /*&::after {
       content: "";
       width: 100%;
       height: 0.08em;
@@ -136,7 +148,7 @@ const handleChange = (ev: any) => {
       background: rgba(181, 181, 195, 1);
       position: relative;
       bottom: 2px;
-    }
+    }*/
     &_dashboard {
       top: 0.65em;
 
@@ -268,7 +280,7 @@ input[type="checkbox"] {
     border-radius: 100px;
     &:after {
       border-radius: 100px;
-      width: 47.906%;
+      width: 50%;
       height: 100%;
       background: rgba(165, 146, 221, 1);
       transform: translateX(var(--x, 0));
@@ -322,6 +334,11 @@ input[type="checkbox"] {
         }
       }
     }
+    &_registration_label_right {
+      &:checked {
+        --x: 100%;
+      }
+    }
     &_dashboard,
     &_collector {
       &:checked {
@@ -332,6 +349,11 @@ input[type="checkbox"] {
         --x: 3px;
       }
     }
+    &_registration_label_right {
+      &:after {
+        --x: 100%;
+      }
+    }
     &_dashboard_label_right {
       &:after {
         --x: 99%;
@@ -340,6 +362,12 @@ input[type="checkbox"] {
     &_collector_label_right {
       &:after {
         --x: 52.3%;
+      }
+    }
+    &_registration_label_left {
+      &:after {
+        --ab: var(--active-inner);
+        --x: 0px;
       }
     }
     &_dashboard_label_left,
