@@ -1,77 +1,81 @@
 <template>
   <modal>
-    <div class="frame-group">
-      <div class="frame-container">
-        <div class="frame-div">
-          <div class="header-parent-create-finish">
-            <div class="header-create-finish">
-              <div class="div8">Счет на:</div>
+    <div class="wrapper">
+      <div class="frame-group">
+        <div class="frame-container">
+          <div class="frame-div">
+            <div class="header-parent-create-finish">
+              <div class="header-create-finish">
+                <div class="div8">Счет на:</div>
+              </div>
+              <div class="header1">
+                <div class="ton">10 000 000 TON</div>
+              </div>
             </div>
-            <div class="header1">
-              <div class="ton">10 000 000 TON</div>
+            <div class="div9">
+              Используйте адрес ниже для пополнения баланса:
             </div>
           </div>
-          <div class="div9">Используйте адрес ниже для пополнения баланса:</div>
-        </div>
-        <div class="qr">
-          <div class="qr-code-2">
-            <img
-              class="replace-me-icon"
-              alt=""
-              src="@/assets/images/replace-me@2x.png"
-            />
+          <div class="qr">
+            <div class="qr-code-2">
+              <img
+                class="replace-me-icon"
+                alt=""
+                src="@/assets/images/replace-me@2x.png"
+              />
+            </div>
+          </div>
+          <div class="info">
+            <div class="frame-parent1">
+              <div class="frame">
+                <div class="div10">Ссылка на получение счета:</div>
+              </div>
+              <copy-paste :style="{ marginTop: '0em' }">
+                <template v-slot:icon>
+                  <img src="@/assets/images/iconscopy.svg" alt="" />
+                </template>
+              </copy-paste>
+            </div>
           </div>
         </div>
-        <div class="info">
-          <div class="frame-parent1">
-            <div class="frame">
-              <div class="div10">Ссылка на получение счета:</div>
+        <div class="frame-parent2">
+          <div class="component-27-wrapper">
+            <div class="component-27">
+              <img
+                class="share-icon"
+                alt=""
+                src="@/assets/images/iconsshare.svg"
+              />
+
+              <div class="number">Поделиться</div>
             </div>
-            <copy-paste :style="{ marginTop: '0em' }">
-              <template v-slot:icon>
-                <img src="@/assets/images/iconscopy.svg" alt="" />
-              </template>
-            </copy-paste>
+          </div>
+          <div class="frame-wrapper">
+            <div class="trash-2-parent">
+              <img
+                class="trash-2-icon"
+                alt=""
+                src="@/assets/images/iconstrash.svg"
+              />
+
+              <div class="div11">Удалить счет</div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="frame-parent2">
-        <div class="component-27-wrapper">
-          <div class="component-27">
-            <img
-              class="share-icon"
-              alt=""
-              src="@/assets/images/iconsshare.svg"
-            />
-
-            <div class="number">Поделиться</div>
-          </div>
+      <div class="des-and-bbn-create-finish">
+        <div class="text-and-button">
+          <router-link
+            class="buttons-tabs"
+            id="buttonsTabsContainer"
+            :to="{ name: 'accounts' }"
+          >
+            <div class="text">К счетам</div>
+          </router-link>
+          <router-link class="buttons-tabs1" :to="{ name: 'wallet' }">
+            <div class="text">В кошелек</div>
+          </router-link>
         </div>
-        <div class="frame-wrapper">
-          <div class="trash-2-parent">
-            <img
-              class="trash-2-icon"
-              alt=""
-              src="@/assets/images/iconstrash.svg"
-            />
-
-            <div class="div11">Удалить счет</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="des-and-bbn-create-finish">
-      <div class="text-and-button">
-        <router-link
-          class="buttons-tabs"
-          id="buttonsTabsContainer"
-          :to="{ name: 'accounts' }"
-        >
-          <div class="text">К счетам</div>
-        </router-link>
-        <router-link class="buttons-tabs1" :to="{ name: 'wallet' }">
-          <div class="text">В кошелек</div>
-        </router-link>
       </div>
     </div>
   </modal>
@@ -83,6 +87,9 @@ import copyPaste from "@/components/fields/copy-paste.vue";
 </script>
 
 <style scoped>
+.wrapper {
+  height: 900px;
+}
 .swipe-down {
   position: absolute;
   top: 0.75em;
@@ -415,7 +422,7 @@ import copyPaste from "@/components/fields/copy-paste.vue";
 }
 .des-and-bbn-create-finish {
   position: absolute;
-  top: 36.94em;
+  top: 34.94em;
   left: 6vw;
   border-radius: 16px;
   background-color: #f9fbff;
