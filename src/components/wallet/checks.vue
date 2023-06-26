@@ -5,8 +5,8 @@
         <div class="div9">Чеки</div>
       </div>
       <div class="swipe-down"></div>
-      <div class="des-1-2-parent">
-        <div class="des-1-2">
+      <div class="des-1-2-parent-check">
+        <div class="des-1-2-check">
           <div class="des-2">
             <div class="div10">
               Создайте чек и оправьте его (ссылку) получаетелю. Перейдя по
@@ -28,7 +28,7 @@
             <b class="ton-kepeer">Создать чек</b>
           </div>
         </div>
-        <div class="descrioption-parent_check descrioption-parent">
+        <div class="descrioption-parent-check">
           <div class="descrioption">
             <div class="number2">Мои чеки</div>
             <div class="details1">Детали</div>
@@ -306,7 +306,7 @@ const toCreateCheck = () => {
   gap: 0.38em;
   color: #78789a;
 }
-.des-1-2 {
+.des-1-2-check {
   position: relative;
   width: 100%;
   height: 7.56em;
@@ -342,6 +342,7 @@ const toCreateCheck = () => {
   text-align: center;
   color: #f3f3f3;
   padding: 0 21px;
+  position: relative;
 }
 .details1,
 .number2 {
@@ -538,23 +539,21 @@ const toCreateCheck = () => {
   font-family: Inter;
   width: 100%;
 }
-.des-1-2-parent,
-.descrioption-parent,
+.des-1-2-parent-check,
+.descrioption-parent-check,
 .frame-group {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
-.descrioption-parent {
+.descrioption-parent-check {
   align-items: flex-start;
   gap: 1.25em;
   font-family: Lato;
   width: 100%;
-  &_check {
-    top: 0em;
-  }
+  position: relative;
 }
-.des-1-2-parent {
+.des-1-2-parent-check {
   position: relative;
   top: 4.56em;
   align-items: center;
