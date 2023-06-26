@@ -53,6 +53,11 @@ export const borrowerLoans = [
     component: () => import("../components/loans/borrower/repaid-detail.vue"),
   },
   {
+    path: "/loans/borrower-sold-detail",
+    name: "loans-borrower-sold-detail",
+    component: () => import("../components/loans/borrower/sold-detail.vue"),
+  },
+  {
     path: "/loans/borrower-sort",
     name: "loans-borrower-sort",
     component: () => import("../components/sort/sort-borrower.vue"),
