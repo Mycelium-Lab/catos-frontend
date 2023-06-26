@@ -5,7 +5,9 @@
       <img class="bg-icon" alt="" src="../../assets/bg/bg.png" />
 
       <div class="header">
-        <div class="div11">Кошелек CATOS</div>
+        <div class="div11">
+          <slot name="title"></slot>
+        </div>
       </div>
     </div>
     <section class="content"><slot /></section>
