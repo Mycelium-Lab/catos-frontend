@@ -151,7 +151,7 @@ const toRepay = () => {
 
 <style scoped lang="scss">
 .wrapper {
-  height: 700px;
+  height: 900px;
 }
 .buttonnext- {
   position: absolute;
