@@ -447,7 +447,7 @@ const options = {
 }
 .frame-wrapper-accounts {
   position: relative;
-  top: 2em;
+  top: 1.5em;
   justify-content: flex-start;
   text-align: center;
   color: #f3f3f3;
@@ -593,7 +593,7 @@ const options = {
 }
 .component-wrapper-accounts {
   position: relative;
-  top: -1.5em;
+  top: -1em;
   color: #78789a;
   padding: 0px 24px;
 }

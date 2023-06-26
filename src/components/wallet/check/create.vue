@@ -15,23 +15,20 @@
           </div>
         </div>
       </div>
-      <div class="field-info-parent">
-        <div class="field-info">
-          <div class="fieldsinputchoise">
-            <div class="div10">
-              <p class="p">Выберите криптовалюту для отправки</p>
-              <p class="p">с помошью чека.</p>
-            </div>
-            <catos-select
-              placeholder="Россия"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
-              :optionWidth="77"
-              :style="{ width: '100%' }"
-            ></catos-select>
-          </div>
+      <div class="fieldsinputchoise">
+        <div class="div10">
+          <p class="p">Выберите криптовалюту для отправки с помошью чека</p>
         </div>
+        <catos-select
+          placeholder="Россия"
+          :options="options"
+          :value="value"
+          :optionWidth="77"
+          :style="{ width: '100%' }"
+          @selected="ev => (value = ev)"
+        ></catos-select>
+      </div>
+      <div class="field-info-parent">
         <div class="frame-group">
           <div class="fieldsinput-parent">
             <div class="fieldsinput">
@@ -53,8 +50,8 @@
           </div>
         </div>
       </div>
-      <div class="frame-wrapper">
-        <div class="buttonnext-wrapper">
+      <div class="frame-wrapper-check">
+        <div class="buttonnext-wrapper-check">
           <router-link class="buttonnext" :to="{ name: 'wallet' }">
             <b class="ton-kepeer">Создать чек</b>
           </router-link>
@@ -224,8 +221,13 @@ const options = {
   color: #2e3a59;
 }
 .fieldsinputchoise {
+  position: relative;
   width: 100%;
   gap: 0.63em;
+  top: 8em;
+  width: 77vw;
+  margin: 0 auto;
+  z-index: 100;
 }
 .field-info,
 .fieldsinputchoise {
@@ -309,11 +311,13 @@ const options = {
   align-items: center;
   justify-content: flex-start;
   gap: 0.5em;
+  position: absolute;
 }
 .title {
   position: relative;
   font-size: 0.63em;
   line-height: 130%;
+  top: 7em;
 }
 .title-wrapper {
   padding: 0 0.63em;
@@ -362,17 +366,19 @@ const options = {
   width: 100%;
   position: relative;
   gap: 0.94em;
+  top: 6em;
 }
 .field-info-parent {
   position: relative;
-  top: 6em;
-
+  top: 2em;
+  width: 87.7vw;
   border-radius: 14px;
   border: 1px solid rgba(165, 146, 221, 0.1);
   overflow: hidden;
   padding: 1.25em 1.31em;
   gap: 1.5em;
-  margin: 0 24px;
+  margin: 0 auto;
+  height: 220px;
 }
 .ton-kepeer {
   position: relative;
@@ -396,20 +402,20 @@ const options = {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
 }
-.buttonnext-wrapper,
-.frame-wrapper {
+.buttonnext-wrapper-check,
+.frame-wrapper-check {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.buttonnext-wrapper {
+.buttonnext-wrapper-check {
   align-self: stretch;
   justify-content: center;
   width: 100%;
 }
-.frame-wrapper {
+.frame-wrapper-check {
   position: relative;
-  top: 27em;
+  top: 23em;
   justify-content: flex-start;
   text-align: center;
   color: #f3f3f3;
@@ -550,7 +556,7 @@ const options = {
 }
 .component-wrapper {
   position: relative;
-  top: 70px;
+  top: 0.5em;
   color: #78789a;
   padding: 0px 24px;
 }
@@ -641,7 +647,7 @@ const options = {
 }
 .frame-parent2 {
   position: relative;
-  top: 6em;
+  top: 2em;
 
   flex-direction: column;
   align-items: flex-start;
