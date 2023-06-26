@@ -1,104 +1,108 @@
 <template>
   <modal>
-    <div class="header">
-      <div class="div28">Создать чек</div>
-    </div>
-    <div class="swipe-down"></div>
-    <div class="des-1-2">
-      <div class="des">
-        <img class="des-child" alt="" src="@/assets/images/dialog.png" />
+    <div class="wrapper">
+      <div class="header">
+        <div class="div28">Создать чек</div>
+      </div>
+      <div class="swipe-down"></div>
+      <div class="des-1-2">
+        <div class="des">
+          <img class="des-child" alt="" src="@/assets/images/dialog.png" />
 
-        <div class="div9">
-          Здесь вы можете создать чек для мгновенной отправки криптовалюты
-          любому пользователю
-        </div>
-      </div>
-    </div>
-    <div class="field-info-parent">
-      <div class="field-info">
-        <div class="fieldsinputchoise">
-          <div class="div10">
-            <p class="p">Выберите криптовалюту для отправки</p>
-            <p class="p">с помошью чека.</p>
+          <div class="div9">
+            Здесь вы можете создать чек для мгновенной отправки криптовалюты
+            любому пользователю
           </div>
-          <catos-select
-            placeholder="Россия"
-            :options="options"
-            :value="value"
-            @selected="ev => (value = ev)"
-          ></catos-select>
         </div>
       </div>
-      <div class="frame-group">
-        <div class="fieldsinput-parent">
-          <div class="fieldsinput">
-            <div class="div11">Укажите сумму:</div>
-            <input-data
-              placeholder="10 000  TON"
-              border=" 1px solid rgba(165, 146, 221, 0.4)"
-              background="rgba(230, 221, 255, 0.3)"
+      <div class="field-info-parent">
+        <div class="field-info">
+          <div class="fieldsinputchoise">
+            <div class="div10">
+              <p class="p">Выберите криптовалюту для отправки</p>
+              <p class="p">с помошью чека.</p>
+            </div>
+            <catos-select
+              placeholder="Россия"
+              :options="options"
+              :value="value"
+              @selected="ev => (value = ev)"
+              :optionWidth="77"
               :style="{ width: '100%' }"
-            ></input-data>
-          </div>
-          <div class="title-wrapper">
-            <div class="title">(≈1 456 USD)</div>
+            ></catos-select>
           </div>
         </div>
-        <div class="ton">
-          <span class="span3">Балланс: </span>
-          <span class="ton1">257 324 TON</span>
+        <div class="frame-group">
+          <div class="fieldsinput-parent">
+            <div class="fieldsinput">
+              <div class="div11">Укажите сумму:</div>
+              <input-data
+                placeholder="10 000  TON"
+                border=" 1px solid rgba(165, 146, 221, 0.4)"
+                background="rgba(230, 221, 255, 0.3)"
+                :style="{ width: '100%' }"
+              ></input-data>
+            </div>
+            <div class="title-wrapper">
+              <div class="title">(≈1 456 USD)</div>
+            </div>
+          </div>
+          <div class="ton">
+            <span class="span3">Балланс: </span>
+            <span class="ton1">257 324 TON</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="frame-wrapper">
-      <div class="buttonnext-wrapper">
-        <router-link class="buttonnext" :to="{ name: 'wallet' }">
-          <b class="ton-kepeer">Создать чек</b>
-        </router-link>
+      <div class="frame-wrapper">
+        <div class="buttonnext-wrapper">
+          <router-link class="buttonnext" :to="{ name: 'wallet' }">
+            <b class="ton-kepeer">Создать чек</b>
+          </router-link>
+        </div>
       </div>
-    </div>
-    <div class="component-wrapper">
-      <div class="frame-container-checks">
-        <div class="frame-checks">
-          <div class="frame-parent1">
-            <div class="field-info">
-              <div class="title1">
-                <span>Описание к чеку:</span>
-                <span class="span4"> (не обязательно)</span>
+      <div class="component-wrapper">
+        <div class="frame-container-checks">
+          <div class="frame-checks">
+            <div class="frame-parent1">
+              <div class="field-info">
+                <div class="title1">
+                  <span>Описание к чеку:</span>
+                  <span class="span4"> (не обязательно)</span>
+                </div>
               </div>
+              <textarea class="description-area"></textarea>
             </div>
-            <textarea class="description-area"></textarea>
-          </div>
-          <!--<div class="frame-inner"></div>-->
-          <div class="div13">
-            Пользователи увидят это описание, когда вы поделитесь чеком, так же
-            можно показать или скрыть кто поделился
-          </div>
-          <div class="author-parent">
-            <div class="author">
-              <img
-                class="img-icon"
-                alt=""
-                src="@/assets/images/edit-photo.png"
-              />
+            <!--<div class="frame-inner"></div>-->
+            <div class="div13">
+              Пользователи увидят это описание, когда вы поделитесь чеком, так
+              же можно показать или скрыть кто поделился
+            </div>
+            <div class="author-parent">
+              <div class="author">
+                <img
+                  class="img-icon"
+                  alt=""
+                  src="@/assets/images/edit-photo.png"
+                />
 
-              <div class="author1">Валентин Иванович</div>
+                <div class="author1">Валентин Иванович</div>
+              </div>
+              <catos-switch checked></catos-switch>
             </div>
-            <catos-switch checked></catos-switch>
           </div>
         </div>
       </div>
-    </div>
-    <div class="frame-parent2">
-      <div class="group">
-        <div class="div14">Добавить пароль к чеку (не обязательно)</div>
-        <img class="container-click" alt="" src="@/assets/images/info.svg" />
+      <div class="frame-parent2">
+        <div class="group">
+          <div class="div14">Добавить пароль к чеку (не обязательно)</div>
+          <img class="container-click" alt="" src="@/assets/images/info.svg" />
+        </div>
+        <copy-paste :style="{ marginTop: '0em' }">
+          <template v-slot:icon>
+            <img src="@/assets/images/iconscopy.svg" />
+          </template>
+        </copy-paste>
       </div>
-      <copy-paste :style="{ marginTop: '0em' }">
-        <template v-slot:icon>
-          <img src="@/assets/images/iconscopy.svg" />
-        </template>
-      </copy-paste>
     </div>
   </modal>
 </template>
@@ -118,6 +122,9 @@ const options = {
 </script>
 
 <style scoped lang="scss">
+.wrapper {
+  height: 1000px;
+}
 .div28 {
   position: relative;
   font-size: 1em;
@@ -432,6 +439,7 @@ const options = {
   justify-content: flex-start;
   gap: 0.75em;
   width: 100%;
+  background-color: transparent;
 }
 .frame-inner {
   align-self: stretch;

@@ -1,218 +1,223 @@
 <template>
   <modal>
-    <div class="header">
-      <div class="div9">Чеки</div>
-    </div>
-    <div class="swipe-down"></div>
-    <div class="des-1-2-parent">
-      <div class="des-1-2">
-        <div class="des-2">
-          <div class="div10">
-            Создайте чек и оправьте его (ссылку) получаетелю. Перейдя по ссылке
-            чека получатель сможет его активировать и получить криптовалюту в
-            удобное для него время
+    <div class="wrapper">
+      <div class="header">
+        <div class="div9">Чеки</div>
+      </div>
+      <div class="swipe-down"></div>
+      <div class="des-1-2-parent">
+        <div class="des-1-2">
+          <div class="des-2">
+            <div class="div10">
+              Создайте чек и оправьте его (ссылку) получаетелю. Перейдя по
+              ссылке чека получатель сможет его активировать и получить
+              криптовалюту в удобное для него время
+            </div>
           </div>
-        </div>
-        <div class="des">
-          <img class="des-child" alt="" src="@/assets/images/dialog.png" />
+          <div class="des">
+            <img class="des-child" alt="" src="@/assets/images/dialog.png" />
 
-          <div class="div11">
-            Отправляйте криптовалюту используя виртуальные чеки. Забудьте про
-            длинные адреса кошельков и ожидание подтверждения транзакций.
+            <div class="div11">
+              Отправляйте криптовалюту используя виртуальные чеки. Забудьте про
+              длинные адреса кошельков и ожидание подтверждения транзакций.
+            </div>
           </div>
         </div>
-      </div>
-      <div class="buttonnext-wrapper-checks">
-        <div class="buttonnext-checks" @click="toCreateCheck">
-          <b class="ton-kepeer">Создать чек</b>
+        <div class="buttonnext-wrapper-checks">
+          <div class="buttonnext-checks" @click="toCreateCheck">
+            <b class="ton-kepeer">Создать чек</b>
+          </div>
         </div>
-      </div>
-      <div class="descrioption-parent">
-        <div class="descrioption">
-          <div class="number2">Мои чеки</div>
-          <div class="details1">Детали</div>
-        </div>
-        <div class="frame-group">
-          <div class="frame-container">
-            <div class="frame-div">
-              <div class="svg-gobbler-2-1-group">
-                <div class="svg-wrapper">
-                  <img
-                    class="svg-gobbler-2-11"
-                    alt=""
-                    src="@/assets/images/invoice.svg"
-                  />
+        <div class="descrioption-parent_check descrioption-parent">
+          <div class="descrioption">
+            <div class="number2">Мои чеки</div>
+            <div class="details1">Детали</div>
+          </div>
+          <div class="frame-group">
+            <div class="frame-container">
+              <div class="frame-div">
+                <div class="svg-gobbler-2-1-group">
+                  <div class="svg-wrapper">
+                    <img
+                      class="svg-gobbler-2-11"
+                      alt=""
+                      src="@/assets/images/invoice.svg"
+                    />
+                  </div>
+
+                  <div class="ticked-id-parent">
+                    <b class="ticked-id">Чек #207</b>
+                    <div class="time">
+                      2 мая <span class="span">, </span>11:52
+                    </div>
+                  </div>
                 </div>
-
-                <div class="ticked-id-parent">
-                  <b class="ticked-id">Чек #207</b>
-                  <div class="time">
-                    2 мая <span class="span">, </span>11:52
+                <div
+                  class="buttons-icon-outline-arr"
+                  id="buttonsIconOutlineArr"
+                  @click="() => (isDetail = true)"
+                >
+                  <div class="bg1">
+                    <img src="@/assets/images/more.png" />
                   </div>
                 </div>
               </div>
-              <div
-                class="buttons-icon-outline-arr"
-                id="buttonsIconOutlineArr"
-                @click="() => (isDetail = true)"
-              >
-                <div class="bg1">
-                  <img src="@/assets/images/more.png" />
+              <div class="frame-parent1">
+                <div class="title-parent">
+                  <div class="title1">Чек на 10 TON</div>
+                  <div class="description">
+                    <p class="p">Мой первый чек для бабули, привет</p>
+                    <p class="p1">моя бабуля!</p>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="frame-parent1">
-              <div class="title-parent">
-                <div class="title1">Чек на 10 TON</div>
-                <div class="description">
-                  <p class="p">Мой первый чек для бабули, привет</p>
-                  <p class="p1">моя бабуля!</p>
-                </div>
-              </div>
-              <div class="frame-inner"></div>
-              <div class="author">
-                <img
-                  class="img-icon"
-                  alt=""
-                  src="@/assets/images/edit-photo.png"
-                />
-
-                <div class="author1">Валентин Иванович</div>
-              </div>
-            </div>
-          </div>
-          <div class="frame-container">
-            <div class="frame-div">
-              <div class="svg-gobbler-2-1-group">
-                <div class="svg-wrapper">
+                <div class="frame-inner"></div>
+                <div class="author">
                   <img
-                    class="svg-gobbler-2-11"
+                    class="img-icon"
                     alt=""
-                    src="@/assets/images/invoice.svg"
+                    src="@/assets/images/edit-photo.png"
                   />
-                </div>
 
-                <div class="ticked-id-parent">
-                  <b class="ticked-id">Чек #207</b>
-                  <div class="time">
-                    11 апреля <span class="span">, 10</span>:51
+                  <div class="author1">Валентин Иванович</div>
+                </div>
+              </div>
+            </div>
+            <div class="frame-container">
+              <div class="frame-div">
+                <div class="svg-gobbler-2-1-group">
+                  <div class="svg-wrapper">
+                    <img
+                      class="svg-gobbler-2-11"
+                      alt=""
+                      src="@/assets/images/invoice.svg"
+                    />
+                  </div>
+
+                  <div class="ticked-id-parent">
+                    <b class="ticked-id">Чек #207</b>
+                    <div class="time">
+                      11 апреля <span class="span">, 10</span>:51
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="buttons-icon-outline-arr"
+                  id="buttonsIconOutlineArr1"
+                >
+                  <div class="bg1">
+                    <img src="@/assets/images/more.png" />
                   </div>
                 </div>
               </div>
-              <div class="buttons-icon-outline-arr" id="buttonsIconOutlineArr1">
-                <div class="bg1">
-                  <img src="@/assets/images/more.png" />
+              <div class="frame-parent1">
+                <div class="title-parent">
+                  <div class="title1">Чек на 50 TON</div>
+                  <div class="description">Чек без описания:</div>
                 </div>
-              </div>
-            </div>
-            <div class="frame-parent1">
-              <div class="title-parent">
-                <div class="title1">Чек на 50 TON</div>
-                <div class="description">Чек без описания:</div>
-              </div>
-              <div class="frame-inner"></div>
-              <div class="author">
-                <img
-                  class="img-icon"
-                  alt=""
-                  src="@/assets/images/edit-photo.png"
-                />
-
-                <div class="author1">Валентин Иванович</div>
-              </div>
-            </div>
-          </div>
-          <div class="frame-container">
-            <div class="frame-div">
-              <div class="svg-gobbler-2-1-group">
-                <div class="svg-wrapper">
+                <div class="frame-inner"></div>
+                <div class="author">
                   <img
-                    class="svg-gobbler-2-11"
+                    class="img-icon"
                     alt=""
-                    src="@/assets/images/invoice.svg"
+                    src="@/assets/images/edit-photo.png"
                   />
-                </div>
 
-                <div class="ticked-id-parent">
-                  <b class="ticked-id">Чек #206</b>
-                  <div class="time">11:52</div>
-                </div>
-              </div>
-              <div class="buttons-icon-outline-arr">
-                <div class="bg1">
-                  <img src="@/assets/images/more.png" />
+                  <div class="author1">Валентин Иванович</div>
                 </div>
               </div>
             </div>
-            <div class="frame-parent1">
-              <div class="title-parent">
-                <div class="title1">Чек на 50 TON</div>
-                <div class="description">Чек без описания:</div>
-              </div>
-              <div class="frame-inner"></div>
-              <div class="author">
-                <img
-                  class="img-icon"
-                  alt=""
-                  src="@/assets/images/edit-photo.png"
-                />
+            <div class="frame-container">
+              <div class="frame-div">
+                <div class="svg-gobbler-2-1-group">
+                  <div class="svg-wrapper">
+                    <img
+                      class="svg-gobbler-2-11"
+                      alt=""
+                      src="@/assets/images/invoice.svg"
+                    />
+                  </div>
 
-                <div class="author1">Валентин Иванович</div>
+                  <div class="ticked-id-parent">
+                    <b class="ticked-id">Чек #206</b>
+                    <div class="time">11:52</div>
+                  </div>
+                </div>
+                <div class="buttons-icon-outline-arr">
+                  <div class="bg1">
+                    <img src="@/assets/images/more.png" />
+                  </div>
+                </div>
+              </div>
+              <div class="frame-parent1">
+                <div class="title-parent">
+                  <div class="title1">Чек на 50 TON</div>
+                  <div class="description">Чек без описания:</div>
+                </div>
+                <div class="frame-inner"></div>
+                <div class="author">
+                  <img
+                    class="img-icon"
+                    alt=""
+                    src="@/assets/images/edit-photo.png"
+                  />
+
+                  <div class="author1">Валентин Иванович</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div id="popUpContainer" class="popup-overlay" style="display: none">
-      <div class="popup-">
-        <div class="counters-graph-web">
-          <div class="bg"></div>
-          <div class="component-26">
-            <!--<img class="share-icon" alt="" src="./public/share.svg" />-->
+      <div id="popUpContainer" class="popup-overlay" style="display: none">
+        <div class="popup-">
+          <div class="counters-graph-web">
+            <div class="bg"></div>
+            <div class="component-26">
+              <!--<img class="share-icon" alt="" src="./public/share.svg" />-->
 
-            <div class="number">Поделиться</div>
-          </div>
-          <div class="component-261">
-            <!-- <img class="share-icon" alt="" src="./public/copy.svg" /> -->
+              <div class="number">Поделиться</div>
+            </div>
+            <div class="component-261">
+              <!-- <img class="share-icon" alt="" src="./public/copy.svg" /> -->
 
-            <div class="number">Скопировать</div>
+              <div class="number">Скопировать</div>
+            </div>
+            <div class="title-wrapper">
+              <b class="title">Чек #207</b>
+            </div>
           </div>
-          <div class="title-wrapper">
-            <b class="title">Чек #207</b>
-          </div>
-        </div>
-        <div class="field-">
-          <div class="svg-gobbler-2-1-parent">
-            <!--<img
+          <div class="field-">
+            <div class="svg-gobbler-2-1-parent">
+              <!--<img
               class="svg-gobbler-2-1"
               alt=""
               src="./public/svggobbler-2-1.svg"
             />-->
 
-            <div class="name">
-              <div class="invoice-aa-04-19-18">Чек отправлен</div>
-              <div class="new-madieton-llc">Описание статуса:</div>
+              <div class="name">
+                <div class="invoice-aa-04-19-18">Чек отправлен</div>
+                <div class="new-madieton-llc">Описание статуса:</div>
+              </div>
             </div>
-          </div>
-          <div class="details">
-            <div class="total">10 TON</div>
-            <div class="paid">Отправлено</div>
-          </div>
-          <div class="arrows-table">
-            <!--<img
+            <div class="details">
+              <div class="total">10 TON</div>
+              <div class="paid">Отправлено</div>
+            </div>
+            <div class="arrows-table">
+              <!--<img
               class="chevron-right-icon"
               alt=""
               src="./public/chevronright.svg"
             />-->
+            </div>
           </div>
+          <div class="div8" id="popuptext">Закрыть</div>
         </div>
-        <div class="div8" id="popuptext">Закрыть</div>
       </div>
-    </div>
 
-    <detail v-if="isDetail"></detail>
+      <detail v-if="isDetail"></detail>
+    </div>
   </modal>
 </template>
 
@@ -230,6 +235,9 @@ const toCreateCheck = () => {
 </script>
 
 <styles scoped lang="scss">
+.wrapper {
+  height: 1300px;
+}
 .div9 {
   position: relative;
   font-size: 1em;
@@ -542,6 +550,9 @@ const toCreateCheck = () => {
   gap: 1.25em;
   font-family: Lato;
   width: 100%;
+  &_check {
+    top: 0em;
+  }
 }
 .des-1-2-parent {
   position: relative;
@@ -560,7 +571,7 @@ const toCreateCheck = () => {
   position: relative;
   border-radius: 30px 30px 0 0;
   box-shadow: 0 12px 12px rgba(151, 71, 255, 0.04);
-  height: 58.75em;
+
   overflow: auto;
   text-align: left;
   color: #3b3b3b;
