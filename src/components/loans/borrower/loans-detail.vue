@@ -1,449 +1,173 @@
 <template>
-  <div class="div8">
-    <div class="pull-parent">
-      <div class="pull"></div>
-      <div class="header">
-        <div class="div9">Кредитные пуллы</div>
-      </div>
-      <div class="pull-stats">
-        <div class="pull-stats-child"></div>
-        <div class="filtr">
-          <div class="frame">
-            <div class="div10">Пулл №1223</div>
-          </div>
-        </div>
-        <div class="pull-stats1">
-          <div class="frame-group">
-            <div class="frame-container">
-              <div class="frame-inner"></div>
-              <div class="buttons-tabs-parent">
-                <div class="buttons-tabs">
-                  <div class="ton-parent">
-                    <div class="ton">37 000 TON</div>
-                    <div class="div11">Доступно ликвидности:</div>
+  <modal from="pulls">
+    <div class="wrapper">
+      <div class="pull-stats3">
+        <div class="status-reg">
+          <div class="parent10">
+            <div class="div71">Займ #12456 получен</div>
+            <div class="fields">
+              <div class="fields">
+                <div class="frame-wrapper1">
+                  <div class="ton-frame">
+                    <div class="ton5">13 000 TON</div>
                   </div>
                 </div>
-                <div class="frame-div">
-                  <div class="percent-parent">
-                    <div class="div12">1 день = 1%</div>
-                  </div>
-                  <div class="percent-parent">
-                    <div class="div12">3 дня = 0%</div>
-                  </div>
-                  <div class="percent-parent">
-                    <div class="div12">ROI = 75%</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="frame-parent1">
-              <div class="frame-parent2">
-                <div class="roi-wrapper">
-                  <div class="roi">Ставка:</div>
-                </div>
-                <div class="ton-wrapper">
-                  <div class="div15">1% в день</div>
-                </div>
-              </div>
-              <div class="line-div"></div>
-              <div class="frame-parent2">
-                <div class="roi-wrapper">
-                  <div class="roi">На срок:</div>
-                </div>
-                <div class="ton-wrapper">
-                  <div class="div15">до 30 дней</div>
-                </div>
-              </div>
-              <div class="line-div"></div>
-              <div class="frame-parent2">
-                <div class="roi-wrapper">
-                  <div class="roi">Беспроцентный период:</div>
-                </div>
-                <div class="ton-wrapper">
-                  <div class="div15">3 дня</div>
-                </div>
-              </div>
-              <div class="line-div"></div>
-              <div class="frame-parent2">
-                <div class="roi-wrapper">
-                  <div class="roi">Всего ликвидности:</div>
-                </div>
-                <div class="ton-wrapper">
-                  <div class="div15">450 000 TON</div>
-                </div>
-              </div>
-              <div class="line-div"></div>
-              <div class="frame-parent2">
-                <div class="roi-wrapper">
-                  <div class="roi">Доступно ликвидности:</div>
-                </div>
-                <div class="ton-wrapper">
-                  <div class="div15">37 000 TON</div>
-                </div>
-              </div>
-              <div class="line-div"></div>
-              <div class="frame-parent2">
-                <div class="roi-wrapper">
-                  <div class="roi">ROI инвесторов:</div>
-                </div>
-                <div class="ton-wrapper">
-                  <div class="div15">75% годовых</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="des-and-bbn">
-            <div class="text-and-button-parent">
-              <div class="text-and-button">
-                <div class="buttons-tabs1">
-                  <div class="text">Займы</div>
-                </div>
-                <div class="buttons-tabs1">
-                  <div class="text1">Аналитика</div>
-                </div>
-              </div>
-              <div class="text-and-button">
-                <div class="buttons-tabs1">
-                  <div class="text2">
-                    <span class="span">Упр</span>
-                    <span class="span1">. ликвид</span>
-                  </div>
-                </div>
-                <div class="buttons-tabs1">
-                  <div class="text3">Подробнее</div>
+                <div class="eqb5dze1h44">
+                  <span class="eqb5dze1h44-txt">
+                    <p class="p">Были отправлены на ваш кошелек:</p>
+                    <p class="eqb5dze1h441">EQB5...dzE1hа44</p>
+                  </span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="frame-parent8">
-        <div class="menu-2-parent" id="frameContainer30">
-          <div class="div24">
-            <span>Фильтр </span>
-            <span class="span2">(1)</span>
-          </div>
-        </div>
-        <div class="menu-2-parent" id="frameContainer31">
-          <div class="div24">
-            <span>Сортировка </span>
-            <span class="span2">(1)</span>
-          </div>
-        </div>
-      </div>
-      <div class="button-slider">
-        <div class="fill"></div>
-        <div class="div26">Все пуллы</div>
-        <div class="div27">Мои пуллы</div>
-      </div>
-      <div class="buttonnext" id="buttonNextContainer">
-        <div class="group-container">
-          <b class="b1">Создать пулл</b>
-        </div>
-      </div>
-      <div class="div28">
-        <div class="description">
-          <div class="div29">Фильтровать по:</div>
-        </div>
-        <div class="div30">Закрыть</div>
-        <div class="swipe-down"></div>
-        <div class="group">
-          <div class="div31">Выбор фильтра:</div>
-          <div class="tags-brand">
-            <div class="tag">
-              <div class="div32">Создать</div>
-            </div>
-            <div class="tag1">
-              <div class="div32">Фильтр 1</div>
-            </div>
-            <div class="tag1">
-              <div class="div32">Фильтр 2</div>
-            </div>
-          </div>
-        </div>
-        <div class="fieldsinputchoise-parent">
-          <div class="fieldsinputchoise">
-            <div class="div24">Настройте токен:</div>
-            <div class="fields-password-and-mail2">
-              <div class="text-parent">
-                <div class="text4">CATOS</div>
-              </div>
-            </div>
-          </div>
-          <div class="parent1">
-            <div class="div24">Дневной ставке:</div>
-            <div class="frame-parent10">
-              <div class="tag-parent">
-                <div class="tag3">
-                  <div class="div37">
-                    <span class="span">
-                      <span class="span5">от</span>
-                    </span>
-                    <span>
-                      <span class="span"> О</span>
-                    </span>
-                    <span class="span1">
-                      <span>.1 % </span>
-                      <span class="span8">мин</span>
-                    </span>
-                  </div>
+        <div class="pull-stats-inner">
+          <div class="parent11">
+            <div class="div72">Транзакция:</div>
+            <div class="field-copykey-parent">
+              <div class="field-copykey">
+                <div class="text-1">
+                  <div class="key">Key:</div>
                 </div>
-                <div class="tag4">
-                  <div class="pro-beats">
-                    <span class="span5">
-                      <span>до</span>
-                    </span>
-                    <span class="span10">
-                      <span class="span5"> </span>
-                      <span>30 % </span>
-                    </span>
-                    <span class="span5">макс</span>
-                  </div>
+                <div class="code">
+                  <div class="cahrjj3">EQCoqrqUMQCKKZTBFCQ0VzgOf</div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="parent1">
-            <div class="div24">Сроку:</div>
-            <div class="frame-parent10">
-              <div class="tag-parent">
-                <div class="tag5">
-                  <div class="pro-beats1">
-                    <span>от</span>
-                    <span class="span10"> 1 </span>
-                    <span>дня</span>
-                  </div>
+              <div class="component-27-parent">
+                <div class="component-27">
+                  <img
+                    :style="{ width: '1.3em', height: '1.5em' }"
+                    class="menu-2-icon"
+                    alt=""
+                    src="@/assets/images/iconsshare-black.svg"
+                  />
+
+                  <div class="number">Поделиться</div>
                 </div>
-                <div class="tag6">
-                  <div class="pro-beats">
-                    <span class="span5">до</span>
-                    <span class="span10"> 365 </span>
-                    <span class="span5">дней</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="parent1">
-            <div class="div24">Беспроцентный период:</div>
-            <div class="frame-parent10">
-              <div class="tag-parent">
-                <div class="tag3">
-                  <div class="div37">
-                    <span class="span">
-                      <span class="span5">от</span>
-                    </span>
-                    <span>
-                      <span class="span"> О</span>
-                    </span>
-                    <span class="span1">
-                      <span>.1 % </span>
-                      <span class="span8">мин</span>
-                    </span>
-                  </div>
-                </div>
-                <div class="tag4">
-                  <div class="pro-beats">
-                    <span class="span5">
-                      <span>до</span>
-                    </span>
-                    <span class="span10">
-                      <span class="span5"> </span>
-                      <span>30 % </span>
-                    </span>
-                    <span class="span5">макс</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="parent1">
-            <div class="div24">Процент возврата:</div>
-            <div class="frame-parent10">
-              <div class="tag-parent">
-                <div class="tag3">
-                  <div class="div37">
-                    <span class="span">
-                      <span class="span5">от</span>
-                    </span>
-                    <span>
-                      <span class="span"> О</span>
-                    </span>
-                    <span class="span1">
-                      <span>.1 % </span>
-                      <span class="span8">мин</span>
-                    </span>
-                  </div>
-                </div>
-                <div class="tag4">
-                  <div class="pro-beats">
-                    <span class="span5">
-                      <span>до</span>
-                    </span>
-                    <span class="span10">
-                      <span class="span5"> </span>
-                      <span>30 % </span>
-                    </span>
-                    <span class="span5">макс</span>
-                  </div>
+                <div class="component-27">
+                  <img
+                    class="menu-2-icon"
+                    alt=""
+                    src="@/assets/images/iconspaste.svg"
+                  />
+
+                  <div class="number">Скопировать</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="parent5">
-          <div class="div43">Сбросить параметры</div>
-          <div class="buttonnext1">
-            <b class="ton-kepeer">Сохранить и выйти</b>
-          </div>
-        </div>
-      </div>
-      <div class="ui-bars-status-bars-white">
-        <div class="time-style">
-          <div class="div44">9:41</div>
-        </div>
-        <div class="time-style1">
-          <div class="div44">9:41</div>
-        </div>
-      </div>
-    </div>
-    <div class="new-pull">
-      <div class="swipe-down1"></div>
-      <div class="description1">
-        <div class="div46">Получить займ из пулла #12345</div>
-      </div>
-      <div class="fields-parent">
-        <div class="fields">
-          <div class="parent6">
-            <div class="div47">Сумма займа:</div>
-            <div class="frame-parent14">
-              <div class="tag-parent2">
-                <div class="tag11">
-                  <div class="div48">
-                    <span class="span">
-                      <span class="span8">от</span>
-                      <span> 0 </span>
-                    </span>
-                    <span>
-                      <span class="span1"> </span>
-                    </span>
-                  </div>
-                </div>
-                <div class="tag12">
-                  <div class="ton3">13 000 TON</div>
-                </div>
-                <div class="tag13">
-                  <div class="pro-beats">
-                    <span class="span5">
-                      <span>до</span>
-                    </span>
-                    <span class="span10">
-                      <span class="span5"> </span>
-                      <span>50 000 </span>
-                    </span>
-                  </div>
+        <div class="pull-stats-item"></div>
+
+        <div class="pull-stats-child2"></div>
+        <div class="frame-parent23">
+          <div class="frame-parent24">
+            <div class="parent12">
+              <div class="number">Кредитор:</div>
+              <div class="alert-triangle-parent">
+                <catos-checkbox variant="radiobutton"></catos-checkbox>
+
+                <div class="div74">Деньги до зарплаты</div>
+              </div>
+            </div>
+            <div class="frame-child6"></div>
+            <div class="alert-triangle-parent">
+              <div class="div75">Пулл:</div>
+              <div class="wrapper15">
+                <div class="div76">#123445</div>
+              </div>
+            </div>
+            <div class="frame-child6"></div>
+            <div class="frame-parent25">
+              <div class="wrapper16">
+                <div class="number">Ставка:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="div62">1% в день</div>
+              </div>
+            </div>
+            <div class="frame-child6"></div>
+            <div class="frame-parent25">
+              <div class="wrapper16">
+                <div class="number">Беспроцентный период:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="div80">
+                  <span class="eqb5dze1h44-txt">
+                    <p class="p">
+                      <span class="span5"
+                        >до 12.05.23
+                        <span class="span47">, 16:00</span>
+                      </span>
+                    </p>
+                    <p class="p2">
+                      <span class="span47">
+                        <span>(Закончен)</span>
+                      </span>
+                    </p>
+                  </span>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="fields">
-          <div class="parent6">
-            <div class="div47">На срок:</div>
-            <div class="frame-parent14">
-              <div class="text-and-button-wrapper">
-                <div class="tag11">
-                  <div class="pro-beats1">
-                    <span>1 </span>
-                    <span class="span41">день</span>
-                  </div>
-                </div>
-                <div class="tag15">
-                  <div class="div37">
-                    <span class="span"> 7</span>
-                    <span class="span1"> дней</span>
-                  </div>
-                </div>
-                <div class="tag11">
-                  <div class="pro-beats">
-                    <span>30 </span>
-                    <span class="span41">
-                      <span>дней</span>
-                      <span class="span10"> </span>
-                    </span>
-                  </div>
-                </div>
+            <div class="frame-child6"></div>
+            <div class="frame-parent25">
+              <div class="wrapper16">
+                <div class="number">Вернуть не позднее:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="div62">13.05.23, 16:00</div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="des-and-bbn1">
-        <div class="text-and-button2">
-          <div class="frame-parent16">
-            <div class="group-wrapper"></div>
-            <div class="text5">Получить займ</div>
-          </div>
-        </div>
-        <div class="text-and-button3">
-          <div class="buttons-tabs5">
-            <div class="text6">Отмена</div>
-          </div>
-        </div>
-      </div>
-      <div class="parent8">
-        <div class="div47">Кредитор:</div>
-        <div class="alert-triangle-parent">
-          <div class="div24">Деньги до зарплаты</div>
-        </div>
-      </div>
-      <div class="new-pull-inner">
-        <div class="frame-parent17">
-          <div class="frame-parent18">
-            <div class="roi-wrapper">
-              <div class="roi">Ставка:</div>
+            <div class="percent-group">
+              <img
+                class="percent-icon1"
+                alt=""
+                src="@/assets/images/percent.svg"
+              />
+
+              <div class="div83">
+                <p class="p">Проценты начнут начисляться с 12 апреля</p>
+                <p class="p">2023 года, после 16:00</p>
+              </div>
             </div>
-            <div class="ton-wrapper">
-              <div class="div15">1% в день</div>
-            </div>
-          </div>
-          <div class="frame-parent18">
-            <div class="roi-wrapper">
-              <div class="roi">Беспроцентный период:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="div15">3 дня</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="new-pull-child"></div>
-      <div class="frame-parent20">
-        <div class="header-parent">
-          <div class="header1">
-            <div class="div60">Итого:</div>
-            <div class="ton4">13 910 TON</div>
-          </div>
-          <div class="wrapper14">
-            <div class="div47">Вернуть в течении 7 дней</div>
-          </div>
-        </div>
-        <div class="fields">
-          <div class="info-1">
-            <div class="div62">
-              Вы можете погасить займ досрочно заплатив меньший процент по
-              кредиту
-            </div>
-          </div>
-          <div class="info-2">
-            <div class="info-2-inner">
+            <div class="frame-wrapper2">
               <div class="frame-parent21">
                 <div class="alert-triangle-parent">
-                  <div class="div63">Внимание!</div>
+                  <img
+                    class="iconsedit-outline"
+                    alt=""
+                    src="@/assets/images/alerttriangle-red.svg"
+                  />
+
+                  <div class="div84">Займ просрочен</div>
                 </div>
-                <div class="div64">
-                  Если не вернуть займ вовремя, ваш долг может быть продан
-                  коллекторам
+                <div class="div85">
+                  Ваш долг вместе с персональными данными будет выставлен на
+                  открытый аукцион для коллекторов через 23:59:59
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="des-and-bbn3">
+            <div class="text-and-button-wrapper">
+              <div class="text-and-button5" @click="toRepay">
+                <div class="buttons-tabs1">
+                  <div class="text9">Погасить</div>
+                </div>
+              </div>
+            </div>
+            <div class="text-and-button-wrapper">
+              <div class="text-and-button5" @click="toProlong">
+                <div class="buttons-tabs1">
+                  <div class="text10">Пролонгировать</div>
+                </div>
+              </div>
+            </div>
+            <div class="text-and-button-wrapper1">
+              <div class="text-and-button5" @click="toLoan">
+                <div class="buttons-tabs10">
+                  <div class="text11">Перейти в мои займы</div>
                 </div>
               </div>
             </div>
@@ -451,190 +175,14 @@
         </div>
       </div>
     </div>
-
-    <div class="bg"></div>
-
-    <div class="bg1"></div>
-    <div class="pull-stats3">
-      <div class="status-reg">
-        <div class="parent10">
-          <div class="div71">Займ #12456 получен</div>
-          <div class="fields">
-            <div class="fields">
-              <div class="frame-wrapper1">
-                <div class="ton-frame">
-                  <div class="ton5">13 000 TON</div>
-                </div>
-              </div>
-              <div class="eqb5dze1h44">
-                <span class="eqb5dze1h44-txt">
-                  <p class="p">Были отправлены на ваш кошелек:</p>
-                  <p class="eqb5dze1h441">EQB5...dzE1hа44</p>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="pull-stats-inner">
-        <div class="parent11">
-          <div class="div72">Транзакция:</div>
-          <div class="field-copykey-parent">
-            <div class="field-copykey">
-              <div class="text-1">
-                <div class="key">Key:</div>
-              </div>
-              <div class="code">
-                <div class="cahrjj3">EQCoqrqUMQCKKZTBFCQ0VzgOf</div>
-              </div>
-            </div>
-            <div class="component-27-parent">
-              <div class="component-27">
-                <img
-                  :style="{ width: '1.3em', height: '1.5em' }"
-                  class="menu-2-icon"
-                  alt=""
-                  src="@/assets/images/iconsshare-black.svg"
-                />
-
-                <div class="number">Поделиться</div>
-              </div>
-              <div class="component-27">
-                <img
-                  class="menu-2-icon"
-                  alt=""
-                  src="@/assets/images/iconspaste.svg"
-                />
-
-                <div class="number">Скопировать</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="pull-stats-item"></div>
-      <div class="pull-stats-child1"></div>
-      <div class="pull-stats-child2"></div>
-      <div class="frame-parent23">
-        <div class="frame-parent24">
-          <div class="parent12">
-            <div class="number">Кредитор:</div>
-            <div class="alert-triangle-parent">
-              <catos-checkbox variant="radiobutton"></catos-checkbox>
-
-              <div class="div74">Деньги до зарплаты</div>
-            </div>
-          </div>
-          <div class="frame-child6"></div>
-          <div class="alert-triangle-parent">
-            <div class="div75">Пулл:</div>
-            <div class="wrapper15">
-              <div class="div76">#123445</div>
-            </div>
-          </div>
-          <div class="frame-child6"></div>
-          <div class="frame-parent25">
-            <div class="wrapper16">
-              <div class="number">Ставка:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="div62">1% в день</div>
-            </div>
-          </div>
-          <div class="frame-child6"></div>
-          <div class="frame-parent25">
-            <div class="wrapper16">
-              <div class="number">Беспроцентный период:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="div80">
-                <span class="eqb5dze1h44-txt">
-                  <p class="p">
-                    <span class="span5"
-                      >до 12.05.23
-                      <span class="span47">, 16:00</span>
-                    </span>
-                  </p>
-                  <p class="p2">
-                    <span class="span47">
-                      <span>(Закончен)</span>
-                    </span>
-                  </p>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="frame-child6"></div>
-          <div class="frame-parent25">
-            <div class="wrapper16">
-              <div class="number">Вернуть не позднее:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="div62">13.05.23, 16:00</div>
-            </div>
-          </div>
-          <div class="percent-group">
-            <img
-              class="percent-icon1"
-              alt=""
-              src="@/assets/images/percent.svg"
-            />
-
-            <div class="div83">
-              <p class="p">Проценты начнут начисляться с 12 апреля</p>
-              <p class="p">2023 года, после 16:00</p>
-            </div>
-          </div>
-          <div class="frame-wrapper2">
-            <div class="frame-parent21">
-              <div class="alert-triangle-parent">
-                <img
-                  class="iconsedit-outline"
-                  alt=""
-                  src="@/assets/images/alerttriangle-red.svg"
-                />
-
-                <div class="div84">Займ просрочен</div>
-              </div>
-              <div class="div85">
-                Ваш долг вместе с персональными данными будет выставлен на
-                открытый аукцион для коллекторов через 23:59:59
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="des-and-bbn3">
-          <div class="text-and-button-wrapper">
-            <div class="text-and-button5" @click="toRepay">
-              <div class="buttons-tabs1">
-                <div class="text9">Погасить</div>
-              </div>
-            </div>
-          </div>
-          <div class="text-and-button-wrapper">
-            <div class="text-and-button5" @click="toProlong">
-              <div class="buttons-tabs1">
-                <div class="text10">Пролонгировать</div>
-              </div>
-            </div>
-          </div>
-          <div class="text-and-button-wrapper1">
-            <div class="text-and-button5" @click="toLoan">
-              <div class="buttons-tabs10">
-                <div class="text11">Перейти в мои займы</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  </modal>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import catosCheckbox from "@/components/ui-kit/catos-checkbox.vue";
 const router = useRouter();
+import modal from "@/components/ui-kit/modal.vue";
 
 const toProlong = () => {
   router.push({ name: "loans-borrower-prolong" });
@@ -659,6 +207,9 @@ const toRepay = () => {
 </script>
 
 <style scoped>
+.wrapper {
+  height: 1200px;
+}
 .buttonnext- {
   position: absolute;
   top: 0;
@@ -2406,13 +1957,14 @@ const toRepay = () => {
 }
 .status-reg {
   position: relative;
-  top: 2.25em;
+  top: 1.25em;
   margin: 0 auto;
   border-radius: 16px;
   width: 77vw;
   padding: 0.63em 0.88em;
   box-sizing: border-box;
   justify-content: center;
+  text-align: center;
 }
 .div72,
 .key {
@@ -2657,6 +2209,7 @@ const toRepay = () => {
   line-height: 130%;
   font-weight: 300;
   color: #3b3b3b;
+  width: 90%;
 }
 .frame-parent24,
 .frame-wrapper2 {
@@ -2761,7 +2314,6 @@ const toRepay = () => {
   height: 0.31em;
 }
 .pull-stats3 {
-  top: 8.63em;
   left: 0;
   border-radius: 40px 40px 0 0;
   background-color: #fff;
