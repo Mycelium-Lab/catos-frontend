@@ -453,11 +453,13 @@ const { variant } = defineProps({
 const router = useRouter();
 
 const toDetail = () => {
+  console.log(variant);
   if (variant === "active") {
     router.push({ name: "loans-borrower-detail", state: { variant } });
-  }
-  if (variant === "repaid") {
+  } else if (variant === "repaid") {
     router.push({ name: "loans-borrower-repaid-detail", state: { variant } });
+  } else if (variant === "sold") {
+    router.push({ name: "loans-borrower-sold-detail", state: { variant } });
   }
 };
 
