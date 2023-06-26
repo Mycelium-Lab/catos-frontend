@@ -1,11 +1,5 @@
 <template>
-  <router-link class="nav-buttons" to="" @click="$router.go(-1)">
-    <div class="buttonback">
-      <div class="div22">Назад</div>
-      <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
-    </div>
-  </router-link>
-  <default-wallet-overlay>
+  <modal>
     <div class="div">
       <!--<img class="bg-icon" alt="" src="@/assets/images/bg.svg" />-->
 
@@ -25,6 +19,8 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
               ></catos-select>
             </div>
           </div>
@@ -54,14 +50,14 @@
         </div>
       </div>
     </div>
-  </default-wallet-overlay>
+  </modal>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import action from "@/components/wallet/to-up/action.vue";
 import catosSelect from "@/components/fields/catos-select.vue";
-import defaultWalletOverlay from "../layouts/default-wallet-overlay.vue";
+import modal from "../ui-kit/modal.vue";
 const value = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
@@ -1150,7 +1146,6 @@ const options = {
   height: 100%;
   overflow: hidden;
   width: 100vw;
-  overflow-y: auto;
   box-sizing: border-box;
 }
 .div22 {
@@ -1196,12 +1191,12 @@ const options = {
   position: relative;
   background-color: #fff;
   width: 100%;
-  height: 80vh;
+  height: 1000px;
 
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
-  overflow-x: hidden;
+
   z-index: 2000;
   border-top-right-radius: 30px;
   border-top-left-radius: 30px;

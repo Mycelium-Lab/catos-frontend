@@ -1,5 +1,5 @@
 <template>
-  <modal>
+  <modal from="setting">
     <div class="fieldsregistration-options">
       <div class="fields-password-and-mail2">
         <div class="iconslock-container">
@@ -156,9 +156,11 @@
 <script setup lang="ts">
 import modal from "../ui-kit/modal.vue";
 import inputData from "@/components/fields/input-data.vue";
-const emit = defineEmits(["close"]);
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 const handleClose = () => {
-  emit("close");
+  router.push({ name: "setting" });
 };
 </script>
 

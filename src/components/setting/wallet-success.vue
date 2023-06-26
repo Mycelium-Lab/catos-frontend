@@ -1,5 +1,5 @@
 <template>
-  <modal>
+  <modal from="setting">
     <div class="wrapper">
       <div class="group">
         <div class="div8">Кошелек успешно изменен</div>

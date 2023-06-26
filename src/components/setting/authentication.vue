@@ -1,5 +1,5 @@
 <template>
-  <modal>
+  <modal from="setting">
     <div class="wrapper">
       <div class="group">
         <div class="div8">Двухфакторная авторизация</div>
@@ -62,7 +62,7 @@ import modal from "../ui-kit/modal.vue";
 
 <style scoped lang="scss">
 .wrapper {
-  height: 700px;
+  height: 800px;
 }
 .div8 {
   align-self: stretch;

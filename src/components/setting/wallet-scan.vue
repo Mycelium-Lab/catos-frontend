@@ -1,5 +1,5 @@
 <template>
-  <modal>
+  <modal from="setting">
     <div class="wrapper">
       <div class="connect-ton-parent">
         <div class="connect-ton">Connect TON</div>

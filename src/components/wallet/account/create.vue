@@ -1,128 +1,134 @@
 <template>
   <modal>
-    <div class="header">
-      <div class="div28">Создание счета</div>
-    </div>
-    <div class="swipe-down"></div>
-    <div class="des-1-2">
-      <div class="des">
-        <img class="des-child" alt="" src="@/assets/images/dialog.png" />
+    <div class="wrapper">
+      <div class="header">
+        <div class="div28">Создание счета</div>
+      </div>
+      <div class="swipe-down"></div>
+      <div class="des-1-2">
+        <div class="des">
+          <img class="des-child" alt="" src="@/assets/images/dialog.png" />
 
-        <div class="div9">
-          Здесь вы можете создать счёт для получения оплаты или сбора средств в
-          криптовалюте.
+          <div class="div9">
+            Здесь вы можете создать счёт для получения оплаты или сбора средств
+            в криптовалюте.
+          </div>
         </div>
       </div>
-    </div>
-    <div class="field-info-parent">
-      <div class="field-info">
-        <div class="fieldsinputchoise">
-          <div class="div10">
-            <p class="p">Выберите тип счета:</p>
-          </div>
-          <catos-select
-            placeholder="Россия"
-            :options="options"
-            :value="value"
-            @selected="ev => (value = ev)"
-          ></catos-select>
-          <div class="div10">
-            <p class="p">Выберите криптовалюту для получения оплаты</p>
-          </div>
-          <catos-select
-            placeholder="Россия"
-            :options="options"
-            :value="value"
-            @selected="ev => (value = ev)"
-          ></catos-select>
-        </div>
-      </div>
-      <div class="frame-group">
-        <div class="fieldsinput-parent">
-          <div class="fieldsinput">
-            <div class="div11">Укажите сумму:</div>
-            <input-data
-              placeholder="10 000  TON"
-              border=" 1px solid rgba(165, 146, 221, 0.4)"
-              background="rgba(230, 221, 255, 0.3)"
+      <div class="field-info-parent">
+        <div class="field-info">
+          <div class="fieldsinputchoise">
+            <div class="div10">
+              <p class="p">Выберите тип счета:</p>
+            </div>
+            <catos-select
+              placeholder="Россия"
+              :options="options"
+              :value="value"
+              :optionWidth="77"
               :style="{ width: '100%' }"
-            ></input-data>
-          </div>
-          <div class="title-wrapper">
-            <div class="title">(≈1 456 USD)</div>
+              @selected="ev => (value = ev)"
+            ></catos-select>
+            <div class="div10">
+              <p class="p">Выберите криптовалюту для получения оплаты</p>
+            </div>
+            <catos-select
+              placeholder="Россия"
+              :options="options"
+              :value="value"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+              @selected="ev => (value = ev)"
+            ></catos-select>
           </div>
         </div>
-        <div class="ton">
-          <span class="span3">Балланс: </span>
-          <span class="ton1">257 324 TON</span>
+        <div class="frame-group">
+          <div class="fieldsinput-parent">
+            <div class="fieldsinput">
+              <div class="div11">Укажите сумму:</div>
+              <input-data
+                placeholder="10 000  TON"
+                border=" 1px solid rgba(165, 146, 221, 0.4)"
+                background="rgba(230, 221, 255, 0.3)"
+                :style="{ width: '100%' }"
+              ></input-data>
+            </div>
+            <div class="title-wrapper">
+              <div class="title">(≈1 456 USD)</div>
+            </div>
+          </div>
+          <div class="ton">
+            <span class="span3">Балланс: </span>
+            <span class="ton1">257 324 TON</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="frame-wrapper-accounts">
-      <div class="buttonnext-wrapper">
-        <router-link
-          class="buttonnext"
-          :to="{ name: 'accounts-create-finish' }"
-        >
-          <b class="ton-kepeer">Создать счет</b>
-        </router-link>
-      </div>
-    </div>
-    <div class="component-wrapper-accounts">
-      <div class="frame-container-accounts">
-        <div class="frame-accounts">
-          <div class="frame-parent-account">
-            <div class="field-info">
-              <div class="title1">
-                <span>Описание к счету:</span>
-                <span class="span4"> (не обязательно)</span>
-              </div>
-            </div>
-            <textarea class="description-area"></textarea>
-          </div>
-          <!--<div class="frame-inner"></div>-->
-          <div class="div13">
-            Пользователи увидят это описание, когда вы поделитесь чеком, так же
-            можно показать или скрыть кто поделился
-          </div>
-          <div class="author-parent">
-            <div class="author">
-              <img
-                class="img-icon"
-                alt=""
-                src="@/assets/images/edit-photo.png"
-              />
-
-              <div class="author1">Валентин Иванович</div>
-            </div>
-            <catos-switch checked></catos-switch>
-          </div>
+      <div class="frame-wrapper-accounts">
+        <div class="buttonnext-wrapper">
+          <router-link
+            class="buttonnext"
+            :to="{ name: 'accounts-create-finish' }"
+          >
+            <b class="ton-kepeer">Создать счет</b>
+          </router-link>
         </div>
-        <div class="frmae-div-1 frame-accounts">
-          <div class="frame-parent-account">
-            <div class="field-info">
-              <div class="title1">
-                <span>Укажите скрытое сообщение:</span>
-                <span class="span4"> (не обязательно)</span>
+      </div>
+      <div class="component-wrapper-accounts">
+        <div class="frame-container-accounts">
+          <div class="frame-accounts">
+            <div class="frame-parent-account">
+              <div class="field-info">
+                <div class="title1">
+                  <span>Описание к счету:</span>
+                  <span class="span4"> (не обязательно)</span>
+                </div>
               </div>
+              <textarea class="description-area"></textarea>
             </div>
-            <textarea class="description-area"></textarea>
-          </div>
-          <!--<div class="frame-inner"></div>-->
-          <div class="div13">
-            Пользователи увидят это сообщение после оплаты счёта
-          </div>
-          <div class="author-parent">
-            <div class="author">
-              <img
-                class="img-icon"
-                alt=""
-                src="@/assets/images/edit-photo.png"
-              />
+            <!--<div class="frame-inner"></div>-->
+            <div class="div13">
+              Пользователи увидят это описание, когда вы поделитесь чеком, так
+              же можно показать или скрыть кто поделился
+            </div>
+            <div class="author-parent">
+              <div class="author">
+                <img
+                  class="img-icon"
+                  alt=""
+                  src="@/assets/images/edit-photo.png"
+                />
 
-              <div class="author1">Валентин Иванович</div>
+                <div class="author1">Валентин Иванович</div>
+              </div>
+              <catos-switch checked></catos-switch>
             </div>
-            <catos-switch checked></catos-switch>
+          </div>
+          <div class="frmae-div-1 frame-accounts">
+            <div class="frame-parent-account">
+              <div class="field-info">
+                <div class="title1">
+                  <span>Укажите скрытое сообщение:</span>
+                  <span class="span4"> (не обязательно)</span>
+                </div>
+              </div>
+              <textarea class="description-area"></textarea>
+            </div>
+            <!--<div class="frame-inner"></div>-->
+            <div class="div13">
+              Пользователи увидят это сообщение после оплаты счёта
+            </div>
+            <div class="author-parent">
+              <div class="author">
+                <img
+                  class="img-icon"
+                  alt=""
+                  src="@/assets/images/edit-photo.png"
+                />
+
+                <div class="author1">Валентин Иванович</div>
+              </div>
+              <catos-switch checked></catos-switch>
+            </div>
           </div>
         </div>
       </div>
@@ -145,6 +151,9 @@ const options = {
 </script>
 
 <style scoped lang="scss">
+.wrapper {
+  height: 1200px;
+}
 .div28 {
   position: relative;
   font-size: 1em;
@@ -429,7 +438,7 @@ const options = {
 }
 .frame-wrapper-accounts {
   position: relative;
-  top: 27em;
+  top: 30em;
   justify-content: flex-start;
   text-align: center;
   color: #f3f3f3;
@@ -680,7 +689,7 @@ const options = {
   background-color: #fff;
   box-shadow: 0 12px 12px rgba(151, 71, 255, 0.04);
   width: 100%;
-  height: 58.75em;
+
   overflow: auto;
   text-align: left;
   color: #3b3b3b;

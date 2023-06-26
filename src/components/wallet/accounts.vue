@@ -555,8 +555,8 @@ const isDetail = ref(false);
   position: relative;
   border-radius: 30px 30px 0 0;
   box-shadow: 0 12px 12px rgba(151, 71, 255, 0.04);
-  height: 58.75em;
-  overflow: auto;
+  height: 1000px;
+
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;

@@ -1,5 +1,5 @@
 <template>
-  <modal>
+  <modal from="setting">
     <div class="fieldsregistration-options">
       <div class="fields-password-and-mail2">
         <div class="iconslock-container">

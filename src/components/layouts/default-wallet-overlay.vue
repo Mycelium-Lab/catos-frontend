@@ -109,17 +109,17 @@
   font-weight: 600;
 }
 .header {
-  position: absolute;
-  top: 28%;
   left: 0em;
   border-radius: 7px;
   width: 100vw;
   display: flex;
   flex-direction: column;
-
+  top: 28%;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  font-size: 18px;
 }
 .p {
   margin: 0;
@@ -304,26 +304,25 @@
   overflow: hidden;
 }
 .div8 {
-  position: absolute;
+  position: relative;
   top: 3.6em;
   left: 0.2em;
   min-width: 100%;
-  height: 59.38em;
   overflow-y: auto;
   text-align: center;
   color: #3b3b3b;
   font-family: Inter;
-  overflow-x: hidden;
+  overflow: hidden;
   left: 0 !important;
   top: 0 !important;
   font-size: 0.63em;
   line-height: 120%;
   font-weight: 300;
-  height: 100vh;
 }
 .content {
   position: relative;
-
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 130);
   top: 34vw;
 }
 .bg3 {

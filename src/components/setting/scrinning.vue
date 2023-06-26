@@ -1,5 +1,5 @@
 <template>
-  <modal>
+  <modal from="setting">
     <div class="decor-parent">
       <h3 class="job-title">
         Автоматический скриннинг <br />

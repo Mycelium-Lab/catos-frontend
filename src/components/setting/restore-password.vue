@@ -1,5 +1,5 @@
 <template>
-  <modal>
+  <modal from="setting">
     <div class="decor-parent">
       <div class="decor"></div>
       <div class="frame-parent3">

@@ -1,15 +1,6 @@
 <template>
-  <router-link class="nav-buttons" to="" @click="$router.go(-1)">
-    <div class="buttonback">
-      <div class="div22">Назад</div>
-      <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
-    </div>
-  </router-link>
-  <default-wallet-overlay>
+  <modal>
     <div class="div">
-      <!--<img class="bg-icon" alt="" src="@/assets/images/bg.svg" />-->
-
-      <!--  <div class="bg3"></div> -->
       <div class="header-parent">
         <div class="header1">
           <div class="div14">Вывод средств:</div>
@@ -107,7 +98,7 @@
       </div>
     </div>
     <success v-if="witrow"></success>
-  </default-wallet-overlay>
+  </modal>
 </template>
 
 <script setup lang="ts">
@@ -118,6 +109,7 @@ import defaultWalletOverlay from "../layouts/default-wallet-overlay.vue";
 import successScrinning from "../setting/success-scrinning.vue";
 import success from "@/components/wallet/withrow/success.vue";
 import fail from "@/components/wallet/withrow/fail.vue";
+import modal from "../ui-kit/modal.vue";
 
 const witrow = ref(false);
 const value = ref("");
@@ -1216,7 +1208,6 @@ const options = {
   height: 100%;
   overflow: hidden;
   width: 100vw;
-  overflow-y: auto;
 }
 .div22 {
   position: absolute;
@@ -1261,12 +1252,12 @@ const options = {
   position: relative;
   background-color: #fff;
   width: 100%;
-  height: 80vh;
-  overflow-y: auto;
+  height: 900px;
+
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
-  overflow-x: hidden;
+
   z-index: 2000;
   border-top-right-radius: 30px;
   border-top-left-radius: 30px;
