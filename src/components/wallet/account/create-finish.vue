@@ -50,7 +50,7 @@
               <div class="number">Поделиться</div>
             </div>
           </div>
-          <div class="frame-wrapper">
+          <div class="frame-wrapper-check">
             <div class="trash-2-parent">
               <img
                 class="trash-2-icon"
@@ -344,7 +344,7 @@ import copyPaste from "@/components/fields/copy-paste.vue";
   line-height: 130%;
   font-weight: 500;
 }
-.frame-wrapper,
+.frame-wrapper-check,
 .trash-2-parent {
   display: flex;
   flex-direction: row;
@@ -354,7 +354,7 @@ import copyPaste from "@/components/fields/copy-paste.vue";
   justify-content: flex-start;
   gap: 0.63em;
 }
-.frame-wrapper {
+.frame-wrapper-check {
   border-radius: 36px;
   background-color: #3b3b3b;
   width: 100%;

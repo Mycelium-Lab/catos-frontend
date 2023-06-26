@@ -218,9 +218,7 @@ watch(isOpen, () => {
   align-items: center;
   justify-content: center;
   border-radius: var(--br-xs);
-  // Остановился здесь
-  // Закрывать список при клике за его пределом
-  // Для первых убрать отступ
+
   cursor: pointer;
 
   &:hover {

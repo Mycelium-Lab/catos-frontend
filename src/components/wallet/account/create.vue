@@ -15,33 +15,31 @@
           </div>
         </div>
       </div>
-      <div class="field-info-parent">
-        <div class="field-info">
-          <div class="fieldsinputchoise">
-            <div class="div10">
-              <p class="p">Выберите тип счета:</p>
-            </div>
-            <catos-select
-              placeholder="Россия"
-              :options="options"
-              :value="value"
-              :optionWidth="77"
-              :style="{ width: '100%' }"
-              @selected="ev => (value = ev)"
-            ></catos-select>
-            <div class="div10">
-              <p class="p">Выберите криптовалюту для получения оплаты</p>
-            </div>
-            <catos-select
-              placeholder="Россия"
-              :options="options"
-              :value="value"
-              :optionWidth="77"
-              :style="{ width: '100%' }"
-              @selected="ev => (value = ev)"
-            ></catos-select>
-          </div>
+      <div class="fieldsinputchoise">
+        <div class="div10">
+          <p class="p">Выберите тип счета:</p>
         </div>
+        <catos-select
+          placeholder="Россия"
+          :options="options"
+          :value="value"
+          :optionWidth="77"
+          :style="{ width: '100%' }"
+          @selected="ev => (value = ev)"
+        ></catos-select>
+        <div class="div10">
+          <p class="p">Выберите криптовалюту для получения оплаты</p>
+        </div>
+        <catos-select
+          placeholder="Россия"
+          :options="options"
+          :value="value"
+          :optionWidth="77"
+          :style="{ width: '100%' }"
+          @selected="ev => (value = ev)"
+        ></catos-select>
+      </div>
+      <div class="field-info-parent">
         <div class="frame-group">
           <div class="fieldsinput-parent">
             <div class="fieldsinput">
@@ -61,16 +59,6 @@
             <span class="span3">Балланс: </span>
             <span class="ton1">257 324 TON</span>
           </div>
-        </div>
-      </div>
-      <div class="frame-wrapper-accounts">
-        <div class="buttonnext-wrapper_create buttonnext-wrapper">
-          <router-link
-            class="buttonnext"
-            :to="{ name: 'accounts-create-finish' }"
-          >
-            <b class="ton-kepeer">Создать счет</b>
-          </router-link>
         </div>
       </div>
       <div class="component-wrapper-accounts">
@@ -130,6 +118,16 @@
               <catos-switch checked></catos-switch>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="frame-wrapper-accounts">
+        <div class="buttonnext-wrapper_create buttonnext-wrapper">
+          <router-link
+            class="buttonnext"
+            :to="{ name: 'accounts-create-finish' }"
+          >
+            <b class="ton-kepeer">Создать счет</b>
+          </router-link>
         </div>
       </div>
     </div>
@@ -253,8 +251,13 @@ const options = {
   color: #2e3a59;
 }
 .fieldsinputchoise {
+  position: relative;
   width: 100%;
   gap: 0.63em;
+  top: 8.5em;
+  width: 77vw;
+  margin: 0 auto;
+  z-index: 100;
 }
 .field-info,
 .fieldsinputchoise {
@@ -391,10 +394,11 @@ const options = {
   width: 100%;
   position: relative;
   gap: 0.94em;
+  top: 11em;
 }
 .field-info-parent {
   position: relative;
-  top: 6em;
+  top: -2.5em;
 
   border-radius: 14px;
   border: 1px solid rgba(165, 146, 221, 0.1);
@@ -402,6 +406,7 @@ const options = {
   padding: 1.25em 1.31em;
   gap: 1.5em;
   margin: 0 24px;
+  height: 299px;
 }
 .ton-kepeer {
   position: relative;
@@ -437,11 +442,12 @@ const options = {
   width: 100%;
   &_create {
     top: 0em;
+    padding: 0em;
   }
 }
 .frame-wrapper-accounts {
   position: relative;
-  top: 32em;
+  top: 2em;
   justify-content: flex-start;
   text-align: center;
   color: #f3f3f3;
@@ -505,7 +511,7 @@ const options = {
   font-size: 0.88em;
   line-height: 1.5em;
   display: inline-block;
-  width: 12.71em;
+  width: auto;
   flex-shrink: 0;
 }
 .author {
@@ -587,7 +593,7 @@ const options = {
 }
 .component-wrapper-accounts {
   position: relative;
-  top: 70px;
+  top: -1.5em;
   color: #78789a;
   padding: 0px 24px;
 }
