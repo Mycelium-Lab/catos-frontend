@@ -26,6 +26,9 @@
   </default-pulls-overlay>
 
   <default-wallet-overlay v-else>
+    <template v-slot:title>
+      {{ from === "setting" ? "Профиль" : "Кошелек CATOS" }}
+    </template>
     <div class="div">
       <div class="header-parent">
         <slot></slot>
