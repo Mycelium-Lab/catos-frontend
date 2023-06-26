@@ -351,7 +351,7 @@ input[type="checkbox"] {
     }
     &_registration_label_right {
       &:after {
-        --x: 100%;
+        --x: 100.5%;
       }
     }
     &_dashboard_label_right {
