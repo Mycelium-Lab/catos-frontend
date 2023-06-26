@@ -1,215 +1,220 @@
 <template>
   <modal>
-    <div class="header">
-      <div class="div9">Счета</div>
-    </div>
-    <div class="swipe-down"></div>
-    <div class="des-1-2-parent">
-      <div class="des-1-2">
-        <div class="des">
-          <img class="des-child" alt="" src="@/assets/images/dialog.png" />
+    <div class="wrapper">
+      <div class="header">
+        <div class="div9">Счета</div>
+      </div>
+      <div class="swipe-down"></div>
+      <div class="des-1-2-parent">
+        <div class="des-1-2">
+          <div class="des">
+            <img class="des-child" alt="" src="@/assets/images/dialog.png" />
 
-          <div class="div11">
-            Здесь вы можете создать счёт для получения оплаты или сбора средств
-            в криптовалюте.
+            <div class="div11">
+              Здесь вы можете создать счёт для получения оплаты или сбора
+              средств в криптовалюте.
+            </div>
           </div>
         </div>
-      </div>
-      <div class="buttonnext-wrapper">
-        <router-link class="buttonnext" :to="{ name: 'accounts-create' }">
-          <b class="ton-kepeer">Создать счет</b>
-        </router-link>
-      </div>
-      <div class="descrioption-parent">
-        <div class="buttons-group">
-          <div class="active">Мои счета</div>
-          <div>Все счета</div>
+        <div class="buttonnext-wrapper">
+          <router-link class="buttonnext" :to="{ name: 'accounts-create' }">
+            <b class="ton-kepeer">Создать счет</b>
+          </router-link>
         </div>
-        <div class="descrioption">
-          <div class="number2">Активные Счета</div>
-          <div class="details1">Детали</div>
-        </div>
-        <div class="frame-group">
-          <div class="frame-container">
-            <div class="frame-div">
-              <div class="svg-gobbler-2-1-group">
-                <div class="svg-wrapper">
-                  <img
-                    class="svg-gobbler-2-11"
-                    alt=""
-                    src="@/assets/images/invoice.svg"
-                  />
-                </div>
+        <div class="descrioption-parent">
+          <div class="buttons-group">
+            <div class="active">Мои счета</div>
+            <div>Все счета</div>
+          </div>
+          <div class="descrioption">
+            <div class="number2">Активные Счета</div>
+            <div class="details1">Детали</div>
+          </div>
+          <div class="frame-group">
+            <div class="frame-container">
+              <div class="frame-div">
+                <div class="svg-gobbler-2-1-group">
+                  <div class="svg-wrapper">
+                    <img
+                      class="svg-gobbler-2-11"
+                      alt=""
+                      src="@/assets/images/invoice.svg"
+                    />
+                  </div>
 
-                <div class="ticked-id-parent">
-                  <b class="ticked-id">Счет #207</b>
-                  <div class="time">
-                    2 мая <span class="span">, </span>11:52
+                  <div class="ticked-id-parent">
+                    <b class="ticked-id">Счет #207</b>
+                    <div class="time">
+                      2 мая <span class="span">, </span>11:52
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="buttons-icon-outline-arr"
+                  id="buttonsIconOutlineArr"
+                  @click="() => (isDetail = true)"
+                >
+                  <div class="bg1">
+                    <img src="@/assets/images/more.png" />
                   </div>
                 </div>
               </div>
-              <div
-                class="buttons-icon-outline-arr"
-                id="buttonsIconOutlineArr"
-                @click="() => (isDetail = true)"
-              >
-                <div class="bg1">
-                  <img src="@/assets/images/more.png" />
+              <div class="frame-parent1">
+                <div class="title-parent">
+                  <div class="title1">Счет на 10 TON</div>
+                  <div class="description">
+                    <p class="p">Мой первый чек для бабули, привет</p>
+                    <p class="p1">моя бабуля!</p>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="frame-parent1">
-              <div class="title-parent">
-                <div class="title1">Счет на 10 TON</div>
-                <div class="description">
-                  <p class="p">Мой первый чек для бабули, привет</p>
-                  <p class="p1">моя бабуля!</p>
-                </div>
-              </div>
-              <div class="frame-inner"></div>
-              <div class="author">
-                <img
-                  class="img-icon"
-                  alt=""
-                  src="@/assets/images/edit-photo.png"
-                />
-
-                <div class="author1">Валентин Иванович</div>
-              </div>
-            </div>
-          </div>
-          <div class="frame-container">
-            <div class="frame-div">
-              <div class="svg-gobbler-2-1-group">
-                <div class="svg-wrapper">
+                <div class="frame-inner"></div>
+                <div class="author">
                   <img
-                    class="svg-gobbler-2-11"
+                    class="img-icon"
                     alt=""
-                    src="@/assets/images/invoice.svg"
+                    src="@/assets/images/edit-photo.png"
                   />
-                </div>
 
-                <div class="ticked-id-parent">
-                  <b class="ticked-id">Счет #207</b>
-                  <div class="time">
-                    11 апреля <span class="span">, 10</span>:51
+                  <div class="author1">Валентин Иванович</div>
+                </div>
+              </div>
+            </div>
+            <div class="frame-container">
+              <div class="frame-div">
+                <div class="svg-gobbler-2-1-group">
+                  <div class="svg-wrapper">
+                    <img
+                      class="svg-gobbler-2-11"
+                      alt=""
+                      src="@/assets/images/invoice.svg"
+                    />
+                  </div>
+
+                  <div class="ticked-id-parent">
+                    <b class="ticked-id">Счет #207</b>
+                    <div class="time">
+                      11 апреля <span class="span">, 10</span>:51
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="buttons-icon-outline-arr"
+                  id="buttonsIconOutlineArr1"
+                >
+                  <div class="bg1">
+                    <img src="@/assets/images/more.png" />
                   </div>
                 </div>
               </div>
-              <div class="buttons-icon-outline-arr" id="buttonsIconOutlineArr1">
-                <div class="bg1">
-                  <img src="@/assets/images/more.png" />
+              <div class="frame-parent1">
+                <div class="title-parent">
+                  <div class="title1">Счет на 50 TON</div>
+                  <div class="description">Счет без описания:</div>
                 </div>
-              </div>
-            </div>
-            <div class="frame-parent1">
-              <div class="title-parent">
-                <div class="title1">Счет на 50 TON</div>
-                <div class="description">Счет без описания:</div>
-              </div>
-              <div class="frame-inner"></div>
-              <div class="author">
-                <img
-                  class="img-icon"
-                  alt=""
-                  src="@/assets/images/edit-photo.png"
-                />
-
-                <div class="author1">Валентин Иванович</div>
-              </div>
-            </div>
-          </div>
-          <div class="frame-container">
-            <div class="frame-div">
-              <div class="svg-gobbler-2-1-group">
-                <div class="svg-wrapper">
+                <div class="frame-inner"></div>
+                <div class="author">
                   <img
-                    class="svg-gobbler-2-11"
+                    class="img-icon"
                     alt=""
-                    src="@/assets/images/invoice.svg"
+                    src="@/assets/images/edit-photo.png"
                   />
-                </div>
 
-                <div class="ticked-id-parent">
-                  <b class="ticked-id">Счет #206</b>
-                  <div class="time">11:52</div>
-                </div>
-              </div>
-              <div class="buttons-icon-outline-arr">
-                <div class="bg1">
-                  <img src="@/assets/images/more.png" />
+                  <div class="author1">Валентин Иванович</div>
                 </div>
               </div>
             </div>
-            <div class="frame-parent1">
-              <div class="title-parent">
-                <div class="title1">Счет на 50 TON</div>
-                <div class="description">Счет без описания:</div>
-              </div>
-              <div class="frame-inner"></div>
-              <div class="author">
-                <img
-                  class="img-icon"
-                  alt=""
-                  src="@/assets/images/edit-photo.png"
-                />
+            <div class="frame-container">
+              <div class="frame-div">
+                <div class="svg-gobbler-2-1-group">
+                  <div class="svg-wrapper">
+                    <img
+                      class="svg-gobbler-2-11"
+                      alt=""
+                      src="@/assets/images/invoice.svg"
+                    />
+                  </div>
 
-                <div class="author1">Валентин Иванович</div>
+                  <div class="ticked-id-parent">
+                    <b class="ticked-id">Счет #206</b>
+                    <div class="time">11:52</div>
+                  </div>
+                </div>
+                <div class="buttons-icon-outline-arr">
+                  <div class="bg1">
+                    <img src="@/assets/images/more.png" />
+                  </div>
+                </div>
+              </div>
+              <div class="frame-parent1">
+                <div class="title-parent">
+                  <div class="title1">Счет на 50 TON</div>
+                  <div class="description">Счет без описания:</div>
+                </div>
+                <div class="frame-inner"></div>
+                <div class="author">
+                  <img
+                    class="img-icon"
+                    alt=""
+                    src="@/assets/images/edit-photo.png"
+                  />
+
+                  <div class="author1">Валентин Иванович</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div id="popUpContainer" class="popup-overlay" style="display: none">
-      <div class="popup-">
-        <div class="counters-graph-web">
-          <div class="bg"></div>
-          <div class="component-26">
-            <!--<img class="share-icon" alt="" src="./public/share.svg" />-->
+      <div id="popUpContainer" class="popup-overlay" style="display: none">
+        <div class="popup-">
+          <div class="counters-graph-web">
+            <div class="bg"></div>
+            <div class="component-26">
+              <!--<img class="share-icon" alt="" src="./public/share.svg" />-->
 
-            <div class="number">Поделиться</div>
-          </div>
-          <div class="component-261">
-            <!-- <img class="share-icon" alt="" src="./public/copy.svg" /> -->
+              <div class="number">Поделиться</div>
+            </div>
+            <div class="component-261">
+              <!-- <img class="share-icon" alt="" src="./public/copy.svg" /> -->
 
-            <div class="number">Скопировать</div>
+              <div class="number">Скопировать</div>
+            </div>
+            <div class="title-wrapper">
+              <b class="title">Счет #207</b>
+            </div>
           </div>
-          <div class="title-wrapper">
-            <b class="title">Счет #207</b>
-          </div>
-        </div>
-        <div class="field-">
-          <div class="svg-gobbler-2-1-parent">
-            <!--<img
+          <div class="field-">
+            <div class="svg-gobbler-2-1-parent">
+              <!--<img
               class="svg-gobbler-2-1"
               alt=""
               src="./public/svggobbler-2-1.svg"
             />-->
 
-            <div class="name">
-              <div class="invoice-aa-04-19-18">Счет отправлен</div>
-              <div class="new-madieton-llc">Описание статуса:</div>
+              <div class="name">
+                <div class="invoice-aa-04-19-18">Счет отправлен</div>
+                <div class="new-madieton-llc">Описание статуса:</div>
+              </div>
             </div>
-          </div>
-          <div class="details">
-            <div class="total">10 TON</div>
-            <div class="paid">Отправлено</div>
-          </div>
-          <div class="arrows-table">
-            <!--<img
+            <div class="details">
+              <div class="total">10 TON</div>
+              <div class="paid">Отправлено</div>
+            </div>
+            <div class="arrows-table">
+              <!--<img
               class="chevron-right-icon"
               alt=""
               src="./public/chevronright.svg"
             />-->
+            </div>
           </div>
+          <div class="div8" id="popuptext">Закрыть</div>
         </div>
-        <div class="div8" id="popuptext">Закрыть</div>
       </div>
-    </div>
 
-    <detail v-if="isDetail"></detail>
+      <detail v-if="isDetail"></detail>
+    </div>
   </modal>
 </template>
 
@@ -222,6 +227,9 @@ const isDetail = ref(false);
 </script>
 
 <styles scoped lang="scss">
+.wrapper {
+  height: 1300px;
+}
 .div9 {
   position: relative;
   font-size: 1em;
@@ -555,7 +563,6 @@ const isDetail = ref(false);
   position: relative;
   border-radius: 30px 30px 0 0;
   box-shadow: 0 12px 12px rgba(151, 71, 255, 0.04);
-  height: 1000px;
 
   text-align: left;
   color: #3b3b3b;

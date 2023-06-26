@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="frame-wrapper-accounts">
-        <div class="buttonnext-wrapper">
+        <div class="buttonnext-wrapper_create buttonnext-wrapper">
           <router-link
             class="buttonnext"
             :to="{ name: 'accounts-create-finish' }"
@@ -152,7 +152,7 @@ const options = {
 
 <style scoped lang="scss">
 .wrapper {
-  height: 1200px;
+  height: 1100px;
 }
 .div28 {
   position: relative;
@@ -435,10 +435,13 @@ const options = {
   align-self: stretch;
   justify-content: center;
   width: 100%;
+  &_create {
+    top: 0em;
+  }
 }
 .frame-wrapper-accounts {
   position: relative;
-  top: 30em;
+  top: 32em;
   justify-content: flex-start;
   text-align: center;
   color: #f3f3f3;
@@ -689,7 +692,7 @@ const options = {
   background-color: #fff;
   box-shadow: 0 12px 12px rgba(151, 71, 255, 0.04);
   width: 100%;
-
+  height: auto !important;
   overflow: auto;
   text-align: left;
   color: #3b3b3b;
