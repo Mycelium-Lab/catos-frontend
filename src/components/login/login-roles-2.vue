@@ -650,6 +650,57 @@ const title = computed(() => {
   color: #3b3b3b;
   font-family: Inter;
 }
+@media (min-width: 500px) {
+  .component-19,
+  .component-191,
+  .component-193 {
+    width: 480px;
+  }
+  .component-19-parent {
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    flex-direction: row;
+    width: 90vw;
+    left: 0em;
+  }
+  .description-and-image {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.56em;
+    margin-left: 3em;
+  }
+  .description {
+    width: 70%;
+  }
+  .catos1 {
+    width: 100%;
+  }
+  .group {
+    top: 30em;
+  }
+}
+
+@media (min-width: 1210px) {
+  .component-19,
+  .component-191,
+  .component-193 {
+    width: 48.8%;
+  }
+  .component-19-parent {
+    width: 65.5vw;
+  }
+  .div4,
+  .div6,
+  span {
+    font-size: 14px;
+  }
+  .description {
+    width: 23vw;
+  }
+}
 @media (max-width: 385px) {
   .description-and-image {
     justify-content: center;
