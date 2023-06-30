@@ -27,20 +27,53 @@
     v-if="isFilter"
     @close="() => (isFilter = false)"
   ></filter-desktop>
-  <sort-desktop v-if="isSort" @close="() => (isSort = false)"></sort-desktop>
+  <sort v-if="isSort" @close="() => (isSort = false)">
+    <template v-slot:title>Фильтр / Сортировка</template>
+    <template v-slot:select>
+      <cp-select-sort
+        v-if="role === 'creditor' && variant === 'pulls'"
+      ></cp-select-sort>
+    </template>
+    <template v-slot:left-option>
+      <bl-left-option-sort
+        v-if="role === 'borrower' && variant === 'loans'"
+      ></bl-left-option-sort>
+      <cl-left-option-sort
+        v-if="role === 'creditor' && variant === 'loans'"
+      ></cl-left-option-sort>
+    </template>
+    <template v-slot:right-option>
+      <bl-right-option-sort
+        v-if="role === 'borrower' && variant === 'loans'"
+      ></bl-right-option-sort>
+      <cl-right-option-sort
+        v-if="role === 'creditor' && variant === 'loans'"
+      ></cl-right-option-sort>
+    </template>
+    <template v-slot:action>Применить и сохранить фильтр</template>
+  </sort>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+import filterDesktop from "@/components/pulls/filter-desktop.vue";
+import sort from "@/components/base/desktop/sort.vue";
+import blLeftOptionSort from "@/components/loans/borrower/desktop/modal-body/bl-left-option-sort.vue";
+import clLeftOptionSort from "@/components/loans/creditor/desktop/modal-body/cl-left-option-sort.vue";
+import blRightOptionSort from "@/components/loans/borrower/desktop/modal-body/bl-right-option-sort.vue";
+import clRightOptionSort from "@/components/loans/creditor/desktop/modal-body/cl-right-option-sort.vue";
+import cpSelectSort from "@/components/pulls/creditor/desktop/modal-body/cp-select-sort.vue";
 
 const { variant } = defineProps({
   variant: {
     type: String,
     default: "pulls",
   },
+  role: {
+    type: String,
+  },
 });
-import filterDesktop from "@/components/pulls/filter-desktop.vue";
-import sortDesktop from "@/components/pulls/sort-desktop.vue";
+
 const isFilter = ref(false);
 const isSort = ref(false);
 </script>

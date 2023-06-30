@@ -92,7 +92,7 @@
             </div>
           </div>
         </div>-->
-        <tool-bar></tool-bar>
+        <tool-bar variant="pulls" role="creditor"></tool-bar>
       </div>
     </template>
     <template v-slot:body>
