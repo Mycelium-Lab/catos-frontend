@@ -1,5 +1,11 @@
 <template>
-  <div class="iphone-13-13-">
+  <!--<div
+    :class="
+      currentWindow === 'active'
+        ? 'iphone-13-13-'
+        : 'iphone-13-13-_mini iphone-13-13-'
+    "
+  >
     <div class="header">
       <div class="div12">Мои займы</div>
     </div>
@@ -37,14 +43,59 @@
     <loans-list :variant="currentWindow" :key="currentWindow"></loans-list>
   </div>
   <load-modal v-if="isTable" variant="table"></load-modal>
-  <app-bar></app-bar>
-  <!--<bottomsheet v-if="isSort" defaultState="open"> <sort></sort></bottomsheet>-->
+  <app-bar></app-bar>-->
+  <default-desktop>
+    <template v-slot:title> Заявки </template>
+    <template v-slot:slider>
+      <multi-button-slider
+        :style="{ width: '385px', margin: '0em' }"
+        @on-slide="handleSlide"
+        role="borrower"
+      ></multi-button-slider>
+    </template>
+    <template v-slot:tools>
+      <input-data :style="{ width: '418px' }" placeholder="Поиск" :left="true">
+        <template v-slot:left-icon>
+          <img
+            :style="{ width: '20px', height: '20px' }"
+            src="@/assets/images/iconssearch.svg"
+          />
+        </template>
+      </input-data>
+      <tool-bar variant="loans"></tool-bar>
+    </template>
+    <template v-slot:body>
+      <div class="rectangle-group_desktop rectangle-group">
+        <div class="group-item"></div>
+        <div class="div8">Все</div>
+        <div class="div9">На продаже</div>
+        <div class="div10">Проданные</div>
+      </div>
+    </template>
+    <template v-slot:list>
+      <ul>
+        <li v-for="n in 4" :key="n">
+          <loans-table
+            :variant="currentWindow"
+            :key="currentWindow"
+            role="borrower"
+            :state="n === 1 || n === 2 ? 'active' : 'overdue'"
+          >
+            <template v-slot:blody></template>
+          </loans-table>
+        </li>
+      </ul>
+    </template>
+  </default-desktop>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import multiButtonSlider from "@/components/ui-kit/buttons/multi-button-slider.vue";
+import defaultDesktop from "@/components/layouts/default-desktop.vue";
+import loansTable from "@/components/loans/creditor/loans-table.vue";
+import toolBar from "@/components/base/desktop/tool-bar.vue";
 import loansList from "@/components/loans/borrower/loans-list.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";
 
@@ -73,6 +124,14 @@ const handleSlide = (index: any) => {
 </script>
 
 <style scoped>
+ul {
+  list-style: none;
+  padding: 0em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0;
+}
 .col-titles-bg {
   position: absolute;
   width: calc(100% - 358px);
@@ -901,10 +960,16 @@ const handleSlide = (index: any) => {
   position: relative;
   background-color: #fff;
   width: 100%;
-  height: 128.81em;
+
   overflow: hidden;
   text-align: center;
   color: #3b3b3b;
   font-family: Inter;
+}
+@media (min-width: 500px) {
+  .rectangle-group {
+    top: 0;
+    height: 1.5em;
+  }
 }
 </style>
