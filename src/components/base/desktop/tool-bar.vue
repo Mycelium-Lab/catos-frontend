@@ -2,7 +2,15 @@
   <div class="filter-group">
     <div class="filter-container">
       <img class="filter-item" alt="" src="/frame-1817604.svg" />
-      <div class="div4" @click="() => (isFilter = true)">
+      <div
+        v-if="variant === 'loans'"
+        class="div4"
+        @click="() => (isFilter = true)"
+      >
+        <span>Скачать </span>
+        <span class="span">(1)</span>
+      </div>
+      <div v-else class="div4" @click="() => (isFilter = true)">
         <span>Фильтр </span>
         <span class="span">(1)</span>
       </div>
@@ -24,6 +32,13 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+
+const { variant } = defineProps({
+  variant: {
+    type: String,
+    default: "pulls",
+  },
+});
 import filterDesktop from "@/components/pulls/filter-desktop.vue";
 import sortDesktop from "@/components/pulls/sort-desktop.vue";
 const isFilter = ref(false);

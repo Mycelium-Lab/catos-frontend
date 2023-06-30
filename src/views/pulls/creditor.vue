@@ -92,7 +92,7 @@
             </div>
           </div>
         </div>-->
-        <filter-board></filter-board>
+        <tool-bar></tool-bar>
       </div>
     </template>
     <template v-slot:body>
@@ -150,7 +150,7 @@ import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import creditorList from "@/components/pulls/creditor/creditor-list.vue";
 import pullsTable from "@/components/base/pulls-table.vue";
 import appBar from "@/components/ui-kit/desktop/app-bar.vue";
-import filterBoard from "@/components/base/desktop/filter-board.vue";
+import toolBar from "@/components/base/desktop/tool-bar.vue";
 
 import createPullDesktop from "@/components/pulls/creditor/create-pull-desktop.vue";
 import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";

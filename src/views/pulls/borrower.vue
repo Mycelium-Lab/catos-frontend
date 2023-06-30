@@ -47,7 +47,7 @@
       ></button-slider>
     </template>
     <template v-slot:tools>
-      <filter-board></filter-board>
+      <tool-bar></tool-bar>
     </template>
     <template v-slot:body>
       <div class="frame-div">
@@ -69,7 +69,7 @@
 import { ref, onMounted, onUnmounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
-import filterBoard from "@/components/base/desktop/filter-board.vue";
+import toolBar from "@/components/base/desktop/tool-bar.vue";
 import pullsTable from "@/components/base/pulls-table.vue";
 
 import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
