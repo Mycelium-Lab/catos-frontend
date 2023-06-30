@@ -1,5 +1,5 @@
 <template>
-  <div class="iphone-13-13-">
+  <!--<div class="iphone-13-13-">
     <div class="pull"></div>
     <div class="header">
       <div class="div8">
@@ -45,15 +45,102 @@
       :key="curentWindow"
       @on-bottomsheet="(ev: any) => isBackSide = ev"
       @on-modal="() => (isBackSide = true)"
-    ></creditor-list>
-    <!--<bottomsheet v-if="isFilter || isSort" defaultState="open">
+    ></creditor-list>-->
+  <!--<bottomsheet v-if="isFilter || isSort" defaultState="open">
       <Filter v-if="isFilter"></Filter>
       <Sort v-if="isSort"></Sort>
     </bottomsheet>-->
-    <!--<Filter v-if="isFilter"></Filter>
+  <!--<Filter v-if="isFilter"></Filter>
     <Sort v-if="isSort"></Sort>-->
-    <app-bar v-if="isAppBar"></app-bar>
-  </div>
+  <!--<app-bar v-if="isAppBar"></app-bar>
+  </div>-->
+  <default-desktop>
+    <template v-slot:title> Пуллы </template>
+    <template v-slot:slider>
+      <button-slider
+        :style="{ width: '254px', margin: '0' }"
+        :variantIndex="2"
+        :tabs="['Все пуллы', 'Мои пуллы']"
+        @on-slide="toggleSlide"
+      ></button-slider>
+    </template>
+    <template v-slot:tools>
+      <div class="buttonnext-parent">
+        <button class="buttonnext" @click="() => (isСreatePull = true)">
+          <div class="group-parent">
+            <img
+              class="frame-child"
+              alt=""
+              src="@/assets/images/iconsstars.svg"
+            />
+            <b class="b">Создать пулл</b>
+          </div>
+        </button>
+        <!--<div class="frame-group">
+          <div class="frame-container">
+            <img class="frame-item" alt="" src="/frame-1817604.svg" />
+            <div class="div4" @click="() => (isFilter = true)">
+              <span>Фильтр </span>
+              <span class="span">(1)</span>
+            </div>
+          </div>
+          <div class="frame-container">
+            <img class="menu-2-icon" alt="" src="/menu2.svg" />
+            <div class="div5" @click="() => (isSort = true)">
+              <span>Сортировка </span>
+              <span class="span1">(1)</span>
+            </div>
+          </div>
+        </div>-->
+        <filter-board></filter-board>
+      </div>
+    </template>
+    <template v-slot:body>
+      <div class="frame-div">
+        <ul>
+          <li v-for="n in 5" :key="n">
+            <pulls-table
+              role="creditor"
+              :variant="curentWindow"
+              :key="curentWindow"
+            ></pulls-table>
+          </li>
+        </ul>
+      </div>
+
+      <create-pull-desktop
+        v-if="isСreatePull"
+        @close="() => (isСreatePull = false)"
+        @create="
+          () => {
+            isСreatePull = false;
+            isСonfirmQr = true;
+          }
+        "
+      ></create-pull-desktop>
+      <confirm-qr-destop
+        v-if="isСonfirmQr"
+        @close="() => (isСonfirmQr = false)"
+      >
+        <template v-slot:header> Новый пулл </template>
+        <template v-slot:title> Create pull </template>
+        <template v-slot:subtitle>
+          <p class="scan-the-qr">Scan the QR code and pay 13 512 TON with</p>
+          <p class="scan-the-qr">Tonkeeper using</p>
+          <a class="scan-the-qr-link">EQB5...dzE1h</a>
+        </template>
+        <template v-slot:action>
+          <b class="ton-kepeer">Create</b>
+        </template>
+        <template v-slot:footer>
+          <div class="we-do-not">
+            By proceeding, you accept the <br />
+            <a>CATOS Terms of Service</a> and <a>Privacy Policy</a>.
+          </div>
+        </template>
+      </confirm-qr-destop>
+    </template>
+  </default-desktop>
 </template>
 
 <script setup lang="ts">
@@ -61,14 +148,18 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import creditorList from "@/components/pulls/creditor/creditor-list.vue";
+import pullsTable from "@/components/base/pulls-table.vue";
+import appBar from "@/components/ui-kit/desktop/app-bar.vue";
+import filterBoard from "@/components/base/desktop/filter-board.vue";
 
-import appBar from "@/components/ui-kit/app-bar.vue";
+import createPullDesktop from "@/components/pulls/creditor/create-pull-desktop.vue";
+import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
+import DefaultDesktop from "@/components/layouts/default-desktop.vue";
 
-const isBackSide = ref(false);
 const curentWindow = ref("all");
-const isFilter = ref(false);
-const isSort = ref(false);
-const isAppBar = ref(true);
+
+const isСreatePull = ref(false);
+const isСonfirmQr = ref(false);
 
 const router = useRouter();
 const toSort = () => {
@@ -87,11 +178,590 @@ const toggleSlide = (slideIndex: any) => {
   } else if (slideIndex === 1) {
     curentWindow.value = "my";
   }
+  console.log(curentWindow.value);
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+ul {
+  list-style: none;
+  padding: 0em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 38px 20px;
+}
+.page-title {
+  position: relative;
+  font-size: 1.75em;
+  letter-spacing: 0.01em;
+  line-height: 130%;
+  font-weight: 600;
+  text-align: left;
+}
+.div1 {
+  position: relative;
+  font-size: 1em;
+  line-height: 130%;
+  display: inline-block;
+  width: 6.69em;
+  flex-shrink: 0;
+}
+.tab1 {
+  display: flex;
+  flex-direction: row;
+  padding: 0.63em;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.tab2 {
+  display: none;
+  flex-direction: row;
+  padding: 0.63em;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.tab3 {
+  border-radius: 45px;
+  background-color: #fdd674;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  padding: 0.63em;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: #1f1f1f;
+}
+.tab-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.tab {
+  border-radius: 45px;
+  background-color: #f6f4fc;
+  border: 1px solid #eceaf2;
+  display: flex;
+  flex-direction: column;
+  padding: 0.13em;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: rgba(59, 59, 59, 0.75);
+}
+.frame-child {
+  position: relative;
+  width: 1.5em;
+  height: 1.39em;
+}
+.b {
+  position: relative;
+  font-size: 1em;
+  letter-spacing: 1px;
+  line-height: 1.75em;
+}
+.group-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.19em;
+}
+.buttonnext {
+  border-radius: 20px;
+  background: linear-gradient(89.81deg, #9747ff, #ad6fff);
+  border: 0.5px solid #fdd674;
+  box-sizing: border-box;
+  width: 21.38em;
+  height: 3em;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  padding: 0.5em 0.38em 0.5em 0em;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  &:hover {
+    background: linear-gradient(73deg, #7811fe 0%, #ad6fff 100%), #445331;
+  }
+}
+.frame-item {
+  position: relative;
+  width: 1.5em;
+  height: 1.5em;
+}
+.span {
+  color: #5d83f7;
+}
+.div4 {
+  position: relative;
+  font-size: 0.88em;
+  text-decoration: underline;
+  line-height: 0.71em;
+}
+.frame-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5em;
+}
+.menu-2-icon {
+  position: relative;
+  width: 1.5em;
+  height: 1.5em;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.span1 {
+  text-decoration: underline;
+  color: #5d83f7;
+}
+.div5 {
+  position: relative;
+  font-size: 0.88em;
+  line-height: 0.71em;
+}
+.frame-group {
+  align-self: stretch;
+  border-radius: 16px;
+  background-color: rgba(246, 244, 252, 0.5);
+  display: flex;
+  flex-direction: row;
+  padding: 0em 2.5em;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5em;
+  text-align: left;
+  color: #3b3b3b;
+}
+.buttonnext-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.25em;
+  color: #fff;
+}
+.page-title-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.25em;
+}
+.frame-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.ton {
+  position: relative;
+  font-size: 1em;
+  background: linear-gradient(
+    38.6deg,
+    #2e2c2c,
+    #4b4949 67.46%,
+    #131313,
+    rgba(0, 0, 0, 0.94),
+    #434343
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.div7 {
+  position: relative;
+  font-size: 0.75em;
+  background: linear-gradient(#3b3b3b, #3b3b3b), #3b3b3b;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.ton-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.31em;
+}
+.div6 {
+  border-radius: 15px;
+  background-color: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  padding: 0.94em;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.63em;
+}
+.frame-inner {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  background-color: rgba(217, 217, 217, 0);
+}
+.percent-icon {
+  position: relative;
+  width: 0.75em;
+  height: 0.75em;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.frame-parent2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 0.75em;
+}
+.parent {
+  align-self: stretch;
+  border-radius: 20px;
+  background-color: #f6f4fc;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  padding: 0.63em;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75em;
+}
+.div10 {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 0.83em;
+}
+.radiobutton-icon {
+  position: relative;
+  width: 1.75em;
+  height: 1.75em;
+}
+.div11 {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 0.83em;
+  font-weight: 300;
+}
+.radiobutton-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.63em;
+}
+.group {
+  align-self: stretch;
+  border-radius: 16px;
+  border: 1px solid #f6f4fc;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  padding: 0.25em 0.81em;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.63em;
+}
+.div13 {
+  position: relative;
+  font-size: 0.88em;
+  line-height: 130%;
+}
+.field {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.63em;
+}
+.col-titles-bg {
+  align-self: stretch;
+  position: relative;
+  border-radius: 18px;
+  background-color: rgba(165, 146, 221, 0.1);
+  height: 0.06em;
+}
+.field-parent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.63em;
+}
+.roi {
+  flex: 1;
+  position: relative;
+  font-size: 0.88em;
+  line-height: 130%;
+  font-weight: 300;
+}
+.frame-parent4 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  padding: 0em 0.63em;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5em;
+}
+.percent-icon1 {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.div21 {
+  flex: 1;
+  position: relative;
+  font-size: 0.75em;
+  line-height: 130%;
+  font-weight: 300;
+}
+.notification {
+  align-self: stretch;
+  border-radius: 16px;
+  background-color: #f6f4fc;
+  display: flex;
+  flex-direction: row;
+  padding: 0.94em;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.63em;
+}
+.frame-parent3 {
+  align-self: stretch;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.88em;
+}
+.text {
+  position: relative;
+  font-size: 0.88em;
+  line-height: 130%;
+  font-weight: 500;
+}
+.buttons-tabs {
+  align-self: stretch;
+  border-radius: 25px;
+  background-color: rgba(87, 126, 247, 0.96);
+  display: flex;
+  flex-direction: row;
+  padding: 0.69em 1.5em;
+  align-items: center;
+  justify-content: center;
+}
+.text-and-button {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.des-and-bbn {
+  align-self: stretch;
+  border-radius: 16px;
+  background-color: #f9fbff;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  padding: 0.63em;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: right;
+  color: #fefefe;
+}
+.pull-stats {
+  align-self: stretch;
+  border-radius: 24px;
+  background-color: #fff;
+  border: 1px solid #abb0bd;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1.63em 0.63em 0.63em;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.88em;
+}
+.pull-stats-wrapper {
+  position: absolute;
+  height: 97.99%;
+  top: 2.37%;
+  bottom: -0.36%;
+  left: calc(50% - 190px);
+  width: 23.75em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.div22 {
+  position: relative;
+  font-size: 0.75em;
+  display: flex;
+  align-items: center;
+  width: 6.17em;
+  flex-shrink: 0;
+}
+.filtr {
+  border-radius: 8.79px;
+  background-color: #fff;
+  border: 0.3px solid #656060;
+  display: flex;
+  flex-direction: row;
+  padding: 0.5em;
+  align-items: center;
+  justify-content: center;
+}
+.filtr-wrapper {
+  position: absolute;
+  height: 5.66%;
+  width: 28.95%;
+  top: 0%;
+  right: 68.96%;
+  bottom: 94.34%;
+  left: 2.09%;
+  display: flex;
+  flex-direction: column;
+  padding: 0em 0em 0em 1.25em;
+  box-sizing: border-box;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
 .pull {
+  position: relative;
+  width: 23.75em;
+  height: 34.25em;
+}
+.pull-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.25em;
+}
+.div108 {
+  position: relative;
+  font-size: 0.88em;
+  line-height: 130%;
+  font-weight: 600;
+}
+.paginationnumber {
+  border-radius: 6px;
+  background-color: #fff;
+  border: 1px solid rgba(46, 58, 89, 0.04);
+  box-sizing: border-box;
+  width: 2.56em;
+  height: 2.56em;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.paginationnumber1 {
+  border-radius: 6px;
+  background: linear-gradient(#f5f9ff, #f5f9ff),
+    linear-gradient(rgba(94, 129, 244, 0.1), rgba(94, 129, 244, 0.1)), #fff;
+  border: 1px solid rgba(46, 58, 89, 0.04);
+  box-sizing: border-box;
+  width: 2.56em;
+  height: 2.56em;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(87, 126, 247, 0.96);
+}
+.numbers {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  padding: 0.06em 0em;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5em;
+  z-index: 0;
+}
+.active-bg {
+  position: absolute;
+  margin: 0 !important;
+  top: 3em;
+  right: 12.62em;
+  border-radius: 1px;
+  background-color: #5e81f4;
+  width: 2.31em;
+  height: 0.13em;
+  z-index: 1;
+}
+.buttonback-icon {
+  position: relative;
+  border-radius: 9px;
+  width: 2.5em;
+  height: 2.5em;
+  z-index: 2;
+}
+.paginationfield {
+  height: 3.5em;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  gap: 1em;
+  text-align: center;
+}
+.frame-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.88em;
+  text-align: left;
+}
+
+.scan-the-qr {
+  margin: 0;
+  &-link {
+    display: inline-block;
+    color: rgba(87, 126, 247, 0.96);
+    text-align: center;
+    font-size: 14px;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: 10px;
+    text-decoration-line: underline;
+    cursor: pointer;
+    padding-top: 8px;
+  }
+}
+.ton-kepeer {
+  position: relative;
+  line-height: 130%;
+}
+.we-do-not {
+  align-self: stretch;
+  position: relative;
+  line-height: 130%;
+  font-weight: 300;
+  color: rgba(59, 59, 59, 0.7);
+  a {
+    text-decoration: underline;
+    cursor: pointer;
+    color: rgba(87, 126, 247, 0.96);
+  }
+}
+/*.pull {
   position: absolute;
   top: 0;
   left: 0;
@@ -186,10 +856,10 @@ const toggleSlide = (slideIndex: any) => {
   position: relative;
 }
 .ton {
-  /* Fallback: Set a background color. */
+
   background-color: red;
 
-  /* Create the gradient. */
+
   background: linear-gradient(
     38.6deg,
     #2e2c2c,
@@ -199,12 +869,10 @@ const toggleSlide = (slideIndex: any) => {
     #434343
   );
 
-  /* Set the background size and repeat properties. */
   background-size: 100%;
   background-repeat: repeat;
 
-  /* Use the text as a mask for the background. */
-  /* This will show the gradient as a text color rather than element bg. */
+  
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
