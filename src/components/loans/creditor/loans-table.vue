@@ -171,14 +171,18 @@
         </div>
       </div>
       <div
-        v-if="role === 'borrower' && state === 'active' && variant === 'active'"
+        v-if="
+          role === 'borrower' && status === 'active' && variant === 'active'
+        "
         class="notification6"
       >
         <img class="percent-icon12" alt="" src="@/assets/images/percent.svg" />
         <div class="div128">Проценты начисляются с 12/12/2023 года</div>
       </div>
       <div
-        v-if="role === 'borrower' && state === 'active' && variant === 'active'"
+        v-if="
+          role === 'borrower' && status === 'active' && variant === 'active'
+        "
         class="notification6"
       >
         <img class="percent-icon12" alt="" src="@/assets/images/percent.svg" />
@@ -188,7 +192,7 @@
       </div>
       <div
         v-if="
-          role === 'borrower' && state === 'overdue' && variant === 'active'
+          role === 'borrower' && status === 'overdue' && variant === 'active'
         "
         class="notification6"
       >
@@ -199,7 +203,7 @@
       </div>
       <div
         v-if="
-          role === 'borrower' && state === 'overdue' && variant === 'active'
+          role === 'borrower' && status === 'overdue' && variant === 'active'
         "
         class="notification6"
       >
@@ -214,22 +218,31 @@
         <div class="field-parent">
           <button
             v-if="
-              role === 'borrower' && state === 'active' && variant === 'active'
+              role === 'borrower' && status === 'active' && variant === 'active'
             "
             class="buttons-tabs1"
+            @click.stop="() => toActive('repay')"
           >
             <div class="text">Погасить досрочно</div>
           </button>
           <div
             v-if="
-              role === 'borrower' && state === 'overdue' && variant === 'active'
+              role === 'borrower' &&
+              status === 'overdue' &&
+              variant === 'active'
             "
             class="group-action"
           >
-            <button class="buttons-tabs1_overdue buttons-tabs1">
+            <button
+              class="buttons-tabs1_overdue buttons-tabs1"
+              @click.stop="() => toActive('repay')"
+            >
               <div class="text">Погасить</div>
             </button>
-            <button class="buttons-tabs1_overdue buttons-tabs1">
+            <button
+              class="buttons-tabs1_overdue buttons-tabs1"
+              @click.stop="() => toActive('prolong')"
+            >
               <div class="text">Пролонгировать</div>
             </button>
           </div>
@@ -242,7 +255,7 @@
               }}
             </div>
           </button>
-          <button class="buttons-tabs2">
+          <button class="buttons-tabs2" @click="toDetail">
             <div class="text">Подробнее</div>
           </button>
         </div>
@@ -253,26 +266,60 @@
     v-if="isModal"
     @close="() => (isModal = false)"
   ></loans-modal-desktop>
+
+  <active
+    v-if="isActive"
+    :state="activeState"
+    :status="status"
+    @close="() => (isActive = false)"
+  ></active>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
 import catosCheckbox from "../../ui-kit/catos-checkbox.vue";
 import loansModalDesktop from "./loans-modal-desktop.vue";
-const { variant } = defineProps({
+import active from "../borrower/desktop/active.vue";
+
+const { variant, role, status } = defineProps({
   variant: {
     type: String,
   },
   role: {
     type: String,
   },
-  state: {
+  status: {
     type: String,
   },
 });
-
+const activeState = {
+  prolongModal: false,
+  repayModal: false,
+  detailModal: false,
+};
 const isModal = ref(false);
+const isActive = ref(false);
+
 const toDetail = () => {
-  isModal.value = true;
+  if (role === "creditor") {
+    isModal.value = true;
+  } else if (role === "borrower") {
+    if (variant === "active") {
+      isActive.value = true;
+      toActive("detail");
+    }
+  }
+};
+const toActive = (init: string) => {
+  isActive.value = true;
+  switch (init) {
+    case "prolong": {
+      return (activeState.prolongModal = true);
+    }
+    case "repay":
+      return (activeState.repayModal = true);
+    case "detail":
+      return (activeState.detailModal = true);
+  }
 };
 </script>
 <style scoped lang="scss">
@@ -621,5 +668,18 @@ li {
   display: flex;
   gap: 10px;
   width: 100%;
+}
+.prolong-result {
+  color: rgba(59, 59, 59, 0.72);
+  text-align: center;
+  font-size: 14px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  border-radius: 11px;
+  background: #f6f4fc;
+  width: 300px;
+  padding: 10px 12px;
 }
 </style>

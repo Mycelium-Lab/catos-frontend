@@ -62,7 +62,7 @@
           />
         </template>
       </input-data>
-      <tool-bar variant="loans"></tool-bar>
+      <tool-bar variant="loans" role="borrower"></tool-bar>
     </template>
     <template v-slot:body>
       <div class="rectangle-group_desktop rectangle-group">
@@ -79,7 +79,7 @@
             :variant="currentWindow"
             :key="currentWindow"
             role="borrower"
-            :state="n === 1 || n === 2 ? 'active' : 'overdue'"
+            :status="n === 1 || n === 2 ? 'active' : 'overdue'"
           >
             <template v-slot:blody></template>
           </loans-table>
