@@ -88,7 +88,7 @@
           />
         </template>
       </input-data>
-      <tool-bar variant="loans"></tool-bar>
+      <tool-bar role="creditor" variant="loans"></tool-bar>
     </template>
     <template v-slot:body>
       <div class="rectangle-group_desktop rectangle-group">
@@ -107,9 +107,33 @@
       <ul>
         <li v-for="n in 5" :key="n">
           <loans-table
+            v-if="currentWindow === 'bids'"
             :variant="currentWindow"
             :key="currentWindow"
             role="creditor"
+            :status="
+              n === 1
+                ? 'approved'
+                : n === 2
+                ? 'rejected'
+                : n === 3
+                ? 'panding'
+                : 'approved'
+            "
+          ></loans-table>
+          <loans-table
+            v-else-if="currentWindow === 'loans'"
+            :variant="currentWindow"
+            :key="currentWindow + n"
+            role="creditor"
+            :status="n === 1 ? 'repaid' : n === 2 ? 'overdue' : 'sold'"
+          ></loans-table>
+          <loans-table
+            v-else-if="currentWindow === 'marketplace'"
+            :variant="currentWindow"
+            :key="currentWindow + n * 2"
+            role="creditor"
+            :status="n === 1 ? 'sales' : n === 2 ? 'sold' : 'sales'"
           ></loans-table>
         </li>
       </ul>

@@ -4,7 +4,12 @@
       <div class="statusbar-cards" v-if="role === 'creditor'">
         <div class="buttons-tabs">
           <div class="checkboxdone-parent">
-            <catos-checkbox></catos-checkbox>
+            <catos-checkbox
+              @onChange="handleCheckBox"
+              :isChecked="isChecked"
+              :key="Number(isChecked)"
+            >
+            </catos-checkbox>
 
             <div class="txt1-parent">
               <div class="txt1">Иван Иванов Иванович</div>
@@ -14,12 +19,82 @@
           <div class="status-all-parent">
             <div class="status-all">
               <div class="colors-graphsorders-parent">
-                <img
-                  class="colors-graphsorders-icon"
-                  alt=""
-                  src="@/assets/images/colors-graphsorders2.svg"
-                />
-                <div class="div">Продается</div>
+                <template v-if="variant === 'bids'">
+                  <img
+                    v-if="status === 'approved'"
+                    class="colors-graphsorders-icon"
+                    alt=""
+                    src="@/assets/images/colors-graphsorders1.svg"
+                  />
+                  <img
+                    v-else-if="status === 'rejected'"
+                    class="colors-graphsorders-icon"
+                    alt=""
+                    src="@/assets/images/colors-graphsorders3.svg"
+                  />
+                  <img
+                    v-else
+                    class="colors-graphsorders-icon"
+                    alt=""
+                    src="@/assets/images/colors-graphsorders4.svg"
+                  />
+                </template>
+                <template v-else-if="variant === 'loans'">
+                  <img
+                    v-if="status === 'repaid'"
+                    class="colors-graphsorders-icon"
+                    alt=""
+                    src="@/assets/images/colors-graphsorders1.svg"
+                  />
+                  <img
+                    v-else-if="status === 'overdue'"
+                    class="colors-graphsorders-icon"
+                    alt=""
+                    src="@/assets/images/colors-graphsorders3.svg"
+                  />
+                  <img
+                    v-else
+                    class="colors-graphsorders-icon"
+                    alt=""
+                    src="@/assets/images/colors-graphsorders2.svg"
+                  />
+                </template>
+                <template v-else-if="variant === 'marketplace'">
+                  <img
+                    v-if="status === 'sales'"
+                    class="colors-graphsorders-icon"
+                    alt=""
+                    src="@/assets/images/colors-graphsorders2.svg"
+                  />
+                  <img
+                    v-else
+                    class="colors-graphsorders-icon"
+                    alt=""
+                    src="@/assets/images/colors-graphsorders1.svg"
+                  />
+                </template>
+
+                <div v-if="variant === 'bids'" class="div">
+                  {{
+                    status === "approved"
+                      ? "Одобрена"
+                      : status === "rejected"
+                      ? "Отклонена"
+                      : "Ожидание"
+                  }}
+                </div>
+                <div v-else-if="variant === 'loans'" class="div">
+                  {{
+                    status === "repaid"
+                      ? "Погашен"
+                      : status === "overdue"
+                      ? "Просрочен"
+                      : "Продан"
+                  }}
+                </div>
+                <div v-else-if="variant === 'marketplace'" class="div">
+                  {{ status === "sales" ? "Продается" : "Продан" }}
+                </div>
               </div>
               <img
                 class="iconchange"
@@ -246,11 +321,19 @@
               <div class="text">Пролонгировать</div>
             </button>
           </div>
-          <button v-else-if="role === 'creditor'" class="buttons-tabs1">
+          <button
+            v-else-if="
+              role === 'creditor' && status !== 'repaid' && status !== 'sold'
+            "
+            class="buttons-tabs1"
+            @click="toAction"
+          >
             <div class="text">
               {{
                 variant === "bids"
                   ? "Сменить статус"
+                  : variant === "loans" && status === "overdue"
+                  ? "Выставить займ на продажу"
                   : "Изменить цену продажи TON"
               }}
             </div>
@@ -262,10 +345,48 @@
       </div>
     </div>
   </div>
-  <loans-modal-desktop
+  <!--<loans-modal-desktop
     v-if="isModal"
     @close="() => (isModal = false)"
-  ></loans-modal-desktop>
+  ></loans-modal-desktop>-->
+
+  <bids
+    v-if="isBids"
+    :state="bidsState"
+    @close="
+      () => {
+        isBids = false;
+        resetState('bids');
+      }
+    "
+  >
+  </bids>
+
+  <loans
+    v-if="isLoans"
+    :state="loansState"
+    :status="status"
+    @close="
+      () => {
+        isLoans = false;
+        isChecked = false;
+        resetState('loans');
+      }
+    "
+  >
+  </loans>
+
+  <marketplace
+    v-if="isMarketplace"
+    :state="marketplaceState"
+    @close="
+      () => {
+        isMarketplace = false;
+        isChecked = false;
+        resetState('marketplace');
+      }
+    "
+  ></marketplace>
 
   <active
     v-if="isActive"
@@ -282,17 +403,25 @@
     v-if="isRepaid"
     :state="repaidState"
     :status="status"
-    @close="() => (isRepaid = false)"
+    @close="
+      () => {
+        isRepaid = false;
+        resetState('repaid');
+      }
+    "
   >
   </repaid>
-  <sold></sold>
+  <sold v-if="isSold" @close="() => (isSold = false)"></sold>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
 import catosCheckbox from "../../ui-kit/catos-checkbox.vue";
-import loansModalDesktop from "./loans-modal-desktop.vue";
+import bids from "./desktop/bids.vue";
+import loans from "./desktop/loans.vue";
+import marketplace from "./desktop/marketplace.vue";
 import active from "../borrower/desktop/active.vue";
 import repaid from "../borrower/desktop/repaid.vue";
+import sold from "../borrower/desktop/sold.vue";
 
 const { variant, role, status } = defineProps({
   variant: {
@@ -305,6 +434,21 @@ const { variant, role, status } = defineProps({
     type: String,
   },
 });
+
+const bidsState = {
+  detailModal: false,
+
+  statusChangeModal: false,
+};
+const loansState = {
+  detailModal: false,
+  statusManageModal: false,
+  exposeModal: false,
+};
+const marketplaceState = {
+  salesDetailModal: false,
+  soldDetailModal: false,
+};
 const activeState = {
   prolongModal: false,
   repayModal: false,
@@ -316,20 +460,67 @@ const repaidState = {
 
 const resetState = (state: string) => {
   switch (state) {
+    case "bids":
+      bidsState.detailModal = false;
+      bidsState.statusChangeModal = false;
+    case "loans":
+      loansState.detailModal = false;
+      loansState.statusManageModal = false;
+      loansState.exposeModal = false;
+    case "marketplace":
+      marketplaceState.salesDetailModal = false;
+      marketplaceState.soldDetailModal = false;
     case "active":
       activeState.prolongModal = false;
       activeState.repayModal = false;
       activeState.detailModal = false;
+    case "repaid":
+      repaidState.detailModal = false;
   }
 };
 const isModal = ref(false);
+const isBids = ref(false);
+const isLoans = ref(false);
+const isMarketplace = ref(false);
 const isActive = ref(false);
 const isRepaid = ref(false);
 const isSold = ref(false);
 
+const isChecked = ref(false);
+
+const toAction = () => {
+  if (role === "creditor") {
+    if (variant === "bids") {
+      bidsState.statusChangeModal = true;
+      bids.value = true;
+    }
+
+    if (status === "overdue") {
+      loansState.exposeModal = true;
+      isLoans.value = true;
+    }
+  }
+};
+
 const toDetail = () => {
   if (role === "creditor") {
-    isModal.value = true;
+    if (variant === "bids") {
+      bidsState.detailModal = true;
+      isBids.value = true;
+    }
+    if (variant === "loans") {
+      loansState.detailModal = true;
+      isLoans.value = true;
+    }
+    if (variant === "marketplace") {
+      isMarketplace.value = true;
+      if (status === "sales") {
+        marketplaceState.salesDetailModal = true;
+      } else {
+        marketplaceState.soldDetailModal = true;
+      }
+    }
+    //isModal.value = true;
   } else if (role === "borrower") {
     if (variant === "active") {
       isActive.value = true;
@@ -337,9 +528,12 @@ const toDetail = () => {
     } else if (variant === "repaid") {
       repaidState.detailModal = true;
       isRepaid.value = true;
+    } else if (variant === "sold") {
+      isSold.value = true;
     }
   }
 };
+
 const toActive = (init: string) => {
   isActive.value = true;
   switch (init) {
@@ -351,6 +545,19 @@ const toActive = (init: string) => {
     case "detail":
       return (activeState.detailModal = true);
   }
+};
+const handleCheckBox = (ev: any) => {
+  if (ev) {
+    if (variant === "bids") {
+      bidsState.statusChangeModal = true;
+      isBids.value = true;
+    }
+    if (variant === "loans") {
+      isLoans.value = true;
+      loansState.statusManageModal = true;
+    }
+  }
+  console.log(ev);
 };
 </script>
 <style scoped lang="scss">
