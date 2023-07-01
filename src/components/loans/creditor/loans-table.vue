@@ -271,14 +271,28 @@
     v-if="isActive"
     :state="activeState"
     :status="status"
-    @close="() => (isActive = false)"
+    @close="
+      () => {
+        isActive = false;
+        resetState('active');
+      }
+    "
   ></active>
+  <repaid
+    v-if="isRepaid"
+    :state="repaidState"
+    :status="status"
+    @close="() => (isRepaid = false)"
+  >
+  </repaid>
+  <sold></sold>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
 import catosCheckbox from "../../ui-kit/catos-checkbox.vue";
 import loansModalDesktop from "./loans-modal-desktop.vue";
 import active from "../borrower/desktop/active.vue";
+import repaid from "../borrower/desktop/repaid.vue";
 
 const { variant, role, status } = defineProps({
   variant: {
@@ -296,8 +310,22 @@ const activeState = {
   repayModal: false,
   detailModal: false,
 };
+const repaidState = {
+  detailModal: false,
+};
+
+const resetState = (state: string) => {
+  switch (state) {
+    case "active":
+      activeState.prolongModal = false;
+      activeState.repayModal = false;
+      activeState.detailModal = false;
+  }
+};
 const isModal = ref(false);
 const isActive = ref(false);
+const isRepaid = ref(false);
+const isSold = ref(false);
 
 const toDetail = () => {
   if (role === "creditor") {
@@ -306,6 +334,9 @@ const toDetail = () => {
     if (variant === "active") {
       isActive.value = true;
       toActive("detail");
+    } else if (variant === "repaid") {
+      repaidState.detailModal = true;
+      isRepaid.value = true;
     }
   }
 };
