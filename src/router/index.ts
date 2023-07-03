@@ -177,6 +177,8 @@ const router = createRouter({
     dashboardСreditor[0],
     dashboardСreditor[1],
     dashboardСreditor[2],
+    dashboardСreditor[3],
+    dashboardСreditor[4],
     dashboardDepositor[0],
     dashboardDepositor[1],
     borrowerLoans[0],

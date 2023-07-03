@@ -28,6 +28,7 @@
       <div
         class="component-211"
         v-if="role === 'creditor' || role === 'depositor'"
+        @click="toDashBoard"
       >
         <div class="iconsmenu1">
           <img alt="" src="@/assets/desktop/menu-dashboard.svg" />
@@ -93,13 +94,13 @@ const toLoans = () => {
     router.push({ name: "loans" });
   }
 };
-/*const toDashBoard = () => {
+const toDashBoard = () => {
   if (role.value === "depositor") {
     router.push({ name: "dashboard-depositor" });
   } else if (role.value === "creditor") {
     router.push({ name: "dashboard" });
   }
-};*/
+};
 const toWallet = () => {
   console.log(role.value);
   if (role.value === "creditor") {
