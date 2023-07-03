@@ -21,11 +21,17 @@
         </div>
       </div>
       <div class="des-and-bbn">
-        <catos-button variant="fourth" :style="{ width: '100%', margin: '0' }"
+        <catos-button
+          variant="fourth"
+          :style="{ width: '100%', margin: '0' }"
+          @click="register"
           >Зарегестрироваться как инвестор</catos-button
         >
 
-        <catos-button variant="fourth" :style="{ width: '100%', margin: '0' }"
+        <catos-button
+          variant="fourth"
+          :style="{ width: '100%', margin: '0' }"
+          @click="login"
           >Войти как инвестор</catos-button
         >
       </div>
@@ -35,6 +41,20 @@
 <script setup lang="ts">
 // @ts-ignore
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const register = () => {
+  router.push({
+    name: "start",
+    state: { title: "Регистрация инвестора", role: "depositor" },
+  });
+};
+const login = () => {
+  router.push({
+    name: "login",
+    state: { role: "depositor" },
+  });
+};
 </script>
 <style scoped>
 .imagepersones-icon {

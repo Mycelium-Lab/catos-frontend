@@ -7,7 +7,11 @@
           <div class="frame-container">
             <div class="parent">
               <div class="div">
-                <!--<img class="pie-chart-icon" alt="" src="/piechart.svg" />-->
+                <img
+                  class="pie-chart-icon"
+                  alt=""
+                  src="@/assets/images/pie-chart.svg"
+                />
                 <div class="ton-parent">
                   <div class="ton">1 537 000 TON</div>
                   <div class="div1">Доход</div>
@@ -16,15 +20,27 @@
               <div class="frame-child" />
               <div class="frame-div">
                 <div class="percent-parent">
-                  <!--<img class="percent-icon" alt="" src="/percent.svg" />-->
+                  <img
+                    class="percent-icon"
+                    alt=""
+                    src="@/assets/images/percent.svg"
+                  />
                   <div class="div2">1 день = 1%</div>
                 </div>
                 <div class="percent-parent">
-                  <!--<img class="percent-icon" alt="" src="/clock.svg" />-->
+                  <img
+                    class="percent-icon"
+                    alt=""
+                    src="@/assets/images/clock.svg"
+                  />
                   <div class="div2">3 дня = 0%</div>
                 </div>
                 <div class="percent-parent">
-                  <!-- <img class="percent-icon" alt="" src="/activity.svg" />-->
+                  <img
+                    class="percent-icon"
+                    alt=""
+                    src="@/assets/images/activity.svg"
+                  />
                   <div class="div2">ROI = 75%</div>
                 </div>
               </div>
@@ -35,17 +51,21 @@
               </div>
               <div class="status-all">
                 <div class="colors-graphsorders-parent">
-                  <!--<img
+                  <img
                     class="colors-graphsorders-icon"
                     alt=""
-                    src="/colors-graphsorders.svg"
-                  />-->
+                    src="@/assets/images/colors-graphsorders1.svg"
+                  />
                   <div class="c">
                     <span>Активен </span>
                     <span class="span">(отключить)</span>
                   </div>
                 </div>
-                <!--<img class="iconchange" alt="" src="/iconchange.svg" />-->
+                <img
+                  class="iconchange"
+                  alt=""
+                  src="@/views/public/iconchange.svg"
+                />
               </div>
             </div>
           </div>
@@ -163,13 +183,16 @@
                   <div class="ton-container">
                     <div class="ton4">45% годовых</div>
                   </div>
-                  <img class="container-click" alt="" />
                 </div>
               </div>
             </div>
           </div>
           <div class="notification">
-            <!--<img class="percent-icon1" alt="" src="/percent1.svg" />-->
+            <img
+              class="percent-icon1"
+              alt=""
+              src="@/assets/images/percent.svg"
+            />
             <div class="div26">Проценты начисляются с 12 апреля 2023 года</div>
           </div>
           <div class="des-and-bbn">
@@ -571,6 +594,7 @@ const close = () => {
   align-items: center;
   width: 10.83em;
   flex-shrink: 0;
+  width: auto;
 }
 .ton-wrapper {
   display: flex;
