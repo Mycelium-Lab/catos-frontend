@@ -1027,7 +1027,7 @@ const handleClose = () => {
 }
 .koahyan123gmailcom {
   position: absolute;
-  top: 11.42%;
+  top: 1rem;
   left: 6.14%;
   font-size: 0.63em;
   line-height: 1em;
@@ -1043,7 +1043,7 @@ const handleClose = () => {
 }
 .div33 {
   position: absolute;
-  top: 17.81%;
+  top: 2rem;
   left: 6.14%;
   font-size: 0.63em;
   line-height: 120%;

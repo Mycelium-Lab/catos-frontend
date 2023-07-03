@@ -2266,4 +2266,36 @@
   color: rgba(87, 126, 247, 0.96);
   font-family: Inter;
 }
+@media (min-width: 500px) {
+  .invoice-aa-04-19-181,
+  .new-madieton-llc1 {
+    width: auto;
+  }
+  .field-1 {
+    padding: 4px 0 4px 4px;
+  }
+  .frame-parent1,
+  .frame-parent2 {
+    width: 100%;
+  }
+  .svg-gobbler-2-11 {
+    width: 48px;
+    height: 48px;
+  }
+  .group-icon1 {
+    width: 28px;
+    height: 28px;
+  }
+  .invoice-aa-04-19-181,
+  .new-madieton-llc1 {
+    font-size: 14px;
+  }
+  .details2 {
+    font-size: 18.67px;
+    padding-right: 2em;
+  }
+  .arrows-table1 {
+    width: 16px;
+  }
+}
 </style>
