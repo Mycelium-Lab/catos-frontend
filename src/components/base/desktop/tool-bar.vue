@@ -1,23 +1,19 @@
 <template>
   <div class="filter-group">
     <div class="filter-container">
-      <img class="filter-item" alt="" src="/frame-1817604.svg" />
-      <div
-        v-if="variant === 'loans'"
-        class="div4"
-        @click="() => (isFilter = true)"
-      >
+      <img class="filter-item" alt="" src="@/assets/desktop/filter.svg" />
+      <div v-if="variant === 'loans'" class="div4">
         <span>Скачать </span>
         <span class="span">(1)</span>
       </div>
-      <div v-else class="div4" @click="() => (isFilter = true)">
+      <div v-else class="div4">
         <span>Фильтр </span>
         <span class="span">(1)</span>
       </div>
     </div>
     <div class="filter-container">
-      <img class="menu-2-icon" alt="" src="/menu2.svg" />
-      <div class="div5" @click="() => (isSort = true)">
+      <img class="menu-2-icon" alt="" src="@/assets/desktop/sort.svg" />
+      <div class="div5">
         <span>Сортировка </span>
         <span class="span1">(1)</span>
       </div>

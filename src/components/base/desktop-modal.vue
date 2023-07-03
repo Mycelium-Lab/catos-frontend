@@ -215,7 +215,7 @@ const close = () => {
 .back-row {
   border-radius: 9px;
   background: rgba(251, 251, 251, 0.42);
-  width: 37.5em;
+  width: 100%;
   padding: 1px 0px;
   display: flex;
   justify-content: flex-start;

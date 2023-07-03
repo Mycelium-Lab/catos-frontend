@@ -1,7 +1,7 @@
 <template>
   <div
     :class="`desctopverpull-stats-parent_${role}-${variant} desctopverpull-stats-parent`"
-    @click="toDaetail"
+    @click="toDetail"
   >
     <div class="desctopverpull-stats">
       <div
@@ -23,13 +23,12 @@
                   src="@/assets/images/pie-chart.svg"
                 />
                 <div class="txt1-parent">
-                  <div class="txt1">Займ на:</div>
                   <div v-if="role === 'collector'" class="txt2_borrower txt2">
                     Текущий долг:
                   </div>
                   <div class="ton18">37 000 TON</div>
                   <div v-if="role === 'borrower'" class="txt2_borrower txt2">
-                    Одобреный лимит
+                    Одобренный лимит
                   </div>
                   <div
                     v-if="role === 'creditor' || role === 'depositor'"
@@ -39,16 +38,16 @@
                   </div>
                 </div>
               </div>
-              <div class="status-all">
+              <!--<div class="status-all">
                 <div class="colors-graphsorders-parent">
                   <img
                     class="colors-graphsorders-icon"
                     alt=""
-                    src="/colors-graphsorders.svg"
+                    src="@/assets/images/colors-graphsorders.svg"
                   />
                   <div class="div121">Просрочен</div>
                 </div>
-              </div>
+              </div>-->
             </div>
             <div class="frame-parent20">
               <div class="iconsbar-cards-parent">
@@ -323,15 +322,11 @@
               </button>
             </div>
             <div class="text-and-button6">
-              <button
+              <!--<button
                 v-if="variant === 'all'"
                 :class="`buttons-tabs7_${role} buttons-tabs7`"
                 @click.stop="() => (isMangae = true)"
               >
-                <div v-if="role === 'creditor'" class="text8">
-                  <span class="span2">Упр</span>
-                  <span class="span3">. ликвид</span>
-                </div>
                 <div v-if="role === 'depositor'" class="text8">
                   <span class="span2">Добавить ликвидность</span>
                 </div>
@@ -341,7 +336,18 @@
                 >
                   <span class="span2">Взять займ</span>
                 </div>
+              </button>-->
+              <button
+                v-if="role === 'creditor' && variant === 'all'"
+                :class="`buttons-tabs7_${role} buttons-tabs7`"
+                @click.stop="toManageLiquid"
+              >
+                <div v-if="role === 'creditor'" class="text8">
+                  <span class="span2">Упр</span>
+                  <span class="span3">. ликвид</span>
+                </div>
               </button>
+
               <catos-button
                 v-if="role === 'depositor' && variant === 'my'"
                 :style="{ width: '100%' }"
@@ -355,6 +361,13 @@
                 >Добавить ликвидность</catos-button
               >
               <catos-button
+                v-if="role === 'borrower' && variant === 'all'"
+                :style="{ width: '100%' }"
+                variant="fourth"
+                @click.stop="toGetLoan"
+                >Взять займ</catos-button
+              >
+              <catos-button
                 v-if="role === 'collector' && variant === 'marketplace'"
                 :style="{ width: '100%' }"
                 variant="fourth"
@@ -364,12 +377,7 @@
               <button
                 v-if="role === 'creditor' && variant === 'all'"
                 :class="`buttons-tabs7_${role}-${variant} buttons-tabs7_${role} buttons-tabs7`"
-                @click.stop="
-                  () =>
-                    variant === 'all'
-                      ? (isDetailOther = true)
-                      : (isDetailPersonal = true)
-                "
+                @click.stop="toDetail"
               >
                 <div class="text9">Подробнее</div>
               </button>
@@ -377,12 +385,7 @@
                 v-else
                 :style="{ width: '100%' }"
                 variant="fourth_outline"
-                @click.stop="
-                  () =>
-                    variant === 'all'
-                      ? (isDetailOther = true)
-                      : (isDetailPersonal = true)
-                "
+                @click.stop="toDetail"
                 >Подробнее</catos-button
               >
             </div>
@@ -391,220 +394,49 @@
       </div>
     </div>
   </div>
-  <detail-other-desktop
-    v-if="isDetailOther"
-    @close="() => (isDetailOther = false)"
-  ></detail-other-desktop>
-  <liquidity-management-desktop
-    v-if="isMangae"
-    @close="isMangae = false"
-    @withdraw="
-      () => {
-        isMangae = false;
-        isWithdraw = true;
-      }
-    "
-    @add="
-      () => {
-        isMangae = false;
-        isAdd = true;
-      }
-    "
-  ></liquidity-management-desktop>
-  <liquidity-managment-modal v-if="isWithdraw" @close="isWithdraw = false">
-    <template v-slot:header> Пулл #12345 </template>
-    <template v-slot:subheaderIcon>
-      <img class="header-icon" alt="" src="@/assets/images/change-cash.svg" />
-    </template>
-    <template v-slot:subheader> Изъятие ликвидности из пулла #12345 </template>
-    <template v-slot:first-row>
-      <div class="field">
-        <div class="roi">Доступно для изьятия:</div>
-        <div class="div9">257 324 TON</div>
-      </div>
-    </template>
-    <template v-slot:form>
-      <div class="text-and-button_action text-and-button">
-        <div class="fieldsinput-parent">
-          <div class="fieldsinput">
-            <div class="div16">Введите сумму для вывода:</div>
-            <input-data
-              :style="{ width: '456px' }"
-              placeholder="10 000 TON"
-            ></input-data>
-          </div>
-          <div class="min-10-ton-parent">
-            <div class="min-10-ton-container">
-              <span>Min:</span>
-              <span class="span8"> </span>
-              <span class="ton1">10 TON</span>
-            </div>
-            <div class="min-10-ton-container">
-              <span>Max:</span>
-              <span class="span8"> </span>
-              <span class="ton1">257 324 TON</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </template>
-    <template v-slot:action>
-      <div class="des-and-bbn_withdraw des-and-bbn">
-        <button class="button">
-          <div class="buttons-tabs">
-            <div class="text">Вывести на кошелек CATOS</div>
-          </div>
-        </button>
-        <button class="button">
-          <div class="buttons-tabs">
-            <div class="text">Вывести на кошелек TONKeeper</div>
-          </div>
-        </button>
-        <button class="button" @click="() => (isWithdraw = false)">
-          <div class="buttons-tabs_cancel buttons-tabs">
-            <div class="text">Отмена</div>
-          </div>
-        </button>
-      </div>
-    </template>
-  </liquidity-managment-modal>
-  <liquidity-managment-modal v-if="isAdd" @close="isAdd = false">
-    <template v-slot:header> Пулл #12345 </template>
-    <template v-slot:subheaderIcon>
-      <img class="header-icon" alt="" src="@/assets/images/success-cash.svg" />
-    </template>
-    <template v-slot:subheader> Добавление ликвидности в пулл #12345 </template>
-    <template v-slot:first-row>
-      <div class="field">
-        <div class="roi">Баланс кошелька:</div>
-        <div class="div9">257 324 TON</div>
-      </div>
-    </template>
-    <template v-slot:form>
-      <div class="text-and-button_action text-and-button">
-        <div class="fieldsinput-parent_add fieldsinput-parent">
-          <label class="label">Настроить токен:</label>
-          <div :style="{ margin: '0 auto', width: '456px' }">
-            <catos-select
-              placeholder="Выберите токен"
-              :options="options"
-              :value="valueStatus"
-              @selected="ev => (valueToken = ev)"
-            ></catos-select>
-          </div>
-          <div class="fieldsinput">
-            <div class="div16">Введите сумму для пополнения:</div>
-            <input-data
-              :style="{ width: '456px' }"
-              placeholder="10 000 TON"
-            ></input-data>
-          </div>
-          <div class="min-10-ton-parent">
-            <div class="min-10-ton-container">
-              <span>Min:</span>
-              <span class="span8"> </span>
-              <span class="ton1">10 TON</span>
-            </div>
-            <div class="min-10-ton-container">
-              <span>Max:</span>
-              <span class="span8"> </span>
-              <span class="ton1">257 324 TON</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </template>
-    <template v-slot:action>
-      <div class="des-and-bbn_add des-and-bbn">
-        <button
-          class="button"
-          @click="
-            () => {
-              isAdd = false;
-              isQr = true;
-            }
-          "
-        >
-          <div class="buttons-tabs">
-            <div class="text">Добавить</div>
-          </div>
-        </button>
-        <button class="button" @click="() => (isAdd = false)">
-          <div class="buttons-tabs_cancel buttons-tabs">
-            <div class="text">Отмена</div>
-          </div>
-        </button>
-      </div>
-    </template>
-  </liquidity-managment-modal>
-  <confirm-qr-destop
-    v-if="isQr"
-    @close="() => (isQr = false)"
-    @result="
-      () => {
-        isSuccess = true;
-        isQr = false;
-      }
-    "
-  >
-    <template v-slot:header> Пулл #12345 </template>
-    <template v-slot:title>Add liquidity</template>
-    <template v-slot:subtitle>
-      <p class="scan-the-qr">Scan the QR code and pay 13 512 TON with</p>
-      <p class="scan-the-qr">Tonkeeper using</p>
-      <a class="scan-the-qr-link">EQB5...dzE1h</a>
-    </template>
-    <template v-slot:action>
-      <b class="ton-kepeer">Add liquidity</b>
-    </template>
-    <template v-slot:footer>
-      <div class="we-do-not">
-        By proceeding, you accept the <br />
-        <a>CATOS Terms of Service</a> and <a>Privacy Policy</a>.
-      </div>
-    </template>
-  </confirm-qr-destop>
-  <status-modal-desktop v-if="isSuccess" @close="() => (isSuccess = false)">
-    <template v-slot:header> Транзакция №591561351 </template>
-    <template v-slot:title> Транзакция успешно выполнена </template>
-    <template v-slot:image>
-      <img src="@/assets/images/success-transaction.svg" />
-    </template>
-    <template v-slot:subtitle>
-      <p class="status-subtitle">
-        Вы успешно вывели 257 324 TON <br />
-        из пулла <a class="status-subtitle-link">#123456</a> на свой кошелек
-        <br /><a class="status-subtitle-link">EQB5...dzE1hа44</a>
-      </p>
-      <p class="status-subtitle">
-        <a class="status-subtitle-link">Просмотр транзакции в Tonscan</a>
-      </p>
-    </template>
-    <template v-slot:action> Ок </template>
-  </status-modal-desktop>
-  <detail-personal-desktop
+
+  <!--<detail-personal-desktop
     v-if="isDetailPersonal"
     @close="isDetailPersonal = false"
-  ></detail-personal-desktop>
+  ></detail-personal-desktop>-->
+  <all-creditor-pulls
+    v-if="isAllCreditor"
+    :state="allCreditorState"
+    @loans="toLoans"
+    @close="
+      () => {
+        isAllCreditor = false;
+        resetState('all-creditor');
+      }
+    "
+  ></all-creditor-pulls>
+  <my-creditor-pulls v-if="isMyCreditor" @close="() => (isMyCreditor = false)">
+  </my-creditor-pulls>
+  <all-borrower-pulls
+    v-if="isAllBorrower"
+    :state="allBorrowerState"
+    @close="
+      () => {
+        isAllBorrower = false;
+        resetState('all-borrowe');
+      }
+    "
+  ></all-borrower-pulls>
+  <my-borrower-pulls v-if="isMyBorrower" @close="() => (isMyBorrower = false)">
+  </my-borrower-pulls>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import detailOtherDesktop from "@/components/pulls/creditor/detail-other-desktop.vue";
-import liquidityManagementDesktop from "../pulls/creditor/liquidity/liquidity-management-desktop.vue";
-import detailPersonalDesktop from "../pulls/creditor/detail-personal-desktop.vue";
-import liquidityManagmentModal from "@/components/base/liquidity-managment-modal.vue";
-import confirmQrDestop from "./confirm-qr-destop.vue";
-import inputData from "../fields/input-data.vue";
-import catosSelect from "../fields/catos-select.vue";
-import StatusModalDesktop from "./status-modal-desktop.vue";
+
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
+import allCreditorPulls from "../pulls/creditor/desktop/all-creditor-pulls.vue";
+import myCreditorPulls from "../pulls/creditor/desktop/my-creditor-pulls.vue";
+import allBorrowerPulls from "../pulls/borrower/desktop/all-borrower-pulls.vue";
+import myBorrowerPulls from "../pulls/borrower/desktop/my-borrower-pulls.vue";
 import { useRouter } from "vue-router";
 
-const valueToken = ref("");
-const valueStatus = ref("");
-const options = ["Россия", "Украина", "Казахстан", "Белорусь"];
-const { variant } = defineProps({
+const { variant, role } = defineProps({
   variant: {
     type: String,
   },
@@ -612,25 +444,66 @@ const { variant } = defineProps({
     type: String,
   },
 });
-const isDetailOther = ref(false);
-const isDetailPersonal = ref(false);
-const isMangae = ref(false);
-const isWithdraw = ref(false);
-const isAdd = ref(false);
-const isQr = ref(false);
-const isSuccess = ref(false);
 
-const toDaetail = () => {
-  if (variant === "all") {
-    /*if (isMangae.value) {
-      isDetailOther.value = false;
-    } else {
-      isDetailOther.value = true;
-    }*/
-    isDetailOther.value = true;
-  } else {
-    isDetailPersonal.value = true;
+const isAllCreditor = ref(false);
+const isMyCreditor = ref(false);
+const isAllBorrower = ref(false);
+const isMyBorrower = ref(false);
+
+const allCreditorState = {
+  detailOtherModal: false,
+  manageLiquidModal: false,
+};
+const allBorrowerState = {
+  detailOtherModal: false,
+  getLoanModal: false,
+  toInvestModal: false,
+};
+
+const resetState = (state: string) => {
+  switch (state) {
+    case "all-creditor":
+      allCreditorState.detailOtherModal = false;
+      allCreditorState.manageLiquidModal = false;
+    case "all-borrower":
+      allBorrowerState.detailOtherModal = false;
+      allBorrowerState.getLoanModal = false;
   }
+};
+
+const toManageLiquid = () => {
+  isAllCreditor.value = true;
+  allCreditorState.manageLiquidModal = true;
+};
+
+const toGetLoan = () => {
+  isAllBorrower.value = true;
+  allBorrowerState.detailOtherModal = false;
+  allBorrowerState.getLoanModal = true;
+};
+
+const toDetail = () => {
+  if (role === "creditor") {
+    if (variant === "all") {
+      isAllCreditor.value = true;
+      allCreditorState.detailOtherModal = true;
+    }
+    if (variant === "my") {
+      isMyCreditor.value = true;
+    }
+  } else if (role === "borrower") {
+    if (variant === "all") {
+      isAllBorrower.value = true;
+      allBorrowerState.detailOtherModal = true;
+    }
+    if (variant === "my") {
+      isMyBorrower.value = true;
+    }
+  }
+
+  /*} else {
+    isDetailPersonal.value = true;
+  }*/
 };
 const router = useRouter();
 const toLoans = () => {
@@ -736,6 +609,13 @@ li {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.13em;
+}
+.txt1-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.19em;
 }
 .iconsbar-cards-parent {
   display: flex;

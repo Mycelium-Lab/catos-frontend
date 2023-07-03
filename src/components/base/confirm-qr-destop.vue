@@ -33,9 +33,9 @@
             <div class="connect-ton"><slot name="title"></slot></div>
             <div class="scan-the-qr-code-with-your-pho-wrapper">
               <div class="scan-the-qr-container">
-                <span class="subtitle">
+                <div class="subtitle">
                   <slot name="subtitle"></slot>
-                </span>
+                </div>
                 <a class="link">
                   <slot name="link"></slot>
                 </a>
@@ -286,6 +286,8 @@ const handle = () => {
   color: #3b3b3b;
 }
 .link {
+  display: inline-block;
+  margin-top: 8px;
   color: rgba(87, 126, 247, 0.96);
   text-decoration: underline;
   cursor: pointer;

@@ -4,13 +4,7 @@
       <div class="header-pop-up">
         <div class="page-title-parent">
           <div class="page-title">
-            <h4 class="title">
-              <slot name="header"></slot>
-            </h4>
-            &nbsp;
-            <a class="title-link title">
-              <slot name="header-link"></slot>
-            </a>
+            <slot name="header"></slot>
           </div>
           <img
             class="close-icon-action close-icon"
@@ -23,72 +17,44 @@
       </div>
       <div class="frame-parent">
         <div class="frame-group">
-          <h3 class="status-title">
-            <slot name="title"></slot>
-          </h3>
-          <slot name="image"></slot>
+          <div class="parent">
+            <div class="div1">
+              <slot name="subheaderIcon"></slot>
+              <div class="ton-parent">
+                <div class="div2">
+                  <slot name="subheader"></slot>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <slot name="subtitle"></slot>
-        <slot name="body"></slot>
-        <div
-          v-if="actionGroup || actionGroupColumn"
-          :class="
-            actionGroupColumn
-              ? 'group-action_column group-action'
-              : 'group-action'
-          "
-        >
-          <catos-button
-            variant="fourth"
-            :style="
-              actionGroupColumn
-                ? { width: '320px', margin: '0' }
-                : { width: '205px', margin: '0' }
-            "
-            @click="() => (firstAction ? firstAction() : '')"
-          >
-            <slot name="action-first"></slot>
-          </catos-button>
-          <catos-button
-            variant="fourth_outline"
-            :style="
-              actionGroupColumn
-                ? { width: '320px', margin: '0' }
-                : { width: '205px', margin: '0' }
-            "
-            @click="() => (lastAction ? lastAction() : '')"
-          >
-            <slot name="action-last"></slot>
-          </catos-button>
+
+        <div class="frame-parent1">
+          <slot name="body"></slot>
+          <div class="field-parent">
+            <slot name="first-row"></slot>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="field-parent">
+            <div class="field">
+              <div class="roi">Баланс кошелька: EQB5...dzE1h</div>
+              <div class="div9"><span>(Изменить)</span></div>
+            </div>
+          </div>
         </div>
-        <button v-else class="button" @click="close">
-          <slot name="action"> </slot>
-        </button>
+        <slot name="form"></slot>
+
+        <slot name="action"></slot>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
-const emits = defineEmits(["close"]);
-const { actionGroup } = defineProps({
-  actionGroup: {
-    type: Boolean,
-    default: false,
-  },
-  actionGroupColumn: {
-    type: Boolean,
-    default: false,
-  },
-  firstAction: {
-    type: Function,
-  },
-  lastAction: {
-    type: Function,
-  },
-});
+import catosCheckbox from "@/components/ui-kit/catos-checkbox.vue";
+const emtis = defineEmits(["close"]);
+
 const close = () => {
-  emits("close");
+  emtis("close");
 };
 </script>
 <style scoped lang="scss">
@@ -273,9 +239,10 @@ const close = () => {
   align-self: stretch;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   gap: 1.25em;
+  color: #a592dd;
 }
 .div6 {
   position: relative;
@@ -379,30 +346,83 @@ const close = () => {
   line-height: 130%;
   font-weight: 300;
 }
-
+.notification {
+  align-self: stretch;
+  border-radius: 16px;
+  background-color: #f6f4fc;
+  display: flex;
+  flex-direction: row;
+  padding: 0.94em;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.63em;
+}
 .text {
   position: relative;
   font-size: 0.88rem;
   line-height: 130%;
   font-weight: 500;
 }
-
+.buttons-tabs {
+  align-self: stretch;
+  border-radius: 25px;
+  background-color: rgba(87, 126, 247, 0.96);
+  display: flex;
+  flex-direction: row;
+  padding: 0.69em 1.5em;
+  align-items: center;
+  justify-content: center;
+  color: #fefefe;
+  &:hover {
+    background: #3062fd;
+  }
+}
 .button {
   align-self: stretch;
   flex: 1;
-  padding: 0.863em 0em;
-  font-size: 14px;
-  border: 1px solid #5d83f7;
-  color: #555562;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.buttons-tabs3 {
+  flex: 1;
   border-radius: 25px;
+  border: 1px solid #5d83f7;
+  box-sizing: border-box;
+  height: 2.5em;
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: center;
+  color: #555562;
+  cursor: pointer;
+  font-size: 1rem;
+  background: transparent;
   &:hover {
-    cursor: pointer;
     border: 0.5px solid rgba(87, 126, 247, 0.96);
     background: rgba(87, 126, 247, 0.24);
   }
 }
-
+.des-and-bbn {
+  align-self: stretch;
+  border-radius: 16px;
+  background-color: #f9fbff;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: row;
+  padding: 0.63em;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.63em;
+  text-align: right;
+  color: #fefefe;
+  width: 600px;
+}
 .frame-parent {
   align-self: stretch;
   border-radius: 0px 0px 15px 15px;
@@ -428,43 +448,6 @@ const close = () => {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
-}
-.status-title {
-  margin: 0em;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 110%;
-  letter-spacing: 0.2px;
-}
-.group-action {
-  //width: 440px;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  border-radius: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  background: #f9fbff;
-  &_column {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-.title {
-  display: inline-block;
-  color: #3b3b3b;
-  margin: 0;
-  font-size: 18px;
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 130%;
-  &-link {
-    cursor: pointer;
-    text-decoration: underline;
-    color: rgba(87, 126, 247, 0.96);
-    &:hover {
-      text-decoration: none;
-    }
-  }
+  width: 520px;
 }
 </style>

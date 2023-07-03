@@ -56,7 +56,7 @@
     </div>
     <div class="des-and-bbn">
       <catos-button
-        variant="secondary"
+        variant="fourth"
         :disabled="isActive === -1"
         :style="{ width: '100%', margin: '0' }"
         @click="handle"
