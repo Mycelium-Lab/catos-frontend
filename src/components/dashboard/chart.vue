@@ -2,8 +2,8 @@
   <canvas
     :id="id"
     class="m-t-15 m-b-15 myChart"
-    width="342"
-    height="228"
+    width="542"
+    height="184"
   ></canvas>
 </template>
 
