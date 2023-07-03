@@ -1,5 +1,5 @@
 <template>
-  <modal>
+  <!--<modal>
     <div class="wrapper">
       <div class="header">
         <div class="div9">Чеки</div>
@@ -174,12 +174,11 @@
           <div class="counters-graph-web">
             <div class="bg"></div>
             <div class="component-26">
-              <!--<img class="share-icon" alt="" src="./public/share.svg" />-->
-
+        
               <div class="number">Поделиться</div>
             </div>
             <div class="component-261">
-              <!-- <img class="share-icon" alt="" src="./public/copy.svg" /> -->
+              
 
               <div class="number">Скопировать</div>
             </div>
@@ -189,11 +188,7 @@
           </div>
           <div class="field-">
             <div class="svg-gobbler-2-1-parent">
-              <!--<img
-              class="svg-gobbler-2-1"
-              alt=""
-              src="./public/svggobbler-2-1.svg"
-            />-->
+           
 
               <div class="name">
                 <div class="invoice-aa-04-19-18">Чек отправлен</div>
@@ -205,11 +200,7 @@
               <div class="paid">Отправлено</div>
             </div>
             <div class="arrows-table">
-              <!--<img
-              class="chevron-right-icon"
-              alt=""
-              src="./public/chevronright.svg"
-            />-->
+            
             </div>
           </div>
           <div class="div8" id="popuptext">Закрыть</div>
@@ -218,12 +209,14 @@
 
       <detail v-if="isDetail"></detail>
     </div>
-  </modal>
+  </modal>-->
+  <checks-desktop></checks-desktop>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import modal from "@/components/ui-kit/modal.vue";
+import checksDesktop from "./desktop/checks/checks-desktop.vue";
 //Отрисовать детали корректно
 import detail from "@/components/wallet/check/detail.vue";
 import { useRouter } from "vue-router";

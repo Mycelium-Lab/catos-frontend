@@ -1,10 +1,9 @@
 <template>
-  <default-wallet>
+  <!--<default-wallet>
     <div class="user-nav">
       <div class="info-user">
         <div class="tags-grey1">
-          <!--<img class="bg-hover-icon" alt="" src="./public/bg-hover.svg" />-->
-
+         
           <b class="tag">Кредитор</b>
         </div>
         <div class="fields-and-photo-and-name">
@@ -113,7 +112,14 @@
       </div>
     </div>
     <app-bar></app-bar>
-  </default-wallet>
+  </default-wallet>-->
+  <default-desktop>
+    <template v-slot:title> Кошелек Catos </template>
+    <template v-slot:body>
+      <wallet-card></wallet-card>
+      <setting-card></setting-card>
+    </template>
+  </default-desktop>
 </template>
 
 <script setup lang="ts">
@@ -121,7 +127,9 @@ import { ref } from "vue";
 import defaultWallet from "@/components/layouts/default-wallet.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";
-const isScrinnig = ref(false);
+import defaultDesktop from "@/components/layouts/default-desktop.vue";
+import walletCard from "@/components/wallet/desktop/wallet-card.vue";
+import settingCard from "@/components/wallet/desktop/setting-card.vue";
 </script>
 
 <style scoped lang="scss">
