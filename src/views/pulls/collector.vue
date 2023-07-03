@@ -66,6 +66,7 @@
               role="collector"
               :variant="curentWindow"
               :key="curentWindow"
+              @mySoldLoans="() => (curentWindow = 'debt')"
             ></pulls-table>
           </li>
         </ul>
