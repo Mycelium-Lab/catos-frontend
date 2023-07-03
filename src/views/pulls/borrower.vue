@@ -37,7 +37,7 @@
     <app-bar></app-bar>
   </div>-->
   <default-desktop>
-    <template v-slot:title> Крдитные пулы </template>
+    <template v-slot:title> Кредитные пулы </template>
     <template v-slot:slider>
       <button-slider
         :style="{ width: '254px', margin: '0' }"
