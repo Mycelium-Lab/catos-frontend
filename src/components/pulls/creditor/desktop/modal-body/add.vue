@@ -20,6 +20,7 @@
               placeholder="Выберите токен"
               :options="options"
               :value="valueStatus"
+              :optionWidthDesk="456"
               @selected="(ev:any) => (valueToken = ev)"
             ></catos-select>
           </div>

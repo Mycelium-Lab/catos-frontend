@@ -125,9 +125,12 @@
           "
           >#123456</a
         >
-        на свой кошелек <br /><a class="status-subtitle-link"
-          >EQB5...dzE1hа44</a
-        >
+
+        <template v-if="isSuccessWithdraw">
+          на свой кошелек <br /><a class="status-subtitle-link"
+            >EQB5...dzE1hа44</a
+          >
+        </template>
       </p>
       <p class="status-subtitle">
         <a class="status-subtitle-link">Просмотр транзакции в Tonscan</a>
@@ -189,5 +192,26 @@ const close = () => {
       text-decoration: none;
     }
   }
+}
+.status-subtitle {
+  color: rgba(59, 59, 59, 0.96);
+  text-align: center;
+  font-size: 14px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 130%;
+  margin: 0;
+}
+.status-subtitle-link {
+  color: rgba(87, 126, 247, 0.96);
+  text-align: center;
+  font-size: 14px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 140%;
+  text-decoration-line: underline;
+  cursor: pointer;
 }
 </style>
