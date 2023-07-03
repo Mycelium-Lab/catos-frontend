@@ -107,4 +107,9 @@ const activeEdit = (isCreate: any) => {
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0px 12px 12px rgba(151, 71, 255, 0.04);
 }
+@media (min-width: 500px) {
+  .sort-list {
+    justify-content: initial;
+  }
+}
 </style>

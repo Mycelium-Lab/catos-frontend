@@ -95,13 +95,23 @@ const handleChange = (ev: any) => {
 }
 .button-slider {
   &_left {
-    position: absolute;
+    //Mobile
+    /*position: absolute;
     left: 5%;
     top: 0.5em;
     width: clamp(110px, 26.7vw, 100%);
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-tap-highlight-color: transparent;
+    text-align: center;*/
+
+    position: absolute;
+    left: 3.5em;
+    top: 0.5em;
+    /* width: clamp(110px, 26.7vw, 100%); */
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
     text-align: center;
+
     /*&::after {
       content: "";
       position: relative;
@@ -134,11 +144,12 @@ const handleChange = (ev: any) => {
   &_right {
     position: absolute;
     text-align: center;
-    right: 6%;
+    //right: 6%;
+    right: 3em;
     top: 0.5em;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-tap-highlight-color: transparent;
-    width: 26.2vw;
+    //width: 26.2vw;
 
     /*&::after {
       content: "";
@@ -393,11 +404,20 @@ input[type="radio"] {
     --s: 0.5;
   }
 }
-@media (max-width: 380px) {
+@media (min-width: 500px) {
   .button-slider {
-    &_right {
-      &_collector {
+    &_left {
+      &_dashboard {
         width: auto;
+        cursor: pointer;
+        left: 2em;
+      }
+    }
+    &_right {
+      &_dashboard {
+        width: auto;
+        cursor: pointer;
+        right: 2em;
       }
     }
   }

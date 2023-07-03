@@ -1,37 +1,41 @@
 <template>
   <div class="menu">
     <div class="iconsmenu-parent">
-      <img class="iconsmenu" alt="" src="/iconsmenu.svg" />
+      <img
+        class="iconsmenu"
+        alt=""
+        src="@/assets/desktop/catos-menu-logo.svg"
+      />
       <div class="div">МЕНЮ</div>
     </div>
     <div class="buttons">
       <div class="component-21">
         <div class="iconsmenu1">
-          <img class="container-icon" alt="" src="/container.svg" />
+          <img alt="" src="@/assets/desktop/menu-pulls.svg" />
         </div>
         <div class="div1">Пуллы</div>
       </div>
       <div class="component-211">
         <div class="iconsmenu1">
-          <img class="container-icon" alt="" src="/container1.svg" />
+          <img alt="" src="@/assets/desktop/menu-loans.svg" />
         </div>
         <div class="div1">Займы</div>
       </div>
       <div class="component-211">
         <div class="iconsmenu1">
-          <img class="container-icon" alt="" src="/container2.svg" />
+          <img alt="" src="@/assets/desktop/menu-dashboard.svg" />
         </div>
         <div class="div1">Дашбоард</div>
       </div>
       <div class="component-211">
         <div class="iconsmenu1">
-          <img class="container-icon" alt="" src="/container3.svg" />
+          <img alt="" src="@/assets/desktop/menu-setting.svg" />
         </div>
         <div class="div1">Настройки</div>
       </div>
       <div class="component-211">
         <div class="iconsmenu1">
-          <img class="container-icon" alt="" src="/container4.svg" />
+          <img alt="" src="@/assets/desktop/menu-wallet.svg" />
         </div>
         <div class="div1">Кошелек</div>
       </div>
@@ -40,7 +44,7 @@
           <div class="container-icon">
             <div class="user-container">
               <div class="user-container-child" />
-              <img class="vector-icon" alt="" src="/vector.svg" />
+              <img alt="" src="@/assets/desktop/menu-profile.svg" />
             </div>
           </div>
         </div>
@@ -100,7 +104,7 @@ export default defineComponent({
 }
 .component-21 {
   border-radius: 16px;
-  background-color: #f6f4fc;
+  /*background-color: #f6f4fc;*/
   width: 7.75em;
   display: flex;
   flex-direction: row;
