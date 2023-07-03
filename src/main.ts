@@ -13,5 +13,10 @@ app.use(router);
 
 let vh = window.innerHeight / 100;
 document.documentElement.style.setProperty("--vh", `${vh}px`);
+window.addEventListener("resize", () => {
+  // получаем текущее значение высоты
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+});
 
 app.mount("#app");
