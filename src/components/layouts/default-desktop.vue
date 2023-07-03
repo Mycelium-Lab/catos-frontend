@@ -38,7 +38,7 @@ import appBar from "@/components/ui-kit/desktop/app-bar.vue";
   gap: 20px;
 }
 .frame-parent {
-  width: 48.75em;
+  width: 780px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
