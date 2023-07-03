@@ -26,7 +26,7 @@
                     class="fields-password-and-mail2"
                     id="fieldsPasswordAndMail"
                   >
-                    <div class="text-icon" @click="() => (isAll = true)">
+                    <div class="text-icon">
                       <div class="div12">Все активы</div>
                       <img
                         class="iconscalendar"
@@ -2035,5 +2035,20 @@ import Sort from "./sort/sort.vue";
   margin: 0 auto;
   gap: 12em;
   margin-top: 1.665em;
+}
+@media (min-width: 500px) {
+  .tablesinvoices-list-widget {
+    width: 100%;
+  }
+  .top-content {
+    justify-content: space-between;
+    margin: 0em;
+    width: 100%;
+    padding: 20px 20px 0 20px;
+  }
+  .frame-wrapper {
+    justify-content: flex-start;
+    padding: 0px 20px 20px 20px;
+  }
 }
 </style>
