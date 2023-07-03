@@ -9,37 +9,47 @@
       <div class="div">МЕНЮ</div>
     </div>
     <div class="buttons">
-      <div class="component-21">
+      <div class="component-21" @click="toPulls">
         <div class="iconsmenu1">
           <img alt="" src="@/assets/desktop/menu-pulls.svg" />
         </div>
         <div class="div1">Пуллы</div>
       </div>
-      <div class="component-211">
+      <div
+        class="component-211"
+        v-if="role === 'creditor' || role === 'borrower'"
+        @click="toLoans"
+      >
         <div class="iconsmenu1">
           <img alt="" src="@/assets/desktop/menu-loans.svg" />
         </div>
         <div class="div1">Займы</div>
       </div>
-      <div class="component-211">
+      <div
+        class="component-211"
+        v-if="role === 'creditor' || role === 'depositor'"
+      >
         <div class="iconsmenu1">
           <img alt="" src="@/assets/desktop/menu-dashboard.svg" />
         </div>
         <div class="div1">Дашбоард</div>
       </div>
-      <div class="component-211">
+      <!--<div
+        class="component-211"
+        v-if="role === 'creditor' || role === 'depositor'"
+      >
         <div class="iconsmenu1">
           <img alt="" src="@/assets/desktop/menu-setting.svg" />
         </div>
         <div class="div1">Настройки</div>
-      </div>
-      <div class="component-211">
+      </div>-->
+      <div class="component-211" @click="toWallet">
         <div class="iconsmenu1">
           <img alt="" src="@/assets/desktop/menu-wallet.svg" />
         </div>
         <div class="div1">Кошелек</div>
       </div>
-      <div class="component-211">
+      <div class="component-211" @click="toProfile">
         <div class="iconsmenu1">
           <div class="container-icon">
             <div class="user-container">
@@ -53,14 +63,68 @@
     </div>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent, ref } from "vue";
-
-export default defineComponent({
-  name: "FrameComponent",
+<script setup lang="ts">
+import router from "@/router";
+import { ref, computed } from "vue";
+import { useRoute } from "vue-router";
+const route = useRoute();
+const role = ref(
+  localStorage.getItem ? JSON.parse(localStorage.getItem("role")!) : ""
+);
+const currentPage = computed(() => {
+  return route.name;
 });
+
+const toPulls = () => {
+  if (role.value === "creditor") {
+    router.push({ name: "pulls" });
+  } else if (role.value === "borrower") {
+    router.push({ name: "pulls-borrower" });
+  } else if (role.value === "depositor") {
+    router.push({ name: "pulls-depositor" });
+  } else if (role.value === "collector") {
+    router.push({ name: "pulls-collector" });
+  }
+};
+const toLoans = () => {
+  if (role.value === "borrower") {
+    router.push({ name: "loans-borrower" });
+  } else if (role.value === "creditor") {
+    router.push({ name: "loans" });
+  }
+};
+/*const toDashBoard = () => {
+  if (role.value === "depositor") {
+    router.push({ name: "dashboard-depositor" });
+  } else if (role.value === "creditor") {
+    router.push({ name: "dashboard" });
+  }
+};*/
+const toWallet = () => {
+  console.log(role.value);
+  if (role.value === "creditor") {
+    router.push({ name: "wallet" });
+  } else if (role.value === "borrower") {
+    router.push({ name: "wallet" });
+  } else if (role.value === "depositor") {
+    router.push({ name: "wallet" });
+  } else if (role.value === "collector") {
+    router.push({ name: "wallet" });
+  }
+};
+const toProfile = () => {
+  if (role.value === "creditor") {
+    router.push({ name: "setting" });
+  } else if (role.value === "borrower") {
+    router.push({ name: "setting" });
+  } else if (role.value === "depositor") {
+    router.push({ name: "setting" });
+  } else if (role.value === "collector") {
+    router.push({ name: "setting" });
+  }
+};
 </script>
-<style scoped>
+<style scoped lang="scss">
 .iconsmenu {
   position: absolute;
   top: 0em;
@@ -113,6 +177,11 @@ export default defineComponent({
   align-items: center;
   justify-content: flex-start;
   color: rgba(48, 51, 55, 0.9);
+  cursor: pointer;
+  &:hover {
+    border-radius: 16px;
+    background: #f6f4fc;
+  }
 }
 .component-211 {
   border-radius: 16px;
@@ -123,6 +192,11 @@ export default defineComponent({
   box-sizing: border-box;
   align-items: center;
   justify-content: flex-start;
+  cursor: pointer;
+  &:hover {
+    border-radius: 16px;
+    background: #f6f4fc;
+  }
 }
 .user-container-child {
   position: absolute;
