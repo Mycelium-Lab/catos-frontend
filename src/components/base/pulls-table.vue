@@ -373,6 +373,7 @@
                 v-if="role === 'collector' && variant === 'marketplace'"
                 :style="{ width: '100%' }"
                 variant="fourth"
+                @click.stop="toBuy"
                 >Купить</catos-button
               >
 
@@ -481,6 +482,37 @@
       }
     "
   ></my-depositor-pulls>
+  <all-collector-pulls
+    v-if="isAllCollector && !allCollectorState.buyModal"
+    @by="
+      () => {
+        isAllCollector = false;
+        toBuy();
+      }
+    "
+    @close="
+      () => {
+        isAllCollector = false;
+        resetState('all-collector');
+      }
+    "
+  ></all-collector-pulls>
+  <buy
+    v-if="allCollectorState.buyModal"
+    @close="
+      () => {
+        isAllCollector = false;
+        resetState('all-collector');
+      }
+    "
+    @myLoans="
+      () => {
+        isAllCollector = false;
+        toMySold();
+        resetState('all-collector');
+      }
+    "
+  ></buy>
 </template>
 
 <script setup lang="ts">
@@ -495,6 +527,8 @@ import allDepositorPulls from "../pulls/depositor/desktop/all-depositor-pulls.vu
 import addLiquid from "../pulls/depositor/desktop/add-liquid.vue";
 import myDepositorPulls from "../pulls/depositor/desktop/my-depositor-pulls.vue";
 import withdrawLiquid from "../pulls/depositor/desktop/withdraw-liquid.vue";
+import allCollectorPulls from "../pulls/collector/desktop/all-collector-pulls.vue";
+import buy from "../pulls/collector/desktop/buy.vue";
 import { useRouter } from "vue-router";
 
 const { variant, role } = defineProps({
@@ -506,12 +540,20 @@ const { variant, role } = defineProps({
   },
 });
 
+const emits = defineEmits(["mySoldLoans"]);
+const toMySold = () => {
+  console.log("SOLd");
+  emits("mySoldLoans");
+};
+
 const isAllCreditor = ref(false);
 const isMyCreditor = ref(false);
 const isAllBorrower = ref(false);
 const isMyBorrower = ref(false);
 const isAllDepositor = ref(false);
 const isMyDepositor = ref(false);
+const isAllCollector = ref(false);
+const isMyCollector = ref(false);
 
 const allCreditorState = {
   detailOtherModal: false,
@@ -533,6 +575,11 @@ const myDepositorState = {
   detailOtherModal: false,
 };
 
+const allCollectorState = {
+  detailOtherModal: false,
+  buyModal: false,
+};
+
 const resetState = (state: string) => {
   switch (state) {
     case "all-creditor":
@@ -547,6 +594,9 @@ const resetState = (state: string) => {
       allDepositorState.widthrawLiquidModal = false;
     case "my-depositor":
       myDepositorState.detailOtherModal = false;
+    case "all-collector":
+      allCollectorState.detailOtherModal = false;
+      allCollectorState.buyModal = false;
   }
 };
 
@@ -568,6 +618,11 @@ const toGetLoan = () => {
   isAllBorrower.value = true;
   allBorrowerState.detailOtherModal = false;
   allBorrowerState.getLoanModal = true;
+};
+
+const toBuy = () => {
+  isAllCollector.value = true;
+  allCollectorState.buyModal = true;
 };
 
 const toDetail = () => {
@@ -596,6 +651,9 @@ const toDetail = () => {
       isMyDepositor.value = true;
       myDepositorState.detailOtherModal = true;
     }
+  } else if (role === "collector") {
+    allCollectorState.detailOtherModal = true;
+    isAllCollector.value = true;
   }
 
   /*} else {
