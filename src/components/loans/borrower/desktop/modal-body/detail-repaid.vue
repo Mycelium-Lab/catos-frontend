@@ -13,15 +13,22 @@
                 <div class="code">
                   <div class="cahrjj3">EQCoqrqUMQCKKZTBFCQ0VzgOf</div>
                 </div>
-                <img class="iconchange" alt="" src="/iconchange.svg" />
               </div>
               <div class="component-27-parent">
                 <div class="component-27">
-                  <img class="share-icon" alt="" src="/share.svg" />
+                  <img
+                    class="share-icon"
+                    alt=""
+                    src="@/assets/images/iconsshare-black.svg"
+                  />
                   <div class="number">Поделиться</div>
                 </div>
                 <div class="component-27">
-                  <img class="share-icon" alt="" src="/copy.svg" />
+                  <img
+                    class="share-icon"
+                    alt=""
+                    src="@/assets/images/iconspaste.svg"
+                  />
                   <div class="number">Скопировать</div>
                 </div>
               </div>
@@ -64,15 +71,22 @@
                 <div class="code">
                   <div class="cahrjj3">EQCoqrqUMQCKKZTBFCQ0VzgOf</div>
                 </div>
-                <img class="iconchange" alt="" src="/iconchange1.svg" />
               </div>
               <div class="component-27-parent">
                 <div class="component-27">
-                  <img class="share-icon" alt="" src="/share.svg" />
+                  <img
+                    class="share-icon"
+                    alt=""
+                    src="@/assets/images/iconsshare-black.svg"
+                  />
                   <div class="number">Поделиться</div>
                 </div>
                 <div class="component-27">
-                  <img class="share-icon" alt="" src="/copy.svg" />
+                  <img
+                    class="share-icon"
+                    alt=""
+                    src="@/assets/images/iconspaste.svg"
+                  />
                   <div class="number">Скопировать</div>
                 </div>
               </div>
@@ -100,7 +114,11 @@
             <div class="parent1">
               <div class="div10">Кредитор:</div>
               <div class="radiobutton-parent">
-                <img class="radiobutton-icon" alt="" src="/radiobutton.svg" />
+                <img
+                  class="radiobutton-icon"
+                  alt=""
+                  src="@/assets/images/investore.svg"
+                />
                 <div class="div11">Деньги до зарплаты</div>
               </div>
             </div>

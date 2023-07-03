@@ -12,14 +12,14 @@
                 </div>
                 <div class="status-all">
                   <div class="colors-graphsorders-parent">
-                    <img
+                    <!--<img
                       class="colors-graphsorders-icon"
                       alt=""
                       src="/colors-graphsorders.svg"
-                    />
+                    />-->
                     <div class="div">Займ продан коллектору</div>
                   </div>
-                  <img class="iconchange" alt="" src="/iconchange.svg" />
+                  <!--<img class="iconchange" alt="" src="/iconchange.svg" />-->
                 </div>
               </div>
             </div>
@@ -28,7 +28,7 @@
             <div class="parent">
               <div class="div2">Кредитор:</div>
               <div class="radiobutton-parent">
-                <img class="radiobutton-icon" alt="" src="/radiobutton.svg" />
+                <!--<img class="radiobutton-icon" alt="" src="/radiobutton.svg" />-->
                 <div class="div3">МФО доверие</div>
               </div>
             </div>
@@ -71,11 +71,11 @@
                 </div>
               </div>
               <div class="notification">
-                <img
+                <!--<img
                   class="alert-triangle-icon"
                   alt=""
                   src="/alerttriangle.svg"
-                />
+                />-->
                 <div class="div12">
                   <p class="p">Вернуть не позднее: до 13.02.22, 16:00</p>
                   <p class="p1">(просрочен повторно)</p>
@@ -86,11 +86,11 @@
           <div class="frame-wrapper4">
             <div class="frame-parent2">
               <div class="radiobutton-parent">
-                <img
+                <!--<img
                   class="alert-triangle-icon1"
                   alt=""
                   src="/alerttriangle1.svg"
-                />
+                />-->
                 <div class="div13">Займ продан</div>
               </div>
               <div class="div14">

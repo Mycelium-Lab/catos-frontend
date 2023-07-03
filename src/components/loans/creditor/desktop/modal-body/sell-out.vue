@@ -85,7 +85,7 @@
                 <img
                   class="alert-triangle-icon"
                   alt=""
-                  src="/alerttriangle.svg"
+                  src="@/assets/images/alerttriangle.svg"
                 />
                 <div class="min-10-ton-container">
                   <p class="p">Вернуть не позднее: до 13.02.22, 16:00</p>

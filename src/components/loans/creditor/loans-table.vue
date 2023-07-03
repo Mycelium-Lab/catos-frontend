@@ -135,7 +135,7 @@
               <img
                 class="colors-graphsorders-icon"
                 alt=""
-                src="/colors-graphsorders.svg"
+                src="@/assets/desktop/fallback/colors-graphsorders.svg"
               />
               <div class="div121">Просрочен</div>
             </div>

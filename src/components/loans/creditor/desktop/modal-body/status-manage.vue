@@ -154,11 +154,11 @@
                 </div>
               </div>
               <div class="notification">
-                <img
+                <!--<img
                   class="alert-triangle-icon"
                   alt=""
                   src="/alerttriangle.svg"
-                />
+                />-->
                 <div class="div">
                   <p class="p">
                     <span>

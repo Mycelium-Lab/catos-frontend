@@ -82,7 +82,7 @@
     <div class="frame-wrapper1">
       <div class="frame-parent1">
         <div class="info-parent">
-          <img class="info-icon" alt="" src="/info.svg" />
+          <img class="info-icon" alt="" src="@/assets/desktop/info-black.svg" />
           <div class="div14">Пролонгация займа</div>
         </div>
         <div class="div15">

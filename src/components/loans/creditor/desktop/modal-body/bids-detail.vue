@@ -69,7 +69,7 @@
           </div>
         </div>
         <div class="notification">
-          <img class="percent-icon" alt="" src="/percent.svg" />
+          <img class="percent-icon" alt="" src="@/assets/images/percent.svg" />
           <div class="div11">Проценты начисляются с 12 апреля 2023 года</div>
         </div>
         <div class="frame-parent1">

@@ -96,7 +96,7 @@
               <img
                 class="alert-triangle-icon"
                 alt=""
-                src="/alerttriangle.svg"
+                src="@/assets/images/alerttriangle.svg"
               />
               <div class="div">
                 <p class="p">

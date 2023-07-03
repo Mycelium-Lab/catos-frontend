@@ -28,15 +28,22 @@
                   <div class="code">
                     <div class="cahrjj3">EQCoqrqUMQCKKZTBFCQ0VzgOf</div>
                   </div>
-                  <img class="iconchange" alt="" src="/iconchange.svg" />
                 </div>
                 <div class="component-27-parent">
                   <div class="component-27">
-                    <img class="share-icon" alt="" src="/share.svg" />
+                    <img
+                      class="share-icon"
+                      alt=""
+                      src="@/assets/images/iconsshare-black.svg"
+                    />
                     <div class="number">Поделиться</div>
                   </div>
                   <div class="component-27">
-                    <img class="share-icon" alt="" src="/copy.svg" />
+                    <img
+                      class="share-icon"
+                      alt=""
+                      src="@/assets/images/iconspaste.svg"
+                    />
                     <div class="number">Скопировать</div>
                   </div>
                 </div>
@@ -51,7 +58,7 @@
                   <img
                     class="radiobutton-icon"
                     alt=""
-                    src="/radiobutton1.svg"
+                    src="@/assets/images/investore.svg"
                   />
                   <div class="div3">Деньги до зарплаты</div>
                 </div>
@@ -85,7 +92,11 @@
               <div class="frame-child" />
               <div class="notification-wrapper">
                 <div class="notification">
-                  <img class="percent-icon" alt="" src="/percent1.svg" />
+                  <img
+                    class="percent-icon"
+                    alt=""
+                    src="@/assets/images/percent.svg"
+                  />
                   <div class="div10">
                     Проценты начнут начисляться с 12 апреля 2023 года, после
                     16:00
@@ -100,7 +111,7 @@
                 <img
                   class="alert-triangle-icon"
                   alt=""
-                  src="/alerttriangle.svg"
+                  src="@/assets/images/alerttriangle-red.svg"
                 />
                 <div class="div11">Займ просрочен</div>
               </div>

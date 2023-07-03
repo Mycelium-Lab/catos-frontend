@@ -24,15 +24,22 @@
                           <div class="ton">Пролонгирован: 23.02.22 19:30</div>
                           <div class="ton">Оплачено: 328 TON</div>
                         </div>
-                        <img class="iconchange" alt="" src="/iconchange.svg" />
                       </div>
                       <div class="component-27-parent">
                         <div class="component-27">
-                          <img class="share-icon" alt="" src="/share.svg" />
+                          <img
+                            class="share-icon"
+                            alt=""
+                            src="@/assets/images/iconsshare-black.svg"
+                          />
                           <div class="number">Поделиться</div>
                         </div>
                         <div class="component-27">
-                          <img class="share-icon" alt="" src="/copy.svg" />
+                          <img
+                            class="share-icon"
+                            alt=""
+                            src="@/assets/images/iconspaste.svg"
+                          />
                           <div class="number">Скопировать</div>
                         </div>
                       </div>
@@ -52,15 +59,22 @@
                           <div class="ton">Пролонгирован: 23.02.22 19:30</div>
                           <div class="ton">Оплачено: 328 TON</div>
                         </div>
-                        <img class="iconchange" alt="" src="/iconchange1.svg" />
                       </div>
                       <div class="component-27-parent">
                         <div class="component-27">
-                          <img class="share-icon" alt="" src="/share1.svg" />
+                          <img
+                            class="share-icon"
+                            alt=""
+                            src="@/assets/images/iconsshare-black.svg"
+                          />
                           <div class="number">Поделиться</div>
                         </div>
                         <div class="component-27">
-                          <img class="share-icon" alt="" src="/copy1.svg" />
+                          <img
+                            class="share-icon"
+                            alt=""
+                            src="@/assets/images/iconspaste.svg"
+                          />
                           <div class="number">Скопировать</div>
                         </div>
                       </div>
@@ -80,15 +94,22 @@
                           <div class="ton">Пролонгирован: 23.02.22 19:30</div>
                           <div class="ton">Оплачено: 328 TON</div>
                         </div>
-                        <img class="iconchange" alt="" src="/iconchange2.svg" />
                       </div>
                       <div class="component-27-parent">
                         <div class="component-27">
-                          <img class="share-icon" alt="" src="/share2.svg" />
+                          <img
+                            class="share-icon"
+                            alt=""
+                            src="@/assets/images/iconsshare-black.svg"
+                          />
                           <div class="number">Поделиться</div>
                         </div>
                         <div class="component-27">
-                          <img class="share-icon" alt="" src="/copy2.svg" />
+                          <img
+                            class="share-icon"
+                            alt=""
+                            src="@/assets/images/iconspaste.svg"
+                          />
                           <div class="number">Скопировать</div>
                         </div>
                       </div>
@@ -108,15 +129,22 @@
                           <div class="ton">Пролонгирован: 23.02.22 19:30</div>
                           <div class="ton">Оплачено: 328 TON</div>
                         </div>
-                        <img class="iconchange" alt="" src="/iconchange3.svg" />
                       </div>
                       <div class="component-27-parent">
                         <div class="component-27">
-                          <img class="share-icon" alt="" src="/share3.svg" />
+                          <img
+                            class="share-icon"
+                            alt=""
+                            src="@/assets/images/iconsshare-black.svg"
+                          />
                           <div class="number">Поделиться</div>
                         </div>
                         <div class="component-27">
-                          <img class="share-icon" alt="" src="/copy3.svg" />
+                          <img
+                            class="share-icon"
+                            alt=""
+                            src="@/assets/images/iconspaste.svg"
+                          />
                           <div class="number">Скопировать</div>
                         </div>
                       </div>

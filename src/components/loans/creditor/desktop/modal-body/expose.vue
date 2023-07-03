@@ -93,7 +93,7 @@
               <img
                 class="alert-triangle-icon"
                 alt=""
-                src="/alerttriangle.svg"
+                src="@/assets/images/alerttriangle.svg"
               />
               <div class="div">
                 <p class="p">
@@ -113,7 +113,7 @@
               <img
                 class="alert-triangle-icon"
                 alt=""
-                src="/alerttriangle.svg"
+                src="@/assets/images/alerttriangle.svg"
               />
               <div class="div19">
                 <p class="p">Вернуть не позднее: до 13.02.22, 16:00</p>
