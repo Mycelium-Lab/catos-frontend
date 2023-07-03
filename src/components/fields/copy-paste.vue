@@ -79,7 +79,7 @@ const handleBlur = () => {
   /* width: 300px;*/
   width: 100%;
   position: relative;
-  margin-top: 20px;
+  /*margin-top: 20px;*/
 }
 .catos-fields_copy-pate {
   border-radius: var(--br-xs);

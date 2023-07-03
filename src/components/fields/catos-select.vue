@@ -24,7 +24,11 @@
     </div>
     <ul
       v-if="isOpen"
-      :style="{ width: `${optionWidth}vw` }"
+      :style="
+        optionWidth
+          ? { width: `${optionWidth}vw` }
+          : { width: `${optionWidthDesk}px` }
+      "
       class="catos-select__options"
     >
       <template v-if="Array.isArray(options)">
@@ -105,6 +109,9 @@ const { placeholder } = defineProps({
     type: String,
   },
   optionWidth: {
+    type: Number,
+  },
+  optionWidthDesk: {
     type: Number,
   },
 });
@@ -201,6 +208,7 @@ watch(isOpen, () => {
   font-weight: 300;
   width: 100%;
   font-size: 1em;
+  background: transparent;
   &_fill {
     color: rgba(46, 58, 89, 1);
   }
