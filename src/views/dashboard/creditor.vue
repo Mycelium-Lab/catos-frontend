@@ -1,5 +1,5 @@
 <template>
-  <div class="tab-1-1">
+  <!--<div class="tab-1-1">
     <div class="header6">
       <div class="div9">Дашбоард</div>
     </div>
@@ -371,7 +371,7 @@
           </div>
           <chart id="2"></chart>
 
-          <!--<div class="days1">
+          <div class="days1">
             <div class="div32">Апр</div>
             <div class="div32">Май</div>
             <div class="div34">Июнь</div>
@@ -380,7 +380,7 @@
             <div class="div34">Окт</div>
             <div class="div34">Ноябрь</div>
             <div class="div34">Декабрь</div>
-          </div>-->
+          </div>
         </div>
         <div class="divider">
           <div class="line"></div>
@@ -1722,7 +1722,547 @@
       </div>
     </div>
   </div>
-  <app-bar></app-bar>
+  <app-bar></app-bar>-->
+  <default-desktop>
+    <template v-slot:title> Дашбоард </template>
+
+    <template v-slot:tools>
+      <div class="filter-2">
+        <div class="col-titles-bg"></div>
+        <div class="div10">Фильтр:</div>
+        <div class="filter-2-inner">
+          <div class="frame-wrapper-desktop">
+            <div class="frame-group">
+              <div class="group">
+                <div class="div11">Выберите статус:</div>
+                <div class="fields-password-and-mail2">
+                  <div class="frame-div">
+                    <div class="div12">Все пуллы</div>
+                    <img
+                      class="chevron-right-icon"
+                      alt=""
+                      src="@/assets/images/chevron-right.svg"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="group">
+                <div class="div11">Выберите дату:</div>
+                <div class="fields-password-and-mail-container">
+                  <div class="fields-password-and-mail3">
+                    <div class="frame-div">
+                      <div class="div12">08.17.2023</div>
+                    </div>
+                  </div>
+                  <div class="iconscalendar-wrapper" id="frameContainer3">
+                    <img
+                      class="chevron-right-icon"
+                      alt=""
+                      src="@/assets/images/iconscalendar.svg"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="filter-2-child"></div>
+        <div class="vector-wrapper" id="frameContainer9"></div>
+      </div>
+    </template>
+    <template v-slot:body>
+      <button-slider
+        :style="{ width: '300px', margin: '0' }"
+        :variantIndex="2"
+        :tabs="['Кол-вл займов', 'Займы в TON']"
+      ></button-slider>
+      <div class="container158">
+        <div class="containers-parent">
+          <div class="containers">
+            <div class="id">ID</div>
+            <img
+              class="arrow-down-arrow-up-icon"
+              alt=""
+              src="@/assets/images/arrowdownarrowup.svg"
+            />
+          </div>
+          <div class="containers1">
+            <div class="id">{{ rowPairs[0] }}</div>
+            <img
+              class="arrow-down-arrow-up-icon"
+              alt=""
+              src="@/assets/images/arrowdownarrowup.svg"
+            />
+          </div>
+          <div class="containers2">
+            <div class="id">{{ rowPairs[1] }}</div>
+            <img
+              class="arrow-down-arrow-up-icon"
+              alt=""
+              src="@/assets/images/arrowdownarrowup.svg"
+            />
+          </div>
+        </div>
+        <div class="arrows">
+          <button
+            class="arrows-table1"
+            :disabled="currentPage === 0 ? true : false"
+            @click="
+              () => {
+                isActive = 'prev';
+                currentPage -= 1;
+              }
+            "
+          >
+            <img
+              v-if="isActive !== 'prev'"
+              class="arrow-down-arrow-up-icon"
+              alt=""
+              src="@/assets/images/prev.svg"
+            />
+            <img
+              v-else
+              class="arrow-down-arrow-up-icon"
+              alt=""
+              src="@/assets/images/prev-active.svg"
+            />
+          </button>
+          <button
+            class="arrows-table1"
+            :disabled="currentPage === 2 ? true : false"
+            @click="
+              () => {
+                isActive = 'next';
+                currentPage += 1;
+              }
+            "
+          >
+            <img
+              v-if="isActive !== 'next'"
+              class="arrow-down-arrow-up-icon"
+              alt=""
+              src="@/assets/images/next.svg"
+            />
+            <img
+              v-else
+              class="arrow-down-arrow-up-icon"
+              alt=""
+              src="@/assets/images/next-active.svg"
+            />
+          </button>
+        </div>
+      </div>
+      <div class="frame-container">
+        <div class="containers-group">
+          <div class="containers3">
+            <div class="id-7">ID 7</div>
+          </div>
+          <div class="containers4">
+            <div class="id-7">ID 6</div>
+          </div>
+          <div class="containers3">
+            <div class="id-7">ID 5</div>
+          </div>
+          <div class="containers4">
+            <div class="id-7">ID 4</div>
+          </div>
+          <div class="containers7">
+            <div class="id-7">ID 3</div>
+          </div>
+          <div class="containers8">
+            <div class="id-7">ID 2</div>
+          </div>
+        </div>
+        <div class="containers-container">
+          <div class="containers9">
+            <div class="div18">160</div>
+          </div>
+          <div class="containers10">
+            <div class="div18">190</div>
+          </div>
+          <div class="containers9">
+            <div class="div18">33</div>
+          </div>
+          <div class="containers10">
+            <div class="div18">33</div>
+          </div>
+          <div class="containers9">
+            <div class="div18">23</div>
+          </div>
+          <div class="containers10">
+            <div class="div18">21</div>
+          </div>
+        </div>
+        <div class="containers-parent1">
+          <div class="containers9">
+            <div class="div18">105</div>
+          </div>
+          <div class="containers10">
+            <div class="div18">24</div>
+          </div>
+          <div class="containers9">
+            <div class="div18">7</div>
+          </div>
+          <div class="containers10">
+            <div class="div18">7</div>
+          </div>
+          <div class="containers9">
+            <div class="div18">7</div>
+          </div>
+          <div class="containers10">
+            <div class="div18">7</div>
+          </div>
+        </div>
+        <div class="containers-parent2">
+          <div class="containers21">
+            <div class="arrows-table">
+              <img
+                class="chevron-right-icon"
+                alt=""
+                src="@/assets/images/eye.svg"
+              />
+            </div>
+          </div>
+          <div class="containers22">
+            <div class="arrows-table">
+              <img
+                class="chevron-right-icon"
+                alt=""
+                src="@/assets/images/eye.svg"
+              />
+            </div>
+          </div>
+          <div class="containers21">
+            <div class="arrows-table">
+              <img
+                class="chevron-right-icon"
+                alt=""
+                src="@/assets/images/eye.svg"
+              />
+            </div>
+          </div>
+          <div class="containers22">
+            <div class="arrows-table">
+              <img
+                class="chevron-right-icon"
+                alt=""
+                src="@/assets/images/eye.svg"
+              />
+            </div>
+          </div>
+          <div class="containers21">
+            <div class="arrows-table">
+              <img
+                class="chevron-right-icon"
+                alt=""
+                src="@/assets/images/eye.svg"
+              />
+            </div>
+          </div>
+          <div class="containers22">
+            <div class="arrows-table">
+              <img
+                class="chevron-right-icon"
+                alt=""
+                src="@/assets/images/eye.svg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="frame">
+        <div class="div30">Раскрыть таблицу полностью</div>
+      </div>
+      <div class="component-25" @click="toCardDesktop">
+        <div class="div31">Перейти к формату карточек пуллов:</div>
+        <img
+          class="chevron-right-icon"
+          alt=""
+          src="@/assets/images/chevron-right.svg"
+        />
+      </div>
+      <div class="graphsorders-mobile-01">
+        <div class="master">
+          <div class="content-frame">
+            <div class="elements-textbox-tablerow">
+              <div class="description">
+                <div class="title">Финансы</div>
+                <div class="subtitle">Catos</div>
+              </div>
+            </div>
+            <div class="text-frame">
+              <div class="info-right-side">
+                <div class="content">
+                  <div class="title">1 420 000 TON</div>
+                  <div class="info">+1.215 %</div>
+                </div>
+                <img
+                  class="arrows-down-arrow-right"
+                  alt=""
+                  src="@/assets/images/down-arrow-right.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div class="table">
+          <div class="tabs">
+            <div class="tabstextactive">
+              <div class="tab-title">День</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Неделя</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Месяц</div>
+            </div>
+          </div>
+          <chart id="1"></chart>
+
+          <div class="days">
+            <div class="div32">Апр</div>
+            <div class="div32">Май</div>
+            <div class="div34">Июнь</div>
+            <div class="div35">Авг</div>
+            <div class="div34">Сент</div>
+            <div class="div34">Окт</div>
+            <div class="div34">Ноябрь</div>
+            <div class="div34">Декабрь</div>
+          </div>
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div class="slider-buttons">
+          <div class="buttons-graphsordersdown">
+            <div class="div40">Прибыль</div>
+          </div>
+          <div class="buttons-graphsordersdown">
+            <div class="div40">Доход</div>
+          </div>
+          <div class="buttons-graphsordersdown2">
+            <div class="div40">Расход</div>
+          </div>
+          <div class="buttons-graphsordersdown2">
+            <div class="div40">ROI</div>
+          </div>
+        </div>
+      </div>
+      <div class="graphsorders-mobile-01">
+        <div class="master">
+          <div class="content-frame">
+            <div class="elements-textbox-tablerow">
+              <div class="description">
+                <div class="title">Финансы</div>
+                <div class="subtitle">Catos</div>
+              </div>
+            </div>
+            <div class="text-frame">
+              <div class="info-right-side">
+                <div class="content">
+                  <div class="title">1 420 000 TON</div>
+                  <div class="info">+1.215 %</div>
+                </div>
+                <img
+                  class="arrows-down-arrow-right"
+                  alt=""
+                  src="@/assets/images/down-arrow-right.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div class="table">
+          <div class="tabs">
+            <div class="tabstextactive">
+              <div class="tab-title">День</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Неделя</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Месяц</div>
+            </div>
+          </div>
+          <chart id="2"></chart>
+
+          <div class="days">
+            <div class="div32">Апр</div>
+            <div class="div32">Май</div>
+            <div class="div34">Июнь</div>
+            <div class="div35">Авг</div>
+            <div class="div34">Сент</div>
+            <div class="div34">Окт</div>
+            <div class="div34">Ноябрь</div>
+            <div class="div34">Декабрь</div>
+          </div>
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div class="slider-buttons">
+          <div class="buttons-graphsordersdown">
+            <div class="div40">Прибыль</div>
+          </div>
+          <div class="buttons-graphsordersdown">
+            <div class="div40">Доход</div>
+          </div>
+          <div class="buttons-graphsordersdown2">
+            <div class="div40">Расход</div>
+          </div>
+          <div class="buttons-graphsordersdown2">
+            <div class="div40">ROI</div>
+          </div>
+        </div>
+      </div>
+      <div class="graphsorders-mobile-01">
+        <div class="master">
+          <div class="content-frame">
+            <div class="elements-textbox-tablerow">
+              <div class="description">
+                <div class="title">Финансы</div>
+                <div class="subtitle">Catos</div>
+              </div>
+            </div>
+            <div class="text-frame">
+              <div class="info-right-side">
+                <div class="content">
+                  <div class="title">1 420 000 TON</div>
+                  <div class="info">+1.215 %</div>
+                </div>
+                <img
+                  class="arrows-down-arrow-right"
+                  alt=""
+                  src="@/assets/images/down-arrow-right.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div class="table">
+          <div class="tabs">
+            <div class="tabstextactive">
+              <div class="tab-title">День</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Неделя</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Месяц</div>
+            </div>
+          </div>
+          <chart id="3"></chart>
+
+          <div class="days">
+            <div class="div32">Апр</div>
+            <div class="div32">Май</div>
+            <div class="div34">Июнь</div>
+            <div class="div35">Авг</div>
+            <div class="div34">Сент</div>
+            <div class="div34">Окт</div>
+            <div class="div34">Ноябрь</div>
+            <div class="div34">Декабрь</div>
+          </div>
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div class="slider-buttons">
+          <div class="buttons-graphsordersdown">
+            <div class="div40">Прибыль</div>
+          </div>
+          <div class="buttons-graphsordersdown">
+            <div class="div40">Доход</div>
+          </div>
+          <div class="buttons-graphsordersdown2">
+            <div class="div40">Расход</div>
+          </div>
+          <div class="buttons-graphsordersdown2">
+            <div class="div40">ROI</div>
+          </div>
+        </div>
+      </div>
+      <div class="graphsorders-mobile-01">
+        <div class="master">
+          <div class="content-frame">
+            <div class="elements-textbox-tablerow">
+              <div class="description">
+                <div class="title">Финансы</div>
+                <div class="subtitle">Catos</div>
+              </div>
+            </div>
+            <div class="text-frame">
+              <div class="info-right-side">
+                <div class="content">
+                  <div class="title">1 420 000 TON</div>
+                  <div class="info">+1.215 %</div>
+                </div>
+                <img
+                  class="arrows-down-arrow-right"
+                  alt=""
+                  src="@/assets/images/down-arrow-right.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div class="table">
+          <div class="tabs">
+            <div class="tabstextactive">
+              <div class="tab-title">День</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Неделя</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Месяц</div>
+            </div>
+          </div>
+          <chart id="4"></chart>
+
+          <div class="days">
+            <div class="div32">Апр</div>
+            <div class="div32">Май</div>
+            <div class="div34">Июнь</div>
+            <div class="div35">Авг</div>
+            <div class="div34">Сент</div>
+            <div class="div34">Окт</div>
+            <div class="div34">Ноябрь</div>
+            <div class="div34">Декабрь</div>
+          </div>
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div class="slider-buttons">
+          <div class="buttons-graphsordersdown">
+            <div class="div40">Прибыль</div>
+          </div>
+          <div class="buttons-graphsordersdown">
+            <div class="div40">Доход</div>
+          </div>
+          <div class="buttons-graphsordersdown2">
+            <div class="div40">Расход</div>
+          </div>
+          <div class="buttons-graphsordersdown2">
+            <div class="div40">ROI</div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </default-desktop>
 </template>
 
 <script setup lang="ts">
@@ -1730,10 +2270,14 @@ import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import chart from "@/components/dashboard/chart.vue";
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
+import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";
 const router = useRouter();
 const toCard = () => {
   router.push({ name: "dashboard-cards" });
+};
+const toCardDesktop = () => {
+  router.push({ name: "dashboard-cards-desktop" });
 };
 const currentPage = ref(0);
 const rows = [
@@ -2069,6 +2613,7 @@ const rowPairs = computed(() => {
   padding: 0.25em;
   border: none;
   background: transparent;
+  cursor: pointer;
 }
 .arrows {
   margin: 0 !important;
@@ -3661,5 +4206,44 @@ const rowPairs = computed(() => {
   text-align: center;
   color: rgba(87, 126, 247, 0.96);
   font-family: Inter;
+}
+@media (min-width: 500px) {
+  .filter-2 {
+    width: 48.75em;
+  }
+  .filter-2-inner,
+  .tables-light-mode {
+    width: auto;
+  }
+  .frame-container {
+    width: 100%;
+  }
+  .arrows-table1 {
+    width: 24px;
+    height: 24px;
+    &:hover {
+      background: rgba(245, 247, 249, 1);
+    }
+  }
+  .arrows {
+    left: 45em;
+  }
+  .containers21,
+  .containers22 {
+    align-self: end;
+  }
+  .containers,
+  .containers1,
+  .containers2,
+  .containers-group,
+  .containers-container {
+    width: 195px;
+  }
+  .containers-parent1 {
+    width: 400px;
+  }
+  .containers8 {
+    width: 100%;
+  }
 }
 </style>
