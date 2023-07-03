@@ -221,11 +221,23 @@
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                   ></loader-field>
                 </div>
-                <input-data
+                <!--Mobile-->
+                <!--<input-data
                   background="transparent"
                   border="1px solid rgba(101, 96, 96, 1)"
                   placeholder="Тип фалйа"
                   :style="{ width: '86.8%', left: '5vw' }"
+                  :right="true"
+                >
+                  <template v-slot:right-icon>
+                    <img src="@/assets/images/iconseditoutline-black.svg" />
+                  </template>
+                </input-data>-->
+                <input-data
+                  background="transparent"
+                  border="1px solid rgba(101, 96, 96, 1)"
+                  placeholder="Тип фалйа"
+                  :style="{ width: '309px', left: '1.3em' }"
                   :right="true"
                 >
                   <template v-slot:right-icon>
@@ -1155,11 +1167,47 @@ const options = {
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 119.44em;
+  height: 125.44em;
   overflow-y: auto;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
   overflow-x: hidden;
+}
+@media (min-width: 500px) {
+  .div8 {
+    width: 400px;
+    position: relative;
+    margin: 0 auto;
+    left: 0em;
+    top: 12em;
+  }
+  .text-parent {
+    left: 1.2em;
+  }
+  .checkbox-parent {
+    left: 1.2em;
+  }
+  .registration-options-parent {
+    width: 100%;
+  }
+  .buttonnext {
+    width: 400px;
+  }
+  .header1 {
+    position: relative;
+    top: -90em;
+
+    flex-direction: row;
+    gap: 0.75em;
+    margin: 0 auto;
+    width: 400px;
+  }
+  .iphone-13-13-form-registr {
+    overflow-y: hidden;
+  }
+  .form-registration-36 {
+    height: 100%;
+  }
 }
 </style>

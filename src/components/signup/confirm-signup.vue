@@ -1589,6 +1589,60 @@ const role = computed(() => window.history.state?.role);
   font-family: Inter;
   overflow: hidden;
 }
+@media (min-width: 500px) {
+  .div19,
+  .fieldsregistration-options4 {
+    //top: 2.25em;
+    left: 0em;
+    height: 13.75em;
+    width: 400px;
+    position: relative;
+    margin: 0 auto;
+  }
+  .div19 {
+    top: 6em;
+  }
+  .fieldsregistration-options4 {
+    top: 10.44em;
+  }
+  .iphone-13-13-,
+  .form-registration-26 {
+    height: 100%;
+  }
+  .inputfields {
+    width: 0em;
+  }
+  /*.slidersteps {
+    top: 14em;
+    right: 2em;
+    width: 160px;
+    color: #958463;
+    position: relative;
+    margin: 0 auto;
+  }*/
+  .buttonnext {
+    position: relative;
+    top: 14.44em;
+    left: 0px;
+    border-radius: 20px;
+    background-color: #ffdb6d;
+    width: 400px;
+    height: 3em;
+    overflow: hidden;
+    flex-direction: row;
+    padding: 0.5em 7.25em;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 auto;
+  }
+  /* .buttonback {
+    top: 13.5em;
+    left: 10em;
+  }*/
+  .iphone-13-13- {
+    overflow-y: auto;
+  }
+}
 @media (max-width: 370px) {
   .component-4 {
     width: 2.2em;

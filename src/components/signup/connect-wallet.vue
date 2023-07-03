@@ -28,9 +28,44 @@
         <div class="div10">Последний этап</div>
         <div class="div11">Привяжите ваш тон кошелек</div>
       </div>
-      <router-link class="buttonnext" to="connect-wallet-finish">
+      <!--<router-link class="buttonnext" to="connect-wallet-finish">
         <b class="ton-kepeer">Подключить TON Kepeer</b>
-      </router-link>
+      </router-link>-->
+      <div class="buttonnext" @click="() => (finish = true)">
+        <b class="ton-kepeer">Подключить TON Kepeer</b>
+      </div>
+      <confirm-qr-destop
+        v-if="finish"
+        @close="() => (finish = false)"
+        @result="
+          () => {
+            finish = false;
+            isSuccess = true;
+          }
+        "
+      >
+        <template v-slot:header> Подключение кошелька </template>
+        <template v-slot:title>Connect TON</template>
+        <template v-slot:subtitle>
+          Scan the QR code with your phone's <br />
+          camera or Tonkeeper
+        </template>
+        <template v-slot:action>
+          <b class="ton-kepeer">Sign in with Tokenkepeery</b>
+        </template>
+        <template v-slot:footer>
+          <div class="we-do-not">
+            We do not receive or store your wallet login details, so your TON is
+            safe.
+          </div>
+        </template>
+      </confirm-qr-destop>
+      <desktop-modal v-if="isSuccess" @close="() => (isSuccess = false)">
+        <template v-slot:title>Подключение кошелька</template>
+        <template v-slot:body>
+          <success></success>
+        </template>
+      </desktop-modal>
       <div class="catos-container">
         <span class="ton-keeper-txt-container_preview ton-keeper-txt-container">
           <p class="catos-">CATOS - платформа кредитования</p>
@@ -119,7 +154,14 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
+import desktopModal from "@/components/base/desktop-modal.vue";
+import success from "./desktop/modal-body/success.vue";
+const finish = ref(false);
+const isSuccess = ref(false);
+</script>
 
 <style scoped lang="scss">
 .bg-icon {
@@ -227,7 +269,7 @@
   line-height: 1.75em;
 }
 .buttonnext {
-  position: absolute;
+  /* position: absolute;
   top: 23.06em;
   left: 11vw;
   border-radius: 20px;
@@ -244,6 +286,26 @@
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
+  */
+  position: relative;
+  top: 17em;
+  /* left: 11vw; */
+  border-radius: 20px;
+  background: linear-gradient(89.77deg, #9747ff, #ad6fff);
+  width: 23.38em;
+  height: 3em;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  color: #f3f3f3;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
 }
 .catos- {
   margin: 0;
@@ -262,11 +324,14 @@
   width: 25em;
 }
 .catos-container {
-  position: absolute;
-  top: 19.92em;
-  left: 3.75em;
+  position: relative;
+  top: 8em;
+  /* left: 3.75em
+em
+; */
   font-weight: 300;
-  width: 77vw;
+  width: 40.38em;
+  margin: 0 auto;
 }
 .catos1,
 .faq2 {
@@ -335,10 +400,11 @@
 .frame-group {
   gap: 1em;
   color: #3b3b3b;
-  width: 77vw;
+  width: 28em;
 }
 .faq1 {
   gap: 0.38em;
+  width: 28em;
 }
 .faq-child {
   align-self: stretch;
@@ -404,16 +470,24 @@
   flex-direction: column;
 }
 .download {
-  width: 77vw;
+  //width: 77vw;
+  width: 28em;
   gap: 1.06em;
   color: #3b3b3b;
 }
 .faq {
-  position: absolute;
+  /*position: absolute;
   top: 28.56em;
   left: 11vw;
   gap: 2em;
+  text-align: left;*/
+  position: relative;
+  top: 14em;
+  left: 1em;
+  gap: 2em;
   text-align: left;
+  width: 30em;
+  margin: 0 auto;
 }
 .form-registration-66 {
   position: absolute;

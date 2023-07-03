@@ -1634,15 +1634,16 @@ const options = {
   color: rgba(59, 59, 59, 0.7);
 }
 .header2 {
-  position: absolute;
-  top: 3em;
+  position: relative;
+  top: 5em;
   left: 1.5em;
-  width: 21.38em;
+  width: 28.38em;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.75em;
+  margin: 0 auto;
 }
 .registration-options-inner {
   position: absolute;
@@ -1938,11 +1939,12 @@ const options = {
 }
 
 .registration-options-parent {
-  position: absolute;
-  top: 10.5em;
-  left: 6vw;
-  width: 87.7%;
+  position: relative;
+  top: 8.5em;
+  //left: 6vw;
+  width: 28.8em;
   height: 77.56em;
+  margin: 0 auto;
 }
 .b2 {
   position: relative;
@@ -1950,7 +1952,7 @@ const options = {
   line-height: 1.75em;
 }
 .buttonnext1 {
-  position: absolute;
+  /*position: absolute;
   top: 90.06em;
   left: 1.5em;
   border-radius: 20px;
@@ -1965,6 +1967,25 @@ const options = {
   align-items: center;
   justify-content: center;
   text-align: center;
+  color: var(--color-darkslategray-100);
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;*/
+  position: relative;
+  top: 11.06em;
+  left: 0.2em;
+  border-radius: 20px;
+  background-color: #fdd674;
+  width: 28.8em;
+  height: 3em;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
   color: var(--color-darkslategray-100);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
@@ -1986,7 +2007,7 @@ const options = {
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 100.94em;
+  height: 110.94em;
 }
 .battery-icon {
   position: absolute;
@@ -2108,7 +2129,7 @@ const options = {
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 103.69em;
+  height: 110.69em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;

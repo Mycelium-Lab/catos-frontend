@@ -757,6 +757,7 @@
       <img class="search-icon" alt="" src="../public/search-icon.svg" />
     </router-link>
   </div>
+  <!--<confirm-qr-destop></confirm-qr-destop>-->
 </template>
 
 <script setup lang="ts">
@@ -764,7 +765,7 @@ import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
 import buttonSlider from "../../../components/ui-kit/buttons/button-slider.vue";
-
+import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
 import { ref } from "vue";
 const value = ref("");
 const options = {
@@ -1234,6 +1235,7 @@ const options = {
 }
 .div8 {
   top: 11em;
+
   left: 6vw;
   height: 59.06em;
 }
@@ -1303,12 +1305,14 @@ const options = {
   gap: 0.38em;
 }
 .header {
-  position: absolute;
+  // position: absolute;
+  position: relative;
   top: 2.25em;
-  left: 1.5em;
+  // left: 1.5em;
   width: 21.38em;
   flex-direction: row;
   gap: 0.75em;
+  margin: 0 auto;
 }
 .registration-options-child {
   position: absolute;
@@ -2270,6 +2274,69 @@ const options = {
   color: #3b3b3b;
   font-family: Inter;
   overflow-x: hidden;
+}
+@media (min-width: 500px) {
+  .div17,
+  .group {
+    width: 400px;
+    position: relative;
+    margin: 0 auto;
+  }
+  .div17 {
+    top: -15em;
+  }
+  .group {
+    width: 360px;
+    top: 47em;
+    left: 0em;
+  }
+  .registration-options {
+    position: relative;
+    top: 72.31em;
+    width: 400px;
+    height: 37.63em;
+    margin: 0 auto;
+    left: 1em;
+  }
+  .registration-options1 {
+    position: relative;
+    top: 76em;
+    left: 1em;
+    width: 400px;
+    height: 43.31em;
+    margin: 0 auto;
+  }
+  .registration-options-wrapper {
+    position: relative;
+    top: 80em;
+    left: 1em;
+    height: 50.56em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 400px;
+    justify-content: flex-start;
+    margin: 0 auto;
+  }
+  .registration-options2 {
+    width: 100%;
+  }
+  .iphone-13-13-form-registr {
+    height: 250.44em;
+  }
+  .form-registration-46 {
+    height: 100%;
+  }
+  .buttonnext {
+    position: relative;
+    top: 222em;
+    margin: 0 auto;
+    left: 1em;
+    width: 400px;
+  }
+  .div76 {
+    left: 5em;
+  }
 }
 @media (max-width: 371px) {
   .child {

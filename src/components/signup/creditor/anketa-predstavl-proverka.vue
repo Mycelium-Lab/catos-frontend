@@ -1738,7 +1738,8 @@ const options = {
   color: rgba(59, 59, 59, 0.7);
 }
 .header2 {
-  position: absolute;
+  //position: absolute;
+  position: relative;
   top: 3em;
   left: 1.5em;
   width: 21.38em;
@@ -1747,6 +1748,7 @@ const options = {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.75em;
+  margin: 0 auto;
 }
 .text-and-fill3 {
   position: absolute;
@@ -1934,10 +1936,11 @@ const options = {
   color: #2e3a59;
 }
 .registration-options3 {
-  position: absolute;
+  //position: absolute;
+  position: relative;
   top: 48.63em;
   left: 0;
-  width: 88.7vw;
+  //width: 88.7vw;
   height: 38.19em;
 }
 .registration-options-child2 {
@@ -1962,7 +1965,8 @@ const options = {
   position: absolute;
   top: 89em;
   left: 0;
-  width: 88.7vw;
+  //width: 88.7vw;
+  width: 23.38em;
   height: 32.94em;
 }
 .fields-password-and-mail46 {
@@ -2051,18 +2055,27 @@ const options = {
   width: 100%;
 }
 .parent35 {
-  position: absolute;
-  top: 27.63em;
-  left: 1.31em;
-  width: 77vw;
+  //position: absolute;
+  position: relative;
+  //top: 27.63em;
+  top: -10em;
+  //left: 1.31em;
+  //width: 77vw;
   gap: 1.5em;
 }
 .frame-parent12 {
-  position: absolute;
+  /*position: absolute;
   top: 9.63em;
   left: 1.5em;
   width: 88vw;
+  height: 121.25em;*/
+  position: relative;
+  //top: 9.63em;
+  top: 6.63em;
+  left: 1.5em;
+  width: 23.38em;
   height: 121.25em;
+  margin: 0 auto;
 }
 .b2 {
   position: relative;
@@ -2070,7 +2083,7 @@ const options = {
   line-height: 1.75em;
 }
 .buttonnext1 {
-  position: absolute;
+  /*position: absolute;
   top: 133.38em;
   left: 1.5em;
   border-radius: 20px;
@@ -2087,6 +2100,25 @@ const options = {
   color: #3b3b3b;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
+  text-decoration: none;*/
+  position: relative;
+  top: 10.38em;
+  left: 1.5em;
+  border-radius: 20px;
+  background-color: #fdd674;
+  width: 23.38em;
+  height: 3em;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  color: #3b3b3b;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
   text-decoration: none;
 }
 
@@ -2097,7 +2129,7 @@ const options = {
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100%;
-  height: 140.69em;
+  height: 148.69em;
 }
 .battery-icon {
   position: absolute;
@@ -2241,7 +2273,7 @@ const options = {
   position: relative;
   background-color: #fdd674;
   width: 100vw;
-  height: 148.69em;
+  height: 156.69em;
   overflow-y: auto;
   text-align: left;
   color: #3b3b3b;

@@ -24,7 +24,7 @@
                     :options="options"
                     :value="value"
                     @selected="ev => (value = ev)"
-                    :optionWidth="77"
+                    :optionWidth="23"
                     :style="{ width: '100%' }"
                   ></catos-select>
                 </div>
@@ -1013,9 +1013,11 @@ const options = {
 }
 .group {
   position: absolute;
-  top: 28.63em;
+  //top: 28.63em;
+  top: 32em;
   left: 1.31em;
-  width: 100%;
+  //width: 100%;
+  width: 23.38em;
   gap: 1.5em;
 }
 .span10,
@@ -1166,11 +1168,17 @@ const options = {
 }
 .div17,
 .div8 {
-  position: absolute;
+  /*position: absolute;
   top: -2.31em;
   left: 0;
   width: 87.7vw;
+  height: 28.44em;*/
+  position: relative;
+  //top: -2.31em;
+  left: 0;
+  width: 23.38em;
   height: 28.44em;
+  margin: 0 auto;
 }
 .div8 {
   top: 11em;
@@ -1191,13 +1199,31 @@ const options = {
   flex-shrink: 0;
 }
 .buttonnext {
-  position: absolute;
+  /*position: absolute;
   top: 198.81em;
   left: 1.5em;
   border-radius: 20px;
   background-color: #ffdb6d;
   width: 88vw;
   height: 3em;
+  overflow: hidden;
+  flex-direction: row;
+  padding: 0.5em 7.25em;
+  box-sizing: border-box;
+  cursor: pointer;
+  text-align: center;
+  color: var(--color-darkslategray-100);
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;*/
+  position: relative;
+  top: 158em;
+  left: 1.5em;
+  border-radius: 20px;
+  background-color: #ffdb6d;
+  width: 23.38em;
+  height: 3em;
+  margin: 0 auto;
   overflow: hidden;
   flex-direction: row;
   padding: 0.5em 7.25em;
@@ -1243,13 +1269,21 @@ const options = {
   gap: 0.38em;
 }
 .header {
-  position: absolute;
+  /*position: absolute;
   top: 2.25em;
   left: 1.5em;
   width: 100%;
   flex-direction: row;
   align-items: center;
+  gap: 0.75em;*/
+  position: relative;
+  top: -45.25em;
+  left: 1.5em;
+  width: 23.38em;
+  flex-direction: row;
+  align-items: center;
   gap: 0.75em;
+  margin: 0 auto;
 }
 .registration-options-child {
   position: absolute;
@@ -1353,16 +1387,24 @@ const options = {
   gap: 1em;
   width: 88%;
 }
-.registration-options {
-  position: absolute;
+.registration-options,
+.registration-options1,
+.registration-options-wrapper {
+  /*position: absolute;
   top: 60.38em;
   left: 1.5em;
   width: 87.7%;
+  height: 37.75em;*/
+  position: relative;
+  top: 10em;
+  left: 1.5em;
+  width: 23.38em;
   height: 37.75em;
+  margin: 0 auto;
 }
 .registration-options-item {
   position: absolute;
-  height: 99.56%;
+  height: 43em;
   width: 100%;
   top: 0.44%;
   right: 0;
@@ -1390,11 +1432,12 @@ const options = {
   gap: 1em;
 }
 .registration-options1 {
-  position: absolute;
+  /* position: absolute;
   top: 100.63em;
   left: 1.5em;
   width: 87.7%;
-  height: 43.31em;
+  height: 43.31em;*/
+  top: 13.5em;
 }
 .registration-options-inner {
   position: absolute;
@@ -2048,7 +2091,7 @@ const options = {
   height: 28.81em;
 }
 .registration-options-wrapper {
-  position: absolute;
+  /* position: absolute;
   top: 146.5em;
   left: 1.5em;
   height: 50.56em;
@@ -2056,7 +2099,8 @@ const options = {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 87.7%;
+  width: 87.7%;*/
+  top: 22.5em;
 }
 .form-registration-46 {
   position: absolute;
@@ -2067,7 +2111,7 @@ const options = {
   width: 100vw;
   /*min-height: 100vh;
   min-height: calc(var(--vh, 1vh) * 130);*/
-  height: 3300px;
+  height: 3600px;
 }
 .page-title1 {
   position: relative;
@@ -2240,7 +2284,7 @@ const options = {
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 217.75em;
+  height: 225.75em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;

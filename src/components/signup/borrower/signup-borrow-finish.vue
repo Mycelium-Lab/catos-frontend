@@ -186,12 +186,12 @@ const options = {
   line-height: 1.75em;
 }
 .buttonnext {
-  position: absolute;
-  top: 56.25em;
-  left: 6.5vw;
+  position: relative;
+  top: 62em;
+  /* left: 6.5vw; */
   border-radius: 20px;
   background-color: #ffdb6d;
-  width: 87.7vw;
+  width: 23.38em;
   height: 3em;
   overflow: hidden;
   display: flex;
@@ -201,6 +201,7 @@ const options = {
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin: 0 auto;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
   color: #3b3b3b;
@@ -240,13 +241,14 @@ const options = {
   gap: 0.38em;
 }
 .header {
-  position: absolute;
+  position: relative;
   top: 2.25em;
-  left: 1.5em;
-  width: 87.8vw;
+  /* left: 1.5em; */
+  width: 23.38em;
   flex-direction: row;
   align-items: center;
   gap: 0.75em;
+  margin: 0 auto;
 }
 .span {
   font-weight: 300;
@@ -385,11 +387,12 @@ const options = {
   justify-content: flex-start;
 }
 .frame-group {
-  position: absolute;
-  top: 9em;
-  left: 6vw;
-  width: 87.7vw;
+  position: relative;
+  top: 6em;
+  /* left: 6vw; */
+  width: 23.38em;
   height: 13.19em;
+  margin: 0 auto;
 }
 .div14 {
   position: relative;
@@ -398,8 +401,8 @@ const options = {
   font-weight: 300;
 }
 .rectangle-div {
-  position: absolute;
-  width: 88.7vw;
+  position: relative;
+  width: 23.38em;
   top: calc(50% - 235.5px);
   right: 0;
   left: 0;
@@ -411,7 +414,7 @@ const options = {
 .fieldsinputchoise5 {
   position: absolute;
   top: 24.06em;
-  left: 5vw;
+  left: 1.31em;
   width: 87.5%;
   display: flex;
   flex-direction: column;
@@ -420,11 +423,12 @@ const options = {
   gap: 0.5em;
 }
 .frame-container {
-  position: absolute;
-  top: 24em;
-  left: 6vw;
-  width: 87.7vw;
+  position: relative;
+  top: 9em;
+  /* left: 6vw; */
+  width: 23.38em;
   height: 29.81em;
+  margin: 0 auto;
 }
 .form-registration-46 {
   position: absolute;

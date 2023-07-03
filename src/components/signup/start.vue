@@ -975,4 +975,32 @@ const role = computed(() => window.history.state?.role);
 .password-field-repead {
   top: 5em;
 }
+@media (min-width: 500px) {
+  .div8 {
+    width: 342px;
+    position: relative;
+    margin: 0 auto;
+    left: 0em;
+    top: 4em;
+  }
+  .buttonnext {
+    width: 342px;
+    position: relative;
+    margin: 0 auto;
+    left: 0em;
+    top: 58em;
+  }
+  .form-registration-16,
+  .iphone-13-13- {
+    height: 100%;
+  }
+  .div19,
+  .div20 {
+    font-size: 14px;
+  }
+  .div21,
+  .div12 {
+    font-size: 16px;
+  }
+}
 </style>
