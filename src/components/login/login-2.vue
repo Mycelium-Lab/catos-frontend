@@ -80,7 +80,11 @@
         :style="{ textDecoration: 'none' }"
       >
         <catos-button
-          :style="{ height: '45px', width: '70vw', marginRight: '0' }"
+          :style="
+            isSmSize
+              ? { height: '45px', width: '70vw', marginRight: '0' }
+              : { height: '45px', width: '300px', marginRight: '0' }
+          "
           >Вход</catos-button
         >
       </router-link>
@@ -91,13 +95,35 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import catosButton from "../ui-kit/buttons/catos-button.vue";
 import inputData from "../fields/input-data.vue";
+
+const isSmSize = ref(false);
+window.addEventListener(
+  "resize",
+  function () {
+    isSmSize.value = innerHeight > innerWidth;
+  },
+  false
+);
+
 const activeForm = ref("email");
+3;
 const role = computed(() => {
   localStorage.setItem("role", JSON.stringify(window.history.state.role));
   return window.history.state.role;
+});
+
+onMounted(() => {
+  isSmSize.value = innerHeight > innerWidth;
+  window.addEventListener(
+    "resize",
+    function () {
+      isSmSize.value = innerHeight > innerWidth;
+    },
+    false
+  );
 });
 </script>
 
@@ -321,7 +347,6 @@ const role = computed(() => {
   width: 87.7vw;
   top: 42.18%;
   right: 6.15%;
-  bottom: 24.64%;
   left: 6.15%;
   border-radius: 15px;
   border: 0.5px solid rgba(46, 58, 89, 0.2);
@@ -367,7 +392,6 @@ const role = computed(() => {
   width: 76.92%;
   top: 60.44%;
   right: 11.28%;
-  bottom: 28.44%;
   left: 11.79%;
   display: flex;
   flex-direction: column;
@@ -435,5 +459,72 @@ const role = computed(() => {
   position: relative;
   width: 300px;
   margin: 0 auto;
+}
+@media (min-width: 500px) {
+  .iphone-68-item {
+    width: 400px;
+
+    margin: 0 auto;
+    top: 16em;
+    left: 0em;
+    right: 0em;
+    height: 280px;
+  }
+  .frame-parent {
+    width: 300px;
+    position: relative;
+    margin: 0 auto;
+    left: 0em;
+    right: 0em;
+    top: 11em;
+  }
+  .group-parent {
+    top: 26em;
+  }
+  .catos-parent {
+    top: 35em;
+  }
+
+  .headeer {
+    top: 5em;
+  }
+  .method {
+    top: 6em;
+  }
+  .iphone-68 {
+    min-height: 100%;
+  }
+  .iphone-68-child {
+    display: table;
+    position: relative;
+    margin: auto;
+
+    top: 31em;
+    left: 50px;
+    width: 500px;
+    //top: 10em;
+  }
+  .image-wrapp {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}
+@media (min-width: 800px) {
+  .iphone-68-child {
+    width: 800px;
+    // top: 31em;
+  }
+}
+@media (min-width: 1030px) {
+  .iphone-68-child {
+    width: 1030px;
+    //top: 41em;
+  }
+}
+@media (max-height: 960px) and (min-width: 500px) {
+  .iphone-68-child {
+    height: 80vh;
+  }
 }
 </style>

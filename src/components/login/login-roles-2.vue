@@ -9,8 +9,11 @@
 
     <div class="parent">
       <div class="div2">
-        <p class="p">Выберите роль в качестве которой</p>
-        <p class="p">вы хотите присоединиться к проекту:</p>
+        <!--<p class="p">Выберите роль в качестве которой</p>
+        <p class="p">вы хотите присоединиться к проекту:</p>-->
+        <p class="p">
+          Выберите роль в качестве которой вы хотите присоединиться к проекту:
+        </p>
       </div>
       <div class="component-19-parent">
         <router-link
@@ -204,22 +207,26 @@ const title = computed(() => {
 }
 .catos,
 .page-title {
-  position: absolute;
-  top: 2em;
+  position: relative;
+  top: 3em;
   font-size: 1.56em;
   line-height: 1.12em;
-  left: 20vw;
-  width: 90vw;
+  margin: 0 auto;
+  //width: 600px;
+  width: 100vw;
   text-align: center;
-  left: 7vw;
+}
+.page-title {
+  display: inline-block;
 }
 .catos {
   top: 5em;
-  left: 7vw;
+  // left: 7vw;
   font-size: 1em;
   line-height: 1.75em;
   font-weight: 500;
-  width: 90.6vw;
+  //width: 90.6vw;
+
   text-align: center;
 }
 .iphone-13-13-pro-66-item {
@@ -238,13 +245,14 @@ const title = computed(() => {
   margin: 0;
 }
 .div2 {
-  position: absolute;
-  top: 3%;
-  left: 17.35%;
+  position: relative;
+  //top: 3%;
+  top: 5em;
+  /* left: 17.35%; */
   font-size: 0.88em;
   line-height: 130%;
   text-align: center;
-  width: 67.5%;
+  width: 100vw;
 }
 .imagepersones-icon {
   position: relative;
