@@ -352,12 +352,14 @@
                 v-if="role === 'depositor' && variant === 'my'"
                 :style="{ width: '100%' }"
                 variant="fourth"
+                @click.stop="toWidthdrawLequid"
                 >Изъять ликвидность</catos-button
               >
               <catos-button
-                v-if="role === 'depositor' && variant === 'my'"
+                v-if="role === 'depositor'"
                 :style="{ width: '100%' }"
                 variant="fourth"
+                @click.stop="toAddLequid"
                 >Добавить ликвидность</catos-button
               >
               <catos-button
@@ -418,12 +420,67 @@
     @close="
       () => {
         isAllBorrower = false;
-        resetState('all-borrowe');
+        resetState('all-borrower');
       }
     "
   ></all-borrower-pulls>
   <my-borrower-pulls v-if="isMyBorrower" @close="() => (isMyBorrower = false)">
   </my-borrower-pulls>
+  <add-liquid
+    v-if="(isAllDepositor || isMyDepositor) && allDepositorState.addLiquidModal"
+    @close="
+      () => {
+        isAllDepositor = false;
+        resetState('all-depositor');
+      }
+    "
+  ></add-liquid>
+  <withdraw-liquid
+    v-if="
+      (isAllDepositor || isMyDepositor) && allDepositorState.widthrawLiquidModal
+    "
+    @close="
+      () => {
+        isAllDepositor = false;
+        resetState('all-depositor');
+      }
+    "
+  ></withdraw-liquid>
+  <all-depositor-pulls
+    v-if="
+      isAllDepositor &&
+      !allDepositorState.addLiquidModal &&
+      !allDepositorState.widthrawLiquidModal
+    "
+    @close="
+      () => {
+        isAllDepositor = false;
+        resetState('all-depositor');
+      }
+    "
+  >
+  </all-depositor-pulls>
+  <my-depositor-pulls
+    @add="
+      () => {
+        isMyDepositor = false;
+        toAddLequid();
+      }
+    "
+    @widthraw="
+      () => {
+        isMyDepositor = false;
+        toWidthdrawLequid();
+      }
+    "
+    v-if="isMyDepositor"
+    @close="
+      () => {
+        isMyDepositor = false;
+        resetState('my-depositor');
+      }
+    "
+  ></my-depositor-pulls>
 </template>
 
 <script setup lang="ts">
@@ -434,6 +491,10 @@ import allCreditorPulls from "../pulls/creditor/desktop/all-creditor-pulls.vue";
 import myCreditorPulls from "../pulls/creditor/desktop/my-creditor-pulls.vue";
 import allBorrowerPulls from "../pulls/borrower/desktop/all-borrower-pulls.vue";
 import myBorrowerPulls from "../pulls/borrower/desktop/my-borrower-pulls.vue";
+import allDepositorPulls from "../pulls/depositor/desktop/all-depositor-pulls.vue";
+import addLiquid from "../pulls/depositor/desktop/add-liquid.vue";
+import myDepositorPulls from "../pulls/depositor/desktop/my-depositor-pulls.vue";
+import withdrawLiquid from "../pulls/depositor/desktop/withdraw-liquid.vue";
 import { useRouter } from "vue-router";
 
 const { variant, role } = defineProps({
@@ -449,6 +510,8 @@ const isAllCreditor = ref(false);
 const isMyCreditor = ref(false);
 const isAllBorrower = ref(false);
 const isMyBorrower = ref(false);
+const isAllDepositor = ref(false);
+const isMyDepositor = ref(false);
 
 const allCreditorState = {
   detailOtherModal: false,
@@ -460,6 +523,16 @@ const allBorrowerState = {
   toInvestModal: false,
 };
 
+const allDepositorState = {
+  detailOtherModal: false,
+  addLiquidModal: false,
+  widthrawLiquidModal: false,
+};
+
+const myDepositorState = {
+  detailOtherModal: false,
+};
+
 const resetState = (state: string) => {
   switch (state) {
     case "all-creditor":
@@ -468,6 +541,12 @@ const resetState = (state: string) => {
     case "all-borrower":
       allBorrowerState.detailOtherModal = false;
       allBorrowerState.getLoanModal = false;
+    case "all-depositor":
+      allDepositorState.addLiquidModal = false;
+      allDepositorState.detailOtherModal = false;
+      allDepositorState.widthrawLiquidModal = false;
+    case "my-depositor":
+      myDepositorState.detailOtherModal = false;
   }
 };
 
@@ -476,6 +555,15 @@ const toManageLiquid = () => {
   allCreditorState.manageLiquidModal = true;
 };
 
+const toAddLequid = () => {
+  isAllDepositor.value = true;
+  allDepositorState.addLiquidModal = true;
+};
+
+const toWidthdrawLequid = () => {
+  isAllDepositor.value = true;
+  allDepositorState.widthrawLiquidModal = true;
+};
 const toGetLoan = () => {
   isAllBorrower.value = true;
   allBorrowerState.detailOtherModal = false;
@@ -498,6 +586,15 @@ const toDetail = () => {
     }
     if (variant === "my") {
       isMyBorrower.value = true;
+    }
+  } else if (role === "depositor") {
+    if (variant === "all") {
+      isAllDepositor.value = true;
+      allDepositorState.detailOtherModal = true;
+    }
+    if (variant === "my") {
+      isMyDepositor.value = true;
+      myDepositorState.detailOtherModal = true;
     }
   }
 
