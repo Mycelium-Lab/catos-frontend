@@ -1,5 +1,6 @@
 <template>
   <div class="statusapi">
+    <!--<div class="wrapper">-->
     <div class="status-reg" :style="variant === 2 ? { height: '462px' } : {}">
       <div class="group">
         <div class="div8">{{ title }}</div>
@@ -68,6 +69,7 @@
         </div>
       </div>
     </div>
+    <!--</div>-->
   </div>
 </template>
 
@@ -121,6 +123,9 @@ const toWallet = () => {
 </script>
 
 <style scoped lang="scss">
+.wrapper {
+  height: 492px;
+}
 .decor-2-off,
 .div8 {
   font-size: 16px;
@@ -246,7 +251,7 @@ const toWallet = () => {
 }
 .statusapi {
   position: fixed;
-
+  //display: flex;
   background: rgba(166, 146, 221, 0.2);
   backdrop-filter: blur(2px);
   width: 100%;
