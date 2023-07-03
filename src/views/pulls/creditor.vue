@@ -120,6 +120,7 @@
       ></create-pull-desktop>
       <confirm-qr-destop
         v-if="isСonfirmQr"
+        @result="() => (isСonfirmQr = false)"
         @close="() => (isСonfirmQr = false)"
       >
         <template v-slot:header> Новый пулл </template>

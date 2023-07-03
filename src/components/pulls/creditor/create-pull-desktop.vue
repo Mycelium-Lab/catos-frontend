@@ -35,41 +35,12 @@
                     src="@/assets/desktop/fallback/vector.svg"
                   />-->
                 </div>
-                <div class="frame-group">
-                  <div class="tag-parent">
-                    <div class="tag">
-                      <div class="div3">
-                        <span class="span">
-                          <span class="span1">от</span>
-                        </span>
-                        <span>
-                          <span class="span"> О</span>
-                        </span>
-                        <span class="span3">
-                          <span>.1 % </span>
-                          <span class="span4">мин</span>
-                        </span>
-                      </div>
-                    </div>
-                    <div class="tag">
-                      <div class="div4">
-                        <span class="span1">
-                          <span>до</span>
-                        </span>
-                        <span class="span6">
-                          <span class="span1"> </span>
-                          <span>30 % </span>
-                        </span>
-                        <span class="span1">макс</span>
-                      </div>
-                    </div>
-                  </div>
-                  <img
-                    class="scroll-thumb-icon"
-                    alt=""
-                    src="@/assets/desktop/fallback/scroll-thumb.svg"
-                  />
-                </div>
+                <range-slider
+                  :max="30"
+                  :modelValue="0.1"
+                  rangeWidth="100%"
+                  inputLabel="percent"
+                ></range-slider>
               </div>
               <div class="frame-parent">
                 <div class="group">
@@ -80,41 +51,12 @@
                     src="@/assets/desktop/fallback/vector.svg"
                   />-->
                 </div>
-                <div class="frame-group">
-                  <div class="tag-parent">
-                    <div class="tag">
-                      <div class="div3">
-                        <span class="span">
-                          <span class="span1">от</span>
-                        </span>
-                        <span>
-                          <span class="span"> </span>
-                        </span>
-                        <span class="span3">
-                          <span>1 </span>
-                          <span class="span4">дня</span>
-                        </span>
-                      </div>
-                    </div>
-                    <div class="tag">
-                      <div class="div4">
-                        <span class="span1">
-                          <span>до</span>
-                        </span>
-                        <span class="span6">
-                          <span class="span1"> </span>
-                          <span>365 </span>
-                        </span>
-                        <span class="span1">дней</span>
-                      </div>
-                    </div>
-                  </div>
-                  <img
-                    class="scroll-thumb-icon"
-                    alt=""
-                    src="@/assets/desktop/fallback/scroll-thumb.svg"
-                  />
-                </div>
+                <range-slider
+                  :max="30"
+                  :modelValue="0.1"
+                  rangeWidth="100%"
+                  inputLabel="percent"
+                ></range-slider>
               </div>
             </div>
           </div>
@@ -144,6 +86,7 @@
 import { ref } from "vue";
 const emtis = defineEmits(["close", "create"]);
 import catosSelect from "@/components/fields/catos-select.vue";
+import rangeSlider from "@/components/ui-kit/range-slider.vue";
 const valueToken = ref("");
 const valueStatus = ref("");
 const options = ["Россия", "Украина", "Казахстан", "Белорусь"];
@@ -435,6 +378,7 @@ const create = () => {
   gap: 1.25em;
   text-align: center;
   color: #fff;
+  margin-top: 1.5em;
 }
 .fieldsinputchoise-parent {
   align-self: stretch;
