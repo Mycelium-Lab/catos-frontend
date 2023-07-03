@@ -226,9 +226,9 @@
                     Добавить ликвидность
                   </div>
                 </div>
-                <div class="buttons-tabs2" id="buttonsTabsContainer4">
+                <!--<div class="buttons-tabs2" id="buttonsTabsContainer4">
                   <div class="text3">Подробнее</div>
-                </div>
+                </div>-->
               </div>
             </div>
           </div>

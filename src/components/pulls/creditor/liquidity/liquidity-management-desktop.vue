@@ -92,10 +92,7 @@
                   <div class="col-titles-bg" />
                 </div>
               </div>
-              <div class="rectangle-parent">
-                <div class="instance-child" />
-                <div class="instance-item" />
-              </div>
+              <div class="rectangle-parent"></div>
             </div>
             <div class="des-and-bbn">
               <button class="button" @click="toWithdraw">

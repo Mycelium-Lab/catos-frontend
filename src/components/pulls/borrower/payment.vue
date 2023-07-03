@@ -1,6 +1,8 @@
 <template>
   <div class="header">
-    <div class="div8">Кредитные пуллы</div>
+    <div class="div8">
+      {{ from === "pulls" ? " Кредитные пуллы" : "Задолжности" }}
+    </div>
   </div>
   <div class="statusapi">
     <div class="status-reg">
@@ -65,7 +67,7 @@ import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import catosCheckbox from "@/components/ui-kit/catos-checkbox.vue";
 const router = useRouter();
 const bottomSubTitle = computed(() => {
-  console.log(window.history.state.title);
+  console.log(window.history.state.bottomSubTitle);
   return window.history.state.bottomSubTitle;
 });
 
@@ -85,6 +87,19 @@ const routerName = computed(() => {
 const actionTitle = computed(() => {
   return window.history.state.actionTitle;
 });
+
+const from = computed(() => {
+  if (window.history.state.from) {
+    return window.history.state.from;
+  } else {
+    return "pulls";
+  }
+});
+
+const modal = computed(() => {
+  return window.history.state.modal;
+});
+
 const toScan = () => {
   router.push({
     name: "pulls-borrower-get-loan-scan",
@@ -94,7 +109,8 @@ const toScan = () => {
       routerName: routerName.value,
       actionTitle: actionTitle.value,
       bottomSubTitle: bottomSubTitle.value,
-      from: "pulls",
+      from: from.value,
+      modal: modal.value,
     },
   });
 };
