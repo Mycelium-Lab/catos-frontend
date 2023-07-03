@@ -81,7 +81,14 @@
       >
         <catos-button
           :style="
-            isSmSize
+            !isSmSize && activeForm === 'phone'
+              ? {
+                  height: '45px',
+                  width: '300px',
+                  marginRight: '0',
+                  top: '-6em',
+                }
+              : isSmSize
               ? { height: '45px', width: '70vw', marginRight: '0' }
               : { height: '45px', width: '300px', marginRight: '0' }
           "
