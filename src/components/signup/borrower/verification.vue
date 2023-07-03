@@ -38,7 +38,7 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
-                :optionWidth="77"
+                :optionWidthDesk="405"
                 :style="{ width: '100%' }"
               ></catos-select>
             </div>
@@ -49,7 +49,7 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
-                :optionWidth="77"
+                :optionWidthDesk="405"
                 :style="{ width: '100%' }"
               ></catos-select>
             </div>
@@ -60,7 +60,7 @@
                 :options="options"
                 :value="value"
                 @selected="ev => (value = ev)"
-                :optionWidth="77"
+                :optionWidthDesk="405"
                 :style="{ width: '100%' }"
               ></catos-select>
             </div>
@@ -139,7 +139,7 @@
                     :options="options"
                     :value="value"
                     @selected="ev => (value = ev)"
-                    :optionWidth="77"
+                    :optionWidthDesk="405"
                     :style="{ width: '100%' }"
                   ></catos-select>
                 </div>

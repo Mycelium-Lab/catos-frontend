@@ -24,7 +24,7 @@
                     :options="options"
                     :value="value"
                     @selected="ev => (value = ev)"
-                    :optionWidth="23"
+                    :optionWidthDesk="329"
                     :style="{ width: '100%' }"
                   ></catos-select>
                 </div>
@@ -274,7 +274,7 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="{ width: '100%' }"
             ></catos-select>
           </div>
@@ -288,7 +288,7 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="{ width: '100%' }"
             ></catos-select>
           </div>
@@ -299,7 +299,7 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="{ width: '100%' }"
             ></catos-select>
           </div>
@@ -378,7 +378,7 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="{ width: '100%' }"
             ></catos-select>
           </div>
@@ -392,7 +392,7 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="{ width: '100%' }"
             ></catos-select>
           </div>
@@ -406,7 +406,7 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="{ width: '100%' }"
             ></catos-select>
           </div>
@@ -417,7 +417,7 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="{ width: '100%' }"
             ></catos-select>
           </div>

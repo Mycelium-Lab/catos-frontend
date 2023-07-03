@@ -267,7 +267,7 @@
               placeholder="Северо-Западный округ"
               :options="options"
               :value="value"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="{ width: '100%' }"
               @selected="ev => (value = ev)"
             ></catos-select>
@@ -278,7 +278,7 @@
               placeholder="Санкт-Петербург"
               :options="options"
               :value="value"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="{ width: '100%' }"
               @selected="ev => (value = ev)"
             ></catos-select>
@@ -292,7 +292,7 @@
               placeholder="Красносельскй"
               :options="options"
               :value="value"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="{ width: '100%' }"
               @selected="ev => (value = ev)"
             ></catos-select>
@@ -371,7 +371,7 @@
               placeholder="Россия"
               :options="options"
               :value="value"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="{ width: '100%' }"
               @selected="ev => (value = ev)"
             ></catos-select>
@@ -385,7 +385,7 @@
               placeholder="Северо-западный округ"
               :options="options"
               :value="value"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="{ width: '100%' }"
               @selected="ev => (value = ev)"
             ></catos-select>
@@ -399,7 +399,7 @@
               placeholder="Красносельский"
               :options="options"
               :value="value"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="{ width: '100%' }"
               @selected="ev => (value = ev)"
             ></catos-select>
@@ -410,7 +410,7 @@
               placeholder="Санкт-Петербург"
               :options="options"
               :value="value"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="{ width: '100%' }"
               @selected="ev => (value = ev)"
             ></catos-select>

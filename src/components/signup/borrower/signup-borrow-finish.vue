@@ -38,7 +38,7 @@
               placeholder="Выбирите вид занятости"
               :options="options"
               :value="value"
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="{ width: '100%' }"
               @selected="ev => (value = ev)"
             ></catos-select>
@@ -73,7 +73,7 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="{ width: '100%' }"
             ></catos-select>
           </div>
@@ -87,7 +87,7 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="{ width: '100%' }"
             ></catos-select>
           </div>
@@ -101,7 +101,7 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="{ width: '100%' }"
             ></catos-select>
           </div>
@@ -115,7 +115,7 @@
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="{ width: '100%' }"
             ></catos-select>
           </div>
@@ -133,7 +133,7 @@
             :options="options"
             :value="value"
             @selected="ev => (value = ev)"
-            :optionWidth="77"
+            :optionWidthDesk="329"
             :style="{ width: '100%' }"
           ></catos-select>
         </div>
