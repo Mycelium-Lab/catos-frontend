@@ -8,12 +8,16 @@
     <img class="iphone-13-13-pro-66-item" alt="" src="./public/group-36.svg" />
 
     <div class="parent">
-      <div class="div2">
-        <!--<p class="p">Выберите роль в качестве которой</p>
-        <p class="p">вы хотите присоединиться к проекту:</p>-->
-        <p class="p">
-          Выберите роль в качестве которой вы хотите присоединиться к проекту:
-        </p>
+      <div :class="isMobile ? 'div2' : 'div2_desktop div2'">
+        <template v-if="isMobile">
+          <p class="p">Выберите роль в качестве которой</p>
+          <p class="p">вы хотите присоединиться к проекту:</p>
+        </template>
+        <template v-else>
+          <p class="p">
+            Выберите роль в качестве которой вы хотите присоединиться к проекту:
+          </p>
+        </template>
       </div>
       <div class="component-19-parent">
         <router-link
@@ -132,7 +136,7 @@
           </div>
         </router-link>
       </div>
-      <div class="group">
+      <div :class="isMobile ? 'group' : 'group_desktop group'">
         <div class="div10">
           {{
             title === "Войти"
@@ -165,6 +169,9 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 
 const setRole = (role: any) => {
   localStorage.setItem("role", JSON.stringify(role));
@@ -246,9 +253,8 @@ const title = computed(() => {
 }
 .div2 {
   position: relative;
-  //top: 3%;
-  top: 5em;
-  /* left: 17.35%; */
+  top: 3em;
+
   font-size: 0.88em;
   line-height: 130%;
   text-align: center;
@@ -516,6 +522,9 @@ const title = computed(() => {
   color: #1f1f1f;
   width: 50vw;
   text-align: center;
+  &_desktop {
+    top: 30em;
+  }
 }
 .parent {
   top: 10em;
@@ -658,12 +667,16 @@ const title = computed(() => {
   color: #3b3b3b;
   font-family: Inter;
 }
-@media (min-width: 500px) {
+.div2_desktop {
+  top: 5em;
+}
+@media (min-width: 790px) {
   .component-19,
   .component-191,
   .component-193 {
     width: 480px;
   }
+
   .component-19-parent {
     position: relative;
     flex-wrap: wrap;
@@ -687,7 +700,7 @@ const title = computed(() => {
     width: 100%;
   }
   .group {
-    top: 30em;
+    top: 45em;
   }
 }
 
