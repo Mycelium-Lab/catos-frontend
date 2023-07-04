@@ -3,8 +3,8 @@
     <img class="bg-icon" alt="" src="../public/bg.svg" />
 
     <div class="form-registration-46">
-      <div class="div8">
-        <div class="group">
+      <div :class="isMobile ? 'div8' : 'div8_desktop div8'">
+        <div :class="isMobile ? 'group' : 'group_desktop group'">
           <div class="div9">
             <span class="txt">
               <span class="span">Данные паспорта</span>
@@ -87,7 +87,7 @@
             </div>
           </div>
         </div>
-        <div class="div17">
+        <div :class="isMobile ? 'div17' : 'div17_desktop div17'">
           <div class="inner">
             <div class="fieldsinput-parent">
               <div class="fieldsinput">
@@ -224,7 +224,7 @@
         </div>
       </div>
       <router-link
-        class="buttonnext"
+        :class="isMobile ? 'buttonnext' : 'buttonnext_desktop buttonnext'"
         id="buttonNextContainer"
         :to="{
           name: 'borrower-verification',
@@ -233,7 +233,7 @@
       >
         <b class="b1">Продолжить</b>
       </router-link>
-      <div class="header">
+      <div :class="isMobile ? 'header' : 'header_desktop header'">
         <img
           class="icons3dpersona-creditors"
           alt=""
@@ -247,7 +247,13 @@
           </div>
         </div>
       </div>
-      <div class="registration-options">
+      <div
+        :class="
+          isMobile
+            ? 'registration-options'
+            : 'registration-options_desktop registration-options'
+        "
+      >
         <div class="registration-options-child"></div>
         <div class="text-and-fill">
           <div class="div29">
@@ -359,7 +365,13 @@
           </div>
         </div>
       </div>
-      <div class="registration-options1">
+      <div
+        :class="
+          isMobile
+            ? 'registration-options1'
+            : 'registration-options1_desktop registration-options1'
+        "
+      >
         <div class="registration-options-item"></div>
         <div class="text-and-fill">
           <div class="div29">
@@ -476,7 +488,13 @@
           </div>
         </div>
       </div>
-      <div class="registration-options-wrapper">
+      <div
+        :class="
+          isMobile
+            ? 'registration-options-wrapper'
+            : 'registration-options-wrapper_desktop registration-options-wrapper'
+        "
+      >
         <div class="registration-options2">
           <div class="registration-options-inner"></div>
           <div class="text-and-fill2">
@@ -783,6 +801,9 @@ const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
 };
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 </script>
 
 <style scoped lang="scss">
@@ -1013,12 +1034,15 @@ const options = {
 }
 .group {
   position: absolute;
-  //top: 28.63em;
-  top: 32em;
+  top: 28.63em;
   left: 1.31em;
-  //width: 100%;
-  width: 23.38em;
+  width: 100%;
+
   gap: 1.5em;
+  &_desktop {
+    top: 32em;
+    width: 23.38em;
+  }
 }
 .span10,
 .span8 {
@@ -1168,16 +1192,17 @@ const options = {
 }
 .div17,
 .div8 {
-  /*position: absolute;
+  position: absolute;
   top: -2.31em;
   left: 0;
   width: 87.7vw;
-  height: 28.44em;*/
-  position: relative;
-  //top: -2.31em;
-  left: 0;
-  width: 23.38em;
   height: 28.44em;
+}
+.div17_desktop,
+.div8_desktop {
+  width: 23.38em;
+  position: relative;
+  top: 0em;
   margin: 0 auto;
 }
 .div8 {
@@ -1199,7 +1224,7 @@ const options = {
   flex-shrink: 0;
 }
 .buttonnext {
-  /*position: absolute;
+  position: absolute;
   top: 198.81em;
   left: 1.5em;
   border-radius: 20px;
@@ -1215,25 +1240,27 @@ const options = {
   color: var(--color-darkslategray-100);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
-  text-decoration: none;*/
-  position: relative;
-  top: 158em;
-  left: 1.5em;
-  border-radius: 20px;
-  background-color: #ffdb6d;
-  width: 23.38em;
-  height: 3em;
-  margin: 0 auto;
-  overflow: hidden;
-  flex-direction: row;
-  padding: 0.5em 7.25em;
-  box-sizing: border-box;
-  cursor: pointer;
-  text-align: center;
-  color: var(--color-darkslategray-100);
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-  -webkit-tap-highlight-color: transparent;
   text-decoration: none;
+  &_desktop {
+    position: relative;
+    top: 158em;
+    left: 1.5em;
+    border-radius: 20px;
+    background-color: #ffdb6d;
+    width: 23.38em;
+    height: 3em;
+    margin: 0 auto;
+    overflow: hidden;
+    flex-direction: row;
+    padding: 0.5em 7.25em;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-align: center;
+    color: var(--color-darkslategray-100);
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+  }
 }
 .icons3dpersona-creditors {
   position: relative;
@@ -1269,21 +1296,23 @@ const options = {
   gap: 0.38em;
 }
 .header {
-  /*position: absolute;
+  position: absolute;
   top: 2.25em;
   left: 1.5em;
   width: 100%;
   flex-direction: row;
   align-items: center;
-  gap: 0.75em;*/
-  position: relative;
-  top: -45.25em;
-  left: 1.5em;
-  width: 23.38em;
-  flex-direction: row;
-  align-items: center;
   gap: 0.75em;
-  margin: 0 auto;
+  &_desktop {
+    position: relative;
+    top: -45.25em;
+    left: 1.5em;
+    width: 23.38em;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75em;
+    margin: 0 auto;
+  }
 }
 .registration-options-child {
   position: absolute;
@@ -1390,11 +1419,33 @@ const options = {
 .registration-options,
 .registration-options1,
 .registration-options-wrapper {
-  /*position: absolute;
+  position: absolute;
   top: 60.38em;
   left: 1.5em;
   width: 87.7%;
-  height: 37.75em;*/
+  height: 37.75em;
+}
+.registration-options1 {
+  position: absolute;
+  top: 100.63em;
+  left: 1.5em;
+  width: 87.7%;
+  height: 43.31em;
+}
+.registration-options-wrapper {
+  position: absolute;
+  top: 146.5em;
+  left: 1.5em;
+  height: 50.56em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 87.7%;
+}
+.registration-options_desktop,
+.registration-options1_desktop,
+.registration-options-wrapper_desktop {
   position: relative;
   top: 10em;
   left: 1.5em;
@@ -1431,12 +1482,8 @@ const options = {
   top: 28.5em;
   gap: 1em;
 }
-.registration-options1 {
-  /* position: absolute;
-  top: 100.63em;
-  left: 1.5em;
-  width: 87.7%;
-  height: 43.31em;*/
+
+.registration-options1_desktop {
   top: 13.5em;
 }
 .registration-options-inner {
@@ -2090,16 +2137,8 @@ const options = {
   width: 100%;
   height: 28.81em;
 }
-.registration-options-wrapper {
-  /* position: absolute;
-  top: 146.5em;
-  left: 1.5em;
-  height: 50.56em;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 87.7%;*/
+
+.registration-options-wrapper_desktop {
   top: 22.5em;
 }
 .form-registration-46 {
