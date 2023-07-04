@@ -32,11 +32,11 @@
             alt=""
             src="@/assets/desktop/fallback/img@2x.png"
           />
-          <img class="status-icon" alt="" src="/status.svg" />
+          <!--<img class="status-icon" alt="" src="/status.svg" />-->
           <div class="vector-parent">
-            <img class="frame-child" alt="" src="/rectangle-327.svg" />
+            <!--<img class="frame-child" alt="" src="/rectangle-327.svg" />-->
             <div class="upload-cloud-parent">
-              <img class="upload-cloud-icon" alt="" src="/uploadcloud.svg" />
+              <!-- <img class="upload-cloud-icon" alt="" src="/uploadcloud.svg" />-->
               <div class="div">Загрузить фото</div>
             </div>
           </div>

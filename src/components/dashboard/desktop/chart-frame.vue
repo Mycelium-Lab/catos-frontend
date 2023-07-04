@@ -76,7 +76,7 @@
           <img
             class="colors-graphsorders-icon"
             alt=""
-            src="/colors-graphsorders.svg"
+            src="@/assets/images/colors-graphsorders1.svg"
           />
           <div class="div8">Прибыль</div>
         </div>
@@ -84,7 +84,7 @@
           <img
             class="colors-graphsorders-icon"
             alt=""
-            src="/colors-graphsorders1.svg"
+            src="@/assets/images/colors-graphsorders1.svg"
           />
           <div class="div8">Доход</div>
         </div>
@@ -92,7 +92,7 @@
           <img
             class="colors-graphsorders-icon"
             alt=""
-            src="/colors-graphsorders2.svg"
+            src="@/assets/images/colors-graphsorders1.svg"
           />
           <div class="june-16">Расход</div>
         </div>
@@ -100,7 +100,7 @@
           <img
             class="colors-graphsorders-icon"
             alt=""
-            src="/colors-graphsorders3.svg"
+            src="@/assets/images/colors-graphsorders1.svg"
           />
           <div class="june-16">ROI</div>
         </div>
