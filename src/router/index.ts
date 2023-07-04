@@ -7,21 +7,13 @@ import { borrower, collector, creditor, depositor } from "./pulls";
 import { setting } from "./settings";
 import { wallet } from "./wallet";
 
-import getMobileOperatingSystem from "../utils/defineDevice";
-
-const isMobile = getMobileOperatingSystem();
-console.log(isMobile);
-
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: "/",
       name: "home",
-      component: () =>
-        isMobile
-          ? import("../views/HomeView-2.vue")
-          : import("../views/desktop/HomeViewDesktop.vue"),
+      component: () => import("../views/HomeView-2.vue"),
     },
     {
       path: "/roles",

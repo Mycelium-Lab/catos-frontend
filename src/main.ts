@@ -5,6 +5,7 @@ import { createPinia } from "pinia";
 
 import App from "./App.vue";
 import router from "./router";
+import getMobileOperatingSystem from "./utils/defineDevice";
 
 const app = createApp(App);
 
@@ -19,4 +20,10 @@ window.addEventListener("resize", () => {
   document.documentElement.style.setProperty("--vh", `${vh}px`);
 });
 
+/*window.addEventListener("resize", () => {
+  a = getMobileOperatingSystem();
+  console.log(a);
+  //app.config.globalProperties.isMobile = getMobileOperatingSystem();
+});*/
+app.config.globalProperties.isMobile = getMobileOperatingSystem();
 app.mount("#app");
