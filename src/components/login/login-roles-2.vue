@@ -670,6 +670,11 @@ const title = computed(() => {
 .div2_desktop {
   top: 5em;
 }
+@media (min-width: 500px) {
+  .group_desktop {
+    top: 44em;
+  }
+}
 @media (min-width: 790px) {
   .component-19,
   .component-191,
@@ -704,6 +709,11 @@ const title = computed(() => {
   }
 }
 
+@media (min-width: 1088px) {
+  .group_desktop {
+    top: 28em;
+  }
+}
 @media (min-width: 1210px) {
   .component-19,
   .component-191,
