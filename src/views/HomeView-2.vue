@@ -3,7 +3,7 @@
     <div class="iphone-13-13-pro-68-child"></div>
     <img class="iphone-13-13-pro-68-item" alt="" src="../assets/group-36.svg" />
 
-    <b class="page-title">Hello!</b>
+    <b class="page-title">Hello !</b>
     <router-link
       class="rectangle-parent"
       id="groupContainer"
@@ -46,7 +46,9 @@
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
+import { useDevice } from "@/compossables/useDevice";
 
+const { isMobile } = useDevice();
 const router = useRouter();
 const login = () => {
   router.push({ name: "roles", state: { title: "Войти" } });

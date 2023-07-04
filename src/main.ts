@@ -25,5 +25,5 @@ window.addEventListener("resize", () => {
   console.log(a);
   //app.config.globalProperties.isMobile = getMobileOperatingSystem();
 });*/
-app.config.globalProperties.isMobile = getMobileOperatingSystem();
+// app.config.globalProperties.device = getMobileOperatingSystem();
 app.mount("#app");
