@@ -4,8 +4,13 @@
       button-slider__wrapper`"
   >
     <input :class="`slider_${ButtonSliderVariant[variantIndex]} slider`" />
-    <ul class="slider__nav">
+    <ul
+      :class="
+        role === 'admin' ? 'slider__nav_admin slider__nav' : 'slider__nav'
+      "
+    >
       <li
+        v-if="role !== 'admin'"
         v-for="index in Object.keys(
           role === 'creditor' ? Loans : LoansBorrower
         ).filter(key => !isNaN(Number(key)))"
@@ -21,20 +26,56 @@
             ? `button-slider_middle_${ButtonSliderVariant[variantIndex]} button-slider_middle `
             : activeTab === Number(index) && Number(index) === 2
             ? `button-slider_right_${ButtonSliderVariant[variantIndex]} button-slider_right active`
-            : `button-slider_right_${ButtonSliderVariant[variantIndex]} button-slider_right`
+            : Number(index) === 2
+            ? `button-slider_right_${ButtonSliderVariant[variantIndex]} button-slider_right`
+            : `button-slider_last_${ButtonSliderVariant[variantIndex]} button-slider_last`
         "
         :style="
           activeTab === Number(index)
-            ? { color: 'var(--color-darkslategray-100)' }
-            : ''
+            ? { color: 'var(--color-darkslategray-100)', cursor: 'pointer' }
+            : { cursor: 'pointer' }
         "
         @click="ev => goTo(ev, Number(index))"
       >
         {{
           role === "creditor"
             ? Loans[Number(index)]
+            : role === "admin"
+            ? LoansAdmin[Number(index)]
             : LoansBorrower[Number(index)]
         }}
+      </li>
+      <li
+        v-else
+        v-for="index in Object.keys(LoansAdmin).filter(
+          key => !isNaN(Number(key))
+        )"
+        :key="index"
+        :class="
+          activeTab === Number(index) && Number(index) === 0
+            ? `button-slider_left_${ButtonSliderVariant[variantIndex]}_admin button-slider_left active`
+            : Number(index) === 0
+            ? `button-slider_left_${ButtonSliderVariant[variantIndex]}_admin button-slider_left`
+            : activeTab === Number(index) && Number(index) === 1
+            ? `button-slider_middle_${ButtonSliderVariant[variantIndex]}_admin button-slider_middle active`
+            : Number(index) === 1
+            ? `button-slider_middle_${ButtonSliderVariant[variantIndex]}_admin button-slider_middle `
+            : activeTab === Number(index) && Number(index) === 2
+            ? `button-slider_right_${ButtonSliderVariant[variantIndex]}_admin button-slider_right active`
+            : Number(index) === 2
+            ? `button-slider_right_${ButtonSliderVariant[variantIndex]}_admin button-slider_right`
+            : activeTab === Number(index) && Number(index) === 3
+            ? `button-slider_last_${ButtonSliderVariant[variantIndex]}_admin button-slider_last active`
+            : `button-slider_last_${ButtonSliderVariant[variantIndex]}_admin button-slider_last`
+        "
+        :style="
+          activeTab === Number(index)
+            ? { color: 'var(--color-darkslategray-100)', cursor: 'pointer' }
+            : { cursor: 'pointer' }
+        "
+        @click="ev => goTo(ev, Number(index))"
+      >
+        {{ LoansAdmin[Number(index)] }}
       </li>
     </ul>
     <!--<span
@@ -59,7 +100,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { ButtonSliderVariant } from "@/types/buttons-props";
-import { Loans, LoansBorrower } from "@/types/tabs/tabs";
+import { Loans, LoansBorrower, LoansAdmin } from "@/types/tabs/tabs";
 
 const { variantIndex } = defineProps({
   variantIndex: {
@@ -119,6 +160,18 @@ const goTo = (ev: any, index: number) => {
     width: 30%;
     margin-right: 2px;
   }
+  &_left_loans_admin {
+    width: 22%;
+  }
+  &_middle_loans_admin {
+    width: 22%;
+  }
+  &_right_loans_admin {
+    width: 22%;
+  }
+  &_last_loans_admin {
+    width: 22%;
+  }
 }
 .slider__nav {
   display: flex;
@@ -131,7 +184,12 @@ const goTo = (ev: any, index: number) => {
   list-style: none;
   padding: 0em;
   margin: 0em;
+  &_admin {
+    justify-content: initial;
+    gap: 10px;
+  }
 }
+
 .slider-tab {
   position: absolute;
   top: 1.5px;
@@ -147,6 +205,9 @@ const goTo = (ev: any, index: number) => {
     left: 1px;
   }
   &_right {
+    width: 40%;
+  }
+  &_left_loans_admin {
     width: 40%;
   }
 }
