@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { useDevice } from "@/compossables/useDevice";
+
 const router = useRouter();
 const login = () => {
   router.push({ name: "roles", state: { title: "Войти" } });
@@ -30,8 +30,6 @@ const login = () => {
 const register = () => {
   router.push({ name: "roles", state: { title: "Регистрация" } });
 };
-
-const { isMobile } = useDevice();
 </script>
 
 <style scoped v-else>
