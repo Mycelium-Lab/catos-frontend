@@ -32,7 +32,7 @@ const register = () => {
 };
 </script>
 
-<style scoped v-else>
+<style scoped>
 .image-icon {
   position: absolute;
   width: 100vw;
