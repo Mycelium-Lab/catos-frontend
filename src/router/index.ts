@@ -21,7 +21,7 @@ const router = createRouter({
       component: () =>
         isMobile
           ? import("../views/HomeView-2.vue")
-          : import("../views/HomeViewDesktop.vue"),
+          : import("../views/desktop/HomeViewDesktop.vue"),
     },
     {
       path: "/roles",
