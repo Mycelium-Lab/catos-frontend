@@ -25,7 +25,7 @@
                   <img
                     class="iconchange"
                     alt=""
-                    src="src/views/public/iconchange.svg"
+                    src="/src/views/public/iconchange.svg"
                   />
                 </div>
                 <div class="wrapper">

@@ -13,7 +13,7 @@
           />
           <div class="div">Отклонен</div>
         </div>
-        <img class="iconchange" alt="" src="src/views/public/iconchange.svg" />
+        <img class="iconchange" alt="" src="/src/views/public/iconchange.svg" />
       </div>
     </div>
     <div class="parent">

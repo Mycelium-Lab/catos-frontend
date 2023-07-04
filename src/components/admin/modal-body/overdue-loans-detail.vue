@@ -138,7 +138,7 @@
           <img
             class="iconchange1"
             alt=""
-            src="src/views/public/iconchange.svg"
+            src="/src/views/public/iconchange.svg"
           />
         </div>
         <div class="des-and-bbn">

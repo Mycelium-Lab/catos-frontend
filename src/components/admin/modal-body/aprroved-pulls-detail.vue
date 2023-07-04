@@ -13,7 +13,7 @@
           />
           <div class="div">Активен</div>
         </div>
-        <img class="iconchange" alt="" src="src/views/public/iconchange.svg" />
+        <img class="iconchange" alt="" src="/src/views/public/iconchange.svg" />
       </div>
     </div>
     <div class="frame-wrapper2">
