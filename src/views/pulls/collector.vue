@@ -1,5 +1,9 @@
 <template>
-  <!--<div class="iphone-13-13-" :class="isBackSide ? 'back-side' : ''">
+  <div
+    v-if="isMobile"
+    class="iphone-13-13-"
+    :class="isBackSide ? 'back-side' : ''"
+  >
     <div class="pull"></div>
     <div class="header">
       <div class="div8">Задолжности</div>
@@ -44,8 +48,8 @@
     ></collector-list>
 
     <app-bar v-if="isAppBar"></app-bar>
-  </div>-->
-  <default-desktop>
+  </div>
+  <default-desktop v-else>
     <template v-slot:title> Кредитные пулы </template>
     <template v-slot:slider>
       <button-slider
@@ -84,6 +88,10 @@ import appBar from "@/components/ui-kit/app-bar.vue";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
 import pullsTable from "@/components/base/pulls-table.vue";
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 
 const getCurentWindow = computed(() => {
   console.log(window.history.state.curentWindow);

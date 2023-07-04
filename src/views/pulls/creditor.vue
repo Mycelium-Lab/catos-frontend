@@ -1,5 +1,5 @@
 <template>
-  <!--<div class="iphone-13-13-">
+  <div v-if="isMobile" class="iphone-13-13-">
     <div class="pull"></div>
     <div class="header">
       <div class="div8">
@@ -45,16 +45,17 @@
       :key="curentWindow"
       @on-bottomsheet="(ev: any) => isBackSide = ev"
       @on-modal="() => (isBackSide = true)"
-    ></creditor-list>-->
-  <!--<bottomsheet v-if="isFilter || isSort" defaultState="open">
+    ></creditor-list>
+    <!--<bottomsheet v-if="isFilter || isSort" defaultState="open">
       <Filter v-if="isFilter"></Filter>
       <Sort v-if="isSort"></Sort>
     </bottomsheet>-->
-  <!--<Filter v-if="isFilter"></Filter>
+    <!--<Filter v-if="isFilter"></Filter>
     <Sort v-if="isSort"></Sort>-->
-  <!--<app-bar v-if="isAppBar"></app-bar>
-  </div>-->
-  <default-desktop>
+    <app-bar v-if="isAppBar"></app-bar>
+  </div>
+
+  <default-desktop v-else>
     <template v-slot:title> Пуллы </template>
     <template v-slot:slider>
       <button-slider
@@ -156,6 +157,13 @@ import toolBar from "@/components/base/desktop/tool-bar.vue";
 import createPullDesktop from "@/components/pulls/creditor/create-pull-desktop.vue";
 import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
 import DefaultDesktop from "@/components/layouts/default-desktop.vue";
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
+
+const isBackSide = ref(false);
+const isAppBar = ref(true);
 
 const curentWindow = ref("all");
 

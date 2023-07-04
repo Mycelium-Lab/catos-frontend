@@ -1,5 +1,9 @@
 <template>
-  <!--<div class="iphone-13-13-" :class="isBackSide ? 'back-side' : ''">
+  <div
+    v-if="isMobile"
+    class="iphone-13-13-"
+    :class="isBackSide ? 'back-side' : ''"
+  >
     <div class="header">
       <div class="div8">Кредитные пуллы</div>
     </div>
@@ -35,8 +39,8 @@
       @on-modal="() => (isBackSide = true)"
     ></borrower-list>
     <app-bar></app-bar>
-  </div>-->
-  <default-desktop>
+  </div>
+  <default-desktop v-else>
     <template v-slot:title> Кредитные пулы </template>
     <template v-slot:slider>
       <button-slider
@@ -71,6 +75,10 @@ import { useRouter } from "vue-router";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
 import pullsTable from "@/components/base/pulls-table.vue";
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 
 import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import borrowerList from "@/components/pulls/borrower/borrower-list.vue";
