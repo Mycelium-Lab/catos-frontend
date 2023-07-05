@@ -1,5 +1,11 @@
 <template>
-  <div class="iphone-13-13-form-registr">
+  <div
+    :class="
+      isMobile
+        ? 'iphone-13-13-form-registr'
+        : 'iphone-13-13-form-registr_desktop iphone-13-13-form-registr'
+    "
+  >
     <img class="bg-icon" alt="" src="../public/bg.svg" />
 
     <div class="header">
@@ -221,8 +227,9 @@
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                   ></loader-field>
                 </div>
-                <!--Mobile-->
-                <!--<input-data
+
+                <input-data
+                  v-if="isMobile"
                   background="transparent"
                   border="1px solid rgba(101, 96, 96, 1)"
                   placeholder="Тип фалйа"
@@ -232,8 +239,9 @@
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
                   </template>
-                </input-data>-->
+                </input-data>
                 <input-data
+                  v-else
                   background="transparent"
                   border="1px solid rgba(101, 96, 96, 1)"
                   placeholder="Тип фалйа"
@@ -339,6 +347,10 @@ import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
 import loaderField from "../../../components/fields/loader-field.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 import { ref } from "vue";
 const value = ref("");
 const options = {
@@ -1167,12 +1179,15 @@ const options = {
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 125.44em;
+  height: 119.44em;
   overflow-y: auto;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
   overflow-x: hidden;
+  &_desktop {
+    height: 125.44em;
+  }
 }
 @media (min-width: 500px) {
   .div8 {

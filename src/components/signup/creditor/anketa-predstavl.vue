@@ -79,7 +79,7 @@
                 </span>
               </div>
               <catos-textarea
-                :style="{ width: '100%' }"
+                :style="{ width: '100%', resize: 'none' }"
                 placeholder="ГУМВД России по Санкт-Петербургу, и Ленинградской области"
               ></catos-textarea>
             </div>
