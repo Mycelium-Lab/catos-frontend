@@ -60,7 +60,7 @@
           <div class="text-and-button">
             <catos-button
               variant="fourth"
-              :style="{ width: '97%' }"
+              :style="{ width: '97%', height: '32px' }"
               @click="toScan"
               >Добавить</catos-button
             >

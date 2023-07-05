@@ -64,12 +64,13 @@
     <div class="frame-parent17">
       <div class="alert-triangle-parent">
         <div class="div47">Кредитор:</div>
-        <div class="alert-triangle-parent">
+        <div class="alert-triangle-parent-1 alert-triangle-parent">
           <div class="div55">Деньги до зарплаты</div>
-          <catos-checkbox
-            variant="radiobutton"
-            :style="{ position: 'relative', top: '0.1em' }"
-          ></catos-checkbox>
+          <img
+            class="radiobutton-icon"
+            alt=""
+            src="@/assets/images/investore.svg"
+          />
         </div>
       </div>
       <div class="frame-child6"></div>
@@ -377,7 +378,6 @@ const next = () => {
   height: 0.06em;
 }
 .ton-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: row;
   padding: 0.13em 0;
@@ -1301,7 +1301,7 @@ const next = () => {
 .frame-parent18 {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 .frame-parent18 {
   width: 100%;
@@ -1404,8 +1404,12 @@ const next = () => {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+  width: 100%;
   gap: 0.63em;
+  &-1 {
+    justify-content: flex-end;
+  }
 }
 .div66 {
   align-self: stretch;
@@ -1697,7 +1701,7 @@ const next = () => {
 .right-label {
   position: absolute;
   top: 1.4em;
-  left: 62vw;
+  left: 61vw;
   &_day {
     right: -2vw;
   }

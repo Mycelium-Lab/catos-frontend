@@ -184,33 +184,7 @@
               </div>
             </div>
           </div>
-          <!--<div class="des-and-bbn">
-                <div class="text-and-button-parent">
-                  <div v-if="variant === 'all'" class="text-and-button">
-                    <div class="buttons-tabs1">
-                      <div class="text">Займы</div>
-                    </div>
-                    <div class="buttons-tabs2" id="buttonsTabsContainer2">
-                      <div class="text1">Аналитика</div>
-                    </div>
-                  </div>
-                  <div class="text-and-button">
-                    <div
-                      v-if="variant === 'all'"
-                      class="buttons-tabs2"
-                      id="buttonsTabsContainer3"
-                    >
-                      <div class="text2" @click="toManage">
-                        <span class="span">Упр</span>
-                        <span class="span1">. ликвид</span>
-                      </div>
-                    </div>
-                    <div class="buttons-tabs2" id="buttonsTabsContainer4">
-                      <div class="text3">Закрыть</div>
-                    </div>
-                  </div>
-                </div>
-              </div>-->
+
           <div class="des-and-bbn">
             <div class="text-and-button-parent">
               <div class="text-and-button">
@@ -226,9 +200,6 @@
                     Добавить ликвидность
                   </div>
                 </div>
-                <!--<div class="buttons-tabs2" id="buttonsTabsContainer4">
-                  <div class="text3">Подробнее</div>
-                </div>-->
               </div>
             </div>
           </div>
@@ -488,12 +459,13 @@ const toManage = () => {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 .statuspull-wrapper {
   flex: 1;
   padding: 0.13em 0;
   color: #1cbd62;
+  justify-content: flex-end;
 }
 .frame-parent1 {
   align-self: stretch;
@@ -513,7 +485,7 @@ const toManage = () => {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 1em;
 }
 .line-div {
@@ -524,12 +496,11 @@ const toManage = () => {
   height: 0.06em;
 }
 .ton-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: row;
   padding: 0.13em 0;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 .roi {
   position: relative;

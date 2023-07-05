@@ -53,11 +53,15 @@
             </div>
             <div class="frame-parent1_my frame-parent1">
               <div class="creditlabel">Кредитор:</div>
-              <catos-checkbox
-                variant="radiobutton"
-                :style="{ position: 'relative', top: '0.1em' }"
-              ></catos-checkbox>
-              <div class="creditoption">CATOS</div>
+
+              <div class="group">
+                <div class="div1">Catos</div>
+                <img
+                  class="radiobutton-icon"
+                  alt=""
+                  src="@/assets/images/investore.svg"
+                />
+              </div>
             </div>
             <div class="frame-parent2">
               <div class="frame-parent3">
@@ -451,11 +455,11 @@ const getLoan = () => {
   margin: 0 auto;
 }
 .div16 {
-  flex: 1;
   position: relative;
   font-size: 0.75em;
-  line-height: 0.83em;
+  line-height: 130%;
   font-weight: 300;
+  text-align: end;
 }
 .frame-parent3 {
   align-self: stretch;
@@ -477,13 +481,13 @@ const getLoan = () => {
   display: flex;
   flex-direction: row;
   padding: 0.13em 0;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 .roi {
   position: relative;
   font-size: 0.75em;
-  line-height: 0.83em;
+  line-height: 130%;
   font-weight: 300;
 }
 .frame-parent2,
@@ -493,7 +497,7 @@ const getLoan = () => {
   justify-content: flex-start;
 }
 .roi-wrapper {
-  width: 7.19em;
+  width: 9.19em;
   flex-direction: row;
   padding: 0.13em 0;
   box-sizing: border-box;
@@ -777,15 +781,7 @@ const getLoan = () => {
   overflow-x: auto;
   flex-direction: row;
 }
-.group {
-  position: absolute;
-  top: 5em;
-  left: 1.56em;
-  width: 22.31em;
-  overflow: hidden;
-  flex-direction: column;
-  color: #2e3a59;
-}
+
 .div34 {
   position: relative;
   font-size: 0.88em;
@@ -1498,12 +1494,12 @@ const getLoan = () => {
 .frame-parent1_my {
   border: 1px solid #f6f4fc;
   border-radius: 16px;
-  padding: 9px 0px 9px 13px;
+  justify-content: space-between;
+  padding: 9px 13px 9px 13px;
   margin: 0em;
   align-items: center;
   height: 40px;
-  width: 80vw;
-  margin: 0 auto;
+  width: 100%;
 }
 .creditlabel,
 .creditoption {
@@ -1512,6 +1508,19 @@ const getLoan = () => {
   font-weight: 400;
 }
 .creditoption {
+  font-weight: 300;
+}
+.group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.63em;
+}
+.div1 {
+  position: relative;
+  font-size: 0.88em;
+  line-height: 130%;
   font-weight: 300;
 }
 </style>
