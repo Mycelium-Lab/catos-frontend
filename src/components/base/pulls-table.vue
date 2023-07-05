@@ -7,9 +7,11 @@
       <div
         :class="`desctopverpull-stats-child_${role}-${variant} desctopverpull-stats-child`"
       />
-      <div class="filtr6">
+      <div :class="role === 'collector' ? 'filtr6_collector filtr6' : 'filtr6'">
         <div class="wrapper">
-          <div class="div120">Пулл №1223</div>
+          <div class="div120">
+            {{ role === "collector" ? "Задолжность №1223" : "Пулл №1223" }}
+          </div>
         </div>
       </div>
       <div class="pull-stats6">
@@ -108,7 +110,10 @@
             </div>
           </div>
           <div class="frame-parent22">
-            <div v-if="role === 'collector'" class="frame-parent23">
+            <div
+              v-if="role === 'collector' && variant === 'debt'"
+              class="frame-parent23"
+            >
               <div class="frame">
                 <div class="div127">Статус:</div>
               </div>
@@ -233,6 +238,36 @@
                 <div class="div128">37 000 TON</div>
               </div>
             </div>
+            <div
+              v-if="role === 'depositor' && variant === 'all'"
+              class="line-div"
+            />
+            <div
+              v-if="role === 'depositor' && variant === 'all'"
+              class="frame-parent23"
+            >
+              <div class="frame">
+                <div class="div127">Сгенерированный доход:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="div128">273 000 TON</div>
+              </div>
+            </div>
+            <div
+              v-if="role === 'depositor' && variant === 'all'"
+              class="line-div"
+            />
+            <div
+              v-if="role === 'depositor' && variant === 'all'"
+              class="frame-parent23"
+            >
+              <div class="frame">
+                <div class="div127">Действующих инвесторов:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="div128">273</div>
+              </div>
+            </div>
             <div v-if="role === 'depositor'" class="line-div" />
             <div v-if="role === 'depositor'" class="frame-parent23">
               <div class="frame">
@@ -264,7 +299,10 @@
             </div>
           </div>
 
-          <div v-if="role === 'depositor'" class="frame-parent">
+          <div
+            v-if="role === 'depositor' && variant === 'my'"
+            class="frame-parent"
+          >
             <div class="wrapper">
               <div class="div">Моя ликвидность</div>
             </div>
@@ -726,6 +764,9 @@ li {
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
+  &_collector {
+    width: 8.63em;
+  }
 }
 .iconsbar-cards {
   position: relative;
@@ -954,7 +995,7 @@ li {
   align-self: stretch;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   gap: 4.06em;
 }
@@ -1106,12 +1147,12 @@ li {
 .desctopverpull-stats-parent {
   position: relative;
   width: 100%;
-  height: 34em;
+  height: 29em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
   &_depositor-all {
-    height: 41em;
+    height: 42.5em;
   }
   &_depositor-my {
     height: 44em;
@@ -1396,6 +1437,7 @@ li {
   align-items: flex-start;
   justify-content: flex-start;
   z-index: 0;
+
   &_period {
     width: 9.81em;
   }
