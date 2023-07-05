@@ -1,5 +1,6 @@
 <template>
-  <!--<div
+  <div
+    v-if="isMobile"
     :class="
       currentWindow === 'active'
         ? 'iphone-13-13-'
@@ -42,9 +43,10 @@
     </div>
     <loans-list :variant="currentWindow" :key="currentWindow"></loans-list>
   </div>
-  <load-modal v-if="isTable" variant="table"></load-modal>
-  <app-bar></app-bar>-->
-  <default-desktop>
+  <load-modal v-if="isTable && isMobile" variant="table"></load-modal>
+  <app-bar v-if="isMobile"></app-bar>
+
+  <default-desktop v-else>
     <template v-slot:title> Заявки </template>
     <template v-slot:slider>
       <multi-button-slider
@@ -104,6 +106,10 @@ import loadModal from "@/components/base/load-modal.vue";
 
 const router = useRouter();
 const currentWindow = ref("active");
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 
 const toSort = () => {
   router.push({ name: "loans-borrower-sort" });

@@ -63,12 +63,16 @@
         <div class="pull-stats-child2"></div>
         <div class="frame-parent23">
           <div class="frame-parent24">
-            <div class="parent12">
-              <div class="number">Кредитор:</div>
-              <div class="alert-triangle-parent">
-                <catos-checkbox variant="radiobutton"></catos-checkbox>
+            <div class="frame-parent1_my frame-parent1">
+              <div class="creditlabel">Кредитор:</div>
 
-                <div class="div74">Деньги до зарплаты</div>
+              <div class="group-creditor">
+                <div class="div1">Деньги до зарплаты</div>
+                <img
+                  class="radiobutton-icon"
+                  alt=""
+                  src="@/assets/images/investore.svg"
+                />
               </div>
             </div>
             <div class="frame-child6"></div>
@@ -94,7 +98,7 @@
               </div>
               <div class="ton-wrapper">
                 <div class="div80">
-                  <span class="eqb5dze1h44-txt">
+                  <span class="eqb5dze1h44-txt_list eqb5dze1h44-txt">
                     <p class="p">
                       <span class="span5"
                         >до 12.05.23
@@ -206,7 +210,7 @@ const toRepay = () => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .wrapper {
   height: 1200px;
 }
@@ -428,7 +432,6 @@ const toRepay = () => {
   height: 0.06em;
 }
 .ton-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: row;
   padding: 0.13em 0;
@@ -1415,8 +1418,9 @@ const toRepay = () => {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 0.63em;
+  width: 100%;
 }
 .div64 {
   align-self: stretch;
@@ -1934,6 +1938,11 @@ const toRepay = () => {
 .eqb5dze1h44-txt {
   line-break: anywhere;
   width: 100%;
+  &_list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
 }
 .eqb5dze1h44 {
   position: relative;
@@ -2165,6 +2174,8 @@ const toRepay = () => {
 .frame-parent25 {
   width: 100%;
   gap: 0.5em;
+  justify-content: space-between;
+  align-items: center;
 }
 .span47 {
   letter-spacing: -0.01em;
@@ -2172,6 +2183,7 @@ const toRepay = () => {
 .p2 {
   margin: 0;
   color: red;
+  align-self: flex-end;
 }
 .div80,
 .div83 {
@@ -2329,5 +2341,37 @@ const toRepay = () => {
   text-align: center;
   color: #3b3b3b;
   font-family: Inter;
+}
+.frame-parent1_my {
+  border: 1px solid #f6f4fc;
+  border-radius: 16px;
+  padding: 9px 9px 9px 13px;
+  margin: 0em;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.creditlabel,
+.creditoption {
+  color: rgba(59, 59, 59, 1);
+  font-size: 14px;
+  font-weight: 400;
+}
+.creditoption {
+  font-weight: 300;
+}
+.group-creditor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.63em;
+}
+.div1 {
+  position: relative;
+  font-size: 0.88em;
+  line-height: 130%;
+  font-weight: 300;
 }
 </style>
