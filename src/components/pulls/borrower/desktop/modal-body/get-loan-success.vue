@@ -66,12 +66,12 @@
                     <div class="container">
                       <div class="div2">Кредитор:</div>
                       <div class="radiobutton-parent">
+                        <div class="div3">Деньги до зарплаты</div>
                         <img
                           class="radiobutton-icon"
                           alt=""
                           src="@/assets/images/investore.svg"
                         />
-                        <div class="div3">Деньги до зарплаты</div>
                       </div>
                     </div>
                     <div class="frame-child" />

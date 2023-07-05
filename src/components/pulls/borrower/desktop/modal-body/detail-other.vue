@@ -48,12 +48,12 @@
             <div class="group">
               <div class="div5">Кредитор:</div>
               <div class="radiobutton-parent">
+                <div class="div6">Деньги до зарплаты</div>
                 <img
                   class="radiobutton-icon"
                   alt=""
                   src="@/assets/images/investore.svg"
                 />
-                <div class="div6">Деньги до зарплаты</div>
               </div>
             </div>
           </div>
@@ -278,7 +278,7 @@ const close = () => {
   flex-direction: row;
   padding: 0.25em 0.81em;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 0.63em;
 }
 .frame-wrapper {

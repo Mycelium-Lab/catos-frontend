@@ -49,7 +49,7 @@
           variant="fourth"
           :style="{ width: '100%', margin: '0' }"
           @click="qr"
-          >Вывести на кошелек CATOS</catos-button
+          >Вывести на кошелек TONKeeper</catos-button
         >
 
         <catos-button
