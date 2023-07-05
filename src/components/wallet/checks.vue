@@ -1,5 +1,5 @@
 <template>
-  <!--<modal>
+  <modal v-if="isMobile">
     <div class="wrapper">
       <div class="header">
         <div class="div9">Чеки</div>
@@ -174,12 +174,9 @@
           <div class="counters-graph-web">
             <div class="bg"></div>
             <div class="component-26">
-        
               <div class="number">Поделиться</div>
             </div>
             <div class="component-261">
-              
-
               <div class="number">Скопировать</div>
             </div>
             <div class="title-wrapper">
@@ -188,8 +185,6 @@
           </div>
           <div class="field-">
             <div class="svg-gobbler-2-1-parent">
-           
-
               <div class="name">
                 <div class="invoice-aa-04-19-18">Чек отправлен</div>
                 <div class="new-madieton-llc">Описание статуса:</div>
@@ -199,9 +194,7 @@
               <div class="total">10 TON</div>
               <div class="paid">Отправлено</div>
             </div>
-            <div class="arrows-table">
-            
-            </div>
+            <div class="arrows-table"></div>
           </div>
           <div class="div8" id="popuptext">Закрыть</div>
         </div>
@@ -209,8 +202,8 @@
 
       <detail v-if="isDetail"></detail>
     </div>
-  </modal>-->
-  <checks-desktop></checks-desktop>
+  </modal>
+  <checks-desktop v-else></checks-desktop>
 </template>
 
 <script setup lang="ts">
@@ -225,6 +218,9 @@ const router = useRouter();
 const toCreateCheck = () => {
   router.push({ name: "checks-create" });
 };
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 </script>
 
 <styles scoped lang="scss">

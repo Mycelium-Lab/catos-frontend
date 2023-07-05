@@ -1,9 +1,8 @@
 <template>
-  <!--<default-wallet>
+  <default-wallet v-if="isMobile">
     <div class="user-nav">
       <div class="info-user">
         <div class="tags-grey1">
-         
           <b class="tag">Кредитор</b>
         </div>
         <div class="fields-and-photo-and-name">
@@ -112,8 +111,8 @@
       </div>
     </div>
     <app-bar></app-bar>
-  </default-wallet>-->
-  <default-desktop>
+  </default-wallet>
+  <default-desktop v-else>
     <template v-slot:title> Кошелек Catos </template>
     <template v-slot:body>
       <wallet-card></wallet-card>
@@ -130,6 +129,10 @@ import appBar from "@/components/ui-kit/app-bar.vue";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import walletCard from "@/components/wallet/desktop/wallet-card.vue";
 import settingCard from "@/components/wallet/desktop/setting-card.vue";
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 </script>
 
 <style scoped lang="scss">

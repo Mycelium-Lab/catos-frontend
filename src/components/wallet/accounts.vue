@@ -1,5 +1,5 @@
 <template>
-  <!--<modal>
+  <modal v-if="isMobile">
     <div class="wrapper">
       <div class="header">
         <div class="div9">Счета</div>
@@ -171,13 +171,9 @@
           <div class="counters-graph-web">
             <div class="bg"></div>
             <div class="component-26">
-             
-
               <div class="number">Поделиться</div>
             </div>
             <div class="component-261">
-             
-
               <div class="number">Скопировать</div>
             </div>
             <div class="title-wrapper">
@@ -186,7 +182,6 @@
           </div>
           <div class="field-">
             <div class="svg-gobbler-2-1-parent">
-            
               <div class="name">
                 <div class="invoice-aa-04-19-18">Счет отправлен</div>
                 <div class="new-madieton-llc">Описание статуса:</div>
@@ -196,9 +191,7 @@
               <div class="total">10 TON</div>
               <div class="paid">Отправлено</div>
             </div>
-            <div class="arrows-table">
-            
-            </div>
+            <div class="arrows-table"></div>
           </div>
           <div class="div8" id="popuptext">Закрыть</div>
         </div>
@@ -206,8 +199,8 @@
 
       <detail v-if="isDetail"></detail>
     </div>
-  </modal>-->
-  <accounts-desktop></accounts-desktop>
+  </modal>
+  <accounts-desktop v-else></accounts-desktop>
 </template>
 
 <script setup lang="ts">
@@ -217,6 +210,9 @@ import accountsDesktop from "./desktop/accounts/accounts-desktop.vue";
 //Отрисовать детали корректно
 import detail from "@/components/wallet/check/detail.vue";
 const isDetail = ref(false);
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 </script>
 
 <styles scoped lang="scss">
