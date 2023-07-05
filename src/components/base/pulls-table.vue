@@ -82,7 +82,15 @@
             class="creditor-info"
           >
             <div class="div127">Кредитор:</div>
-            <span class="div127">Деньги до зарплаты</span>
+
+            <div class="group-creditor">
+              <span class="div127">Деньги до зарплаты</span>
+              <img
+                class="radiobutton-icon"
+                alt=""
+                src="@/assets/images/investore.svg"
+              />
+            </div>
           </div>
           <div v-if="role !== 'collector'" class="frame-parent21">
             <div class="frame">
@@ -916,7 +924,7 @@ li {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
   gap: 0.63em;
   color: #1cbd62;
 }
@@ -1452,7 +1460,18 @@ li {
   border-radius: 16px;
   border: 1px solid #f6f4fc;
   padding: 4px 16px;
-  height: 30px;
+  height: 38px;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+.radiobutton-icon {
+  position: relative;
+  width: 1.75em;
+  height: 1.75em;
+}
+.group-creditor {
+  display: flex;
   align-items: center;
   gap: 10px;
 }
