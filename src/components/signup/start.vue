@@ -110,7 +110,7 @@
               </template>
             </input-data>
             <div class="div19">
-              <span>Придумайте пароль</span>
+              <span>Придумайте пароль </span>
               <span class="span">*</span>
             </div>
             <div class="div20">

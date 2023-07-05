@@ -97,7 +97,7 @@
           <div class="text-and-fill">
             <div class="div11">
               <span>Подтверждение номера</span>
-              <span class="span">*</span>
+              <span class="span"> *</span>
             </div>
           </div>
           <div class="fields-password-and-mail6">
@@ -114,7 +114,7 @@
             <span class="span7">ожидания</span>
             <span>:</span>
             <span class="span8"> </span>
-            <span class="span6">1 мин</span>
+            <span class="span6"> 1 мин</span>
           </div>
           <div class="frame-group">
             <div class="frame-container">
@@ -155,7 +155,7 @@
         <div class="text-and-fill">
           <div class="div11">
             <span>Подтверждение почты</span>
-            <span class="span">*</span>
+            <span class="span"> *</span>
           </div>
         </div>
         <div class="fields-password-and-mail6">
