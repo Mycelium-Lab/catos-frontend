@@ -1,5 +1,5 @@
 <template>
-  <!--<div class="iphone-13-13-">
+  <div v-if="isMobile" class="iphone-13-13-">
     <div class="col-titles-bg"></div>
     <div class="rectangle-group">
       <div class="group-item"></div>
@@ -55,7 +55,7 @@
       :key="currentWindow"
       @on-button-sheet="(ev: any) => (isAppBar = !ev)"
     ></loans-list>
-    -<action value="loans">
+    <action value="loans">
       <template v-slot:status-inner>
         <status-tag
           variant="reject"
@@ -66,12 +66,13 @@
     </action>
   </div>
   <load-modal
-    v-if="isTable"
+    v-if="isTable && isMobile"
     variant="table"
     @on-close="() => (isTable = false)"
   ></load-modal>
-  <app-bar v-if="isAppBar"></app-bar>-->
-  <default-desktop>
+  <app-bar v-if="isAppBar && isMobile"></app-bar>
+
+  <default-desktop v-else>
     <template v-slot:title> Заявки </template>
     <template v-slot:slider>
       <multi-button-slider
@@ -154,6 +155,10 @@ import loansList from "./loans-list.vue";
 import appBar from "../ui-kit/app-bar.vue";
 
 import loadModal from "../base/load-modal.vue";
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 
 const isAppBar = ref(true);
 
