@@ -77,28 +77,13 @@
             <b class="b">Создать пулл</b>
           </div>
         </button>
-        <!--<div class="frame-group">
-          <div class="frame-container">
-            <img class="frame-item" alt="" src="/frame-1817604.svg" />
-            <div class="div4" @click="() => (isFilter = true)">
-              <span>Фильтр </span>
-              <span class="span">(1)</span>
-            </div>
-          </div>
-          <div class="frame-container">
-            <img class="menu-2-icon" alt="" src="/menu2.svg" />
-            <div class="div5" @click="() => (isSort = true)">
-              <span>Сортировка </span>
-              <span class="span1">(1)</span>
-            </div>
-          </div>
-        </div>-->
+
         <tool-bar variant="pulls" role="creditor"></tool-bar>
       </div>
     </template>
     <template v-slot:body>
       <div class="frame-div">
-        <ul>
+        <ul class="list-desktop">
           <li v-for="n in 5" :key="n">
             <pulls-table
               role="creditor"
@@ -151,7 +136,7 @@ import { useRouter } from "vue-router";
 import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import creditorList from "@/components/pulls/creditor/creditor-list.vue";
 import pullsTable from "@/components/base/pulls-table.vue";
-import appBar from "@/components/ui-kit/desktop/app-bar.vue";
+import appBar from "@/components/ui-kit/app-bar.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
 
 import createPullDesktop from "@/components/pulls/creditor/create-pull-desktop.vue";
@@ -192,7 +177,7 @@ const toggleSlide = (slideIndex: any) => {
 </script>
 
 <style scoped lang="scss">
-ul {
+.list-desktop {
   list-style: none;
   padding: 0em;
   display: flex;
@@ -586,19 +571,7 @@ ul {
   text-align: right;
   color: #fefefe;
 }
-.pull-stats {
-  align-self: stretch;
-  border-radius: 24px;
-  background-color: #fff;
-  border: 1px solid #abb0bd;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  padding: 1.63em 0.63em 0.63em;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.88em;
-}
+
 .pull-stats-wrapper {
   position: absolute;
   height: 97.99%;
@@ -770,7 +743,7 @@ ul {
     color: rgba(87, 126, 247, 0.96);
   }
 }
-/*.pull {
+.pull {
   position: absolute;
   top: 0;
   left: 0;
@@ -865,9 +838,7 @@ ul {
   position: relative;
 }
 .ton {
-
   background-color: red;
-
 
   background: linear-gradient(
     38.6deg,
@@ -881,7 +852,6 @@ ul {
   background-size: 100%;
   background-repeat: repeat;
 
-  
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
@@ -1348,7 +1318,7 @@ ul {
   overflow: hidden;
   flex-shrink: 0;
   flex-direction: row;
-  padding: 0.5em 7.25em;
+
   box-sizing: border-box;
   justify-content: center;
   text-align: center;
@@ -2027,9 +1997,9 @@ ul {
   position: fixed;
 }
 
-/*@media (max-width: 390px) {
-    .pull-stats1 {
-      margin: 0 8px;
-    }
-  }*/
+@media (max-width: 390px) {
+  .pull-stats1 {
+    margin: 0 8px;
+  }
+}
 </style>

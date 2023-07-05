@@ -62,15 +62,25 @@
           </div>
           <div v-if="variant === 'all'" class="statuspull-wrapper">
             <div class="statuspull">
+              <img
+                class="colors-graphsorders-icon"
+                alt=""
+                src="@/assets/images/colors-graphsorders1.svg"
+              />
               <div class="div14">Активен</div>
             </div>
           </div>
-          <div class="creditlabel" v-if="variant === 'my'">Кредитор:</div>
-          <div class="creditoption" v-if="variant === 'my'">
-            Деньги до зарплаты
+
+          <div v-if="variant === 'my'" class="creditlabel">Кредитор:</div>
+
+          <div v-if="variant === 'my'" class="group-creditor">
+            <div class="div1">Деньги до зарплаты</div>
+            <img
+              class="radiobutton-icon"
+              alt=""
+              src="@/assets/images/investore.svg"
+            />
           </div>
-          <!--Чекбокс под вопросом-->
-          <!-- <catos-checkbox variant="radiobutton"></catos-checkbox> -->
         </div>
         <div class="frame-parent2">
           <div class="frame-parent3">
@@ -438,19 +448,15 @@ const openModal = () => {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
+  width: 77vw;
 }
 .statuspull-wrapper {
-  flex: 1;
   padding: 0.13em 0;
   color: #1cbd62;
+  justify-content: flex-end;
 }
-.frame-parent1 {
-  align-self: stretch;
-  gap: 0.75em;
-  width: 77vw;
-  margin: 0 auto;
-}
+
 .frame-parent1_my {
   border: 1px solid #f6f4fc;
   border-radius: 16px;
@@ -469,7 +475,7 @@ const openModal = () => {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 0.7em;
 }
 .line-div {
@@ -480,7 +486,6 @@ const openModal = () => {
   height: 0.06em;
 }
 .ton-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: row;
   padding: 0.13em 0;
@@ -809,7 +814,7 @@ const openModal = () => {
   overflow: hidden;
   flex-shrink: 0;
   flex-direction: row;
-  padding: 0.5em 7.25em;
+
   box-sizing: border-box;
   justify-content: center;
   text-align: center;
@@ -1488,6 +1493,42 @@ const openModal = () => {
   font-weight: 400;
 }
 .creditoption {
+  font-weight: 300;
+}
+.colors-graphsorders-icon {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  top: -0.25em;
+  right: 1.2em;
+}
+.frame-parent1_my {
+  border: 1px solid #f6f4fc;
+  border-radius: 16px;
+  justify-content: space-between;
+  padding: 9px 13px 9px 13px;
+  margin: 0em;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+}
+.creditlabel,
+.creditoption {
+  color: rgba(59, 59, 59, 1);
+  font-size: 14px;
+  font-weight: 400;
+}
+.group-creditor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.63em;
+}
+.div1 {
+  position: relative;
+  font-size: 0.88em;
+  line-height: 130%;
   font-weight: 300;
 }
 
