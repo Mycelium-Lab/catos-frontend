@@ -153,6 +153,15 @@
         <router-link v-else :to="{ name: 'login' }" class="div11"
           >Войдите</router-link
         >
+        <router-link
+          :to="
+            isMobile
+              ? { name: 'admin-profile-mobile' }
+              : { name: 'admin-profile' }
+          "
+        >
+          Администратор
+        </router-link>
       </div>
     </div>
     <div class="loader-parent">
