@@ -134,6 +134,7 @@ const router = createRouter({
     setting[14],
     setting[15],
     setting[16],
+    setting[17],
     wallet[0],
     wallet[1],
     wallet[2],

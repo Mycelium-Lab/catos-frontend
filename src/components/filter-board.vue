@@ -11,7 +11,7 @@
                 class="iconscalendar"
                 alt=""
                 src="@/assets/images/menu2.svg"
-                @click="() => (isSort = true)"
+                @click="toSort"
               />
 
               <div class="div15">(1)</div>
@@ -66,23 +66,27 @@
     >
       <status-filter></status-filter>
     </bottom-sheet>
-    <bottom-sheet
+    <!--<bottom-sheet
       v-if="isSort"
       defaultState="open"
       :style="{ top: '17em !importnat' }"
     >
       <sort @close="() => (isSort = false)"></sort>
-    </bottom-sheet>
+    </bottom-sheet>-->
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 const isAll = ref(false);
-const isSort = ref(false);
+
 import bottomSheet from "@/components/ui-kit/bottomsheet.vue";
 import statusFilter from "@/components/filters/status-filter.vue";
-import Sort from "./sort/sort.vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const toSort = () => {
+  router.push({ name: "transaction-history-sort" });
+};
 </script>
 
 <style scoped lang="scss">

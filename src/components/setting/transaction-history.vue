@@ -1,5 +1,5 @@
 <template>
-  <!--<div class="decor-parent">
+  <div v-if="isMobile" class="decor-parent">
     <div class="decor"></div>
     <div class="frame-parent3">
       <div class="job-title-wrapper">
@@ -66,12 +66,12 @@
       </div>
     </div>
   </div>
-  <router-link class="buttonback" to="" @click="$router.go(-1)">
+  <router-link v-if="isMobile" class="buttonback" to="" @click="$router.go(-1)">
     <div class="div44">Назад</div>
     <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
-  </router-link>-->
+  </router-link>
 
-  <default-desktop>
+  <default-desktop v-else>
     <template v-slot:title> История транзакций </template>
     <template v-slot:tools>
       <filter-board
@@ -140,6 +140,10 @@ import filterBoard from "../filter-board.vue";
 import transactionHistoryTable from "@/components/setting/transaction-history-table.vue";
 import DefaultDesktop from "../layouts/default-desktop.vue";
 const active = ref("day");
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 </script>
 
 <style scoped lang="scss">
