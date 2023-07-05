@@ -40,6 +40,7 @@
       :variant="curentWindow"
       @on-bottomsheet="(ev: any) => isBackSide = ev"
       @on-modal="() => (isBackSide = true)"
+      :key="curentWindow"
     ></depositor-list>
 
     <app-bar v-if="isAppBar"></app-bar>

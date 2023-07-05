@@ -1,6 +1,12 @@
 <template>
   <div class="pull-stats">
-    <div class="pull-stats-child"></div>
+    <div
+      :class="
+        variant === 'all'
+          ? 'pull-stats-child_all pull-stats-child'
+          : 'pull-stats-child'
+      "
+    ></div>
     <div class="filtr">
       <div class="frame">
         <div class="div9">Пулл №1223</div>
@@ -53,15 +59,8 @@
             </div>
           </div>
         </div>
-        <div class="frame-parent1_my frame-parent1">
-          <div class="creditlabel">Кредитор:</div>
-          <catos-checkbox
-            variant="radiobutton"
-            :style="{ top: '0.2em', position: 'relative' }"
-          ></catos-checkbox>
-          <div class="creditoption">Деньги до зарплаты</div>
-        </div>
-        <div v-if="variant === 'all'" class="frame-parent1">
+
+        <div class="frame-parent1">
           <div class="roi-wrapper">
             <div class="div11">Состояние:</div>
           </div>
@@ -119,17 +118,35 @@
               <img src="@/assets/images/info.svg" />
             </div>
           </div>
+          <div v-if="variant == 'all'" class="line-div"></div>
+          <div v-if="variant == 'all'" class="frame-parent3">
+            <div class="roi-wrapper">
+              <div class="roi">Сгенерированный доход:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div16">37 000 TON</div>
+            </div>
+          </div>
+          <div v-if="variant == 'all'" class="line-div"></div>
+          <div v-if="variant == 'all'" class="frame-parent3">
+            <div class="roi-wrapper">
+              <div class="roi">Действующих инвесторов:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div16">37 000 TON</div>
+            </div>
+          </div>
           <div class="line-div"></div>
           <div class="frame-parent3">
             <div class="roi-wrapper">
-              <div class="roi">Инвестировано</div>
+              <div class="roi">Доходность за 30 дней:</div>
             </div>
             <div class="ton-wrapper">
-              <div class="div16">100 TON</div>
+              <div class="div16">75% годовых</div>
             </div>
           </div>
         </div>
-        <div class="percent-group">
+        <div v-if="variant === 'my'" class="percent-group">
           <div class="frame-parent3">
             <div class="roi-wrapper_tag roi-wrapper">
               <div class="roi">Моя ликвидность</div>
@@ -137,7 +154,15 @@
           </div>
           <div class="frame-parent3">
             <div class="roi-wrapper">
-              <div class="roi">Всего доходность:</div>
+              <div class="roi">Инвестированно:</div>
+            </div>
+            <div class="ton-wrapper">
+              <div class="div16">7 TON</div>
+            </div>
+          </div>
+          <div class="frame-parent3">
+            <div class="roi-wrapper">
+              <div class="roi">Доходность всего:</div>
             </div>
             <div class="ton-wrapper">
               <div class="div16">7 TON</div>
@@ -151,21 +176,13 @@
               <div class="div16">45%</div>
             </div>
           </div>
-          <div class="frame-parent3">
-            <div class="roi-wrapper">
-              <div class="roi">Доходность за 30 дней:</div>
-            </div>
-            <div class="ton-wrapper">
-              <div class="div16">75% годовых</div>
-            </div>
-          </div>
         </div>
       </div>
       <div class="des-and-bbn">
         <div class="text-and-button-parent">
           <div class="text-and-button">
             <div
-              v-if="variant === 'all'"
+              v-if="variant === 'my'"
               class="buttons-tabs2"
               id="buttonsTabsContainer3"
             >
@@ -290,7 +307,10 @@ const openModal = () => {
   border-radius: 15px;
   backdrop-filter: blur(5px);
   border: 0.5px solid rgba(46, 58, 89, 0.4);
-  height: 112%;
+  height: 42em;
+  &_all {
+    height: 33.5em;
+  }
 }
 .div9 {
   position: relative;
@@ -460,7 +480,6 @@ const openModal = () => {
   justify-content: flex-start;
 }
 .statuspull-wrapper {
-  flex: 1;
   padding: 0.13em 0;
   color: #1cbd62;
 }
@@ -469,6 +488,7 @@ const openModal = () => {
   gap: 0.75em;
   width: 77vw;
   margin: 0 auto;
+  justify-content: space-between;
 }
 .frame-parent1_my {
   border: 1px solid #f6f4fc;
@@ -489,7 +509,7 @@ const openModal = () => {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 0.7em;
 }
 .line-div {
@@ -500,7 +520,6 @@ const openModal = () => {
   height: 0.06em;
 }
 .ton-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: row;
   padding: 0.13em 0;

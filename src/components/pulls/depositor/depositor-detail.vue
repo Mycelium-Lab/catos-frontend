@@ -161,7 +161,7 @@
                 </div>
               </div>
             </div>
-            <div class="percent-group">
+            <div v-if="variant === 'my'" class="percent-group">
               <div class="frame-parent3">
                 <div class="roi-wrapper_tag roi-wrapper">
                   <div class="roi">Моя ликвидность</div>
@@ -193,37 +193,12 @@
               </div>
             </div>
           </div>
-          <!--<div class="des-and-bbn">
-          <div class="text-and-button-parent">
-            <div v-if="variant === 'all'" class="text-and-button">
-              <div class="buttons-tabs1">
-                <div class="text">Займы</div>
-              </div>
-              <div class="buttons-tabs2" id="buttonsTabsContainer2">
-                <div class="text1">Аналитика</div>
-              </div>
-            </div>
-            <div class="text-and-button">
-              <div
-                v-if="variant === 'all'"
-                class="buttons-tabs2"
-                id="buttonsTabsContainer3"
-              >
-                <div class="text2" @click="toManage">
-                  <span class="span">Упр</span>
-                  <span class="span1">. ликвид</span>
-                </div>
-              </div>
-              <div class="buttons-tabs2" id="buttonsTabsContainer4">
-                <div class="text3">Закрыть</div>
-              </div>
-            </div>
-          </div>
-        </div>-->
+
           <div class="des-and-bbn">
             <div class="text-and-button-parent">
               <div class="text-and-button">
                 <div
+                  v-if="variant === 'my'"
                   class="buttons-tabs2"
                   id="buttonsTabsContainer4"
                   @click="() => (isWithrow = true)"
@@ -263,6 +238,7 @@ import withrow from "../creditor/liquidity/withrow.vue";
 import add from "../creditor/liquidity/add.vue";
 
 const variant = computed(() => {
+  console.log("window.history.state.variant");
   return window.history.state.variant;
 });
 
@@ -502,7 +478,6 @@ const toPulls = () => {
   justify-content: flex-start;
 }
 .statuspull-wrapper {
-  flex: 1;
   padding: 0.13em 0;
   color: #1cbd62;
 }
@@ -511,6 +486,7 @@ const toPulls = () => {
   gap: 1em;
   width: 77vw;
   margin: 0 auto;
+  justify-content: space-between;
 }
 .div16 {
   flex: 1;
@@ -523,8 +499,8 @@ const toPulls = () => {
   align-self: stretch;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
   gap: 1em;
 }
 .line-div {
@@ -535,7 +511,6 @@ const toPulls = () => {
   height: 0.06em;
 }
 .ton-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: row;
   padding: 0.13em 0;
