@@ -1,86 +1,54 @@
 <template>
-  <default-setting v-if="isMobile">
+  <default-setting>
     <div class="user-nav">
       <div class="info-user">
         <div class="nav-bar">
           <div class="tags-grey">
-            <b class="tag">{{
-              role === "borrower"
-                ? "Заемщик"
-                : role === "collector"
-                ? "Коллектор"
-                : role === "depositor"
-                ? "Инвестор"
-                : "Кредитор"
-            }}</b>
+            <b class="tag">Администратор</b>
           </div>
           <div class="buttons-icon-outline-arr-parent">
             <div class="buttons-icon-outline-arr">
               <div class="bg"></div>
-              <img class="bell-icon" alt="" src="./public/bell.svg" />
+              <img class="bell-icon" alt="" src="../../public/bell.svg" />
 
               <div class="status">
-                <img class="mask-icon" alt="" src="./public/mask.svg" />
+                <img class="mask-icon" alt="" src="../../public/mask.svg" />
 
                 <b class="b">+1 </b>
               </div>
             </div>
             <div class="buttons-icon-outline-arr">
               <div class="bg"></div>
-              <img class="icon" alt="" src="./public/icon.svg" />
+              <img class="icon" alt="" src="../../public/icon.svg" />
             </div>
           </div>
         </div>
-        <div class="tags-grey1">
-          <b class="tag">{{
-            role === "collector" ? "Коллектор" : "Кредитор"
-          }}</b>
-        </div>
+
         <div class="fields-and-photo-and-name">
           <div class="photo-and-name">
             <div class="photo">
               <img
                 class="img-icon"
                 alt=""
-                src="./public/img@2x.png"
+                src="../../public/img@2x.png"
                 id="imgImage"
                 @click="() => (isLoadPhoto = !isLoadPhoto)"
                 v-if="!isLoadPhoto"
               />
-
-              <div class="vector-parent" v-if="isLoadPhoto">
-                <input type="file" class="input-upload" @change="upload" />
-                <div class="upload-cloud-parent">
-                  <img
-                    class="upload-cloud-icon"
-                    alt=""
-                    src="@/assets/images/uploadcloud.svg"
-                    @click="() => (isLoadPhoto = !isLoadPhoto)"
-                  />
-
-                  <div class="div4">Загрузить фото</div>
-                </div>
-              </div>
             </div>
             <div class="name">
               <b class="name1">Валентин Иванович Бабаев</b>
-              <div class="job-title">
-                {{
-                  role === "borrower"
-                    ? "Заемщик"
-                    : role === "collector"
-                    ? "Коллектор"
-                    : role === "depositor"
-                    ? "Инвестор"
-                    : "Кредитор"
-                }}
-              </div>
+              <div class="job-title">Личные данные</div>
             </div>
           </div>
           <div class="fields-edit">
             <div class="frame-parent">
               <div class="iconsmail-parent">
-                <img class="iconsmail" alt="" src="./public/iconsmail.svg" />
+                <img
+                  class="iconsmail"
+                  alt=""
+                  src="../../public/iconsmail.svg"
+                />
 
                 <div class="alesso-waitsongmailcom">
                   Alesso Waitson@gmailcom
@@ -89,41 +57,49 @@
               <img
                 class="iconsedit-outline"
                 alt=""
-                src="./public/iconseditoutline.svg"
+                src="../../public/iconseditoutline.svg"
                 @click="changeEmail"
               />
             </div>
             <div class="frame-parent">
               <div class="iconsmail-parent">
-                <img class="iconsmail" alt="" src="./public/iconsmobile.svg" />
+                <img
+                  class="iconsmail"
+                  alt=""
+                  src="../../public/iconsmobile.svg"
+                />
                 <div class="div5">+390-999-00-01</div>
               </div>
               <img
                 class="iconsedit-outline"
                 alt=""
-                src="./public/iconseditoutline.svg"
+                src="../../public/iconseditoutline.svg"
                 @click="changePhone"
               />
             </div>
             <div class="frame-container">
               <div class="iconsmail-parent">
-                <img class="iconsmail" alt="" src="./public/iconslock.svg" />
+                <img
+                  class="iconsmail"
+                  alt=""
+                  src="../../public/iconslock.svg"
+                />
 
                 <div class="parent">
                   <div class="div6">**********</div>
                   <img
                     class="iconspassword"
                     alt=""
-                    src="./public/password.png"
+                    src="../../public/password.png"
                   />
                 </div>
               </div>
               <img
                 class="iconsedit-outline2"
                 alt=""
-                src="./public/iconseditoutline.svg"
+                src="../../public/iconseditoutline.svg"
                 id="iconseditOutline2"
-                @click="changePassword"
+                @click="restorePassword"
               />
             </div>
           </div>
@@ -132,50 +108,22 @@
       <div class="field-buttons">
         <router-link
           class="field-button"
-          id="fieldButtonContainer"
-          :to="{ name: 'transaction-history' }"
-        >
-          <div class="api">История транзакций</div>
-          <img class="iconchange" alt="" src="./public/iconchange.svg" />
-        </router-link>
-        <router-link
-          v-if="role === 'creditor'"
-          class="field-button"
           id="fieldButtonContainer1"
           :to="{ name: 'scrinning' }"
         >
-          <div class="api">Настроить API</div>
-          <img class="iconchange" alt="" src="./public/iconchange.svg" />
+          <div class="api">Скриннинг по API</div>
+          <img class="iconchange" alt="" src="../../public/iconchange.svg" />
         </router-link>
-        <router-link class="field-button" :to="{ name: 'setting-wallet' }">
-          <div class="api">Изменить кошелек</div>
-          <img class="iconchange" alt="" src="./public/iconchange.svg" />
-        </router-link>
+
         <router-link
-          v-if="role === 'borrower' || role === 'collector'"
           class="field-button"
           id="fieldButtonContainer1"
           :to="{ name: 'home' }"
         >
-          <div class="api">Изменить анкету</div>
-          <img class="iconchange" alt="" src="./public/iconchange.svg" />
+          <div class="api">Внести изменения в анкету</div>
+          <img class="iconchange" alt="" src="../../public/iconchange.svg" />
         </router-link>
-        <router-link
-          v-if="role === 'collector' || role === 'depositor'"
-          class="field-button"
-          id="fieldButtonContainer1"
-          :to="{ name: 'scrinning' }"
-        >
-          <div class="api">Настроить оповещения</div>
-          <img class="iconchange" alt="" src="./public/iconchange.svg" />
-        </router-link>
-        <div
-          v-if="role === 'creditor' || role === 'depositor'"
-          class="field-button"
-        >
-          <div class="api">Изменить данные компании</div>
-          <img class="iconchange" alt="" src="./public/iconchange.svg" />
-        </div>
+
         <div class="field-button-switch">
           <div class="div10">Двухфакторная авторизация</div>
           <catos-switch @toggle="activeAuth" />
@@ -187,46 +135,26 @@
     </div>
     <app-bar></app-bar>
   </default-setting>
-
-  <default-desktop v-else>
-    <template v-slot:title> Профиль </template>
-    <template v-slot:body>
-      <profile-card></profile-card>
-      <edit-card></edit-card>
-      <setting-card></setting-card>
-    </template>
-  </default-desktop>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+// @ts-ignore
 import defaultSetting from "@/components/layouts/default-setting.vue";
+// @ts-ignore
 import catosSwitch from "@/components/ui-kit/catos-switch.vue";
+// @ts-ignore
 import appBar from "@/components/ui-kit/app-bar.vue";
+// @ts-ignore
 import { useRouter } from "vue-router";
-import DefaultDesktop from "@/components/layouts/default-desktop.vue";
-import profileCard from "@/components/setting/desktop/profile-card.vue";
-import editCard from "@/components/setting/desktop/edit-card.vue";
-import settingCard from "@/components/setting/desktop/setting-card.vue";
-
-import { useDevice } from "@/compossables/useDevice";
-
-const { isMobile } = useDevice();
+// @ts-ignore
 
 const isLoadPhoto = ref(false);
 
 const router = useRouter();
 
-const role = ref(
-  localStorage.getItem ? JSON.parse(localStorage.getItem("role")!) : ""
-);
-
-const editPhoto = () => {
-  router.push({ name: "edit-photo" });
-};
-
-const changePassword = () => {
-  router.push({ name: "change-password" });
+const restorePassword = () => {
+  router.push({ name: "admin-restore-password" });
 };
 
 const changeEmail = () => {
@@ -375,7 +303,7 @@ const upload = () => {
   }
   .tags-grey {
     position: relative;
-    width: 6.25em;
+    width: 8.25em;
     height: 2.25em;
     background-color: #f5f5fa;
     border-radius: 8px;

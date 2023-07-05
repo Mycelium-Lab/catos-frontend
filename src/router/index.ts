@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { admin } from "./admin";
+import { admin, adminMobile } from "./admin";
 
 import { dashboardDepositor, dashboardСreditor } from "./dashboard";
 import { borrowerLoans, loans } from "./loans";
@@ -196,6 +196,9 @@ const router = createRouter({
     admin[3],
     admin[4],
     admin[5],
+    adminMobile[0],
+    adminMobile[1],
+    adminMobile[2],
   ],
   // @ts-ignore
   scrollBehavior(to, from, savedPosition) {

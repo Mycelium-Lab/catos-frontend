@@ -30,3 +30,20 @@ export const admin = [
     component: () => import("../views/admin/manage-loans.vue"),
   },
 ];
+export const adminMobile = [
+  {
+    path: "/admin-pannel-mobile",
+    name: "admin-pannel-mobile",
+    component: () => import("../views/admin/mobile/pannel.vue"),
+  },
+  {
+    path: "/admin-profile-mobile",
+    name: "admin-profile-mobile",
+    component: () => import("../views/admin/mobile/profile.vue"),
+  },
+  {
+    path: "/admin-restore-password",
+    name: "admin-restore-password",
+    component: () => import("../components/admin/restore-password.vue"),
+  },
+];
