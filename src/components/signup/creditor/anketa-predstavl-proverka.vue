@@ -23,7 +23,11 @@
         </div>
       </div>
       <div class="text-and-fill3"></div>
-      <div class="frame-parent12">
+      <div
+        :class="
+          isMobile ? 'frame-parent12' : 'frame-parent12_desktop frame-parent12'
+        "
+      >
         <div class="frame-parent13">
           <div class="fieldsinput-group">
             <div class="fieldsinput6">
@@ -193,7 +197,13 @@
             </div>
           </div>
         </div>
-        <div class="registration-options4">
+        <div
+          :class="
+            isMobile
+              ? 'registration-options4'
+              : 'registration-options4_desktop registration-options4'
+          "
+        >
           <div class="registration-options-child2"></div>
           <div class="text-and-fill">
             <div class="div31">Данные организации</div>
@@ -295,7 +305,7 @@
             </div>
           </div>
         </div>
-        <div class="parent35">
+        <div :class="isMobile ? 'parent35' : 'parent35_desktop parent35'">
           <div class="div21">
             <span class="txt">
               <span class="span14">Данные паспорта</span>
@@ -368,7 +378,10 @@
           </div>
         </div>
       </div>
-      <router-link class="buttonnext1" to="connect-wallet">
+      <router-link
+        :class="isMobile ? 'buttonnext1' : 'buttonnext1_desktop buttonnext1'"
+        to="connect-wallet"
+      >
         <b class="b2">Сохранить и продожить</b>
       </router-link>
     </div>
@@ -395,6 +408,10 @@ import catosTextarea from "../../../components/fields/catos-textarea.vue";
 import catosSelect from "../../../components/fields/catos-select.vue";
 import buttonSlider from "../../../components/ui-kit/buttons/button-slider.vue";
 import { ref } from "vue";
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 const value = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
@@ -1965,9 +1982,12 @@ const options = {
   position: absolute;
   top: 89em;
   left: 0;
-  //width: 88.7vw;
-  width: 23.38em;
+  width: 88.7vw;
+
   height: 32.94em;
+  &_desktop {
+    width: 23.38em;
+  }
 }
 .fields-password-and-mail46 {
   align-self: stretch;
@@ -2055,27 +2075,35 @@ const options = {
   width: 100%;
 }
 .parent35 {
-  //position: absolute;
-  position: relative;
-  //top: 27.63em;
-  top: -10em;
-  //left: 1.31em;
-  //width: 77vw;
+  position: absolute;
+
+  top: 27.63em;
+
+  left: 1.31em;
+  width: 77vw;
   gap: 1.5em;
+  &_desktop {
+    position: relative;
+    width: 360px;
+    left: 0em;
+    top: -10em;
+  }
 }
 .frame-parent12 {
-  /*position: absolute;
+  position: absolute;
   top: 9.63em;
   left: 1.5em;
   width: 88vw;
-  height: 121.25em;*/
-  position: relative;
-  //top: 9.63em;
-  top: 6.63em;
-  left: 1.5em;
-  width: 23.38em;
   height: 121.25em;
-  margin: 0 auto;
+
+  &_desktop {
+    position: relative;
+    top: 6.63em;
+    left: 1.5em;
+    width: 23.38em;
+    height: 121.25em;
+    margin: 0 auto;
+  }
 }
 .b2 {
   position: relative;
@@ -2083,7 +2111,7 @@ const options = {
   line-height: 1.75em;
 }
 .buttonnext1 {
-  /*position: absolute;
+  position: absolute;
   top: 133.38em;
   left: 1.5em;
   border-radius: 20px;
@@ -2100,26 +2128,28 @@ const options = {
   color: #3b3b3b;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
-  text-decoration: none;*/
-  position: relative;
-  top: 10.38em;
-  left: 1.5em;
-  border-radius: 20px;
-  background-color: #fdd674;
-  width: 23.38em;
-  height: 3em;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin: 0 auto;
-  color: #3b3b3b;
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-  -webkit-tap-highlight-color: transparent;
   text-decoration: none;
+  &_desktop {
+    position: relative;
+    top: 10.38em;
+    left: 1.5em;
+    border-radius: 20px;
+    background-color: #fdd674;
+    width: 23.38em;
+    height: 3em;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    color: #3b3b3b;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+  }
 }
 
 .form-registration-56 {
