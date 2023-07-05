@@ -877,7 +877,7 @@ const cancel = () => {
   width: 77vw;
   height: 6.81em;
   z-index: 0;
-  top: 19em;
+  top: 16em;
   margin: 0 auto;
 }
 .icon1 {
@@ -1348,8 +1348,8 @@ const cancel = () => {
   & .field-label {
     align-self: start;
     position: relative;
-    top: 1em;
-    left: 7vw;
+    top: -0.5em;
+    left: 3vw;
   }
   &_last {
     margin-top: 0.6em;

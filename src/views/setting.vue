@@ -1,5 +1,5 @@
 <template>
-  <!--<default-setting>
+  <default-setting v-if="isMobile">
     <div class="user-nav">
       <div class="info-user">
         <div class="nav-bar">
@@ -32,7 +32,6 @@
           </div>
         </div>
         <div class="tags-grey1">
-
           <b class="tag">{{
             role === "collector" ? "Коллектор" : "Кредитор"
           }}</b>
@@ -48,8 +47,6 @@
                 @click="() => (isLoadPhoto = !isLoadPhoto)"
                 v-if="!isLoadPhoto"
               />
-
-            
 
               <div class="vector-parent" v-if="isLoadPhoto">
                 <input type="file" class="input-upload" @change="upload" />
@@ -184,16 +181,14 @@
           <catos-switch @toggle="activeAuth" />
         </div>
         <div class="tags-grey2">
-        
-
           <b class="tag">Кредитор</b>
         </div>
       </div>
     </div>
     <app-bar></app-bar>
-  </default-setting>-->
+  </default-setting>
 
-  <default-desktop>
+  <default-desktop v-else>
     <template v-slot:title> Профиль </template>
     <template v-slot:body>
       <profile-card></profile-card>
@@ -213,6 +208,10 @@ import DefaultDesktop from "@/components/layouts/default-desktop.vue";
 import profileCard from "@/components/setting/desktop/profile-card.vue";
 import editCard from "@/components/setting/desktop/edit-card.vue";
 import settingCard from "@/components/setting/desktop/setting-card.vue";
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 
 const isLoadPhoto = ref(false);
 
