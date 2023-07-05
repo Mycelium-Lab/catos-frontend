@@ -129,7 +129,7 @@ const handleSlide = (index: any) => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 ul {
   list-style: none;
   padding: 0em;
@@ -966,11 +966,14 @@ ul {
   position: relative;
   background-color: #fff;
   width: 100%;
-
+  height: 120em;
   overflow: hidden;
   text-align: center;
   color: #3b3b3b;
   font-family: Inter;
+  &_mini {
+    height: 70em;
+  }
 }
 @media (min-width: 500px) {
   .rectangle-group {

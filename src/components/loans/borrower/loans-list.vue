@@ -1809,16 +1809,7 @@ const toScan = () => {
   text-align: right;
   color: rgba(93, 104, 123, 0.9);
 }
-.iphone-13-13- {
-  position: relative;
-  background-color: #fff;
-  width: 100%;
-  height: 61.13em;
-  overflow: hidden;
-  text-align: center;
-  color: #3b3b3b;
-  font-family: Inter;
-}
+
 .creditlabel,
 .creditoption {
   color: rgba(59, 59, 59, 1);
