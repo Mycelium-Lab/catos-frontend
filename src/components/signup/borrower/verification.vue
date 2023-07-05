@@ -3,7 +3,7 @@
     <img class="bg-icon" alt="" src="../public/bg.svg" />
 
     <div class="form-registration-56">
-      <div class="header2">
+      <div :class="isMobile ? 'header2' : 'header2_desktop'">
         <img
           class="icons3dpersona-creditors"
           alt=""
@@ -21,7 +21,13 @@
           </div>
         </div>
       </div>
-      <div class="registration-options-parent">
+      <div
+        :class="
+          isMobile
+            ? 'registration-options-parent'
+            : 'registration-options-parent_desktop'
+        "
+      >
         <div class="registration-options3">
           <div class="registration-options-inner"></div>
           <div class="text-and-fill">
@@ -34,6 +40,16 @@
             <div class="fieldsinputchoise">
               <div class="goa-filejpg">Область, край</div>
               <catos-select
+                v-if="isMobile"
+                placeholder="Россия"
+                :options="options"
+                :value="value"
+                @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
+              ></catos-select>
+              <catos-select
+                v-else
                 placeholder="Россия"
                 :options="options"
                 :value="value"
@@ -45,6 +61,16 @@
             <div class="fieldsinput">
               <div class="goa-filejpg">Населенный пункт</div>
               <catos-select
+                v-if="isMobile"
+                placeholder="Россия"
+                :options="options"
+                :value="value"
+                @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
+              ></catos-select>
+              <catos-select
+                v-else
                 placeholder="Россия"
                 :options="options"
                 :value="value"
@@ -56,6 +82,16 @@
             <div class="fieldsinputchoise">
               <div class="goa-filejpg">Район</div>
               <catos-select
+                v-if="isMobile"
+                placeholder="Россия"
+                :options="options"
+                :value="value"
+                @selected="ev => (value = ev)"
+                :optionWidth="77"
+                :style="{ width: '100%' }"
+              ></catos-select>
+              <catos-select
+                v-else
                 placeholder="Россия"
                 :options="options"
                 :value="value"
@@ -135,6 +171,16 @@
                     <span class="span1">* </span>
                   </div>
                   <catos-select
+                    v-if="isMobile"
+                    placeholder="Россия"
+                    :options="options"
+                    :value="value"
+                    @selected="ev => (value = ev)"
+                    :optionWidth="77"
+                    :style="{ width: '100%' }"
+                  ></catos-select>
+                  <catos-select
+                    v-else
                     placeholder="Россия"
                     :options="options"
                     :value="value"
@@ -270,7 +316,7 @@
         </div>
       </div>
       <router-link
-        class="buttonnext1"
+        :class="isMobile ? 'buttonnext1' : 'buttonnext1_desktop'"
         :to="{
           name: 'borrower-finish',
         }"
@@ -303,6 +349,9 @@ import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
 const isSelectedRadioButton1 = ref(false);
 const isSelectedRadioButton2 = ref(false);
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 const value = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
@@ -1634,16 +1683,27 @@ const options = {
   color: rgba(59, 59, 59, 0.7);
 }
 .header2 {
-  position: relative;
-  top: 5em;
+  position: absolute;
+  top: 3em;
   left: 1.5em;
-  width: 28.38em;
+  width: 21.38em;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.75em;
-  margin: 0 auto;
+  &_desktop {
+    position: relative;
+    top: 5em;
+    left: 1.5em;
+    width: 28.38em;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.75em;
+    margin: 0 auto;
+  }
 }
 .registration-options-inner {
   position: absolute;
@@ -1817,9 +1877,9 @@ const options = {
 .parent31 {
   position: absolute;
   top: 19.31em;
-  left: 1.31em;
   width: 100%;
   gap: 1.5em;
+  left: 1.31em;
 }
 .div104 {
   position: relative;
@@ -1937,11 +1997,17 @@ const options = {
 .div102 {
   left: 0;
 }
-
 .registration-options-parent {
+  position: absolute;
+  top: 10.5em;
+  left: 6vw;
+  width: 87.7vw;
+  height: 77.56em;
+}
+.registration-options-parent_desktop {
   position: relative;
   top: 8.5em;
-  //left: 6vw;
+
   width: 28.8em;
   height: 77.56em;
   margin: 0 auto;
@@ -1952,7 +2018,7 @@ const options = {
   line-height: 1.75em;
 }
 .buttonnext1 {
-  /*position: absolute;
+  position: absolute;
   top: 90.06em;
   left: 1.5em;
   border-radius: 20px;
@@ -1970,26 +2036,28 @@ const options = {
   color: var(--color-darkslategray-100);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
-  text-decoration: none;*/
-  position: relative;
-  top: 11.06em;
-  left: 0.2em;
-  border-radius: 20px;
-  background-color: #fdd674;
-  width: 28.8em;
-  height: 3em;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin: 0 auto;
-  color: var(--color-darkslategray-100);
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-  -webkit-tap-highlight-color: transparent;
   text-decoration: none;
+  &_desktop {
+    position: relative;
+    top: 11.06em;
+    left: 0.2em;
+    border-radius: 20px;
+    background-color: #fdd674;
+    width: 28.8em;
+    height: 3em;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    color: var(--color-darkslategray-100);
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+  }
 }
 .swipe-down {
   position: absolute;

@@ -20,6 +20,16 @@
                     <span class="span2">* </span>
                   </div>
                   <catos-select
+                    v-if="isMobile"
+                    placeholder="Россия"
+                    :options="options"
+                    :value="value"
+                    @selected="ev => (value = ev)"
+                    :optionWidth="77"
+                    :style="{ width: '100%' }"
+                  ></catos-select>
+                  <catos-select
+                    v-else
                     placeholder="Россия"
                     :options="options"
                     :value="value"
@@ -276,6 +286,16 @@
               </span>
             </div>
             <catos-select
+              v-if="isMobile"
+              placeholder="Россия"
+              :options="options"
+              :value="value"
+              @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+            ></catos-select>
+            <catos-select
+              v-else
               placeholder="Россия"
               :options="options"
               :value="value"
@@ -290,7 +310,17 @@
               <span class="span2">* </span>
             </div>
             <catos-select
-              placeholder="Красносельский"
+              v-if="isMobile"
+              placeholder="Россия"
+              :options="options"
+              :value="value"
+              @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+            ></catos-select>
+            <catos-select
+              v-else
+              placeholder="Россия"
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
@@ -301,7 +331,17 @@
           <div class="fieldsinputchoise2">
             <div class="div10">Населенный пункт</div>
             <catos-select
-              placeholder="Санкт-Петербург"
+              v-if="isMobile"
+              placeholder="Россия"
+              :options="options"
+              :value="value"
+              @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+            ></catos-select>
+            <catos-select
+              v-else
+              placeholder="Россия"
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
@@ -386,6 +426,16 @@
               <span class="span2">* </span>
             </div>
             <catos-select
+              v-if="isMobile"
+              placeholder="Россия"
+              :options="options"
+              :value="value"
+              @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+            ></catos-select>
+            <catos-select
+              v-else
               placeholder="Россия"
               :options="options"
               :value="value"
@@ -400,7 +450,17 @@
               <span class="span2">* </span>
             </div>
             <catos-select
-              placeholder="Cеверо-западный округ"
+              v-if="isMobile"
+              placeholder="Россия"
+              :options="options"
+              :value="value"
+              @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+            ></catos-select>
+            <catos-select
+              v-else
+              placeholder="Россия"
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
@@ -414,7 +474,17 @@
               <span class="span2">* </span>
             </div>
             <catos-select
-              placeholder="Красносельский"
+              v-if="isMobile"
+              placeholder="Россия"
+              :options="options"
+              :value="value"
+              @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+            ></catos-select>
+            <catos-select
+              v-else
+              placeholder="Россия"
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
@@ -425,7 +495,17 @@
           <div class="fieldsinputchoise2">
             <div class="div10">Населенный пункт</div>
             <catos-select
-              placeholder="Cанкт-Петербург"
+              v-if="isMobile"
+              placeholder="Россия"
+              :options="options"
+              :value="value"
+              @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+            ></catos-select>
+            <catos-select
+              v-else
+              placeholder="Россия"
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"

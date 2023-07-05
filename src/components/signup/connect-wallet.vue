@@ -28,14 +28,18 @@
         <div class="div10">Последний этап</div>
         <div class="div11">Привяжите ваш тон кошелек</div>
       </div>
-      <!--<router-link class="buttonnext" to="connect-wallet-finish">
+      <router-link
+        v-if="isMobile"
+        class="buttonnext"
+        to="connect-wallet-finish"
+      >
         <b class="ton-kepeer">Подключить TON Kepeer</b>
-      </router-link>-->
-      <div class="buttonnext" @click="() => (finish = true)">
+      </router-link>
+      <div v-else class="buttonnext_desktop" @click="() => (finish = true)">
         <b class="ton-kepeer">Подключить TON Kepeer</b>
       </div>
       <confirm-qr-destop
-        v-if="finish"
+        v-if="finish && !isMobile"
         @close="() => (finish = false)"
         @result="
           () => {
@@ -44,7 +48,7 @@
           }
         "
       >
-        <template v-slot:header> Подключение кошелька </template>
+        <template v-slot:header>Подключение кошелька </template>
         <template v-slot:title>Connect TON</template>
         <template v-slot:subtitle>
           Scan the QR code with your phone's <br />
@@ -66,7 +70,13 @@
           <success></success>
         </template>
       </desktop-modal>
-      <div class="catos-container">
+      <div
+        :class="
+          isMobile
+            ? 'catos-container'
+            : 'catos-container_desktop catos-container'
+        "
+      >
         <span class="ton-keeper-txt-container_preview ton-keeper-txt-container">
           <p class="catos-">CATOS - платформа кредитования</p>
           <p class="catos-">на базе блокчейна TON</p>
@@ -80,10 +90,14 @@
           </p>
         </span>
       </div>
-      <div class="faq">
-        <div class="faq1">
+      <div :class="isMobile ? 'faq' : 'faq_desktop faq'">
+        <div :class="isMobile ? 'faq1' : 'faq1_desktop'">
           <div class="faq2">FAQ:</div>
-          <div class="frame-group">
+          <div
+            :class="
+              isMobile ? 'frame-group' : 'frame-group_desktop frame-group'
+            "
+          >
             <div class="catos-group">
               <div class="catos1">
                 Полный и подробный гайд по использованию платформы CATOS
@@ -93,9 +107,9 @@
             <div class="catos-group">
               <div class="ton-keeper2">
                 <span class="ton-keeper-txt-container">
-                  <p class="catos-">Полный и подробный гайд</p>
                   <p class="catos-">
-                    по установке использованию криптокошелька TON Keeper
+                    Полный и подробный гайд по установке использованию
+                    криптокошелька TON Keeper
                   </p>
                 </span>
               </div>
@@ -104,7 +118,7 @@
           </div>
         </div>
         <div class="faq-child"></div>
-        <div class="download">
+        <div :class="isMobile ? 'download' : 'download_desktop download'">
           <div class="ton-keeper-container">
             <span>Скачать TON Keeper: </span>
             <span class="ios">для iOS, для РС, для MAC</span>
@@ -159,6 +173,9 @@ import { ref } from "vue";
 import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import success from "./desktop/modal-body/success.vue";
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 const finish = ref(false);
 const isSuccess = ref(false);
 </script>
@@ -269,7 +286,7 @@ const isSuccess = ref(false);
   line-height: 1.75em;
 }
 .buttonnext {
-  /* position: absolute;
+  position: absolute;
   top: 23.06em;
   left: 11vw;
   border-radius: 20px;
@@ -286,26 +303,28 @@ const isSuccess = ref(false);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
-  */
-  position: relative;
-  top: 17em;
-  /* left: 11vw; */
-  border-radius: 20px;
-  background: linear-gradient(89.77deg, #9747ff, #ad6fff);
-  width: 23.38em;
-  height: 3em;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  margin: 0 auto;
-  align-items: center;
-  justify-content: center;
-  color: #f3f3f3;
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-  -webkit-tap-highlight-color: transparent;
-  text-decoration: none;
-  cursor: pointer;
+
+  &_desktop {
+    position: relative;
+    top: 17em;
+
+    border-radius: 20px;
+    background: linear-gradient(89.77deg, #9747ff, #ad6fff);
+    width: 23.38em;
+    height: 3em;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    color: #f3f3f3;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    cursor: pointer;
+  }
 }
 .catos- {
   margin: 0;
@@ -324,14 +343,20 @@ const isSuccess = ref(false);
   width: 25em;
 }
 .catos-container {
-  position: relative;
-  top: 8em;
-  /* left: 3.75em
-em
-; */
+  position: absolute;
+  top: 19.92em;
+  left: 3.75em;
   font-weight: 300;
-  width: 40.38em;
-  margin: 0 auto;
+  width: 77vw;
+
+  &_desktop {
+    position: relative;
+    top: 8em;
+    left: 0em;
+    font-weight: 300;
+    width: 40.38em;
+    margin: 0 auto;
+  }
 }
 .catos1,
 .faq2 {
@@ -374,7 +399,7 @@ em
   position: relative;
 }
 .ton-keeper-txt-container {
-  width: 70%;
+  width: 100%;
   &_preview {
     width: 100%;
   }
@@ -386,7 +411,7 @@ em
   font-weight: 300;
   display: flex;
   align-items: center;
-  width: 21.08em;
+  width: 80%;
   flex-shrink: 0;
   z-index: 0;
 }
@@ -400,11 +425,16 @@ em
 .frame-group {
   gap: 1em;
   color: #3b3b3b;
-  width: 28em;
+  width: 77vw;
+  &_desktop {
+    width: 28em;
+  }
 }
 .faq1 {
   gap: 0.38em;
-  width: 28em;
+  &_desktop {
+    width: 28em;
+  }
 }
 .faq-child {
   align-self: stretch;
@@ -470,24 +500,28 @@ em
   flex-direction: column;
 }
 .download {
-  //width: 77vw;
-  width: 28em;
   gap: 1.06em;
+  width: 77vw;
   color: #3b3b3b;
+  &_desktop {
+    width: 28em;
+  }
 }
 .faq {
-  /*position: absolute;
+  position: absolute;
   top: 28.56em;
   left: 11vw;
   gap: 2em;
-  text-align: left;*/
-  position: relative;
-  top: 14em;
-  left: 1em;
-  gap: 2em;
   text-align: left;
-  width: 30em;
-  margin: 0 auto;
+  &_desktop {
+    position: relative;
+    top: 14em;
+    left: 1em;
+    gap: 2em;
+    text-align: left;
+    width: 30em;
+    margin: 0 auto;
+  }
 }
 .form-registration-66 {
   position: absolute;
