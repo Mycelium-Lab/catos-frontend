@@ -29,7 +29,11 @@
           ? { width: `${optionWidth}vw` }
           : { width: `${optionWidthDesk}px` }
       "
-      class="catos-select__options"
+      :class="
+        top
+          ? 'catos-select__options_top catos-select__options'
+          : 'catos-select__options'
+      "
     >
       <template v-if="Array.isArray(options)">
         <li
@@ -114,6 +118,10 @@ const { placeholder } = defineProps({
   optionWidthDesk: {
     type: Number,
   },
+  top: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits(["selected"]);
@@ -179,6 +187,9 @@ watch(isOpen, () => {
   z-index: 1000;
   background: #fff;
   top: 3.3em;
+  &_top {
+    top: -27.3em;
+  }
   &_name {
     font-size: var(--font-size-sm);
     color: rgba(46, 58, 89, 1);

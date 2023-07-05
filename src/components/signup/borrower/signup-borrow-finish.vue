@@ -37,12 +37,22 @@
               <span class="span1">*</span>
             </div>
             <catos-select
-              placeholder="Выбирите вид занятости"
+              v-if="isMobile"
+              placeholder="Россия"
               :options="options"
               :value="value"
+              @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+            ></catos-select>
+            <catos-select
+              v-else
+              placeholder="Россия"
+              :options="options"
+              :value="value"
+              @selected="ev => (value = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
-              @selected="ev => (value = ev)"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -81,7 +91,17 @@
               <span class="span1">*</span>
             </div>
             <catos-select
-              placeholder="Выбирите вид занятости"
+              v-if="isMobile"
+              placeholder="Россия"
+              :options="options"
+              :value="value"
+              @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+            ></catos-select>
+            <catos-select
+              v-else
+              placeholder="Россия"
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
@@ -95,7 +115,17 @@
               <span class="span1">*</span>
             </div>
             <catos-select
-              placeholder="Выбирите вид занятости"
+              v-if="isMobile"
+              placeholder="Россия"
+              :options="options"
+              :value="value"
+              @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+            ></catos-select>
+            <catos-select
+              v-else
+              placeholder="Россия"
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
@@ -109,12 +139,24 @@
               <span class="span1">*</span>
             </div>
             <catos-select
-              placeholder="Выбирите вид занятости"
+              v-if="isMobile"
+              placeholder="Россия"
+              :options="options"
+              :value="value"
+              @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+              top
+            ></catos-select>
+            <catos-select
+              v-else
+              placeholder="Россия"
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
+              top
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -123,12 +165,24 @@
               <span class="span1">*</span>
             </div>
             <catos-select
-              placeholder="Выбирите вид занятости"
+              v-if="isMobile"
+              placeholder="Россия"
+              :options="options"
+              :value="value"
+              @selected="ev => (value = ev)"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+              top
+            ></catos-select>
+            <catos-select
+              v-else
+              placeholder="Россия"
               :options="options"
               :value="value"
               @selected="ev => (value = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
+              top
             ></catos-select>
           </div>
         </div>
@@ -141,12 +195,24 @@
             <span class="span1">*</span>
           </div>
           <catos-select
-            placeholder="Выбирите вид занятости"
+            v-if="isMobile"
+            placeholder="Россия"
+            :options="options"
+            :value="value"
+            @selected="ev => (value = ev)"
+            :optionWidth="77"
+            :style="{ width: '100%' }"
+            top
+          ></catos-select>
+          <catos-select
+            v-else
+            placeholder="Россия"
             :options="options"
             :value="value"
             @selected="ev => (value = ev)"
             :optionWidthDesk="329"
             :style="{ width: '100%' }"
+            top
           ></catos-select>
         </div>
       </div>
