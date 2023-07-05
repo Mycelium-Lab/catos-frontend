@@ -4,14 +4,14 @@
 
     <div class="form-registration-46">
       <router-link
-        class="buttonnext"
+        :class="isMobile ? 'buttonnext' : 'buttonnext_desktop buttonnext'"
         :to="{
           name: 'connect-wallet',
         }"
       >
         <b class="b1">Закончить регистрацию</b>
       </router-link>
-      <div class="header">
+      <div :class="isMobile ? 'header' : 'header_desktop header'">
         <img
           class="icons3dpersona-creditors"
           alt=""
@@ -26,7 +26,9 @@
           </div>
         </div>
       </div>
-      <div class="frame-group">
+      <div
+        :class="isMobile ? 'frame-group' : 'frame-group_desktop frame-group'"
+      >
         <div class="frame-inner"></div>
         <div class="fieldsinputchoise-parent">
           <div class="fieldsinputchoise">
@@ -60,8 +62,18 @@
           <div class="div12">Вид занятости и доход</div>
         </div>
       </div>
-      <div class="frame-container">
-        <div class="rectangle-div"></div>
+      <div
+        :class="
+          isMobile
+            ? 'frame-container'
+            : 'frame-container_desktop frame-container'
+        "
+      >
+        <div
+          :class="
+            isMobile ? 'rectangle-div' : 'rectangle-div_desktop rectangle-div'
+          "
+        ></div>
         <div class="fieldsinputchoise-parent">
           <div class="fieldsinputchoise">
             <div class="div10">
@@ -165,6 +177,9 @@ import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 const value = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
@@ -186,12 +201,12 @@ const options = {
   line-height: 1.75em;
 }
 .buttonnext {
-  position: relative;
-  top: 62em;
-  /* left: 6.5vw; */
+  position: absolute;
+  top: 56.25em;
+  left: 6.5vw;
   border-radius: 20px;
   background-color: #ffdb6d;
-  width: 23.38em;
+  width: 87.7vw;
   height: 3em;
   overflow: hidden;
   display: flex;
@@ -201,11 +216,32 @@ const options = {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin: 0 auto;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
   color: #3b3b3b;
   text-decoration: none;
+  &_desktop {
+    position: relative;
+    top: 62em;
+    left: 0em;
+    border-radius: 20px;
+    background-color: #ffdb6d;
+    width: 23.38em;
+    height: 3em;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    padding: 0.5em 0;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
+    color: #3b3b3b;
+    text-decoration: none;
+  }
 }
 .icons3dpersona-creditors {
   position: relative;
@@ -241,14 +277,23 @@ const options = {
   gap: 0.38em;
 }
 .header {
-  position: relative;
+  position: absolute;
   top: 2.25em;
-  /* left: 1.5em; */
-  width: 23.38em;
+  left: 1.5em;
+  width: 87.8vw;
   flex-direction: row;
   align-items: center;
   gap: 0.75em;
-  margin: 0 auto;
+  &_desktop {
+    position: relative;
+    top: 2.25em;
+    left: 0em;
+    width: 23.38em;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75em;
+    margin: 0 auto;
+  }
 }
 .span {
   font-weight: 300;
@@ -387,12 +432,19 @@ const options = {
   justify-content: flex-start;
 }
 .frame-group {
-  position: relative;
-  top: 6em;
-  /* left: 6vw; */
-  width: 23.38em;
+  position: absolute;
+  top: 9em;
+  left: 6vw;
+  width: 87.7vw;
   height: 13.19em;
-  margin: 0 auto;
+  &_desktop {
+    position: relative;
+    top: 6em;
+    left: 0em;
+    width: 23.38em;
+    height: 13.19em;
+    margin: 0 auto;
+  }
 }
 .div14 {
   position: relative;
@@ -401,8 +453,8 @@ const options = {
   font-weight: 300;
 }
 .rectangle-div {
-  position: relative;
-  width: 23.38em;
+  position: absolute;
+  width: 88.7vw;
   top: calc(50% - 235.5px);
   right: 0;
   left: 0;
@@ -410,6 +462,17 @@ const options = {
   border: 0.5px solid rgba(46, 58, 89, 0.4);
   box-sizing: border-box;
   height: 30em;
+  &_desktop {
+    position: relative;
+    width: 23.38em;
+    top: calc(50% - 235.5px);
+    right: 0;
+    left: 0;
+    border-radius: 15px;
+    border: 0.5px solid rgba(46, 58, 89, 0.4);
+    box-sizing: border-box;
+    height: 30em;
+  }
 }
 .fieldsinputchoise5 {
   position: absolute;
@@ -423,12 +486,19 @@ const options = {
   gap: 0.5em;
 }
 .frame-container {
-  position: relative;
-  top: 9em;
-  /* left: 6vw; */
-  width: 23.38em;
+  position: absolute;
+  top: 24em;
+  left: 6vw;
+  width: 87.7vw;
   height: 29.81em;
-  margin: 0 auto;
+  &_desktop {
+    position: relative;
+    top: 9em;
+    left: 0em;
+    width: 23.38em;
+    height: 29.81em;
+    margin: 0 auto;
+  }
 }
 .form-registration-46 {
   position: absolute;
