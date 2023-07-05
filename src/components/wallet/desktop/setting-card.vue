@@ -8,8 +8,8 @@
       <div class="div">Счета</div>
       <img class="iconchange" alt="" src="@/views/public/iconchange.svg" />
     </div>
-    <div class="field-button" @click="() => (isChangeWallet = true)">
-      <div class="div">Изменить кошелек</div>
+    <div class="field-button" @click="toTransactioHistory">
+      <div class="div">История транзакций</div>
       <img class="iconchange" alt="" src="@/views/public/iconchange.svg" />
     </div>
     <div class="tags-grey">
@@ -17,113 +17,21 @@
       <b class="tag">Кредитор</b>
     </div>
   </div>
-  <desktop-modal
-    v-if="isChangeWallet || isSuccessChangeWallet"
-    @close="
-      () => {
-        isChangeWallet = false;
-        isSuccessChangeWallet = false;
-      }
-    "
-  >
-    <template v-slot:title>
-      <h3
-        :style="{
-          fontSize: '18px',
-          fontWeight: '600',
-          margin: '0',
-        }"
-      >
-        Изменение кошелька
-      </h3>
-    </template>
-    <template v-slot:body>
-      <change-wallet @close="() => (isChangeWallet = false)">
-        <template v-if="isSuccessChangeWallet" v-slot:title>
-          Кошелек успешно изменен
-        </template>
-        <template v-if="isChangeWallet" v-slot:subtitle>
-          В целях безопасности, после изменения кошелька вам позвонит менеджер
-          CATOS и убедится в том, что это именно вы инициировали изменение
-          кошелька
-        </template>
-        <template v-slot:action>
-          <catos-button
-            variant="secondary"
-            @click="handleChangeWallet"
-            :style="{ width: '100%', margin: '0 auto' }"
-          >
-            {{ isChangeWallet ? "Изменить кошелек" : "Продолжить" }}
-          </catos-button>
-        </template>
-        <template v-if="isChangeWallet" v-slot:cancel>
-          <div class="buttonnext1" @click="() => (isChangeWallet = false)">
-            <div class="div1">Отмена</div>
-          </div>
-        </template>
-        <template v-if="isChangeWallet" v-slot:doc>
-          <div class="div2">Документация и инструкции</div>
-        </template>
-      </change-wallet>
-    </template>
-  </desktop-modal>
-
-  <confirm-qr-destop
-    variant="back"
-    :to-back="
-      () => {
-        isScan = false;
-        isChangeWallet = true;
-      }
-    "
-    v-if="isScan"
-    @close="() => (isScan = false)"
-    @result="
-      () => {
-        isScan = false;
-        isSuccessChangeWallet = true;
-      }
-    "
-  >
-    <template v-slot:header> Изменение кошелька </template>
-    <template v-slot:title> Connect TON </template>
-    <template v-slot:subtitle>
-      Scan the QR code and pay 13 512 TON <br />
-      with Tonkeeper using
-    </template>
-    <template v-slot:action> Sign in with Tokenkeeper </template>
-    <template v-slot:footer>
-      <span class="scan-footer">
-        We do not receive or store your wallet login details, so your TON is
-        safe.
-      </span>
-    </template>
-  </confirm-qr-destop>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import desktopModal from "@/components/base/desktop-modal.vue";
-import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
-import changeWallet from "../../setting/desktop/modal-body/change-wallet.vue";
-import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
+
 const router = useRouter();
-const isChangeWallet = ref(false);
-const isSuccessChangeWallet = ref(false);
-const isScan = ref(false);
+
 const toChecks = () => {
   router.push({ name: "checks" });
 };
 const toAccounts = () => {
   router.push({ name: "accounts" });
 };
-const handleChangeWallet = () => {
-  if (isChangeWallet.value) {
-    isChangeWallet.value = false;
-    isScan.value = true;
-  } else {
-    isSuccessChangeWallet.value = false;
-  }
+const toTransactioHistory = () => {
+  router.push({ name: "transaction-history" });
 };
 </script>
 <style scoped>
