@@ -1,5 +1,5 @@
 <template>
-  <!--<div class="tab-1-1">
+  <div class="tab-1-1" v-if="isMobile">
     <div class="header6">
       <div class="div9">Дашбоард</div>
     </div>
@@ -543,7 +543,12 @@
     </div>
   </div>
 
-  <div id="container" class="popup-overlay" style="display: none">
+  <div
+    v-if="isMobile"
+    id="container"
+    class="popup-overlay"
+    style="display: none"
+  >
     <div class="div8">
       <div class="modal-date-picker">
         <div class="header-parent">
@@ -1722,8 +1727,9 @@
       </div>
     </div>
   </div>
-  <app-bar></app-bar>-->
-  <default-desktop>
+  <app-bar v-if="isMobile"></app-bar>
+
+  <default-desktop v-else>
     <template v-slot:title> Дашбоард </template>
 
     <template v-slot:tools>
@@ -2295,6 +2301,10 @@ const rows = [
   },
 ];
 const isActive = ref("");
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 
 const rowPairs = computed(() => {
   const pairs = rows[currentPage.value];
