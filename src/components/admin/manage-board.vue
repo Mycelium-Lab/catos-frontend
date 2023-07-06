@@ -31,7 +31,7 @@
       </div>
     </template>
     <template v-if="currentPage === 'admin-profile'">
-      <button class="field-button">
+      <button class="field-button" @click="() => (isScrinning = true)">
         <div class="kyc">Скрининг по APi</div>
         <img class="iconchange" alt="" src="@//views/public/iconchange.svg" />
       </button>
@@ -41,7 +41,7 @@
       </button>
       <div class="field-button-switch">
         <div class="api">Двухфакторная авторизация</div>
-        <catos-switch></catos-switch>
+        <catos-switch @toggle="(ev: any) => (isAuth = ev)"></catos-switch>
       </div>
     </template>
     <add-admin
@@ -49,6 +49,222 @@
       @close="() => (isAddAdmin = false)"
     ></add-admin>
   </div>
+
+  <desktop-modal
+    v-if="isScrinning"
+    @close="
+      () => {
+        isScrinning = false;
+      }
+    "
+  >
+    <template v-slot:title>
+      <h3
+        :style="{
+          fontSize: '18px',
+          fontWeight: '600',
+          margin: '0',
+        }"
+      >
+        Автоматический скринниг по API
+      </h3>
+    </template>
+    <template v-slot:body>
+      <scrinning
+        v-if="isScrinning"
+        @close="() => (isScrinning = false)"
+        @result="
+          () => {
+            isSuccessScrinning = true;
+            isScrinning = false;
+          }
+        "
+      ></scrinning>
+    </template>
+  </desktop-modal>
+
+  <status-modal-desktop
+    v-if="isSuccessScrinning"
+    @close="() => (isSuccessScrinning = false)"
+  >
+    <template v-slot:header>
+      <h3
+        :style="{
+          fontSize: '18px',
+          fontWeight: '600',
+          margin: '0',
+        }"
+      >
+        {{ isSuccessScrinning ? "Автоматический скринниг по API" : "" }}
+      </h3>
+    </template>
+    <template v-slot:title> Настройки сохранены </template>
+    <template v-slot:image>
+      <div
+        :style="{
+          width: '440px',
+          margin: '0 auto',
+          display: 'flex',
+          justifyContent: 'center',
+        }"
+      >
+        <img src="@/assets/desktop/success-scrinning-api.svg" />
+      </div>
+    </template>
+    <template v-slot:action> Вернуться в настройки </template>
+  </status-modal-desktop>
+
+  <!--Auth-->
+  <desktop-modal
+    v-if="isAuth"
+    @close="
+      () => {
+        stage = 1;
+        isAuth = false;
+      }
+    "
+  >
+    <template v-slot:title> Двухфакторная авторизация </template>
+    <template v-if="stage === 1" v-slot:body>
+      <auth @change-stage="handleAuthStage" :stage="stage">
+        <template v-slot:top-text>
+          Для большей защиты вашего акаунта используйте двухфакторную
+          авторизацию
+        </template>
+        <template v-slot:bottom-text>
+          Для того, что бы продолжить загрузите и установите приложение Google
+          Authentificator на ваш телефон
+        </template>
+        <template v-slot:google-authenticator-text>
+          для iOS и для Android
+        </template>
+        <template v-slot:google-authenticator-action>
+          <div class="ios-parent">
+            <div class="android">iOS</div>
+            <img
+              class="iconchange"
+              alt=""
+              src="@/assets/desktop/fallback/iconchange.svg"
+            />
+          </div>
+          <div class="ios-parent">
+            <div class="android">Android</div>
+            <img
+              class="iconchange"
+              alt=""
+              src="@/assets/desktop/fallback/iconchange.svg"
+            />
+          </div>
+        </template>
+        <template v-slot:action> Продолжить </template>
+        <template v-slot:footer-text>
+          Если приложение установлено, <br />
+          жмите продолжить
+        </template>
+      </auth>
+    </template>
+    <template v-if="stage === 2" v-slot:body>
+      <auth @change-stage="handleAuthStage" :stage="stage">
+        <template v-slot:top-text>
+          <span :style="{ fontWeight: '700' }"
+            >Пожалуйста сохраните ваш ключ доступа:</span
+          >
+          <br />запишите на бумаге, сделайте скриншот или скопируйте
+        </template>
+        <template v-slot:bottom-text>
+          Этот ключ поможет вам восстановить ваш Google Authentication в случае
+          утери или смены телефона
+        </template>
+        <template v-slot:google-authenticator-text>
+          скопируйте ключ доступа
+        </template>
+        <template v-slot:google-authenticator-action>
+          <copy-paste value="LKDXOOQCPWAAIAWT" padding="45">
+            <template v-slot:label> Key: </template>
+            <template v-slot:icon>
+              <img src="@/assets/images/iconspaste.svg"
+            /></template>
+          </copy-paste>
+        </template>
+        <template v-slot:action> Сохранил, продолжить </template>
+      </auth>
+    </template>
+    <template v-if="stage === 3" v-slot:body>
+      <auth @change-stage="handleAuthStage" :stage="stage">
+        <template v-slot:top-text>
+          Отсканируйте QR код с ключем доступа в приложении Google
+          <br />Authentificator или добавьте его вручную:
+        </template>
+        <template v-slot:bottom-text>
+          Этот ключ поможет вам восстановить ваш Google Authentication в случае
+          утери или смены телефона
+        </template>
+        <template v-slot:google-authenticator-text>
+          скопируйте ключ доступа
+        </template>
+        <template v-slot:google-authenticator-action>
+          <div
+            :style="{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '16px',
+              width: '100%',
+            }"
+          >
+            <copy-paste value="CATOSdApp" padding="110">
+              <template v-slot:label> Account Name: </template>
+              <template v-slot:icon>
+                <img src="@/assets/images/iconspaste.svg"
+              /></template>
+            </copy-paste>
+            <copy-paste value="LKDXOOQCPWAAIAWT" padding="45">
+              <template v-slot:label> Key: </template>
+              <template v-slot:icon>
+                <img src="@/assets/images/iconspaste.svg"
+              /></template>
+            </copy-paste>
+          </div>
+        </template>
+        <template v-slot:action> Сохранил, продолжить </template>
+      </auth>
+    </template>
+    <template v-if="stage === 4" v-slot:body>
+      <auth @change-stage="handleAuthStage" :stage="stage">
+        <template v-slot:top-text>
+          Вставьте или напишите ключ доступа сгенерированный для вас приложением
+          Google Authentificator:
+        </template>
+
+        <template v-slot:google-authenticator-text>
+          введите <br />
+          сгенерированный для вас ключ доступа
+        </template>
+        <template v-slot:google-authenticator-action>
+          <copy-paste value="LKDXOOQCPWAAIAWT" padding="45">
+            <template v-slot:label> Key: </template>
+            <template v-slot:icon>
+              <img src="@/assets/images/iconspaste.svg"
+            /></template>
+          </copy-paste>
+        </template>
+        <template v-slot:action> Включить 2FA </template>
+      </auth>
+    </template>
+    <template v-if="stage === 5" v-slot:body>
+      <auth @change-stage="handleAuthStage" :stage="stage">
+        <template v-slot:top-text>
+          <h3>Ваш аккаунт защищен</h3>
+          Двухфакторная авторизация активирована – ваш аккаунт под двойной
+          защитой
+        </template>
+        <template v-slot:bottom-text>
+          Теперь, при входе в Catos с другого устройства вам нужно будет ввести
+          одноразовый код активации из Google Authentificator:
+        </template>
+        <template v-slot:action> Включить 2FA </template>
+      </auth>
+    </template>
+  </desktop-modal>
 </template>
 <script setup lang="ts">
 import { ref, computed } from "vue";
@@ -57,7 +273,13 @@ import catosSwitch from "@/components/ui-kit/catos-switch.vue";
 // @ts-ignore
 // @ts-ignore
 import addAdmin from "@/components/admin/modal-body/add-admin.vue";
-
+import desktopModal from "@/components/base/desktop-modal.vue";
+import StatusModalDesktop from "@/components/base/status-modal-desktop.vue";
+import Scrinning from "@/components/setting/desktop/modal-body/scrinning.vue";
+import auth from "@/components/setting/desktop/modal-body/auth.vue";
+import copyPaste from "@/components/fields/copy-paste.vue";
+const isScrinning = ref(false);
+const isSuccessScrinning = ref(false);
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const currentPage = computed(() => {
@@ -77,6 +299,21 @@ const toManagePulls = () => {
 };
 const toManageLoans = () => {
   router.push({ name: "manage-loans" });
+};
+
+const isAuth = ref(false);
+
+const stage = ref(1);
+
+const handleAuthStage = (ev: any) => {
+  if (ev < 1 || ev > 5) {
+    if (ev > 5) {
+      stage.value = 1;
+    }
+    isAuth.value = false;
+  } else {
+    stage.value = ev;
+  }
 };
 </script>
 <style scoped>
@@ -231,5 +468,36 @@ const toManageLoans = () => {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+}
+.ios-parent {
+  flex: 1;
+  border-radius: 8px;
+  background-color: rgba(165, 146, 221, 0.07);
+  height: 2.5em;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  padding: 0.5em 0em 0.5em 0.75em;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+.android {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 130%;
+  z-index: 0;
+}
+.iconchange {
+  position: absolute;
+  margin: 0 !important;
+  height: 100%;
+  top: 0em;
+  right: 0em;
+  bottom: 0em;
+  max-height: 100%;
+  width: 2.5em;
+  z-index: 1;
 }
 </style>
