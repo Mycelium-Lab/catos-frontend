@@ -6,29 +6,29 @@
         <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
       </div>
       <!--<div class="paginationfield">
-              <div class="numbers">
-                <div class="paginationnumber">
-                  <div class="div1">1</div>
-                </div>
-                <div class="paginationnumber1">
-                  <div class="div1">2</div>
-                </div>
-                <div class="paginationnumber">
-                  <div class="div1">3</div>
-                </div>
-                <div class="paginationnumber">
-                  <div class="div1">4</div>
-                </div>
-                <div class="paginationnumber">
-                  <div class="div1">5</div>
-                </div>
+            <div class="numbers">
+              <div class="paginationnumber">
+                <div class="div1">1</div>
               </div>
-              <div class="active-bg" />
-              <img class="buttonback-icon" alt="" src="/buttonback.svg" />
-            </div>-->
+              <div class="paginationnumber1">
+                <div class="div1">2</div>
+              </div>
+              <div class="paginationnumber">
+                <div class="div1">3</div>
+              </div>
+              <div class="paginationnumber">
+                <div class="div1">4</div>
+              </div>
+              <div class="paginationnumber">
+                <div class="div1">5</div>
+              </div>
+            </div>
+            <div class="active-bg" />
+            <img class="buttonback-icon" alt="" src="/buttonback.svg" />
+          </div>-->
     </div>
     <div class="header">
-      <div class="div6">Займы</div>
+      <div class="div6">Пуллы</div>
     </div>
     <div class="col-titles-bg-parent">
       <tools-board></tools-board>
@@ -40,18 +40,18 @@
       <div class="div9">Отклоненные</div>
     </div>
     <ul class="manage-pulls-list">
-      <li><manage-loans-table></manage-loans-table></li>
+      <li><manage-pulls-table></manage-pulls-table></li>
     </ul>
   </div>
 </template>
 <script setup lang="ts">
-import toolsBoard from "./tools-board.vue";
 import { useRouter } from "vue-router";
+import toolsBoard from "./tools-board.vue";
 const router = useRouter();
 const toPannel = () => {
   router.push({ name: "admin-pannel-mobile" });
 };
-import manageLoansTable from "@/components/admin/table/manage-loans-table.vue";
+import managePullsTable from "@/components/admin/table/manage-pulls-table.vue";
 </script>
 <style scoped lang="scss">
 .manage-pulls-list {
@@ -141,7 +141,7 @@ import manageLoansTable from "@/components/admin/table/manage-loans-table.vue";
   left: 0em;
   background-color: #fff;
   width: 100vw;
-  height: 70em;
+  height: 80em;
   overflow: hidden;
 }
 .div6 {
@@ -984,7 +984,7 @@ import manageLoansTable from "@/components/admin/table/manage-loans-table.vue";
   position: relative;
   background-color: #fff;
   width: 100%;
-  height: 70em;
+  height: 85em;
   overflow-y: auto;
   text-align: center;
   color: #3b3b3b;

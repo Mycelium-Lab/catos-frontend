@@ -492,7 +492,7 @@ import modal from "@/components/ui-kit/modal.vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const toBack = () => {
-  router.push({ name: "manage-loans-mobile" });
+  router.push({ name: "manage-bids-mobile" });
 };
 </script>
 <style scoped>

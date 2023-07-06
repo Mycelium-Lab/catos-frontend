@@ -47,18 +47,53 @@ export const adminMobile = [
     component: () => import("../components/admin/restore-password.vue"),
   },
   {
+    path: "/admin-manage-bids-mobile",
+    name: "manage-bids-mobile",
+    component: () => import("../views/admin/mobile/manage-bids.vue"),
+  },
+  {
+    path: "/admin-bids-blank-mobile",
+    name: "manage-bids-blank",
+    component: () => import("../components/admin/blank.vue"),
+  },
+  {
+    path: "/admin-manage-users-mobile",
+    name: "manage-user-mobile",
+    component: () => import("../views/admin/mobile/manage-users.vue"),
+  },
+  {
+    path: "/admin-user-detail-mobile",
+    name: "manage-user-detail",
+    component: () => import("../components/admin/users-detail.vue"),
+  },
+  {
+    path: "/admin-manage-pulls-mobile",
+    name: "manage-pulls-mobile",
+    component: () => import("../views/admin/mobile/manage-pulls.vue"),
+  },
+  {
+    path: "/admin-pulls-detail-mobile",
+    name: "manage-pulls-detail",
+    component: () => import("../components/admin/pulls-detail.vue"),
+  },
+  {
     path: "/admin-manage-loans-mobile",
     name: "manage-loans-mobile",
     component: () => import("../views/admin/mobile/manage-loans.vue"),
   },
   {
-    path: "/admin-loans-blank-mobile",
-    name: "manage-loans-blank",
-    component: () => import("../components/admin/blank.vue"),
+    path: "/admin-loans-detail-mobile",
+    name: "manage-loans-detail",
+    component: () => import("../components/admin/loans-detail.vue"),
   },
   {
-    path: "/admin-manage-users-mobile",
-    name: "manage-loans-users",
-    component: () => import("../views/admin/mobile/manage-users.vue"),
+    path: "/admin-manage-api-mobile",
+    name: "manage-api-mobile",
+    component: () => import("../views/admin/mobile/manage-api.vue"),
+  },
+  {
+    path: "/admin-add-mobile",
+    name: "manage-add-mobile",
+    component: () => import("../components/admin/add.vue"),
   },
 ];

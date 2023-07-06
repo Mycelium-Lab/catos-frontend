@@ -1,6 +1,10 @@
 <template>
   <div class="div">
     <div class="pull">
+      <div class="buttonback" @click="toPannel">
+        <div class="div32">Назад</div>
+        <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
+      </div>
       <!--<div class="paginationfield">
           <div class="numbers">
             <div class="paginationnumber">
@@ -36,7 +40,7 @@
       <div class="pull-stats-child" />
       <div class="filtr">
         <div class="wrapper">
-          <div class="div10">Заявка #1223</div>
+          <div class="div10">Пользователь #1223</div>
         </div>
       </div>
       <div class="info">
@@ -82,7 +86,7 @@
               <div class="txt1">Статус:</div>
             </div>
             <div class="wrapper1">
-              <div class="div21">Новая зявка</div>
+              <div class="div21">Зарегистрирован</div>
             </div>
           </div>
           <div class="frame-item" />
@@ -97,18 +101,27 @@
           <div class="frame-item" />
           <div class="field">
             <div class="field1">
-              <div class="div26">Анкета заявителя:</div>
+              <div class="div26">Email:</div>
               <div class="col-titles-bg" />
-              <div class="div27" @click="toBlank">Открыть</div>
+              <a class="div27_link div27" href="mailto: someuser@gmail.com"
+                >someuser@gmail.com</a
+              >
             </div>
           </div>
           <div class="frame-item" />
           <div class="field">
             <div class="field1">
-              <div class="div26">Кошелек:</div>
+              <div class="div26">Телефон:</div>
               <div class="col-titles-bg" />
-              <div class="div27">9jjjxxx...812300</div>
+              <a class="div27" href="tel:+ 7 (999) 202-77-77"
+                >+ 7 (999) 202-77-77</a
+              >
             </div>
+          </div>
+          <div class="button-wrapper">
+            <catos-buttton variant="fourth" @click="toDetail"
+              >Подробнее</catos-buttton
+            >
           </div>
           <div class="frame-child2" />
         </div>
@@ -118,7 +131,7 @@
       <div class="pull-stats-child" />
       <div class="filtr">
         <div class="wrapper">
-          <div class="div10">Заявка #1223</div>
+          <div class="div10">Пользователь #1223</div>
         </div>
       </div>
       <div class="info">
@@ -164,7 +177,7 @@
               <div class="txt1">Статус:</div>
             </div>
             <div class="wrapper1">
-              <div class="div21">Новая зявка</div>
+              <div class="div21">Зарегистрирован</div>
             </div>
           </div>
           <div class="frame-item" />
@@ -179,45 +192,36 @@
           <div class="frame-item" />
           <div class="field">
             <div class="field1">
-              <div class="div26">Анкета заявителя:</div>
+              <div class="div26">Email:</div>
               <div class="col-titles-bg" />
-              <div class="div27" @click="toBlank">Открыть</div>
+              <a class="div27_link div27" href="mailto: someuser@gmail.com"
+                >someuser@gmail.com</a
+              >
             </div>
           </div>
           <div class="frame-item" />
           <div class="field">
             <div class="field1">
-              <div class="div26">Кошелек:</div>
+              <div class="div26">Телефон:</div>
               <div class="col-titles-bg" />
-              <div class="div27">9jjjxxx...812300</div>
+              <a class="div27" href="tel:+ 7 (999) 202-77-77"
+                >+ 7 (999) 202-77-77</a
+              >
             </div>
           </div>
+          <div class="button-wrapper">
+            <catos-buttton variant="fourth" @click="toDetail"
+              >Подробнее</catos-buttton
+            >
+          </div>
+
           <div class="frame-child2" />
         </div>
       </div>
     </div>
-    <div class="col-titles-bg-parent">
-      <div class="col-titles-bg4" />
 
-      <div class="search-parent">
-        <input-data
-          left
-          placeholder="Поиск"
-          :style="{ width: '100%', margin: '0' }"
-        >
-          <template v-slot:left-icon>
-            <img src="@/assets/images/iconssearch.svg" width="20" />
-          </template>
-        </input-data>
-        <div class="menu-2-parent">
-          <img
-            class="iconsbar-cards"
-            alt=""
-            src="@/assets/images/iconssort.svg"
-          />
-          <div class="div57">(1)</div>
-        </div>
-      </div>
+    <div class="col-titles-bg-parent">
+      <tools-board></tools-board>
     </div>
   </div>
 </template>
@@ -225,11 +229,14 @@
 import { ref } from "vue";
 import catosCheckbox from "@/components/ui-kit/catos-checkbox.vue";
 import { useRouter } from "vue-router";
-const activeTab = ref("borrower");
-import inputData from "@/components/fields/input-data.vue";
+import toolsBoard from "./tools-board.vue";
+import catosButtton from "@/components/ui-kit/buttons/catos-button.vue";
 const router = useRouter();
-const toBlank = () => {
-  router.push({ name: "manage-loans-blank" });
+const toDetail = () => {
+  router.push({ name: "manage-user-detail" });
+};
+const toPannel = () => {
+  router.push({ name: "admin-pannel-mobile" });
 };
 </script>
 <style scoped lang="scss">
@@ -326,7 +333,7 @@ const toBlank = () => {
 }
 .header {
   position: relative;
-  top: 5.81em;
+  top: 3.81em;
 
   border-radius: 7px;
   width: 18.75em;
@@ -379,7 +386,7 @@ const toBlank = () => {
 }
 .tbs-2 {
   position: relative;
-  top: 19.5em;
+  top: 14.5em;
 
   width: 18.75em;
   height: 1.44em;
@@ -397,7 +404,7 @@ const toBlank = () => {
   backdrop-filter: blur(5px);
   border: 0.5px solid rgba(46, 58, 89, 0.2);
   box-sizing: border-box;
-  height: 21.44em;
+  height: 26.44em;
 }
 .div10 {
   position: relative;
@@ -420,7 +427,7 @@ const toBlank = () => {
   top: 0em;
   left: 0.94em;
   background-color: #fff;
-  width: 6.63em;
+  width: 8em;
   display: flex;
   flex-direction: row;
   padding: 0em 0.34em;
@@ -861,7 +868,7 @@ const toBlank = () => {
 }
 .pull-stats {
   position: relative;
-  top: 21.69em;
+  top: 16.69em;
 
   width: 21.38em;
   height: 22.06em;
@@ -870,7 +877,7 @@ const toBlank = () => {
 }
 .pull-stats1 {
   position: relative;
-  top: 22.69em;
+  top: 23.5em;
 
   width: 21.38em;
   height: 22.06em;
@@ -1089,12 +1096,12 @@ const toBlank = () => {
 }
 .col-titles-bg-parent {
   position: relative;
-  top: -38.56em;
+  top: -40.56em;
 
   border-radius: 16px;
   background-color: rgba(246, 244, 252, 0.5);
   width: 21.38em;
-  height: 10.44em;
+
   color: #8181a5;
   margin: 0 auto;
 }
@@ -1157,10 +1164,45 @@ const toBlank = () => {
   position: relative;
   background-color: #fff;
   width: 100%;
-  height: 80em;
+  height: 85em;
   overflow-y: auto;
   text-align: center;
   color: #3b3b3b;
   font-family: Inter;
+}
+.button-wrapper {
+  border-radius: 16px;
+  background: #f9fbff;
+  padding: 12px;
+  width: 100%;
+  margin-top: 0.5em;
+}
+.div32 {
+  position: relative;
+  top: 0.7em;
+  left: 1.3em;
+  font-size: 0.88em;
+  line-height: 130%;
+  font-weight: 300;
+}
+.search-icon {
+  position: absolute;
+  top: calc(50% - 20px);
+  right: 3.88em;
+  border-radius: 10px;
+  width: 2.5em;
+  height: 2.5em;
+  overflow: hidden;
+}
+.buttonback {
+  position: absolute;
+  height: 2.5em;
+  width: 6em;
+  top: 2.66%;
+  right: 67.69%;
+  bottom: 95.3%;
+  left: 6.15%;
+  border-radius: 9px;
+  background-color: rgba(251, 251, 251, 0.42);
 }
 </style>

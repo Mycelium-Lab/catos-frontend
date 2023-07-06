@@ -4,7 +4,7 @@
       <div class="info-use_pannel info-user">
         <div class="nav-bar">
           <div class="tags-grey">
-            <b class="tag">Администратор</b>
+            <b class="tag">Канбан панель</b>
           </div>
           <div class="buttons-icon-outline-arr-parent" @click="toProfile">
             <img
@@ -35,7 +35,7 @@
           <router-link
             class="field-button"
             id="fieldButtonContainer1"
-            :to="{ name: 'manage-loans-mobile' }"
+            :to="{ name: 'manage-bids-mobile' }"
           >
             <div class="api">Управление заявками и KYC</div>
             <img class="iconchange" alt="" src="../../public/iconchange.svg" />
@@ -45,7 +45,7 @@
           <router-link
             class="field-button"
             id="fieldButtonContainer1"
-            :to="{ name: 'manage-loans-users' }"
+            :to="{ name: 'manage-user-mobile' }"
           >
             <div class="api">Управление пользователями</div>
             <img class="iconchange" alt="" src="../../public/iconchange.svg" />
@@ -55,7 +55,7 @@
           <router-link
             class="field-button"
             id="fieldButtonContainer1"
-            :to="{ name: 'scrinning' }"
+            :to="{ name: 'manage-pulls-mobile' }"
           >
             <div class="api">Управление пуллами</div>
             <img class="iconchange" alt="" src="../../public/iconchange.svg" />
@@ -65,7 +65,7 @@
           <router-link
             class="field-button"
             id="fieldButtonContainer1"
-            :to="{ name: 'scrinning' }"
+            :to="{ name: 'manage-loans-mobile' }"
           >
             <div class="api">Управление займами</div>
             <img class="iconchange" alt="" src="../../public/iconchange.svg" />
@@ -75,7 +75,7 @@
           <router-link
             class="field-button"
             id="fieldButtonContainer1"
-            :to="{ name: 'scrinning' }"
+            :to="{ name: 'manage-api-mobile' }"
           >
             <div class="api">Скоринг по API</div>
             <img class="iconchange" alt="" src="../../public/iconchange.svg" />
@@ -85,7 +85,7 @@
           <router-link
             class="field-button"
             id="fieldButtonContainer1"
-            :to="{ name: 'scrinning' }"
+            :to="{ name: 'manage-add-mobile' }"
           >
             <div class="api">Добавить администратора</div>
             <img class="iconchange" alt="" src="../../public/iconchange.svg" />
@@ -95,7 +95,7 @@
           <router-link
             class="field-button"
             id="fieldButtonContainer1"
-            :to="{ name: 'scrinning' }"
+            :to="{ name: 'admin-restore-password' }"
           >
             <div class="api">Сменить пароль</div>
             <img class="iconchange" alt="" src="../../public/iconchange.svg" />

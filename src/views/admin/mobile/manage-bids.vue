@@ -6,32 +6,29 @@
         <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
       </div>
       <!--<div class="paginationfield">
-              <div class="numbers">
-                <div class="paginationnumber">
-                  <div class="div1">1</div>
-                </div>
-                <div class="paginationnumber1">
-                  <div class="div1">2</div>
-                </div>
-                <div class="paginationnumber">
-                  <div class="div1">3</div>
-                </div>
-                <div class="paginationnumber">
-                  <div class="div1">4</div>
-                </div>
-                <div class="paginationnumber">
-                  <div class="div1">5</div>
-                </div>
-              </div>
-              <div class="active-bg" />
-              <img class="buttonback-icon" alt="" src="/buttonback.svg" />
-            </div>-->
+        <div class="numbers">
+          <div class="paginationnumber">
+            <div class="div1">1</div>
+          </div>
+          <div class="paginationnumber1">
+            <div class="div1">2</div>
+          </div>
+          <div class="paginationnumber">
+            <div class="div1">3</div>
+          </div>
+          <div class="paginationnumber">
+            <div class="div1">4</div>
+          </div>
+          <div class="paginationnumber">
+            <div class="div1">5</div>
+          </div>
+        </div>
+        <div class="active-bg" />
+        <img class="buttonback-icon" alt="" src="/buttonback.svg" />
+      </div>-->
     </div>
     <div class="header">
-      <div class="div6">Займы</div>
-    </div>
-    <div class="col-titles-bg-parent">
-      <tools-board></tools-board>
+      <div class="div6">Заявки</div>
     </div>
     <div class="tbs-2">
       <div class="tbs-2-child" />
@@ -39,28 +36,255 @@
       <div class="div8">Одобренные</div>
       <div class="div9">Отклоненные</div>
     </div>
-    <ul class="manage-pulls-list">
-      <li><manage-loans-table></manage-loans-table></li>
-    </ul>
+    <div class="pull-stats">
+      <div class="pull-stats-child" />
+      <div class="filtr">
+        <div class="wrapper">
+          <div class="div10">Заявка #1223</div>
+        </div>
+      </div>
+      <div class="info">
+        <div class="statusbar-cards1">
+          <div class="buttons-tabs1">
+            <div class="checkboxdone-parent">
+              <catos-checkbox></catos-checkbox>
+              <div class="parent">
+                <div class="div15">Иван Иванов Иванович</div>
+                <div class="id-12345">ID 12345</div>
+              </div>
+            </div>
+            <div class="frame-group">
+              <div class="frame-container">
+                <div class="ellipse-parent">
+                  <div class="frame-child" />
+                  <div class="div16">В ожидании одобрения</div>
+                </div>
+                <img
+                  class="iconchange1"
+                  alt=""
+                  src="/src/views/public/iconchange.svg"
+                />
+              </div>
+              <div class="container">
+                <div class="div16">11 ч</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="frame-parent2">
+          <div class="frame-parent3">
+            <div class="frame">
+              <div class="txt1">Роль:</div>
+            </div>
+            <div class="wrapper1">
+              <div class="div21">Заемщик</div>
+            </div>
+          </div>
+          <div class="frame-item" />
+          <div class="frame-parent3">
+            <div class="frame">
+              <div class="txt1">Статус:</div>
+            </div>
+            <div class="wrapper1">
+              <div class="div21">Новая зявка</div>
+            </div>
+          </div>
+          <div class="frame-item" />
+          <div class="frame-parent3">
+            <div class="frame">
+              <div class="txt1">Страна:</div>
+            </div>
+            <div class="wrapper1">
+              <div class="div21">Россия</div>
+            </div>
+          </div>
+          <div class="frame-item" />
+          <div class="field">
+            <div class="field1">
+              <div class="div26">Анкета заявителя:</div>
+              <div class="col-titles-bg" />
+              <div class="div27" @click="toBlank">Открыть</div>
+            </div>
+          </div>
+          <div class="frame-item" />
+          <div class="field">
+            <div class="field1">
+              <div class="div26">Кошелек:</div>
+              <div class="col-titles-bg" />
+              <div class="div27">9jjjxxx...812300</div>
+            </div>
+          </div>
+          <div class="frame-child2" />
+        </div>
+      </div>
+    </div>
+    <div class="pull-stats1">
+      <div class="pull-stats-child" />
+      <div class="filtr">
+        <div class="wrapper">
+          <div class="div10">Заявка #1223</div>
+        </div>
+      </div>
+      <div class="info">
+        <div class="statusbar-cards1">
+          <div class="buttons-tabs1">
+            <div class="checkboxdone-parent">
+              <catos-checkbox></catos-checkbox>
+              <div class="parent">
+                <div class="div15">Иван Иванов Иванович</div>
+                <div class="id-12345">ID 12345</div>
+              </div>
+            </div>
+            <div class="frame-group">
+              <div class="frame-container">
+                <div class="ellipse-parent">
+                  <div class="frame-child" />
+                  <div class="div16">В ожидании одобрения</div>
+                </div>
+                <img
+                  class="iconchange1"
+                  alt=""
+                  src="/src/views/public/iconchange.svg"
+                />
+              </div>
+              <div class="container">
+                <div class="div16">11 ч</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="frame-parent2">
+          <div class="frame-parent3">
+            <div class="frame">
+              <div class="txt1">Роль:</div>
+            </div>
+            <div class="wrapper1">
+              <div class="div21">Заемщик</div>
+            </div>
+          </div>
+          <div class="frame-item" />
+          <div class="frame-parent3">
+            <div class="frame">
+              <div class="txt1">Статус:</div>
+            </div>
+            <div class="wrapper1">
+              <div class="div21">Новая зявка</div>
+            </div>
+          </div>
+          <div class="frame-item" />
+          <div class="frame-parent3">
+            <div class="frame">
+              <div class="txt1">Страна:</div>
+            </div>
+            <div class="wrapper1">
+              <div class="div21">Россия</div>
+            </div>
+          </div>
+          <div class="frame-item" />
+          <div class="field">
+            <div class="field1">
+              <div class="div26">Анкета заявителя:</div>
+              <div class="col-titles-bg" />
+              <div class="div27" @click="toBlank">Открыть</div>
+            </div>
+          </div>
+          <div class="frame-item" />
+          <div class="field">
+            <div class="field1">
+              <div class="div26">Кошелек:</div>
+              <div class="col-titles-bg" />
+              <div class="div27">9jjjxxx...812300</div>
+            </div>
+          </div>
+          <div class="frame-child2" />
+        </div>
+      </div>
+    </div>
+    <div class="col-titles-bg-parent">
+      <div class="col-titles-bg4" />
+      <div class="tabs">
+        <div
+          :class="
+            activeTab === 'borrower'
+              ? 'button-slider_active button-slider'
+              : 'button-slider'
+          "
+          @click="() => (activeTab = 'borrower')"
+        >
+          <div class="fill" />
+          <div class="div48">Заемщики</div>
+        </div>
+        <div
+          :class="
+            activeTab === 'creditor'
+              ? 'button-slider1_active button-slider1'
+              : 'button-slider1'
+          "
+          @click="() => (activeTab = 'creditor')"
+        >
+          <div class="fill1" />
+          <div class="div50">Кредиторы</div>
+        </div>
+        <div
+          :class="
+            activeTab === 'collector'
+              ? 'button-slider2_active button-slider2'
+              : 'button-slider2'
+          "
+          @click="() => (activeTab = 'collector')"
+        >
+          <div class="fill1" />
+          <div class="div52">Коллекторы</div>
+        </div>
+        <div
+          :class="
+            activeTab === 'depositor'
+              ? 'button-slider3_active button-slider3'
+              : 'button-slider3'
+          "
+          @click="() => (activeTab = 'depositor')"
+        >
+          <div class="fill1" />
+          <div class="div54">Инвесторы</div>
+        </div>
+      </div>
+      <div class="search-parent">
+        <input-data
+          left
+          placeholder="Поиск"
+          :style="{ width: '100%', margin: '0' }"
+        >
+          <template v-slot:left-icon>
+            <img src="@/assets/images/iconssearch.svg" width="20" />
+          </template>
+        </input-data>
+        <div class="menu-2-parent">
+          <img
+            class="iconsbar-cards"
+            alt=""
+            src="@/assets/images/iconssort.svg"
+          />
+          <div class="div57">(1)</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
-import toolsBoard from "./tools-board.vue";
+import { ref } from "vue";
+import catosCheckbox from "@/components/ui-kit/catos-checkbox.vue";
 import { useRouter } from "vue-router";
+const activeTab = ref("borrower");
+import inputData from "@/components/fields/input-data.vue";
 const router = useRouter();
+const toBlank = () => {
+  router.push({ name: "manage-bids-blank" });
+};
 const toPannel = () => {
   router.push({ name: "admin-pannel-mobile" });
 };
-import manageLoansTable from "@/components/admin/table/manage-loans-table.vue";
 </script>
 <style scoped lang="scss">
-.manage-pulls-list {
-  list-style: none;
-  padding: 0em;
-  margin: 0em;
-  position: relative;
-  top: 9em;
-}
 .div1 {
   position: relative;
   font-size: 0.88em;
@@ -141,7 +365,7 @@ import manageLoansTable from "@/components/admin/table/manage-loans-table.vue";
   left: 0em;
   background-color: #fff;
   width: 100vw;
-  height: 70em;
+  height: 80em;
   overflow: hidden;
 }
 .div6 {
@@ -207,7 +431,7 @@ import manageLoansTable from "@/components/admin/table/manage-loans-table.vue";
 }
 .tbs-2 {
   position: relative;
-  top: 6.5em;
+  top: 17.5em;
 
   width: 18.75em;
   height: 1.44em;
@@ -225,7 +449,7 @@ import manageLoansTable from "@/components/admin/table/manage-loans-table.vue";
   backdrop-filter: blur(5px);
   border: 0.5px solid rgba(46, 58, 89, 0.2);
   box-sizing: border-box;
-  height: 26.44em;
+  height: 21.44em;
 }
 .div10 {
   position: relative;
@@ -248,7 +472,7 @@ import manageLoansTable from "@/components/admin/table/manage-loans-table.vue";
   top: 0em;
   left: 0.94em;
   background-color: #fff;
-
+  width: 6.63em;
   display: flex;
   flex-direction: row;
   padding: 0em 0.34em;
@@ -689,7 +913,7 @@ import manageLoansTable from "@/components/admin/table/manage-loans-table.vue";
 }
 .pull-stats {
   position: relative;
-  top: 16.69em;
+  top: 19.69em;
 
   width: 21.38em;
   height: 22.06em;
@@ -698,7 +922,7 @@ import manageLoansTable from "@/components/admin/table/manage-loans-table.vue";
 }
 .pull-stats1 {
   position: relative;
-  top: 23.5em;
+  top: 21em;
 
   width: 21.38em;
   height: 22.06em;
@@ -917,11 +1141,12 @@ import manageLoansTable from "@/components/admin/table/manage-loans-table.vue";
 }
 .col-titles-bg-parent {
   position: relative;
-  top: 5em;
+  top: -40.56em;
+
   border-radius: 16px;
   background-color: rgba(246, 244, 252, 0.5);
   width: 21.38em;
-
+  height: 10.44em;
   color: #8181a5;
   margin: 0 auto;
 }
@@ -984,18 +1209,11 @@ import manageLoansTable from "@/components/admin/table/manage-loans-table.vue";
   position: relative;
   background-color: #fff;
   width: 100%;
-  height: 70em;
+  height: 80em;
   overflow-y: auto;
   text-align: center;
   color: #3b3b3b;
   font-family: Inter;
-}
-.button-wrapper {
-  border-radius: 16px;
-  background: #f9fbff;
-  padding: 12px;
-  width: 100%;
-  margin-top: 0.5em;
 }
 .div32 {
   position: relative;
