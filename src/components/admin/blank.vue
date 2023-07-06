@@ -445,7 +445,7 @@
           <img
             class="photo-icon"
             alt=""
-            src="src/assets/desktop/pasport-selfi.png"
+            src="/src/assets/desktop/pasport-selfi.png"
           />
           <div class="frame-parent41">
             <div class="parent">
