@@ -413,7 +413,7 @@
             <img
               class="image-23-icon"
               alt=""
-              src="src/assets/desktop/user-photo.png"
+              src="/src/assets/desktop/user-photo.png"
             />
           </div>
           <div class="frame-parent41">
