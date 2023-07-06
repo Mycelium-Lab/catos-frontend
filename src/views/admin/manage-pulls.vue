@@ -1,5 +1,5 @@
 <template>
-  <default-desktop-admin>
+  <default-desktop-admin back>
     <template v-slot:title> Пуллы </template>
     <template v-slot:tools>
       <input-data

@@ -1,6 +1,6 @@
 <template>
-  <default-desktop-admin>
-    <template v-slot:title> Займы </template>
+  <default-desktop-admin back>
+    <template v-slot:title> Заявки </template>
     <template v-slot:slider>
       <multi-button-slider
         :style="{ width: '480px', margin: '0em' }"
@@ -53,6 +53,7 @@ import defaultDesktopAdmin from "@/components/layouts/default-desktop-admin.vue"
 import multiButtonSlider from "@/components/ui-kit/buttons/multi-button-slider.vue";
 import inputData from "@/components/fields/input-data.vue";
 import bidsAdminTable from "@/components/admin/desktop/bids-admin-table.vue";
+
 const currentWindow = ref("borrower");
 const handleSlide = (index: any) => {
   if (index === 0) {

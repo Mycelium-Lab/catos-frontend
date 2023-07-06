@@ -1,5 +1,5 @@
 <template>
-  <default-desktop-admin>
+  <default-desktop-admin back>
     <template v-slot:title> Займы </template>
     <template v-slot:tools>
       <input-data
@@ -218,6 +218,7 @@ ul {
 .div11 {
   left: 9.64em;
 }
+
 @media (min-width: 500px) {
   .rectangle-group {
     top: 0;

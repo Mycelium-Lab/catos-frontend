@@ -1,5 +1,5 @@
 <template>
-  <default-desktop-admin>
+  <default-desktop-admin back>
     <template v-slot:title> Профиль администратора </template>
     <template v-slot:body>
       <profile-board></profile-board>

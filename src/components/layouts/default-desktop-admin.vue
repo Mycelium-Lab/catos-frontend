@@ -1,7 +1,15 @@
 <template>
   <div class="div">
-    <div class="frame-parent">
+    <div :class="back ? 'frame-parent_with_back frame-parent' : 'frame-parent'">
       <div class="frame-wrapper">
+        <div v-if="back" class="buttonback" @click="toPannel">
+          <div class="div32">Назад</div>
+          <img
+            class="search-icon"
+            alt=""
+            src="@/assets/images/search-icon.svg"
+          />
+        </div>
         <div class="page-title-parent">
           <h1 class="page-title"><slot name="title"> </slot></h1>
           <slot name="slider"></slot>
@@ -19,9 +27,18 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRouter } from "vue-router";
+const router = useRouter();
+const toPannel = () => {
+  router.push({ name: "admin-pannel" });
+};
+const { back } = defineProps({
+  back: { type: Boolean, default: false },
+});
+</script>
 
-<style scoped>
+<style scoped lang="scss">
 .div {
   background-color: #fff;
   width: 100%;
@@ -42,7 +59,9 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 1.25em;
-  margin-bottom: 20em;
+  &_with_back {
+    margin-bottom: 20em;
+  }
 }
 .frame-wrapper {
   display: flex;
@@ -56,6 +75,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 1.25em;
+  margin-top: 2em;
 }
 .page-title {
   position: relative;
@@ -84,5 +104,33 @@
   gap: 1.88em;
   text-align: left;
   margin-top: 20px;
+}
+.div32 {
+  position: relative;
+  top: 0.7em;
+  left: 1.3em;
+  font-size: 0.88em;
+  line-height: 130%;
+  font-weight: 300;
+}
+.search-icon {
+  position: absolute;
+  top: calc(50% - 20px);
+  right: 3.88em;
+  border-radius: 10px;
+  width: 2.5em;
+  height: 2.5em;
+  overflow: hidden;
+}
+.buttonback {
+  position: relative;
+  height: 2.5em;
+  width: 6em;
+  top: 0.5em;
+
+  left: 0.4em;
+  border-radius: 9px;
+  background-color: rgba(251, 251, 251, 0.42);
+  cursor: pointer;
 }
 </style>
