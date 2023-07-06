@@ -40,51 +40,6 @@
         </div>
       </div>
       <div class="info">
-        <div class="statusbar-cards">
-          <div class="buttons-tabs">
-            <div class="iconsbar-cards-parent">
-              <img class="iconsbar-cards" alt="" src="/iconsbar-cards.svg" />
-              <div class="txt1-parent">
-                <div class="txt1">На сумму:</div>
-                <div class="ton">50 000 TON</div>
-                <div class="txt2">Text2</div>
-              </div>
-            </div>
-            <div class="status-all">
-              <div class="colors-graphsorders-parent">
-                <img
-                  class="colors-graphsorders-icon"
-                  alt=""
-                  src="/colors-graphsorders1.svg"
-                />
-                <div class="div11">Просрочен</div>
-              </div>
-              <img class="iconchange" alt="" src="/iconchange.svg" />
-            </div>
-          </div>
-          <div class="frame-parent">
-            <div class="iconsbar-cards-parent">
-              <img class="icons2bar-cards" alt="" src="/icons2bar-cards.svg" />
-              <div class="div12">1 день = 1%</div>
-            </div>
-            <div class="iconsbar-cards-parent">
-              <img
-                class="icons2bar-cards1"
-                alt=""
-                src="/icons2bar-cards1.svg"
-              />
-              <div class="div12">45 дней</div>
-            </div>
-            <div class="icons2bar-cards-container">
-              <img class="icons2bar-cards" alt="" src="/icons2bar-cards2.svg" />
-              <div class="div12">ROI = 75%</div>
-            </div>
-            <div class="icons2bar-cards-container">
-              <img class="icons2bar-cards" alt="" src="/icons2bar-cards3.svg" />
-              <div class="div14">30 дней = 15%</div>
-            </div>
-          </div>
-        </div>
         <div class="statusbar-cards1">
           <div class="buttons-tabs1">
             <div class="checkboxdone-parent">
@@ -109,20 +64,6 @@
               <div class="container">
                 <div class="div16">11 ч</div>
               </div>
-            </div>
-          </div>
-          <div class="frame-parent1">
-            <div class="iconsbar-cards-parent">
-              <img class="icons2bar-cards" alt="" src="/percent.svg" />
-              <div class="div18">1 день = 1%</div>
-            </div>
-            <div class="iconsbar-cards-parent">
-              <img class="icons2bar-cards" alt="" src="/clock.svg" />
-              <div class="div19">45 дней</div>
-            </div>
-            <div class="icons2bar-cards-container">
-              <img class="icons2bar-cards" alt="" src="/activity.svg" />
-              <div class="div18">ROI = 75%</div>
             </div>
           </div>
         </div>
@@ -181,51 +122,6 @@
         </div>
       </div>
       <div class="info">
-        <div class="statusbar-cards">
-          <div class="buttons-tabs">
-            <div class="iconsbar-cards-parent">
-              <img class="iconsbar-cards" alt="" src="/iconsbar-cards.svg" />
-              <div class="txt1-parent">
-                <div class="txt1">На сумму:</div>
-                <div class="ton">50 000 TON</div>
-                <div class="txt2">Text2</div>
-              </div>
-            </div>
-            <div class="status-all">
-              <div class="colors-graphsorders-parent">
-                <img
-                  class="colors-graphsorders-icon"
-                  alt=""
-                  src="/colors-graphsorders1.svg"
-                />
-                <div class="div11">Просрочен</div>
-              </div>
-              <img class="iconchange" alt="" src="/iconchange.svg" />
-            </div>
-          </div>
-          <div class="frame-parent">
-            <div class="iconsbar-cards-parent">
-              <img class="icons2bar-cards" alt="" src="/icons2bar-cards.svg" />
-              <div class="div12">1 день = 1%</div>
-            </div>
-            <div class="iconsbar-cards-parent">
-              <img
-                class="icons2bar-cards1"
-                alt=""
-                src="/icons2bar-cards1.svg"
-              />
-              <div class="div12">45 дней</div>
-            </div>
-            <div class="icons2bar-cards-container">
-              <img class="icons2bar-cards" alt="" src="/icons2bar-cards2.svg" />
-              <div class="div12">ROI = 75%</div>
-            </div>
-            <div class="icons2bar-cards-container">
-              <img class="icons2bar-cards" alt="" src="/icons2bar-cards3.svg" />
-              <div class="div14">30 дней = 15%</div>
-            </div>
-          </div>
-        </div>
         <div class="statusbar-cards1">
           <div class="buttons-tabs1">
             <div class="checkboxdone-parent">
@@ -250,20 +146,6 @@
               <div class="container">
                 <div class="div16">11 ч</div>
               </div>
-            </div>
-          </div>
-          <div class="frame-parent1">
-            <div class="iconsbar-cards-parent">
-              <img class="icons2bar-cards" alt="" src="/percent.svg" />
-              <div class="div18">1 день = 1%</div>
-            </div>
-            <div class="iconsbar-cards-parent">
-              <img class="icons2bar-cards" alt="" src="/clock.svg" />
-              <div class="div19">45 дней</div>
-            </div>
-            <div class="icons2bar-cards-container">
-              <img class="icons2bar-cards" alt="" src="/activity.svg" />
-              <div class="div18">ROI = 75%</div>
             </div>
           </div>
         </div>
