@@ -156,8 +156,8 @@
         <router-link
           :to="
             isMobile
-              ? { name: 'admin-profile-mobile' }
-              : { name: 'admin-profile' }
+              ? { name: 'admin-pannel-mobile' }
+              : { name: 'admin-pannel' }
           "
         >
           Администратор

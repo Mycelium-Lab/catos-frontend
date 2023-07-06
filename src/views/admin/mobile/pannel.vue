@@ -6,6 +6,13 @@
           <div class="tags-grey">
             <b class="tag">Администратор</b>
           </div>
+          <div class="buttons-icon-outline-arr-parent" @click="toProfile">
+            <img
+              class="buttons-icon-outline-arr"
+              alt=""
+              src="@/assets/desktop/buttons--icon--outline--arrow.svg"
+            />
+          </div>
           <div class="buttons-icon-outline-arr-parent">
             <div class="buttons-icon-outline-arr">
               <div class="bg"></div>
@@ -116,24 +123,8 @@ const isLoadPhoto = ref(false);
 
 const router = useRouter();
 
-const restorePassword = () => {
-  router.push({ name: "admin-restore-password" });
-};
-
-const changeEmail = () => {
-  router.push({ name: "change-email" });
-};
-const changePhone = () => {
-  router.push({ name: "change-phone" });
-};
-
-const activeAuth = (ev: any) => {
-  if (ev) {
-    setTimeout(() => router.push({ name: "authentication" }), 300);
-  }
-};
-const upload = () => {
-  router.push({ name: "edit-photo" });
+const toProfile = () => {
+  router.push({ name: "admin-profile-mobile" });
 };
 </script>
 
