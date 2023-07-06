@@ -1,143 +1,98 @@
 <template>
   <default-setting>
     <div class="user-nav">
-      <div class="info-user">
+      <div class="info-use_pannel info-user">
         <div class="nav-bar">
           <div class="tags-grey">
-            <b class="tag">Канбан</b>
+            <b class="tag">Администратор</b>
           </div>
           <div class="buttons-icon-outline-arr-parent">
             <div class="buttons-icon-outline-arr">
               <div class="bg"></div>
-              <img class="bell-icon" alt="" src="./public/bell.svg" />
+              <img class="bell-icon" alt="" src="../../public/bell.svg" />
 
               <div class="status">
-                <img class="mask-icon" alt="" src="./public/mask.svg" />
+                <img class="mask-icon" alt="" src="../../public/mask.svg" />
 
                 <b class="b">+1 </b>
               </div>
             </div>
             <div class="buttons-icon-outline-arr">
               <div class="bg"></div>
-              <img class="icon" alt="" src="./public/icon.svg" />
+              <img class="icon" alt="" src="../../public/icon.svg" />
             </div>
           </div>
         </div>
-        <div class="tags-grey1">
-          <b class="tag">Канбан</b>
-        </div>
-        <div class="fields-and-photo-and-name">
-          <div class="photo-and-name">
-            <div class="name">
-              <b class="name1">Валентин Иванович Бабаев</b>
-              <div class="job-title">Кредитор</div>
-            </div>
-          </div>
-          <div class="fields-edit">
-            <div class="frame-parent">
-              <div class="iconsmail-parent">
-                <img class="iconsmail" alt="" src="./public/iconsmail.svg" />
 
-                <div class="alesso-waitsongmailcom">
-                  Alesso Waitson@gmailcom
-                </div>
-              </div>
-              <img
-                class="iconsedit-outline"
-                alt=""
-                src="./public/iconseditoutline.svg"
-                @click="changeEmail"
-              />
-            </div>
-            <div class="frame-parent">
-              <div class="iconsmail-parent">
-                <img class="iconsmail" alt="" src="./public/iconsmobile.svg" />
-                <div class="div5">+390-999-00-01</div>
-              </div>
-              <img
-                class="iconsedit-outline"
-                alt=""
-                src="./public/iconseditoutline.svg"
-                @click="changePhone"
-              />
-            </div>
-            <div class="frame-container">
-              <div class="iconsmail-parent">
-                <img class="iconsmail" alt="" src="./public/iconslock.svg" />
-
-                <div class="parent">
-                  <div class="div6">**********</div>
-                  <img
-                    class="iconspassword"
-                    alt=""
-                    src="./public/password.png"
-                  />
-                </div>
-              </div>
-              <img
-                class="iconsedit-outline2"
-                alt=""
-                src="./public/iconseditoutline.svg"
-                id="iconseditOutline2"
-                @click="changePassword"
-              />
-            </div>
-          </div>
+        <div class="field-buttons">
+          <router-link
+            class="field-button"
+            id="fieldButtonContainer1"
+            :to="{ name: 'manage-loans-mobile' }"
+          >
+            <div class="api">Управление заявками и KYC</div>
+            <img class="iconchange" alt="" src="../../public/iconchange.svg" />
+          </router-link>
         </div>
-      </div>
-      <div class="field-buttons">
-        <router-link
-          class="field-button"
-          id="fieldButtonContainer"
-          :to="{ name: 'transaction-history' }"
-        >
-          <div class="api">История транзакций</div>
-          <img class="iconchange" alt="" src="./public/iconchange.svg" />
-        </router-link>
-        <router-link
-          v-if="role === 'creditor'"
-          class="field-button"
-          id="fieldButtonContainer1"
-          :to="{ name: 'scrinning' }"
-        >
-          <div class="api">Настроить API</div>
-          <img class="iconchange" alt="" src="./public/iconchange.svg" />
-        </router-link>
-        <router-link class="field-button" :to="{ name: 'setting-wallet' }">
-          <div class="api">Изменить кошелек</div>
-          <img class="iconchange" alt="" src="./public/iconchange.svg" />
-        </router-link>
-        <router-link
-          v-if="role === 'borrower' || role === 'collector'"
-          class="field-button"
-          id="fieldButtonContainer1"
-          :to="{ name: 'scrinning' }"
-        >
-          <div class="api">Изменить анкету</div>
-          <img class="iconchange" alt="" src="./public/iconchange.svg" />
-        </router-link>
-        <router-link
-          v-if="role === 'collector' || role === 'depositor'"
-          class="field-button"
-          id="fieldButtonContainer1"
-          :to="{ name: 'scrinning' }"
-        >
-          <div class="api">Настроить оповещения</div>
-          <img class="iconchange" alt="" src="./public/iconchange.svg" />
-        </router-link>
-        <div
-          v-if="role === 'creditor' || role === 'depositor'"
-          class="field-button"
-        >
-          <div class="api">Изменить данные компании</div>
-          <img class="iconchange" alt="" src="./public/iconchange.svg" />
+        <div class="field-buttons">
+          <router-link
+            class="field-button"
+            id="fieldButtonContainer1"
+            :to="{ name: 'manage-loans-users' }"
+          >
+            <div class="api">Управление пользователями</div>
+            <img class="iconchange" alt="" src="../../public/iconchange.svg" />
+          </router-link>
         </div>
-        <div class="field-button-switch">
-          <div class="div10">Двухфакторная авторизация</div>
-          <catos-switch @toggle="activeAuth" />
+        <div class="field-buttons">
+          <router-link
+            class="field-button"
+            id="fieldButtonContainer1"
+            :to="{ name: 'scrinning' }"
+          >
+            <div class="api">Управление пуллами</div>
+            <img class="iconchange" alt="" src="../../public/iconchange.svg" />
+          </router-link>
         </div>
-        <div class="tags-grey2">
-          <b class="tag">Кредитор</b>
+        <div class="field-buttons">
+          <router-link
+            class="field-button"
+            id="fieldButtonContainer1"
+            :to="{ name: 'scrinning' }"
+          >
+            <div class="api">Управление займами</div>
+            <img class="iconchange" alt="" src="../../public/iconchange.svg" />
+          </router-link>
+        </div>
+        <div class="field-buttons">
+          <router-link
+            class="field-button"
+            id="fieldButtonContainer1"
+            :to="{ name: 'scrinning' }"
+          >
+            <div class="api">Скоринг по API</div>
+            <img class="iconchange" alt="" src="../../public/iconchange.svg" />
+          </router-link>
+        </div>
+        <div class="field-buttons">
+          <router-link
+            class="field-button"
+            id="fieldButtonContainer1"
+            :to="{ name: 'scrinning' }"
+          >
+            <div class="api">Добавить администратора</div>
+            <img class="iconchange" alt="" src="../../public/iconchange.svg" />
+          </router-link>
+        </div>
+        <div class="field-buttons">
+          <router-link
+            class="field-button"
+            id="fieldButtonContainer1"
+            :to="{ name: 'scrinning' }"
+          >
+            <div class="api">Сменить пароль</div>
+            <img class="iconchange" alt="" src="../../public/iconchange.svg" />
+          </router-link>
         </div>
       </div>
     </div>
@@ -145,9 +100,47 @@
   </default-setting>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+// @ts-ignore
+import defaultSetting from "@/components/layouts/default-setting.vue";
+// @ts-ignore
+import catosSwitch from "@/components/ui-kit/catos-switch.vue";
+// @ts-ignore
+import appBar from "@/components/ui-kit/app-bar.vue";
+// @ts-ignore
+import { useRouter } from "vue-router";
+// @ts-ignore
+
+const isLoadPhoto = ref(false);
+
+const router = useRouter();
+
+const restorePassword = () => {
+  router.push({ name: "admin-restore-password" });
+};
+
+const changeEmail = () => {
+  router.push({ name: "change-email" });
+};
+const changePhone = () => {
+  router.push({ name: "change-phone" });
+};
+
+const activeAuth = (ev: any) => {
+  if (ev) {
+    setTimeout(() => router.push({ name: "authentication" }), 300);
+  }
+};
+const upload = () => {
+  router.push({ name: "edit-photo" });
+};
+</script>
 
 <style scoped lang="scss">
+// -- DESKTOP --//
+
+// -- MOBILE --//
 @media (max-width: 490px) {
   .battery-icon {
     position: absolute;
@@ -273,7 +266,7 @@
   }
   .tags-grey {
     position: relative;
-    width: 6.25em;
+    width: 8.25em;
     height: 2.25em;
     background-color: #f5f5fa;
     border-radius: 8px;
@@ -1122,5 +1115,8 @@
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-tap-highlight-color: transparent;
   }
+}
+.info-use_pannel {
+  gap: 20px;
 }
 </style>
