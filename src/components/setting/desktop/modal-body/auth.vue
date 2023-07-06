@@ -46,7 +46,7 @@
       <div class="frame-group">
         <div class="google-authentificator-io-parent">
           <div class="google-authentificator-container">
-            <span>Google Authentificator: </span>
+            <span v-if="stage !== 5">Google Authentificator: </span>
             <slot name="google-authenticator-text"></slot>
           </div>
           <div class="frame-container">
