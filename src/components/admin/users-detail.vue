@@ -427,8 +427,6 @@
             <div class="icons-group">
               <div class="icons1">
                 <div class="iconsfile">
-                  <img class="vector-icon" alt="" src="/vector1.svg" />
-                  <img class="iconsfile-item" alt="" src="/vector-2451.svg" />
                   <div class="pdf">JPG</div>
                 </div>
               </div>
@@ -463,8 +461,6 @@
             <div class="icons-group">
               <div class="icons1">
                 <div class="iconsfile">
-                  <img class="vector-icon" alt="" src="/vector1.svg" />
-                  <img class="iconsfile-item" alt="" src="/vector-2451.svg" />
                   <div class="pdf">JPG</div>
                 </div>
               </div>
