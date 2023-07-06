@@ -215,7 +215,7 @@
         >Отправить</catos-button
       >
     </template>
-    <template v-slot:body>
+    <template v-else v-slot:body>
       <div>
         <input-data
           :style="{ width: '410px' }"

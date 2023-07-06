@@ -19,7 +19,7 @@
       </button>
       <div class="field-button-switch">
         <div class="api">Скоринг по API</div>
-        <catos-switch></catos-switch>
+        <catos-switch @toggle="(ev: any) => (isScrinning = ev)"></catos-switch>
       </div>
       <div class="field-button-switch">
         <div class="api">Добавить администратора</div>
@@ -27,7 +27,9 @@
       </div>
       <div class="field-button-switch">
         <div class="api">Сменить пароль</div>
-        <catos-switch></catos-switch>
+        <catos-switch
+          @toggle="(ev: any) => (isChangePassword = ev)"
+        ></catos-switch>
       </div>
     </template>
     <template v-if="currentPage === 'admin-profile'">
@@ -49,6 +51,65 @@
       @close="() => (isAddAdmin = false)"
     ></add-admin>
   </div>
+
+  <desktop-modal
+    v-if="isChangePassword"
+    @close="() => (isChangePassword = false)"
+  >
+    <template v-slot:title> Восстановление пароля </template>
+
+    <template v-slot:body>
+      <p class="subtitle-admin-profile">
+        Ссылка на создание нового пароля будет отправлена на <br />
+        ваш email
+      </p>
+      <input-data
+        :left="true"
+        placeholder="Ваша почта"
+        :style="{ width: '100%' }"
+      >
+        <template v-slot:left-icon>
+          <img src="@/assets/images/iconsmail.svg" />
+        </template>
+      </input-data>
+      <catos-button
+        variant="secondary"
+        :style="{ width: '100%', margin: '0' }"
+        @click="
+          () => {
+            isChangePassword = false;
+            isSuccessChangePassword = true;
+          }
+        "
+        >Отправить</catos-button
+      >
+    </template>
+  </desktop-modal>
+
+  <desktop-modal
+    v-if="isSuccessChangePassword"
+    @close="() => (isSuccessChangePassword = false)"
+  >
+    <template v-slot:title> Восстановление пароля </template>
+
+    <template v-slot:body>
+      <p class="subtitle-success-sadmin-profile">
+        Ссылка на создание нового пароля была отправлена на <br />ваш email<br />
+        <a>someemain@mail.com</a>
+      </p>
+      <p
+        class="subtitle-success-sadmin-profile-alert subtitle-success-sadmin-profile"
+      >
+        Если письмо не пришло в течении 10 минут, проверьте папку "спам"
+      </p>
+      <catos-button
+        variant="secondary"
+        :style="{ width: '100%', margin: '0' }"
+        @click="isSuccessChangePassword = false"
+        >Ок</catos-button
+      >
+    </template>
+  </desktop-modal>
 
   <desktop-modal
     v-if="isScrinning"
@@ -278,6 +339,8 @@ import StatusModalDesktop from "@/components/base/status-modal-desktop.vue";
 import Scrinning from "@/components/setting/desktop/modal-body/scrinning.vue";
 import auth from "@/components/setting/desktop/modal-body/auth.vue";
 import copyPaste from "@/components/fields/copy-paste.vue";
+import inputData from "@/components/fields/input-data.vue";
+import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 const isScrinning = ref(false);
 const isSuccessScrinning = ref(false);
 import { useRoute, useRouter } from "vue-router";
@@ -286,6 +349,8 @@ const currentPage = computed(() => {
   return route.name;
 });
 const isAddAdmin = ref(false);
+const isChangePassword = ref(false);
+const isSuccessChangePassword = ref(false);
 
 const router = useRouter();
 const toManageBids = () => {
@@ -316,7 +381,7 @@ const handleAuthStage = (ev: any) => {
   }
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 .kyc {
   position: relative;
   font-size: 0.88rem;
@@ -499,5 +564,46 @@ const handleAuthStage = (ev: any) => {
   max-height: 100%;
   width: 2.5em;
   z-index: 1;
+}
+.subtitle-admin-profile {
+  color: rgba(59, 59, 59, 0.8);
+  text-align: center;
+  font-size: 14px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
+  margin: 0;
+}
+.subtitle-success-sadmin-profile {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
+  color: rgba(59, 59, 59, 0.8);
+  text-align: center;
+  font-size: 14px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  & a {
+    text-decoration: underline;
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &-alert {
+    line-height: 130%;
+    color: #8181a5;
+    text-align: center;
+    width: 410px;
+  }
 }
 </style>
