@@ -3,7 +3,9 @@
     <!--<div class="wrapper">-->
     <div class="status-reg" :style="variant === 2 ? { height: '462px' } : {}">
       <div class="group">
-        <div class="div8">{{ title }}</div>
+        <div :class="variant == 5 ? 'div8_admin div8' : 'div8'">
+          {{ title }}
+        </div>
         <img
           class="iconsstatus-transaction"
           alt=""
@@ -13,7 +15,11 @@
         />
       </div>
     </div>
-    <div class="des-and-bbn_text des-and-bbn" id="desAndBbn">
+    <div
+      v-if="variant !== 5"
+      class="des-and-bbn_text des-and-bbn"
+      id="desAndBbn"
+    >
       <div class="text-and-button">
         <div class="buttons-tabs">
           <div class="count">{{ count }}</div>
@@ -23,8 +29,19 @@
         </div>
       </div>
     </div>
+    <div v-else class="des-and-bbn_text_admin des-and-bbn_text des-and-bbn">
+      <div class="text-and-button">
+        <div class="buttons-tabs">
+          <div class="email-admin">slavarussia@mail.ru</div>
+          <div class="status-admin">
+            Параметры доступа отправлены <br />
+            на указанный email
+          </div>
+        </div>
+      </div>
+    </div>
     <div
-      v-if="variant !== 2"
+      v-if="variant !== 2 && variant !== 5"
       class="des-and-bbn_bottom_setting des-and-bbn"
       id="desAndBbn"
     >
@@ -62,10 +79,14 @@
                 ? handleStatus()
                 : variant === 2
                 ? toBorrowerPull()
+                : variant === 5
+                ? handleStatus()
                 : toHistory()
           "
         >
-          <div class="text">{{ variant === 2 ? "Назад" : "Ок" }}</div>
+          <div class="text">
+            {{ variant === 2 ? "Назад" : variant === 5 ? "Продолжить" : "Ок" }}
+          </div>
         </div>
       </div>
     </div>
@@ -132,6 +153,9 @@ const toWallet = () => {
   letter-spacing: 0.01em;
   line-height: 130%;
   font-weight: 400;
+  &_admin {
+    width: 300px;
+  }
 }
 .iconsstatus-transaction {
   overflow: hidden;
@@ -356,5 +380,26 @@ const toWallet = () => {
 .ton4 {
   text-decoration: underline;
   color: rgba(87, 126, 247, 0.96);
+}
+.email-admin {
+  color: #3b3b3b;
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%;
+}
+.status-admin {
+  color: #8181a5;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+}
+.des-and-bbn_text_admin {
+  top: 22.5em;
 }
 </style>
