@@ -459,9 +459,6 @@ const isBlank = ref(false);
   gap: 0.88em;
 }
 .pull-stats-wrapper {
-  position: absolute;
-  top: 0.81em;
-  left: 0em;
   width: 23.75em;
   display: flex;
   flex-direction: column;
@@ -486,7 +483,7 @@ const isBlank = ref(false);
   position: absolute;
   height: 6.11%;
   width: 30.79%;
-  top: -0.23%;
+  top: -3.23%;
   right: 68.04%;
   bottom: 94.11%;
   left: 1.17%;

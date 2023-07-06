@@ -83,5 +83,6 @@
   justify-content: flex-start;
   gap: 1.88em;
   text-align: left;
+  margin-top: 20px;
 }
 </style>

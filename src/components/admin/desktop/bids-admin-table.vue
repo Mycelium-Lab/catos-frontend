@@ -305,9 +305,6 @@ const isBlank = ref(false);
   gap: 0.88em;
 }
 .pull-stats-wrapper {
-  position: absolute;
-  top: 0.97em;
-  left: 0em;
   width: 23.75em;
   display: flex;
   flex-direction: column;
@@ -331,7 +328,7 @@ const isBlank = ref(false);
 }
 .filtr-wrapper {
   position: absolute;
-  top: 0em;
+  top: -1em;
   left: 0.5em;
   display: flex;
   flex-direction: column;

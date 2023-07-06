@@ -112,14 +112,6 @@
             </div>
           </div>
           <div class="des-and-bbn">
-            <div class="field-wrapper">
-              <catos-button
-                variant="fourth"
-                :style="{ width: '100%', margin: '0' }"
-                @click.stop="() => (isLoans = true)"
-                >Займы</catos-button
-              >
-            </div>
             <catos-button
               variant="fourth_outline"
               :style="{ width: '100%', margin: '0' }"
@@ -477,12 +469,12 @@ const isLoans = ref(false);
 }
 .pull {
   width: 23.75em;
-  height: 34.25em;
+  height: 32.25em;
 }
 .pull-parent {
   position: relative;
   width: 100%;
-  height: 34.25em;
+  height: 32.25em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;

@@ -91,7 +91,7 @@ ul {
   padding: 0em;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 25px 20px;
   margin: 0;
 }
 .menu-2-parent {
