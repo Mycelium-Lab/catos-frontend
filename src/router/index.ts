@@ -199,6 +199,9 @@ const router = createRouter({
     adminMobile[0],
     adminMobile[1],
     adminMobile[2],
+    adminMobile[3],
+    adminMobile[4],
+    adminMobile[5],
   ],
   // @ts-ignore
   scrollBehavior(to, from, savedPosition) {

@@ -46,4 +46,19 @@ export const adminMobile = [
     name: "admin-restore-password",
     component: () => import("../components/admin/restore-password.vue"),
   },
+  {
+    path: "/admin-manage-loans-mobile",
+    name: "manage-loans-mobile",
+    component: () => import("../views/admin/mobile/manage-loans.vue"),
+  },
+  {
+    path: "/admin-loans-blank-mobile",
+    name: "manage-loans-blank",
+    component: () => import("../components/admin/blank.vue"),
+  },
+  {
+    path: "/admin-manage-users-mobile",
+    name: "manage-loans-users",
+    component: () => import("../views/admin/mobile/manage-users.vue"),
+  },
 ];
