@@ -356,15 +356,11 @@ const isDetail = ref(false);
   gap: 0.88em;
 }
 .pull-stats-wrapper {
-  position: absolute;
-  top: 0.97em;
-  left: 0em;
   width: 23.75em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  height: 100%;
 }
 .div11 {
   position: relative;
@@ -382,7 +378,7 @@ const isDetail = ref(false);
 }
 .filtr-wrapper {
   position: absolute;
-  top: 0em;
+  top: -1em;
   left: 0.5em;
   display: flex;
   flex-direction: column;
