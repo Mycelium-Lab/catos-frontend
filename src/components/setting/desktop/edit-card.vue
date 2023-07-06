@@ -102,7 +102,7 @@
             >
             <span class="koahyan123gmailcom1">
               {{
-                isChangeEmail ? "Koa.Hyan123@gmail.com" : "+7 (999) 215-43-26"
+                isChangeEmail ? " Koa.Hyan123@gmail.com" : " +7 (999) 215-43-26"
               }}</span
             >
           </a>
@@ -111,7 +111,7 @@
             <span class="span5">ожидания</span>
             <span>:</span>
             <span class="span6"> </span>
-            <span class="koahyan123gmailcom1">1 мин</span>
+            <span class="koahyan123gmailcom1"> 1 мин</span>
           </div>
           <div class="fieldsregistration-options-inner">
             <div class="frame-parent4">

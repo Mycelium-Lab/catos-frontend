@@ -76,7 +76,7 @@
                 target="_blank"
               >
                 <span>Код отправлен на номер:</span>
-                <span class="koahyan123gmailcom1"> Koa.Hyan123@gmail.com</span>
+                <span class="koahyan123gmailcom1"> +7 (999) 215-43-26</span>
               </a>
               <div class="div33">
                 <span>Примерное время </span>
