@@ -171,8 +171,8 @@
 
       <div id="popUpContainer" class="popup-overlay" style="display: none">
         <div class="popup-">
-          <div class="counters-graph-web">
-            <div class="bg"></div>
+          <div class="counters-graph-web-checks">
+            <div class="bg-checks"></div>
             <div class="component-26">
               <div class="number">Поделиться</div>
             </div>
@@ -550,7 +550,7 @@ const { isMobile } = useDevice();
   color: #8181a5;
   padding: 0 24px;
 }
-.bg,
+
 .header-parent {
   width: 100%;
   background-color: #fff;
@@ -565,15 +565,7 @@ const { isMobile } = useDevice();
   color: #3b3b3b;
   font-family: Inter;
 }
-.bg {
-  position: absolute;
-  height: 100%;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: 10px;
-}
+
 .share-icon {
   position: relative;
   width: 1.5em;
@@ -624,7 +616,7 @@ const { isMobile } = useDevice();
   align-items: flex-start;
   justify-content: flex-start;
 }
-.counters-graph-web {
+.counters-graph-web-checks {
   position: absolute;
   top: 3.94em;
   left: 0.69em;
