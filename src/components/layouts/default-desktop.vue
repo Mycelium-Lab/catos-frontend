@@ -2,7 +2,7 @@
   <div class="div">
     <app-bar></app-bar>
     <div class="frame-parent">
-      <div class="frame-wrapper">
+      <div class="frame-wrapper_desktop">
         <div class="page-title-parent">
           <h1 class="page-title"><slot name="title"> </slot></h1>
           <slot name="slider"></slot>
@@ -46,7 +46,7 @@ import appBar from "@/components/ui-kit/desktop/app-bar.vue";
   justify-content: flex-start;
   gap: 1.25em;
 }
-.frame-wrapper {
+.frame-wrapper_desktop {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -61,7 +61,7 @@ import appBar from "@/components/ui-kit/desktop/app-bar.vue";
 }
 .page-title {
   position: relative;
-  font-size: 1.75em;
+  font-size: 1.75rem;
   letter-spacing: 0.01em;
   line-height: 130%;
   font-weight: 600;
