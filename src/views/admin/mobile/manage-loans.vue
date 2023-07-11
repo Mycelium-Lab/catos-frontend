@@ -31,7 +31,10 @@
       <div class="div6">Займы</div>
     </div>
     <div class="col-titles-bg-parent">
-      <tools-board></tools-board>
+      <tools-board
+        :toFilter="() => toFilter()"
+        :toSort="() => {}"
+      ></tools-board>
     </div>
     <div class="tbs-2">
       <div class="tbs-2-child" />
@@ -50,6 +53,9 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 const toPannel = () => {
   router.push({ name: "admin-pannel-mobile" });
+};
+const toFilter = () => {
+  router.push({ name: "manage-loans-filter" });
 };
 import manageLoansTable from "@/components/admin/table/manage-loans-table.vue";
 </script>

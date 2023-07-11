@@ -31,7 +31,10 @@
       <div class="div6">Пуллы</div>
     </div>
     <div class="col-titles-bg-parent">
-      <tools-board></tools-board>
+      <tools-board
+        :toFilter="() => toFilter()"
+        :toSort="() => {}"
+      ></tools-board>
     </div>
     <div class="tbs-2">
       <div class="tbs-2-child" />
@@ -52,6 +55,9 @@ const toPannel = () => {
   router.push({ name: "admin-pannel-mobile" });
 };
 import managePullsTable from "@/components/admin/table/manage-pulls-table.vue";
+const toFilter = () => {
+  router.push({ name: "manage-pulls-filter" });
+};
 </script>
 <style scoped lang="scss">
 .manage-pulls-list {

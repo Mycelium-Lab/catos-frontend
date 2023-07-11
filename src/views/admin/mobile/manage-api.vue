@@ -372,7 +372,7 @@
             alt=""
             src="@/assets/images/iconsfilter.svg"
           />
-          <div class="div23">
+          <div class="div23" @click="toFilter">
             <span>Фильтр </span>
             <span class="span">(1)</span>
           </div>
@@ -434,6 +434,9 @@ const router = useRouter();
 
 const toPannel = () => {
   router.push({ name: "admin-pannel-mobile" });
+};
+const toFilter = () => {
+  router.push({ name: "manage-api-filter" });
 };
 </script>
 <style scoped>

@@ -221,7 +221,10 @@
     </div>
 
     <div class="col-titles-bg-parent">
-      <tools-board></tools-board>
+      <tools-board
+        :toFilter="() => toFilter()"
+        :toSort="() => {}"
+      ></tools-board>
     </div>
   </div>
 </template>
@@ -237,6 +240,9 @@ const toDetail = () => {
 };
 const toPannel = () => {
   router.push({ name: "admin-pannel-mobile" });
+};
+const toFilter = () => {
+  router.push({ name: "manage-user-filter" });
 };
 </script>
 <style scoped lang="scss">

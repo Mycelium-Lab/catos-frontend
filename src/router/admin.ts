@@ -96,4 +96,29 @@ export const adminMobile = [
     name: "manage-add-mobile",
     component: () => import("../components/admin/add.vue"),
   },
+  {
+    path: "/manage-user-filter",
+    name: "manage-user-filter",
+    component: () => import("../components/admin/filter-manage-users.vue"),
+  },
+  {
+    path: "/manage-pulls-filter",
+    name: "manage-pulls-filter",
+    component: () => import("../components/admin/filter-manage-pulls.vue"),
+  },
+  {
+    path: "/manage-loans-filter",
+    name: "manage-loans-filter",
+    component: () => import("../components/admin/filter-manage-loans.vue"),
+  },
+  {
+    path: "/manage-bids-filter",
+    name: "manage-bids-filter",
+    component: () => import("../components/admin/filter-manage-bids.vue"),
+  },
+  {
+    path: "/manage-api-filter",
+    name: "manage-api-filter",
+    component: () => import("../components/admin/filter-manage-api.vue"),
+  },
 ];

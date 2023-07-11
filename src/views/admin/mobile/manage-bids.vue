@@ -258,7 +258,7 @@
             <img src="@/assets/images/iconssearch.svg" width="20" />
           </template>
         </input-data>
-        <div class="menu-2-parent">
+        <div class="menu-2-parent" @click="toFilter">
           <img
             class="iconsbar-cards"
             alt=""
@@ -282,6 +282,9 @@ const toBlank = () => {
 };
 const toPannel = () => {
   router.push({ name: "admin-pannel-mobile" });
+};
+const toFilter = () => {
+  router.push({ name: "manage-bids-filter" });
 };
 </script>
 <style scoped lang="scss">

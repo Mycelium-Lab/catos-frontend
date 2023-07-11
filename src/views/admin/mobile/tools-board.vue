@@ -8,7 +8,7 @@
             alt=""
             src="@/assets/images/iconsfilter.svg"
           />
-          <div class="div">
+          <div class="div" @click="filter">
             <span>Фильтр </span>
             <span class="span">(1)</span>
           </div>
@@ -20,7 +20,7 @@
             src="@/assets/images/iconssort.svg
 "
           />
-          <div class="div">
+          <div class="div" @click="() => toSort">
             <span>Сортировка </span>
             <span class="span">(1)</span>
           </div>
@@ -42,6 +42,19 @@
 </template>
 <script setup lang="ts">
 import inputData from "@/components/fields/input-data.vue";
+const { toFilter, toSort } = defineProps({
+  toFilter: {
+    type: Function,
+    required: true,
+  },
+  toSort: {
+    type: Function,
+    required: true,
+  },
+});
+const filter = () => {
+  return toFilter();
+};
 </script>
 <style scoped>
 .frame-child {
