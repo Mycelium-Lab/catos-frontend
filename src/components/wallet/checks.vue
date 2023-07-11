@@ -1,7 +1,7 @@
 <template>
   <modal v-if="isMobile">
     <div class="wrapper">
-      <div class="header">
+      <div class="header-checks">
         <div class="div9">Чеки</div>
       </div>
       <div class="swipe-down"></div>
@@ -233,7 +233,7 @@ const { isMobile } = useDevice();
   line-height: 130%;
   font-weight: 600;
 }
-.header {
+.header-checks {
   position: absolute;
   top: 1.5em;
   border-radius: 8px;
@@ -549,21 +549,6 @@ const { isMobile } = useDevice();
   gap: 2em;
   color: #8181a5;
   padding: 0 24px;
-}
-
-.header-parent {
-  width: 100%;
-  background-color: #fff;
-}
-.header-parent {
-  position: relative;
-  border-radius: 30px 30px 0 0;
-  box-shadow: 0 12px 12px rgba(151, 71, 255, 0.04);
-
-  overflow: auto;
-  text-align: left;
-  color: #3b3b3b;
-  font-family: Inter;
 }
 
 .share-icon {
