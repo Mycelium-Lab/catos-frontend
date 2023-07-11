@@ -379,7 +379,7 @@
         </div>
         <div class="menu-2-parent">
           <img class="share-icon" alt="" src="@/assets/images/iconssort.svg" />
-          <div class="div23">
+          <div class="div23" @click="toSort">
             <span>Сортировка </span>
             <span class="span">(1)</span>
           </div>
@@ -437,6 +437,9 @@ const toPannel = () => {
 };
 const toFilter = () => {
   router.push({ name: "manage-api-filter" });
+};
+const toSort = () => {
+  router.push({ name: "manage-api-sort" });
 };
 </script>
 <style scoped>

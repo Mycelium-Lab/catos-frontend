@@ -33,7 +33,7 @@
     <div class="col-titles-bg-parent">
       <tools-board
         :toFilter="() => toFilter()"
-        :toSort="() => {}"
+        :toSort="() => toSort()"
       ></tools-board>
     </div>
     <div class="tbs-2">
@@ -56,6 +56,9 @@ const toPannel = () => {
 };
 const toFilter = () => {
   router.push({ name: "manage-loans-filter" });
+};
+const toSort = () => {
+  router.push({ name: "manage-loans-sort" });
 };
 import manageLoansTable from "@/components/admin/table/manage-loans-table.vue";
 </script>

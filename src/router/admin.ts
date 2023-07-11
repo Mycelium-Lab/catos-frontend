@@ -121,4 +121,24 @@ export const adminMobile = [
     name: "manage-api-filter",
     component: () => import("../components/admin/filter-manage-api.vue"),
   },
+  {
+    path: "/manage-users-sort",
+    name: "manage-user-sort",
+    component: () => import("../components/admin/sort-manage-users.vue"),
+  },
+  {
+    path: "/manage-pulls-sort",
+    name: "manage-pulls-sort",
+    component: () => import("../components/admin/sort-manage-pulls.vue"),
+  },
+  {
+    path: "/manage-loans-sort",
+    name: "manage-loans-sort",
+    component: () => import("../components/admin/sort-manage-loans.vue"),
+  },
+  {
+    path: "/manage-api-sort",
+    name: "manage-api-sort",
+    component: () => import("../components/admin/sort-manage-api.vue"),
+  },
 ];

@@ -20,7 +20,7 @@
             src="@/assets/images/iconssort.svg
 "
           />
-          <div class="div" @click="() => toSort">
+          <div class="div" @click="sort">
             <span>Сортировка </span>
             <span class="span">(1)</span>
           </div>
@@ -54,6 +54,9 @@ const { toFilter, toSort } = defineProps({
 });
 const filter = () => {
   return toFilter();
+};
+const sort = () => {
+  return toSort();
 };
 </script>
 <style scoped>

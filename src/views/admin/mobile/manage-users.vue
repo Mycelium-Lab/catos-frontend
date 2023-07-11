@@ -223,7 +223,7 @@
     <div class="col-titles-bg-parent">
       <tools-board
         :toFilter="() => toFilter()"
-        :toSort="() => {}"
+        :toSort="() => toSort()"
       ></tools-board>
     </div>
   </div>
@@ -243,6 +243,9 @@ const toPannel = () => {
 };
 const toFilter = () => {
   router.push({ name: "manage-user-filter" });
+};
+const toSort = () => {
+  router.push({ name: "manage-user-sort" });
 };
 </script>
 <style scoped lang="scss">

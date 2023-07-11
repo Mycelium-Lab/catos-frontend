@@ -33,7 +33,7 @@
     <div class="col-titles-bg-parent">
       <tools-board
         :toFilter="() => toFilter()"
-        :toSort="() => {}"
+        :toSort="() => toSort()"
       ></tools-board>
     </div>
     <div class="tbs-2">
@@ -57,6 +57,9 @@ const toPannel = () => {
 import managePullsTable from "@/components/admin/table/manage-pulls-table.vue";
 const toFilter = () => {
   router.push({ name: "manage-pulls-filter" });
+};
+const toSort = () => {
+  router.push({ name: "manage-pulls-sort" });
 };
 </script>
 <style scoped lang="scss">
