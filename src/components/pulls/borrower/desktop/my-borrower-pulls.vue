@@ -58,14 +58,8 @@
                   />
                   <div class="c">
                     <span>Активен </span>
-                    <span class="span">(отключить)</span>
                   </div>
                 </div>
-                <img
-                  class="iconchange"
-                  alt=""
-                  src="@/views/public/iconchange.svg"
-                />
               </div>
             </div>
           </div>
@@ -98,95 +92,23 @@
               </div>
               <div class="col-titles-bg" />
             </div>
+
             <div class="field-parent">
               <div class="field">
-                <div class="div5">Доступно ликвидности:</div>
+                <div class="div5">Свободно:</div>
                 <div class="div6">37 000 TON</div>
               </div>
               <div class="col-titles-bg" />
             </div>
             <div class="field-parent">
               <div class="field">
-                <div class="div5">Доход за 30 дней:</div>
+                <div class="div5">ROI инвесторов:</div>
                 <div class="div6">75% годовых</div>
               </div>
               <div class="col-titles-bg" />
             </div>
-            <div class="field-parent">
-              <div class="field">
-                <div class="div5">% Просроченных займов :</div>
-                <div class="div6">2%</div>
-              </div>
-              <div class="col-titles-bg" />
-            </div>
-            <div class="field-parent">
-              <div class="field">
-                <div class="div5">% Проданных займов</div>
-                <div class="div6">20%</div>
-              </div>
-              <div class="col-titles-bg" />
-            </div>
-            <div class="field-parent">
-              <div class="field">
-                <div class="div5">Пуллов сгенерировано для инвесторов</div>
-                <div class="div6">10 574 раз</div>
-              </div>
-              <div class="col-titles-bg" />
-            </div>
-            <div class="field-parent">
-              <div class="field">
-                <div class="div5">Количество инвесторов</div>
-                <div class="div6">130 человек</div>
-              </div>
-              <div class="col-titles-bg" />
-            </div>
-            <div class="field-wrapper">
-              <div class="field">
-                <div class="div5">Дата создания:</div>
-                <div class="div6">22. 05. 2023</div>
-              </div>
-            </div>
           </div>
-          <div class="frame-parent3">
-            <div class="wrapper">
-              <div class="c">Моя ликвидность</div>
-            </div>
-            <div class="frame-parent4">
-              <div class="frame-wrapper">
-                <div class="frame-parent5">
-                  <div class="container">
-                    <div class="div26">Инвестировано:</div>
-                  </div>
-                  <div class="ton-wrapper">
-                    <div class="ton3">100 TON</div>
-                  </div>
-                </div>
-              </div>
-              <div class="frame-item" />
-              <div class="frame-wrapper">
-                <div class="frame-parent6">
-                  <div class="frame">
-                    <div class="div26">Доходность всего:</div>
-                  </div>
-                  <div class="ton-container">
-                    <div class="ton4">7 TON</div>
-                  </div>
-                  <!-- <img class="container-click" alt="" />-->
-                </div>
-              </div>
-              <div class="frame-item" />
-              <div class="frame-wrapper">
-                <div class="frame-parent6">
-                  <div class="frame">
-                    <div class="div26">Текущая доходность:</div>
-                  </div>
-                  <div class="ton-container">
-                    <div class="ton4">45% годовых</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
           <div class="notification">
             <img
               class="percent-icon1"
@@ -197,138 +119,16 @@
           </div>
           <div class="des-and-bbn">
             <catos-button
-              variant="fourth"
+              variant="fourth_outline"
               :style="{ width: '100%', margin: '0' }"
-              @click="
-                () => {
-                  isDetail = false;
-                  isWithdraw = true;
-                }
-              "
-              >Изьять ликвидность</catos-button
-            >
-
-            <catos-button
-              variant="fourth"
-              :style="{ width: '100%', margin: '0' }"
-              @click="
-                () => {
-                  isDetail = false;
-                  isAdd = true;
-                }
-              "
-              >Добавить ликвидность</catos-button
+              @click="close"
+              >Закрыть</catos-button
             >
           </div>
         </div>
       </div>
     </template>
   </desktop-modal>
-  <withdraw
-    v-if="isWithdraw"
-    @close="close"
-    @qr="
-      () => {
-        isWithdraw = false;
-        isWithdrawQr = true;
-      }
-    "
-  ></withdraw>
-  <add
-    v-if="isAdd"
-    @close="close"
-    @qr="
-      () => {
-        isAdd = false;
-        isAddQr = true;
-      }
-    "
-  ></add>
-  <confirm-qr-destop
-    v-if="isWithdrawQr"
-    @close="close"
-    @result="
-      () => {
-        isSuccessWithdraw = true;
-        isWithdrawQr = false;
-      }
-    "
-  >
-    <template v-slot:header> Пулл #12345 </template>
-    <template v-slot:title>Withdraw liquidity</template>
-    <template v-slot:subtitle> Scan the QR code with Tonkeeper using </template>
-    <template v-slot:link> EQB5...dzE1h </template>
-    <template v-slot:action>
-      <b class="ton-kepeer">Withdraw</b>
-    </template>
-    <template v-slot:footer>
-      <div class="we-do-not">
-        By proceeding, you accept the <br />
-        <a>CATOS Terms of Service</a> and <a>Privacy Policy</a>.
-      </div>
-    </template>
-  </confirm-qr-destop>
-  <confirm-qr-destop
-    v-if="isAddQr"
-    @close="close"
-    @result="
-      () => {
-        isSuccessAdd = true;
-        isAddQr = false;
-      }
-    "
-  >
-    <template v-slot:header> Пулл #12345 </template>
-    <template v-slot:title>Add liquidity</template>
-    <template v-slot:subtitle>
-      Scan the QR code and pay 13 512 TON <br />
-      with Tonkeeper using
-    </template>
-    <template v-slot:link> EQB5...dzE1h </template>
-    <template v-slot:action>
-      <b class="ton-kepeer">Add liquidity</b>
-    </template>
-    <template v-slot:footer>
-      <div class="we-do-not">
-        By proceeding, you accept the <br />
-        <a>CATOS Terms of Service</a> and <a>Privacy Policy</a>.
-      </div>
-    </template>
-  </confirm-qr-destop>
-  <status-modal-desktop v-if="isSuccessWithdraw || isSuccessAdd" @close="close">
-    <template v-slot:header> Транзакция №591561351 </template>
-    <template v-slot:title> Транзакция успешно выполнена </template>
-    <template v-slot:image>
-      <img src="@/assets/images/success-transaction.svg" />
-    </template>
-    <template v-slot:subtitle>
-      <p class="status-subtitle">
-        Вы успешно {{ isSuccessWithdraw ? "вывели" : "добавили" }} 257 324 TON
-        <br />
-        {{ isSuccessWithdraw ? "из" : "в" }}
-        {{ isSuccessWithdraw ? "пулла" : "пулл" }}
-        <a
-          class="status-subtitle-link"
-          @click="
-            () => {
-              isSuccessWithdraw = false;
-              isSuccessAdd = false;
-              isDetail = true;
-            }
-          "
-          >#123456</a
-        >
-        <template v-if="isSuccessWithdraw">
-          на свой кошелек <br />
-          <a class="status-subtitle-link">EQB5...dzE1hа44</a>
-        </template>
-      </p>
-      <p class="status-subtitle">
-        <a class="status-subtitle-link">Просмотр транзакции в Tonscan</a>
-      </p>
-    </template>
-    <template v-slot:action> Ок </template>
-  </status-modal-desktop>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
@@ -483,7 +283,7 @@ const close = () => {
 .status-all {
   align-self: stretch;
   border-radius: 8px;
-  background-color: rgba(165, 146, 221, 0.07);
+
   width: 13.56em;
   overflow: hidden;
   flex-shrink: 0;
@@ -492,16 +292,19 @@ const close = () => {
   padding: 0em 0em 0em 0.63em;
   box-sizing: border-box;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 .frame-parent1 {
   border-radius: 12px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 1em;
   color: #3b3b3b;
+  width: 100%;
+  padding: 0em 0.63em;
+  font-size: 1.17em;
 }
 .frame-container {
   align-self: stretch;

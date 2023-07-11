@@ -40,7 +40,11 @@
         v-if="role === 'creditor' && variant === 'pulls'"
       ></cp-select-sort>
     </template>
+
     <template v-slot:left-option>
+      <bp-left-option-sort
+        v-if="role === 'borrower' && variant === 'pulls'"
+      ></bp-left-option-sort>
       <bl-left-option-sort
         v-if="role === 'borrower' && variant === 'loans'"
       ></bl-left-option-sort>
@@ -58,6 +62,9 @@
       ></ml-left-option-sort>
     </template>
     <template v-slot:right-option>
+      <bp-right-option-sort
+        v-if="role === 'borrower' && variant === 'pulls'"
+      ></bp-right-option-sort>
       <bl-right-option-sort
         v-if="role === 'borrower' && variant === 'loans'"
       ></bl-right-option-sort>
@@ -93,6 +100,8 @@ import mpLeftOptionSort from "@/components/admin/desktop/modal-body/mp-left-opti
 import mpRightOptionSort from "@/components/admin/desktop/modal-body/mp-right-option-sort.vue";
 import mlLeftOptionSort from "@/components/admin/desktop/modal-body/ml-left-option-sort.vue";
 import mlRightOptionSort from "@/components/admin/desktop/modal-body/ml-right-option-sort.vue";
+import bpLeftOptionSort from "@/components/pulls/borrower/desktop/modal-body/bpLeftOptionSort.vue";
+import bpRightOptionSort from "@/components/pulls/borrower/desktop/modal-body/bpRightOptionSort.vue";
 
 const { variant } = defineProps({
   variant: {
