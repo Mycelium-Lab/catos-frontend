@@ -150,18 +150,8 @@
           class="div11"
           >Зарегистрируйтесь</router-link
         >
-        <router-link v-else :to="{ name: 'login' }" class="div11"
-          >Войдите</router-link
-        >
-        <router-link
-          :to="
-            isMobile
-              ? { name: 'admin-pannel-mobile' }
-              : { name: 'admin-pannel' }
-          "
-        >
-          Администратор
-        </router-link>
+        <router-link v-else to="/" class="div11">Войдите</router-link>
+        <router-link to="/" @click="toAdmin"> Администратор </router-link>
       </div>
     </div>
     <div class="loader-parent">
@@ -179,11 +169,20 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useDevice } from "@/compossables/useDevice";
+import { useRouter } from "vue-router";
 
 const { isMobile } = useDevice();
 
 const setRole = (role: any) => {
   localStorage.setItem("role", JSON.stringify(role));
+};
+
+const router = useRouter();
+const toAdmin = () => {
+  setRole("admin");
+  router.push(
+    isMobile.value ? { name: "admin-pannel-mobile" } : { name: "admin-pannel" }
+  );
 };
 
 //TODO: Переписать на vue router from  компонент name вместо history
