@@ -588,7 +588,6 @@ const { variant, role } = defineProps({
 
 const emits = defineEmits(["mySoldLoans"]);
 const toMySold = () => {
-  console.log("SOLd");
   emits("mySoldLoans");
 };
 

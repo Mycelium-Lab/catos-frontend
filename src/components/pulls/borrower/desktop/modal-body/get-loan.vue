@@ -50,7 +50,7 @@
                 <div class="tag">
                   <div class="div2">
                     <span class="span">
-                      <span>до</span>
+                      <span>до </span>
                     </span>
                     <span class="span1">
                       <span class="span"> </span>
@@ -377,7 +377,7 @@ const close = () => {
   border: 1px solid rgba(165, 146, 221, 0.14);
   display: flex;
   flex-direction: row;
-  padding: 1.5em 1.31em;
+  padding: 1.5em 1.31em 2.3em 1.31em;
   align-items: center;
   justify-content: center;
   gap: 2em;
