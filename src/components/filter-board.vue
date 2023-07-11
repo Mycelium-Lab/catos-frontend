@@ -17,7 +17,7 @@
               <div class="div15">(1)</div>
             </div>
           </div>
-          <div class="frame-wrapper">
+          <div class="frame-wrapper_filter">
             <div class="frame-container">
               <div class="frame-div">
                 <div class="group">
@@ -205,7 +205,7 @@ const toSort = () => {
 .fields-password-and-mail-container,
 .frame-container,
 .frame-div,
-.frame-wrapper {
+.frame-wrapper_filter {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -217,10 +217,10 @@ const toSort = () => {
   gap: 0.75em;
 }
 .frame-container,
-.frame-wrapper {
+.frame-wrapper_filter {
   align-items: center;
 }
-.frame-wrapper {
+.frame-wrapper_filter {
   position: absolute;
   top: 4.5em;
 
@@ -2050,7 +2050,7 @@ const toSort = () => {
     width: 100%;
     padding: 20px 20px 0 20px;
   }
-  .frame-wrapper {
+  .frame-wrapper_filter {
     justify-content: flex-start;
     padding: 0px 20px 20px 20px;
   }
