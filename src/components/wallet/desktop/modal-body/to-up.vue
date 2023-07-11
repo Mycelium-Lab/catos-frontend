@@ -464,7 +464,6 @@ import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
   border-radius: 0px 0px 15px 15px;
   background-color: #fff;
   width: 100%;
-  height: 49.69em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;

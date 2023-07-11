@@ -1,5 +1,5 @@
 <template>
-  <div class="frame-parent">
+  <div class="frame-parent_withdraw">
     <div class="frame-group">
       <div class="fieldsinputchoise-parent">
         <div class="fieldsinputchoise">
@@ -438,12 +438,11 @@ const options = {
   justify-content: flex-start;
   gap: 1.25em;
 }
-.frame-parent {
+.frame-parent_withdraw {
   position: relative;
   border-radius: 0px 0px 15px 15px;
   background-color: #fff;
   width: 100%;
-  height: 30.5em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;

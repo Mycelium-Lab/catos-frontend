@@ -67,6 +67,7 @@ const toTransactioHistory = () => {
   align-items: center;
   justify-content: flex-start;
   position: relative;
+  cursor: pointer;
 }
 .bg-hover-icon {
   position: absolute;
