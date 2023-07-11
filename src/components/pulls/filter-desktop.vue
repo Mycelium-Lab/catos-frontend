@@ -86,7 +86,7 @@
                     ></range-minmax-slider>
                   </div>
                   <div class="group">
-                    <div class="div6">Срок:</div>
+                    <div class="div6">Сроку:</div>
                     <range-minmax-slider
                       :max="365"
                       v-model:min-value="sliderMinOverdue"
@@ -100,7 +100,7 @@
                   <div class="parent1">
                     <div class="div6">Дневной ставке:</div>
                     <range-minmax-slider
-                      :max="365"
+                      :max="30"
                       v-model:min-value="sliderMinRange"
                       v-model:max-value="sliderMaxRange"
                       inputLabel="percent"
@@ -134,7 +134,7 @@
                     ></range-minmax-slider>
                   </div>
                   <div class="group">
-                    <div class="div6">Срок:</div>
+                    <div class="div6">Сроку:</div>
                     <range-minmax-slider
                       :max="365"
                       v-model:min-value="sliderMinOverdue"
@@ -217,7 +217,7 @@
               <div v-else-if="role === 'collector'" class="frame-group">
                 <div class="instance-parent">
                   <div class="group">
-                    <div class="div6">Доходности:</div>
+                    <div class="div6">Текущему долгу:</div>
 
                     <range-minmax-slider
                       :max="3000"
@@ -228,12 +228,12 @@
                     ></range-minmax-slider>
                   </div>
                   <div class="group">
-                    <div class="div6">Количеству инвесторов:</div>
+                    <div class="div6">Просроченных дней:</div>
                     <range-minmax-slider
-                      :max="3650"
-                      v-model:min-value="sliderMinDepositor"
-                      v-model:max-value="sliderMaxDepositor"
-                      inputLabel="depositor"
+                      :max="365"
+                      v-model:min-value="sliderMinOverdue"
+                      v-model:max-value="sliderMaxOverdue"
+                      inputLabel="day"
                       desktop
                     ></range-minmax-slider>
                   </div>
@@ -250,12 +250,12 @@
                     ></range-minmax-slider>
                   </div>
                   <div class="parent1">
-                    <div class="div6">Беспроцентному периоду:</div>
+                    <div class="div6">Стоимость займа:</div>
                     <range-minmax-slider
-                      :max="30"
-                      v-model:min-value="sliderMinCost"
-                      v-model:max-value="sliderMaxCost"
-                      inputLabel="percent"
+                      :max="3000"
+                      v-model:min-value="sliderMinDbt"
+                      v-model:max-value="sliderMaxDbt"
+                      inputLabel="ton"
                       desktop
                     ></range-minmax-slider>
                   </div>
@@ -298,7 +298,9 @@ const sliderMinOverdue = ref(1);
 const sliderMaxOverdue = ref(365);
 const sliderMinDbt = ref(0);
 const sliderMaxDbt = ref(3000);
-const sliderMinRange = ref(role.value === "depositor" ? 1 : 0.1);
+const sliderMinRange = ref(
+  role.value === "depositor" || role.value === "collector" ? 1 : 0.1
+);
 const sliderMaxRange = ref(30);
 const sliderMinCost = ref(0.1);
 const sliderMaxCost = ref(30);
