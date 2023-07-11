@@ -47,6 +47,15 @@
       <cl-left-option-sort
         v-if="role === 'creditor' && variant === 'loans'"
       ></cl-left-option-sort>
+      <mu-left-option-sort
+        v-if="variant === 'manage-user'"
+      ></mu-left-option-sort>
+      <mp-left-option-sort
+        v-if="variant === 'manage-pulls'"
+      ></mp-left-option-sort>
+      <ml-left-option-sort
+        v-if="variant === 'manage-loans'"
+      ></ml-left-option-sort>
     </template>
     <template v-slot:right-option>
       <bl-right-option-sort
@@ -55,6 +64,15 @@
       <cl-right-option-sort
         v-if="role === 'creditor' && variant === 'loans'"
       ></cl-right-option-sort>
+      <mu-right-option-sort
+        v-if="variant === 'manage-user'"
+      ></mu-right-option-sort>
+      <mp-right-option-sort
+        v-if="variant === 'manage-pulls'"
+      ></mp-right-option-sort>
+      <ml-right-option-sort
+        v-if="variant === 'manage-loans'"
+      ></ml-right-option-sort>
     </template>
     <template v-slot:action>Применить и сохранить фильтр</template>
   </sort>
@@ -69,6 +87,12 @@ import clLeftOptionSort from "@/components/loans/creditor/desktop/modal-body/cl-
 import blRightOptionSort from "@/components/loans/borrower/desktop/modal-body/bl-right-option-sort.vue";
 import clRightOptionSort from "@/components/loans/creditor/desktop/modal-body/cl-right-option-sort.vue";
 import cpSelectSort from "@/components/pulls/creditor/desktop/modal-body/cp-select-sort.vue";
+import muLeftOptionSort from "@/components/admin/desktop/modal-body/mu-left-option-sort.vue";
+import muRightOptionSort from "@/components/admin/desktop/modal-body/mu-right-option-sort.vue";
+import mpLeftOptionSort from "@/components/admin/desktop/modal-body/mp-left-option-sort.vue";
+import mpRightOptionSort from "@/components/admin/desktop/modal-body/mp-right-option-sort.vue";
+import mlLeftOptionSort from "@/components/admin/desktop/modal-body/ml-left-option-sort.vue";
+import mlRightOptionSort from "@/components/admin/desktop/modal-body/ml-right-option-sort.vue";
 
 const { variant } = defineProps({
   variant: {

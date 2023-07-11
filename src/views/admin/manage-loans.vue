@@ -12,7 +12,7 @@
           <img src="@/assets/images/iconssearch.svg" width="20" alt="" />
         </template>
       </input-data>
-      <tool-bar></tool-bar>
+      <tool-bar variant="manage-loans"></tool-bar>
     </template>
     <template v-slot:body>
       <div class="rectangle-group_desktop rectangle-group">

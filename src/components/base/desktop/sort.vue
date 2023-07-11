@@ -34,7 +34,7 @@
               </div>
             </div>
           </div>-->
-          <chips-bar @on-edit="handleEdit"></chips-bar>
+          <chips-bar @on-edit="handleEdit" desktop></chips-bar>
           <div class="fieldsinputchoise-parent">
             <div class="fieldsinputchoise">
               <!--<div class="div1">Настройте токен:</div>
