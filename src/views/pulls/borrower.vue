@@ -105,12 +105,14 @@ const toggleSlide = (slideIndex: any) => {
 };
 
 onMounted(() => {
-  // @ts-ignore
-  document.querySelector("body").style.height = "calc(100vh + 203px)";
-  // @ts-ignore
-  document.querySelector("#app").style.height = "calc(100vh + 203px)";
-  // @ts-ignore
-  // document.querySelector(".iphone-13-13- ").style.minHeight ="calc(100vh + 300px)";
+  if (isMobile.value) {
+    // @ts-ignore
+    document.querySelector("body").style.height = "calc(100vh + 203px)";
+    // @ts-ignore
+    document.querySelector("#app").style.height = "calc(100vh + 203px)";
+    // @ts-ignore
+    // document.querySelector(".iphone-13-13- ").style.minHeight ="calc(100vh + 300px)";
+  }
 });
 
 onUnmounted(() => {

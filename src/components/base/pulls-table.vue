@@ -1161,10 +1161,10 @@ li {
     height: 31em;
   }
   &_borrower-all {
-    height: 32em;
+    height: 33em;
   }
   &_borrower-my {
-    height: 34em;
+    height: 35em;
   }
   &_collector-debt {
     height: 29.5em;

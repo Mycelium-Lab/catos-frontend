@@ -113,7 +113,7 @@ html {
 }
 
 @media (min-width: 500px) {
-  #app {
+  /*#app {
     height: 100vh !important;
-  }
+  }*/
 }
