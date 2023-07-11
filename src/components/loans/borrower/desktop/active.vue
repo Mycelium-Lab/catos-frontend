@@ -1,6 +1,8 @@
 <template>
   <prolong v-if="isProlong" :toInit="setInit" @close="close"></prolong>
   <repay v-if="isRepay" @close="close"></repay>
+  <active-detail v-if="isDetail && status === 'active'" @close="close">
+  </active-detail>
   <overdue-detail
     v-if="isDetail && status === 'overdue'"
     @close="close"
@@ -19,6 +21,7 @@ import { ref } from "vue";
 import prolong from "./active/prolong.vue";
 import repay from "./active/repay.vue";
 import overdueDetail from "./active/overdue-detail.vue";
+import activeDetail from "./active/active-detail.vue";
 const { status, state } = defineProps({
   state: {
     type: Object,

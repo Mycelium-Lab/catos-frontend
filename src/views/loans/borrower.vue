@@ -56,7 +56,7 @@
       ></multi-button-slider>
     </template>
     <template v-slot:tools>
-      <input-data :style="{ width: '418px' }" placeholder="Поиск" :left="true">
+      <input-data :style="{ width: '380px' }" placeholder="Поиск" :left="true">
         <template v-slot:left-icon>
           <img
             :style="{ width: '20px', height: '20px' }"
@@ -66,14 +66,7 @@
       </input-data>
       <tool-bar variant="loans" role="borrower"></tool-bar>
     </template>
-    <template v-slot:body>
-      <div class="rectangle-group_desktop rectangle-group">
-        <div class="group-item"></div>
-        <div class="div8">Все</div>
-        <div class="div9">На продаже</div>
-        <div class="div10">Проданные</div>
-      </div>
-    </template>
+
     <template v-slot:list>
       <ul>
         <li v-for="n in 4" :key="n">
@@ -137,6 +130,7 @@ ul {
   flex-wrap: wrap;
   gap: 20px;
   margin: 0;
+  margin-bottom: 3em;
 }
 .col-titles-bg {
   position: absolute;
