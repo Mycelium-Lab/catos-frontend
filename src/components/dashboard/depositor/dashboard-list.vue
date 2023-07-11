@@ -402,7 +402,6 @@ const openModal = () => {
   margin: 0em;
 }
 .div16 {
-  flex: 1;
   position: relative;
   font-size: 0.75em;
   line-height: 0.83em;
@@ -1445,4 +1444,28 @@ const openModal = () => {
             margin: 0 8px;
           }
         }*/
+@media (min-width: 500px) {
+  .frame-parent2 {
+    width: 720px;
+  }
+  .frame-container {
+    width: 730px;
+  }
+  .frame-group {
+    width: 780px;
+  }
+  .pull-stats {
+    width: 780px;
+  }
+  .buttons-tabs {
+    width: 200px;
+  }
+  .buttons-tabs-parent {
+    width: 700px;
+    justify-content: space-between;
+  }
+  .ton-wrapper {
+    justify-content: flex-end;
+  }
+}
 </style>

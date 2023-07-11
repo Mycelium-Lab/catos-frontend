@@ -1,5 +1,5 @@
 <template>
-  <div class="tab-1-1">
+  <div class="tab-1-1" v-if="isMobile">
     <div class="header6">
       <div class="div9">Дашбоард</div>
     </div>
@@ -225,7 +225,12 @@
     </div>
   </div>
 
-  <div id="container" class="popup-overlay" style="display: none">
+  <div
+    id="container"
+    class="popup-overlay"
+    v-if="isMobile"
+    style="display: none"
+  >
     <div class="div8">
       <div class="modal-date-picker">
         <div class="header-parent">
@@ -1404,18 +1409,261 @@
       </div>
     </div>
   </div>
-  <app-bar></app-bar>
+  <app-bar v-if="isMobile"></app-bar>
+  <default-desktop v-else>
+    <template v-slot:title> Дашбоард </template>
+    <template v-slot:tools>
+      <div class="filter-2">
+        <div class="col-titles-bg"></div>
+        <div class="div10">Фильтр:</div>
+        <div class="sort" @click="() => (isSort = true)">(1)</div>
+        <sort v-if="isSort" @close="() => (isSort = false)">
+          <template v-slot:title>Фильтр / Сортировка</template>
+          <template v-slot:left-option>
+            <sort-left-desktop></sort-left-desktop>
+          </template>
+          <template v-slot:right-option>
+            <sort-right-desktop></sort-right-desktop>
+          </template>
+        </sort>
+        <div class="filter-2-inner">
+          <div class="frame-wrapper-desktop">
+            <div class="frame-group">
+              <div class="group">
+                <div class="div11">Выберите статус:</div>
+                <div class="fields-password-and-mail2">
+                  <div class="frame-div">
+                    <div class="div12">Все пуллы</div>
+                    <img
+                      class="chevron-right-icon"
+                      alt=""
+                      src="@/assets/images/chevron-right.svg"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="group">
+                <div class="div11">Выберите дату:</div>
+                <div class="fields-password-and-mail-container">
+                  <div class="fields-password-and-mail3">
+                    <div class="frame-div">
+                      <div class="div12">08.17.2023</div>
+                    </div>
+                  </div>
+                  <div class="iconscalendar-wrapper" id="frameContainer3">
+                    <img
+                      class="chevron-right-icon"
+                      alt=""
+                      src="@/assets/images/iconscalendar.svg"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="filter-2-child"></div>
+        <div class="vector-wrapper" id="frameContainer9"></div>
+      </div>
+    </template>
+    <template v-slot:body>
+      <div class="tables-light-mode-parent">
+        <dashboard-list></dashboard-list>
+
+        <div class="graph-title">График всей доходности</div>
+        <div class="graphsorders-mobile-01">
+          <div class="master">
+            <div class="content-frame">
+              <div class="elements-textbox-tablerow">
+                <div class="description">
+                  <div class="title">Финансы</div>
+                  <div class="subtitle">Catos</div>
+                </div>
+              </div>
+              <div class="text-frame">
+                <div class="info-right-side">
+                  <div class="content">
+                    <div class="title">1 420 000 TON</div>
+                    <div class="info">+1.215 %</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="divider">
+            <div class="line"></div>
+          </div>
+          <div class="table">
+            <div class="tabs">
+              <div class="tabstextactive">
+                <div class="tab-title">День</div>
+              </div>
+              <div class="tabstextresting">
+                <div class="tab-title">Неделя</div>
+              </div>
+              <div class="tabstextresting">
+                <div class="tab-title">Месяц</div>
+              </div>
+            </div>
+            <chart id="1"></chart>
+
+            <div class="days">
+              <div class="div32">Апр</div>
+              <div class="div32">Май</div>
+              <div class="div34">Июнь</div>
+              <div class="div35">Авг</div>
+              <div class="div34">Сент</div>
+              <div class="div34">Окт</div>
+              <div class="div34">Ноябрь</div>
+              <div class="div34">Декабрь</div>
+            </div>
+          </div>
+          <div class="divider">
+            <div class="line"></div>
+          </div>
+          <div class="slider-buttons">
+            <div class="buttons-graphsordersdown">
+              <div class="div40">Прибыль</div>
+            </div>
+            <div class="buttons-graphsordersdown">
+              <div class="div40">Доход</div>
+            </div>
+            <div class="buttons-graphsordersdown2">
+              <div class="div40">Расход</div>
+            </div>
+            <div class="buttons-graphsordersdown2">
+              <div class="div40">ROI</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-2_graph filter-2">
+          <div class="col-titles-bg"></div>
+
+          <div class="filter-2-inner">
+            <div class="frame-wrapper">
+              <div class="frame-group">
+                <div class="group">
+                  <div class="div11">Выберите статус:</div>
+                  <div class="fields-password-and-mail2">
+                    <div class="frame-div">
+                      <div class="div12">Все пуллы</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="group">
+                  <div class="div11">Выберите дату:</div>
+                  <div class="fields-password-and-mail-container">
+                    <div class="fields-password-and-mail3">
+                      <div class="frame-div">
+                        <div class="div12">08.17.2023</div>
+                      </div>
+                    </div>
+                    <div
+                      class="iconscalendar-wrapper"
+                      id="frameContainer3"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vector-wrapper" id="frameContainer9"></div>
+        </div>
+
+        <div class="graphsorders-mobile-01">
+          <div class="master1">
+            <div class="content-frame">
+              <div class="elements-textbox-tablerow1">
+                <div class="description1">
+                  <div class="title">Group Name</div>
+                  <div class="subtitle">{{ curentWindow }}</div>
+                </div>
+              </div>
+              <div class="text-frame">
+                <div class="info-right-side">
+                  <div class="content">
+                    <div class="title">1 890 {{ curentWindow }}</div>
+                    <div class="title_small title">
+                      {{ curentWindow === "Catos" ? "≈ 590 CAT" : "≈ 590 TON" }}
+                    </div>
+                    <div class="info">+25 %</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="divider">
+            <div class="line"></div>
+          </div>
+          <div class="table">
+            <div class="tabs1">
+              <div class="tabstextactive">
+                <div class="tab-title">День</div>
+              </div>
+              <div class="tabstextresting">
+                <div class="tab-title">Неделя</div>
+              </div>
+              <div class="tabstextresting">
+                <div class="tab-title">Месяц</div>
+              </div>
+            </div>
+            <chart id="2"></chart>
+
+            <div class="days1">
+              <div class="div32">Апр</div>
+              <div class="div32">Май</div>
+              <div class="div34">Июнь</div>
+              <div class="div35">Авг</div>
+              <div class="div34">Сент</div>
+              <div class="div34">Окт</div>
+              <div class="div34">Ноябрь</div>
+              <div class="div34">Декабрь</div>
+            </div>
+          </div>
+          <div class="divider">
+            <div class="line"></div>
+          </div>
+          <div class="slider-buttons">
+            <div class="buttons-graphsordersdown">
+              <div class="div40">Всего</div>
+            </div>
+            <div class="buttons-graphsordersdown2">
+              <div class="div40">Выдано</div>
+            </div>
+            <div class="buttons-graphsordersdown2">
+              <div class="div40">Свободно</div>
+            </div>
+            <div class="buttons-graphsordersdown">
+              <div class="div40">Не возврат</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </default-desktop>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 import dashboardList from "@/components/dashboard/depositor/dashboard-list.vue";
+import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import chart from "@/components/dashboard/chart.vue";
 import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";
+import sortLeftDesktop from "@/components/dashboard/depositor/sort-left-desktop.vue";
+import sortRightDesktop from "@/components/dashboard/depositor/sort-right-desktop.vue";
+import sort from "@/components/base/desktop/sort.vue";
 
 const curentWindow = ref("Catos");
+
+const isSort = ref(false);
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 
 const router = useRouter();
 const toSort = () => {
@@ -1472,10 +1720,12 @@ const toggleSlide = (slideIndex: any) => {
   letter-spacing: 0.01em;
   line-height: 110%;
   font-weight: 500;
+  color: #3b3b3b;
 }
 .div11,
 .div12 {
   position: relative;
+  color: #3b3b3b;
 }
 .div11 {
   font-size: 0.75em;
@@ -3352,5 +3602,57 @@ const toggleSlide = (slideIndex: any) => {
   position: absolute;
   top: 1.5em;
   right: 1em;
+}
+@media (min-width: 500px) {
+  .filter-2 {
+    width: 48.75em;
+  }
+  .filter-2-inner,
+  .tables-light-mode {
+    width: auto;
+  }
+  .filter-2-inner {
+    left: 1em;
+  }
+  .frame-container {
+    width: 100%;
+  }
+  .arrows-table1 {
+    width: 24px;
+    height: 24px;
+    &:hover {
+      background: rgba(245, 247, 249, 1);
+    }
+  }
+  .arrows {
+    left: 45em;
+  }
+  .containers21,
+  .containers22 {
+    align-self: end;
+  }
+  .containers,
+  .containers1,
+  .containers2,
+  .containers-group,
+  .containers-container {
+    width: 195px;
+  }
+  .containers-parent1 {
+    width: 400px;
+  }
+  .containers8 {
+    width: 100%;
+  }
+  .div10 {
+    left: 1em;
+  }
+  .tables-light-mode-parent {
+    width: 780px;
+    top: 0;
+  }
+  .roi-wrapper {
+    width: 200px;
+  }
 }
 </style>
