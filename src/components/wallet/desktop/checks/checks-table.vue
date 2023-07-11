@@ -174,7 +174,7 @@ const isDetail = ref(false);
   flex-shrink: 0;
   display: flex;
   flex-direction: row;
-  padding: 0em 0.38em;
+  padding: 0em 1em;
   box-sizing: border-box;
   align-items: center;
   justify-content: space-between;
@@ -422,7 +422,7 @@ const isDetail = ref(false);
 .details {
   display: flex;
   flex-direction: column;
-  padding: 0.13em 1.25em;
+  padding-left: 0.5em;
   align-items: flex-start;
   justify-content: center;
   gap: 0.13em;

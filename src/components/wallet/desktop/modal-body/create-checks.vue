@@ -1,18 +1,18 @@
 <template>
-  <div class="des-parent_create-checks">
-    <div class="des-desktop">
-      <img
-        class="des-child"
-        alt=""
-        src="@/assets/desktop/frame-1817887@2x.png"
-      />
-      <div class="div">
-        Здесь вы можете создать чек для мгновенной отправки криптовалюты любому
-        пользователю
+  <div class="frame-parent">
+    <div class="des-parent_create-checks">
+      <div class="des-desktop">
+        <img
+          class="des-child"
+          alt=""
+          src="@/assets/desktop/frame-1817887@2x.png"
+        />
+        <div class="div">
+          Здесь вы можете создать чек для мгновенной отправки криптовалюты
+          любому пользователю
+        </div>
       </div>
-    </div>
-    <div class="field-info-parent">
-      <div class="field-info">
+      <div class="field-info-parent">
         <div class="fieldsinputchoise">
           <div class="div1">
             Выберите криптовалюту для отправки с помошью чека.
@@ -22,71 +22,73 @@
             :options="options"
             :value="value"
             @selected="ev => (value = ev)"
-            :optionWidthDesk="440"
+            :optionWidthDesk="396"
             :style="{ width: '100%' }"
+            sticky
           ></catos-select>
         </div>
-      </div>
-      <div class="frame-parent">
-        <div class="fieldsinput-parent">
-          <div class="fieldsinput">
-            <div class="div1">Укажите сумму:</div>
-            <input-data :style="{ width: '100%' }"></input-data>
-          </div>
-          <div class="title-wrapper">
-            <div class="title">(≈1 456 USD)</div>
-          </div>
-        </div>
-        <div class="ton">
-          <span class="span3">Балланс: </span>
-          <span class="ton1">257 324 TON</span>
-        </div>
-      </div>
-    </div>
-    <catos-button
-      variant="secondary"
-      :style="{ width: '100%', margin: '0' }"
-      @click="close"
-      >Создать чек</catos-button
-    >
 
-    <div class="instance-wrapper">
-      <div class="frame-container">
-        <div class="frame-group">
-          <div class="frame-div">
-            <div class="title-container">
-              <div class="title1">
-                <span>Описание к чеку:</span>
-                <span class="span4"> (не обязательно)</span>
-              </div>
+        <div class="frame-parent-wrapper">
+          <div class="fieldsinput-parent">
+            <div class="fieldsinput">
+              <div class="div1">Укажите сумму:</div>
+              <input-data :style="{ width: '100%' }"></input-data>
             </div>
-            <textarea class="description-area"></textarea>
-          </div>
-          <!--<div class="frame-child" />-->
-          <div class="div4">
-            Пользователи увидят это описание, когда вы поделитесь чеком, так же
-            можно показать или скрыть кто поделился
-          </div>
-          <div class="author-parent">
-            <div class="author">
-              <!--<img class="img-icon" alt="" src="@/assets/images/img@2x.png" />-->
-              <div class="author1">Валентин Иванович</div>
+            <div class="title-wrapper">
+              <div class="title">(≈1 456 USD)</div>
             </div>
-            <catos-switch></catos-switch>
+          </div>
+          <div class="ton">
+            <span class="span3">Балланс: </span>
+            <span class="ton1">257 324 TON</span>
           </div>
         </div>
       </div>
-    </div>
-    <div class="frame-parent1">
-      <div class="text-parent">
-        <div class="div5">Добавить пароль к чеку (не обязательно)</div>
-        <!--<img class="container-click" alt="" src="/container--click.svg" />-->
+      <catos-button
+        variant="secondary"
+        :style="{ width: '100%', margin: '0' }"
+        @click="close"
+        >Создать чек</catos-button
+      >
+
+      <div class="instance-wrapper">
+        <div class="frame-container">
+          <div class="frame-group">
+            <div class="frame-div">
+              <div class="title-container">
+                <div class="title1">
+                  <span>Описание к чеку:</span>
+                  <span class="span4"> (не обязательно)</span>
+                </div>
+              </div>
+              <textarea class="description-area"></textarea>
+            </div>
+            <!--<div class="frame-child" />-->
+            <div class="div4">
+              Пользователи увидят это описание, когда вы поделитесь чеком, так
+              же можно показать или скрыть кто поделился
+            </div>
+            <div class="author-parent">
+              <div class="author">
+                <!--<img class="img-icon" alt="" src="@/assets/images/img@2x.png" />-->
+                <div class="author1">Валентин Иванович</div>
+              </div>
+              <catos-switch></catos-switch>
+            </div>
+          </div>
+        </div>
       </div>
-      <copy-paste>
-        <template v-slot:icon>
-          <img src="@/assets/images/iconscopy.svg" />
-        </template>
-      </copy-paste>
+      <div class="frame-parent1">
+        <div class="text-parent">
+          <div class="div5">Добавить пароль к чеку (не обязательно)</div>
+          <!--<img class="container-click" alt="" src="/container--click.svg" />-->
+        </div>
+        <copy-paste>
+          <template v-slot:icon>
+            <img src="@/assets/images/iconscopy.svg" />
+          </template>
+        </copy-paste>
+      </div>
     </div>
   </div>
 </template>
@@ -137,6 +139,7 @@ const close = () => {
   position: relative;
   font-size: 0.75em;
   line-height: 130%;
+  left: 0.4em;
 }
 .text {
   position: relative;
@@ -176,13 +179,7 @@ const close = () => {
   justify-content: flex-start;
   gap: 0.63em;
 }
-.field-info {
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
+
 .iconsmail {
   position: relative;
   width: 1.5em;
@@ -279,13 +276,13 @@ const close = () => {
   position: absolute;
   margin: 0 !important;
   top: 0.17em;
-  right: 0em;
+  right: 1em;
   font-size: 0.75em;
   line-height: 0.83em;
   z-index: 1;
   color: #2e3a59;
 }
-.frame-parent {
+.frame-parent-wrapper {
   align-self: stretch;
   border-radius: 12px;
   display: flex;
@@ -307,7 +304,6 @@ const close = () => {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 1.5em;
-  height: 13em;
 }
 .ton-kepeer {
   position: relative;
@@ -588,10 +584,13 @@ const close = () => {
   width: 100%;
   padding-bottom: 10px;
 }
+.frame-parent {
+  height: 700px;
+  overflow-y: auto;
+}
 @media (max-height: 900px) {
-  /*.des-parent {
-    height: 600px;
-    overflow-y: auto;
-  }*/
+  .frame-parent {
+    height: 530px;
+  }
 }
 </style>

@@ -525,10 +525,11 @@ const options = {
   border-radius: 0px 0px 15px 15px;
   background-color: #fff;
   width: 100%;
-  height: 57.25em;
+  height: 600px;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+  overflow-y: auto;
 }
 .description-area {
   outline: none;
@@ -537,11 +538,5 @@ const options = {
   border-bottom: 1px solid rgba(165, 146, 221, 0.1);
   width: 398px;
   padding-bottom: 10px;
-}
-@media (max-height: 900px) {
-  .frame-parent {
-    height: 600px;
-    overflow-y: auto;
-  }
 }
 </style>
