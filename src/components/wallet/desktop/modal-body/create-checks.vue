@@ -1,5 +1,5 @@
 <template>
-  <div class="des-parent">
+  <div class="des-parent_create-checks">
     <div class="des-desktop">
       <img
         class="des-child"
@@ -568,7 +568,7 @@ const close = () => {
   gap: 0.5em;
   text-align: center;
 }
-.des-parent {
+.des-parent_create-checks {
   border-radius: 0px 0px 15px 15px;
   background-color: #fff;
   width: 100%;
@@ -590,7 +590,7 @@ const close = () => {
 }
 @media (max-height: 900px) {
   /*.des-parent {
-    height: 800px;
+    height: 600px;
     overflow-y: auto;
   }*/
 }

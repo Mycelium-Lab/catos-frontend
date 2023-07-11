@@ -4,13 +4,13 @@
     <template v-slot:body>
       <div class="des-1-2">
         <div class="des-2">
-          <div class="div">
+          <div class="div-desktop">
             Создайте чек и оправьте его (ссылку) получаетелю. Перейдя по ссылке
             чека получатель сможет его активировать и получить криптовалюту в
             удобное для него время
           </div>
         </div>
-        <div class="des">
+        <div class="des-ckecks-desktop">
           <img
             class="des-child"
             alt=""
@@ -46,7 +46,7 @@ import DesktopModal from "@/components/base/desktop-modal.vue";
 const isCreateCheck = ref(false);
 </script>
 <style scoped>
-.div {
+.div-desktop {
   align-self: stretch;
   position: relative;
   font-size: 0.88em;
@@ -80,7 +80,7 @@ const isCreateCheck = ref(false);
   width: 49.57em;
   flex-shrink: 0;
 }
-.des {
+.des-ckecks-desktop {
   position: absolute;
   top: 0em;
   left: 0em;

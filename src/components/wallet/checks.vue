@@ -14,7 +14,7 @@
               криптовалюту в удобное для него время
             </div>
           </div>
-          <div class="des">
+          <div class="des-ckecks">
             <img class="des-child" alt="" src="@/assets/images/dialog.png" />
 
             <div class="div11">
@@ -34,8 +34,8 @@
             <div class="details1">Детали</div>
           </div>
           <div class="frame-group">
-            <div class="frame-container">
-              <div class="frame-div">
+            <div class="frame-container_checks">
+              <div class="frame-div_checks">
                 <div class="svg-gobbler-2-1-group">
                   <div class="svg-wrapper">
                     <img
@@ -62,7 +62,7 @@
                   </div>
                 </div>
               </div>
-              <div class="frame-parent1">
+              <div class="frame-parent_checks">
                 <div class="title-parent">
                   <div class="title1">Чек на 10 TON</div>
                   <div class="description">
@@ -82,8 +82,8 @@
                 </div>
               </div>
             </div>
-            <div class="frame-container">
-              <div class="frame-div">
+            <div class="frame-container_checks">
+              <div class="frame-div_checks">
                 <div class="svg-gobbler-2-1-group">
                   <div class="svg-wrapper">
                     <img
@@ -109,7 +109,7 @@
                   </div>
                 </div>
               </div>
-              <div class="frame-parent1">
+              <div class="frame-parent_checks">
                 <div class="title-parent">
                   <div class="title1">Чек на 50 TON</div>
                   <div class="description">Чек без описания:</div>
@@ -126,8 +126,8 @@
                 </div>
               </div>
             </div>
-            <div class="frame-container">
-              <div class="frame-div">
+            <div class="frame-container_checks">
+              <div class="frame-div_checks">
                 <div class="svg-gobbler-2-1-group">
                   <div class="svg-wrapper">
                     <img
@@ -148,7 +148,7 @@
                   </div>
                 </div>
               </div>
-              <div class="frame-parent1">
+              <div class="frame-parent_checks">
                 <div class="title-parent">
                   <div class="title1">Чек на 50 TON</div>
                   <div class="description">Чек без описания:</div>
@@ -279,7 +279,7 @@ const { isMobile } = useDevice();
   font-size: 0.63em;
   line-height: 130%;
 }
-.des {
+.des-ckecks {
   position: absolute;
   top: -0.03em;
   left: 0;
@@ -429,7 +429,7 @@ const { isMobile } = useDevice();
   color: #8181a5;
   font-family: fa-solid-900;
 }
-.frame-div {
+.frame-div_checks {
   align-self: stretch;
   display: flex;
   flex-direction: row;
@@ -497,13 +497,13 @@ const { isMobile } = useDevice();
   color: #1c1d21;
   font-family: Lato;
 }
-.frame-container,
-.frame-parent1 {
+.frame-container_checks,
+.frame-parent_checks {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.frame-parent1 {
+.frame-parent_checks {
   align-self: stretch;
   border-radius: 12px;
   background-color: rgba(165, 146, 221, 0.1);
@@ -512,7 +512,7 @@ const { isMobile } = useDevice();
   gap: 0.63em;
   color: #3b3b3b;
 }
-.frame-container {
+.frame-container_checks {
   border-radius: 10px;
   border: 1px solid rgba(165, 146, 221, 0.08);
   box-sizing: border-box;

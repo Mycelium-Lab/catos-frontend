@@ -2,7 +2,7 @@
   <default-desktop>
     <template v-slot:title> Счета </template>
     <template v-slot:body>
-      <div class="des">
+      <div class="des-aacounts">
         <img class="des-child" alt="" src="@/assets/desktop/accounts.png" />
         <div class="div-desktop">
           Здесь вы можете создать счёт для получения оплаты или сбора средств в
@@ -69,7 +69,7 @@ const isToUp = ref(false);
   width: 49.57em;
   flex-shrink: 0;
 }
-.des {
+.des-aacounts {
   position: relative;
   border-radius: 16px;
   background-color: #f8f6fc;
