@@ -1,21 +1,31 @@
 <template>
   <div class="filter-group">
     <div class="filter-container">
-      <img class="filter-item" alt="" src="@/assets/desktop/filter.svg" />
+      <img
+        class="filter-item"
+        alt=""
+        src="@/assets/desktop/filter.svg"
+        @click="() => (isFilter = true)"
+      />
       <div v-if="variant === 'loans'" class="div4">
         <span>Скачать </span>
         <span class="span">(1)</span>
       </div>
       <div v-else class="div4">
         <span>Фильтр </span>
-        <span class="span">(1)</span>
+        <span class="span" @click="() => (isFilter = true)">(1)</span>
       </div>
     </div>
     <div class="filter-container">
-      <img class="menu-2-icon" alt="" src="@/assets/desktop/sort.svg" />
+      <img
+        class="menu-2-icon"
+        alt=""
+        src="@/assets/desktop/sort.svg"
+        @click="() => (isSort = true)"
+      />
       <div class="div5">
         <span>Сортировка </span>
-        <span class="span1">(1)</span>
+        <span class="span1" @click="() => (isSort = true)">(1)</span>
       </div>
     </div>
   </div>
@@ -100,17 +110,20 @@ const isSort = ref(false);
   position: relative;
   width: 1.5em;
   height: 1.5em;
+  cursor: pointer;
 }
 .div4 {
   position: relative;
   font-size: 0.88em;
-  text-decoration: underline;
+
   line-height: 0.71em;
 }
 .span {
+  cursor: pointer;
   color: #5d83f7;
 }
 .menu-2-icon {
+  cursor: pointer;
   position: relative;
   width: 1.5em;
   height: 1.5em;
@@ -123,7 +136,7 @@ const isSort = ref(false);
   line-height: 0.71em;
 }
 .span1 {
-  text-decoration: underline;
+  cursor: pointer;
   color: #5d83f7;
 }
 </style>

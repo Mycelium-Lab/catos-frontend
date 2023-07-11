@@ -564,7 +564,7 @@ ul {
   height: 1.5em;
 }
 .span2 {
-  text-decoration: underline;
+  cursor: pointer;
   color: #5d83f7;
 }
 .div25 {

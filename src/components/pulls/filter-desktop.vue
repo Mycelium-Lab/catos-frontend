@@ -19,179 +19,252 @@
         </div>
         <div class="frame-parent">
           <div class="parent">
-            <chips-bar @on-edit="handleEdit"></chips-bar>
+            <chips-bar desktop></chips-bar>
             <div class="fieldsinputchoise-parent">
-              <div class="fieldsinputchoise">
+              <div v-if="role === 'creditor'" class="fieldsinputchoise">
                 <div class="div1">Настройте токен:</div>
                 <catos-select
-                  placeholder="Выберите статус"
+                  placeholder="Catos"
                   :options="options"
-                  :value="valueStatus"
-                  @selected="ev => (valueToken = ev)"
+                  :value="value"
+                  :style="{ width: '100%' }"
+                  :optionWidthDesk="710"
+                  @selected="ev => (value = ev)"
                 ></catos-select>
               </div>
-              <div class="frame-group">
+              <div
+                :style="{
+                  display: 'flex',
+                  width: '100%',
+                  justifyContent: 'space-between',
+                  gap: '1.88em',
+                }"
+              >
+                <div
+                  v-if="role === 'collector'"
+                  :style="{ width: '100%' }"
+                  class="fieldsinputchoise"
+                >
+                  <div class="div1">Токену:</div>
+                  <catos-select
+                    placeholder="Catos"
+                    :options="options"
+                    :value="value"
+                    :style="{ width: '100%' }"
+                    :optionWidthDesk="340"
+                    @selected="ev => (value = ev)"
+                  ></catos-select>
+                </div>
+                <div
+                  v-if="role === 'collector'"
+                  :style="{ width: '100%' }"
+                  class="fieldsinputchoise"
+                >
+                  <div class="div1">Месту проживания:</div>
+                  <catos-select
+                    placeholder="Catos"
+                    :options="options"
+                    :value="valuePlace"
+                    :style="{ width: '100%' }"
+                    :optionWidthDesk="340"
+                    @selected="ev => (valuePlace = ev)"
+                  ></catos-select>
+                </div>
+              </div>
+
+              <div v-if="role === 'borrower'" class="frame-group">
                 <div class="instance-parent">
                   <div class="group">
-                    <div class="div6">Дневной ставке:</div>
-                    <div class="frame-container">
-                      <div class="tag-parent">
-                        <div class="tag3">
-                          <div class="ton-kepeer">
-                            <span class="span">
-                              <span class="span1">от</span>
-                            </span>
-                            <span>
-                              <span class="span"> О</span>
-                            </span>
-                            <span class="span3">
-                              <span>.1 % </span>
-                              <span class="span4">мин</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div class="tag3">
-                          <div class="div8">
-                            <span class="span1">
-                              <span>до</span>
-                            </span>
-                            <span class="span6">
-                              <span class="span1"> </span>
-                              <span>30 % </span>
-                            </span>
-                            <span class="span1">макс</span>
-                          </div>
-                        </div>
-                      </div>
-                      <!--<img
-                        class="scroll-thumb-icon"
-                        alt=""
-                        src="/scroll-thumb.svg"
-                      />-->
-                    </div>
+                    <div class="div6">Одобренному лимиту:</div>
+
+                    <range-minmax-slider
+                      :max="3000"
+                      v-model:min-value="sliderMinDbt"
+                      v-model:max-value="sliderMaxDbt"
+                      inputLabel="cat"
+                      desktop
+                    ></range-minmax-slider>
                   </div>
                   <div class="group">
-                    <div class="div6">Срок</div>
-                    <div class="frame-container">
-                      <div class="tag-parent">
-                        <div class="tag3">
-                          <div class="ton-kepeer">
-                            <span class="span">
-                              <span class="span1">от</span>
-                            </span>
-                            <span>
-                              <span class="span"> </span>
-                            </span>
-                            <span class="span3">
-                              <span>1 </span>
-                              <span class="span4">дня</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div class="tag3">
-                          <div class="div8">
-                            <span class="span1">
-                              <span>до</span>
-                            </span>
-                            <span class="span6">
-                              <span class="span1"> </span>
-                              <span>365 </span>
-                            </span>
-                            <span class="span1">дней</span>
-                          </div>
-                        </div>
-                      </div>
-                      <!--<img
-                        class="scroll-thumb-icon"
-                        alt=""
-                        src="/scroll-thumb.svg"
-                      />-->
-                    </div>
+                    <div class="div6">Срок:</div>
+                    <range-minmax-slider
+                      :max="365"
+                      v-model:min-value="sliderMinOverdue"
+                      v-model:max-value="sliderMaxOverdue"
+                      inputLabel="day"
+                      desktop
+                    ></range-minmax-slider>
                   </div>
                 </div>
                 <div class="instance-parent">
                   <div class="parent1">
-                    <div class="div6">Беспроцентный период:</div>
-                    <div class="frame-container">
-                      <div class="tag-parent">
-                        <div class="tag3">
-                          <div class="ton-kepeer">
-                            <span class="span">
-                              <span class="span1">от</span>
-                            </span>
-                            <span>
-                              <span class="span"> О</span>
-                            </span>
-                            <span class="span3">
-                              <span>.1 % </span>
-                              <span class="span4">мин</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div class="tag3">
-                          <div class="div8">
-                            <span class="span1">
-                              <span>до</span>
-                            </span>
-                            <span class="span6">
-                              <span class="span1"> </span>
-                              <span>30 % </span>
-                            </span>
-                            <span class="span1">макс</span>
-                          </div>
-                        </div>
-                      </div>
-                      <!--<img
-                        class="scroll-thumb-icon"
-                        alt=""
-                        src="/scroll-thumb.svg"
-                      />-->
-                    </div>
+                    <div class="div6">Дневной ставке:</div>
+                    <range-minmax-slider
+                      :max="365"
+                      v-model:min-value="sliderMinRange"
+                      v-model:max-value="sliderMaxRange"
+                      inputLabel="percent"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                  <div class="parent1">
+                    <div class="div6">Беспроцентному периоду:</div>
+                    <range-minmax-slider
+                      :max="30"
+                      v-model:min-value="sliderMinCost"
+                      v-model:max-value="sliderMaxCost"
+                      inputLabel="percent"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                </div>
+              </div>
+
+              <div v-else-if="role === 'creditor'" class="frame-group">
+                <div class="instance-parent">
+                  <div class="group">
+                    <div class="div6">Дневной ставке:</div>
+
+                    <range-minmax-slider
+                      :max="30"
+                      v-model:min-value="sliderMinRange"
+                      v-model:max-value="sliderMaxRange"
+                      inputLabel="percent"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                  <div class="group">
+                    <div class="div6">Срок:</div>
+                    <range-minmax-slider
+                      :max="365"
+                      v-model:min-value="sliderMinOverdue"
+                      v-model:max-value="sliderMaxOverdue"
+                      inputLabel="day"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                </div>
+                <div class="instance-parent">
+                  <div class="parent1">
+                    <div class="div6">Беспроцентному периоду:</div>
+                    <range-minmax-slider
+                      :max="30"
+                      v-model:min-value="sliderMinCost"
+                      v-model:max-value="sliderMaxCost"
+                      inputLabel="percent"
+                      desktop
+                    ></range-minmax-slider>
                   </div>
                   <div class="parent1">
                     <div class="div6">Процент возврата:</div>
-                    <div class="frame-container">
-                      <div class="tag-parent">
-                        <div class="tag3">
-                          <div class="ton-kepeer">
-                            <span class="span">
-                              <span class="span1">от</span>
-                            </span>
-                            <span>
-                              <span class="span"> О</span>
-                            </span>
-                            <span class="span3">
-                              <span>.1 % </span>
-                              <span class="span4">мин</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div class="tag3">
-                          <div class="div8">
-                            <span class="span1">
-                              <span>до</span>
-                            </span>
-                            <span class="span6">
-                              <span class="span1"> </span>
-                              <span>30 % </span>
-                            </span>
-                            <span class="span1">макс</span>
-                          </div>
-                        </div>
-                      </div>
-                      <!--<img
-                        class="scroll-thumb-icon"
-                        alt=""
-                        src="/scroll-thumb.svg"
-                      />-->
-                    </div>
+                    <range-minmax-slider
+                      :max="30"
+                      v-model:min-value="sliderMinReturn"
+                      v-model:max-value="sliderMaxReturn"
+                      inputLabel="percent"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                </div>
+              </div>
+              <div v-else-if="role === 'depositor'" class="frame-group">
+                <div class="instance-parent">
+                  <div class="group">
+                    <div class="div6">Доходности:</div>
+
+                    <range-minmax-slider
+                      :max="3000"
+                      v-model:min-value="sliderMinDbt"
+                      v-model:max-value="sliderMaxDbt"
+                      inputLabel="ton"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                  <div class="group">
+                    <div class="div6">Количеству инвесторов:</div>
+                    <range-minmax-slider
+                      :max="3650"
+                      v-model:min-value="sliderMinDepositor"
+                      v-model:max-value="sliderMaxDepositor"
+                      inputLabel="depositor"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                </div>
+                <div class="instance-parent">
+                  <div class="parent1">
+                    <div class="div6">Дневной ставки:</div>
+                    <range-minmax-slider
+                      :max="30"
+                      v-model:min-value="sliderMinRange"
+                      v-model:max-value="sliderMaxRange"
+                      inputLabel="percent"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                  <div class="parent1">
+                    <div class="div6">Беспроцентному периоду:</div>
+                    <range-minmax-slider
+                      :max="30"
+                      v-model:min-value="sliderMinCost"
+                      v-model:max-value="sliderMaxCost"
+                      inputLabel="percent"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                </div>
+              </div>
+              <div v-else-if="role === 'collector'" class="frame-group">
+                <div class="instance-parent">
+                  <div class="group">
+                    <div class="div6">Доходности:</div>
+
+                    <range-minmax-slider
+                      :max="3000"
+                      v-model:min-value="sliderMinDbt"
+                      v-model:max-value="sliderMaxDbt"
+                      inputLabel="ton"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                  <div class="group">
+                    <div class="div6">Количеству инвесторов:</div>
+                    <range-minmax-slider
+                      :max="3650"
+                      v-model:min-value="sliderMinDepositor"
+                      v-model:max-value="sliderMaxDepositor"
+                      inputLabel="depositor"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                </div>
+                <div class="instance-parent">
+                  <div class="parent1">
+                    <div class="div6">Дневной ставки:</div>
+                    <range-minmax-slider
+                      :max="30"
+                      v-model:min-value="sliderMinRange"
+                      v-model:max-value="sliderMaxRange"
+                      inputLabel="percent"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                  <div class="parent1">
+                    <div class="div6">Беспроцентному периоду:</div>
+                    <range-minmax-slider
+                      :max="30"
+                      v-model:min-value="sliderMinCost"
+                      v-model:max-value="sliderMaxCost"
+                      inputLabel="percent"
+                      desktop
+                    ></range-minmax-slider>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="buttonnext-parent">
-            <div class="buttonnext">
+            <div class="buttonnext" @click="close">
               <b class="ton-kepeer">Сохранить и выйти</b>
             </div>
             <div class="div18">Сбросить параметры</div>
@@ -202,25 +275,37 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import chipsBar from "../ui-kit/chips-bar.vue";
-const isEdit = ref(false);
-const isCreateMode = ref(false);
+
 import catosSelect from "../fields/catos-select.vue";
-const valueToken = ref("");
-const valueStatus = ref("");
+import rangeMinmaxSlider from "../ui-kit/range-minmax-slider.vue";
+
+const role = computed(() => {
+  return JSON.parse(localStorage.getItem("role") || "{}");
+});
+
+const value = ref("");
+const valuePlace = ref("");
+
 const options = ["Россия", "Украина", "Казахстан", "Белорусь"];
 const emtis = defineEmits(["close"]);
-const handleEdit = (ev: any) => {
-  if (ev) {
-    isCreateMode.value = true;
-  }
-  isEdit.value = true;
-};
 
 const close = () => {
   emtis("close");
 };
+const sliderMinOverdue = ref(1);
+const sliderMaxOverdue = ref(365);
+const sliderMinDbt = ref(0);
+const sliderMaxDbt = ref(3000);
+const sliderMinRange = ref(role.value === "depositor" ? 1 : 0.1);
+const sliderMaxRange = ref(30);
+const sliderMinCost = ref(0.1);
+const sliderMaxCost = ref(30);
+const sliderMinReturn = ref(0.1);
+const sliderMaxReturn = ref(30);
+const sliderMinDepositor = ref(1);
+const sliderMaxDepositor = ref(3650);
 </script>
 <style scoped>
 .modal-wrapper {
@@ -254,6 +339,7 @@ const close = () => {
   height: 1.5em;
   overflow: hidden;
   flex-shrink: 0;
+  cursor: pointer;
 }
 .page-title-parent {
   align-self: stretch;
@@ -452,7 +538,7 @@ const close = () => {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 0.94em;
+  gap: 0.88em;
 }
 .frame-group {
   display: flex;
@@ -490,10 +576,10 @@ const close = () => {
   flex-shrink: 0;
   display: flex;
   flex-direction: row;
-  padding: 0.5em 7.25em;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .div18 {
   position: relative;
@@ -502,6 +588,7 @@ const close = () => {
   font-weight: 300;
   color: rgba(38, 38, 38, 0.62);
   text-align: left;
+  cursor: pointer;
 }
 .buttonnext-parent {
   width: 21.38em;
