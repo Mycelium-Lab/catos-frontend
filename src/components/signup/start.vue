@@ -743,7 +743,7 @@ const role = computed(() => window.history.state?.role);
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 60.25em;
+  height: 52.25em;
   overflow-y: hidden;
 }
 .b1 {
@@ -958,7 +958,7 @@ const role = computed(() => window.history.state?.role);
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 70.25em;
+  height: 64em;
   overflow-y: hidden;
   text-align: left;
   color: #3b3b3b;
