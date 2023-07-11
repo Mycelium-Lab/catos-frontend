@@ -40,7 +40,7 @@
   >
     <img src="../../assets/images/ui-kit/radiobutton.svg" alt="radiobutton" />
     <img
-      v-if="checked || select"
+      v-if="checked"
       class="check-mark catos__radiobutton_acive"
       src="../../assets/images/ui-kit/radiobutton-active.svg"
       alt="ckecked radiobutton"
@@ -65,7 +65,7 @@ const change = () => {
   emit("onChange", checked.value);
 };
 const handleRadioButton = (ev: any) => {
-  checked.value = !checked;
+  checked.value = !checked.value;
 };
 </script>
 
