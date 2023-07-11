@@ -64,22 +64,28 @@
                 />
                 <div class="c">
                   <span>Активен </span>
-                  <span class="span">(отключить)</span>
                 </div>
               </div>
-              <img
-                class="iconchange"
-                alt=""
-                src="@/assets/desktop/iconchange.svg"
-              />
             </div>
           </div>
         </div>
         <div class="group">
           <div class="div6">Кредитор:</div>
           <div class="radiobutton-parent">
-            <catos-checkbox variant="radiobutton"></catos-checkbox>
-            <div class="div7">Деньги до зарплаты</div>
+            <a
+              class="div7"
+              @click="
+                () => {
+                  isCreditoreInfo = true;
+                }
+              "
+              >Деньги до зарплаты</a
+            >
+            <img
+              class="radiobutton-icon"
+              alt=""
+              src="@/assets/images/investore.svg"
+            />
           </div>
         </div>
         <div class="frame-parent1">
@@ -187,10 +193,17 @@
       </div>
     </div>
   </div>
+  <creditor-info
+    v-if="isCreditoreInfo"
+    @close="() => (isCreditoreInfo = false)"
+  ></creditor-info>
 </template>
 <script setup lang="ts">
-import catosCheckbox from "@/components/ui-kit/catos-checkbox.vue";
+import { ref } from "vue";
+import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 const emits = defineEmits(["close", "management", "loans"]);
+
+const isCreditoreInfo = ref(false);
 
 const toLoans = () => {
   emits("loans");
@@ -374,8 +387,7 @@ const close = () => {
 .status-all {
   align-self: stretch;
   border-radius: 8px;
-  background-color: rgba(165, 146, 221, 0.07);
-  width: 13.56em;
+
   overflow: hidden;
   flex-shrink: 0;
   display: flex;
@@ -390,9 +402,11 @@ const close = () => {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 1em;
   color: #3b3b3b;
+  width: 100%;
+  padding: 0em 0.63em;
 }
 .frame-group {
   align-self: stretch;
@@ -418,6 +432,9 @@ const close = () => {
   font-size: 0.75em;
   line-height: 0.83em;
   font-weight: 300;
+  text-decoration: underline;
+  color: #577ef7;
+  cursor: pointer;
 }
 .radiobutton-parent {
   display: flex;
@@ -435,7 +452,7 @@ const close = () => {
   flex-direction: row;
   padding: 0.25em 0.81em;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 0.63em;
 }
 .div9 {

@@ -1,162 +1,224 @@
 <template>
   <div class="modal-wrapper">
-    <div class="parent">
-      <div class="div">
-        <div class="header-pop-up">
-          <div class="page-title-parent">
-            <div class="page-title">Информация о кредиторе</div>
-            <img
-              class="close-icon-action close-icon"
-              alt=""
-              src="@/assets/desktop/close.svg"
-              @click="close"
-            />
-          </div>
-          <div class="header-pop-up-child" />
+    <div class="div">
+      <div class="header-pop-up">
+        <div class="page-title-parent">
+          <div class="page-title">Пулл №1223</div>
+          <img
+            class="close-icon-action close-icon"
+            alt=""
+            src="@/assets/desktop/close.svg"
+            @click="close"
+          />
         </div>
-        <div class="frame-parent">
-          <div class="frame-group">
-            <div class="icon-parent">
-              <img class="icon" alt="" src="@/assets/images/iconsperson.svg" />
-              <div class="div1">Деньги до зарплаты</div>
+        <div class="header-pop-up-child" />
+      </div>
+      <div class="frame-parent">
+        <div class="frame-group">
+          <div class="parent">
+            <div class="div1">
+              <img
+                class="close-icon"
+                alt=""
+                src="@/assets/images/pie-chart.svg"
+              />
+              <div class="ton-parent">
+                <div class="ton">1 537 000 TON</div>
+                <div class="div2">Доход</div>
+              </div>
             </div>
-            <div class="frame-wrapper">
-              <div class="group">
-                <div class="div2">
-                  <img
-                    class="close-icon"
-                    alt=""
-                    src="@/assets/images/pie-chart.svg"
-                  />
-                  <div class="ton-parent">
-                    <div class="ton">1 537 000 TON</div>
-                    <div class="div3">Доход</div>
-                  </div>
-                </div>
-                <div class="frame-child" />
-                <div class="frame-container">
-                  <div class="icon-parent">
-                    <img
-                      class="percent-icon"
-                      alt=""
-                      src="@/assets/images/percent.svg"
-                    />
-                    <div class="div4">1 день = 1%</div>
-                  </div>
-                  <div class="icon-parent">
-                    <img
-                      class="percent-icon"
-                      alt=""
-                      src="@/assets/images/clock.svg"
-                    />
-                    <div class="div4">3 дня = 0%</div>
-                  </div>
-                  <div class="icon-parent">
-                    <img
-                      class="percent-icon"
-                      alt=""
-                      src="@/assets/images/activity.svg"
-                    />
-                    <div class="div4">ROI = 75%</div>
-                  </div>
-                </div>
+            <div class="frame-child" />
+            <div class="frame-container">
+              <div class="percent-parent">
+                <img
+                  class="percent-icon"
+                  alt=""
+                  src="@/assets/images/percent.svg"
+                />
+                <div class="div3">1 день = 1%</div>
+              </div>
+              <div class="percent-parent">
+                <img
+                  class="percent-icon"
+                  alt=""
+                  src="@/assets/images/clock.svg"
+                />
+                <div class="div3">3 дня = 0%</div>
+              </div>
+              <div class="percent-parent">
+                <img class="percent-icon" src="@/assets/images/activity.svg" />
+                <div class="div3">ROI = 75%</div>
               </div>
             </div>
           </div>
           <div class="frame-div">
-            <div class="field-parent">
-              <div class="field">
-                <div class="roi">Дата регистрации:</div>
-                <div class="n">22.09.2022</div>
-              </div>
-              <div class="col-titles-bg" />
+            <div class="c-wrapper">
+              <div class="c">Cостояние:</div>
             </div>
-            <div class="field-parent">
-              <div class="field">
-                <div class="roi">Кредитных пуллов:</div>
-                <div class="div9">
-                  <span class="span">3 </span>
-                  <span class="span1">(</span>
-                  <span class="span">2</span>
-                  <span class="span1"> активно)</span>
+            <div class="status-all">
+              <div class="colors-graphsorders-parent">
+                <img
+                  class="colors-graphsorders-icon"
+                  alt=""
+                  src="@/assets/images/colors-graphsorders1.svg"
+                />
+                <div class="c">
+                  <span>Активен </span>
+                  <span class="span">(отключить)</span>
                 </div>
               </div>
-              <div class="col-titles-bg" />
-            </div>
-            <div class="field-parent">
-              <div class="field">
-                <div class="roi">Всего ликвидности:</div>
-                <div class="n">1 053 324 TON</div>
-              </div>
-              <div class="col-titles-bg" />
-            </div>
-            <div class="field-parent">
-              <div class="field">
-                <div class="roi">Доступно для выдачи:</div>
-                <div class="n">257 324 TON</div>
-              </div>
-              <div class="col-titles-bg" />
-            </div>
-            <div class="field-parent">
-              <div class="field">
-                <div class="roi">Доход:</div>
-                <div class="n">102 311 ТОN</div>
-              </div>
-              <div class="col-titles-bg" />
-            </div>
-            <div class="field-parent">
-              <div class="field">
-                <div class="roi">ROI:</div>
-                <div class="n">58% годовых</div>
-              </div>
-              <div class="col-titles-bg" />
-            </div>
-            <div class="field-parent">
-              <div class="field">
-                <div class="roi">Займов выдано:</div>
-                <div class="n">40 574 раз</div>
-              </div>
-              <div class="col-titles-bg" />
-            </div>
-            <div class="field-parent">
-              <div class="field">
-                <div class="roi">Выдано:</div>
-                <div class="n">796 000 TON</div>
-              </div>
-              <div class="col-titles-bg" />
-            </div>
-            <div class="field-parent">
-              <div class="field">
-                <div class="roi">Процент не возврата в пуллах</div>
-                <div class="n">4,5%</div>
-              </div>
-              <div class="col-titles-bg" />
+              <img
+                class="iconchange"
+                alt=""
+                src="@/assets/desktop/iconchange.svg"
+              />
             </div>
           </div>
-          <div class="notification">
+        </div>
+        <div class="group">
+          <div class="div6">Кредитор:</div>
+          <div class="radiobutton-parent">
+            <a
+              class="div7"
+              @click="
+                () => {
+                  isCreditoreInfo = true;
+                }
+              "
+              >Деньги до зарплаты</a
+            >
             <img
-              class="percent-icon1"
+              class="radiobutton-icon"
               alt=""
-              src="@/assets/images/percent.svg"
+              src="@/assets/images/investore.svg"
             />
-            <div class="div19">Проценты начисляются с 12 апреля 2023 года</div>
           </div>
-          <div class="des-and-bbn">
-            <button class="buttons-tabs" @click="close">
-              <div class="text">Закрыть</div>
-            </button>
+        </div>
+        <div class="frame-parent1">
+          <div class="field-parent">
+            <div class="field">
+              <div class="roi">Ставка:</div>
+              <div class="div9">1% в день</div>
+            </div>
+            <div class="col-titles-bg" />
           </div>
+          <div class="field-parent">
+            <div class="field">
+              <div class="roi">На срок:</div>
+              <div class="div9">до 30 дней</div>
+            </div>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="field-parent">
+            <div class="field">
+              <div class="roi">Беспроцентный период:</div>
+              <div class="div9">3 дня</div>
+            </div>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="field-parent">
+            <div class="field">
+              <div class="roi">Всего ликвидности:</div>
+              <div class="div9">450 000 TON</div>
+            </div>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="field-parent">
+            <div class="field">
+              <div class="roi">Выдано::</div>
+              <div class="div9">769 000 TON</div>
+            </div>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="field-parent">
+            <div class="field">
+              <div class="roi">Займов выдано:</div>
+              <div class="div9">10 574 раз</div>
+            </div>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="field-parent">
+            <div class="field">
+              <div class="roi">Процент невозврата:</div>
+              <div class="div9">4,5%</div>
+            </div>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="field-parent">
+            <div class="field">
+              <div class="roi">Доступно ликвидности:</div>
+              <div class="div9">37 000 TON</div>
+            </div>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="field-parent">
+            <div class="field">
+              <div class="roi">Дата создания:</div>
+              <div class="div9">22. 05. 2023</div>
+            </div>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="field-parent">
+            <div class="field">
+              <div class="roi">Доход:</div>
+              <div class="div9">103 311 TON</div>
+            </div>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="field-wrapper">
+            <div class="field">
+              <div class="roi">ROI инвесторов:</div>
+              <div class="div9">75% годовых</div>
+            </div>
+          </div>
+        </div>
+        <div class="notification">
+          <img class="percent-icon1" alt="" src="@/assets/images/percent.svg" />
+          <div class="div25">Проценты начисляются с 12 апреля 2023 года</div>
+        </div>
+        <div class="des-and-bbn">
+          <button class="button" @click="toLoans">
+            <div class="buttons-tabs">
+              <div class="text">Займы</div>
+            </div>
+          </button>
+          <button class="button" @click="toManagement">
+            <div class="buttons-tabs">
+              <div class="text">Упр. ликвид</div>
+            </div>
+          </button>
+          <button class="button">
+            <div class="buttons-tabs">
+              <div class="text">Аналитика</div>
+            </div>
+          </button>
+          <button class="buttons-tabs3" @click="close">
+            <div class="text">Закрыть</div>
+          </button>
         </div>
       </div>
     </div>
   </div>
+  <creditor-info
+    v-if="isCreditoreInfo"
+    @close="() => (isCreditoreInfo = false)"
+  ></creditor-info>
 </template>
 <script setup lang="ts">
-import catosCheckbox from "@/components/ui-kit/catos-checkbox.vue";
-const emtis = defineEmits(["close"]);
+import { ref } from "vue";
+import creditorInfo from "@/components/base/desktop/creditor-info.vue";
+const emits = defineEmits(["close", "management", "loans"]);
 
+const isCreditoreInfo = ref(false);
+
+const toLoans = () => {
+  emits("loans");
+};
+const toManagement = () => {
+  emits("management");
+};
 const close = () => {
-  emtis("close");
+  emits("close");
 };
 </script>
 <style scoped lang="scss">
@@ -215,24 +277,6 @@ const close = () => {
   align-items: flex-start;
   justify-content: center;
 }
-.icon {
-  position: relative;
-  width: 1.5em;
-  height: 1.5em;
-}
-.div1 {
-  position: relative;
-  font-size: 0.88em;
-  letter-spacing: 0.02em;
-  line-height: 120%;
-}
-.icon-parent {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.5em;
-}
 .ton {
   position: relative;
   font-size: 1em;
@@ -247,7 +291,7 @@ const close = () => {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.div3 {
+.div2 {
   position: relative;
   font-size: 0.75em;
 }
@@ -258,7 +302,7 @@ const close = () => {
   justify-content: flex-start;
   gap: 0.31em;
 }
-.div2 {
+.div1 {
   border-radius: 15px;
   background-color: #fff;
   overflow: hidden;
@@ -282,10 +326,17 @@ const close = () => {
   overflow: hidden;
   flex-shrink: 0;
 }
-.div4 {
+.div3 {
   position: relative;
   font-size: 0.88em;
   line-height: 0.71em;
+}
+.percent-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5em;
 }
 .frame-container {
   display: flex;
@@ -295,7 +346,7 @@ const close = () => {
   gap: 0.75em;
   color: #3b3b3b;
 }
-.group {
+.parent {
   align-self: stretch;
   border-radius: 20px;
   background-color: #f6f4fc;
@@ -307,22 +358,112 @@ const close = () => {
   justify-content: flex-start;
   gap: 0.75em;
 }
-.frame-wrapper {
-  width: 37.5em;
+.c {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 130%;
+}
+.c-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  padding: 0.13em 0em;
   align-items: flex-start;
   justify-content: flex-start;
-  text-align: left;
-  color: #a592dd;
+}
+.colors-graphsorders-icon {
+  position: relative;
+  width: 1em;
+  height: 1em;
+}
+.span {
+  color: rgba(129, 129, 165, 0.4);
+}
+.colors-graphsorders-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.31em;
+}
+.iconchange {
+  position: relative;
+  width: 2.5em;
+  height: 2.5em;
+}
+.status-all {
+  align-self: stretch;
+  border-radius: 8px;
+  background-color: rgba(165, 146, 221, 0.07);
+  width: 13.56em;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  padding: 0em 0em 0em 0.63em;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+}
+.frame-div {
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1em;
+  color: #3b3b3b;
 }
 .frame-group {
+  align-self: stretch;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  gap: 1.25em;
+  color: #a592dd;
+}
+.div6 {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 0.83em;
+}
+.radiobutton-icon {
+  position: relative;
+  width: 1.75em;
+  height: 1.75em;
+}
+.div7 {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 0.83em;
+  font-weight: 300;
+  text-decoration: underline;
+  color: #577ef7;
+  cursor: pointer;
+}
+.radiobutton-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
   gap: 0.63em;
-  color: #1f1f1f;
+}
+.group {
+  align-self: stretch;
+  border-radius: 16px;
+  border: 1px solid #f6f4fc;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  padding: 0.25em 0.81em;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.63em;
+}
+.div9 {
+  position: relative;
+  font-size: 0.88em;
+  line-height: 130%;
 }
 .field {
   align-self: stretch;
@@ -347,23 +488,6 @@ const close = () => {
   justify-content: flex-start;
   gap: 0.63em;
 }
-.span {
-  text-decoration: underline;
-}
-.span1 {
-  color: #3b3b3b;
-}
-.div9 {
-  position: relative;
-  font-size: 0.88em;
-  line-height: 130%;
-  color: rgba(87, 126, 247, 0.96);
-}
-.n {
-  position: relative;
-  font-size: 0.88em;
-  line-height: 130%;
-}
 .roi {
   flex: 1;
   position: relative;
@@ -371,7 +495,14 @@ const close = () => {
   line-height: 130%;
   font-weight: 300;
 }
-.frame-div {
+.field-wrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.frame-parent1 {
   align-self: stretch;
   display: flex;
   flex-direction: column;
@@ -379,7 +510,6 @@ const close = () => {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.5em;
-  text-align: left;
 }
 .percent-icon1 {
   position: relative;
@@ -388,7 +518,7 @@ const close = () => {
   overflow: hidden;
   flex-shrink: 0;
 }
-.div19 {
+.div25 {
   position: relative;
   font-size: 0.75em;
   line-height: 130%;
@@ -404,15 +534,39 @@ const close = () => {
   align-items: center;
   justify-content: flex-start;
   gap: 0.63em;
-  text-align: left;
 }
 .text {
   position: relative;
-  font-size: 0.88em;
+  font-size: 0.88rem;
   line-height: 130%;
   font-weight: 500;
 }
 .buttons-tabs {
+  align-self: stretch;
+  border-radius: 25px;
+  background-color: rgba(87, 126, 247, 0.96);
+  display: flex;
+  flex-direction: row;
+  padding: 0.69em 1.5em;
+  align-items: center;
+  justify-content: center;
+  color: #fefefe;
+  &:hover {
+    background: #3062fd;
+  }
+}
+.button {
+  align-self: stretch;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.buttons-tabs3 {
   flex: 1;
   border-radius: 25px;
   border: 1px solid #5d83f7;
@@ -420,9 +574,10 @@ const close = () => {
   height: 2.5em;
   display: flex;
   flex-direction: row;
-  padding: 0.44em 5.5em;
+
   align-items: center;
   justify-content: center;
+  color: #555562;
   cursor: pointer;
   font-size: 1rem;
   background: transparent;
@@ -441,7 +596,10 @@ const close = () => {
   padding: 0.63em;
   align-items: flex-start;
   justify-content: flex-start;
-  color: #555562;
+  gap: 0.63em;
+  text-align: right;
+  color: #fefefe;
+  width: 600px;
 }
 .frame-parent {
   align-self: stretch;
@@ -453,29 +611,22 @@ const close = () => {
   align-items: center;
   justify-content: flex-start;
   gap: 1.25em;
-  text-align: right;
+  height: 100%;
   overflow-y: auto;
 }
 .div {
-  position: absolute;
-  top: calc(50% - 359.5px);
-  left: calc(50% - 320px);
+  position: relative;
   border-radius: 15px;
   border: 1px solid #f6f4fc;
   box-sizing: border-box;
-  width: 40em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-}
-.parent {
-  position: relative;
-  width: 100%;
-  height: 44.94em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+  width: 640px;
 }
 @media (max-height: 900px) {
   .div {
