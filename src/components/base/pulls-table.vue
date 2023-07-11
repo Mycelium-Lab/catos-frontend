@@ -354,7 +354,7 @@
         <div class="des-and-bbn6">
           <div class="text-and-button-parent">
             <div
-              v-if="variant === 'all' && role === 'creditor'"
+              v-if="variant === 'my' && role === 'creditor'"
               class="text-and-button6"
             >
               <button
@@ -384,7 +384,7 @@
                 </div>
               </button>-->
               <button
-                v-if="role === 'creditor' && variant === 'all'"
+                v-if="role === 'creditor' && variant === 'my'"
                 :class="`buttons-tabs7_${role} buttons-tabs7`"
                 @click.stop="toManageLiquid"
               >
@@ -424,7 +424,7 @@
               >
 
               <button
-                v-if="role === 'creditor' && variant === 'all'"
+                v-if="role === 'creditor' && variant === 'my'"
                 :class="`buttons-tabs7_${role}-${variant} buttons-tabs7_${role} buttons-tabs7`"
                 @click.stop="toDetail"
               >
@@ -450,16 +450,19 @@
   ></detail-personal-desktop>-->
   <all-creditor-pulls
     v-if="isAllCreditor"
-    :state="allCreditorState"
+    @close="() => (isAllCreditor = false)"
+  ></all-creditor-pulls>
+  <my-creditor-pulls
+    v-if="isMyCreditor"
+    :state="myCreditorState"
     @loans="toLoans"
     @close="
       () => {
-        isAllCreditor = false;
-        resetState('all-creditor');
+        isMyCreditor = false;
+        resetState('my-creditor');
       }
     "
-  ></all-creditor-pulls>
-  <my-creditor-pulls v-if="isMyCreditor" @close="() => (isMyCreditor = false)">
+  >
   </my-creditor-pulls>
   <all-borrower-pulls
     v-if="isAllBorrower"
@@ -600,7 +603,7 @@ const isMyDepositor = ref(false);
 const isAllCollector = ref(false);
 const isMyCollector = ref(false);
 
-const allCreditorState = {
+const myCreditorState = {
   detailOtherModal: false,
   manageLiquidModal: false,
 };
@@ -627,9 +630,9 @@ const allCollectorState = {
 
 const resetState = (state: string) => {
   switch (state) {
-    case "all-creditor":
-      allCreditorState.detailOtherModal = false;
-      allCreditorState.manageLiquidModal = false;
+    case "my-creditor":
+      myCreditorState.detailOtherModal = false;
+      myCreditorState.manageLiquidModal = false;
     case "all-borrower":
       allBorrowerState.detailOtherModal = false;
       allBorrowerState.getLoanModal = false;
@@ -646,8 +649,8 @@ const resetState = (state: string) => {
 };
 
 const toManageLiquid = () => {
-  isAllCreditor.value = true;
-  allCreditorState.manageLiquidModal = true;
+  isMyCreditor.value = true;
+  myCreditorState.manageLiquidModal = true;
 };
 
 const toAddLequid = () => {
@@ -672,12 +675,12 @@ const toBuy = () => {
 
 const toDetail = () => {
   if (role === "creditor") {
-    if (variant === "all") {
-      isAllCreditor.value = true;
-      allCreditorState.detailOtherModal = true;
-    }
     if (variant === "my") {
       isMyCreditor.value = true;
+      myCreditorState.detailOtherModal = true;
+    }
+    if (variant === "all") {
+      isAllCreditor.value = true;
     }
   } else if (role === "borrower") {
     if (variant === "all") {
@@ -1072,7 +1075,7 @@ li {
   &_creditor {
     height: 2.4em;
     &-my {
-      height: 3em;
+      height: 2.4em;
     }
   }
 }
@@ -1146,7 +1149,7 @@ li {
 .desctopverpull-stats-parent {
   position: relative;
   width: 100%;
-  height: 29em;
+  height: 31.8em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
@@ -1157,7 +1160,7 @@ li {
     height: 44em;
   }
   &_creditor-my {
-    height: 31em;
+    height: 34em;
   }
   &_borrower-all {
     height: 33em;
