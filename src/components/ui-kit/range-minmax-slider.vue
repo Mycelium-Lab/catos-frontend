@@ -1,15 +1,32 @@
 <template>
   <div class="minmax-inputs">
     <div
-      :class="inputLabel ? `min-input_${inputLabel} min-input` : 'min-input'"
+      :class="
+        desktop
+          ? `min-input_desktop min-input_${inputLabel} min-input`
+          : inputLabel
+          ? `min-input_${inputLabel} min-input`
+          : 'min-input'
+      "
     >
-      {{ inputLabel === "percent" ? `${parseMin}%` : parseMin }}
+      <label :class="desktop ? 'label' : ''">
+        {{ inputLabel === "percent" ? `${parseMin}%` : parseMin }}
+      </label>
       <input type="number" :step="step" v-model="sliderMinValue" readonly />
     </div>
     <div
-      :class="inputLabel ? `max-input_${inputLabel} max-input` : 'max-input'"
+      :class="
+        desktop
+          ? `max-input_desktop max-input_${inputLabel} max-input_${inputLabel} max-input`
+          : inputLabel
+          ? `max-input_${inputLabel} max-input`
+          : 'max-input'
+      "
     >
-      {{ inputLabel === "percent" ? `${parseMax}%` : parseMax }}
+      <label :class="desktop ? 'label' : ''">
+        {{ inputLabel === "percent" ? `${parseMax}%` : parseMax }}
+      </label>
+
       <input type="number" :step="step" v-model="sliderMaxValue" readonly />
     </div>
   </div>
@@ -72,6 +89,10 @@ const { min, max, step, minValue, maxValue, inputLabel } = defineProps({
   },
   inputLabel: {
     type: String,
+  },
+  desktop: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -155,7 +176,7 @@ const handle = (target: any) => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .slider-cont {
   width: 300px;
 }
@@ -227,6 +248,7 @@ const handle = (target: any) => {
   margin: 0.8rem 0;
   --progressLeft: 0%;
   --progressRight: 0%;
+  width: 100%;
 }
 
 .custom-slider.minmax input[type="range"] {
@@ -252,6 +274,7 @@ const handle = (target: any) => {
 .minmax-inputs {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .minmax-inputs input {
@@ -279,12 +302,18 @@ const handle = (target: any) => {
   font-size: 15.273px;
   padding: 6px 24px 6px 24px;
   gap: 3vw;
+  &_desktop {
+    width: 160px;
+  }
 }
 .min-input {
   gap: 3vw;
 }
 .max-input_ton::after {
   content: "TON";
+}
+.max-input_cat::after {
+  content: "CAT";
 }
 .max-input_percent::before {
   content: "до";
@@ -295,11 +324,17 @@ const handle = (target: any) => {
 .max-input_day::before {
   content: "до";
 }
+.max-input_depositor::before {
+  content: "до";
+}
 .max-input_day::after {
   content: "дней";
 }
 .min-input_ton::after {
   content: "TON";
+}
+.min-input_cat::after {
+  content: "CAT";
 }
 .min-input_percent::after {
   content: "мин";
@@ -313,6 +348,9 @@ const handle = (target: any) => {
 .min-input_day::before {
   content: "от";
 }
+.min-input_depositor::before {
+  content: "от";
+}
 .max-input::after,
 .max-input::before,
 .min-input::after,
@@ -324,12 +362,28 @@ const handle = (target: any) => {
 .min-input::after {
   right: 6vw;
 }
+.max-input_desktop::after {
+  right: 1em;
+}
+.min-input_desktop::after {
+  right: 1em;
+}
 .max-input::before,
 .min-input::before {
   left: 6.5vw;
 }
+.max-input_desktop::before {
+  left: 1em;
+}
+.min-input_desktop::before {
+  left: 1em;
+}
 .min-input::before {
   position: absolute;
   color: rgba(46, 58, 89, 0.4);
+}
+.label {
+  position: relative;
+  left: 0.8em;
 }
 </style>

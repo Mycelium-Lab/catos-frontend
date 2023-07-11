@@ -220,6 +220,7 @@ watch(isOpen, () => {
   width: 100%;
   font-size: 1em;
   background: transparent;
+  cursor: pointer;
   &_fill {
     color: rgba(46, 58, 89, 1);
   }

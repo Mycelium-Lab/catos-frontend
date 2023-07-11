@@ -1,14 +1,15 @@
 <template>
-  <div>
+  <div :class="desktop ? 'chips-wrapper' : 'chips-wrapper_mobile'">
     <span class="choise-title"> Выбор сортировки: </span>
     <ul class="sort-list">
       <li class="chips_add chips">
         <div class="edit-field">Создать</div>
         <img
+          class="chip-icon"
           src="@/assets/images/iconsadd.svg"
           @click="
             () => {
-              activeEdit(true);
+              desktop ? handleEdit(true) : activeEdit(true);
               activeChip = -1;
             }
           "
@@ -25,7 +26,8 @@
           {{ chip }}
         </div>
         <img
-          @click="() => activeEdit(false)"
+          class="chip-icon"
+          @click="() => (desktop ? handleEdit(true) : activeEdit(true))"
           :src="`/src/assets/images/iconseditoutline-${
             activeChip === i ? 'white.svg' : 'black.svg'
           }`"
@@ -33,12 +35,32 @@
       </li>
     </ul>
   </div>
+
+  <edit-filter-window
+    v-if="isEdit && desktop"
+    isCreateMode
+    @close="() => (isEdit = false)"
+  ></edit-filter-window>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 const chips = ["Транзакция 2", "Сортировка 1"];
 const activeChip = ref(-1);
+const isEdit = ref(false);
+const isCreateMode = ref(false);
+import editFilterWindow from "../base/desktop/edit-filter-window.vue";
+
+const { desktop } = defineProps({
+  desktop: { type: Boolean, default: false },
+});
+
+const handleEdit = (isCreate: any) => {
+  if (isCreate) {
+    isCreateMode.value = true;
+  }
+  isEdit.value = true;
+};
 const emit = defineEmits(["onEdit"]);
 
 const activeEdit = (isCreate: any) => {
@@ -106,6 +128,18 @@ const activeEdit = (isCreate: any) => {
   margin: 0 auto;
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0px 12px 12px rgba(151, 71, 255, 0.04);
+}
+.chips-wrapper_mobile {
+  margin-top: 60px;
+}
+.chip-icon {
+  cursor: pointer;
+}
+.chips-wrapper_mobile {
+  width: 90vw;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 3.8em;
 }
 @media (min-width: 500px) {
   .sort-list {
