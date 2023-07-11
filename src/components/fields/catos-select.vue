@@ -32,6 +32,8 @@
       :class="
         top
           ? 'catos-select__options_top catos-select__options'
+          : sticky
+          ? 'catos-select__options_sticky catos-select__options'
           : 'catos-select__options'
       "
     >
@@ -122,6 +124,10 @@ const { placeholder } = defineProps({
     type: Boolean,
     default: false,
   },
+  sticky: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits(["selected"]);
@@ -183,10 +189,14 @@ watch(isOpen, () => {
   display: flex;
   flex-direction: column;
   overflow: scroll;
+  //position: sticky;
   position: absolute;
   z-index: 1000;
   background: #fff;
   top: 3.3em;
+  &_sticky {
+    position: sticky;
+  }
   &_top {
     top: -27.3em;
   }

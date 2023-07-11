@@ -13,39 +13,39 @@
         </div>
       </div>
       <div class="field-info-parent">
-        <div class="field-info">
-          <div class="fieldsinputchoise">
-            <div class="title">Выберите тип счёта:</div>
-            <catos-select
-              placeholder="Россия"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
-              :optionWidthDesk="395"
-              :style="{ width: '100%' }"
-            ></catos-select>
-          </div>
+        <div class="fieldsinputchoise">
+          <div class="title">Выберите тип счёта:</div>
+          <catos-select
+            placeholder="Россия"
+            :options="options"
+            :value="value"
+            @selected="ev => (value = ev)"
+            :optionWidthDesk="395"
+            :style="{ width: '100%' }"
+            sticky
+          ></catos-select>
         </div>
-        <div class="field-info">
-          <div class="fieldsinputchoise">
-            <div class="title">Выберите криптовалюту для получения оплаты.</div>
-            <catos-select
-              placeholder="Россия"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
-              :optionWidthDesk="395"
-              :style="{ width: '100%' }"
-            ></catos-select>
-          </div>
+
+        <div class="fieldsinputchoise">
+          <div class="title">Выберите криптовалюту для получения оплаты.</div>
+          <catos-select
+            placeholder="Россия"
+            :options="options"
+            :value="value"
+            @selected="ev => (value = ev)"
+            :optionWidthDesk="395"
+            :style="{ width: '100%' }"
+            sticky
+          ></catos-select>
         </div>
+
         <div class="frame-group">
           <div class="fieldsinput-parent">
             <div class="fieldsinput">
               <div class="div3">Укажите сумму:</div>
               <input-data :style="{ width: '100%', margin: '0' }"></input-data>
             </div>
-            <div class="title-wrapper">
+            <div class="title-wrapper_create-accounts">
               <div class="title">(≈1 456 USD)</div>
             </div>
           </div>
@@ -277,7 +277,7 @@ const options = {
   font-size: 0.75em;
   line-height: 130%;
 }
-.title-wrapper {
+.title-wrapper_create-accounts {
   width: 18.75em;
   display: flex;
   flex-direction: row;
