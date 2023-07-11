@@ -743,7 +743,8 @@ const role = computed(() => window.history.state?.role);
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 48.25em;
+  height: 60.25em;
+  overflow-y: hidden;
 }
 .b1 {
   position: relative;
@@ -957,8 +958,8 @@ const role = computed(() => window.history.state?.role);
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 60.5em;
-  overflow-y: auto;
+  height: 70.25em;
+  overflow-y: hidden;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
@@ -990,10 +991,10 @@ const role = computed(() => window.history.state?.role);
     left: 0em;
     top: 58em;
   }
-  .form-registration-16,
+  /*.form-registration-16,
   .iphone-13-13- {
     height: 100%;
-  }
+  }*/
   .div19,
   .div20 {
     font-size: 14px;
