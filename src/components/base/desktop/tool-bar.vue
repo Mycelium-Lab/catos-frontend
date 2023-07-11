@@ -16,7 +16,7 @@
         <span class="span" @click="() => (isFilter = true)">(1)</span>
       </div>
     </div>
-    <div class="filter-container">
+    <div v-if="variant !== 'bids'" class="filter-container">
       <img
         class="menu-2-icon"
         alt=""

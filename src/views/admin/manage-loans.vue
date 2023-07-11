@@ -12,18 +12,7 @@
           <img src="@/assets/images/iconssearch.svg" width="20" alt="" />
         </template>
       </input-data>
-      <div class="menu-2-parent">
-        <img class="iconscalendar" alt="" src="@/assets/desktop/filter.svg" />
-        <div class="div1">
-          <span>Фильтр </span>
-          <span class="span">(1)</span>
-        </div>
-        <img class="iconscalendar" alt="" src="@/assets/desktop/sort.svg" />
-        <div class="div1">
-          <span>Сортировка </span>
-          <span class="span">(1)</span>
-        </div>
-      </div>
+      <tool-bar></tool-bar>
     </template>
     <template v-slot:body>
       <div class="rectangle-group_desktop rectangle-group">
@@ -80,6 +69,7 @@ import defaultDesktopAdmin from "@/components/layouts/default-desktop-admin.vue"
 import inputData from "@/components/fields/input-data.vue";
 //@ts-ignore
 import loansAdminTable from "@/components/admin/desktop/loans-admin-table.vue";
+import ToolBar from "@/components/base/desktop/tool-bar.vue";
 
 const activeIndex = ref(0);
 const currentUsers = ref("new");

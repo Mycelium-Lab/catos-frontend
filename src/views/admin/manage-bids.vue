@@ -19,13 +19,7 @@
           <img src="@/assets/images/iconssearch.svg" width="20" alt="" />
         </template>
       </input-data>
-      <div class="menu-2-parent">
-        <img class="iconscalendar" alt="" src="@/assets/desktop/sort.svg" />
-        <div class="div1">
-          <span>Фильтр </span>
-          <span class="span">(1)</span>
-        </div>
-      </div>
+      <tool-bar variant="bids"></tool-bar>
     </template>
     <template v-slot:body>
       <div class="rectangle-group_desktop rectangle-group">
@@ -53,6 +47,7 @@ import defaultDesktopAdmin from "@/components/layouts/default-desktop-admin.vue"
 import multiButtonSlider from "@/components/ui-kit/buttons/multi-button-slider.vue";
 import inputData from "@/components/fields/input-data.vue";
 import bidsAdminTable from "@/components/admin/desktop/bids-admin-table.vue";
+import ToolBar from "@/components/base/desktop/tool-bar.vue";
 
 const currentWindow = ref("borrower");
 const handleSlide = (index: any) => {

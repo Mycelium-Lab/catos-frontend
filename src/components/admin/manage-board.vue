@@ -354,15 +354,19 @@ const isSuccessChangePassword = ref(false);
 
 const router = useRouter();
 const toManageBids = () => {
+  localStorage.setItem("manage", JSON.stringify("bids"));
   router.push({ name: "manage-bids" });
 };
 const toManageUser = () => {
+  localStorage.setItem("manage", JSON.stringify("user"));
   router.push({ name: "manage-user" });
 };
 const toManagePulls = () => {
+  localStorage.setItem("manage", JSON.stringify("pulls"));
   router.push({ name: "manage-pulls" });
 };
 const toManageLoans = () => {
+  localStorage.setItem("manage", JSON.stringify("loans"));
   router.push({ name: "manage-loans" });
 };
 

@@ -1,7 +1,15 @@
 <template>
   <div class="modal-wrapper">
     <div class="filter-parent">
-      <div class="filter">
+      <div
+        :class="
+          manage === 'pulls'
+            ? 'filter_manage-pulls filter'
+            : manage === 'bids'
+            ? 'filter_manage-bids filter'
+            : 'filter'
+        "
+      >
         <div class="rectangle-parent">
           <div class="frame-child" />
           <div class="header-pop-up">
@@ -33,6 +41,7 @@
                 ></catos-select>
               </div>
               <div
+                v-if="role === 'collector'"
                 :style="{
                   display: 'flex',
                   width: '100%',
@@ -71,6 +80,261 @@
                   ></catos-select>
                 </div>
               </div>
+
+              <!--Admin - user and Admin - bids-->
+              <div
+                v-if="
+                  role === 'admin' && (manage === 'user' || manage === 'bids')
+                "
+                :style="{
+                  display: 'flex',
+                  width: '100%',
+                  justifyContent: 'space-between',
+                  gap: '1.88em',
+                }"
+              >
+                <div
+                  v-if="
+                    role === 'admin' && (manage === 'user' || manage === 'bids')
+                  "
+                  :style="{ width: '100%' }"
+                  class="fieldsinputchoise"
+                >
+                  <div class="div1">Роли:</div>
+                  <catos-select
+                    placeholder="Catos"
+                    :options="options"
+                    :value="valueRoles"
+                    :style="{ width: '100%' }"
+                    :optionWidthDesk="340"
+                    @selected="ev => (valueRoles = ev)"
+                  ></catos-select>
+                </div>
+                <div :style="{ width: '100%' }" class="fieldsinputchoise">
+                  <div class="div1">Статусу:</div>
+                  <catos-select
+                    placeholder="Catos"
+                    :options="options"
+                    :value="value"
+                    :style="{ width: '100%' }"
+                    :optionWidthDesk="340"
+                    @selected="ev => (value = ev)"
+                  ></catos-select>
+                </div>
+              </div>
+              <div
+                v-if="
+                  role === 'admin' && (manage === 'user' || manage === 'bids')
+                "
+                :style="{
+                  display: 'flex',
+                  width: '100%',
+                  justifyContent: 'space-between',
+                  gap: '1.88em',
+                }"
+              >
+                <div
+                  v-if="
+                    role === 'admin' && (manage === 'user' || manage === 'bids')
+                  "
+                  :style="{ width: '50%' }"
+                  class="fieldsinputchoise"
+                >
+                  <div class="div1">Стране:</div>
+                  <catos-select
+                    placeholder="Catos"
+                    :options="options"
+                    :value="valuePlace"
+                    :style="{ width: '100%' }"
+                    :optionWidthDesk="340"
+                    @selected="ev => (valuePlace = ev)"
+                  ></catos-select>
+                </div>
+                <div
+                  :style="{
+                    width: '50%',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                  }"
+                  class="fieldsinputchoise"
+                  v-if="
+                    role === 'admin' && (manage === 'user' || manage === 'bids')
+                  "
+                >
+                  <div
+                    :style="{
+                      gap: '0.63em',
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }"
+                  >
+                    <div class="div1">По дате регистрации:</div>
+
+                    <input-data
+                      type="date"
+                      placeholder="01.02.2022"
+                      :style="{ width: '100%' }"
+                    ></input-data>
+                  </div>
+
+                  <div
+                    :style="{
+                      gap: '0.63em',
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }"
+                  >
+                    <div class="div1" :style="{ visibility: 'hidden' }">
+                      По дате регистрации:
+                    </div>
+                    <input-data
+                      type="date"
+                      placeholder="01.02.2022"
+                      :style="{ width: '100%' }"
+                    ></input-data>
+                  </div>
+                </div>
+              </div>
+
+              <!--Admin - pulls-->
+
+              <div
+                v-if="role === 'admin' && manage === 'pulls'"
+                :style="{ width: '100%' }"
+                class="fieldsinputchoise"
+              >
+                <div class="div1">Роли:</div>
+                <catos-select
+                  placeholder="Catos"
+                  :options="options"
+                  :value="valueRoles"
+                  :style="{ width: '100%' }"
+                  :optionWidthDesk="710"
+                  @selected="ev => (valueRoles = ev)"
+                ></catos-select>
+              </div>
+
+              <div
+                v-if="role === 'admin' && manage === 'pulls'"
+                :style="{
+                  display: 'flex',
+                  width: '100%',
+                  justifyContent: 'space-between',
+                  gap: '1.88em',
+                }"
+              >
+                <div
+                  v-if="role === 'admin' && manage === 'pulls'"
+                  :style="{ width: '100%' }"
+                  class="fieldsinputchoise"
+                >
+                  <div class="div1">Стране:</div>
+                  <catos-select
+                    placeholder="Catos"
+                    :options="options"
+                    :value="valuePlace"
+                    :style="{ width: '100%' }"
+                    :optionWidthDesk="340"
+                    @selected="ev => (valuePlace = ev)"
+                  ></catos-select>
+                </div>
+                <div
+                  :style="{ width: '100%' }"
+                  class="fieldsinputchoise"
+                  v-if="role === 'admin' && manage === 'pulls'"
+                >
+                  <div class="div1">По дате регистрации:</div>
+                  <input-data
+                    type="date"
+                    placeholder="01.02.2022"
+                    :style="{ width: '100%' }"
+                  ></input-data>
+                </div>
+              </div>
+
+              <!--Admin - loans-->
+              <div
+                v-if="role === 'admin' && manage === 'loans'"
+                :style="{
+                  display: 'flex',
+                  width: '100%',
+                  justifyContent: 'space-between',
+                  gap: '1.88em',
+                }"
+              >
+                <div
+                  v-if="role === 'admin' && manage === 'loans'"
+                  :style="{ width: '100%' }"
+                  class="fieldsinputchoise"
+                >
+                  <div class="div1">Заемщику:</div>
+                  <catos-select
+                    placeholder="Catos"
+                    :options="options"
+                    :value="valueLoans"
+                    :style="{ width: '100%' }"
+                    :optionWidthDesk="340"
+                    @selected="ev => (valueLoans = ev)"
+                  ></catos-select>
+                </div>
+                <div
+                  v-if="role === 'admin' && manage === 'loans'"
+                  :style="{ width: '100%' }"
+                  class="fieldsinputchoise"
+                >
+                  <div class="div1">Токену:</div>
+                  <catos-select
+                    placeholder="Catos"
+                    :options="options"
+                    :value="valueToken"
+                    :style="{ width: '100%' }"
+                    :optionWidthDesk="340"
+                    @selected="ev => (valueToken = ev)"
+                  ></catos-select>
+                </div>
+              </div>
+              <div
+                v-if="role === 'admin' && manage === 'loans'"
+                :style="{
+                  display: 'flex',
+                  width: '100%',
+                  justifyContent: 'space-between',
+                  gap: '1.88em',
+                }"
+              >
+                <div
+                  v-if="role === 'admin' && manage === 'loans'"
+                  :style="{ width: '100%' }"
+                  class="fieldsinputchoise"
+                >
+                  <div class="div1">Токену:</div>
+                  <catos-select
+                    placeholder="Catos"
+                    :options="options"
+                    :value="value"
+                    :style="{ width: '100%' }"
+                    :optionWidthDesk="340"
+                    @selected="ev => (value = ev)"
+                  ></catos-select>
+                </div>
+                <div
+                  v-if="role === 'admin' && manage === 'loans'"
+                  :style="{ width: '100%' }"
+                  class="fieldsinputchoise"
+                >
+                  <div class="div1">Статусу:</div>
+                  <catos-select
+                    placeholder="Catos"
+                    :options="options"
+                    :value="valueStatus"
+                    :style="{ width: '100%' }"
+                    :optionWidthDesk="340"
+                    @selected="ev => (valueStatus = ev)"
+                  ></catos-select>
+                </div>
+              </div>
+              <!---->
 
               <div v-if="role === 'borrower'" class="frame-group">
                 <div class="instance-parent">
@@ -261,6 +525,140 @@
                   </div>
                 </div>
               </div>
+              <div
+                v-else-if="role === 'admin' && manage === 'user'"
+                class="frame-group"
+                :style="{ width: '712px' }"
+              >
+                <div class="instance-parent" :style="{ width: '100%' }">
+                  <div class="group" :style="{ width: '100%' }">
+                    <div class="div6">Стоимости займа:</div>
+
+                    <range-minmax-slider
+                      :max="3000"
+                      v-model:min-value="sliderMinDbt"
+                      v-model:max-value="sliderMaxDbt"
+                      inputLabel="ton"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                </div>
+              </div>
+
+              <!--Admin Pulls-->
+              <div
+                v-else-if="role === 'admin' && manage === 'pulls'"
+                class="frame-group"
+              >
+                <div class="instance-parent">
+                  <div class="group">
+                    <div class="div6">Беспроцентному периоду:</div>
+
+                    <range-minmax-slider
+                      :max="30"
+                      v-model:min-value="sliderMinCost"
+                      v-model:max-value="sliderMaxCost"
+                      inputLabel="percent"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                  <div class="group">
+                    <div class="div6">Количеству выданных займов:</div>
+                    <range-minmax-slider
+                      :max="3650"
+                      v-model:min-value="sliderMinDepositor"
+                      v-model:max-value="sliderMaxDepositor"
+                      inputLabel="depositor"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                </div>
+                <div class="instance-parent">
+                  <div class="parent1">
+                    <div class="div6">Дневной ставки:</div>
+                    <range-minmax-slider
+                      :max="30"
+                      v-model:min-value="sliderMinRange"
+                      v-model:max-value="sliderMaxRange"
+                      inputLabel="percent"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                  <div class="parent1">
+                    <div class="div6">Проценту не возврата:</div>
+                    <range-minmax-slider
+                      :max="100"
+                      v-model:min-value="sliderMinNotReturn"
+                      v-model:max-value="sliderMaxNotReturn"
+                      inputLabel="percent"
+                      desktop
+                    ></range-minmax-slider>
+                  </div>
+                </div>
+              </div>
+              <!--Admin Loans-->
+              <div
+                v-if="role === 'admin' && manage === 'loans'"
+                :style="{
+                  display: 'flex',
+                  width: '100%',
+                  justifyContent: 'space-between',
+                  gap: '1.88em',
+                }"
+              >
+                <div
+                  v-if="role === 'admin' && manage === 'loans'"
+                  :style="{ width: '100%' }"
+                  class="fieldsinputchoise"
+                >
+                  <div class="div1">По дате выдачи:</div>
+                  <input-data
+                    type="date"
+                    placeholder="01.02.2022"
+                    :style="{ width: '100%' }"
+                  ></input-data>
+                </div>
+                <div
+                  :style="{ width: '100%' }"
+                  class="fieldsinputchoise"
+                  v-if="role === 'admin' && manage === 'loans'"
+                >
+                  <div :style="{ visibility: 'hidden' }" class="div1">
+                    По дате регистрации:
+                  </div>
+                  <input-data
+                    type="date"
+                    placeholder="01.02.2022"
+                    :style="{ width: '100%' }"
+                  ></input-data>
+                </div>
+                <div
+                  :style="{ width: '100%' }"
+                  class="fieldsinputchoise"
+                  v-if="role === 'admin' && manage === 'loans'"
+                >
+                  <div class="div1">По смене статуса:</div>
+                  <input-data
+                    type="date"
+                    placeholder="01.02.2022"
+                    :style="{ width: '100%' }"
+                  ></input-data>
+                </div>
+                <div
+                  :style="{ width: '100%' }"
+                  class="fieldsinputchoise"
+                  v-if="role === 'admin' && manage === 'loans'"
+                >
+                  <div :style="{ visibility: 'hidden' }" class="div1">
+                    По дате регистрации:
+                  </div>
+                  <input-data
+                    type="date"
+                    placeholder="01.02.2022"
+                    :style="{ width: '100%' }"
+                  ></input-data>
+                </div>
+              </div>
             </div>
           </div>
           <div class="buttonnext-parent">
@@ -277,6 +675,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import chipsBar from "../ui-kit/chips-bar.vue";
+import inputData from "../fields/input-data.vue";
 
 import catosSelect from "../fields/catos-select.vue";
 import rangeMinmaxSlider from "../ui-kit/range-minmax-slider.vue";
@@ -284,9 +683,16 @@ import rangeMinmaxSlider from "../ui-kit/range-minmax-slider.vue";
 const role = computed(() => {
   return JSON.parse(localStorage.getItem("role") || "{}");
 });
+const manage = computed(() => {
+  return JSON.parse(localStorage.getItem("manage") || "{}");
+});
 
 const value = ref("");
 const valuePlace = ref("");
+const valueRoles = ref("");
+const valueLoans = ref("");
+const valueStatus = ref("");
+const valueToken = ref("");
 
 const options = ["Россия", "Украина", "Казахстан", "Белорусь"];
 const emtis = defineEmits(["close"]);
@@ -299,17 +705,23 @@ const sliderMaxOverdue = ref(365);
 const sliderMinDbt = ref(0);
 const sliderMaxDbt = ref(3000);
 const sliderMinRange = ref(
-  role.value === "depositor" || role.value === "collector" ? 1 : 0.1
+  role.value === "depositor" ||
+    role.value === "collector" ||
+    manage.value === "pulls"
+    ? 1
+    : 0.1
 );
 const sliderMaxRange = ref(30);
 const sliderMinCost = ref(0.1);
 const sliderMaxCost = ref(30);
 const sliderMinReturn = ref(0.1);
 const sliderMaxReturn = ref(30);
+const sliderMinNotReturn = ref(0.1);
+const sliderMaxNotReturn = ref(100);
 const sliderMinDepositor = ref(1);
 const sliderMaxDepositor = ref(3650);
 </script>
-<style scoped>
+<style scoped lang="scss">
 .modal-wrapper {
   position: fixed;
   display: flex;
@@ -556,6 +968,7 @@ const sliderMaxDepositor = ref(3650);
   justify-content: flex-start;
   gap: 1.75em;
   color: #3b3b3b;
+  width: 100%;
 }
 .parent {
   display: flex;
@@ -563,6 +976,7 @@ const sliderMaxDepositor = ref(3650);
   align-items: flex-start;
   justify-content: flex-start;
   gap: 1.88em;
+  width: 100%;
 }
 .ton-kepeer {
   position: relative;
@@ -611,6 +1025,7 @@ const sliderMaxDepositor = ref(3650);
   align-items: center;
   justify-content: flex-start;
   gap: 2.25em;
+  width: 100%;
   color: #2e3a59;
 }
 .filter {
@@ -624,6 +1039,12 @@ const sliderMaxDepositor = ref(3650);
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  &_manage-pulls {
+    top: -50px;
+  }
+  &_manage-bids {
+    width: 752px;
+  }
 }
 .filter-parent {
   position: relative;
