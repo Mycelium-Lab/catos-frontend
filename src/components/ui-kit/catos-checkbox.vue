@@ -40,7 +40,7 @@
   >
     <img src="../../assets/images/ui-kit/radiobutton.svg" alt="radiobutton" />
     <img
-      v-if="checked"
+      v-if="checked || select"
       class="check-mark catos__radiobutton_acive"
       src="../../assets/images/ui-kit/radiobutton-active.svg"
       alt="ckecked radiobutton"
