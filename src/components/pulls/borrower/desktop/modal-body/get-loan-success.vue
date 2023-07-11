@@ -590,7 +590,6 @@ const close = () => {
   width: 0.63em;
 }
 .frame-container {
-  height: 46em;
   overflow: hidden;
   flex-shrink: 0;
   display: flex;
