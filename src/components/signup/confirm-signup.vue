@@ -1403,7 +1403,7 @@ const role = computed(() => window.history.state?.role);
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 38.88em;
+  height: 48.88em;
 }
 .div67 {
   position: absolute;
@@ -1583,7 +1583,7 @@ const role = computed(() => window.history.state?.role);
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 800px;
+  height: 60em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
@@ -1605,7 +1605,7 @@ const role = computed(() => window.history.state?.role);
   .fieldsregistration-options4 {
     top: 10.44em;
   }
-  .iphone-13-13-,
+
   .form-registration-26 {
     height: 100%;
   }
