@@ -81,7 +81,7 @@
       ></multi-button-slider>
     </template>
     <template v-slot:tools>
-      <input-data :style="{ width: '418px' }" placeholder="Поиск" :left="true">
+      <input-data :style="{ width: '380px' }" placeholder="Поиск" :left="true">
         <template v-slot:left-icon>
           <img
             :style="{ width: '20px', height: '20px' }"
@@ -207,6 +207,8 @@ ul {
   justify-content: flex-start;
   gap: 1.88em;
   text-align: left;
+  position: relative;
+  top: -2.5em;
 }
 .col-titles-bg {
   position: absolute;

@@ -46,6 +46,16 @@
       }
     "
   ></repaid-detail>
+  <overdue-detail
+    v-if="isDetail && status == 'overdue'"
+    @close="close"
+    @blank="
+      () => {
+        isDetail = false;
+        isBlank = true;
+      }
+    "
+  ></overdue-detail>
   <status-manage v-if="isStatusManage" @close="close" :status="status">
     <status-change v-if="isStatusChange" @close="close"></status-change>
   </status-manage>
@@ -102,6 +112,7 @@ import expose from "./modal-body/expose.vue";
 import sellOut from "./modal-body/sell-out.vue";
 import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
 import RepaidDetail from "./modal-body/repaid-detail.vue";
+import OverdueDetail from "./modal-body/overdue-detail.vue";
 
 const { state } = defineProps({
   state: {

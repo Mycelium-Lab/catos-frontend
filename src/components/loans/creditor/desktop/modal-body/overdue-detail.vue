@@ -14,18 +14,15 @@
                   <img
                     class="colors-graphsorders-icon"
                     alt=""
-                    src="@/assets/images/colors-graphsorders1.svg"
+                    src="@/assets/images/colors-graphsorders3.svg"
                   />
-                  <div class="div">Погашен</div>
+                  <div class="div">Просрочен повторно</div>
                 </div>
                 <img
                   class="iconchange"
                   alt=""
                   src="@/assets/images/iconchange.svg"
                 />
-              </div>
-              <div class="container">
-                <div class="div">Снять с продажи</div>
               </div>
             </div>
           </div>
@@ -108,6 +105,28 @@
                 <p class="p1">
                   <span>
                     <span>(закончен)</span>
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div class="notification">
+              <img
+                class="alert-triangle-icon"
+                alt=""
+                src="@/assets/images/alerttriangle.svg"
+              />
+              <div class="div">
+                <p class="p">
+                  <span>
+                    <span class="span"
+                      >Вернуть не позднее: до 13.02.22, 16:00
+                    </span>
+                    ы
+                  </span>
+                </p>
+                <p class="p1">
+                  <span>
+                    <span :style="{ color: 'red' }">(просрочен повторно)</span>
                   </span>
                 </p>
               </div>

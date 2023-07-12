@@ -19,11 +19,6 @@
                     />
                     <div class="div">Продается</div>
                   </div>
-                  <img
-                    class="iconchange"
-                    alt=""
-                    src="@/assets/images/iconchange.svg"
-                  />
                 </div>
               </div>
             </div>
@@ -167,11 +162,6 @@
                       </div>
                     </div>
                   </div>
-                  <catos-button
-                    variant="fourth"
-                    :style="{ width: '100%', margin: '0' }"
-                    >Изменить одобренную сумму</catos-button
-                  >
                 </div>
               </div>
             </div>
@@ -238,9 +228,8 @@ const close = () => {
   height: 2.5em;
 }
 .status-all {
-  flex: 1;
   border-radius: 8px;
-  background-color: rgba(165, 146, 221, 0.07);
+
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -258,7 +247,7 @@ const close = () => {
   flex-direction: row;
   padding: 0.5em 0.5em 0.5em 1.31em;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 3em;
 }
 .frame-container {
