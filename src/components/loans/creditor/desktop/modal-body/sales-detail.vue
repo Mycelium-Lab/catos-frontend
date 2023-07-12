@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title> Заявка на займ #12346 </template>
+    <template v-slot:title> Просроченная заявка на займ #12346 </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -33,18 +33,6 @@
                       :style="{ width: '100%', margin: '0' }"
                     ></input-data>
                   </div>
-                  <div class="min-10-ton-parent">
-                    <div class="min-10-ton-container">
-                      <span>Min:</span>
-                      <span class="span3"> </span>
-                      <span class="ton1">10 TON</span>
-                    </div>
-                    <div class="min-10-ton-container">
-                      <span>Max:</span>
-                      <span class="span3"> </span>
-                      <span class="ton1">257 324 TON</span>
-                    </div>
-                  </div>
                 </div>
                 <catos-button
                   variant="fourth"
@@ -56,6 +44,11 @@
                 <div class="frame-wrapper1">
                   <div class="component-parent">
                     <div class="fieldsinput-parent">
+                      <div class="field">
+                        <div class="div4"><b>Цена:</b></div>
+                        <div class="div5"><b>4000 TON</b></div>
+                      </div>
+                      <div class="col-titles-bg" />
                       <div class="field">
                         <div class="div4">Ставка:</div>
                         <div class="div5">1% в день</div>

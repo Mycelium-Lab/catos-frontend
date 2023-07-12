@@ -26,9 +26,6 @@
                       src="@/assets/images/iconchange.svg"
                     />
                   </div>
-                  <div class="container">
-                    <div class="div">Снять с продажи</div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -102,12 +99,12 @@
               </div>
               <div class="min-10-ton-parent">
                 <div class="min-10-ton-container">
-                  <span>Min:</span>
+                  <span>Min: </span>
                   <span class="span3"> </span>
                   <span class="ton1">10 TON</span>
                 </div>
                 <div class="min-10-ton-container">
-                  <span>Max:</span>
+                  <span>Max: </span>
                   <span class="span3"> </span>
                   <span class="ton1">257 324 TON</span>
                 </div>
@@ -164,7 +161,7 @@ const close = () => {
 }
 .iconchange {
   position: relative;
-  width: 2.5em;
+  width: 1.8em;
   height: 2.5em;
 }
 .status-all {

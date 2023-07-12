@@ -218,14 +218,26 @@
         </div>
         <div v-if="role === 'creditor'" class="field-parent">
           <div class="field">
-            <div class="div2">Одобренный период:</div>
-            <div class="ton">2 месяца</div>
+            <template v-if="variant === 'marketplace'">
+              <div class="div2">
+                <b> Цена продажи:</b>
+              </div>
+              <div class="ton">
+                <b> 4000 TON</b>
+              </div>
+            </template>
+            <template v-else>
+              <div class="div2">Одобренный период</div>
+              <div class="ton">2 месяца</div>
+            </template>
           </div>
           <div class="col-titles-bg" />
         </div>
         <div v-if="role === 'creditor'" class="field-parent">
           <div class="field">
-            <div class="div2">Одобренная сумма:</div>
+            <div class="div2">
+              {{ variant === "marketplace" ? "Долг" : "Одобренная сумма" }}:
+            </div>
             <div class="ton">4 000 TON</div>
           </div>
           <div class="col-titles-bg" />

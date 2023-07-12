@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title> Заявка на займ #12346 </template>
+    <template v-slot:title> Просроченная заявка на займ #12346 </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-wrapper">
@@ -28,6 +28,11 @@
               <div class="frame-wrapper2">
                 <div class="component-parent">
                   <div class="component">
+                    <div class="field">
+                      <div class="div2"><b>Цена:</b></div>
+                      <div class="div3"><b>4000 TON</b></div>
+                    </div>
+                    <div class="col-titles-bg" />
                     <div class="field">
                       <div class="div2">Дата смены статуса:</div>
                       <div class="div3">28.12.22</div>

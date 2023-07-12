@@ -24,9 +24,6 @@
                   src="@/assets/images/iconchange.svg"
                 />
               </div>
-              <div class="container">
-                <div class="div">Снять с продажи</div>
-              </div>
             </div>
           </div>
         </div>

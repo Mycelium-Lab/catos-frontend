@@ -44,18 +44,24 @@
               </div>
               <div class="frame-parent">
                 <div class="group">
-                  <div class="div2">Срок</div>
-                  <!-- <img
-                    class="vector-icon"
-                    alt=""
-                    src="@/assets/desktop/fallback/vector.svg"
-                  />-->
+                  <div class="div2">Беспроцентный период</div>
                 </div>
                 <range-slider
                   :max="30"
-                  :modelValue="0.1"
+                  :modelValue="0"
                   rangeWidth="100%"
-                  inputLabel="percent"
+                  inputLabel="invest"
+                ></range-slider>
+              </div>
+              <div class="frame-parent">
+                <div class="group">
+                  <div class="div2">Срок</div>
+                </div>
+                <range-slider
+                  :max="30"
+                  :modelValue="0"
+                  rangeWidth="100%"
+                  inputLabel="invest"
                 ></range-slider>
               </div>
             </div>
@@ -279,7 +285,7 @@ const create = () => {
   color: rgba(46, 58, 89, 0.4);
 }
 .frame-parent {
-  width: 21.25em;
+  width: 13.25em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
