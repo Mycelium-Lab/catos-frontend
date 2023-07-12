@@ -33,14 +33,6 @@
       </div>
     </template>
     <template v-if="currentPage === 'admin-profile'">
-      <button class="field-button" @click="() => (isScrinning = true)">
-        <div class="kyc">Скрининг по APi</div>
-        <img class="iconchange" alt="" src="@//views/public/iconchange.svg" />
-      </button>
-      <button class="field-button">
-        <div class="kyc">Внести изменения в анкету</div>
-        <img class="iconchange" alt="" src="@//views/public/iconchange.svg" />
-      </button>
       <div class="field-button-switch">
         <div class="api">Двухфакторная авторизация</div>
         <catos-switch @toggle="(ev: any) => (isAuth = ev)"></catos-switch>
