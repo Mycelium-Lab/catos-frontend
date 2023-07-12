@@ -199,6 +199,8 @@ ul {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  position: relative;
+  top: -2.5em;
 }
 .frame-div {
   display: flex;
@@ -207,8 +209,6 @@ ul {
   justify-content: flex-start;
   gap: 1.88em;
   text-align: left;
-  position: relative;
-  top: -2.5em;
 }
 .col-titles-bg {
   position: absolute;

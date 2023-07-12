@@ -1767,7 +1767,7 @@
       <button-slider
         :style="{ width: '300px', margin: '0' }"
         :variantIndex="2"
-        :tabs="['Кол-вл займов', 'Займы в TON']"
+        :tabs="['Кол-во займов', 'Займы в TON']"
       ></button-slider>
       <div class="container158">
         <div class="containers-parent">
