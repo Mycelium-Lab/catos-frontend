@@ -75,7 +75,7 @@ import appBar from "@/components/ui-kit/desktop/app-bar.vue";
   justify-content: flex-start;
   gap: 1.13em;
   text-align: left;
-
+  width: 780px;
   color: #5d83f7;
   margin: 0 auto;
 }
