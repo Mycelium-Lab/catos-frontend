@@ -13,10 +13,10 @@
             <div class="frame-wrapper">
               <div class="frame-group">
                 <div class="group">
-                  <div class="div11">Выберите пул:</div>
+                  <div class="div11">Выберите пулл:</div>
                   <div class="fields-password-and-mail2">
                     <div class="frame-div">
-                      <div class="div12">Все пулы</div>
+                      <div class="div12">Все пуллы</div>
                     </div>
                   </div>
                 </div>
@@ -118,10 +118,10 @@
           <div class="frame-wrapper">
             <div class="frame-group">
               <div class="group">
-                <div class="div11">Выберите пул:</div>
+                <div class="div11">Выберите пулл:</div>
                 <div class="fields-password-and-mail2">
                   <div class="frame-div">
-                    <div class="div12">Все пулы</div>
+                    <div class="div12">Все пуллы</div>
                   </div>
                 </div>
               </div>
@@ -145,13 +145,13 @@
 
       <div class="graph-title_pulls graph-title">
         График доходности <br />
-        по пулам
+        по пуллам
       </div>
 
       <button-slider
         :style="{ position: 'relative', width: '87.7vw' }"
         :variantIndex="2"
-        :tabs="['Пулы Catos', 'Пулы TON']"
+        :tabs="['Пуллы Catos', 'Пуллы TON']"
         @on-slide="toggleSlide"
       ></button-slider>
 
@@ -1435,10 +1435,10 @@
           <div class="frame-wrapper-desktop">
             <div class="frame-group">
               <div class="group">
-                <div class="div11">Выберите пул:</div>
+                <div class="div11">Выберите пулл:</div>
                 <div class="fields-password-and-mail2">
                   <div class="frame-div">
-                    <div class="div12">Все пулы</div>
+                    <div class="div12">Все пуллы</div>
                     <img
                       class="chevron-right-icon"
                       alt=""
@@ -1535,10 +1535,10 @@
             <div class="frame-wrapper">
               <div class="frame-group">
                 <div class="group">
-                  <div class="div11">Выберите пул:</div>
+                  <div class="div11">Выберите пулл:</div>
                   <div class="fields-password-and-mail2">
                     <div class="frame-div">
-                      <div class="div12">Все пулы</div>
+                      <div class="div12">Все пуллы</div>
                     </div>
                   </div>
                 </div>
@@ -1560,7 +1560,7 @@
                 <div class="description1">
                   <div class="title">
                     График доходности <br />
-                    по пулам
+                    по пуллам
                   </div>
                 </div>
               </div>
