@@ -1,36 +1,21 @@
 <template>
   <div class="field-buttons">
-    <button class="field-button">
+    <button class="field-button" @click="toTransaction">
       <div class="div">История транзакций</div>
-      <img
-        class="iconchange"
-        alt=""
-        src="@/views/public/iconchange.svg"
-        @click="toTransaction"
-      />
-    </button>
-    <button class="field-button">
-      <div class="div">Настроить API</div>
-      <img
-        class="iconchange"
-        alt=""
-        src="@/views/public/iconchange.svg"
-        @click="() => (isScrinning = true)"
-      />
-    </button>
-    <button class="field-button">
-      <div class="div">Изменить кошелек</div>
-      <img
-        class="iconchange"
-        alt=""
-        src="@/views/public/iconchange.svg"
-        @click="() => (isChangeWallet = true)"
-      />
-    </button>
-    <button class="field-button">
-      <div class="div">Изменить данные компании</div>
       <img class="iconchange" alt="" src="@/views/public/iconchange.svg" />
     </button>
+    <button class="field-button" @click="() => (isScrinning = true)">
+      <div class="div">Настроить API</div>
+      <img class="iconchange" alt="" src="@/views/public/iconchange.svg" />
+    </button>
+    <button class="field-button" @click="() => (isChangeWallet = true)">
+      <div class="div">Изменить кошелек</div>
+      <img class="iconchange" alt="" src="@/views/public/iconchange.svg" />
+    </button>
+    <!--<button class="field-button">
+      <div class="div">Изменить данные компании</div>
+      <img class="iconchange" alt="" src="@/views/public/iconchange.svg" />
+    </button>-->
     <div class="field-button-switch">
       <div class="div3">Двухфакторная авторизация</div>
       <catos-switch @toggle="(ev: any) => (isAuth = ev)"></catos-switch>
@@ -408,6 +393,7 @@ const toTransaction = () => {
   position: relative;
   border: none;
   color: #3b3b3b;
+  cursor: pointer;
 }
 .div3 {
   position: relative;
