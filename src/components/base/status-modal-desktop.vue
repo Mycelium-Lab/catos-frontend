@@ -447,6 +447,8 @@ const close = () => {
   &_column {
     flex-direction: column;
     gap: 10px;
+    width: 100%;
+    align-items: center;
   }
 }
 .title {
