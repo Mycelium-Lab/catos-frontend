@@ -57,14 +57,8 @@
                 />
                 <div class="c">
                   <span>Активен </span>
-                  <span class="span">(отключить)</span>
                 </div>
               </div>
-              <img
-                class="iconchange"
-                alt=""
-                src="/src/views/public/iconchange.svg"
-              />
             </div>
           </div>
         </div>
@@ -346,8 +340,7 @@ const close = () => {
 .status-all {
   align-self: stretch;
   border-radius: 8px;
-  background-color: rgba(165, 146, 221, 0.07);
-  width: 13.56em;
+
   overflow: hidden;
   flex-shrink: 0;
   display: flex;
@@ -362,9 +355,12 @@ const close = () => {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 1em;
   color: #3b3b3b;
+  width: 100%;
+  padding: 0 0.6em;
+  margin-bottom: 1em;
 }
 .frame-group {
   width: 37.5em;
