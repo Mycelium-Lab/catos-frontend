@@ -187,7 +187,7 @@
             </div>
           </button>
           <button class="button">
-            <div class="buttons-tabs">
+            <div class="buttons-tabs" @click="toAnalytics">
               <div class="text">Аналитика</div>
             </div>
           </button>
@@ -206,12 +206,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
-const emits = defineEmits(["close", "management", "loans"]);
+const emits = defineEmits(["close", "management", "loans", "analytics"]);
 
 const isCreditoreInfo = ref(false);
 
 const toLoans = () => {
   emits("loans");
+};
+const toAnalytics = () => {
+  emits("analytics");
 };
 const toManagement = () => {
   emits("management");

@@ -363,7 +363,10 @@
               >
                 <div class="text6">Займы</div>
               </button>
-              <button class="buttons-tabs7_creditor buttons-tabs7">
+              <button
+                class="buttons-tabs7_creditor buttons-tabs7"
+                @click.stop="toAnalytics"
+              >
                 <div class="text7">Аналитика</div>
               </button>
             </div>
@@ -456,6 +459,7 @@
     v-if="isMyCreditor"
     :state="myCreditorState"
     @loans="toLoans"
+    @analytics="toAnalytics"
     @close="
       () => {
         isMyCreditor = false;
@@ -732,6 +736,9 @@ const toDetail = () => {
 const router = useRouter();
 const toLoans = () => {
   router.push({ name: "loans", state: { variant } });
+};
+const toAnalytics = () => {
+  router.push({ name: "dashboard-analytics-desktop", state: { variant } });
 };
 </script>
 

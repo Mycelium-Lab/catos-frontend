@@ -14,6 +14,12 @@
         toLoans();
       }
     "
+    @analytics="
+      () => {
+        isDetailOther = false;
+        toAnalytics();
+      }
+    "
   ></detail-personal-desktop>
   <liquidity-management-desktop
     v-if="isMangaeLiquid"
@@ -164,9 +170,12 @@ const isAddQr = ref(false);
 const isSuccessWithdraw = ref(false);
 const isSuccessAdd = ref(false);
 
-const emits = defineEmits(["close", "loans"]);
+const emits = defineEmits(["close", "loans", "analytics"]);
 const toLoans = () => {
   emits("loans");
+};
+const toAnalytics = () => {
+  emits("analytics");
 };
 const close = () => {
   emits("close");
