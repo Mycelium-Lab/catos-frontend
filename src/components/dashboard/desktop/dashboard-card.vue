@@ -7,7 +7,7 @@
             <div class="checkboxdone-parent">
               <div class="checkboxdone" />
               <div class="parent">
-                <div class="div">Алексей Иванов</div>
+                <div class="div">Пулл #12345</div>
                 <div class="id-100">ID #100</div>
               </div>
             </div>
@@ -21,18 +21,12 @@
             </div>
           </div>
         </div>
-        <button-slider
-          :style="{ width: '338px', margin: '0' }"
-          :variantIndex="2"
-          :tabs="['Кол-во займов', 'Займы в TON']"
-          @on-slide="toggleSlide"
-        ></button-slider>
       </div>
       <div class="cards-inner">
         <div class="component-parent">
           <div v-if="currentTable === 'amount'" class="component">
             <div class="field">
-              <div class="div5">Всего пуллов:</div>
+              <div class="div5">Пулл:</div>
               <div class="div1_link div1">160</div>
             </div>
             <div class="col-titles-bg" />
@@ -108,7 +102,9 @@
           <div class="component">
             <div class="field">
               <div class="div5">
-                {{ currentTable === "amount" ? "Выдано займов" : "ROI" }}:
+                {{
+                  currentTable === "amount" ? "Выдано займов (сумма)" : "ROI"
+                }}:
               </div>
               <div
                 :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
@@ -116,7 +112,73 @@
                 {{ currentTable === "amount" ? "160" : "60%" }}
               </div>
             </div>
-            <div class="col-titles-bg6" />
+            <div class="col-titles-bg" />
+          </div>
+          <div class="component">
+            <div class="field">
+              <div class="div5">Займов активно (сумма):</div>
+              <div
+                :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
+              >
+                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+              </div>
+            </div>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="component">
+            <div class="field">
+              <div class="div5">Займов погашено (сумма):</div>
+              <div
+                :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
+              >
+                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+              </div>
+            </div>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="component">
+            <div class="field">
+              <div class="div5">Займов на продаже (сумма):</div>
+              <div
+                :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
+              >
+                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+              </div>
+            </div>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="component">
+            <div class="field">
+              <div class="div5">Займов продано (сумма):</div>
+              <div
+                :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
+              >
+                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+              </div>
+            </div>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="component">
+            <div class="field">
+              <div class="div5">Прибыль:</div>
+              <div
+                :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
+              >
+                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+              </div>
+            </div>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="component">
+            <div class="field">
+              <div class="div5">ROI:</div>
+              <div
+                :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
+              >
+                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+              </div>
+            </div>
+            <div class="col-titles-bg" />
           </div>
         </div>
       </div>
@@ -358,6 +420,8 @@ style scoped > .checkboxdone {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.5em;
+  height: 300px;
+  overflow-y: auto;
 }
 .cards-inner {
   align-self: stretch;

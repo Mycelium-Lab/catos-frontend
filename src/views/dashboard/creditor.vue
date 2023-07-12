@@ -47,11 +47,7 @@
           <div class="filter-2-child"></div>
           <div class="vector-wrapper" id="frameContainer9"></div>
         </div>
-        <button-slider
-          :style="{ marginTop: '1.3em' }"
-          :variantIndex="2"
-          :tabs="['Кол-во займов', 'Займы в TON']"
-        ></button-slider>
+
         <div class="container158">
           <div class="containers-parent">
             <div class="containers">
@@ -72,6 +68,46 @@
             </div>
             <div class="containers2">
               <div class="id">{{ rowPairs[1] }}</div>
+              <img
+                class="arrow-down-arrow-up-icon"
+                alt=""
+                src="@/assets/images/arrowdownarrowup.svg"
+              />
+            </div>
+            <div class="containers2">
+              <div class="id">{{ rowPairs[2] }}</div>
+              <img
+                class="arrow-down-arrow-up-icon"
+                alt=""
+                src="@/assets/images/arrowdownarrowup.svg"
+              />
+            </div>
+            <div class="containers2">
+              <div class="id">{{ rowPairs[3] }}</div>
+              <img
+                class="arrow-down-arrow-up-icon"
+                alt=""
+                src="@/assets/images/arrowdownarrowup.svg"
+              />
+            </div>
+            <div class="containers2">
+              <div class="id">{{ rowPairs[4] }}</div>
+              <img
+                class="arrow-down-arrow-up-icon"
+                alt=""
+                src="@/assets/images/arrowdownarrowup.svg"
+              />
+            </div>
+            <div class="containers2">
+              <div class="id">{{ rowPairs[5] }}</div>
+              <img
+                class="arrow-down-arrow-up-icon"
+                alt=""
+                src="@/assets/images/arrowdownarrowup.svg"
+              />
+            </div>
+            <div class="containers2">
+              <div class="id">{{ rowPairs[6] }}</div>
               <img
                 class="arrow-down-arrow-up-icon"
                 alt=""
@@ -105,7 +141,7 @@
             </button>
             <button
               class="arrows-table1"
-              :disabled="currentPage === 2 ? true : false"
+              :disabled="currentPage >= 7 ? true : false"
               @click="
                 () => {
                   isActive = 'next';
@@ -1764,11 +1800,7 @@
       </div>
     </template>
     <template v-slot:body>
-      <button-slider
-        :style="{ width: '300px', margin: '0' }"
-        :variantIndex="2"
-        :tabs="['Кол-во займов', 'Займы в TON']"
-      ></button-slider>
+      <h4 class="stats-title">Cтатистика по пуллам</h4>
       <div class="container158">
         <div class="containers-parent">
           <div class="containers">
@@ -1822,7 +1854,7 @@
           </button>
           <button
             class="arrows-table1"
-            :disabled="currentPage === 2 ? true : false"
+            :disabled="currentPage >= 7 ? true : false"
             @click="
               () => {
                 isActive = 'next';
@@ -2276,16 +2308,36 @@ const toCardDesktop = () => {
 const currentPage = ref(0);
 const rows = [
   {
-    first: "Пуллы",
-    last: "Выдано",
+    first: "Пулл",
+    last: "Выдано займов",
   },
   {
-    first: "Активно",
-    last: "Погашено",
+    first: "Займов активно",
+    last: "Займов погашено",
   },
   {
-    first: "Просрочено",
-    last: "На продаже",
+    first: "Займов просрочено",
+    last: "Займов на продаже",
+  },
+  {
+    first: "Займов продано",
+    last: "Выдано займов (сумма)",
+  },
+  {
+    first: "Займов аквтивно (сумма)",
+    last: "Займов погашего (сумма)",
+  },
+  {
+    first: "Займов на просрочено (сумма)",
+    last: "Займов на продаже (сумма)",
+  },
+  {
+    first: "Займов продано (сумма)",
+    last: "Прибыль",
+  },
+  {
+    first: "Прибыль",
+    last: "ROI",
   },
 ];
 const isActive = ref("");
@@ -4239,7 +4291,7 @@ const rowPairs = computed(() => {
   .containers2,
   .containers-group,
   .containers-container {
-    width: 195px;
+    width: 160px;
   }
   .containers-parent1 {
     width: 400px;
@@ -4247,5 +4299,8 @@ const rowPairs = computed(() => {
   .containers8 {
     width: 100%;
   }
+}
+.stats-title {
+  margin: 0em;
 }
 </style>
