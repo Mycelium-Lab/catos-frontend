@@ -413,7 +413,7 @@ const close = () => {
   font-weight: 500;
 }
 .frame-group {
-  width: 45.81em;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;

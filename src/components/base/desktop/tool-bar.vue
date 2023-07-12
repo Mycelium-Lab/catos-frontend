@@ -43,7 +43,11 @@
 
     <template v-slot:left-option>
       <bp-left-option-sort
-        v-if="role === 'borrower' && variant === 'pulls'"
+        v-if="
+          (role === 'borrower' && variant === 'pulls') ||
+          role === 'depositor' ||
+          role === 'creditor'
+        "
       ></bp-left-option-sort>
       <bl-left-option-sort
         v-if="role === 'borrower' && variant === 'loans'"
@@ -60,10 +64,15 @@
       <ml-left-option-sort
         v-if="variant === 'manage-loans'"
       ></ml-left-option-sort>
+      <ml-left-option-sort v-if="role === 'collector'"></ml-left-option-sort>
     </template>
     <template v-slot:right-option>
       <bp-right-option-sort
-        v-if="role === 'borrower' && variant === 'pulls'"
+        v-if="
+          (role === 'borrower' && variant === 'pulls') ||
+          role === 'depositor' ||
+          role === 'creditor'
+        "
       ></bp-right-option-sort>
       <bl-right-option-sort
         v-if="role === 'borrower' && variant === 'loans'"
@@ -80,6 +89,7 @@
       <ml-right-option-sort
         v-if="variant === 'manage-loans'"
       ></ml-right-option-sort>
+      <ml-right-option-sort v-if="role === 'collector'"></ml-right-option-sort>
     </template>
     <template v-slot:action>Применить и сохранить фильтр</template>
   </sort>

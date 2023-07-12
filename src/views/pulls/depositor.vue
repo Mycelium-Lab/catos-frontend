@@ -57,7 +57,7 @@
       ></button-slider>
     </template>
     <template v-slot:tools>
-      <tool-bar></tool-bar>
+      <tool-bar role="depositor"></tool-bar>
     </template>
     <template v-slot:body>
       <div class="frame-div">

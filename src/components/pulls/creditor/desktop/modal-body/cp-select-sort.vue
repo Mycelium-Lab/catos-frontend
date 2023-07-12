@@ -4,7 +4,7 @@
     placeholder="Выберите токен"
     :options="options"
     :value="valueToken"
-    :optionWidth="87.7"
+    :optionWidthDesk="207"
     @selected="ev => (valueToken = ev)"
   ></catos-select>
 </template>
