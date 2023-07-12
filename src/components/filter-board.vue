@@ -11,10 +11,10 @@
                 class="iconscalendar"
                 alt=""
                 src="@/assets/images/menu2.svg"
-                @click="toSort"
+                @click="() => (isSort = true)"
               />
 
-              <div class="div15">(1)</div>
+              <div class="div15" @click="() => (isSort = true)">(1)</div>
             </div>
           </div>
           <div class="frame-wrapper_filter">
@@ -26,7 +26,7 @@
                     class="fields-password-and-mail2"
                     id="fieldsPasswordAndMail"
                   >
-                    <div class="text-icon">
+                    <div class="text-icon" @click="() => (isAllActive = true)">
                       <div class="div12">Все активы</div>
                       <img
                         class="iconscalendar"
@@ -38,20 +38,11 @@
                 </div>
                 <div class="group">
                   <div class="div11">Выберите дату:</div>
-                  <div class="fields-password-and-mail-container">
-                    <div class="fields-password-and-mail3">
-                      <div class="parent3">
-                        <div class="div12">08.17.2023</div>
-                      </div>
-                    </div>
-                    <div class="iconscalendar-wrapper" id="frameContainer3">
-                      <img
-                        class="iconscalendar"
-                        alt=""
-                        src="@/assets/images/iconscalendar.svg"
-                      />
-                    </div>
-                  </div>
+                  <input-data
+                    type="date"
+                    placeholder="01.02.2022"
+                    :style="{ width: '100%' }"
+                  ></input-data>
                 </div>
               </div>
             </div>
@@ -74,19 +65,21 @@
       <sort @close="() => (isSort = false)"></sort>
     </bottom-sheet>-->
   </div>
+  <activs v-if="isAllActive" @close="() => (isAllActive = false)"></activs>
+  <sort v-if="isSort" @close="() => (isSort = false)"></sort>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 const isAll = ref(false);
-
+const isAllActive = ref(false);
+const isSort = ref(false);
+import inputData from "./fields/input-data.vue";
 import bottomSheet from "@/components/ui-kit/bottomsheet.vue";
 import statusFilter from "@/components/filters/status-filter.vue";
 import { useRouter } from "vue-router";
-const router = useRouter();
-const toSort = () => {
-  router.push({ name: "transaction-history-sort" });
-};
+import activs from "@/components/setting/desktop/modal-body/activs.vue";
+import sort from "./setting/desktop/modal-body/sort.vue";
 </script>
 
 <style scoped lang="scss">
@@ -1006,7 +999,6 @@ const toSort = () => {
 }
 .field-item7,
 .fieldsinputchoise {
-  position: absolute;
   box-sizing: border-box;
 }
 .fieldsinputchoise {

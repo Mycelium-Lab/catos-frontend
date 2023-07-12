@@ -584,7 +584,6 @@ const toTransaction = () => {
   right: 0em;
   bottom: 0em;
   max-height: 100%;
-  width: 2.5em;
   z-index: 1;
 }
 </style>
