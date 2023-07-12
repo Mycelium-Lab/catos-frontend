@@ -228,31 +228,25 @@
                   ></loader-field>
                 </div>
 
-                <input-data
-                  v-if="isMobile"
-                  background="transparent"
-                  border="1px solid rgba(101, 96, 96, 1)"
-                  placeholder="Тип фалйа"
-                  :style="{ width: '86.8%', left: '5vw' }"
-                  :right="true"
-                >
-                  <template v-slot:right-icon>
-                    <img src="@/assets/images/iconseditoutline-black.svg" />
-                  </template>
-                </input-data>
-                <input-data
-                  v-else
-                  background="transparent"
-                  border="1px solid rgba(101, 96, 96, 1)"
-                  placeholder="Тип фалйа"
-                  :style="{ width: '309px', left: '1.3em' }"
-                  :right="true"
-                >
-                  <template v-slot:right-icon>
-                    <img src="@/assets/images/iconseditoutline-black.svg" />
-                  </template>
-                </input-data>
+                <template right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
               </div>
+              <catos-select
+                top
+                placeholder="Тип файла"
+                :options="options"
+                :value="value"
+                @selected="ev => (value = ev)"
+                :optionWidthDesk="320"
+                :style="{
+                  width: '90%',
+                  margin: '0 auto',
+                  marginTop: '0.5em',
+                  positio: 'absolute',
+                  top: '-5.7em',
+                }"
+              ></catos-select>
             </div>
           </div>
           <div class="text-declaration">
