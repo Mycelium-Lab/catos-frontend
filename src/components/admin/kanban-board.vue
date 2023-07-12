@@ -1,9 +1,9 @@
 <template>
   <div class="info-user">
     <div class="nav-bar">
-      <div class="tags-grey">
+      <!--<div class="tags-grey">
         <b class="tag">Канбан панель</b>
-      </div>
+      </div>-->
       <div class="buttons-icon-outline-arr-parent">
         <img
           class="buttons-icon-outline-arr"
@@ -152,7 +152,7 @@ const toProfile = () => {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 .tag1 {
   position: absolute;
