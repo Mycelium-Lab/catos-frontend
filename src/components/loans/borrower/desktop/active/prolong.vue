@@ -69,7 +69,12 @@
       CATOS Terms of Service and Privacy Policy.</template
     >
   </confirm-qr-destop>
-  <status-modal-desktop v-if="isResult" actionGroupColumn :lastAction="finish">
+  <status-modal-desktop
+    v-if="isResult"
+    actionGroupColumn
+    :lastAction="finish"
+    @close="close"
+  >
     <template v-slot:header> Пролонгация займа </template>
     <template v-slot:header-link> #557946 </template>
     <template v-slot:title> Займ #557946 пролонгирован </template>

@@ -3,8 +3,9 @@
     variant="back"
     :toBack="close"
     @close="close"
-    actionGroup
+    actionGroupColumn
     :firstAction="close"
+    :lastAction="toGetLoans"
   >
     <template v-slot:header> Займ из пулла #12345 </template>
     <template v-slot:title> Займ #12456 получен </template>
@@ -29,13 +30,17 @@
 <script setup lang="ts">
 import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
 import detailRepaid from "../modal-body/detail-repaid.vue";
+import { useRouter } from "vue-router";
 const emits = defineEmits(["close", "prolong"]);
-
+const router = useRouter();
 const close = () => {
   emits("close");
 };
 const prolong = () => {
   emits("prolong");
+};
+const toGetLoans = () => {
+  router.push({ name: "pulls-borrower" });
 };
 </script>
 

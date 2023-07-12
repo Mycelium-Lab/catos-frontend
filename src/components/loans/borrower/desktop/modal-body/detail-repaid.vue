@@ -113,13 +113,16 @@
           <div class="frame-wrapper2">
             <div class="parent1">
               <div class="div10">Кредитор:</div>
-              <div class="radiobutton-parent">
+              <div
+                class="radiobutton-parent"
+                @click="() => (isCreditorInfo = true)"
+              >
+                <div class="div11">Деньги до зарплаты</div>
                 <img
                   class="radiobutton-icon"
                   alt=""
                   src="@/assets/images/investore.svg"
                 />
-                <div class="div11">Деньги до зарплаты</div>
               </div>
             </div>
           </div>
@@ -163,12 +166,19 @@
       </div>
     </div>
   </div>
+  <creditor-info
+    v-if="isCreditorInfo"
+    @close="() => (isCreditorInfo = false)"
+  ></creditor-info>
 </template>
 <script setup lang="ts">
+import { ref } from "vue";
+import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 const emits = defineEmits(["prolong"]);
 const toProlong = () => {
   emits("prolong");
 };
+const isCreditorInfo = ref(false);
 </script>
 <style scoped lang="scss">
 .div {
@@ -327,7 +337,8 @@ const toProlong = () => {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
+  width: 100%;
   gap: 0.5em;
 }
 .frame-child {
@@ -344,7 +355,6 @@ const toProlong = () => {
   line-height: 130%;
 }
 .frame {
-  flex: 1;
   display: flex;
   flex-direction: row;
   padding: 0.13em 0em;
@@ -359,7 +369,7 @@ const toProlong = () => {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 0.5em;
 }
 .frame-parent1 {
@@ -415,21 +425,23 @@ const toProlong = () => {
   font-size: 0.88em;
   line-height: 0.71em;
   font-weight: 300;
+  color: rgba(87, 126, 247, 0.96);
+  text-decoration: underline;
 }
 .radiobutton-parent {
-  width: 11em;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   gap: 0.63em;
+  cursor: pointer;
 }
 .parent1 {
-  width: 16.06em;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 0.63em;
 }
 .frame-wrapper2 {
@@ -458,7 +470,6 @@ const toProlong = () => {
   font-weight: 300;
 }
 .wrapper5 {
-  flex: 1;
   display: flex;
   flex-direction: row;
   padding: 0.13em 0em;
@@ -476,7 +487,7 @@ const toProlong = () => {
   justify-content: flex-start;
 }
 .wrapper8 {
-  width: 10.13em;
+  width: 12.13em;
   display: flex;
   flex-direction: row;
   padding: 0.13em 0em;

@@ -64,8 +64,8 @@
       </div>
       <div class="field-parent">
         <div class="field">
-          <div class="div4">Доступно для выдачи:</div>
-          <div class="ton-kepeer">257 547 раз</div>
+          <div class="div4">Сумма к погашению для пролонгации:</div>
+          <div class="ton-kepeer">512 TON</div>
         </div>
         <div class="col-titles-bg" />
       </div>
