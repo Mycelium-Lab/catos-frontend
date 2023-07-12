@@ -4,52 +4,6 @@
     <div class="filtr"></div>
     <div class="pull-stats1">
       <div class="frame-group">
-        <div class="frame-container">
-          <div class="frame-inner"></div>
-          <div class="buttons-tabs-parent">
-            <div class="buttons-tabs">
-              <div class="ton-parent">
-                <div class="ton">37 000 TON</div>
-                <div class="div10">Доступно ликвидности:</div>
-              </div>
-              <img
-                class="pie-chart-icon"
-                alt=""
-                src="@/assets/images/pie-chart.svg"
-              />
-            </div>
-            <div class="frame-div">
-              <div class="percent-parent">
-                <img
-                  class="percent-icon"
-                  alt=""
-                  src="@/assets/images/activity.svg"
-                />
-
-                <div class="div11">Инв = 100 000</div>
-              </div>
-              <div class="percent-parent">
-                <img
-                  class="percent-icon"
-                  alt=""
-                  src="@/assets/images/percent.svg"
-                />
-
-                <div class="div11">Год = 157%</div>
-              </div>
-              <div class="percent-parent">
-                <img
-                  class="percent-icon"
-                  alt=""
-                  src="@/assets/images/polygon.svg"
-                />
-
-                <div class="div11">Пулл = 3 шт</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div v-if="variant === 'all'" class="frame-parent1">
           <div class="roi-wrapper">
             <div class="div11">Состояние:</div>
@@ -72,49 +26,46 @@
           <div class="line-div"></div>
           <div class="frame-parent3">
             <div class="roi-wrapper">
-              <div class="roi">На срок:</div>
+              <div class="roi">Доход:</div>
             </div>
             <div class="ton-wrapper">
-              <div class="div16">до 30 дней</div>
+              <div class="div16">12 000 TON</div>
             </div>
           </div>
           <div class="line-div"></div>
           <div class="frame-parent3">
             <div class="roi-wrapper">
-              <div class="roi">Беспроцентный период:</div>
+              <div class="roi">Текущая годовая доходность:</div>
             </div>
             <div class="ton-wrapper">
-              <div class="div16">3 дня</div>
+              <div class="div16">157%</div>
             </div>
           </div>
           <div class="line-div"></div>
           <div class="frame-parent3">
             <div class="roi-wrapper">
-              <div class="roi">Всего ликвидности:</div>
+              <div class="roi">Пулы:</div>
             </div>
             <div class="ton-wrapper">
-              <div class="div16">450 000 TON</div>
+              <div class="div16">3 шт</div>
             </div>
           </div>
           <div class="line-div"></div>
           <div class="frame-parent3">
             <div class="roi-wrapper">
-              <div class="roi">Свободно:</div>
+              <div class="roi">Доступно к выводу:</div>
             </div>
             <div class="ton-wrapper">
-              <div class="div16">37 000 TON</div>
-            </div>
-            <div>
-              <img src="@/assets/images/info.svg" />
+              <div class="div16">7 245 TON</div>
             </div>
           </div>
           <div class="line-div"></div>
           <div class="frame-parent3">
             <div class="roi-wrapper">
-              <div class="roi">Инвестировано</div>
+              <div class="roi">Выведено:</div>
             </div>
             <div class="ton-wrapper">
-              <div class="div16">100 TON</div>
+              <div class="div16">345 TON</div>
             </div>
           </div>
         </div>
@@ -591,7 +542,7 @@ const openModal = () => {
 .pull-stats {
   position: relative;
   top: 1em;
-  height: 20.02em;
+  height: 13.02em;
   text-align: left;
   margin: 0 auto;
   width: 87.7vw;

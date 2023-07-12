@@ -13,10 +13,10 @@
             <div class="frame-wrapper">
               <div class="frame-group">
                 <div class="group">
-                  <div class="div11">Выберите статус:</div>
+                  <div class="div11">Выберите пул:</div>
                   <div class="fields-password-and-mail2">
                     <div class="frame-div">
-                      <div class="div12">Все пуллы</div>
+                      <div class="div12">Все пулы</div>
                     </div>
                   </div>
                 </div>
@@ -44,7 +44,7 @@
 
       <dashboard-list></dashboard-list>
 
-      <div class="graph-title">График всей доходности</div>
+      <div class="graph-title">График доходности</div>
       <div class="graphsorders-mobile-01">
         <div class="master">
           <div class="content-frame">
@@ -118,10 +118,10 @@
           <div class="frame-wrapper">
             <div class="frame-group">
               <div class="group">
-                <div class="div11">Выберите статус:</div>
+                <div class="div11">Выберите пул:</div>
                 <div class="fields-password-and-mail2">
                   <div class="frame-div">
-                    <div class="div12">Все пуллы</div>
+                    <div class="div12">Все пулы</div>
                   </div>
                 </div>
               </div>
@@ -144,13 +144,14 @@
       </div>
 
       <div class="graph-title_pulls graph-title">
-        График доходности по пуллам
+        График доходности <br />
+        по пулам
       </div>
 
       <button-slider
         :style="{ position: 'relative', width: '87.7vw' }"
         :variantIndex="2"
-        :tabs="['Пуллы Catos', 'Пуллы TON']"
+        :tabs="['Пулы Catos', 'Пулы TON']"
         @on-slide="toggleSlide"
       ></button-slider>
 
@@ -159,7 +160,10 @@
           <div class="content-frame">
             <div class="elements-textbox-tablerow1">
               <div class="description1">
-                <div class="title">Group Name</div>
+                <div class="title">
+                  График доходности <br />
+                  по пулам
+                </div>
                 <div class="subtitle">{{ curentWindow }}</div>
               </div>
             </div>
@@ -1425,15 +1429,16 @@
           <template v-slot:right-option>
             <sort-right-desktop></sort-right-desktop>
           </template>
+          <template v-slot:action>Применить и сохранить фильтр</template>
         </sort>
         <div class="filter-2-inner">
           <div class="frame-wrapper-desktop">
             <div class="frame-group">
               <div class="group">
-                <div class="div11">Выберите статус:</div>
+                <div class="div11">Выберите пул:</div>
                 <div class="fields-password-and-mail2">
                   <div class="frame-div">
-                    <div class="div12">Все пуллы</div>
+                    <div class="div12">Все пулы</div>
                     <img
                       class="chevron-right-icon"
                       alt=""
@@ -1457,14 +1462,13 @@
       <div class="tables-light-mode-parent">
         <dashboard-list></dashboard-list>
 
-        <div class="graph-title">График всей доходности</div>
+        <!--<div class="graph-title">График доходности</div>-->
         <div class="graphsorders-mobile-01">
           <div class="master">
             <div class="content-frame">
               <div class="elements-textbox-tablerow">
                 <div class="description">
-                  <div class="title">Финансы</div>
-                  <div class="subtitle">Catos</div>
+                  <div class="title">График доходности</div>
                 </div>
               </div>
               <div class="text-frame">
@@ -1531,10 +1535,10 @@
             <div class="frame-wrapper">
               <div class="frame-group">
                 <div class="group">
-                  <div class="div11">Выберите статус:</div>
+                  <div class="div11">Выберите пул:</div>
                   <div class="fields-password-and-mail2">
                     <div class="frame-div">
-                      <div class="div12">Все пуллы</div>
+                      <div class="div12">Все пулы</div>
                     </div>
                   </div>
                 </div>
@@ -1554,8 +1558,10 @@
             <div class="content-frame">
               <div class="elements-textbox-tablerow1">
                 <div class="description1">
-                  <div class="title">Group Name</div>
-                  <div class="subtitle">{{ curentWindow }}</div>
+                  <div class="title">
+                    График доходности <br />
+                    по пулам
+                  </div>
                 </div>
               </div>
               <div class="text-frame">
@@ -2212,11 +2218,11 @@ const toggleSlide = (slideIndex: any) => {
 .elements-textbox-tablerow {
   border-radius: 14px;
   background: linear-gradient(#f4f6f9, #f4f6f9), #fff;
-  width: 7em;
+
   height: 3.69em;
   overflow: hidden;
   flex-shrink: 0;
-  padding: 0.25em 0 0.25em 1em;
+  padding: 0.25em 1em 0.25em 1em;
   box-sizing: border-box;
   justify-content: center;
 }
@@ -2491,12 +2497,12 @@ const toggleSlide = (slideIndex: any) => {
 .elements-textbox-tablerow1 {
   border-radius: 14px;
   background: linear-gradient(#f4f6f9, #f4f6f9), #fff;
-  width: 8em;
+
   height: 3.69em;
   overflow: hidden;
   flex-shrink: 0;
   flex-direction: column;
-  padding: 0.25em 0 0.25em 1em;
+  padding: 0.25em 1em 0.25em 1em;
   box-sizing: border-box;
   justify-content: center;
 }
