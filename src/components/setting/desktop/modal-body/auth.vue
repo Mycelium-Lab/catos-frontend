@@ -22,7 +22,7 @@
         </div>
       </div>
     </div>
-    <div class="frame-parent">
+    <div class="frame-parent_auth">
       <div class="wrapper">
         <div class="google-authentificator-container">
           <slot name="top-text"></slot>
@@ -364,9 +364,9 @@ const back = () => {
   gap: 1.88em;
   color: #3b3b3b;
 }
-.frame-parent {
+.frame-parent_auth {
   position: relative;
-
+  height: 650px;
   left: 0em;
   border-radius: 0px 0px 15px 15px;
   background-color: #fff;
@@ -388,5 +388,11 @@ const back = () => {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+}
+@media (max-height: 900px) {
+  .frame-parent_auth {
+    height: 500px;
+    overflow-y: auto;
+  }
 }
 </style>
