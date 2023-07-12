@@ -64,7 +64,7 @@
     </template>
     <template v-slot:body>
       <ul>
-        <li v-for="n in 4" :key="n">
+        <li v-for="n in 1" :key="n">
           <chartFrame serial="n"></chartFrame>
         </li>
       </ul>

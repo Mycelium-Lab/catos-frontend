@@ -1444,20 +1444,7 @@
               </div>
               <div class="group">
                 <div class="div11">Выберите дату:</div>
-                <div class="fields-password-and-mail-container">
-                  <div class="fields-password-and-mail3">
-                    <div class="frame-div">
-                      <div class="div12">08.17.2023</div>
-                    </div>
-                  </div>
-                  <div class="iconscalendar-wrapper" id="frameContainer3">
-                    <img
-                      class="chevron-right-icon"
-                      alt=""
-                      src="@/assets/images/iconscalendar.svg"
-                    />
-                  </div>
-                </div>
+                <input-data type="date" placeholder="01.02.2022"></input-data>
               </div>
             </div>
           </div>
@@ -1553,17 +1540,7 @@
                 </div>
                 <div class="group">
                   <div class="div11">Выберите дату:</div>
-                  <div class="fields-password-and-mail-container">
-                    <div class="fields-password-and-mail3">
-                      <div class="frame-div">
-                        <div class="div12">08.17.2023</div>
-                      </div>
-                    </div>
-                    <div
-                      class="iconscalendar-wrapper"
-                      id="frameContainer3"
-                    ></div>
-                  </div>
+                  <input-data type="date" placeholder="01.02.2022"></input-data>
                 </div>
               </div>
             </div>
@@ -1656,6 +1633,7 @@ import appBar from "@/components/ui-kit/app-bar.vue";
 import sortLeftDesktop from "@/components/dashboard/depositor/sort-left-desktop.vue";
 import sortRightDesktop from "@/components/dashboard/depositor/sort-right-desktop.vue";
 import sort from "@/components/base/desktop/sort.vue";
+import inputData from "@/components/fields/input-data.vue";
 
 const curentWindow = ref("Catos");
 

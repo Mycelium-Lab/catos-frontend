@@ -443,7 +443,6 @@ const openModal = () => {
   justify-content: flex-start;
 }
 .roi-wrapper {
-  width: 45vw;
   flex-direction: row;
   padding: 0.13em 0;
   box-sizing: border-box;

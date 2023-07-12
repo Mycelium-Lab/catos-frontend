@@ -50,7 +50,7 @@
         <button-slider
           :style="{ marginTop: '1.3em' }"
           :variantIndex="2"
-          :tabs="['Кол-вл займов', 'Займы в TON']"
+          :tabs="['Кол-во займов', 'Займы в TON']"
         ></button-slider>
         <div class="container158">
           <div class="containers-parent">
@@ -1754,20 +1754,7 @@
               </div>
               <div class="group">
                 <div class="div11">Выберите дату:</div>
-                <div class="fields-password-and-mail-container">
-                  <div class="fields-password-and-mail3">
-                    <div class="frame-div">
-                      <div class="div12">08.17.2023</div>
-                    </div>
-                  </div>
-                  <div class="iconscalendar-wrapper" id="frameContainer3">
-                    <img
-                      class="chevron-right-icon"
-                      alt=""
-                      src="@/assets/images/iconscalendar.svg"
-                    />
-                  </div>
-                </div>
+                <input-data type="date" placeholder="01.02.2022"></input-data>
               </div>
             </div>
           </div>
@@ -2279,6 +2266,7 @@ import { useRouter } from "vue-router";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";
 const router = useRouter();
+import inputData from "@/components/fields/input-data.vue";
 const toCard = () => {
   router.push({ name: "dashboard-cards" });
 };
@@ -2349,15 +2337,17 @@ const rowPairs = computed(() => {
 .div10 {
   position: absolute;
   top: 16.13%;
-  left: 6.14%;
+  left: 2em;
   font-size: 0.88em;
   letter-spacing: 0.01em;
   line-height: 110%;
   font-weight: 500;
+  color: #3b3b3b;
 }
 .div11,
 .div12 {
   position: relative;
+  color: #3b3b3b;
 }
 .div11 {
   font-size: 0.75em;
@@ -2455,6 +2445,8 @@ const rowPairs = computed(() => {
   width: 100%;
   align-items: flex-start;
   gap: 0.75em;
+  position: relative;
+  left: 1.7em;
 }
 .filter-2-inner,
 .frame-wrapper {
