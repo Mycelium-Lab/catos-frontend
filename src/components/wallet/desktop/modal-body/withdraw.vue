@@ -22,12 +22,12 @@
           </div>
           <div class="min-10-ton-parent">
             <div class="min-10-ton-container">
-              <span>Min:</span>
+              <span>Min: </span>
               <span class="span3"> </span>
               <span class="ton1">10 TON</span>
             </div>
             <div class="max-257-324-container">
-              <span>Max:</span>
+              <span>Max: </span>
               <span class="span3"> </span>
               <span class="ton1">257 324 TON</span>
             </div>

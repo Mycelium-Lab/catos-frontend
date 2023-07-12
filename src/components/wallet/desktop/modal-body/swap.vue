@@ -32,9 +32,13 @@
         </div>
       </div>
       <div class="divided-switch">
-        <!--<img class="divided-switch-child" alt="" src="/line-32.svg" />-->
+        <img
+          class="divided-switch-child"
+          alt=""
+          src="@/assets/images/line-32.svg"
+        />
         <div class="swap-wrapper">
-          <!--<img class="swap-icon" alt="" src="/swap.svg" />-->
+          <img class="swap-icon" alt="" src="@/assets/images/swap.svg" />
         </div>
       </div>
       <div class="frame-wrapper">
