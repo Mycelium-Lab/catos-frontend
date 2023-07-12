@@ -35,9 +35,22 @@
       >
         <b class="ton-kepeer">Подключить TON Kepeer</b>
       </router-link>
-      <div v-else class="buttonnext_desktop" @click="() => (finish = true)">
-        <b class="ton-kepeer">Подключить TON Kepeer</b>
-      </div>
+      <template v-else>
+        <div class="button-group">
+          <div
+            class="buttonnext_connect_desktop buttonnext_desktop"
+            @click="() => (finish = true)"
+          >
+            <b class="ton-kepeer">Подключить TON Kepeer</b>
+          </div>
+          <catos-button
+            :style="{ margin: '0 auto', width: '374px' }"
+            @click="() => (isSuccess = true)"
+            >Привязать позже</catos-button
+          >
+        </div>
+      </template>
+
       <confirm-qr-destop
         v-if="finish && !isMobile"
         @close="() => (finish = false)"
@@ -172,6 +185,7 @@
 import { ref } from "vue";
 import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
+import catosButton from "../ui-kit/buttons/catos-button.vue";
 import success from "./desktop/modal-body/success.vue";
 import { useDevice } from "@/compossables/useDevice";
 
@@ -351,7 +365,7 @@ const isSuccess = ref(false);
 
   &_desktop {
     position: relative;
-    top: 8em;
+    top: 3.5em;
     left: 0em;
     font-weight: 300;
     width: 40.38em;
@@ -530,7 +544,7 @@ const isSuccess = ref(false);
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 53.56em;
+  height: 56.56em;
   text-align: center;
   color: rgba(59, 59, 59, 0.96);
 }
@@ -688,10 +702,20 @@ const isSuccess = ref(false);
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 65.81em;
+  height: 68.81em;
   overflow-y: auto;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+}
+.buttonnext_connect_desktop {
+  position: static;
+}
+.button-group {
+  position: relative;
+  top: 17em;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 </style>
