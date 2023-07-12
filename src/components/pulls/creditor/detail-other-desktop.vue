@@ -71,16 +71,15 @@
         </div>
         <div class="group">
           <div class="div6">Кредитор:</div>
-          <div class="radiobutton-parent">
-            <a
-              class="div7"
-              @click="
-                () => {
-                  isCreditoreInfo = true;
-                }
-              "
-              >Деньги до зарплаты</a
-            >
+          <div
+            class="radiobutton-parent"
+            @click="
+              () => {
+                isCreditoreInfo = true;
+              }
+            "
+          >
+            <a class="div7">Деньги до зарплаты</a>
             <img
               class="radiobutton-icon"
               alt=""
@@ -442,6 +441,7 @@ const close = () => {
   align-items: center;
   justify-content: flex-start;
   gap: 0.63em;
+  cursor: pointer;
 }
 .group {
   align-self: stretch;

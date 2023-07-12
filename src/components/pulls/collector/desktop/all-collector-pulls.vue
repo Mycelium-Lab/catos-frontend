@@ -17,7 +17,10 @@
                     <div class="frame-wrapper1">
                       <div class="parent">
                         <div class="div1">Кредитор:</div>
-                        <div class="radiobutton-parent">
+                        <div
+                          class="radiobutton-parent"
+                          @click="() => (isCreditorInfo = true)"
+                        >
                           <div class="div2">Деньги до зарплаты</div>
                           <img
                             class="radiobutton-icon"
@@ -225,11 +228,16 @@
       </div>
     </template>
   </desktop-modal>
+  <creditor-info
+    v-if="isCreditorInfo"
+    @close="() => (isCreditorInfo = false)"
+  ></creditor-info>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
 // @ts-ignore
 import desktopModal from "@/components/base/desktop-modal.vue";
+import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 // @ts-ignore
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 const isDetail = ref(true);
@@ -241,6 +249,7 @@ const toBy = () => {
 const close = () => {
   emits("close");
 };
+const isCreditorInfo = ref(false);
 </script>
 <style scoped>
 .div {
@@ -280,6 +289,8 @@ const close = () => {
   font-size: 0.75em;
   line-height: 0.83em;
   font-weight: 300;
+  color: #2c56c0;
+  text-decoration: underline;
 }
 .radiobutton-parent {
   display: flex;
@@ -287,6 +298,7 @@ const close = () => {
   align-items: center;
   justify-content: flex-start;
   gap: 0.63em;
+  cursor: pointer;
 }
 .parent {
   align-self: stretch;

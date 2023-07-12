@@ -17,7 +17,10 @@
                     <div class="frame-wrapper1">
                       <div class="parent">
                         <div class="div1">Кредитор:</div>
-                        <div class="radiobutton-parent">
+                        <div
+                          class="radiobutton-parent"
+                          @click="() => (isCreditorInfo = true)"
+                        >
                           <div class="div2">Деньги до зарплаты</div>
                           <img
                             class="radiobutton-icon"
@@ -27,12 +30,22 @@
                         </div>
                       </div>
                     </div>
-                    <div class="field-parent">
-                      <div class="field">
-                        <div class="div3">Статус:</div>
-                        <div class="ton">Активен</div>
+                    <div class="frame-parent_status">
+                      <div class="c-wrapper">
+                        <div class="c">Cостояние:</div>
                       </div>
-                      <div class="col-titles-bg" />
+                      <div class="status-all">
+                        <div class="colors-graphsorders-parent">
+                          <img
+                            class="colors-graphsorders-icon"
+                            alt=""
+                            src="@/assets/images/colors-graphsorders1.svg"
+                          />
+                          <div class="c">
+                            <span>Активен </span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div class="field-parent">
                       <div class="field">
@@ -240,6 +253,10 @@
       </div>
     </template>
   </desktop-modal>
+  <creditor-info
+    v-if="isCreditorInfo"
+    @close="() => (isCreditorInfo = false)"
+  ></creditor-info>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
@@ -247,12 +264,14 @@ import { ref } from "vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 // @ts-ignore
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
+import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 const isDetail = ref(true);
 const emits = defineEmits(["close"]);
 
 const close = () => {
   emits("close");
 };
+const isCreditorInfo = ref(false);
 </script>
 <style scoped>
 .div {
@@ -292,6 +311,8 @@ const close = () => {
   font-size: 0.75em;
   line-height: 0.83em;
   font-weight: 300;
+  color: #2c56c0;
+  text-decoration: underline;
 }
 .radiobutton-parent {
   display: flex;
@@ -299,6 +320,7 @@ const close = () => {
   align-items: center;
   justify-content: flex-start;
   gap: 0.63em;
+  cursor: pointer;
 }
 .parent {
   align-self: stretch;
@@ -320,6 +342,7 @@ const close = () => {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  margin-bottom: 1em;
 }
 .div3 {
   flex: 1;
@@ -636,6 +659,62 @@ const close = () => {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+}
+.c {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 130%;
+}
+.c-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 0.13em 0em;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.colors-graphsorders-icon {
+  position: relative;
+  width: 1em;
+  height: 1em;
+}
+.span {
+  color: rgba(129, 129, 165, 0.4);
+}
+.colors-graphsorders-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.31em;
+}
+.iconchange {
+  position: relative;
+  width: 2.5em;
+  height: 2.5em;
+}
+.status-all {
+  align-self: stretch;
+  border-radius: 8px;
+
+  width: 13.56em;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  padding: 0em 0em 0em 0.63em;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-end;
+}
+.frame-parent_status {
+  width: 100%;
+  display: flex;
+
+  box-sizing: border-box;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.88em;
+  margin-bottom: 1em;
 }
 
 @media (max-height: 900px) {
