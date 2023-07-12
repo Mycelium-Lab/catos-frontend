@@ -92,54 +92,6 @@
             <div class="col-titles-bg" />
           </div>
         </div>
-        <div class="frame-div">
-          <div class="header-wrapper">
-            <div class="header">
-              <div class="catos">Данные займов CATOS</div>
-            </div>
-          </div>
-          <div class="field-parent">
-            <div class="field">
-              <div class="email">Займы:</div>
-              <div class="div17">
-                <p class="p">
-                  <span> Всего: </span>
-                  <a class="span3">3</a>
-                </p>
-                <p class="p">
-                  <span>Активно: </span>
-                  <a class="span3">1</a>
-                </p>
-                <p class="p">
-                  <span>Погашено: </span>
-                  <a class="span3">2</a>
-                </p>
-              </div>
-            </div>
-            <div class="col-titles-bg" />
-          </div>
-          <div class="field-parent">
-            <div class="field">
-              <div class="email">Текущий общий долг:</div>
-              <div class="someuswergmailru">100 000 TON</div>
-            </div>
-            <div class="col-titles-bg" />
-          </div>
-          <div class="field-parent">
-            <div class="field">
-              <div class="email">Дата регистрации:</div>
-              <div class="someuswergmailru">12.11.2022</div>
-            </div>
-            <div class="col-titles-bg" />
-          </div>
-          <div class="field-parent">
-            <div class="field">
-              <div class="email">Последний вход:</div>
-              <div class="someuswergmailru">13.11.2022</div>
-            </div>
-            <div class="col-titles-bg" />
-          </div>
-        </div>
       </div>
     </div>
     <div class="button-wrapper">
