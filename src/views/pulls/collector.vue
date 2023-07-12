@@ -50,12 +50,12 @@
     <app-bar v-if="isAppBar"></app-bar>
   </div>
   <default-desktop v-else>
-    <template v-slot:title> Кредитные пулы </template>
+    <template v-slot:title> Задолжности </template>
     <template v-slot:slider>
       <button-slider
-        :style="{ width: '369px', margin: '0' }"
+        :style="{ width: '311px', margin: '0' }"
         :variantIndex="2"
-        :tabs="['Маркетплейс', 'Выкупленные задолжности']"
+        :tabs="['Маркетплейс', 'Купленные']"
         @on-slide="toggleSlide"
       ></button-slider>
     </template>

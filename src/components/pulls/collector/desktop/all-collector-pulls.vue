@@ -111,6 +111,13 @@
                       </div>
                       <div class="col-titles-bg" />
                     </div>
+                    <div class="field-parent">
+                      <div class="field">
+                        <div class="div3">Цена покупки:</div>
+                        <div class="ton">1000 TON</div>
+                      </div>
+                      <div class="col-titles-bg" />
+                    </div>
                   </div>
                   <div class="frame-parent3">
                     <div class="header-parent">
@@ -209,7 +216,7 @@
           <div class="des-and-bbn-wrapper">
             <catos-button
               variant="fourth"
-              :style="{ width: '100%', margin: '0' }"
+              :style="{ width: '480px', margin: '0 auto' }"
               @click="toBy"
               >Купить</catos-button
             >
