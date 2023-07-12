@@ -546,6 +546,16 @@
       }
     "
   ></all-collector-pulls>
+  <my-collector-pulls
+    v-if="isMyCollector"
+    @close="
+      () => {
+        isMyCollector = false;
+        resetState('my-collector');
+      }
+    "
+  >
+  </my-collector-pulls>
   <buy
     v-if="allCollectorState.buyModal"
     @close="
@@ -577,6 +587,7 @@ import addLiquid from "../pulls/depositor/desktop/add-liquid.vue";
 import myDepositorPulls from "../pulls/depositor/desktop/my-depositor-pulls.vue";
 import withdrawLiquid from "../pulls/depositor/desktop/withdraw-liquid.vue";
 import allCollectorPulls from "../pulls/collector/desktop/all-collector-pulls.vue";
+import myCollectorPulls from "../pulls/collector/desktop/my-collector-pulls.vue";
 import buy from "../pulls/collector/desktop/buy.vue";
 import { useRouter } from "vue-router";
 
@@ -627,6 +638,9 @@ const allCollectorState = {
   detailOtherModal: false,
   buyModal: false,
 };
+const myCollectorState = {
+  detailOtherModal: false,
+};
 
 const resetState = (state: string) => {
   switch (state) {
@@ -645,6 +659,8 @@ const resetState = (state: string) => {
     case "all-collector":
       allCollectorState.detailOtherModal = false;
       allCollectorState.buyModal = false;
+    case "my-collector":
+      allCollectorState.detailOtherModal = false;
   }
 };
 
@@ -700,8 +716,13 @@ const toDetail = () => {
       myDepositorState.detailOtherModal = true;
     }
   } else if (role === "collector") {
-    allCollectorState.detailOtherModal = true;
-    isAllCollector.value = true;
+    if (variant === "marketplace") {
+      isAllCollector.value = true;
+      allCollectorState.detailOtherModal = true;
+    } else {
+      isMyCollector.value = true;
+      myCollectorState.detailOtherModal = true;
+    }
   }
 
   /*} else {
@@ -1169,6 +1190,9 @@ li {
     height: 35em;
   }
   &_collector-debt {
+    height: 30.3em;
+  }
+  &_collector-marketplace {
     height: 29.5em;
   }
 }
