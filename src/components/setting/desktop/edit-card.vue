@@ -75,6 +75,15 @@
             Укажите новую почту на которую будет отправлен код
           </div>
         </div>
+        <div class="des-and-bbn1">
+          <div class="text-and-button">
+            <catos-button
+              variant="fourth"
+              :style="{ width: '100%', margin: '0 auto' }"
+              >Отправить номер</catos-button
+            >
+          </div>
+        </div>
       </div>
       <div class="fields">
         <div class="fieldsregistration-options4">
