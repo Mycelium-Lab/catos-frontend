@@ -77,7 +77,7 @@
       isToUp ? "Пополнение" : isWithdraw ? "Вывод средств" : "Обмен"
     }}</template>
     <template v-slot:body>
-      <to-up v-if="isToUp"></to-up>
+      <to-up v-if="isToUp" @payNotif="payNotif"></to-up>
       <withdraw
         v-if="isWithdraw"
         @result="
@@ -104,6 +104,7 @@
     :lastAction="toTransaction"
     @close="() => (isSwapSuccess = false)"
     actionGroup
+    actionGroupColumn
   >
     <template v-slot:header>Обмен средств:</template>
     <template v-slot:title>Успешно</template>
@@ -125,6 +126,7 @@
     :lastAction="toTransaction"
     @close="() => (isWithdrawSuccess = false)"
     actionGroup
+    actionGroupColumn
   >
     <template v-slot:header>Вывод средств:</template>
     <template v-slot:title>Успешно</template>
@@ -162,12 +164,18 @@ import withdraw from "./modal-body/withdraw.vue";
 import copyPaste from "@/components/fields/copy-paste.vue";
 import swap from "./modal-body/swap.vue";
 import { useRouter } from "vue-router";
+
 const isToUp = ref(false);
 const isWithdraw = ref(false);
 const isSwap = ref(false);
 const isSwapSuccess = ref(false);
 const isWithdrawSuccess = ref(false);
 
+const emits = defineEmits(["pay-notif"]);
+
+const payNotif = () => {
+  emits("pay-notif", () => (isToUp.value = false));
+};
 const router = useRouter();
 const toTransaction = () => {
   router.push({ name: "transaction-history" });

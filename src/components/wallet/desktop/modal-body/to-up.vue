@@ -63,17 +63,14 @@
             <div class="aderes">
               <div class="div4">Кошелек для пополнения:</div>
             </div>
-            <div class="field-copykey">
-              <div class="text-1">
-                <div class="key">Key:</div>
-              </div>
-              <div class="code">
-                <div class="cahrjj3">
-                  EQCoqrqUMQCKKZTBFCQ0VzgOf С2K3ieCVOecUmPSFclu2HQJ
-                </div>
-              </div>
-              <!--<img class="iconchange1" alt="" src="/iconchange1.svg" />-->
-            </div>
+            <copy-paste
+              :style="{ width: '412px', fontSize: '12px' }"
+              value="EQCoqrqUMQCKKZTBFCQ0VzgOf 
+С2K3ieCVOecUmPSFclu2HQJ"
+            >
+              <template v-slot:icon>
+                <img src="@/assets/images/iconscopy.svg" alt="" /> </template
+            ></copy-paste>
           </div>
         </div>
       </div>
@@ -83,7 +80,10 @@
           <div class="text">Или</div>
         </div>
       </div>
-      <catos-button variant="secondary" :style="{ width: '100%', margin: '0' }"
+      <catos-button
+        variant="secondary"
+        :style="{ width: '100%', margin: '0' }"
+        @click="payNotif"
         >Пополнить через Tokenkeeper</catos-button
       >
     </div>
@@ -98,6 +98,12 @@ const options = {
 };
 import catosSelect from "@/components/fields/catos-select.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
+import copyPaste from "@/components/fields/copy-paste.vue";
+const emits = defineEmits(["pay-notif"]);
+
+const payNotif = () => {
+  emits("pay-notif");
+};
 </script>
 <style scoped>
 .div {
@@ -468,6 +474,7 @@ import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
   color: #3b3b3b;
   font-family: Inter;
 }
+
 @media (max-height: 900px) {
   .frame-parent {
     height: 36em;

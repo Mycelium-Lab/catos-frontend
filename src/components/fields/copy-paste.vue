@@ -116,7 +116,7 @@ const handleBlur = () => {
   /* !1 */
   right: 0em;
   width: 3em;
-  height: 2.5em;
+  height: 40px;
   background-color: rgba(230, 221, 255, 1);
   border-top-right-radius: var(--br-xs);
   border-bottom-right-radius: var(--br-xs);
