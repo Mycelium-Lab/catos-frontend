@@ -337,7 +337,7 @@
           </div>
           <chart id="1"></chart>
 
-          <div class="days">
+          <!--<div class="days">
             <div class="div32">Апр</div>
             <div class="div32">Май</div>
             <div class="div34">Июнь</div>
@@ -346,12 +346,12 @@
             <div class="div34">Окт</div>
             <div class="div34">Ноябрь</div>
             <div class="div34">Декабрь</div>
-          </div>
+          </div>-->
         </div>
         <div class="divider">
           <div class="line"></div>
         </div>
-        <div class="slider-buttons">
+        <!--<div class="slider-buttons">
           <div class="buttons-graphsordersdown">
             <div class="div40">Прибыль</div>
           </div>
@@ -364,7 +364,7 @@
           <div class="buttons-graphsordersdown2">
             <div class="div40">ROI</div>
           </div>
-        </div>
+        </div>-->
       </div>
       <div class="graphsorders-mobile-01">
         <div class="master1">
@@ -407,7 +407,7 @@
           </div>
           <chart id="2"></chart>
 
-          <div class="days1">
+          <!--<div class="days1">
             <div class="div32">Апр</div>
             <div class="div32">Май</div>
             <div class="div34">Июнь</div>
@@ -416,7 +416,7 @@
             <div class="div34">Окт</div>
             <div class="div34">Ноябрь</div>
             <div class="div34">Декабрь</div>
-          </div>
+          </div>-->
         </div>
         <div class="divider">
           <div class="line"></div>
@@ -477,7 +477,7 @@
           </div>
           <chart id="3"></chart>
 
-          <div class="days1">
+          <!--<div class="days1">
             <div class="div32">Апр</div>
             <div class="div32">Май</div>
             <div class="div34">Июнь</div>
@@ -486,7 +486,7 @@
             <div class="div34">Окт</div>
             <div class="div34">Ноябрь</div>
             <div class="div34">Декабрь</div>
-          </div>
+          </div>-->
         </div>
         <div class="divider">
           <div class="line"></div>
@@ -547,7 +547,7 @@
           </div>
           <chart id="4"></chart>
 
-          <div class="days1">
+          <!--<div class="days1">
             <div class="div32">Апр</div>
             <div class="div32">Май</div>
             <div class="div34">Июнь</div>
@@ -556,7 +556,7 @@
             <div class="div34">Окт</div>
             <div class="div34">Ноябрь</div>
             <div class="div34">Декабрь</div>
-          </div>
+          </div>-->
         </div>
         <div class="divider">
           <div class="line"></div>
@@ -2011,7 +2011,7 @@
           </div>
           <chart id="1"></chart>
 
-          <div class="days">
+          <!--<div class="days">
             <div class="div32">Апр</div>
             <div class="div32">Май</div>
             <div class="div34">Июнь</div>
@@ -2020,12 +2020,12 @@
             <div class="div34">Окт</div>
             <div class="div34">Ноябрь</div>
             <div class="div34">Декабрь</div>
-          </div>
+          </div>-->
         </div>
         <div class="divider">
           <div class="line"></div>
         </div>
-        <div class="slider-buttons">
+        <!--<div class="slider-buttons">
           <div class="buttons-graphsordersdown">
             <div class="div40">Прибыль</div>
           </div>
@@ -2038,7 +2038,7 @@
           <div class="buttons-graphsordersdown2">
             <div class="div40">ROI</div>
           </div>
-        </div>
+        </div>-->
       </div>
       <div class="graphsorders-mobile-01">
         <div class="master">
@@ -2081,7 +2081,7 @@
           </div>
           <chart id="2"></chart>
 
-          <div class="days">
+          <!--<div class="days">
             <div class="div32">Апр</div>
             <div class="div32">Май</div>
             <div class="div34">Июнь</div>
@@ -2090,12 +2090,12 @@
             <div class="div34">Окт</div>
             <div class="div34">Ноябрь</div>
             <div class="div34">Декабрь</div>
-          </div>
+          </div>-->
         </div>
         <div class="divider">
           <div class="line"></div>
         </div>
-        <div class="slider-buttons">
+        <!---<div class="slider-buttons">
           <div class="buttons-graphsordersdown">
             <div class="div40">Прибыль</div>
           </div>
@@ -2108,7 +2108,7 @@
           <div class="buttons-graphsordersdown2">
             <div class="div40">ROI</div>
           </div>
-        </div>
+        </div>-->
       </div>
       <div class="graphsorders-mobile-01">
         <div class="master">
@@ -2151,7 +2151,7 @@
           </div>
           <chart id="3"></chart>
 
-          <div class="days">
+          <!--div class="days">
             <div class="div32">Апр</div>
             <div class="div32">Май</div>
             <div class="div34">Июнь</div>
@@ -2160,12 +2160,12 @@
             <div class="div34">Окт</div>
             <div class="div34">Ноябрь</div>
             <div class="div34">Декабрь</div>
-          </div>
+          </div>-->
         </div>
         <div class="divider">
           <div class="line"></div>
         </div>
-        <div class="slider-buttons">
+        <!-- <div class="slider-buttons">
           <div class="buttons-graphsordersdown">
             <div class="div40">Прибыль</div>
           </div>
@@ -2178,7 +2178,7 @@
           <div class="buttons-graphsordersdown2">
             <div class="div40">ROI</div>
           </div>
-        </div>
+        </div>-->
       </div>
       <div class="graphsorders-mobile-01">
         <div class="master">
@@ -2221,7 +2221,7 @@
           </div>
           <chart id="4"></chart>
 
-          <div class="days">
+          <!--<div class="days">
             <div class="div32">Апр</div>
             <div class="div32">Май</div>
             <div class="div34">Июнь</div>
@@ -2230,12 +2230,12 @@
             <div class="div34">Окт</div>
             <div class="div34">Ноябрь</div>
             <div class="div34">Декабрь</div>
-          </div>
+          </div>-->
         </div>
         <div class="divider">
           <div class="line"></div>
         </div>
-        <div class="slider-buttons">
+        <!--<div class="slider-buttons">
           <div class="buttons-graphsordersdown">
             <div class="div40">Прибыль</div>
           </div>
@@ -2248,7 +2248,7 @@
           <div class="buttons-graphsordersdown2">
             <div class="div40">ROI</div>
           </div>
-        </div>
+        </div>-->
       </div>
     </template>
   </default-desktop>
@@ -2320,6 +2320,8 @@ const rows = [
     lastValue: ["60%", "60%", "60%", "60%"],
   },
 ];
+
+const chartData = [];
 const isActive = ref("");
 
 import { useDevice } from "@/compossables/useDevice";
@@ -3101,7 +3103,7 @@ const rowPairs = computed(() => {
   flex-direction: column;
   align-items: center;
   position: relative;
-  gap: 1.13em;
+
   color: #c1c4c9;
 }
 .colors-graphsorders-icon {
@@ -3160,7 +3162,7 @@ const rowPairs = computed(() => {
   border: 1px solid rgba(46, 58, 89, 0.2);
   box-sizing: border-box;
   width: 100%;
-  height: 33.31em;
+  height: 33em;
   overflow: hidden;
   flex-shrink: 0;
   padding: 1.38em 0;
