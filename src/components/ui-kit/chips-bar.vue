@@ -28,9 +28,7 @@
         <img
           class="chip-icon"
           @click="() => (desktop ? handleEdit(true) : activeEdit(true))"
-          :src="`src/assets/images/iconseditoutline-${
-            activeChip === i ? 'white.svg' : 'black.svg'
-          }`"
+          src="@/assets/images/iconseditoutline-black.svg"
         />
       </li>
     </ul>
