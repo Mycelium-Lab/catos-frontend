@@ -3,7 +3,7 @@
     :id="id"
     class="m-t-15 m-b-15 myChart"
     width="542"
-    height="184"
+    height="200"
   ></canvas>
 </template>
 
@@ -17,71 +17,84 @@ const { id } = defineProps({
 onMounted(() => {
   // @ts-ignore
   var ctx12 = document.getElementById(id).getContext("2d");
-  var gradient = ctx12.createLinearGradient(20, 20, 0, 260);
-
-  gradient.addColorStop(0, "rgba(94, 129, 244, 1)");
-  gradient.addColorStop(1, "rgba(255, 255, 255, 1)");
-
-  var gradient1 = ctx12.createLinearGradient(0, 0, 0, 280);
-
-  gradient1.addColorStop(0, "rgba(138, 241, 185, 1)");
-  gradient1.addColorStop(1, "rgba(255, 255, 255, 1)");
+  var gradient = ctx12.createLinearGradient(0, 0, 0, 280);
+  gradient.addColorStop(0, "rgba(239,43,114,1)");
+  gradient.addColorStop(1, "rgba(239,43,114,0)");
   var myChart = document.getElementById(id);
   var config = {
     type: "bar",
     data: {
-      labels: ["Янв", "Март", "Июнь", "Авг", "Ноя"],
+      labels: [
+        "00:00",
+        "03:00",
+        "06:00",
+        "09:00",
+        "12:00",
+        "15:00",
+        "18:00",
+        "21:00",
+      ],
       datasets: [
         {
-          label: "Market Traffic",
-          data: [20, 28, 37, 29, 38, 42, 45, 33, 34, 22, 53, 22],
-          borderColor: "rgba(94, 129, 244, 1)",
-          backgroundColor: "white",
+          label: "Прибыль",
+          data: [20, 28, 37, 29, 38, 42, 45, 33, 20],
+          borderColor: "#F5A623",
+          backgroundColor: "rgba(0, 0, 0, 0.1)",
           type: "line",
           order: 0,
           yAxisID: "left-y-axis",
-          pointBorderWidth: 2,
-          pointBorderColor: "rgba(204, 216, 248, 1)",
-          pointBackgroundColor: "rgba(87, 126, 247, 0.96)",
-          pointRadius: 3,
         },
         {
-          label: "Market Value",
-          data: [22, 22, 31, 21, 34, 47, 43, 31, 38, 24, 53, 32],
-          borderColor: "rgba(138, 241, 185, 1)",
+          label: "Доход",
+          data: [1, 3, 2, 5, 1, 9, 10, 14, 5],
+          borderColor: "#ffb1c1",
           backgroundColor: gradient,
           type: "line",
           order: 0,
           yAxisID: "right-y-axis",
-          pointBorderWidth: 2,
-          pointBorderColor: "#BDF3D8",
-          pointBackgroundColor: "#8AF1B9",
-          pointRadius: 3,
         },
       ],
     },
     options: {
       scaleShowVerticalLines: false,
       responsive: true,
-
-      //maintainAspectRatio: false,
+      maintainAspectRatio: true,
       scales: {
         xAxes: [
           {
             //barPercentage: 1,
+            categoryPercentage: 0.2,
+            barThickness: 20,
+            maxBarThickness: 20,
+            gridLines: {
+              display: false,
+              drawBorder: false,
+            },
           },
         ],
         yAxes: [
           {
             id: "left-y-axis",
-            display: false,
+            type: "linear",
             position: "left",
+            gridLines: {
+              display: true,
+              drawBorder: false,
+            },
+            ticks: {
+              display: true,
+            },
+            scaleLabel: {
+              display: true,
+              labelString: "TON",
+              fontStyle: "bold",
+              fontSize: 15,
+            },
           },
           {
             id: "right-y-axis",
             type: "linear",
             position: "right",
-            display: false,
             gridLines: {
               display: false,
               drawBorder: false,
@@ -89,12 +102,18 @@ onMounted(() => {
             ticks: {
               display: true,
             },
+            scaleLabel: {
+              display: true,
+              labelString: "TON",
+              fontStyle: "bold",
+              fontSize: 15,
+            },
           },
         ],
       },
-
       legend: {
-        display: false,
+        display: true,
+        position: "bottom",
       },
       tooltips: {
         enabled: true,
@@ -102,7 +121,7 @@ onMounted(() => {
     },
   };
   // @ts-ignore
-  const chart = new Chart(myChart, config);
+  window.pieChart1 = new Chart(myChart, config);
 });
 </script>
 

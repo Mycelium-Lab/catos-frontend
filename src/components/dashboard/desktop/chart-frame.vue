@@ -1,45 +1,44 @@
 <template>
-  <div class="graphsorders-mobile-01-parent">
-    <div class="graphsorders-mobile-01">
-      <div class="master">
-        <div class="content-frame">
-          <div class="elements-textbox-tablerow">
-            <div class="description">
-              <div class="title">Финансы</div>
-              <div class="subtitle">Catos</div>
-            </div>
+  <div class="graphsorders-mobile-01">
+    <div class="master">
+      <div class="content-frame">
+        <div class="elements-textbox-tablerow">
+          <div class="description">
+            <div class="title">Финансы</div>
+            <div class="subtitle">Catos</div>
           </div>
-          <div class="text-frame">
-            <div class="info-right-side">
-              <div class="content">
-                <div class="title">1 420 000 TON</div>
-                <div class="info">+1.215 %</div>
-              </div>
-              <img
-                class="arrows-down-arrow-right"
-                alt=""
-                src="@/assets/images/down-arrow-right.svg"
-              />
+        </div>
+        <div class="text-frame">
+          <div class="info-right-side">
+            <div class="content">
+              <div class="title">1 420 000 TON</div>
+              <div class="info">+1.215 %</div>
             </div>
+            <img
+              class="arrows-down-arrow-right"
+              alt=""
+              src="@/assets/images/down-arrow-right.svg"
+            />
           </div>
         </div>
       </div>
-      <div class="divider">
-        <div class="line" />
-      </div>
-      <div class="table">
-        <div class="tabs">
-          <div class="tabstextactive">
-            <div class="tab-title">День</div>
-          </div>
-          <div class="tabstextresting">
-            <div class="tab-title">Неделя</div>
-          </div>
-          <div class="tabstextresting">
-            <div class="tab-title">Месяц</div>
-          </div>
+    </div>
+    <div class="divider">
+      <div class="line" />
+    </div>
+    <div class="table">
+      <div class="tabs">
+        <div class="tabstextactive">
+          <div class="tab-title">День</div>
         </div>
-        <!--<div class="graph">
+        <div class="tabstextresting">
+          <div class="tab-title">Неделя</div>
+        </div>
+        <div class="tabstextresting">
+          <div class="tab-title">Месяц</div>
+        </div>
+      </div>
+      <!--<div class="graph">
           <div class="lines">
             <img class="line-icon" alt="" src="/line.svg" />
             <img class="lines-icon" alt="" />
@@ -55,9 +54,9 @@
           <img class="path-3-copy1" alt="" src="/path-3-copy1.svg" />
           <img class="path-3-icon" alt="" src="/path-4.svg" />
         </div>-->
-        <chart :id="serial"></chart>
+      <chart id="1"></chart>
 
-        <div class="days">
+      <!--<div class="days">
           <div class="div">00:00</div>
           <div class="div">3:00</div>
           <div class="div">6:00</div>
@@ -66,12 +65,12 @@
           <div class="div">15:00</div>
           <div class="div">18:00</div>
           <div class="div">21:00</div>
-        </div>
-      </div>
-      <div class="divider1">
-        <div class="line" />
-      </div>
-      <div class="slider-buttons">
+        </div>-->
+    </div>
+    <div class="divider1">
+      <div class="line" />
+    </div>
+    <!--<div class="slider-buttons">
         <div class="buttons-graphsordersdown">
           <img
             class="colors-graphsorders-icon"
@@ -104,8 +103,7 @@
           />
           <div class="june-16">ROI</div>
         </div>
-      </div>
-    </div>
+      </div>-->
   </div>
 </template>
 <script setup lang="ts">
@@ -209,7 +207,6 @@ const { serial } = defineProps({
   height: 0.06em;
 }
 .divider {
-  position: absolute;
   top: 5.06em;
   left: 0em;
   width: 780px;
@@ -254,6 +251,7 @@ const { serial } = defineProps({
   justify-content: space-between;
   z-index: 0;
   text-align: center;
+  margin: 0 auto;
 }
 .line-icon {
   position: relative;
@@ -413,21 +411,15 @@ const { serial } = defineProps({
   z-index: 4;
 }
 .table {
-  position: absolute;
-  top: 7.63em;
-  left: 0em;
   border-radius: 16px;
-  width: 48.75em;
   overflow: hidden;
-  display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  position: relative;
   gap: 1.13em;
-  color: #8181a5;
+  color: #c1c4c9;
 }
 .divider1 {
-  position: absolute;
   top: 27.88em;
   left: 0em;
   width: 780px;
@@ -494,14 +486,15 @@ const { serial } = defineProps({
   border: 1px solid rgba(46, 58, 89, 0.2);
   box-sizing: border-box;
   width: 780px;
-  height: 33.31em;
   overflow: hidden;
-  padding: 22px 0px;
+  flex-shrink: 0;
+  padding: 1.38em 0;
+  align-items: center;
 }
 .graphsorders-mobile-01-parent {
   position: relative;
   width: 100%;
-  height: 33.25em;
+  height: 40em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
