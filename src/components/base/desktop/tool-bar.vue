@@ -44,9 +44,7 @@
     <template v-slot:left-option>
       <bp-left-option-sort
         v-if="
-          (role === 'borrower' && variant === 'pulls') ||
-          role === 'depositor' ||
-          role === 'creditor'
+          (role === 'borrower' && variant === 'pulls') || role === 'depositor'
         "
       ></bp-left-option-sort>
       <bl-left-option-sort
@@ -69,9 +67,7 @@
     <template v-slot:right-option>
       <bp-right-option-sort
         v-if="
-          (role === 'borrower' && variant === 'pulls') ||
-          role === 'depositor' ||
-          role === 'creditor'
+          (role === 'borrower' && variant === 'pulls') || role === 'depositor'
         "
       ></bp-right-option-sort>
       <bl-right-option-sort
