@@ -1880,83 +1880,47 @@
       <div class="frame-container">
         <div class="containers-group">
           <div class="containers3">
-            <div class="id-7">ID 7</div>
+            <div class="id-7">7</div>
           </div>
           <div class="containers4">
-            <div class="id-7">ID 6</div>
+            <div class="id-7">6</div>
           </div>
           <div class="containers3">
-            <div class="id-7">ID 5</div>
+            <div class="id-7">5</div>
           </div>
           <div class="containers4">
-            <div class="id-7">ID 4</div>
-          </div>
-          <div class="containers7">
-            <div class="id-7">ID 3</div>
-          </div>
-          <div class="containers8">
-            <div class="id-7">ID 2</div>
+            <div class="id-7">4</div>
           </div>
         </div>
         <div class="containers-container">
           <div class="containers9">
-            <div class="div18">160</div>
+            <div class="div18">{{ rows[currentPage].firstValue[0] }}</div>
           </div>
           <div class="containers10">
-            <div class="div18">190</div>
+            <div class="div18">{{ rows[currentPage].firstValue[1] }}</div>
           </div>
           <div class="containers9">
-            <div class="div18">33</div>
+            <div class="div18">{{ rows[currentPage].firstValue[2] }}</div>
           </div>
           <div class="containers10">
-            <div class="div18">33</div>
-          </div>
-          <div class="containers9">
-            <div class="div18">23</div>
-          </div>
-          <div class="containers10">
-            <div class="div18">21</div>
+            <div class="div18">{{ rows[currentPage].firstValue[3] }}</div>
           </div>
         </div>
         <div class="containers-parent1">
           <div class="containers9">
-            <div class="div18">105</div>
+            <div class="div18">{{ rows[currentPage].lastValue[0] }}</div>
           </div>
           <div class="containers10">
-            <div class="div18">24</div>
+            <div class="div18">{{ rows[currentPage].lastValue[1] }}</div>
           </div>
           <div class="containers9">
-            <div class="div18">7</div>
+            <div class="div18">{{ rows[currentPage].lastValue[2] }}</div>
           </div>
           <div class="containers10">
-            <div class="div18">7</div>
-          </div>
-          <div class="containers9">
-            <div class="div18">7</div>
-          </div>
-          <div class="containers10">
-            <div class="div18">7</div>
+            <div class="div18">{{ rows[currentPage].lastValue[3] }}</div>
           </div>
         </div>
         <div class="containers-parent2">
-          <div class="containers21">
-            <div class="arrows-table">
-              <img
-                class="chevron-right-icon"
-                alt=""
-                src="@/assets/images/eye.svg"
-              />
-            </div>
-          </div>
-          <div class="containers22">
-            <div class="arrows-table">
-              <img
-                class="chevron-right-icon"
-                alt=""
-                src="@/assets/images/eye.svg"
-              />
-            </div>
-          </div>
           <div class="containers21">
             <div class="arrows-table">
               <img
@@ -2310,34 +2274,50 @@ const rows = [
   {
     first: "Пулл",
     last: "Выдано займов",
+    firstValue: [160, 190, 33, 11],
+    lastValue: [30, 24, 7, 3],
   },
   {
     first: "Займов активно",
     last: "Займов погашено",
+    firstValue: [105, 156, 25, 7],
+    lastValue: [3, 10, 0, 0],
   },
   {
     first: "Займов просрочено",
     last: "Займов на продаже",
+    firstValue: [7, 3, 1, 0],
+    lastValue: [6, 2, 0, 1],
   },
   {
     first: "Займов продано",
     last: "Выдано займов (сумма)",
+    firstValue: [2, 2, 0, 0],
+    lastValue: ["670 000 TON", "890 000 TON", "120 00 TON", "67 00 TON"],
   },
   {
-    first: "Займов аквтивно (сумма)",
-    last: "Займов погашего (сумма)",
+    first: "Займов активно (сумма)",
+    last: "Займов погашено (сумма)",
+    firstValue: ["100 000 TON", "100 000 TON", "100 00 TON", "100 00 TON"],
+    lastValue: ["100 000 TON", "100 000 TON", "100 00 TON", "100 00 TON"],
   },
   {
-    first: "Займов на просрочено (сумма)",
+    first: "Займов просрочено (сумма)",
     last: "Займов на продаже (сумма)",
+    firstValue: ["100 000 TON", "100 000 TON", "100 00 TON", "100 00 TON"],
+    lastValue: ["100 000 TON", "100 000 TON", "100 00 TON", "100 00 TON"],
   },
   {
     first: "Займов продано (сумма)",
     last: "Прибыль",
+    firstValue: ["100 000 TON", "100 000 TON", "100 00 TON", "100 00 TON"],
+    lastValue: ["100 000 TON", "100 000 TON", "100 00 TON", "100 00 TON"],
   },
   {
     first: "Прибыль",
     last: "ROI",
+    firstValue: ["100 000 TON", "100 000 TON", "100 00 TON", "100 00 TON"],
+    lastValue: ["60%", "60%", "60%", "60%"],
   },
 ];
 const isActive = ref("");
@@ -4293,8 +4273,14 @@ const rowPairs = computed(() => {
   .containers-container {
     width: 160px;
   }
+  .containers1 {
+    width: 130px;
+  }
+  .containers {
+    width: 125px;
+  }
   .containers-parent1 {
-    width: 400px;
+    width: 600px;
   }
   .containers8 {
     width: 100%;
@@ -4302,5 +4288,6 @@ const rowPairs = computed(() => {
 }
 .stats-title {
   margin: 0em;
+  margin-top: 2em;
 }
 </style>

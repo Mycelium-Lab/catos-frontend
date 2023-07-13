@@ -8,7 +8,12 @@
               <div class="checkboxdone" />
               <div class="parent">
                 <div class="div">Пулл #12345</div>
-                <div class="id-100">ID #100</div>
+                <div class="id-100">
+                  ID #
+                  {{
+                    serial === 1 ? 7 : serial === 2 ? 6 : serial === 3 ? 5 : 4
+                  }}
+                </div>
               </div>
             </div>
             <div class="statusapplication">
@@ -27,7 +32,9 @@
           <div v-if="currentTable === 'amount'" class="component">
             <div class="field">
               <div class="div5">Пулл:</div>
-              <div class="div1_link div1">160</div>
+              <div class="div1_link div1">
+                {{ currPull }}
+              </div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -37,7 +44,7 @@
               <div
                 :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
               >
-                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+                {{ currGetLoan }}
               </div>
             </div>
             <div class="col-titles-bg" />
@@ -48,7 +55,7 @@
               <div
                 :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
               >
-                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+                {{ currActiveLoan }}
               </div>
             </div>
             <div class="col-titles-bg" />
@@ -59,7 +66,7 @@
               <div
                 :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
               >
-                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+                {{ currRepaidLoan }}
               </div>
             </div>
             <div class="col-titles-bg" />
@@ -70,7 +77,7 @@
               <div
                 :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
               >
-                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+                {{ currOverdueLoan }}
               </div>
             </div>
             <div class="col-titles-bg" />
@@ -81,7 +88,7 @@
               <div
                 :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
               >
-                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+                {{ currForSaleLoan }}
               </div>
             </div>
             <div class="col-titles-bg" />
@@ -94,7 +101,7 @@
               <div
                 :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
               >
-                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+                {{ currSoldLoan }}
               </div>
             </div>
             <div class="col-titles-bg" />
@@ -109,7 +116,7 @@
               <div
                 :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
               >
-                {{ currentTable === "amount" ? "160" : "60%" }}
+                {{ currGetLoanSumm }}
               </div>
             </div>
             <div class="col-titles-bg" />
@@ -120,7 +127,7 @@
               <div
                 :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
               >
-                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+                {{ currActiveLoanSumm }}
               </div>
             </div>
             <div class="col-titles-bg" />
@@ -131,7 +138,18 @@
               <div
                 :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
               >
-                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+                {{ currRepaidLoanSumm }}
+              </div>
+            </div>
+            <div class="col-titles-bg" />
+          </div>
+          <div class="component">
+            <div class="field">
+              <div class="div5">Займов просрочено (сумма):</div>
+              <div
+                :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
+              >
+                {{ currOverdueLoanSumm }}
               </div>
             </div>
             <div class="col-titles-bg" />
@@ -142,7 +160,7 @@
               <div
                 :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
               >
-                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+                {{ currForSaleLoanSumm }}
               </div>
             </div>
             <div class="col-titles-bg" />
@@ -153,7 +171,7 @@
               <div
                 :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
               >
-                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+                {{ currSoldLoanSumm }}
               </div>
             </div>
             <div class="col-titles-bg" />
@@ -164,7 +182,7 @@
               <div
                 :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
               >
-                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+                {{ currProfit }}
               </div>
             </div>
             <div class="col-titles-bg" />
@@ -175,7 +193,7 @@
               <div
                 :class="currentTable === 'amount' ? 'div1_link div1' : 'div1'"
               >
-                {{ currentTable === "amount" ? "160" : "100 000 TON" }}
+                {{ currRoi }}
               </div>
             </div>
             <div class="col-titles-bg" />
@@ -199,7 +217,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 // @ts-ignore
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 // @ts-ignore
@@ -217,6 +235,55 @@ const toggleSlide = (slideIndex: any) => {
     currentTable.value = "amountOnTON";
   }
 };
+const { data, serial } = defineProps({
+  data: { type: Array, required: true },
+  serial: { type: Number, required: true },
+});
+const currPull = computed(() => {
+  return data[0].firstValue[serial - 1];
+});
+const currGetLoan = computed(() => {
+  return data[0].lastValue[serial - 1];
+});
+const currActiveLoan = computed(() => {
+  return data[1].firstValue[serial - 1];
+});
+const currRepaidLoan = computed(() => {
+  return data[1].lastValue[serial - 1];
+});
+const currOverdueLoan = computed(() => {
+  return data[2].firstValue[serial - 1];
+});
+const currForSaleLoan = computed(() => {
+  return data[2].lastValue[serial - 1];
+});
+const currSoldLoan = computed(() => {
+  return data[3].firstValue[serial - 1];
+});
+const currGetLoanSumm = computed(() => {
+  return data[3].lastValue[serial - 1];
+});
+const currActiveLoanSumm = computed(() => {
+  return data[4].firstValue[serial - 1];
+});
+const currRepaidLoanSumm = computed(() => {
+  return data[4].lastValue[serial - 1];
+});
+const currOverdueLoanSumm = computed(() => {
+  return data[5].firstValue[serial - 1];
+});
+const currForSaleLoanSumm = computed(() => {
+  return data[5].lastValue[serial - 1];
+});
+const currSoldLoanSumm = computed(() => {
+  return data[6].firstValue[serial - 1];
+});
+const currProfit = computed(() => {
+  return data[6].lastValue[serial - 1];
+});
+const currRoi = computed(() => {
+  return data[7].lastValue[serial - 1];
+});
 </script>
 <style scoped lang="scss">
 style scoped > .checkboxdone {
@@ -272,10 +339,10 @@ style scoped > .checkboxdone {
   position: relative;
   font-size: 0.88em;
   line-height: 130%;
-  &_link {
+  /*&_link {
     text-decoration: underline;
     color: #5d83f7;
-  }
+  }*/
 }
 .statusapplication {
   position: absolute;
