@@ -54,7 +54,7 @@
           <img class="path-3-copy1" alt="" src="/path-3-copy1.svg" />
           <img class="path-3-icon" alt="" src="/path-4.svg" />
         </div>-->
-      <chart id="1"></chart>
+      <chart :chartPairs="[]" id="1"></chart>
 
       <!--<div class="days">
           <div class="div">00:00</div>
