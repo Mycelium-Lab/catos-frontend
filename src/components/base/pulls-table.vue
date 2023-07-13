@@ -132,6 +132,14 @@
                 <div class="div128">до 50 000 TON</div>
               </div>
             </div>
+            <div v-if="role === 'collector'" class="frame-parent23">
+              <div class="frame">
+                <div class="div127"><b>Цена продажи:</b></div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="div128"><b>50 000 TON</b></div>
+              </div>
+            </div>
             <div v-if="role === 'collector'" class="line-div" />
             <div v-if="role === 'collector'" class="frame-parent23">
               <div class="frame">
@@ -1200,7 +1208,7 @@ li {
     height: 30.3em;
   }
   &_collector-marketplace {
-    height: 29.5em;
+    height: 31em;
   }
 }
 .header-icon {

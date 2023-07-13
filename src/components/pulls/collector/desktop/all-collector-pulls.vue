@@ -32,6 +32,13 @@
                     </div>
                     <div class="field-parent">
                       <div class="field">
+                        <div class="div3"><b>Цена продажи:</b></div>
+                        <div class="ton"><b>50 000 TON</b></div>
+                      </div>
+                      <div class="col-titles-bg" />
+                    </div>
+                    <div class="field-parent">
+                      <div class="field">
                         <div class="div3">Текущий долг:</div>
                         <div class="ton">50 000 TON</div>
                       </div>
@@ -312,6 +319,7 @@ const isCreditorInfo = ref(false);
   align-items: center;
   justify-content: space-between;
   gap: 0.63em;
+  margin: 0.5em 0em 1em 0em;
 }
 .frame-wrapper1 {
   align-self: stretch;
