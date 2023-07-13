@@ -335,7 +335,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="1"></chart>
+          <chart id="1" :chartPairs="chartPairs"></chart>
 
           <!--<div class="days">
             <div class="div32">Апр</div>
@@ -351,20 +351,45 @@
         <div class="divider">
           <div class="line"></div>
         </div>
-        <!--<div class="slider-buttons">
-          <div class="buttons-graphsordersdown">
-            <div class="div40">Прибыль</div>
+        <div class="slider-buttons">
+          <div
+            :class="
+              chartPairs.includes('profit')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders.svg" />
+            <div
+              :class="
+                chartPairs.includes('profit') ? 'div40_active div40' : 'div40'
+              "
+            >
+              Прибыль
+            </div>
+          </div>
+          <div
+            :class="
+              chartPairs.includes('income')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <div
+              :class="
+                chartPairs.includes('income') ? 'div40_active div40' : 'div40'
+              "
+            >
+              Доход
+            </div>
           </div>
           <div class="buttons-graphsordersdown">
-            <div class="div40">Доход</div>
-          </div>
-          <div class="buttons-graphsordersdown2">
             <div class="div40">Расход</div>
           </div>
-          <div class="buttons-graphsordersdown2">
+          <div class="buttons-graphsordersdown">
             <div class="div40">ROI</div>
           </div>
-        </div>-->
+        </div>
       </div>
       <div class="graphsorders-mobile-01">
         <div class="master1">
@@ -405,7 +430,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="2"></chart>
+          <chart id="2" :chartPairs="chartPairs"></chart>
 
           <!--<div class="days1">
             <div class="div32">Апр</div>
@@ -475,7 +500,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="3"></chart>
+          <chart id="3" :chartPairs="chartPairs"></chart>
 
           <!--<div class="days1">
             <div class="div32">Апр</div>
@@ -545,7 +570,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="4"></chart>
+          <chart id="4" :chartPairs="chartPairs"></chart>
 
           <!--<div class="days1">
             <div class="div32">Апр</div>
@@ -2009,7 +2034,11 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="1"></chart>
+          <chart
+            id="1"
+            :chartPairs="chartPairs"
+            :key="chartPairs[0] + chartPairs.length"
+          ></chart>
 
           <!--<div class="days">
             <div class="div32">Апр</div>
@@ -2025,20 +2054,82 @@
         <div class="divider">
           <div class="line"></div>
         </div>
-        <!--<div class="slider-buttons">
-          <div class="buttons-graphsordersdown">
-            <div class="div40">Прибыль</div>
+        <!--DESK-->
+        <div class="slider-buttons">
+          <div
+            :class="
+              chartPairs.includes('profit')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+            @click="setPairs"
+          >
+            <img src="@/assets/images/colors-graphsorders.svg" />
+            <div
+              :class="
+                chartPairs.includes('profit') ? 'div40_active div40' : 'div40'
+              "
+            >
+              Прибыль
+            </div>
           </div>
-          <div class="buttons-graphsordersdown">
-            <div class="div40">Доход</div>
+          <div
+            :class="
+              chartPairs.includes('income')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+            @click="setPairs"
+          >
+            <img src="@/assets/images/colors-graphsorders1.svg" />
+            <div
+              :class="
+                chartPairs.includes('income') ? 'div40_active div40' : 'div40'
+              "
+            >
+              Доход
+            </div>
           </div>
-          <div class="buttons-graphsordersdown2">
-            <div class="div40">Расход</div>
+          <div
+            class="buttons-graphsordersdown"
+            @click="setPairs"
+            :class="
+              chartPairs.includes('consumption')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders2.svg" />
+            <div
+              :class="
+                chartPairs.includes('consumption')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Расход
+            </div>
           </div>
-          <div class="buttons-graphsordersdown2">
-            <div class="div40">ROI</div>
+          <div
+            class="buttons-graphsordersdown"
+            @click="setPairs"
+            :class="
+              chartPairs.includes('roi')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders-gradient.svg" />
+            <div
+              :class="
+                chartPairs.includes('roi') ? 'div40_active div40' : 'div40'
+              "
+            >
+              ROI
+            </div>
           </div>
-        </div>-->
+        </div>
+        <!--SESK-->
       </div>
       <div class="graphsorders-mobile-01">
         <div class="master">
@@ -2079,7 +2170,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="2"></chart>
+          <chart id="2" :chartPairs="chartPairs"></chart>
 
           <!--<div class="days">
             <div class="div32">Апр</div>
@@ -2095,7 +2186,7 @@
         <div class="divider">
           <div class="line"></div>
         </div>
-        <!---<div class="slider-buttons">
+        <div class="slider-buttons">
           <div class="buttons-graphsordersdown">
             <div class="div40">Прибыль</div>
           </div>
@@ -2108,7 +2199,7 @@
           <div class="buttons-graphsordersdown2">
             <div class="div40">ROI</div>
           </div>
-        </div>-->
+        </div>
       </div>
       <div class="graphsorders-mobile-01">
         <div class="master">
@@ -2149,7 +2240,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="3"></chart>
+          <chart id="3" :chartPairs="chartPairs"></chart>
 
           <!--div class="days">
             <div class="div32">Апр</div>
@@ -2165,7 +2256,7 @@
         <div class="divider">
           <div class="line"></div>
         </div>
-        <!-- <div class="slider-buttons">
+        <div class="slider-buttons">
           <div class="buttons-graphsordersdown">
             <div class="div40">Прибыль</div>
           </div>
@@ -2178,7 +2269,7 @@
           <div class="buttons-graphsordersdown2">
             <div class="div40">ROI</div>
           </div>
-        </div>-->
+        </div>
       </div>
       <div class="graphsorders-mobile-01">
         <div class="master">
@@ -2219,7 +2310,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="4"></chart>
+          <chart id="4" :chartPairs="chartPairs"></chart>
 
           <!--<div class="days">
             <div class="div32">Апр</div>
@@ -2235,7 +2326,7 @@
         <div class="divider">
           <div class="line"></div>
         </div>
-        <!--<div class="slider-buttons">
+        <div class="slider-buttons">
           <div class="buttons-graphsordersdown">
             <div class="div40">Прибыль</div>
           </div>
@@ -2248,7 +2339,7 @@
           <div class="buttons-graphsordersdown2">
             <div class="div40">ROI</div>
           </div>
-        </div>-->
+        </div>
       </div>
     </template>
   </default-desktop>
@@ -2321,8 +2412,31 @@ const rows = [
   },
 ];
 
+const chartPairs = ref(["profit", "income"]);
 const chartData = [];
 const isActive = ref("");
+
+const setPairs = (e: any) => {
+  let title = e.target.innerText;
+  if (chartPairs.value.length === 2) {
+    chartPairs.value = [];
+  }
+
+  switch (title) {
+    case "Прибыль":
+      chartPairs.value.push("profit");
+      break;
+    case "Доход":
+      chartPairs.value.push("income");
+      break;
+    case "Расход":
+      chartPairs.value.push("consumption");
+      break;
+    case "ROI":
+      chartPairs.value.push("roi");
+      break;
+  }
+};
 
 import { useDevice } from "@/compossables/useDevice";
 
@@ -3112,10 +3226,16 @@ const rowPairs = computed(() => {
   height: 1em;
 }
 .div40 {
-  position: relative;
-  font-size: 0.88em;
-  line-height: 0.71em;
-  font-weight: 500;
+  color: #3b3b3b;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%; /* 15.6px */
+  &_active {
+    font-weight: 500;
+  }
 }
 .buttons-graphsordersdown,
 .buttons-graphsordersdown2,
@@ -3128,10 +3248,16 @@ const rowPairs = computed(() => {
 }
 .buttons-graphsordersdown {
   border-radius: 6px;
-  background-color: rgba(165, 146, 221, 0.1);
+  cursor: pointer;
   height: 2em;
   padding: 0.38em 0.63em;
   gap: 0.25em;
+  &_active {
+    border-radius: 6px;
+    background: rgba(165, 146, 221, 0.1);
+    padding: 6px 10px;
+    height: 32px;
+  }
 }
 .buttons-graphsordersdown2,
 .slider-buttons {
@@ -3140,6 +3266,7 @@ const rowPairs = computed(() => {
 .buttons-graphsordersdown2 {
   border-radius: 6px;
   padding: 0.38em 0.63em;
+  cursor: pointer;
   gap: 0.25em;
 }
 .slider-buttons {
@@ -3149,6 +3276,7 @@ const rowPairs = computed(() => {
   padding: 0.06em 0.63em 0.06em 1em;
   gap: 0.38em;
   text-align: center;
+  height: 32px;
 }
 .description1,
 .graphsorders-mobile-01 {
@@ -3162,7 +3290,7 @@ const rowPairs = computed(() => {
   border: 1px solid rgba(46, 58, 89, 0.2);
   box-sizing: border-box;
   width: 100%;
-  height: 33em;
+  height: 33.5em;
   overflow: hidden;
   flex-shrink: 0;
   padding: 1.38em 0;

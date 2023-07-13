@@ -11,8 +11,9 @@
 // @ts-ignore
 import Chart from "chart.js";
 import { onMounted } from "vue";
-const { id } = defineProps({
+const { id, chartPairs } = defineProps({
   id: { type: String, required: true },
+  chartPairs: { type: Array, required: true },
 });
 onMounted(() => {
   // @ts-ignore
@@ -37,30 +38,68 @@ onMounted(() => {
         "18:00",
         "21:00",
       ],
-      datasets: [
-        {
-          label: "Прибыль",
-          data: [20, 28, 37, 29, 38, 42, 45, 33, 20],
-          pointBackgroundColor: "rgba(87,126,247,96)",
-          pointBorderColor: "rgba(167,187,250,255)",
-          borderColor: "rgba(94,129,244,100)",
-          backgroundColor: gradient1,
-          type: "line",
-          order: 0,
-          yAxisID: "left-y-axis",
-        },
-        {
-          label: "Доход",
-          data: [1, 3, 2, 5, 1, 9, 10, 14, 5],
-          pointBackgroundColor: "rgba(138, 241,185,100)",
-          pointBorderColor: "rgba(190,244,216,100)",
-          borderColor: "rgba(138, 241,185,100)",
-          backgroundColor: gradient2,
-          type: "line",
-          order: 0,
-          yAxisID: "right-y-axis",
-        },
-      ],
+      datasets:
+        chartPairs.length === 1
+          ? [
+              {
+                label:
+                  chartPairs[0] === "profit"
+                    ? "Прибыль"
+                    : chartPairs[0] === "income"
+                    ? "Доход"
+                    : chartPairs[0] === "consumption"
+                    ? "Расход"
+                    : "ROI",
+                data: [20, 28, 37, 29, 38, 42, 45, 33, 20],
+                pointBackgroundColor: "rgba(87,126,247,96)",
+                pointBorderColor: "rgba(167,187,250,255)",
+
+                borderColor: "rgba(94,129,244,100)",
+                backgroundColor: gradient1,
+                type: "line",
+                order: 0,
+                yAxisID: "left-y-axis",
+              },
+            ]
+          : [
+              {
+                label:
+                  chartPairs[0] === "profit"
+                    ? "Прибыль"
+                    : chartPairs[0] === "income"
+                    ? "Доход"
+                    : chartPairs[0] === "consumption"
+                    ? "Расход"
+                    : "ROI",
+                data: [20, 28, 37, 29, 38, 42, 45, 33, 20],
+                pointBackgroundColor: "rgba(87,126,247,96)",
+                pointBorderColor: "rgba(167,187,250,255)",
+
+                borderColor: "rgba(94,129,244,100)",
+                backgroundColor: gradient1,
+                type: "line",
+                order: 0,
+                yAxisID: "left-y-axis",
+              },
+              {
+                label:
+                  chartPairs[1] === "profit"
+                    ? "Прибыль"
+                    : chartPairs[1] === "income"
+                    ? "Доход"
+                    : chartPairs[1] === "consumption"
+                    ? "Расход"
+                    : "ROI",
+                data: [1, 3, 2, 5, 1, 9, 10, 14, 5],
+                pointBackgroundColor: "rgba(138, 241,185,100)",
+                pointBorderColor: "rgba(190,244,216,100)",
+                borderColor: "rgba(138, 241,185,100)",
+                backgroundColor: gradient2,
+                type: "line",
+                order: 0,
+                yAxisID: "right-y-axis",
+              },
+            ],
     },
     options: {
       scaleShowVerticalLines: false,
@@ -128,8 +167,7 @@ onMounted(() => {
         },
       },
       legend: {
-        display: true,
-        position: "bottom",
+        display: false,
       },
       tooltips: {
         enabled: true,

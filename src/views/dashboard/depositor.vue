@@ -79,7 +79,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="1"></chart>
+          <chart id="1" :chartPairs="chartPairs"></chart>
 
           <!--<div class="days">
             <div class="div32">Апр</div>
@@ -195,7 +195,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="2"></chart>
+          <chart id="2" :chartPairs="chartPairs"></chart>
 
           <!--<div class="days1">
             <div class="div32">Апр</div>
@@ -1496,7 +1496,7 @@
                 <div class="tab-title">Месяц</div>
               </div>
             </div>
-            <chart id="1"></chart>
+            <chart id="1" :chartPairs="chartPairs"></chart>
 
             <div class="days">
               <div class="div32">Апр</div>
@@ -1592,7 +1592,7 @@
                 <div class="tab-title">Месяц</div>
               </div>
             </div>
-            <chart id="2"></chart>
+            <chart id="2" :chartPairs="chartPairs"></chart>
 
             <!--<div class="days1">
               <div class="div32">Апр</div>
@@ -1640,6 +1640,8 @@ import sortLeftDesktop from "@/components/dashboard/depositor/sort-left-desktop.
 import sortRightDesktop from "@/components/dashboard/depositor/sort-right-desktop.vue";
 import sort from "@/components/base/desktop/sort.vue";
 import inputData from "@/components/fields/input-data.vue";
+
+const chartPairs = ref(["profit", "income"]);
 
 const curentWindow = ref("Catos");
 
