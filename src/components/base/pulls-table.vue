@@ -26,9 +26,9 @@
                 />
                 <div class="txt1-parent">
                   <div v-if="role === 'collector'" class="txt2_borrower txt2">
-                    Текущий долг:
+                    Цена:
                   </div>
-                  <div class="ton18">37 000 TON</div>
+                  <div class="ton18">4 000 TON</div>
                   <div v-if="role === 'borrower'" class="txt2_borrower txt2">
                     Одобренный лимит
                   </div>
@@ -115,10 +115,19 @@
               class="frame-parent23"
             >
               <div class="frame">
-                <div class="div127">Статус:</div>
+                <div class="div121">Статус:</div>
               </div>
-              <div class="ton-wrapper">
-                <div class="div128">Не погашен</div>
+              <div
+                class="colors-graphsorders-group_red colors-graphsorders-group"
+              >
+                <img
+                  class="colors-graphsorders-icon"
+                  alt=""
+                  src="@/assets/images/colors-graphsorders3.svg"
+                />
+                <div class="statuspull_collector statuspull">
+                  <div class="div126">Не погашена</div>
+                </div>
               </div>
             </div>
             <div
@@ -137,7 +146,7 @@
                 <div class="div127"><b>Цена продажи:</b></div>
               </div>
               <div class="ton-wrapper">
-                <div class="div128"><b>50 000 TON</b></div>
+                <div class="div128"><b>4 000 TON</b></div>
               </div>
             </div>
             <div v-if="role === 'collector'" class="line-div" />
@@ -997,6 +1006,9 @@ li {
   width: 3.44em;
   height: 0.63em;
   top: 0.1em;
+  &_collector {
+    width: 5em;
+  }
 }
 .colors-graphsorders-group {
   flex: 1;
@@ -1006,6 +1018,9 @@ li {
   justify-content: flex-end;
   gap: 0.63em;
   color: #1cbd62;
+  &_red {
+    color: red;
+  }
 }
 .frame-parent21 {
   align-self: stretch;
@@ -1205,7 +1220,7 @@ li {
     height: 35em;
   }
   &_collector-debt {
-    height: 30.3em;
+    height: 31.8em;
   }
   &_collector-marketplace {
     height: 31em;

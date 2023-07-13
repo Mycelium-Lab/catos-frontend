@@ -49,6 +49,13 @@
                     </div>
                     <div class="field-parent">
                       <div class="field">
+                        <div class="div3"><b>Цена продажи:</b></div>
+                        <div class="ton"><b>4 000 TON</b></div>
+                      </div>
+                      <div class="col-titles-bg" />
+                    </div>
+                    <div class="field-parent">
+                      <div class="field">
                         <div class="div3">Тукщий долг:</div>
                         <div class="ton">49 000 TON</div>
                       </div>
