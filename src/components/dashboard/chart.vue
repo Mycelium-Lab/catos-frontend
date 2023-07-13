@@ -17,9 +17,12 @@ const { id } = defineProps({
 onMounted(() => {
   // @ts-ignore
   var ctx12 = document.getElementById(id).getContext("2d");
-  var gradient = ctx12.createLinearGradient(0, 0, 0, 280);
-  gradient.addColorStop(0, "rgba(239,43,114,1)");
-  gradient.addColorStop(1, "rgba(239,43,114,0)");
+  var gradient1 = ctx12.createLinearGradient(0, 0, 0, 280);
+  gradient1.addColorStop(0, "rgba(121,154,243,0.20000000298023224)");
+  gradient1.addColorStop(1, "rgba(255,255,255,0)");
+  var gradient2 = ctx12.createLinearGradient(0, 0, 0, 280);
+  gradient2.addColorStop(0, "rgba(138,241,185,0.20000000298023224)");
+  gradient2.addColorStop(1, "rgba(255,255,255,0)");
   var myChart = document.getElementById(id);
   var config = {
     type: "bar",
@@ -38,8 +41,10 @@ onMounted(() => {
         {
           label: "Прибыль",
           data: [20, 28, 37, 29, 38, 42, 45, 33, 20],
-          borderColor: "#F5A623",
-          backgroundColor: "rgba(0, 0, 0, 0.1)",
+          pointBackgroundColor: "rgba(87,126,247,96)",
+          pointBorderColor: "rgba(167,187,250,255)",
+          borderColor: "rgba(94,129,244,100)",
+          backgroundColor: gradient1,
           type: "line",
           order: 0,
           yAxisID: "left-y-axis",
@@ -47,8 +52,10 @@ onMounted(() => {
         {
           label: "Доход",
           data: [1, 3, 2, 5, 1, 9, 10, 14, 5],
-          borderColor: "#ffb1c1",
-          backgroundColor: gradient,
+          pointBackgroundColor: "rgba(138, 241,185,100)",
+          pointBorderColor: "rgba(190,244,216,100)",
+          borderColor: "rgba(138, 241,185,100)",
+          backgroundColor: gradient2,
           type: "line",
           order: 0,
           yAxisID: "right-y-axis",
@@ -110,6 +117,15 @@ onMounted(() => {
             },
           },
         ],
+      },
+      elements: {
+        line: {
+          borderWidth: 2,
+        },
+        point: {
+          radius: 5,
+          borderWidth: 4,
+        },
       },
       legend: {
         display: true,
