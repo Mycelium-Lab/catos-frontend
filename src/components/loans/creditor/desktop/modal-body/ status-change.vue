@@ -1,9 +1,11 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title>Что выполнить?</template>
+    <template v-slot:title>{{
+      variant === "collector" ? "Изменить статус ?" : "Что выполнить ?"
+    }}</template>
     <template v-slot:body>
       <div class="frame-parent">
-        <div class="wrapper">
+        <div v-if="variant === 'loans'" class="wrapper">
           <div class="div">
             <span>Изменить статус для для </span>
             <span class="span">3</span>
@@ -18,7 +20,13 @@
                 alt=""
                 src="@/assets/images/colors-graphsorders1.svg"
               />
-              <div class="div1">Одобрить выбранные заявки</div>
+              <div class="div1">
+                {{
+                  variant === "collector"
+                    ? "Погашена"
+                    : "Одобрить выбранные заявки"
+                }}
+              </div>
             </div>
           </button>
           <button class="status-all" @click="updateStatus">
@@ -28,10 +36,20 @@
                 alt=""
                 src="@/assets/images/colors-graphsorders3.svg"
               />
-              <div class="div1">Отклонить выбранные заявки</div>
+              <div class="div1">
+                {{
+                  variant === "collector"
+                    ? "Не погашена"
+                    : "Отклонить выбранные заявки"
+                }}
+              </div>
             </div>
           </button>
-          <button class="status-all" @click="updateStatus">
+          <button
+            v-if="variant === 'loans'"
+            class="status-all"
+            @click="updateStatus"
+          >
             <div class="colors-graphsorders-parent">
               <img
                 class="colors-graphsorders-icon"
@@ -50,6 +68,12 @@
 import desktopModal from "@/components/base/desktop-modal.vue";
 const emtis = defineEmits(["close"]);
 
+const { variant } = defineProps({
+  variant: {
+    type: String,
+    default: "loans",
+  },
+});
 const updateStatus = () => {
   //TODO: Добавить логику по смене статуса
   close();
@@ -103,7 +127,7 @@ const close = () => {
   flex-shrink: 0;
   display: flex;
   flex-direction: row;
-  padding: 0.5em 0em 0.5em 0.63em;
+  padding: 0.5em 0.63em;
   box-sizing: border-box;
   align-items: center;
   justify-content: flex-start;

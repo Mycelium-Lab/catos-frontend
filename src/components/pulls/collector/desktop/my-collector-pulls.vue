@@ -39,10 +39,10 @@
                           <img
                             class="colors-graphsorders-icon"
                             alt=""
-                            src="@/assets/images/colors-graphsorders1.svg"
+                            src="@/assets/images/colors-graphsorders3.svg"
                           />
                           <div class="c">
-                            <span>Активен </span>
+                            <span>Не погашена </span>
                           </div>
                         </div>
                       </div>
@@ -188,6 +188,32 @@
                       </div>
                       <div class="col-titles-bg" />
                     </div>
+                    <div class="field-parent">
+                      <div class="field">
+                        <div class="div23">Анкета заемщика:</div>
+                        <div class="ton_link ton">Открыть</div>
+                      </div>
+                      <div class="col-titles-bg" />
+                    </div>
+                    <div class="icons-parent">
+                      <div class="icons">
+                        <div class="iconsfile">
+                          <img
+                            class="vector-icon"
+                            alt=""
+                            src="@/assets/images/iconspdf.svg"
+                          />
+
+                          <div class="pdf">PDF</div>
+                        </div>
+                      </div>
+                      <div class="pdf1">Скачать анкету в PDF</div>
+                      <img
+                        class="iconchange1"
+                        alt=""
+                        src="/src/views/public/iconchange.svg"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div class="frame-wrapper2">
@@ -239,7 +265,7 @@
             <catos-button
               variant="fourth"
               :style="{ width: '400px', margin: '0 auto' }"
-              @click="close"
+              @click="() => (isStatusChange = true)"
               >Сменить статус</catos-button
             >
             <catos-button
@@ -257,6 +283,11 @@
     v-if="isCreditorInfo"
     @close="() => (isCreditorInfo = false)"
   ></creditor-info>
+  <status-change
+    v-if="isStatusChange"
+    variant="collector"
+    @close="() => (isStatusChange = false)"
+  ></status-change>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
@@ -265,7 +296,9 @@ import desktopModal from "@/components/base/desktop-modal.vue";
 // @ts-ignore
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
+import statusChange from "@/components/loans/creditor/desktop/modal-body/ status-change.vue";
 const isDetail = ref(true);
+const isStatusChange = ref(false);
 const emits = defineEmits(["close"]);
 
 const close = () => {
@@ -273,7 +306,7 @@ const close = () => {
 };
 const isCreditorInfo = ref(false);
 </script>
-<style scoped>
+<style scoped lang="scss">
 .div {
   position: relative;
   font-size: 1em;
@@ -355,6 +388,11 @@ const isCreditorInfo = ref(false);
   position: relative;
   font-size: 0.88em;
   line-height: 130%;
+  &_link {
+    color: #577ef7;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 .field {
   align-self: stretch;
@@ -716,7 +754,78 @@ const isCreditorInfo = ref(false);
   gap: 1.88em;
   margin-bottom: 1em;
 }
-
+.icons-parent {
+  align-self: stretch;
+  border-radius: 8px;
+  background-color: rgba(165, 146, 221, 0.07);
+  height: 2.5em;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  padding: 0.5em 0em 0.5em 0.75em;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  gap: 0.5em;
+  color: #fff;
+  margin-top: 0.5em;
+  cursor: pointer;
+}
+.iconsfile {
+  position: absolute;
+  top: 0.38em;
+  left: 0.5em;
+  width: 1.06em;
+  height: 1.31em;
+}
+.icons {
+  position: relative;
+  border-radius: 42px;
+  width: 2em;
+  height: 2em;
+  z-index: 0;
+}
+.vector-icon {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  left: 0%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.pdf {
+  position: absolute;
+  top: 2.35em;
+  left: 0.54em;
+  font-size: 0.35em;
+  line-height: 120%;
+  font-weight: 500;
+}
+.pdf1 {
+  position: relative;
+  top: 0.2em;
+  font-size: 0.75em;
+  line-height: 140%;
+  color: #3b3b3b;
+  z-index: 1;
+}
+.iconchange1 {
+  position: absolute;
+  margin: 0 !important;
+  height: 100%;
+  top: 0em;
+  right: 0em;
+  bottom: 0em;
+  max-height: 100%;
+  width: 2.5em;
+  z-index: 2;
+}
 @media (max-height: 900px) {
   .frame-container {
     height: 500px;
