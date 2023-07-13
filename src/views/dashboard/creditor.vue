@@ -335,7 +335,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="1" :chartPairs="chartPairs"></chart>
+          <chart id="1" :chartPairs="chartFinancePairs"></chart>
 
           <!--<div class="days">
             <div class="div32">Апр</div>
@@ -354,7 +354,7 @@
         <div class="slider-buttons">
           <div
             :class="
-              chartPairs.includes('profit')
+              chartFinancePairs.includes('profit')
                 ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
                 : 'buttons-graphsordersdown'
             "
@@ -362,7 +362,9 @@
             <img src="@/assets/images/colors-graphsorders.svg" />
             <div
               :class="
-                chartPairs.includes('profit') ? 'div40_active div40' : 'div40'
+                chartFinancePairs.includes('profit')
+                  ? 'div40_active div40'
+                  : 'div40'
               "
             >
               Прибыль
@@ -370,14 +372,16 @@
           </div>
           <div
             :class="
-              chartPairs.includes('income')
+              chartFinancePairs.includes('income')
                 ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
                 : 'buttons-graphsordersdown'
             "
           >
             <div
               :class="
-                chartPairs.includes('income') ? 'div40_active div40' : 'div40'
+                chartFinancePairs.includes('income')
+                  ? 'div40_active div40'
+                  : 'div40'
               "
             >
               Доход
@@ -430,7 +434,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="2" :chartPairs="chartPairs"></chart>
+          <chart id="2" :chartPairs="chartFinancePairs"></chart>
 
           <!--<div class="days1">
             <div class="div32">Апр</div>
@@ -500,7 +504,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="3" :chartPairs="chartPairs"></chart>
+          <chart id="3" :chartPairs="chartFinancePairs"></chart>
 
           <!--<div class="days1">
             <div class="div32">Апр</div>
@@ -570,7 +574,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="4" :chartPairs="chartPairs"></chart>
+          <chart id="4" :chartPairs="chartFinancePairs"></chart>
 
           <!--<div class="days1">
             <div class="div32">Апр</div>
@@ -2036,8 +2040,8 @@
           </div>
           <chart
             id="1"
-            :chartPairs="chartPairs"
-            :key="chartPairs[0] + chartPairs.length"
+            :chartPairs="chartFinancePairs"
+            :key="chartFinancePairs[0] + chartFinancePairs.length"
           ></chart>
 
           <!--<div class="days">
@@ -2058,16 +2062,18 @@
         <div class="slider-buttons">
           <div
             :class="
-              chartPairs.includes('profit')
+              chartFinancePairs.includes('profit')
                 ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
                 : 'buttons-graphsordersdown'
             "
-            @click="setPairs"
+            @click="setChartFinancePairs"
           >
             <img src="@/assets/images/colors-graphsorders.svg" />
             <div
               :class="
-                chartPairs.includes('profit') ? 'div40_active div40' : 'div40'
+                chartFinancePairs.includes('profit')
+                  ? 'div40_active div40'
+                  : 'div40'
               "
             >
               Прибыль
@@ -2075,16 +2081,18 @@
           </div>
           <div
             :class="
-              chartPairs.includes('income')
+              chartFinancePairs.includes('income')
                 ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
                 : 'buttons-graphsordersdown'
             "
-            @click="setPairs"
+            @click="setChartFinancePairs"
           >
             <img src="@/assets/images/colors-graphsorders1.svg" />
             <div
               :class="
-                chartPairs.includes('income') ? 'div40_active div40' : 'div40'
+                chartFinancePairs.includes('income')
+                  ? 'div40_active div40'
+                  : 'div40'
               "
             >
               Доход
@@ -2092,9 +2100,9 @@
           </div>
           <div
             class="buttons-graphsordersdown"
-            @click="setPairs"
+            @click="setChartFinancePairs"
             :class="
-              chartPairs.includes('consumption')
+              chartFinancePairs.includes('consumption')
                 ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
                 : 'buttons-graphsordersdown'
             "
@@ -2102,7 +2110,7 @@
             <img src="@/assets/images/colors-graphsorders2.svg" />
             <div
               :class="
-                chartPairs.includes('consumption')
+                chartFinancePairs.includes('consumption')
                   ? 'div40_active div40'
                   : 'div40'
               "
@@ -2112,31 +2120,33 @@
           </div>
           <div
             class="buttons-graphsordersdown"
-            @click="setPairs"
+            @click="setChartFinancePairs"
             :class="
-              chartPairs.includes('roi')
+              chartFinancePairs.includes('roi')
                 ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
                 : 'buttons-graphsordersdown'
             "
           >
-            <img src="@/assets/images/colors-graphsorders-gradient.svg" />
+            <img src="@/assets/images/colors-graphsorders4.svg" />
             <div
               :class="
-                chartPairs.includes('roi') ? 'div40_active div40' : 'div40'
+                chartFinancePairs.includes('roi')
+                  ? 'div40_active div40'
+                  : 'div40'
               "
             >
               ROI
             </div>
           </div>
         </div>
-        <!--SESK-->
+        <!--DESK-->
       </div>
       <div class="graphsorders-mobile-01">
         <div class="master">
           <div class="content-frame">
             <div class="elements-textbox-tablerow">
               <div class="description">
-                <div class="title">Финансы</div>
+                <div class="title">GroupName</div>
                 <div class="subtitle">Catos</div>
               </div>
             </div>
@@ -2170,7 +2180,11 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="2" :chartPairs="chartPairs"></chart>
+          <chart
+            id="2"
+            :chartPairs="chartGroup1Pairs"
+            :key="chartGroup1Pairs[0] + chartGroup1Pairs.length"
+          ></chart>
 
           <!--<div class="days">
             <div class="div32">Апр</div>
@@ -2187,17 +2201,83 @@
           <div class="line"></div>
         </div>
         <div class="slider-buttons">
-          <div class="buttons-graphsordersdown">
-            <div class="div40">Прибыль</div>
+          <div
+            :class="
+              chartGroup1Pairs.includes('all')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+            @click="setChartGroup1Pairs"
+          >
+            <img src="@/assets/images/colors-graphsorders1.svg" />
+            <div
+              :class="
+                chartGroup1Pairs.includes('all')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Всего
+            </div>
           </div>
-          <div class="buttons-graphsordersdown">
-            <div class="div40">Доход</div>
+          <div
+            :class="
+              chartGroup1Pairs.includes('new')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+            @click="setChartGroup1Pairs"
+          >
+            <img src="@/assets/images/colors-graphsorders4.svg" />
+            <div
+              :class="
+                chartFinancePairs.includes('new')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Новые
+            </div>
           </div>
-          <div class="buttons-graphsordersdown2">
-            <div class="div40">Расход</div>
+          <div
+            class="buttons-graphsordersdown"
+            @click="setChartGroup1Pairs"
+            :class="
+              chartGroup1Pairs.includes('closed')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders.svg" />
+            <div
+              :class="
+                chartFinancePairs.includes('closed')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Закрытые
+            </div>
           </div>
-          <div class="buttons-graphsordersdown2">
-            <div class="div40">ROI</div>
+          <div
+            class="buttons-graphsordersdown"
+            :class="
+              chartGroup1Pairs.includes('overdue')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+            @click="setChartGroup1Pairs"
+          >
+            <img src="@/assets/images/colors-graphsorders3.svg" />
+            <div
+              :class="
+                chartFinancePairs.includes('overdue')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Просроченные
+            </div>
           </div>
         </div>
       </div>
@@ -2240,7 +2320,11 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="3" :chartPairs="chartPairs"></chart>
+          <chart
+            id="3"
+            :chartPairs="chartGroup2Pairs"
+            :key="chartGroup2Pairs[0] + chartGroup2Pairs.length"
+          ></chart>
 
           <!--div class="days">
             <div class="div32">Апр</div>
@@ -2257,17 +2341,82 @@
           <div class="line"></div>
         </div>
         <div class="slider-buttons">
-          <div class="buttons-graphsordersdown">
-            <div class="div40">Прибыль</div>
+          <div
+            @click="setChartGroup2Pairs"
+            :class="
+              chartGroup2Pairs.includes('all')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders1.svg" />
+            <div
+              :class="
+                chartGroup2Pairs.includes('all')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Всего
+            </div>
           </div>
-          <div class="buttons-graphsordersdown">
-            <div class="div40">Доход</div>
+          <div
+            @click="setChartGroup2Pairs"
+            :class="
+              chartGroup2Pairs.includes('issued')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders4.svg" />
+            <div
+              :class="
+                chartGroup2Pairs.includes('issued')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Выдано
+            </div>
           </div>
-          <div class="buttons-graphsordersdown2">
-            <div class="div40">Расход</div>
+          <div
+            @click="setChartGroup2Pairs"
+            :class="
+              chartGroup2Pairs.includes('free')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders.svg" />
+            <div
+              :class="
+                chartGroup2Pairs.includes('free')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Свободно
+            </div>
           </div>
-          <div class="buttons-graphsordersdown2">
-            <div class="div40">ROI</div>
+          <div
+            @click="setChartGroup2Pairs"
+            :class="
+              chartGroup2Pairs.includes('noReturn')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders3.svg" />
+            <div
+              class="div40"
+              :class="
+                chartGroup2Pairs.includes('noReturn')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Не возврат
+            </div>
           </div>
         </div>
       </div>
@@ -2276,7 +2425,7 @@
           <div class="content-frame">
             <div class="elements-textbox-tablerow">
               <div class="description">
-                <div class="title">Финансы</div>
+                <div class="title">Коллекторы</div>
                 <div class="subtitle">Catos</div>
               </div>
             </div>
@@ -2310,7 +2459,11 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="4" :chartPairs="chartPairs"></chart>
+          <chart
+            id="4"
+            :chartPairs="chartCollectorsPairs"
+            :key="chartCollectorsPairs[0] + chartCollectorsPairs.length"
+          ></chart>
 
           <!--<div class="days">
             <div class="div32">Апр</div>
@@ -2327,17 +2480,83 @@
           <div class="line"></div>
         </div>
         <div class="slider-buttons">
-          <div class="buttons-graphsordersdown">
-            <div class="div40">Прибыль</div>
+          <div
+            @click="(e:any) => setChartСollectorsPairs(e)"
+            :class="
+              chartCollectorsPairs.includes('all')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders1.svg" />
+            <div
+              :class="
+                chartCollectorsPairs.includes('all')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Всего
+            </div>
           </div>
-          <div class="buttons-graphsordersdown">
-            <div class="div40">Доход</div>
+          <div
+            :class="
+              chartCollectorsPairs.includes('new')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+            @click="(e:any) => setChartСollectorsPairs(e)"
+          >
+            <img src="@/assets/images/colors-graphsorders4.svg" />
+            <div
+              :class="
+                chartCollectorsPairs.includes('new')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Новые
+            </div>
           </div>
-          <div class="buttons-graphsordersdown2">
-            <div class="div40">Расход</div>
+          <div
+            class="buttons-graphsordersdown"
+            @click="(e:any) => setChartСollectorsPairs(e)"
+            :class="
+              chartCollectorsPairs.includes('closed')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders.svg" />
+            <div
+              :class="
+                chartCollectorsPairs.includes('closed')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Закрытые
+            </div>
           </div>
-          <div class="buttons-graphsordersdown2">
-            <div class="div40">ROI</div>
+          <div
+            class="buttons-graphsordersdown"
+            :class="
+              chartCollectorsPairs.includes('overdue')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+            @click="(e:any) => setChartСollectorsPairs(e)"
+          >
+            <img src="@/assets/images/colors-graphsorders3.svg" />
+            <div
+              :class="
+                chartCollectorsPairs.includes('overdue')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Просроченные
+            </div>
           </div>
         </div>
       </div>
@@ -2346,7 +2565,6 @@
 </template>
 
 <script setup lang="ts">
-import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import chart from "@/components/dashboard/chart.vue";
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
@@ -2412,28 +2630,97 @@ const rows = [
   },
 ];
 
-const chartPairs = ref(["profit", "income"]);
+const chartFinancePairs = ref(["profit", "income"]);
+const chartGroup1Pairs = ref(["all", "new"]);
+const chartGroup2Pairs = ref(["all", "issued"]);
+const chartCollectorsPairs = ref(["all", "new"]);
 const chartData = [];
 const isActive = ref("");
 
-const setPairs = (e: any) => {
+const setChartFinancePairs = (e: any) => {
   let title = e.target.innerText;
-  if (chartPairs.value.length === 2) {
-    chartPairs.value = [];
+  if (chartFinancePairs.value.length === 2) {
+    chartFinancePairs.value = [];
   }
 
   switch (title) {
     case "Прибыль":
-      chartPairs.value.push("profit");
+      chartFinancePairs.value.push("profit");
       break;
     case "Доход":
-      chartPairs.value.push("income");
+      chartFinancePairs.value.push("income");
       break;
     case "Расход":
-      chartPairs.value.push("consumption");
+      chartFinancePairs.value.push("consumption");
       break;
     case "ROI":
-      chartPairs.value.push("roi");
+      chartFinancePairs.value.push("roi");
+      break;
+  }
+};
+
+const setChartGroup1Pairs = (e: any) => {
+  let title = e.target.innerText;
+  if (chartGroup1Pairs.value.length === 2) {
+    chartGroup1Pairs.value = [];
+  }
+
+  switch (title) {
+    case "Всего":
+      chartGroup1Pairs.value.push("all");
+      break;
+    case "Новые":
+      chartGroup1Pairs.value.push("new");
+      break;
+    case "Закрытые":
+      chartGroup1Pairs.value.push("closed");
+      break;
+    case "Просроченные":
+      chartGroup1Pairs.value.push("overdue");
+      break;
+  }
+};
+
+const setChartGroup2Pairs = (e: any) => {
+  let title = e.target.innerText;
+  if (chartGroup2Pairs.value.length === 2) {
+    chartGroup2Pairs.value = [];
+  }
+
+  switch (title) {
+    case "Всего":
+      chartGroup2Pairs.value.push("all");
+      break;
+    case "Выдано":
+      chartGroup2Pairs.value.push("issued");
+      break;
+    case "Свободно":
+      chartGroup2Pairs.value.push("free");
+      break;
+    case "Не возврат":
+      chartGroup2Pairs.value.push("noReturn");
+      break;
+  }
+};
+
+const setChartСollectorsPairs = (e: any) => {
+  let title = e.target.innerText;
+  if (chartCollectorsPairs.value.length === 2) {
+    chartCollectorsPairs.value = [];
+  }
+
+  switch (title) {
+    case "Всего":
+      chartCollectorsPairs.value.push("all");
+      break;
+    case "Новые":
+      chartCollectorsPairs.value.push("new");
+      break;
+    case "Закрытые":
+      chartCollectorsPairs.value.push("closed");
+      break;
+    case "Просроченные":
+      chartCollectorsPairs.value.push("overdue");
       break;
   }
 };
@@ -3290,7 +3577,7 @@ const rowPairs = computed(() => {
   border: 1px solid rgba(46, 58, 89, 0.2);
   box-sizing: border-box;
   width: 100%;
-  height: 33.5em;
+  height: 34.5em;
   overflow: hidden;
   flex-shrink: 0;
   padding: 1.38em 0;
