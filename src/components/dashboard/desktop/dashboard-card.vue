@@ -240,48 +240,63 @@ const { data, serial } = defineProps({
   serial: { type: Number, required: true },
 });
 const currPull = computed(() => {
+  // @ts-ignore
   return data[0].firstValue[serial - 1];
 });
 const currGetLoan = computed(() => {
+  // @ts-ignore
   return data[0].lastValue[serial - 1];
 });
 const currActiveLoan = computed(() => {
+  // @ts-ignore
   return data[1].firstValue[serial - 1];
 });
 const currRepaidLoan = computed(() => {
+  // @ts-ignore
   return data[1].lastValue[serial - 1];
 });
 const currOverdueLoan = computed(() => {
+  // @ts-ignore
   return data[2].firstValue[serial - 1];
 });
 const currForSaleLoan = computed(() => {
+  // @ts-ignore
   return data[2].lastValue[serial - 1];
 });
 const currSoldLoan = computed(() => {
+  // @ts-ignore
   return data[3].firstValue[serial - 1];
 });
 const currGetLoanSumm = computed(() => {
+  // @ts-ignore
   return data[3].lastValue[serial - 1];
 });
 const currActiveLoanSumm = computed(() => {
+  // @ts-ignore
   return data[4].firstValue[serial - 1];
 });
 const currRepaidLoanSumm = computed(() => {
+  // @ts-ignore
   return data[4].lastValue[serial - 1];
 });
 const currOverdueLoanSumm = computed(() => {
+  // @ts-ignore
   return data[5].firstValue[serial - 1];
 });
 const currForSaleLoanSumm = computed(() => {
+  // @ts-ignore
   return data[5].lastValue[serial - 1];
 });
 const currSoldLoanSumm = computed(() => {
+  // @ts-ignore
   return data[6].firstValue[serial - 1];
 });
 const currProfit = computed(() => {
+  // @ts-ignore
   return data[6].lastValue[serial - 1];
 });
 const currRoi = computed(() => {
+  // @ts-ignore
   return data[7].lastValue[serial - 1];
 });
 </script>
