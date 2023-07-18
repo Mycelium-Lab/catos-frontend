@@ -31,7 +31,7 @@
           <div class="text-and-button_action text-and-button">
             <label class="label">Настроить токен:</label>
             <div :style="{ position: 'relative', top: '1.2em' }">
-              <catos-select :options="[]"></catos-select>
+              <catos-select :options="['TON', 'CATOS']"></catos-select>
             </div>
             <div class="fieldsinput-parent">
               <div class="fieldsinput">

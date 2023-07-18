@@ -16,7 +16,7 @@
         <div class="fieldsinputchoise">
           <div class="title">Выберите тип счёта:</div>
           <catos-select
-            placeholder="Россия"
+            placeholder="TON"
             :options="options"
             :value="value"
             @selected="ev => (value = ev)"
@@ -29,7 +29,7 @@
         <div class="fieldsinputchoise">
           <div class="title">Выберите криптовалюту для получения оплаты.</div>
           <catos-select
-            placeholder="Россия"
+            placeholder="TON"
             :options="options"
             :value="value"
             @selected="ev => (value = ev)"
@@ -124,10 +124,7 @@ const handle = () => {
 };
 import catosSelect from "@/components/fields/catos-select.vue";
 const value = ref("");
-const options = {
-  sng: ["Россия", "Украина", "Казахстан"],
-  euro: ["Польша", "Латвия", "Молдова"],
-};
+const options = ["TON", "CATOS"];
 </script>
 <style scoped>
 .des-child {

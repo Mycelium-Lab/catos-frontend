@@ -18,7 +18,7 @@
             Выберите криптовалюту для отправки с помошью чека.
           </div>
           <catos-select
-            placeholder="Россия"
+            placeholder="TON"
             :options="options"
             :value="value"
             @selected="ev => (value = ev)"
@@ -100,10 +100,7 @@ import catosSelect from "@/components/fields/catos-select.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import inputData from "@/components/fields/input-data.vue";
 const value = ref("");
-const options = {
-  sng: ["Россия", "Украина", "Казахстан"],
-  euro: ["Польша", "Латвия", "Молдова"],
-};
+const options = ["TON", "CATOS"];
 const emits = defineEmits(["close"]);
 const close = () => {
   emits("close");

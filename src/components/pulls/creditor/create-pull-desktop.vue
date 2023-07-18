@@ -18,10 +18,11 @@
           <div class="fieldsinputchoise">
             <div class="div1">Настройте токен:</div>
             <catos-select
-              placeholder="Выберите токен"
+              placeholder="TON"
               :options="options"
-              :value="valueStatus"
+              :value="valueToken"
               @selected="ev => (valueToken = ev)"
+              :optionWidthDesk="210"
             ></catos-select>
           </div>
           <div class="frame-wrapper">
@@ -94,8 +95,7 @@ const emtis = defineEmits(["close", "create"]);
 import catosSelect from "@/components/fields/catos-select.vue";
 import rangeSlider from "@/components/ui-kit/range-slider.vue";
 const valueToken = ref("");
-const valueStatus = ref("");
-const options = ["Россия", "Украина", "Казахстан", "Белорусь"];
+const options = ["TON", "CATOS"];
 const close = () => {
   emtis("close");
 };

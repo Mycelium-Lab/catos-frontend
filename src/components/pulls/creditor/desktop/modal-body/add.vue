@@ -17,9 +17,9 @@
           <label class="label">Настроить токен:</label>
           <div :style="{ margin: '0 auto', width: '456px' }">
             <catos-select
-              placeholder="Выберите токен"
+              placeholder="TON"
               :options="options"
-              :value="valueStatus"
+              :value="valueToken"
               :optionWidthDesk="456"
               @selected="(ev:any) => (valueToken = ev)"
             ></catos-select>
@@ -72,8 +72,7 @@ import inputData from "@/components/fields/input-data.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import catosSelect from "@/components/fields/catos-select.vue";
 const valueToken = ref("");
-const valueStatus = ref("");
-const options = ["Россия", "Украина", "Казахстан", "Белорусь"];
+const options = ["TON", "CATOS"];
 const emits = defineEmits(["close", "qr"]);
 const qr = () => {
   emits("qr");

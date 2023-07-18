@@ -28,7 +28,7 @@
 
           <div class="description">
             <div class="catos">Кошелек Catos</div>
-            <div class="balance-10-273">Balance: 10 273 TON</div>
+            <div class="balance-10-273">Balance: 10 273 CATOS</div>
           </div>
         </div>
       </div>
