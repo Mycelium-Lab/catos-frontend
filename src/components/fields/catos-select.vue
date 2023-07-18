@@ -57,7 +57,7 @@
       <template v-else="!Array.isArray(options)">
         <li v-for="option in arrOptions" data-element="option">
           <p class="catos-select__options_name" data-element="option">
-            {{ translate[option] }}
+            {{ getTranslated(option) }}
           </p>
           <ul class="catos-select__options_group" data-element="option">
             <li
@@ -102,6 +102,7 @@ const { placeholder, options } = defineProps({
   },
   options: {
     type: Object,
+    required: true,
   },
   value: {
     type: String,
@@ -141,6 +142,11 @@ const arrOptions = computed(() => {
     return Object.keys(options);
   }
 });
+
+const getTranslated = (option: string) => {
+  // @ts-ignore
+  return translate[option];
+};
 watch(isOpen, () => {
   function handleClick(e: any) {
     if (
