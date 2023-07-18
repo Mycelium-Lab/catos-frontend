@@ -135,7 +135,7 @@
               <img
                 class="colors-graphsorders-icon"
                 alt=""
-                src="@/assets/desktop/fallback/colors-graphsorders.svg"
+                src="@/assets/images/colors-graphsorders3.svg"
               />
               <div class="div121">Просрочен</div>
             </div>
@@ -177,44 +177,59 @@
         <div v-if="role === 'borrower'" class="field-parent">
           <div class="field">
             <div class="div2">Займ:</div>
-            <div class="ton">1 500 TON</div>
+            <div class="ton">13 000 TON</div>
           </div>
           <div class="col-titles-bg" />
         </div>
         <div v-if="role === 'borrower'" class="field-parent">
           <div class="field">
             <div class="div2">Ставка:</div>
-            <div class="ton">1 500 TON</div>
+            <div class="ton">15%</div>
           </div>
           <div class="col-titles-bg" />
         </div>
         <div v-if="role === 'borrower'" class="field-parent">
           <div class="field">
             <div class="div2">Начисленные проценты:</div>
-            <div class="ton">1 500 TON</div>
+            <div class="ton">512 TON</div>
           </div>
           <div class="col-titles-bg" />
         </div>
         <div v-if="role === 'borrower'" class="field-parent">
           <div class="field">
             <div class="div2">На срок:</div>
-            <div class="ton">1 500 TON</div>
+            <div class="ton">до 30 дней</div>
           </div>
           <div class="col-titles-bg" />
         </div>
         <div v-if="role === 'borrower'" class="field-parent">
           <div class="field">
             <div class="div2">Беспроцентный период:</div>
-            <div class="ton">1 500 TON</div>
+            <div class="ton">до 05.02.22, 16:00 (завершен)</div>
           </div>
           <div class="col-titles-bg" />
         </div>
         <div v-if="role === 'borrower'" class="field-parent">
           <div class="field">
-            <div class="div2">Сумма к возвращению:</div>
-            <div class="ton">1 500 TON</div>
+            <div class="div2">
+              {{
+                variant === "repaid"
+                  ? "Сумма погашения"
+                  : "Сумма к возвращению"
+              }}:
+            </div>
+            <div class="ton">13 512 TON</div>
           </div>
-          <div class="col-titles-bg" />
+          <div v-if="variant === 'repaid'" class="col-titles-bg" />
+        </div>
+        <div
+          v-if="role === 'borrower' && variant === 'repaid'"
+          class="field-parent"
+        >
+          <div class="field">
+            <div class="div2">Дата погашения:</div>
+            <div class="ton">13.02.22 в 19.32</div>
+          </div>
         </div>
         <div v-if="role === 'creditor'" class="field-parent">
           <div class="field">
@@ -272,7 +287,11 @@
         "
         class="notification6"
       >
-        <img class="percent-icon12" alt="" src="@/assets/images/percent.svg" />
+        <img
+          class="percent-icon12"
+          alt=""
+          src="@/assets/images/alerttriangle-white.svg"
+        />
         <div class="div128">
           Вернуть не позднее: до 13.02.22, 16:00 (осталось 29 дней)
         </div>
@@ -283,7 +302,11 @@
         "
         class="notification6"
       >
-        <img class="percent-icon12" alt="" src="@/assets/images/percent.svg" />
+        <img
+          class="percent-icon12"
+          alt=""
+          src="@/assets/images/alerttriangle-white.svg"
+        />
         <div class="div128">
           Вернуть не позднее: до 13.02.22, 16:00 (займ просрочен)
         </div>
@@ -292,10 +315,14 @@
         v-if="
           role === 'borrower' && status === 'overdue' && variant === 'active'
         "
-        class="notification6"
+        class="notification6_overdue notification6"
       >
-        <img class="percent-icon12" alt="" src="@/assets/images/percent.svg" />
-        <div class="div128">
+        <img
+          class="percent-icon12"
+          alt=""
+          src="@/assets/images/alerttriangle-red.svg"
+        />
+        <div class="div128 div128">
           Ваш долг вместе с персональными данными будет выставлен на открытый
           аукцион для коллекторов через 23:59:59
         </div>
@@ -702,7 +729,7 @@ const handleCheckBox = (ev: any) => {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: 1.63em;
+  gap: 5.63em;
 }
 .col-titles-bg {
   align-self: stretch;
@@ -723,6 +750,7 @@ const handleCheckBox = (ev: any) => {
   position: relative;
   font-size: 0.88em;
   line-height: 130%;
+  text-align: end;
 }
 .div8 {
   position: relative;
@@ -899,6 +927,9 @@ li {
   align-items: center;
   justify-content: flex-start;
   gap: 0.63em;
+  &_overdue {
+    background: rgba(255, 0, 0, 0.08);
+  }
 }
 .percent-icon12 {
   position: relative;

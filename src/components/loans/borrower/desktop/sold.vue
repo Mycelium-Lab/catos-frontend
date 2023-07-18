@@ -12,11 +12,11 @@
                 </div>
                 <div class="status-all">
                   <div class="colors-graphsorders-parent">
-                    <!--<img
+                    <img
                       class="colors-graphsorders-icon"
                       alt=""
-                      src="/colors-graphsorders.svg"
-                    />-->
+                      src="@/assets/images/colors-graphsorders3.svg"
+                    />
                     <div class="div">Займ продан коллектору</div>
                   </div>
                   <!--<img class="iconchange" alt="" src="/iconchange.svg" />-->

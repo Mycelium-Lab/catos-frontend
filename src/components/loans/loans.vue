@@ -73,7 +73,7 @@
   <app-bar v-if="isAppBar && isMobile"></app-bar>
 
   <default-desktop v-else>
-    <template v-slot:title> Заявки </template>
+    <template v-slot:title> Займы </template>
     <template v-slot:slider>
       <multi-button-slider
         :style="{ width: '385px', margin: '0em' }"
