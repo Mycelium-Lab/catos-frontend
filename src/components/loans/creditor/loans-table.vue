@@ -751,6 +751,7 @@ const handleCheckBox = (ev: any) => {
   font-size: 0.88em;
   line-height: 130%;
   text-align: end;
+  font-weight: 300;
 }
 .div8 {
   position: relative;
