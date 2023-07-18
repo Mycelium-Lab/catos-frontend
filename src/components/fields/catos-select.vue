@@ -1,9 +1,10 @@
 <template>
   <div class="catos-select-wrapper">
-    <div
+    <button
       :class="isOpen ? 'catos-select_active catos-select' : 'catos-select'"
       @click="() => (isOpen = !isOpen)"
       data-element="select"
+      :disabled="disabled"
     >
       <input
         :value="value || placeholder"
@@ -21,7 +22,7 @@
         alt="chevron-double"
         data-element="select"
       />
-    </div>
+    </button>
     <ul
       v-if="isOpen"
       :style="
@@ -54,42 +55,21 @@
         </li>
       </template>
       <template v-else="!Array.isArray(options)">
-        <li data-element="option">
+        <li v-for="option in arrOptions" data-element="option">
           <p class="catos-select__options_name" data-element="option">
-            Страны СНГ
+            {{ translate[option] }}
           </p>
           <ul class="catos-select__options_group" data-element="option">
             <li
-              v-for="(option, index) in options?.sng"
+              v-for="(item, index) in options[option]"
               :key="index"
               class="catos-select__option"
               data-element="option"
+              :class="options[option].length - 1 === index ? 'last' : ''"
             >
               <input
                 class="catos-option_input"
-                :value="option"
-                @click="getOption"
-                readonly
-                data-element="option"
-              />
-            </li>
-          </ul>
-        </li>
-        <li data-element="option">
-          <p class="catos-select__options_name" data-element="option">
-            Страны Еврозоны
-          </p>
-          <ul class="catos-select__options_group" data-element="option">
-            <li
-              v-for="(option, index) in options?.euro"
-              :key="index"
-              class="catos-select__option"
-              data-element="option"
-              :class="options?.euro.length - 1 === index ? 'last' : ''"
-            >
-              <input
-                class="catos-option_input"
-                :value="option"
+                :value="item"
                 @click="getOption"
                 readonly
                 data-element="option"
@@ -103,8 +83,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
-const { placeholder } = defineProps({
+import { computed, ref, watch } from "vue";
+
+const translate = {
+  euro: "Европа",
+  asia: "Азия",
+  africa: "Aфрика",
+  america: "Америка",
+  australia_okeania: "Австралия и Океания",
+  republic: "Республика",
+  edge: "Край",
+  region: "Область",
+};
+
+const { placeholder, options } = defineProps({
   placeholder: {
     type: String,
   },
@@ -128,6 +120,10 @@ const { placeholder } = defineProps({
     type: Boolean,
     default: false,
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits(["selected"]);
@@ -139,6 +135,12 @@ const getOption = (ev: any) => {
   emit("selected", ev.target.value);
 };
 
+const arrOptions = computed(() => {
+  if (!Array.isArray(options)) {
+    // @ts-ignore
+    return Object.keys(options);
+  }
+});
 watch(isOpen, () => {
   function handleClick(e: any) {
     if (
@@ -172,6 +174,7 @@ watch(isOpen, () => {
   display: flex;
   height: 40px;
   align-items: center;
+  background: transparent;
   &_active,
   &_active input {
     background: rgba(248, 248, 255, 1);
@@ -189,6 +192,8 @@ watch(isOpen, () => {
   display: flex;
   flex-direction: column;
   overflow: scroll;
+  max-height: 400px;
+  overflow-y: auto;
   //position: sticky;
   position: absolute;
   z-index: 1000;
