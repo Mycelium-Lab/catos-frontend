@@ -39,18 +39,18 @@
             <catos-select
               v-if="isMobile"
               placeholder="Россия"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
+              :options="optionsWork"
+              :value="valueWork"
+              @selected="ev => (valueWork = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
             ></catos-select>
             <catos-select
               v-else
               placeholder="Россия"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
+              :options="optionsWork"
+              :value="valueWork"
+              @selected="ev => (valueWork = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
             ></catos-select>
@@ -93,18 +93,18 @@
             <catos-select
               v-if="isMobile"
               placeholder="Россия"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
+              :options="optionsEducation"
+              :value="valueEducation"
+              @selected="ev => (valueEducation = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
             ></catos-select>
             <catos-select
               v-else
               placeholder="Россия"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
+              :options="optionsEducation"
+              :value="valueEducation"
+              @selected="ev => (valueEducation = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
             ></catos-select>
@@ -117,18 +117,18 @@
             <catos-select
               v-if="isMobile"
               placeholder="Россия"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
+              :options="optionsFamaly"
+              :value="valueFamaly"
+              @selected="ev => (valueFamaly = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
             ></catos-select>
             <catos-select
               v-else
               placeholder="Россия"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
+              :options="optionsFamaly"
+              :value="valueFamaly"
+              @selected="ev => (valueFamaly = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
             ></catos-select>
@@ -141,22 +141,20 @@
             <catos-select
               v-if="isMobile"
               placeholder="Россия"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
+              :options="optionsChildren"
+              :value="valueChildren"
+              @selected="ev => (valueChildren = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              top
             ></catos-select>
             <catos-select
               v-else
               placeholder="Россия"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
+              :options="optionsChildren"
+              :value="valueChildren"
+              @selected="ev => (valueChildren = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
-              top
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -167,22 +165,20 @@
             <catos-select
               v-if="isMobile"
               placeholder="Россия"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
+              :options="optionsCriminal"
+              :value="valueCreminal"
+              @selected="ev => (valueCreminal = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              top
             ></catos-select>
             <catos-select
               v-else
               placeholder="Россия"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
+              :options="optionsCriminal"
+              :value="valueCreminal"
+              @selected="ev => (valueCreminal = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
-              top
             ></catos-select>
           </div>
         </div>
@@ -197,9 +193,9 @@
           <catos-select
             v-if="isMobile"
             placeholder="Россия"
-            :options="options"
-            :value="value"
-            @selected="ev => (value = ev)"
+            :options="optionsChannel"
+            :value="valueChannel"
+            @selected="ev => (valueChannel = ev)"
             :optionWidth="77"
             :style="{ width: '100%' }"
             top
@@ -207,9 +203,9 @@
           <catos-select
             v-else
             placeholder="Россия"
-            :options="options"
-            :value="value"
-            @selected="ev => (value = ev)"
+            :options="optionsChannel"
+            :value="valueChannel"
+            @selected="ev => (valueChannel = ev)"
             :optionWidthDesk="329"
             :style="{ width: '100%' }"
             top
@@ -247,10 +243,65 @@ import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();
 const value = ref("");
+const valueWork = ref("");
+const valueEducation = ref("");
+const valueFamaly = ref("");
+const valueChildren = ref("");
+const valueCreminal = ref("");
+const valueChannel = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
 };
+const optionsWork = [
+  "Основное место работы",
+  "Дополнительное место работы",
+  "Работа по совместительству",
+  "Частичная занятость",
+  "Временная работа",
+  "Удалённая работа",
+  "Сезонная работа",
+  "Домашний труд",
+  "Самозанятые",
+  "Индивидуальные предприниматели",
+  "Фрилансеры",
+];
+const optionsEducation = [
+  "Начальное общее образование",
+  "Основное общее образование",
+  "Среднее общее образование",
+  "Начальное профессиональное образование",
+  "Среднее профессиональное образование",
+  "Высшее образование — бакалавриат",
+  "Высшее образование — специалитет",
+  "Высшее образование — магистратура",
+  "Послевузовское образование (аспирантура/докторантура)",
+];
+const optionsFamaly = [
+  "Не женат/не замужем",
+  "Женат/Замужем",
+  "В гражданском браке",
+  "В разводе",
+  "Вдовец/Вдова",
+];
+const optionsChildren = ["Нет", "1", "2", "3", "4", "5 и более"];
+const optionsCriminal = [
+  "Нет судимости",
+  "Есть судимость",
+  "Условная судимость",
+  "Судимость погашена",
+];
+const optionsChannel = [
+  "Интернет-поиск",
+  "Социальные сети",
+  "Рекомендация друзей",
+  "Реклама на ТВ",
+  "Реклама на радио",
+  "Печатная реклама",
+  "Электронная рассылка",
+  "Участие в мероприятиях",
+  "Другое",
+];
 </script>
 
 <style scoped lang="scss">
