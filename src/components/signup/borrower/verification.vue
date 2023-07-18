@@ -46,7 +46,12 @@
                 :value="valueRegion"
                 @selected="ev => (valueRegion = ev)"
                 :optionWidth="77"
-                :style="{ width: '100%' }"
+                :style="
+                  getPasport === 'Россия'
+                    ? { width: '100%', opacity: '1' }
+                    : { width: '100%', opacity: '0.2' }
+                "
+                :disabled="getPasport !== 'Россия'"
               ></catos-select>
               <catos-select
                 v-else
@@ -55,7 +60,12 @@
                 :value="valueRegion"
                 @selected="ev => (valueRegion = ev)"
                 :optionWidthDesk="405"
-                :style="{ width: '100%' }"
+                :style="
+                  getPasport === 'Россия'
+                    ? { width: '100%', opacity: '1' }
+                    : { width: '100%', opacity: '0.2' }
+                "
+                :disabled="getPasport !== 'Россия'"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -194,8 +204,8 @@
                     v-if="isMobile"
                     placeholder="Россия"
                     :options="options"
-                    :value="value"
-                    @selected="ev => (value = ev)"
+                    :value="getPasport"
+                    @selected="ev => (getPasport = ev)"
                     :optionWidth="77"
                     :style="{ width: '100%' }"
                   ></catos-select>
@@ -203,8 +213,8 @@
                     v-else
                     placeholder="Россия"
                     :options="options"
-                    :value="value"
-                    @selected="ev => (value = ev)"
+                    :value="getPasport"
+                    @selected="ev => (getPasport = ev)"
                     :optionWidthDesk="405"
                     :style="{ width: '100%' }"
                   ></catos-select>
@@ -374,7 +384,6 @@ import { useDevice } from "@/compossables/useDevice";
 const { isMobile } = useDevice();
 const value = ref("");
 const getPasport = ref("");
-const accommodation = ref("");
 const valueRegion = ref("");
 const valueArea = ref("");
 const date = ref("");

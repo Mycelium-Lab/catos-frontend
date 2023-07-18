@@ -38,7 +38,7 @@
             </div>
             <catos-select
               v-if="isMobile"
-              placeholder="Россия"
+              :placeholder="optionsWork[0]"
               :options="optionsWork"
               :value="valueWork"
               @selected="ev => (valueWork = ev)"
@@ -47,7 +47,7 @@
             ></catos-select>
             <catos-select
               v-else
-              placeholder="Россия"
+              :placeholder="optionsWork[0]"
               :options="optionsWork"
               :value="valueWork"
               @selected="ev => (valueWork = ev)"
@@ -92,7 +92,7 @@
             </div>
             <catos-select
               v-if="isMobile"
-              placeholder="Россия"
+              :placeholder="optionsEducation[0]"
               :options="optionsEducation"
               :value="valueEducation"
               @selected="ev => (valueEducation = ev)"
@@ -101,7 +101,7 @@
             ></catos-select>
             <catos-select
               v-else
-              placeholder="Россия"
+              :placeholder="optionsEducation[0]"
               :options="optionsEducation"
               :value="valueEducation"
               @selected="ev => (valueEducation = ev)"
@@ -116,7 +116,7 @@
             </div>
             <catos-select
               v-if="isMobile"
-              placeholder="Россия"
+              :placeholder="optionsFamaly[0]"
               :options="optionsFamaly"
               :value="valueFamaly"
               @selected="ev => (valueFamaly = ev)"
@@ -125,7 +125,7 @@
             ></catos-select>
             <catos-select
               v-else
-              placeholder="Россия"
+              :placeholder="optionsFamaly[0]"
               :options="optionsFamaly"
               :value="valueFamaly"
               @selected="ev => (valueFamaly = ev)"
@@ -140,7 +140,7 @@
             </div>
             <catos-select
               v-if="isMobile"
-              placeholder="Россия"
+              :placeholder="optionsChildren[0]"
               :options="optionsChildren"
               :value="valueChildren"
               @selected="ev => (valueChildren = ev)"
@@ -149,7 +149,7 @@
             ></catos-select>
             <catos-select
               v-else
-              placeholder="Россия"
+              :placeholder="optionsChildren[0]"
               :options="optionsChildren"
               :value="valueChildren"
               @selected="ev => (valueChildren = ev)"
@@ -164,7 +164,7 @@
             </div>
             <catos-select
               v-if="isMobile"
-              placeholder="Россия"
+              :placeholder="optionsCriminal[0]"
               :options="optionsCriminal"
               :value="valueCreminal"
               @selected="ev => (valueCreminal = ev)"
@@ -173,7 +173,7 @@
             ></catos-select>
             <catos-select
               v-else
-              placeholder="Россия"
+              :placeholder="optionsCriminal[0]"
               :options="optionsCriminal"
               :value="valueCreminal"
               @selected="ev => (valueCreminal = ev)"
@@ -187,12 +187,12 @@
         </div>
         <div class="fieldsinputchoise5">
           <div class="div14">
-            <span>Как вы узнали о нас? </span>
+            <span>Как вы узнали о нас ? </span>
             <span class="span1">*</span>
           </div>
           <catos-select
             v-if="isMobile"
-            placeholder="Россия"
+            :placeholder="optionsChannel[0]"
             :options="optionsChannel"
             :value="valueChannel"
             @selected="ev => (valueChannel = ev)"
@@ -202,7 +202,7 @@
           ></catos-select>
           <catos-select
             v-else
-            placeholder="Россия"
+            :placeholder="optionsChannel[0]"
             :options="optionsChannel"
             :value="valueChannel"
             @selected="ev => (valueChannel = ev)"
@@ -278,11 +278,11 @@ const optionsEducation = [
   "Послевузовское образование (аспирантура/докторантура)",
 ];
 const optionsFamaly = [
-  "Не женат/не замужем",
-  "Женат/Замужем",
+  "Не женат / не замужем",
+  "Женат / Замужем",
   "В гражданском браке",
   "В разводе",
-  "Вдовец/Вдова",
+  "Вдовец / Вдова",
 ];
 const optionsChildren = ["Нет", "1", "2", "3", "4", "5 и более"];
 const optionsCriminal = [

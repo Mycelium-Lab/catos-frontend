@@ -30,10 +30,10 @@
                 <span class="span">* </span>
               </div>
               <catos-select
-                placeholder="Выбрать страну:"
-                :options="options"
-                :value="value"
-                @selected="ev => (value = ev)"
+                placeholder="Россия"
+                :options="optionsState"
+                :value="valueState"
+                @selected="ev => (valueState = ev)"
                 :optionWidthDesk="352"
                 :style="{ width: '100%' }"
               ></catos-select>
@@ -44,10 +44,10 @@
                 <span class="span">* </span>
               </div>
               <catos-select
-                placeholder="Выбрать страну:"
-                :options="options"
-                :value="value"
-                @selected="ev => (value = ev)"
+                placeholder="ОАО"
+                :options="optionsFormRegistration"
+                :value="valueFormRegistration"
+                @selected="ev => (valueFormRegistration = ev)"
                 :optionWidthDesk="352"
                 :style="{ width: '100%' }"
               ></catos-select>
@@ -233,11 +233,10 @@
                 </template>
               </div>
               <catos-select
-                top
-                placeholder="Тип файла"
-                :options="options"
-                :value="value"
-                @selected="ev => (value = ev)"
+                placeholder="PDF"
+                :options="optionsFile"
+                :value="valueFile"
+                @selected="ev => (valueFile = ev)"
                 :optionWidthDesk="320"
                 :style="{
                   width: '90%',
@@ -346,10 +345,71 @@ import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();
 import { ref } from "vue";
-const value = ref("");
-const options = {
-  sng: ["Россия", "Украина", "Казахстан"],
-  euro: ["Польша", "Латвия", "Молдова"],
+const valueState = ref("");
+const valueFormRegistration = ref("");
+const valueFile = ref("");
+const optionsFile = ["PDF", "TXT", "DOC", "ZIP", "RAR"];
+const optionsFormRegistration = ["ОАО", "АО", "ПАО"];
+const optionsState = {
+  euro: [
+    "Россия",
+    "Германия",
+    "Великобритания",
+    "Франиця",
+    "Италия",
+    "Испания",
+    "Украина",
+    "Польша",
+    "Румыния",
+    "Нидерланды",
+    "Беларусь",
+    "Греция",
+    "Португалия",
+    "Чехия",
+    "Швеция",
+  ],
+  asia: [
+    "Китай",
+    "Индия",
+    "Индонезия",
+    "Пакистан",
+    "Бангладеш",
+    "Япония",
+    "Филиппины",
+    "Вьетнам",
+    "Турция",
+    "Иран",
+    "Таиланд",
+    "Мьянма",
+    "Южная Корея",
+    "Ирак",
+    "Афганистан",
+  ],
+  africa: [
+    "Нигерия",
+    "Эфиопия",
+    "Египет",
+    "ДР Конго",
+    "Южная Африка",
+    "Танзания",
+    "Судан",
+    "Алжир",
+    "Уганда",
+    "Морокко",
+  ],
+  america: [
+    "США",
+    "Бразилия",
+    "Мексика",
+    "Колумбия",
+    "Аргентина",
+    "Перу",
+    "Венесуэла",
+    "Чили",
+    "Гватемала",
+    "Эквадор",
+  ],
+  australia_okeania: ["Австралия", "Папуа - Новая Гвинея", "Новая Зеландия"],
 };
 </script>
 

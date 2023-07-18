@@ -292,7 +292,12 @@
               :value="valueRegion"
               @selected="ev => (valueRegion = ev)"
               :optionWidth="77"
-              :style="{ width: '100%' }"
+              :style="
+                getPasport === 'Россия'
+                  ? { width: '100%', opacity: '1' }
+                  : { width: '100%', opacity: '0.2' }
+              "
+              :disabled="getPasport !== 'Россия'"
             ></catos-select>
             <catos-select
               v-else
@@ -301,7 +306,12 @@
               :value="valueRegion"
               @selected="ev => (valueRegion = ev)"
               :optionWidthDesk="329"
-              :style="{ width: '100%' }"
+              :style="
+                getPasport === 'Россия'
+                  ? { width: '100%', opacity: '1' }
+                  : { width: '100%', opacity: '0.2' }
+              "
+              :disabled="getPasport !== 'Россия'"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
@@ -476,7 +486,12 @@
               :value="valueRegionFact"
               @selected="ev => (valueRegionFact = ev)"
               :optionWidth="77"
-              :style="{ width: '100%' }"
+              :style="
+                accommodation === 'Россия'
+                  ? { width: '100%', opacity: '1' }
+                  : { width: '100%', opacity: '0.2' }
+              "
+              :disabled="accommodation !== 'Россия'"
             ></catos-select>
             <catos-select
               v-else
@@ -485,7 +500,12 @@
               :value="valueRegionFact"
               @selected="ev => (valueRegionFact = ev)"
               :optionWidthDesk="329"
-              :style="{ width: '100%' }"
+              :style="
+                accommodation === 'Россия'
+                  ? { width: '100%', opacity: '1' }
+                  : { width: '100%', opacity: '0.2' }
+              "
+              :disabled="accommodation !== 'Россия'"
             ></catos-select>
           </div>
           <div class="fieldsinput">
