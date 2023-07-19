@@ -495,8 +495,7 @@
       }
     "
   ></all-borrower-pulls>
-  <my-borrower-pulls v-if="isMyBorrower" @close="() => (isMyBorrower = false)">
-  </my-borrower-pulls>
+
   <add-liquid
     v-if="(isAllDepositor || isMyDepositor) && allDepositorState.addLiquidModal"
     @close="
@@ -602,7 +601,6 @@ import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import allCreditorPulls from "../pulls/creditor/desktop/all-creditor-pulls.vue";
 import myCreditorPulls from "../pulls/creditor/desktop/my-creditor-pulls.vue";
 import allBorrowerPulls from "../pulls/borrower/desktop/all-borrower-pulls.vue";
-import myBorrowerPulls from "../pulls/borrower/desktop/my-borrower-pulls.vue";
 import allDepositorPulls from "../pulls/depositor/desktop/all-depositor-pulls.vue";
 import addLiquid from "../pulls/depositor/desktop/add-liquid.vue";
 import myDepositorPulls from "../pulls/depositor/desktop/my-depositor-pulls.vue";
@@ -629,7 +627,6 @@ const toMySold = () => {
 const isAllCreditor = ref(false);
 const isMyCreditor = ref(false);
 const isAllBorrower = ref(false);
-const isMyBorrower = ref(false);
 const isAllDepositor = ref(false);
 const isMyDepositor = ref(false);
 const isAllCollector = ref(false);
@@ -720,13 +717,8 @@ const toDetail = () => {
       isAllCreditor.value = true;
     }
   } else if (role === "borrower") {
-    if (variant === "all") {
-      isAllBorrower.value = true;
-      allBorrowerState.detailOtherModal = true;
-    }
-    if (variant === "my") {
-      isMyBorrower.value = true;
-    }
+    isAllBorrower.value = true;
+    allBorrowerState.detailOtherModal = true;
   } else if (role === "depositor") {
     if (variant === "all") {
       isAllDepositor.value = true;
