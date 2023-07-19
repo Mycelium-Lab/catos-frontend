@@ -4,7 +4,7 @@
     <template v-slot:subheaderIcon>
       <img class="header-icon" alt="" src="@/assets/images/success-cash.svg" />
     </template>
-    <template v-slot:subheader> Добавление ликвидности в пулл #12345 </template>
+    <template v-slot:subheader> Инвестировать в пулл #12345 </template>
     <template v-slot:first-row>
       <div class="field">
         <div class="roi">Баланс кошелька:</div>
@@ -29,6 +29,7 @@
             <input-data
               :style="{ width: '456px' }"
               placeholder="10 000 TON"
+              @selected="e => (inputValue = e)"
             ></input-data>
           </div>
           <div class="min-10-ton-parent">
@@ -45,6 +46,10 @@
           </div>
         </div>
       </div>
+      <calculator
+        :input="Number(inputValue)"
+        :key="Number(inputValue)"
+      ></calculator>
     </template>
     <template v-slot:action>
       <div class="des-and-bbn_add des-and-bbn">
@@ -52,7 +57,7 @@
           variant="fourth"
           @click="qr"
           :style="{ width: '100%', margin: '0' }"
-          >Добавить</catos-button
+          >Инвестировать</catos-button
         >
         <catos-button
           variant="fourth_outline"
@@ -71,9 +76,14 @@ import liquidityManagmentModal from "@/components/base/liquidity-managment-modal
 import inputData from "@/components/fields/input-data.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import catosSelect from "@/components/fields/catos-select.vue";
+import calculator from "@/components/base/calculator.vue";
+
 const valueToken = ref("");
 const options = ["TON", "CATOS"];
 const emits = defineEmits(["close", "qr"]);
+
+const inputValue = ref("");
+
 const qr = () => {
   emits("qr");
 };

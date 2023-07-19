@@ -93,9 +93,7 @@ const handleBlur = () => {
   }
 };
 const selected = (ev: any) => {
-  if (simulate) {
-    emit("selected", ev.target.value);
-  }
+  emit("selected", ev.target.value);
 };
 </script>
 
