@@ -1,5 +1,5 @@
 <template>
-  <detail-other
+  <detail
     v-if="isDetailOther"
     @close="close"
     @get-loan="
@@ -15,7 +15,7 @@
       }
     "
   >
-  </detail-other>
+  </detail>
   <desktop-modal
     v-if="isGetLoan"
     @close="close"
@@ -115,7 +115,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import detailOther from "./modal-body/detail-other.vue";
+import detail from "./modal-body/detail.vue";
 import getLoan from "./modal-body/get-loan.vue";
 import invest from "./modal-body/invest.vue";
 import paymentMethod from "@/components/base/desktop/modal-body/payment-method.vue";

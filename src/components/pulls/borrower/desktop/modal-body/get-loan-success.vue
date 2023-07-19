@@ -1,5 +1,5 @@
 <template>
-  <desktop-modal @click="close">
+  <desktop-modal @close="close">
     <template v-slot:title> Получить займ из пулла #12345 </template>
     <template v-slot:body>
       <div class="frame-parent">
@@ -20,7 +20,7 @@
                         <h3 class="value">13 000 TON</h3>
                         <p class="p">
                           <span class="span1">
-                            Были отправлены на ваш кошелек:
+                            были отправлены на ваш кошелек:
                           </span>
                         </p>
                         <p class="eqb5dze1h441">EQB5...dzE1hа44</p>
@@ -65,8 +65,11 @@
                   <div class="frame-parent2">
                     <div class="container">
                       <div class="div2">Кредитор:</div>
-                      <div class="radiobutton-parent">
-                        <div class="div3">Деньги до зарплаты</div>
+                      <div
+                        class="radiobutton-parent"
+                        @click="() => (isCreditorInfo = true)"
+                      >
+                        <div class="div3_creditor div3">Деньги до зарплаты</div>
                         <img
                           class="radiobutton-icon"
                           alt=""
@@ -140,8 +143,8 @@
               <catos-button
                 variant="fourth_outline"
                 :style="{ width: '100%', margin: '0' }"
-                @click="close"
-                >ОК</catos-button
+                @click="toLoans"
+                >Перейти в "Мои займы"</catos-button
               >
             </div>
           </div>
@@ -149,17 +152,31 @@
       </div>
     </template>
   </desktop-modal>
+  <creditor-info
+    v-if="isCreditorInfo"
+    @close="() => (isCreditorInfo = false)"
+  ></creditor-info>
 </template>
 <script setup lang="ts">
+import { ref } from "vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
+import creditorInfo from "@/components/base/desktop/creditor-info.vue";
+import { useRouter } from "vue-router";
+
 const emits = defineEmits(["close"]);
 
+const isCreditorInfo = ref(false);
+const router = useRouter();
+
+const toLoans = () => {
+  router.push({ name: "loans-borrower" });
+};
 const close = () => {
   emits("close");
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 .div {
   align-self: stretch;
   position: relative;
@@ -359,6 +376,10 @@ const close = () => {
   font-size: 0.88em;
   line-height: 130%;
   font-weight: 300;
+  &_creditor {
+    color: #2c56c0;
+    text-decoration: underline;
+  }
 }
 .radiobutton-parent {
   display: flex;
@@ -366,6 +387,7 @@ const close = () => {
   align-items: center;
   justify-content: flex-start;
   gap: 0.63em;
+  cursor: pointer;
 }
 .container {
   align-self: stretch;

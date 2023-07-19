@@ -461,7 +461,7 @@ const close = () => {
   top: calc(50% - 359.5px);
   left: calc(50% - 320px);
   border-radius: 15px;
-  border: 1px solid #f6f4fc;
+
   box-sizing: border-box;
   width: 40em;
   display: flex;

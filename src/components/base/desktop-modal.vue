@@ -3,7 +3,6 @@
     <div class="filter-parent">
       <div class="filter">
         <div class="rectangle-parent">
-          <div class="frame-child" />
           <div class="header-pop-up">
             <div class="page-title-parent">
               <div>
@@ -24,7 +23,6 @@
                 @click="close"
               />
             </div>
-            <div class="frame-child" />
           </div>
         </div>
         <div class="frame-parent">
@@ -112,12 +110,7 @@ const close = () => {
   align-items: flex-start;
   justify-content: center;
 }
-.frame-child {
-  align-self: stretch;
-  position: relative;
-  background-color: #f6f4fc;
-  height: 0.06em;
-}
+
 .header-pop-up {
   align-self: stretch;
   border-radius: 15px 15px 0px 0px;
