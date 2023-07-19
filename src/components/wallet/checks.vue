@@ -224,9 +224,6 @@ const { isMobile } = useDevice();
 </script>
 
 <styles scoped lang="scss">
-.wrapper {
-  height: 1300px;
-}
 .div9 {
   position: relative;
   font-size: 1em;
