@@ -135,7 +135,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import creditorList from "@/components/pulls/creditor/creditor-list.vue";
-import pullsTable from "@/components/base/pulls-table.vue";
+import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
 

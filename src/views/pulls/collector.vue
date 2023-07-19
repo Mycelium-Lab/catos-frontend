@@ -87,7 +87,7 @@ import collectorList from "@/components/pulls/collector/collector-list.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
-import pullsTable from "@/components/base/pulls-table.vue";
+import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
 
 import { useDevice } from "@/compossables/useDevice";
 

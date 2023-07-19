@@ -83,7 +83,7 @@ import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import depositorList from "@/components/pulls/depositor/depositor-list.vue";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
-import pullsTable from "@/components/base/pulls-table.vue";
+import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
 
 import { useDevice } from "@/compossables/useDevice";
 
