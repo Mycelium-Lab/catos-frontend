@@ -83,10 +83,10 @@
             v-if="role === 'borrower' || role === 'collector'"
             class="creditor-info"
           >
-            <div class="div127">Кредитор:</div>
+            <div class="div127_creditor-info div127">Кредитор:</div>
 
             <div class="group-creditor">
-              <span class="div127">Деньги до зарплаты</span>
+              <span class="div127_creditor-info">Деньги до зарплаты</span>
               <img
                 class="radiobutton-icon"
                 alt=""
@@ -109,6 +109,7 @@
               </div>
             </div>
           </div>
+          <div class="line-div" />
           <div class="frame-parent22">
             <div
               v-if="role === 'collector' && variant === 'debt'"
@@ -194,6 +195,7 @@
                 <div class="div128">3 дня</div>
               </div>
             </div>
+            <div v-if="role === 'borrower'" class="line-div" />
             <div
               v-if="role === 'collector' && variant === 'debt'"
               class="line-div"
@@ -365,7 +367,9 @@
               alt=""
               src="@/assets/images/percent.svg"
             />
-            <div class="div128">Проценты начисляются с 12/12/2023 года</div>
+            <div class="div128_percent div128">
+              Проценты начисляются с 12.12.2023 года
+            </div>
           </div>
         </div>
         <div class="des-and-bbn6">
@@ -775,31 +779,29 @@ li {
 }
 .div120 {
   position: relative;
-  font-size: 0.63em;
+  font-size: 12px;
   line-height: 0.68em;
 }
 .wrapper {
-  border-radius: 8.79px;
+  border-radius: 8px;
   border: 0.3px solid #656060;
   box-sizing: border-box;
-  height: 1.25em;
   display: flex;
   flex-direction: row;
   padding: 0.42em;
   align-items: center;
   justify-content: center;
+  padding: 8px;
 }
 .filtr6 {
   position: absolute;
   top: -0.25em;
   left: 1em;
-  border-radius: 12px 12px 0px 0px;
-  background-color: #fcfcfe;
-  width: 5.63em;
+  background-color: #ffff;
+
   overflow: hidden;
   display: flex;
   flex-direction: row;
-  padding: 0.25em 0.38em 0em;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
@@ -874,7 +876,7 @@ li {
 }
 .div121 {
   position: relative;
-  font-size: 0.75em;
+  font-size: 14px;
   line-height: 130%;
 }
 .colors-graphsorders-parent {
@@ -975,7 +977,6 @@ li {
   color: #8181a5;
 }
 .frame {
-  width: 8.88em;
   display: flex;
   flex-direction: row;
   padding: 0.13em 0em;
@@ -985,9 +986,8 @@ li {
 }
 .div126 {
   position: absolute;
-  width: 100%;
   top: 0%;
-  left: 0%;
+  right: 0%;
   font-size: 0.75em;
   line-height: 0.83em;
   display: flex;
@@ -997,7 +997,6 @@ li {
   position: relative;
   width: 3.44em;
   height: 0.63em;
-  top: 0.1em;
   &_collector {
     width: 5em;
   }
@@ -1008,41 +1007,46 @@ li {
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.63em;
-  color: #1cbd62;
+
+  /*color: #1cbd62;
   &_red {
     color: red;
-  }
+  }*/
 }
 .frame-parent21 {
   align-self: stretch;
   display: flex;
   flex-direction: row;
-  padding: 0em 0.69em;
-  align-items: flex-start;
   justify-content: flex-start;
   gap: 4.06em;
+  padding: 0 10px;
 }
+
+.div128,
 .div127 {
   position: relative;
-  font-size: 0.75em;
+  font-size: 14px;
   line-height: 130%;
   font-weight: 300;
+}
+.div127 {
+  &_creditor-info {
+    font-size: 12px;
+  }
 }
 .div128 {
   flex: 1;
-  position: relative;
-  font-size: 0.75em;
-  line-height: 130%;
-  font-weight: 300;
+  &_percent {
+    font-size: 12px;
+  }
 }
+
 .frame-parent23 {
   align-self: stretch;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: 4.06em;
 }
 .line-div {
   align-self: stretch;
@@ -1060,12 +1064,13 @@ li {
   justify-content: flex-start;
 }
 .frame-parent22 {
-  width: 18.75em;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.5em;
+  padding: 0 10px;
 }
 .percent-icon12 {
   position: relative;
@@ -1176,12 +1181,13 @@ li {
 }
 .pull-stats6 {
   position: relative;
-  top: 1.75em;
+  top: 2.5em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 0.88em;
+  padding: 0 10px;
 }
 .desctopverpull-stats {
   top: 0em;
@@ -1206,7 +1212,7 @@ li {
     height: 34em;
   }
   &_borrower-all {
-    height: 33em;
+    height: 36em;
   }
   &_borrower-my {
     height: 35em;
@@ -1418,7 +1424,7 @@ li {
   background-color: #fff;
   display: flex;
   flex-direction: row;
-  padding: 0.31em 0.31em 0.31em 0.38em;
+  padding: 8px;
   align-items: center;
   justify-content: flex-start;
 }
@@ -1480,15 +1486,10 @@ li {
 .frame {
   display: flex;
   flex-direction: row;
-  padding: 0.13em 0em 0.13em 0.38em;
   box-sizing: border-box;
   align-items: flex-start;
   justify-content: flex-start;
   z-index: 0;
-
-  &_period {
-    width: 9.81em;
-  }
 }
 .ton1 {
   flex: 1;
