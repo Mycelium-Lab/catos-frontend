@@ -216,10 +216,9 @@ const handle = (target: any) => {
   border: 1px solid rgba(0, 0, 0, 0.03);
   background: #f6f4fc;
   font-size: 15.273px;
-  gap: 3vw;
   margin: 0 auto;
 }
 .input-wrapper_ton::after {
-  right: 1vw;
+  left: 0.5em;
 }
 </style>
