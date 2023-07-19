@@ -42,9 +42,10 @@
                 </div>
                 <range-slider
                   :max="50000"
-                  :modelValue="0"
+                  :modelValue="1"
                   rangeWidth="159px"
                   inputLabel="ton"
+                  @update:model-value="e => (sumLoans = e)"
                 ></range-slider>
 
                 <div class="tag">
@@ -71,9 +72,10 @@
                   </div>
                 </div>
                 <range-slider
-                  :max="365"
+                  :max="30"
                   :modelValue="1"
                   rangeWidth="100%"
+                  @update:model-value="e => (term = e)"
                 ></range-slider>
                 <div class="tag">
                   <div class="div2">
@@ -93,11 +95,13 @@
           </div>
           <div class="header">
             <div class="div14">Сумма займа:</div>
-            <div class="ton1">13 910 TON</div>
+            <div class="ton1">{{ parseValue }} TON</div>
           </div>
           <div class="parent3">
             <div class="div14">Возврат в течении:</div>
-            <div class="ton1">7 дней</div>
+            <div class="ton1">
+              {{ term === 1 || term === 21 ? `${term} дня` : `${term} дней` }}
+            </div>
           </div>
         </div>
         <div class="info-1-parent">
@@ -147,14 +151,23 @@
   ></creditor-info>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 // @ts-ignore
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 import rangeSlider from "@/components/ui-kit/range-slider.vue";
+import useParsedNumber from "@/compossables/useParsedNumber";
 
 const emits = defineEmits(["close", "payment"]);
 const isCreditorInfo = ref(false);
+const sumLoans = ref(1);
+const term = ref(1);
+
+const parseValue = computed(() => {
+  const { parsed } = useParsedNumber(sumLoans.value);
+  return parsed;
+});
+
 const toPayment = () => {
   emits("payment");
 };
