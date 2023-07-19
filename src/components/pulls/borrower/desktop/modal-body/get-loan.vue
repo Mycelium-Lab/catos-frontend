@@ -4,8 +4,8 @@
       <div class="frame-container">
         <div class="parent">
           <div class="div">Кредитор:</div>
-          <div class="group">
-            <div class="div1">Деньги до зарплаты</div>
+          <div class="group" @click="() => (isCreditorInfo = true)">
+            <a class="div1">Деньги до зарплаты</a>
             <img
               class="radiobutton-icon"
               alt=""
@@ -41,20 +41,17 @@
                   </div>
                 </div>
                 <range-slider
-                  :max="365"
-                  :modelValue="1"
-                  rangeWidth="100%"
-                  :style="{ marginTop: '1em' }"
+                  :max="50000"
+                  :modelValue="0"
+                  rangeWidth="159px"
+                  inputLabel="ton"
                 ></range-slider>
 
                 <div class="tag">
                   <div class="div2">
                     <span class="span">
-                      <span>до </span>
-                    </span>
-                    <span class="span1">
-                      <span class="span"> </span>
-                      <span>50 000 </span>
+                      <span class="span">до </span>
+                      <span class="span1">50 000 </span>
                     </span>
                   </div>
                 </div>
@@ -69,23 +66,19 @@
               <div class="tag-group">
                 <div class="tag">
                   <div class="div2">
-                    <span>1 </span>
-                    <span class="span5">день</span>
+                    <span class="span1">1 </span>
+                    <span class="span">день</span>
                   </div>
                 </div>
                 <range-slider
                   :max="365"
                   :modelValue="1"
                   rangeWidth="100%"
-                  :style="{ marginTop: '1em' }"
                 ></range-slider>
                 <div class="tag">
                   <div class="div2">
-                    <span>30 </span>
-                    <span class="span5">
-                      <span>дней</span>
-                      <span class="span1"> </span>
-                    </span>
+                    <span class="span1">30 </span>
+                    <span class="span">дней</span>
                   </div>
                 </div>
               </div>
@@ -148,13 +141,20 @@
       </div>
     </div>
   </div>
+  <creditor-info
+    v-if="isCreditorInfo"
+    @close="() => (isCreditorInfo = false)"
+  ></creditor-info>
 </template>
 <script setup lang="ts">
+import { ref } from "vue";
 // @ts-ignore
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
-const emits = defineEmits(["close", "payment"]);
+import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 import rangeSlider from "@/components/ui-kit/range-slider.vue";
 
+const emits = defineEmits(["close", "payment"]);
+const isCreditorInfo = ref(false);
 const toPayment = () => {
   emits("payment");
 };
@@ -174,6 +174,8 @@ const close = () => {
   font-size: 0.88em;
   line-height: 130%;
   font-weight: 300;
+  color: #2c56c0;
+  text-decoration: underline;
 }
 .radiobutton-icon {
   position: relative;
@@ -186,6 +188,7 @@ const close = () => {
   align-items: center;
   justify-content: flex-start;
   gap: 0.63em;
+  cursor: pointer;
 }
 .parent {
   align-self: stretch;
@@ -261,7 +264,6 @@ const close = () => {
   color: #2e3a59;
 }
 .tag {
-  flex: 1;
   border-radius: 16px;
   height: 2.5em;
   display: flex;
@@ -269,7 +271,6 @@ const close = () => {
   padding: 0.38em 0em;
   box-sizing: border-box;
   align-items: center;
-  justify-content: center;
 }
 .ton {
   position: relative;
@@ -297,7 +298,7 @@ const close = () => {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: 0.38em;
+  gap: 1em;
 }
 .scroll-thumb-icon {
   position: relative;
@@ -311,7 +312,6 @@ const close = () => {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.63em;
-  color: rgba(46, 58, 89, 0.4);
 }
 .parent1 {
   width: 18.75em;
@@ -327,7 +327,8 @@ const close = () => {
   align-items: flex-start;
   justify-content: flex-start;
 }
-.span5 {
+
+span {
   font-weight: 300;
   color: rgba(46, 58, 89, 0.4);
 }
@@ -362,6 +363,7 @@ const close = () => {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  gap: 1em;
 }
 .frame-parent3 {
   align-self: stretch;
