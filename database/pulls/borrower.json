@@ -1,0 +1,69 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "limit": "20000",
+      "rate": "1",
+      "term": "30",
+      "period": "3",
+      "all": "1053324",
+      "ton_issued": "796000",
+      "available": "257324",
+      "loans_issued": "10547",
+      "date_creation": "22.05.2023",
+      "income": "102311"
+    },
+    {
+      "id": 2,
+      "limit": "20000",
+      "rate": "1",
+      "term": "30",
+      "period": "3",
+      "all": "1053324",
+      "ton_issued": "796000",
+      "available": "257324",
+      "loans_issued": "10547",
+      "date_creation": "22.05.2023",
+      "income": "102311"
+    },
+    {
+      "id": 3,
+      "limit": "20000",
+      "rate": "1",
+      "term": "30",
+      "period": "3",
+      "all": "1053324",
+      "ton_issued": "796000",
+      "available": "257324",
+      "loans_issued": "10547",
+      "date_creation": "22.05.2023",
+      "income": "102311"
+    },
+    {
+      "id": 4,
+      "limit": "20000",
+      "rate": "1",
+      "term": "30",
+      "period": "3",
+      "all": "1053324",
+      "ton_issued": "796000",
+      "available": "257324",
+      "loans_issued": "10547",
+      "date_creation": "22.05.2023",
+      "income": "102311"
+    },
+    {
+      "id": 5,
+      "limit": "20000",
+      "rate": "1",
+      "term": "30",
+      "period": "3",
+      "all": "1053324",
+      "ton_issued": "796000",
+      "available": "257324",
+      "loans_issued": "10547",
+      "date_creation": "22.05.2023",
+      "income": "102311"
+    }
+  ]
+}
