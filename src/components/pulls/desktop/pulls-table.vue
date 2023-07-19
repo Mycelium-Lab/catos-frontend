@@ -598,16 +598,16 @@
 import { ref } from "vue";
 
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
-import allCreditorPulls from "../pulls/creditor/desktop/all-creditor-pulls.vue";
-import myCreditorPulls from "../pulls/creditor/desktop/my-creditor-pulls.vue";
-import allBorrowerPulls from "../pulls/borrower/desktop/all-borrower-pulls.vue";
-import allDepositorPulls from "../pulls/depositor/desktop/all-depositor-pulls.vue";
-import addLiquid from "../pulls/depositor/desktop/add-liquid.vue";
-import myDepositorPulls from "../pulls/depositor/desktop/my-depositor-pulls.vue";
-import withdrawLiquid from "../pulls/depositor/desktop/withdraw-liquid.vue";
-import allCollectorPulls from "../pulls/collector/desktop/all-collector-pulls.vue";
-import myCollectorPulls from "../pulls/collector/desktop/my-collector-pulls.vue";
-import buy from "../pulls/collector/desktop/buy.vue";
+import allCreditorPulls from "@/components/pulls/creditor/desktop/all-creditor-pulls.vue";
+import myCreditorPulls from "@/components/pulls/creditor/desktop/my-creditor-pulls.vue";
+import allBorrowerPulls from "@/components/pulls/borrower/desktop/all-borrower-pulls.vue";
+import allDepositorPulls from "@/components/pulls/depositor/desktop/all-depositor-pulls.vue";
+import addLiquid from "@/components/pulls/depositor/desktop/add-liquid.vue";
+import myDepositorPulls from "@/components/pulls/depositor/desktop/my-depositor-pulls.vue";
+import withdrawLiquid from "@/components/pulls/depositor/desktop/withdraw-liquid.vue";
+import allCollectorPulls from "@/components/pulls/collector/desktop/all-collector-pulls.vue";
+import myCollectorPulls from "@/components/pulls/collector/desktop/my-collector-pulls.vue";
+import buy from "@/components/pulls/collector/desktop/buy.vue";
 import { useRouter } from "vue-router";
 
 const { variant, role } = defineProps({
