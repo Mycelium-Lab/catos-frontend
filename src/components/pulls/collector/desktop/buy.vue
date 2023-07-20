@@ -35,7 +35,12 @@
       CATOS Terms of Service and Privacy Policy.</template
     >
   </confirm-qr-destop>
-  <status-modal-desktop v-if="isResult" actionGroupColumn :lastAction="finish">
+  <status-modal-desktop
+    v-if="isResult"
+    actionGroupColumn
+    :lastAction="finish"
+    @close="close"
+  >
     <template v-slot:header> Получить займ из пулла #12345 </template>
 
     <template v-slot:title> Транзакция успешно выполнена </template>

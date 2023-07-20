@@ -163,7 +163,7 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div23">Имя:</div>
-                        <div class="ton">Иван ******</div>
+                        <div class="ton">Иван Иванов</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>

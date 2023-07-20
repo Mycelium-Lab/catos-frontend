@@ -575,6 +575,7 @@ const isCreditorInfo = ref(false);
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.63em;
+  overflow-y: auto;
 }
 .text {
   position: relative;
