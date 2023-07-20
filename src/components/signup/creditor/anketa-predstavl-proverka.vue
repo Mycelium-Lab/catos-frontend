@@ -372,6 +372,8 @@
                     type="date"
                     placeholder="01.02.2022"
                     :style="{ width: '100%' }"
+                    :value="date"
+                    @selected="e => (date = e)"
                   ></input-data>
                 </div>
               </div>
@@ -427,6 +429,7 @@ import { ref } from "vue";
 import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();
+const date = ref("");
 const getPasport = ref("");
 const valueRegion = ref("");
 const valueArea = ref("");

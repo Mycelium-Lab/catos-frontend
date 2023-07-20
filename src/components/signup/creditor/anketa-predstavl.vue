@@ -66,6 +66,8 @@
                     :style="{ width: '100%' }"
                     type="date"
                     placeholder="01.02.2022"
+                    :value="date"
+                    @selected="e => (date = e)"
                   ></input-data>
                   <div class="iconscalendar-wrapper">
                     <img
@@ -812,6 +814,8 @@ import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();
 import { ref } from "vue";
+
+const date = ref("");
 const getPasport = ref("");
 const valueRegion = ref("");
 const valueArea = ref("");

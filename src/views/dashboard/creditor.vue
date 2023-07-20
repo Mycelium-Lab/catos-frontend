@@ -1817,7 +1817,12 @@
               </div>
               <div class="group">
                 <div class="div11">Выберите дату:</div>
-                <input-data type="date" placeholder="01.02.2022"></input-data>
+                <input-data
+                  type="date"
+                  placeholder="01.02.2022"
+                  :value="date"
+                  @selected="e => (date = e)"
+                ></input-data>
               </div>
             </div>
           </div>
@@ -2577,6 +2582,8 @@ const toCard = () => {
 const toCardDesktop = () => {
   router.push({ name: "dashboard-cards-desktop" });
 };
+
+const date = ref("");
 
 const pull = ref("Все пуллы");
 const optionsPulls = [

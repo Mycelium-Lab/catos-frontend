@@ -239,6 +239,8 @@
                     type="date"
                     placeholder="01.02.2022"
                     :style="{ width: '100%' }"
+                    :value="date"
+                    @selected="e => (date = e)"
                   ></input-data>
                 </div>
               </div>
@@ -291,6 +293,8 @@
                     type="date"
                     placeholder="01.02.1994"
                     :style="{ width: '100%' }"
+                    :value="date"
+                    @selected="e => (date = e)"
                   ></input-data>
                   <div class="iconscalendar-wrapper">
                     <img

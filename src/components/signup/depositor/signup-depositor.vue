@@ -48,6 +48,8 @@
                     type="date"
                     placeholder="01.02.2022"
                     :style="{ width: '100%' }"
+                    :value="date"
+                    @selected="e => (date = e)"
                   ></input-data>
                   <div class="iconscalendar-wrapper">
                     <img
@@ -142,6 +144,8 @@
                   type="date"
                   placeholder="01.02.1994"
                   :style="{ width: '100%' }"
+                  :value="date"
+                  @selected="e => (date = e)"
                 ></input-data>
                 <div class="iconscalendar-wrapper">
                   <img
@@ -455,6 +459,7 @@ import inputData from "../../../components/fields/input-data.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
 const role = computed(() => window.history.state?.role);
+const date = ref("");
 const value = ref("");
 const isSelectedRadioButton1 = ref(false);
 const isSelectedRadioButton2 = ref(false);

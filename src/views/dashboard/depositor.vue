@@ -1468,7 +1468,12 @@
               </div>
               <div class="group">
                 <div class="div11">Выберите дату:</div>
-                <input-data type="date" placeholder="01.02.2022"></input-data>
+                <input-data
+                  type="date"
+                  placeholder="01.02.2022"
+                  :value="date"
+                  @selected="e => (date = e)"
+                ></input-data>
               </div>
             </div>
           </div>
@@ -1717,6 +1722,8 @@ const chartPairs = ref(["profit", "income"]);
 const curentWindow = ref("Catos");
 
 const isSort = ref(false);
+
+const date = ref("");
 
 const pull1 = ref("Все пуллы");
 const pull2 = ref("Все пуллы");
