@@ -44,7 +44,7 @@
     </template>
     <template v-slot:subtitle>
       <p class="status-subtitle">
-        Вы успешно добавили 257 324 TON
+        Вы успешно инвестировали 257 324 TON
         <br />
         в пулл
         <a class="status-subtitle-link">#123456</a>
