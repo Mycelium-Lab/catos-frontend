@@ -22,7 +22,7 @@
             <div class="div1-calculator">Вы инвестируете:</div>
           </div>
           <div class="ton-container-calculator">
-            <div class="ton1-calculator">{{ input }} TON</div>
+            <div class="ton1-calculator">{{ parsedInput }} TON</div>
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
               Прогнозируемая годовая доходность:
             </div>
           </div>
-          <div class="ton-container-calculator">
+          <div class="ton-container-calculator" id="animated-amount">
             <div class="ton1-calculator">
               <b>{{ amount }} TON</b>
             </div>
@@ -55,32 +55,66 @@
           <div class="div11-calculator">Внимание!</div>
         </div>
         <div class="eqb5dze1h44-calculator">
-          <b>Прогназируемая доходность </b>на основе доходности за последние 30
-          дней. Фактическая доходность может отличаться
+          <b>Это прогнозируемая доходность </b>на основе реальной доходности за
+          последние 30 дней. Фактическая доходность может отличаться от
+          прогнозируемой
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { computed } from "vue";
-const { input } = defineProps({
-  input: {
-    type: Number,
-    required: true,
+<script lang="ts">
+import gsap from "gsap";
+export default {
+  name: "calculator",
+  props: {
+    input: {
+      type: Number,
+      required: true,
+    },
   },
-});
-const amount = computed(() => Math.ceil(input * 0.2 * 12));
+  data() {
+    return {
+      mutateInput: 0,
+    };
+  },
+  computed: {
+    amount: function () {
+      const calculated = Math.ceil(this.mutateInput * 0.2 * 12);
+      return this.parse(calculated);
+    },
+    parsedInput: function () {
+      return this.parse(this.input);
+    },
+  },
+  methods: {
+    parse(value: number) {
+      const arrValue = String(value).split("");
+
+      if (String(value).length === 4) {
+        arrValue.splice(1, 0, " ");
+      } else if (String(value).length > 4) {
+        arrValue.splice(2, 0, " ");
+      }
+
+      return arrValue.join("");
+    },
+  },
+  watch: {
+    input: function (newValue) {
+      gsap.to(this.$data, { duration: 0.5, mutateInput: newValue });
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
 .frame-parent-calculator {
-  position: relative;
   border-radius: 16px;
   background-color: #f6f4fc;
   width: 100%;
-  overflow: hidden;
+
   display: flex;
   flex-direction: column;
   padding: 0.63em 0.75em;
@@ -93,7 +127,6 @@ const amount = computed(() => Math.ceil(input * 0.2 * 12));
   font-family: Inter;
 }
 .div-calculator {
-  position: relative;
   font-size: 14px;
   line-height: 130%;
   font-weight: 500;
