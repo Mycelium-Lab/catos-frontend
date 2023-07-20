@@ -29,6 +29,11 @@ export const admin = [
     name: "manage-loans",
     component: () => import("../views/admin/manage-loans.vue"),
   },
+  {
+    path: "/admin-analytic",
+    name: "admin-analytic",
+    component: () => import("../views/admin/analytic.vue"),
+  },
 ];
 export const adminMobile = [
   {

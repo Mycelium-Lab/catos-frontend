@@ -1460,8 +1460,8 @@
                 <catos-select
                   placeholder="Все пуллы"
                   :options="optionsPulls"
-                  :value="pull"
-                  @selected="ev => (pull = ev)"
+                  :value="pull1"
+                  @selected="ev => (pull1 = ev)"
                   :optionWidthDesk="329"
                   :style="{ width: '100%' }"
                 ></catos-select>
@@ -1579,8 +1579,8 @@
                   <catos-select
                     placeholder="Все пуллы"
                     :options="optionsPulls"
-                    :value="pull"
-                    @selected="ev => (pull = ev)"
+                    :value="pull2"
+                    @selected="ev => (pull2 = ev)"
                     :optionWidthDesk="329"
                     :style="{ width: '100%' }"
                   ></catos-select>
@@ -1718,7 +1718,8 @@ const curentWindow = ref("Catos");
 
 const isSort = ref(false);
 
-const pull = ref("Все пуллы");
+const pull1 = ref("Все пуллы");
+const pull2 = ref("Все пуллы");
 const optionsPulls = [
   "Все пуллы",
   "Пуллл #1",

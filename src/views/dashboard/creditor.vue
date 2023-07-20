@@ -1805,17 +1805,15 @@
           <div class="frame-wrapper-desktop">
             <div class="frame-group">
               <div class="group">
-                <div class="div11">Выберите статус:</div>
-                <div class="fields-password-and-mail2">
-                  <div class="frame-div">
-                    <div class="div12">Все пуллы</div>
-                    <img
-                      class="chevron-right-icon"
-                      alt=""
-                      src="@/assets/images/chevron-right.svg"
-                    />
-                  </div>
-                </div>
+                <div class="div11">Выберите пулл:</div>
+                <catos-select
+                  placeholder="Все пуллы"
+                  :options="optionsPulls"
+                  :value="pull"
+                  @selected="ev => (pull = ev)"
+                  :optionWidthDesk="329"
+                  :style="{ width: '100%' }"
+                ></catos-select>
               </div>
               <div class="group">
                 <div class="div11">Выберите дату:</div>
@@ -2572,12 +2570,26 @@ import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";
 const router = useRouter();
 import inputData from "@/components/fields/input-data.vue";
+import catosSelect from "@/components/fields/catos-select.vue";
 const toCard = () => {
   router.push({ name: "dashboard-cards" });
 };
 const toCardDesktop = () => {
   router.push({ name: "dashboard-cards-desktop" });
 };
+
+const pull = ref("Все пуллы");
+const optionsPulls = [
+  "Все пуллы",
+  "Пуллл #1",
+  "Пуллл #2",
+  "Пуллл #3",
+  "Пуллл #4",
+  "Пуллл #5",
+  "Пуллл #6",
+  "Пуллл #7",
+];
+
 const currentPage = ref(0);
 const rows = [
   {

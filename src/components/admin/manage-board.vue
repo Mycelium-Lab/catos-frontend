@@ -31,6 +31,10 @@
           @toggle="(ev: any) => (isChangePassword = ev)"
         ></catos-switch>
       </div>
+      <button class="field-button" @click="toAnalytic">
+        <div class="div1">Финансовая аналитика CATOS</div>
+        <img class="iconchange" alt="" src="@//views/public/iconchange.svg" />
+      </button>
     </template>
     <template v-if="currentPage === 'admin-profile'">
       <div class="field-button-switch">
@@ -360,6 +364,10 @@ const toManagePulls = () => {
 const toManageLoans = () => {
   localStorage.setItem("manage", JSON.stringify("loans"));
   router.push({ name: "manage-loans" });
+};
+
+const toAnalytic = () => {
+  router.push({ name: "admin-analytic" });
 };
 
 const isAuth = ref(false);
