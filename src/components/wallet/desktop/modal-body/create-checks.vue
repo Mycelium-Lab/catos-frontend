@@ -48,7 +48,7 @@
         variant="secondary"
         :style="{ width: '100%', margin: '0' }"
         @click="close"
-        >Создать чек</catos-button
+        >Выписать чек</catos-button
       >
 
       <div class="instance-wrapper">
