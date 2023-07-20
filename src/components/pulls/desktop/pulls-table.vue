@@ -1199,7 +1199,7 @@ li {
 .desctopverpull-stats-parent {
   position: relative;
   width: 100%;
-  height: 31.8em;
+  height: 34em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
@@ -1210,7 +1210,7 @@ li {
     height: 46.5em;
   }
   &_creditor-my {
-    height: 34em;
+    height: 36.3em;
   }
   &_borrower-all {
     height: 36em;

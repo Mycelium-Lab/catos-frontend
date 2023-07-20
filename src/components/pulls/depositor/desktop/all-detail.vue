@@ -122,14 +122,14 @@
           <div class="field-wrapper">
             <div class="field">
               <div class="div5">Дата создания:</div>
-              <div class="div6">22. 05. 2023</div>
+              <div class="div6">22.05.2023</div>
             </div>
           </div>
         </div>
         <div class="des-and-bbn">
           <div class="button">
             <div class="buttons-tabs">
-              <div class="text">Добавить ликвидность</div>
+              <div class="text">Инвестировать</div>
             </div>
           </div>
         </div>
