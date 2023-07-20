@@ -34,7 +34,12 @@
                 </div>
                 <div class="group">
                   <div class="div11">Выберите дату:</div>
-                  <input-data type="date" placeholder="01.02.2022"></input-data>
+                  <input-data
+                    type="date"
+                    placeholder="01.02.2022"
+                    :value="date2"
+                    @selected="e => (date2 = e)"
+                  ></input-data>
                 </div>
               </div>
             </div>
@@ -121,7 +126,12 @@
                 </div>
                 <div class="group">
                   <div class="div11">Выберите дату:</div>
-                  <input-data type="date" placeholder="01.02.2022"></input-data>
+                  <input-data
+                    type="date"
+                    placeholder="01.02.2022"
+                    :value="date3"
+                    @selected="e => (date3 = e)"
+                  ></input-data>
                 </div>
               </div>
             </div>
@@ -208,7 +218,12 @@
                 </div>
                 <div class="group">
                   <div class="div11">Выберите дату:</div>
-                  <input-data type="date" placeholder="01.02.2022"></input-data>
+                  <input-data
+                    type="date"
+                    placeholder="01.02.2022"
+                    :value="date1"
+                    @selected="e => (date1 = e)"
+                  ></input-data>
                 </div>
               </div>
             </div>
@@ -306,6 +321,10 @@ const optionsMeasure = ["шт", "TON", "CATOS"];
 const chartValue1 = ref(["income"]);
 const chartValue2 = ref(["users"]);
 const chartCollectorsPairs = ["get", "repaid", "sale", "forSales"];
+
+const date1 = ref("");
+const date2 = ref("");
+const date3 = ref("");
 
 const curentWindow = ref("Catos");
 const chart1 = ref(0);
