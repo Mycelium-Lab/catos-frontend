@@ -2,16 +2,14 @@ import "./assets/styles/global.css";
 
 import { createApp } from "vue";
 import { createPinia } from "pinia";
+import { i18n } from "./i18n";
 
 import App from "./App.vue";
 import router from "./router";
-import getMobileOperatingSystem from "./utils/defineDevice";
 
 const app = createApp(App);
 
-app.use(createPinia());
-app.use(router);
-
+app.use(createPinia()).use(router).use(i18n);
 let vh = window.innerHeight / 100;
 document.documentElement.style.setProperty("--vh", `${vh}px`);
 window.addEventListener("resize", () => {

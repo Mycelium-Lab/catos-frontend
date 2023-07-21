@@ -1,0 +1,31 @@
+{
+  "pulls-statistic-table": {
+    "pull": "Пулл",
+    "issued_loans": "Выдано займов",
+    "active_loans": "Займов активно",
+    "repaid_loans": "Займов погашено",
+    "overduce_loans": "Займов просрочено",
+    "trade_loans": "Займов на продаже",
+    "sold_loans": "Займов продано",
+    "issued_loans_summ": "Выдано займов (сумма)",
+    "active_loans_summ": "Займов активно (сумма)",
+    "repaid_loans_summ": "Займов погашено (сумма)",
+    "overduce_loans_summ": "Займов просрочено (сумма)",
+    "trade_loans_summ": "Займов на продаже (сумма)",
+    "sold_loans_summ": "Займов продано (сумма)",
+    "profit": "Прибиль",
+    "roi": "ROI"
+  },
+  "pulls-info-table": {
+    "limit": "Одобренный лимит",
+    "rate": "Ставка",
+    "term": "На срок",
+    "period": "Беспроцентный период",
+    "all": "Всего ликвидности",
+    "ton_issued": "Выдано",
+    "available": "Доступно для выдачи",
+    "loans_issued": "Займов выдано",
+    "date_creation": "Дата создания",
+    "income": "Доход инвесторов пулла"
+  }
+}
