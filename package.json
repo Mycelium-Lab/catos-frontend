@@ -40,5 +40,21 @@
     "typescript": "~5.0.4",
     "vite": "^4.3.5",
     "vue-tsc": "^1.6.4"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/vue-i18n.d.ts",
+        "node": "./index.mjs",
+        "default": "./dist/vue-i18n.esm-bundler.js"
+      },
+      "require": {
+        "types": "./dist/vue-i18n.d.cts",
+        "default": "./index.js"
+      }
+    },
+    "./dist/*": "./dist/*",
+    "./index.mjs": "./index.mjs",
+    "./package.json": "./package.json"
   }
 }
