@@ -54,6 +54,7 @@
                 @selected="ev => (value = ev)"
                 :optionWidthDesk="352"
                 :style="{ width: '100%' }"
+                data-element="select-nation"
               ></catos-select>
             </div>
             <div class="fieldsinput6">
@@ -125,6 +126,7 @@
                     : { width: '100%', opacity: '0.2' }
                 "
                 :disabled="getPasport !== 'Россия'"
+                data-element="select-region"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -141,6 +143,7 @@
                     : { width: '100%', opacity: '0.2' }
                 "
                 :disabled="!valueRegion"
+                data-element="select-area"
               ></catos-select>
             </div>
             <div class="fieldsinput">
@@ -157,6 +160,7 @@
                     : { width: '100%', opacity: '0.2' }
                 "
                 :disabled="!valueRegion"
+                data-element="select-city"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -233,6 +237,7 @@
                 @selected="ev => (valueOrganisation = ev)"
                 :optionWidthDesk="352"
                 :style="{ width: '100%' }"
+                data-element="select-state"
               ></catos-select>
             </div>
             <div class="fieldsinput">
@@ -250,6 +255,7 @@
                 @selected="ev => (valueFormRegistration = ev)"
                 :optionWidthDesk="352"
                 :style="{ width: '100%' }"
+                data-element="select-form"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -342,6 +348,7 @@
                     @selected="ev => (getPasport = ev)"
                     :optionWidthDesk="352"
                     :style="{ width: '100%' }"
+                    data-element="select-get"
                   ></catos-select>
                 </div>
               </div>

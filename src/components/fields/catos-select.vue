@@ -3,7 +3,7 @@
     <button
       :class="isOpen ? 'catos-select_active catos-select' : 'catos-select'"
       @click="() => (isOpen = !isOpen)"
-      data-element="select"
+      :data-element="dataElement"
       :disabled="disabled"
     >
       <input
@@ -15,12 +15,12 @@
         "
         type="text"
         readonly
-        data-element="select"
+        :data-element="dataElement"
       />
       <img
         src="../../assets/images/ui-kit/chevron-double.svg"
         alt="chevron-double"
-        data-element="select"
+        :data-element="dataElement"
       />
     </button>
     <ul
@@ -96,7 +96,7 @@ const translate = {
   region: "Область",
 };
 
-const { placeholder, options } = defineProps({
+const { placeholder, options, dataElement } = defineProps({
   placeholder: {
     type: String,
   },
@@ -125,6 +125,10 @@ const { placeholder, options } = defineProps({
     type: Boolean,
     default: false,
   },
+  dataElement: {
+    type: String,
+    default: "select",
+  },
 });
 
 const emit = defineEmits(["selected"]);
@@ -150,7 +154,7 @@ const getTranslated = (option: string) => {
 watch(isOpen, () => {
   function handleClick(e: any) {
     if (
-      e.target.dataset.element === "select" ||
+      e.target.dataset.element === dataElement ||
       e.target.dataset.element === "option"
     ) {
     } else {
@@ -204,7 +208,7 @@ watch(isOpen, () => {
   position: absolute;
   z-index: 1000;
   background: #fff;
-  top: 3.3em;
+  padding: 15px;
   &_sticky {
     position: sticky;
   }
@@ -215,7 +219,7 @@ watch(isOpen, () => {
     font-size: var(--font-size-sm);
     color: rgba(46, 58, 89, 1);
     &:first-child {
-      padding-top: 1.714285714285714em;
+      padding-top: 0.5em;
       padding-left: 1.428571428571429em;
       margin: 0em;
     }
@@ -223,11 +227,11 @@ watch(isOpen, () => {
   &_group {
     padding: 0px;
     list-style: none;
-    padding: 0.857142857142857em 1.428571428571429em 0 1.428571428571429em;
+    padding: 0.8em 1em 0 1em;
   }
 }
 .catos-select__option:not(:first-child) {
-  margin-top: 0.25em;
+  margin-top: 0.4em;
 }
 .catos-select_input,
 .catos-option_input {
@@ -267,6 +271,6 @@ watch(isOpen, () => {
   }
 }
 .last {
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 </style>

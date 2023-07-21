@@ -27,6 +27,7 @@
                     @selected="ev => (getPasport = ev)"
                     :optionWidth="77"
                     :style="{ width: '100%' }"
+                    data-element="select-get"
                   ></catos-select>
                   <catos-select
                     v-else
@@ -36,6 +37,7 @@
                     @selected="ev => (getPasport = ev)"
                     :optionWidthDesk="365"
                     :style="{ width: '100%' }"
+                    data-element="select-get"
                   ></catos-select>
                 </div>
               </div>
@@ -286,6 +288,7 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="getPasport !== 'Россия'"
+              data-element="select-region"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -305,6 +308,7 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="!valueRegion"
+              data-element="select-area"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -321,6 +325,7 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="!valueRegion"
+              data-element="select-city"
             ></catos-select>
           </div>
 
@@ -401,6 +406,7 @@
               :optionWidthDesk="352"
               :style="{ width: '100%' }"
               @selected="ev => (accommodation = ev)"
+              data-element="select-fact-accommodation"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -420,6 +426,7 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="accommodation !== 'Россия'"
+              data-element="select-fact-region"
             ></catos-select>
           </div>
           <div class="fieldsinput">
@@ -441,6 +448,7 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="!valueRegionFact"
+              data-element="select-fact-area"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -457,6 +465,7 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="!valueRegionFact"
+              data-element="select-fact-city"
             ></catos-select>
           </div>
           <div class="text2">

@@ -1,5 +1,5 @@
 <template>
-  <default-desktop-admin>
+  <default-desktop-admin back>
     <template v-slot:title> Финансовая аналитика CATOS </template>
     <template v-slot:body>
       <div class="tables-light-mode-parent">
@@ -19,6 +19,7 @@
                     @selected="ev => (token = ev)"
                     :optionWidthDesk="329"
                     :style="{ width: '100%' }"
+                    data-element="select-token"
                   ></catos-select>
                 </div>
                 <div class="group_type group">
@@ -30,6 +31,7 @@
                     @selected="ev => (income = ev)"
                     :optionWidthDesk="329"
                     :style="{ width: '100%' }"
+                    data-element="select-income"
                   ></catos-select>
                 </div>
                 <div class="group">
@@ -122,6 +124,7 @@
                     @selected="ev => (users = ev)"
                     :optionWidthDesk="329"
                     :style="{ width: '100%' }"
+                    data-element="select-users"
                   ></catos-select>
                 </div>
                 <div class="group">
@@ -214,6 +217,7 @@
                     @selected="ev => (measure = ev)"
                     :optionWidthDesk="329"
                     :style="{ width: '100%' }"
+                    data-element="select-mesuare"
                   ></catos-select>
                 </div>
                 <div class="group">

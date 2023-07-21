@@ -23,11 +23,12 @@
             :optionWidthDesk="395"
             :style="{ width: '100%' }"
             sticky
+            data-element="select-account"
           ></catos-select>
         </div>
 
         <div class="fieldsinputchoise">
-          <div class="title">Выберите криптовалюту для получения оплаты.</div>
+          <div class="title">Выберите криптовалюту для получения оплаты</div>
           <catos-select
             placeholder="TON"
             :options="options"
@@ -36,6 +37,7 @@
             :optionWidthDesk="395"
             :style="{ width: '100%' }"
             sticky
+            data-element="select-token"
           ></catos-select>
         </div>
 

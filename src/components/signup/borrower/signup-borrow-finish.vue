@@ -98,6 +98,7 @@
               @selected="ev => (valueEducation = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
+              data-element="select-education"
             ></catos-select>
             <catos-select
               v-else
@@ -105,8 +106,9 @@
               :options="optionsEducation"
               :value="valueEducation"
               @selected="ev => (valueEducation = ev)"
-              :optionWidthDesk="329"
+              :optionWidthDesk="500"
               :style="{ width: '100%' }"
+              data-element="select-education"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -122,6 +124,7 @@
               @selected="ev => (valueFamaly = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
+              data-element="select-famaly"
             ></catos-select>
             <catos-select
               v-else
@@ -131,6 +134,7 @@
               @selected="ev => (valueFamaly = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
+              data-element="select-famaly"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -146,6 +150,7 @@
               @selected="ev => (valueChildren = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
+              data-element="select-children"
             ></catos-select>
             <catos-select
               v-else
@@ -155,6 +160,7 @@
               @selected="ev => (valueChildren = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
+              data-element="select-children"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -170,6 +176,7 @@
               @selected="ev => (valueCreminal = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
+              data-element="select-creminal"
             ></catos-select>
             <catos-select
               v-else
@@ -179,6 +186,7 @@
               @selected="ev => (valueCreminal = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
+              data-element="select-creminal"
             ></catos-select>
           </div>
         </div>
@@ -199,6 +207,7 @@
             :optionWidth="77"
             :style="{ width: '100%' }"
             top
+            data-element="select-channel"
           ></catos-select>
           <catos-select
             v-else
@@ -209,6 +218,7 @@
             :optionWidthDesk="329"
             :style="{ width: '100%' }"
             top
+            data-element="select-channel"
           ></catos-select>
         </div>
       </div>

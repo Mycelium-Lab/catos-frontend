@@ -52,6 +52,7 @@
                     : { width: '100%', opacity: '0.2' }
                 "
                 :disabled="getPasport !== 'Россия'"
+                data-element="select-region"
               ></catos-select>
               <catos-select
                 v-else
@@ -66,6 +67,7 @@
                     : { width: '100%', opacity: '0.2' }
                 "
                 :disabled="getPasport !== 'Россия'"
+                data-element="select-region"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -83,6 +85,7 @@
                     : { width: '100%', opacity: '0.2' }
                 "
                 :disabled="!valueRegion"
+                data-element="select-area"
               ></catos-select>
               <catos-select
                 v-else
@@ -97,6 +100,7 @@
                     : { width: '100%', opacity: '0.2' }
                 "
                 :disabled="!valueRegion"
+                data-element="select-area"
               ></catos-select>
             </div>
             <div class="fieldsinput">
@@ -114,6 +118,7 @@
                     : { width: '100%', opacity: '0.2' }
                 "
                 :disabled="!valueRegion"
+                data-element="select-city"
               ></catos-select>
               <catos-select
                 v-else
@@ -128,6 +133,7 @@
                     : { width: '100%', opacity: '0.2' }
                 "
                 :disabled="!valueRegion"
+                data-element="select-city"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -208,6 +214,7 @@
                     @selected="ev => (getPasport = ev)"
                     :optionWidth="77"
                     :style="{ width: '100%' }"
+                    data-element="select-get"
                   ></catos-select>
                   <catos-select
                     v-else
@@ -217,6 +224,7 @@
                     @selected="ev => (getPasport = ev)"
                     :optionWidthDesk="405"
                     :style="{ width: '100%' }"
+                    data-element="select-get"
                   ></catos-select>
                 </div>
               </div>

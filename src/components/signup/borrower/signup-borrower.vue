@@ -27,6 +27,7 @@
                     @selected="ev => (getPasport = ev)"
                     :optionWidth="77"
                     :style="{ width: '100%' }"
+                    data-element="select-get"
                   ></catos-select>
                   <catos-select
                     v-else
@@ -36,6 +37,7 @@
                     @selected="ev => (getPasport = ev)"
                     :optionWidthDesk="329"
                     :style="{ width: '100%' }"
+                    data-element="select-get"
                   ></catos-select>
                 </div>
               </div>
@@ -295,6 +297,7 @@
               :value="valueRegion"
               @selected="ev => (valueRegion = ev)"
               :optionWidth="77"
+              data-element="select-region"
               :style="
                 getPasport === 'Россия'
                   ? { width: '100%', opacity: '1' }
@@ -315,6 +318,7 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="getPasport !== 'Россия'"
+              data-element="select-region"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
@@ -335,6 +339,7 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="!valueRegion"
+              data-element="select-area"
             ></catos-select>
             <catos-select
               v-else
@@ -349,6 +354,7 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="!valueRegion"
+              data-element="select-area"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
@@ -366,6 +372,7 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="!valueRegion"
+              data-element="select-city"
             ></catos-select>
             <catos-select
               v-else
@@ -380,6 +387,7 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="!valueRegion"
+              data-element="select-city"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise1">
@@ -466,6 +474,7 @@
               @selected="ev => (accommodation = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
+              data-element="select-accommodation"
             ></catos-select>
             <catos-select
               v-else
@@ -475,6 +484,7 @@
               @selected="ev => (accommodation = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
+              data-element="select-accommodation"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -495,6 +505,7 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="accommodation !== 'Россия'"
+              data-element="select-fact-region"
             ></catos-select>
             <catos-select
               v-else
@@ -509,6 +520,7 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="accommodation !== 'Россия'"
+              data-element="select-fact-region"
             ></catos-select>
           </div>
           <div class="fieldsinput">
@@ -531,13 +543,14 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="!valueRegionFact"
+              data-element="select-fact-area"
             ></catos-select>
             <catos-select
               v-else
               :placeholder="
                 valueRegionFact ? getArea('fact')[0] : 'Воскресенск'
               "
-              :options="getArea()"
+              :options="getArea('fact')"
               :value="valueAreaFact"
               @selected="ev => (valueAreaFact = ev)"
               :optionWidthDesk="329"
@@ -547,6 +560,7 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="!valueRegionFact"
+              data-element="select-fact-area"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
@@ -554,7 +568,7 @@
             <catos-select
               v-if="isMobile"
               :placeholder="valueRegionFact ? getCity('fact')[0] : 'Москва'"
-              :options="getCity()"
+              :options="getCity('fact')"
               :value="valueFact"
               @selected="ev => (valueFact = ev)"
               :optionWidth="77"
@@ -564,11 +578,12 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="!valueRegionFact"
+              data-element="select-fact-city"
             ></catos-select>
             <catos-select
               v-else
               :placeholder="valueRegionFact ? getCity('fact')[0] : 'Москва'"
-              :options="getCity()"
+              :options="getCity('fact')"
               :value="value"
               @selected="ev => (value = ev)"
               :optionWidthDesk="329"
@@ -578,6 +593,7 @@
                   : { width: '100%', opacity: '0.2' }
               "
               :disabled="!valueRegionFact"
+              data-element="select-fact-city"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise1">

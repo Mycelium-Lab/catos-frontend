@@ -26,6 +26,7 @@
           :optionWidth="77"
           :style="{ width: '100%' }"
           @selected="ev => (value = ev)"
+          data-element="select-account"
         ></catos-select>
         <div class="div10">
           <p class="p">Выберите криптовалюту для получения оплаты</p>
@@ -37,6 +38,7 @@
           :optionWidth="77"
           :style="{ width: '100%' }"
           @selected="ev => (value = ev)"
+          data-element="select-token"
         ></catos-select>
       </div>
       <div class="field-info-parent">
