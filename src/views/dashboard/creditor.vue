@@ -48,7 +48,7 @@
           <div class="vector-wrapper" id="frameContainer9"></div>
         </div>
 
-        <div class="container158">
+        <!--<div class="container158">
           <div class="containers-parent">
             <div class="containers">
               <div class="id">ID</div>
@@ -284,7 +284,7 @@
         </div>
         <div class="frame">
           <div class="div30">Раскрыть таблицу полностью</div>
-        </div>
+        </div>-->
       </div>
       <div class="component-25">
         <div class="div31" @click="toCard">
@@ -1797,203 +1797,9 @@
   <default-desktop v-else>
     <template v-slot:title> Дашбоард </template>
 
-    <template v-slot:tools>
-      <div class="filter-2">
-        <div class="col-titles-bg"></div>
-        <div class="div10">Фильтр:</div>
-        <div class="filter-2-inner">
-          <div class="frame-wrapper-desktop">
-            <div class="frame-group">
-              <div class="group">
-                <div class="div11">Выберите пулл:</div>
-                <catos-select
-                  placeholder="Все пуллы"
-                  :options="optionsPulls"
-                  :value="pull"
-                  @selected="ev => (pull = ev)"
-                  :optionWidthDesk="329"
-                  :style="{ width: '100%' }"
-                ></catos-select>
-              </div>
-              <div class="group">
-                <div class="div11">Выберите дату:</div>
-                <input-data
-                  type="date"
-                  placeholder="01.02.2022"
-                  :value="date"
-                  @selected="e => (date = e)"
-                ></input-data>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="filter-2-child"></div>
-        <div class="vector-wrapper" id="frameContainer9"></div>
-      </div>
-    </template>
+    <template v-slot:tools> </template>
     <template v-slot:body>
-      <h4 class="stats-title">Cтатистика по пуллам</h4>
-      <div class="container158">
-        <div class="containers-parent">
-          <div class="containers">
-            <div class="id">ID</div>
-            <img
-              class="arrow-down-arrow-up-icon"
-              alt=""
-              src="@/assets/images/arrowdownarrowup.svg"
-            />
-          </div>
-          <div class="containers1">
-            <div class="id">{{ rowPairs[0] }}</div>
-            <img
-              class="arrow-down-arrow-up-icon"
-              alt=""
-              src="@/assets/images/arrowdownarrowup.svg"
-            />
-          </div>
-          <div class="containers2">
-            <div class="id">{{ rowPairs[1] }}</div>
-            <img
-              class="arrow-down-arrow-up-icon"
-              alt=""
-              src="@/assets/images/arrowdownarrowup.svg"
-            />
-          </div>
-        </div>
-        <div class="arrows">
-          <button
-            class="arrows-table1"
-            :disabled="currentPage === 0 ? true : false"
-            @click="
-              () => {
-                isActive = 'prev';
-                currentPage -= 1;
-              }
-            "
-          >
-            <img
-              v-if="isActive !== 'prev'"
-              class="arrow-down-arrow-up-icon"
-              alt=""
-              src="@/assets/images/prev.svg"
-            />
-            <img
-              v-else
-              class="arrow-down-arrow-up-icon"
-              alt=""
-              src="@/assets/images/prev-active.svg"
-            />
-          </button>
-          <button
-            class="arrows-table1"
-            :disabled="currentPage >= 7 ? true : false"
-            @click="
-              () => {
-                isActive = 'next';
-                currentPage += 1;
-              }
-            "
-          >
-            <img
-              v-if="isActive !== 'next'"
-              class="arrow-down-arrow-up-icon"
-              alt=""
-              src="@/assets/images/next.svg"
-            />
-            <img
-              v-else
-              class="arrow-down-arrow-up-icon"
-              alt=""
-              src="@/assets/images/next-active.svg"
-            />
-          </button>
-        </div>
-      </div>
-      <div class="frame-container">
-        <div class="containers-group">
-          <div class="containers3">
-            <div class="id-7">7</div>
-          </div>
-          <div class="containers4">
-            <div class="id-7">6</div>
-          </div>
-          <div class="containers3">
-            <div class="id-7">5</div>
-          </div>
-          <div class="containers4">
-            <div class="id-7">4</div>
-          </div>
-        </div>
-        <div class="containers-container">
-          <div class="containers9">
-            <div class="div18">{{ rows[currentPage].firstValue[0] }}</div>
-          </div>
-          <div class="containers10">
-            <div class="div18">{{ rows[currentPage].firstValue[1] }}</div>
-          </div>
-          <div class="containers9">
-            <div class="div18">{{ rows[currentPage].firstValue[2] }}</div>
-          </div>
-          <div class="containers10">
-            <div class="div18">{{ rows[currentPage].firstValue[3] }}</div>
-          </div>
-        </div>
-        <div class="containers-parent1">
-          <div class="containers9">
-            <div class="div18">{{ rows[currentPage].lastValue[0] }}</div>
-          </div>
-          <div class="containers10">
-            <div class="div18">{{ rows[currentPage].lastValue[1] }}</div>
-          </div>
-          <div class="containers9">
-            <div class="div18">{{ rows[currentPage].lastValue[2] }}</div>
-          </div>
-          <div class="containers10">
-            <div class="div18">{{ rows[currentPage].lastValue[3] }}</div>
-          </div>
-        </div>
-        <div class="containers-parent2">
-          <div class="containers21">
-            <div class="arrows-table">
-              <img
-                class="chevron-right-icon"
-                alt=""
-                src="@/assets/images/eye.svg"
-              />
-            </div>
-          </div>
-          <div class="containers22">
-            <div class="arrows-table">
-              <img
-                class="chevron-right-icon"
-                alt=""
-                src="@/assets/images/eye.svg"
-              />
-            </div>
-          </div>
-          <div class="containers21">
-            <div class="arrows-table">
-              <img
-                class="chevron-right-icon"
-                alt=""
-                src="@/assets/images/eye.svg"
-              />
-            </div>
-          </div>
-          <div class="containers22">
-            <div class="arrows-table">
-              <img
-                class="chevron-right-icon"
-                alt=""
-                src="@/assets/images/eye.svg"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="frame">
-        <div class="div30">Раскрыть таблицу полностью</div>
-      </div>
+      <pulls-statistic></pulls-statistic>
       <div class="component-25" @click="toCardDesktop">
         <div class="div31">Перейти к формату карточек пуллов:</div>
         <img
@@ -2568,14 +2374,15 @@
 </template>
 
 <script setup lang="ts">
-import chart from "@/components/dashboard/chart.vue";
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
+import chart from "@/components/dashboard/chart.vue";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";
+
+import pullsStatistic from "@/components/dashboard/pulls-statistic.vue";
 const router = useRouter();
-import inputData from "@/components/fields/input-data.vue";
-import catosSelect from "@/components/fields/catos-select.vue";
+
 const toCard = () => {
   router.push({ name: "dashboard-cards" });
 };
@@ -2597,64 +2404,11 @@ const optionsPulls = [
   "Пуллл #7",
 ];
 
-const currentPage = ref(0);
-const rows = [
-  {
-    first: "Пулл",
-    last: "Выдано займов",
-    firstValue: [160, 190, 33, 11],
-    lastValue: [30, 24, 7, 3],
-  },
-  {
-    first: "Займов активно",
-    last: "Займов погашено",
-    firstValue: [105, 156, 25, 7],
-    lastValue: [3, 10, 0, 0],
-  },
-  {
-    first: "Займов просрочено",
-    last: "Займов на продаже",
-    firstValue: [7, 3, 1, 0],
-    lastValue: [6, 2, 0, 1],
-  },
-  {
-    first: "Займов продано",
-    last: "Выдано займов (сумма)",
-    firstValue: [2, 2, 0, 0],
-    lastValue: ["670 000 TON", "890 000 TON", "120 00 TON", "67 00 TON"],
-  },
-  {
-    first: "Займов активно (сумма)",
-    last: "Займов погашено (сумма)",
-    firstValue: ["100 000 TON", "100 000 TON", "100 00 TON", "100 00 TON"],
-    lastValue: ["100 000 TON", "100 000 TON", "100 00 TON", "100 00 TON"],
-  },
-  {
-    first: "Займов просрочено (сумма)",
-    last: "Займов на продаже (сумма)",
-    firstValue: ["100 000 TON", "100 000 TON", "100 00 TON", "100 00 TON"],
-    lastValue: ["100 000 TON", "100 000 TON", "100 00 TON", "100 00 TON"],
-  },
-  {
-    first: "Займов продано (сумма)",
-    last: "Прибыль",
-    firstValue: ["100 000 TON", "100 000 TON", "100 00 TON", "100 00 TON"],
-    lastValue: ["100 000 TON", "100 000 TON", "100 00 TON", "100 00 TON"],
-  },
-  {
-    first: "Прибыль",
-    last: "ROI",
-    firstValue: ["100 000 TON", "100 000 TON", "100 00 TON", "100 00 TON"],
-    lastValue: ["60%", "60%", "60%", "60%"],
-  },
-];
-
 const chartFinancePairs = ref(["profit", "income"]);
 const chartGroup1Pairs = ref(["all", "new"]);
 const chartGroup2Pairs = ref(["all", "issued"]);
 const chartCollectorsPairs = ref(["all", "new"]);
 const chartData = [];
-const isActive = ref("");
 
 const setChartFinancePairs = (e: any) => {
   let title = e.target.innerText;
@@ -2747,11 +2501,6 @@ const setChartСollectorsPairs = (e: any) => {
 import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();
-
-const rowPairs = computed(() => {
-  const pairs = rows[currentPage.value];
-  return Object.values(pairs);
-});
 </script>
 
 <style scoped lang="scss">
@@ -2995,60 +2744,7 @@ const rowPairs = computed(() => {
   align-items: flex-start;
   justify-content: flex-start;
 }
-.id {
-  position: relative;
-  font-size: 0.75em;
-  line-height: 130%;
-  font-weight: 500;
-}
-.arrow-down-arrow-up-icon {
-  position: relative;
-  width: 1em;
-  height: 1em;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.containers,
-.containers1,
-.containers2 {
-  background-color: #fff;
-  overflow: hidden;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: flex-start;
-}
-.containers {
-  width: 3.63em;
-  display: flex;
-  flex-direction: row;
-  padding: 0.75em 0.25em 0.75em 1em;
-  gap: 0.5em;
-}
-.containers1,
-.containers2 {
-  padding: 0.75em 0.63em;
-  gap: 0.25em;
-}
-.containers1 {
-  width: 6.4em;
-  display: flex;
-  flex-direction: row;
-}
-.containers2 {
-  width: 7.63em;
-}
-.arrows1,
-.containers-parent,
-.containers2 {
-  display: flex;
-  flex-direction: row;
-}
-.containers-parent {
-  align-items: flex-start;
-  justify-content: flex-start;
-  z-index: 0;
-}
+
 .arrows1 {
   border-radius: 24px;
   background-color: #fff;
@@ -3056,87 +2752,19 @@ const rowPairs = computed(() => {
   align-items: center;
   justify-content: center;
 }
-.arrows,
-.arrows-table,
-.arrows-table1 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.arrows-table1 {
-  border-radius: 24px;
-  padding: 0.25em;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-}
-.arrows {
-  margin: 0 !important;
-  position: absolute;
-  top: calc(50% - 12.25px);
-  left: calc(50% + 103px);
-  gap: 0.25em;
-  z-index: 1;
-}
-.container158,
-.id-7 {
-  align-self: stretch;
-  position: relative;
-}
-.container158 {
-  border-bottom: 1px solid #f2f2f2;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: left;
-  color: #404040;
-}
-.id-7 {
-  font-size: 0.75em;
-  text-decoration: underline;
-  line-height: 1.33em;
-  background: linear-gradient(
-      rgba(87, 126, 247, 0.96),
-      rgba(87, 126, 247, 0.96)
-    ),
-    #b5b5c3;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.containers3 {
-  align-self: stretch;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.containers3,
-.containers4,
+
 .containers7 {
   height: 2.5em;
   padding: 0.19em 0.25em 0 1em;
   box-sizing: border-box;
   justify-content: center;
 }
-.containers4 {
-  align-self: stretch;
-  background: linear-gradient(
-      rgba(165, 146, 221, 0.04),
-      rgba(165, 146, 221, 0.04)
-    ),
-    #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+
 .containers7 {
   background-color: #fff;
   width: 3.88em;
 }
-.containers-group,
+
 .containers7,
 .containers8 {
   display: flex;
@@ -3155,109 +2783,7 @@ const rowPairs = computed(() => {
   box-sizing: border-box;
   justify-content: center;
 }
-.containers-group {
-  width: 3.63em;
-  justify-content: flex-start;
-}
-.div18 {
-  flex: 1;
-  position: relative;
-  font-size: 0.75em;
-  letter-spacing: -0.5px;
-  line-height: 1.33em;
-}
-.containers10,
-.containers9 {
-  align-self: stretch;
-  height: 2.5em;
-  display: flex;
-  flex-direction: row;
-  padding: 0.75em;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: flex-start;
-}
-.containers9 {
-  background-color: #fff;
-}
-.containers10 {
-  background: linear-gradient(
-      rgba(165, 146, 221, 0.04),
-      rgba(165, 146, 221, 0.04)
-    ),
-    #fff;
-}
-.containers-container,
-.containers-parent1 {
-  width: 5.94em;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-.containers-parent1 {
-  width: 6.63em;
-}
-.containers21,
-.containers22 {
-  align-self: stretch;
-  height: 2.5em;
-  display: flex;
-  flex-direction: row;
-  padding: 0.75em 0.75em 0.75em 1em;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
 
-  & .chevron-right-icon {
-    right: 1em;
-  }
-}
-.containers21 {
-  background-color: #fff;
-}
-.containers22 {
-  background: linear-gradient(
-      rgba(165, 146, 221, 0.04),
-      rgba(165, 146, 221, 0.04)
-    ),
-    #fff;
-}
-.containers-parent2,
-.frame-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex: 1;
-}
-.frame-container {
-  width: 87.7vw;
-  flex-direction: row;
-  text-align: left;
-  color: #404040;
-}
-.div30 {
-  position: relative;
-  font-size: 0.75em;
-  letter-spacing: 0.01em;
-  line-height: 110%;
-  font-weight: 500;
-}
-.frame {
-  align-self: stretch;
-  background: linear-gradient(
-    0deg,
-    rgba(165, 146, 221, 0.08),
-    rgba(165, 146, 221, 0)
-  );
-  display: flex;
-  flex-direction: row;
-  padding: 1.25em 0.63em 0.5em;
-  align-items: center;
-  justify-content: center;
-  color: rgba(46, 58, 89, 0.6);
-}
 .tables-light-mode {
   border-radius: 16px;
   border: 1px solid #f2f2f2;
@@ -4721,9 +4247,5 @@ const rowPairs = computed(() => {
   .containers8 {
     width: 100%;
   }
-}
-.stats-title {
-  margin: 0em;
-  margin-top: 2em;
 }
 </style>
