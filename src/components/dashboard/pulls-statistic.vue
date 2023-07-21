@@ -158,10 +158,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, Ref } from "vue";
+import { ref, computed, type Ref } from "vue";
 import { i18n } from "@/i18n";
 import useTableSort from "@/compossables/useTableSort";
-import {
+import type {
   IStatisticTable,
   StatisticTableRows,
   SortMethod,
