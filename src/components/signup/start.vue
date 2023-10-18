@@ -128,6 +128,7 @@
     </div>
     <router-link
       class="buttonnext"
+      :class="{ disabled: !isLinkActive }"
       :to="{
         name: 'confirm',
         state: { role },
@@ -163,7 +164,7 @@ import catosSelect from "../../components/fields/catos-select.vue";
 import inputData from "../../components/fields/input-data.vue";
 import loaderField from "../../components/fields/loader-field.vue";
 import catosCheckbox from "../../components/ui-kit/catos-checkbox.vue";
-import { ref, computed } from "vue";
+import { ref, computed, reactive } from "vue";
 const value = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
@@ -173,18 +174,19 @@ const title = computed(() => {
   return window.history.state.title;
 });
 const role = computed(() => window.history.state?.role);
-const handleCheckboxChange = (checkboxName: string, checked: boolean) => {
+const handleCheckboxChange = (checkboxName: keyof typeof checkboxes, checked: boolean) => {
   if (checkboxes.hasOwnProperty(checkboxName)) {
     checkboxes[checkboxName] = checked;
   }
   console.log(checkboxes);
+  console.log(isLinkActive.value);
 };
 const proneNumber = ref("");
-const checkboxes: Record<string, boolean> = {
+const checkboxes = reactive({
   box1: false,
   box2: false,
   box3: false
-}
+});
 const isLinkActive = computed(() => {
   return checkboxes.box1 && checkboxes.box2 && checkboxes.box3;
 });
