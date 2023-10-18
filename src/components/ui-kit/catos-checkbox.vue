@@ -20,7 +20,7 @@
     <div
       v-if="variant === 'rounded'"
       class="catos-wrapper__checkbox_rounded"
-      @click="() => (checked = !checked)"
+      @click="change"
     >
       <div
         :class="checked ? 'catos__checkbox_rounded_checked' : ''"
