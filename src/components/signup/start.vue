@@ -185,6 +185,9 @@ const checkboxes: Record<string, boolean> = {
   box2: false,
   box3: false
 }
+const isLinkActive = computed(() => {
+  return checkboxes.box1 && checkboxes.box2 && checkboxes.box3;
+});
 </script>
 
 <style scoped lang="scss">
@@ -985,5 +988,9 @@ const checkboxes: Record<string, boolean> = {
 }
 .password-field-repead {
   top: 5em;
+}
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }
 </style>
