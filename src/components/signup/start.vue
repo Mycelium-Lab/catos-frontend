@@ -11,16 +11,15 @@
         <div class="text-and-button">
           <div class="text">
             <div class="component-20-parent">
-              <catos-checkbox variant="rounded"></catos-checkbox>
-
+              <catos-checkbox @on-change="(arg) => handleCheckboxChange('box1', arg)" variant="rounded"></catos-checkbox>
               <div class="div9">
-                Я даю согласие на обработку, хранение моих персональных данных ,
-                а так жа данных компании, которую я представляю
+                Я даю согласие на обработку, хранение моих персональных данных,
+                а также данных компании, которую я представляю
               </div>
             </div>
             <div class="frame-group">
               <div class="component-20-group">
-                <catos-checkbox variant="rounded"></catos-checkbox>
+                <catos-checkbox @on-change="(arg) => handleCheckboxChange('box2', arg)" variant="rounded"></catos-checkbox>
 
                 <div class="div9">
                   <p class="p">Подтверждаю, что имею право представлять</p>
@@ -28,7 +27,7 @@
                 </div>
               </div>
               <div class="component-20-group">
-                <catos-checkbox variant="rounded"></catos-checkbox>
+                <catos-checkbox @on-change="(arg) => handleCheckboxChange('box3', arg)" variant="rounded"></catos-checkbox>
 
                 <div class="div9">
                   Продолжая, я соглашаюсь, что моя организация имеет право
@@ -58,7 +57,7 @@
               placeholder="Ваш номер телефона"
               :style="{ width: '90%' }"
               :left="true"
-            >
+            > {{ proneNumber }}
               <template v-slot:left-icon>
                 <img src="@/assets/images/iconsmobile.svg" />
               </template>
@@ -170,10 +169,22 @@ const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
 };
-const title = computed(() => {
+const title = computed(() => {  
   return window.history.state.title;
 });
 const role = computed(() => window.history.state?.role);
+const handleCheckboxChange = (checkboxName: string, checked: boolean) => {
+  if (checkboxes.hasOwnProperty(checkboxName)) {
+    checkboxes[checkboxName] = checked;
+  }
+  console.log(checkboxes);
+};
+const proneNumber = ref("");
+const checkboxes: Record<string, boolean> = {
+  box1: false,
+  box2: false,
+  box3: false
+}
 </script>
 
 <style scoped lang="scss">

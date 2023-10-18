@@ -162,6 +162,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+import api from "../../api/api";
 
 const setRole = (role: any) => {
   localStorage.setItem("role", JSON.stringify(role));
