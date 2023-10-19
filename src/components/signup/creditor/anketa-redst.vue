@@ -38,10 +38,10 @@
                 <span class="span">* </span>
               </div>
               <catos-select
-                placeholder="Выбрать страну:"
-                :options="options"
-                :value="value"
-                @selected="ev => (value = ev)"
+                placeholder="Выбрать форму регистрации:"
+                :options="regOptions"
+                :value="regValue"
+                @selected="ev => (regValue = ev)"
                 :optionWidth="77"
                 :style="{ width: '100%' }"
               ></catos-select>
@@ -53,6 +53,7 @@
               </div>
               <input-data
                 placeholder="Введите наименование"
+                @selected="ev => (companyName = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -69,6 +70,7 @@
               </div>
               <input-data
                 placeholder="Введите номер"
+                @selected="ev => (companyOGRN = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -84,7 +86,8 @@
                 <span class="span">* </span>
               </div>
               <input-data
-                placeholder="Ленинский пр-т 77, Г. Москва, ..."
+                placeholder="Введите адрес"
+                @selected="ev => (companyAddress = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -97,7 +100,8 @@
             <div class="fieldsinputchoise">
               <div class="div10">Веб-сайт организации</div>
               <input-data
-                placeholder="catos.ru"
+                placeholder="Введите адрес сайта"
+                @selected="ev => (companyWebsite = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -329,10 +333,19 @@ import loaderField from "../../../components/fields/loader-field.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import { ref } from "vue";
 const value = ref("");
+const regValue = ref("");
+const companyName = ref("");
+const companyOGRN = ref("");
+const companyAddress = ref("");
+const companyWebsite = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
 };
+const regOptions = {
+  sng: ["ООО", "ОАО", "ИП", "Самозанятость"],
+  euro: ["LTD", "LLC", "Sole proprietorship"],
+}
 </script>
 
 <style scoped lang="scss">
