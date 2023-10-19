@@ -135,7 +135,12 @@
       class="buttonnext"
       :class="{ disabled: !isLinkActive }"
       :to="{
-        name: 'confirm',
+        name:
+          role === 'creditor'
+            ? 'anketa-redst'
+            : role === 'depositor'
+            ? 'signup-depositor'
+            : 'signup-borrower',
         state: { role, phoneNumber, email, password},
       }"
     >
