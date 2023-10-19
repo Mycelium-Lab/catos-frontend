@@ -54,10 +54,12 @@
             </div>
             <input-data
               class="phone-field"
+              @selected="phoneNumber = $event"
+              type="phone"
               placeholder="Ваш номер телефона"
               :style="{ width: '90%' }"
               :left="true"
-            > {{ proneNumber }}
+            >
               <template v-slot:left-icon>
                 <img src="@/assets/images/iconsmobile.svg" />
               </template>
@@ -76,9 +78,11 @@
             </div>
             <input-data
               class="phone-field"
+              @selected="email = $event"
               placeholder="Ваш email"
               :style="{ width: '90%' }"
               :left="true"
+              type="email"
             >
               <template v-slot:left-icon>
                 <img src="@/assets/images/iconsmail.svg" />
@@ -88,6 +92,7 @@
           <div class="fieldsregistration-options2">
             <input-data
               class="password-field phone-field"
+              @selected="password = $event"
               placeholder="Пароль"
               :style="{ width: '90%' }"
               :left="true"
@@ -131,7 +136,7 @@
       :class="{ disabled: !isLinkActive }"
       :to="{
         name: 'confirm',
-        state: { role },
+        state: { role, phoneNumber, email, password},
       }"
     >
       <b class="b1">Продолжить</b></router-link
@@ -174,14 +179,14 @@ const title = computed(() => {
   return window.history.state.title;
 });
 const role = computed(() => window.history.state?.role);
+const phoneNumber = ref("");
+const email = ref("");
+const password = ref("");
 const handleCheckboxChange = (checkboxName: keyof typeof checkboxes, checked: boolean) => {
   if (checkboxes.hasOwnProperty(checkboxName)) {
     checkboxes[checkboxName] = checked;
   }
-  console.log(checkboxes);
-  console.log(isLinkActive.value);
 };
-const proneNumber = ref("");
 const checkboxes = reactive({
   box1: false,
   box2: false,

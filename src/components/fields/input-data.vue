@@ -78,24 +78,24 @@ const handleFocus = () => {
   }
 };
 const handleBlur = () => {
-  switch (mutatePlaceholder.value) {
-    case "Введите вашу почту":
-      mutatePlaceholder.value = "Ваша почта";
-      break;
-    case "Введите ваш номер телефона":
-      mutatePlaceholder.value = "Ваш номер телефона";
-      break;
-    case "Введите ваш пароль":
-      mutatePlaceholder.value = "Пароль";
-      break;
-    default:
-      break;
-  }
+  // switch (mutatePlaceholder.value) {
+  //   case "Введите вашу почту":
+  //     mutatePlaceholder.value = "Ваша почта";
+  //     break;
+  //   case "Введите ваш номер телефона":
+  //     mutatePlaceholder.value = "Ваш номер телефона";
+  //     break;
+  //   case "Введите ваш пароль":
+  //     mutatePlaceholder.value = "Пароль";
+  //     break;
+  //   default:
+  //     break;
+  // }
 };
 const selected = (ev: any) => {
-  if (simulate) {
+  // if (simulate) {
     emit("selected", ev.target.value);
-  }
+  // }
 };
 </script>
 

@@ -247,6 +247,11 @@
 <script setup lang="ts">
 import { computed } from "vue";
 const role = computed(() => window.history.state?.role);
+const phoneNumber = computed(() => window.history.state?.phoneNumber);
+const email = computed(() => window.history.state?.email);
+const password = computed(() => window.history.state?.password);
+console.log(role.value)
+console.log(phoneNumber.value, email.value, password.value)
 </script>
 
 <style scoped lang="scss">
