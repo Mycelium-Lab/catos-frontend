@@ -129,6 +129,7 @@
                     :obligatory-field="true"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                     class="loader-file"
+                    @on-change="(file) => saveImage(regProof, file)"
                   ></loader-field>
                   <div class="text-parent">
                     <div class="icons-parent">
@@ -213,6 +214,7 @@
                     :obligatory-field="true"
                     name="Operating address proof"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
+                    @on-change="(file) => saveImage(addrProof, file)"
                   ></loader-field>
                 </div>
                 <div class="checkbox-parent">
@@ -228,6 +230,7 @@
                     class="loader-file"
                     name="Extra documents"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
+                    @on-change="(file) => saveImage(extraDocs, file)"
                   ></loader-field>
                 </div>
                 <input-data
@@ -236,6 +239,7 @@
                   placeholder="Тип документа"
                   :style="{ width: '86.8%', left: '5vw' }"
                   :right="true"
+                  @selected="ev => (extraDocsType = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -337,13 +341,17 @@ import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
 import loaderField from "../../../components/fields/loader-field.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
-import { ref, computed, reactive } from "vue";
+import { ref, computed, reactive, Ref } from "vue";
 const value = ref("");
 const regValue = ref("");
 const companyName = ref("");
 const companyOGRN = ref("");
 const companyAddress = ref("");
 const companyWebsite = ref("");
+const regProof = ref<File | null>(null);
+const addrProof = ref<File | null>(null);
+const extraDocs = ref<File | null>(null);
+const extraDocsType = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
@@ -361,6 +369,15 @@ const handleCheckboxChange = (checked: boolean) => {
 const isLinkActive = computed(() => {
   return checkbox.checked;
 });
+const saveImage = (target: File | null, file: File | null) => {
+  if (file) {
+    target = file;
+    console.log('File saved', target);
+  }
+  else {
+    console.log("File is null");
+  }
+}
 </script>
 
 <style scoped lang="scss">

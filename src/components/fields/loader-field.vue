@@ -1,7 +1,7 @@
 <template>
   <div class="organizm-loader-Nmi" id="995:25323">
     <div class="frame-1817439-tk4" id="I995:25323;967:72927">
-      <input class="input-load" type="file" />
+      <input class="input-load" type="file" @change="onFileChanged($event)" accept="image/*" capture/>
       <div class="business-registration-proof--SFn" id="I995:25323;967:72928">
         <span class="business-registration-proof--SFn-sub-0"
           >{{ name }}
@@ -37,6 +37,18 @@ const { placeholder, name, obligatoryField } = defineProps({
     type: Boolean,
   },
 });
+const emit = defineEmits(["onChange"]);
+const file = ref<File | null>(null);
+const form = ref<HTMLFormElement>();
+
+const onFileChanged = ($event: Event) => {
+  const target = $event.target as HTMLInputElement;
+  if (target && target.files) {
+    file.value = target.files[0];
+    emit("onChange", file.value);
+    // console.log(file.value);
+  }
+};
 // const mutatePlaceholder = ref(placeholder);
 // const handleFocus = () => {
 //   switch (mutatePlaceholder.value) {
