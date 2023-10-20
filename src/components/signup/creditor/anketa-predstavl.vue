@@ -764,8 +764,39 @@ import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
 import buttonSlider from "../../../components/ui-kit/buttons/button-slider.vue";
+import { ref, computed } from "vue";
+// get data prom prev sreens
+const role = computed(() => window.history.state?.role);
+const phoneNumber = computed(() => window.history.state?.phoneNumber);
+const email = computed(() => window.history.state?.email);
+const password = computed(() => window.history.state?.password);
+const country = computed(() => window.history.state?.country);
+const regValue = computed(() => window.history.state?.regValue);
+const companyName = computed(() => window.history.state?.companyName);
+const companyOGRN = computed(() => window.history.state?.companyOGRN);
+const companyAddress = computed(() => window.history.state?.companyAddress);
+const companyWebsite = computed(() => window.history.state?.companyWebsite);
+const regProof64 = computed(() => window.history.state?.regProof64);
+const addrProof64 = computed(() => window.history.state?.addrProof64);
+const extraDocs64 = computed(() => window.history.state?.extraDocs64);
+const extraDocsType = computed(() => window.history.state?.extraDocsType);
 
-import { ref } from "vue";
+console.log(
+  role.value,
+  phoneNumber.value,
+  email.value,
+  password.value,
+  country.value,
+  regValue.value,
+  companyName.value,
+  companyOGRN.value,
+  companyAddress.value,
+  companyWebsite.value,
+  regProof64.value,
+  addrProof64.value,
+  extraDocs64.value,
+  extraDocsType.value);
+
 const value = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],

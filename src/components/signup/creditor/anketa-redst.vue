@@ -26,8 +26,8 @@
               <catos-select
                 placeholder="Выбрать страну:"
                 :options="options"
-                :value="value"
-                @selected="ev => (value = ev)"
+                :value="country"
+                @selected="ev => (country = ev)"
                 :optionWidth="77"
                 :style="{ width: '100%' }"
               ></catos-select>
@@ -368,10 +368,26 @@
         </div>
         <router-link
           class="buttonnext"
-          :class="{ disabled: !isLinkActive }"
+          :class="{ disabled: !isLinkActive || !allDataEntered }"
           id="buttonNextContainer"
           :to="{
             name: 'anketa',
+            state: {
+              role,
+              phoneNumber,
+              email,
+              password,
+              country,
+              regValue,
+              companyName,
+              companyOGRN,
+              companyAddress,
+              companyWebsite,
+              regProof64,
+              addrProof64,
+              extraDocs64,
+              extraDocsType,
+            },
           }"
         >
           <b class="b1">Продолжить</b>
@@ -419,16 +435,26 @@ import inputData from "../../../components/fields/input-data.vue";
 import loaderField from "../../../components/fields/loader-field.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import { ref, computed, reactive, Ref } from "vue";
-const value = ref("");
+// get data from prev screen
+const role = computed(() => window.history.state?.role);
+const phoneNumber = computed(() => window.history.state?.phoneNumber);
+const email = computed(() => window.history.state?.email);
+const password = computed(() => window.history.state?.password);
+// form data vars
+const country = ref("");
 const regValue = ref("");
 const companyName = ref("");
 const companyOGRN = ref("");
 const companyAddress = ref("");
 const companyWebsite = ref("");
 const regProof = ref<File | null>(null);
+const regProof64 = ref("");
 const addrProof = ref<File | null>(null);
+const addrProof64 = ref("");
 const extraDocs = ref<File | null>(null);
+const extraDocs64 = ref("");
 const extraDocsType = ref("");
+// enter options
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
@@ -446,17 +472,20 @@ const handleCheckboxChange = (checked: boolean) => {
 const isLinkActive = computed(() => {
   return checkbox.checked;
 });
-const saveImage = (boxName: string, file: File | null) => {
+const saveImage = async (boxName: string, file: File | null) => {
   if (file) {
     switch (boxName) {
       case "regProof":
         regProof.value = file;
+        regProof64.value = await fileToBase64(file);
         break;
       case "addrProof":
         addrProof.value = file;
+        addrProof64.value = await fileToBase64(file);
         break;
       case "extraDocs":
         extraDocs.value = file;
+        extraDocs64.value = await fileToBase64(file);
         break;
       default:
         break;
@@ -467,6 +496,25 @@ const saveImage = (boxName: string, file: File | null) => {
     console.log("File is null");
   }
 }
+const allDataEntered = computed(() => {
+  return (
+    country.value !== "" &&
+    regValue.value !== "" &&
+    companyName.value !== "" &&
+    companyOGRN.value !== "" &&
+    companyAddress.value !== "" &&
+    regProof.value !== null &&
+    addrProof.value !== null
+  );
+});
+const fileToBase64 = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result?.toString() || "");
+    reader.onerror = (error) => reject(error);
+  });
+};
 </script>
 
 <style scoped lang="scss">
