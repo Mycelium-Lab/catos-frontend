@@ -129,9 +129,9 @@
                     :obligatory-field="true"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                     class="loader-file"
-                    @on-change="(file) => saveImage(regProof, file)"
+                    @on-change="(file) => saveImage('regProof', file)"
                   ></loader-field>
-                  <div class="text-parent">
+                  <div v-if="regProof != null" class="text-parent">
                     <div class="icons-parent">
                       <div class="icons">
                         <div class="iconsfile">
@@ -145,14 +145,13 @@
                       <div class="frame-wrapper">
                         <div class="goa-filejpg-wrapper">
                           <div class="business-registration-proof-container">
-                            Goa_file
-                            <span class="jpg1">.jpg</span>
+                            {{ regProof.name }}
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="loader1">
-                      <div class="loader2">
+                      <!-- <div class="loader2">
                         <img
                           class="loader-child"
                           alt=""
@@ -160,15 +159,17 @@
                         />
 
                         <div class="div22">12%</div>
-                      </div>
-                      <img
-                        class="loader-child"
-                        alt=""
-                        src="../public/remove.svg"
-                      />
+                      </div> -->
+                      <button class="button-remove" @click="() => regProof = null">
+                        <img
+                          class="loader-child"
+                          alt=""
+                          src="../public/remove.svg"
+                        />
+                      </button>
                     </div>
                   </div>
-                  <div class="text-parent">
+                  <!-- <div class="text-parent">
                     <div class="icons-parent">
                       <div class="icons">
                         <div class="iconsfile">
@@ -204,7 +205,7 @@
                         src="../public/remove.svg"
                       />
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="organizmloader1">
@@ -214,8 +215,46 @@
                     :obligatory-field="true"
                     name="Operating address proof"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
-                    @on-change="(file) => saveImage(addrProof, file)"
+                    @on-change="(file) => saveImage('addrProof', file)"
                   ></loader-field>
+                  <div v-if="addrProof != null" class="text-parent">
+                    <div class="icons-parent">
+                      <div class="icons">
+                        <div class="iconsfile">
+                          <img
+                            class="vector-icon"
+                            alt=""
+                            src="../public/vector.svg"
+                          />
+                        </div>
+                      </div>
+                      <div class="frame-wrapper">
+                        <div class="goa-filejpg-wrapper">
+                          <div class="business-registration-proof-container">
+                            {{ addrProof.name }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="loader1">
+                      <!-- <div class="loader2">
+                        <img
+                          class="loader-child"
+                          alt=""
+                          src="../public/frame-1817486.svg"
+                        />
+
+                        <div class="div22">12%</div>
+                      </div> -->
+                      <button class="button-remove" @click="() => addrProof = null">
+                        <img
+                        class="loader-child"
+                        alt=""
+                        src="../public/remove.svg"
+                        />
+                      </button>
+                    </div>
+                  </div>
                 </div>
                 <div class="checkbox-parent">
                   <catos-checkbox></catos-checkbox>
@@ -230,8 +269,46 @@
                     class="loader-file"
                     name="Extra documents"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
-                    @on-change="(file) => saveImage(extraDocs, file)"
+                    @on-change="(file) => saveImage('extraDocs', file)"
                   ></loader-field>
+                  <div v-if="extraDocs != null" class="text-parent">
+                    <div class="icons-parent">
+                      <div class="icons">
+                        <div class="iconsfile">
+                          <img
+                            class="vector-icon"
+                            alt=""
+                            src="../public/vector.svg"
+                          />
+                        </div>
+                      </div>
+                      <div class="frame-wrapper">
+                        <div class="goa-filejpg-wrapper">
+                          <div class="business-registration-proof-container">
+                            {{ extraDocs.name }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="loader1">
+                      <!-- <div class="loader2">
+                        <img
+                          class="loader-child"
+                          alt=""
+                          src="../public/frame-1817486.svg"
+                        />
+
+                        <div class="div22">12%</div>
+                      </div> -->
+                      <button class="button-remove" @click="() => extraDocs = null">
+                        <img
+                          class="loader-child"
+                          alt=""
+                          src="../public/remove.svg"
+                        />
+                      </button>
+                    </div>
+                  </div>
                 </div>
                 <input-data
                   background="transparent"
@@ -369,10 +446,22 @@ const handleCheckboxChange = (checked: boolean) => {
 const isLinkActive = computed(() => {
   return checkbox.checked;
 });
-const saveImage = (target: File | null, file: File | null) => {
+const saveImage = (boxName: string, file: File | null) => {
   if (file) {
-    target = file;
-    console.log('File saved', target);
+    switch (boxName) {
+      case "regProof":
+        regProof.value = file;
+        break;
+      case "addrProof":
+        addrProof.value = file;
+        break;
+      case "extraDocs":
+        extraDocs.value = file;
+        break;
+      default:
+        break;
+    }
+    console.log('File saved');
   }
   else {
     console.log("File is null");
@@ -570,7 +659,7 @@ const saveImage = (target: File | null, file: File | null) => {
   backdrop-filter: blur(5px);
   border: 0.5px solid #2e3a59;
   box-sizing: border-box;
-  height: 40.75em;
+  height: 41.50em;
 }
 .div20 {
   position: relative;
@@ -847,7 +936,9 @@ const saveImage = (target: File | null, file: File | null) => {
   background-color: rgba(237, 244, 255, 0.3);
   overflow: hidden;
   gap: 0.63em;
-  height: 10.57em;
+  height: auto;
+  display: block;
+  overflow: visible;
 }
 .x-forms {
   position: absolute;
@@ -976,6 +1067,12 @@ const saveImage = (target: File | null, file: File | null) => {
 .div8 {
   position: absolute;
   width: 21.38em;
+}
+.button-remove {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 .buttonnext {
   top: 92.44em;
