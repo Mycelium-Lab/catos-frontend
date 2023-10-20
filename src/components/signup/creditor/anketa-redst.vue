@@ -125,6 +125,8 @@
               <div class="organizmloader">
                 <div class="frame-group">
                   <loader-field
+                    name="Business registration proof"
+                    :obligatory-field="true"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                     class="loader-file"
                   ></loader-field>
@@ -208,6 +210,8 @@
                 <div class="business-registration-proof-group">
                   <loader-field
                     class="loader-file"
+                    :obligatory-field="true"
+                    name="Operating address proof"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                   ></loader-field>
                 </div>
@@ -222,13 +226,14 @@
                 <div class="business-registration-proof-group">
                   <loader-field
                     class="loader-file"
+                    name="Extra documents"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                   ></loader-field>
                 </div>
                 <input-data
                   background="transparent"
                   border="1px solid rgba(101, 96, 96, 1)"
-                  placeholder="Тип фалйа"
+                  placeholder="Тип документа"
                   :style="{ width: '86.8%', left: '5vw' }"
                   :right="true"
                 >
