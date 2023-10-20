@@ -242,7 +242,7 @@
           <div class="text-declaration">
             <div class="declaration">Declaration:</div>
             <div class="checkbox-group">
-              <catos-checkbox></catos-checkbox>
+              <catos-checkbox @on-change="(arg) => handleCheckboxChange(arg)"></catos-checkbox>
 
               <div class="by-submitting-this">
                 By submitting this form, you confirm that:
@@ -282,6 +282,7 @@
         </div>
         <router-link
           class="buttonnext"
+          :class="{ disabled: !isLinkActive }"
           id="buttonNextContainer"
           :to="{
             name: 'anketa',
@@ -331,7 +332,7 @@ import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
 import loaderField from "../../../components/fields/loader-field.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
-import { ref } from "vue";
+import { ref, computed, reactive } from "vue";
 const value = ref("");
 const regValue = ref("");
 const companyName = ref("");
@@ -346,6 +347,15 @@ const regOptions = {
   sng: ["ООО", "ОАО", "ИП", "Самозанятость"],
   euro: ["LTD", "LLC", "Sole proprietorship"],
 }
+const checkbox = reactive({
+  checked: false,
+});
+const handleCheckboxChange = (checked: boolean) => {
+  checkbox.checked = checked;
+};
+const isLinkActive = computed(() => {
+  return checkbox.checked;
+});
 </script>
 
 <style scoped lang="scss">
@@ -1174,5 +1184,9 @@ const regOptions = {
   color: #3b3b3b;
   font-family: Inter;
   overflow-x: hidden;
+}
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }
 </style>
