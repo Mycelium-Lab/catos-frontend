@@ -1,7 +1,10 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:8000/api',
+  baseURL: process.env.VUE_APP_API_URL,
 });
 
 export default {
@@ -78,5 +81,5 @@ export default {
   usersSendEmail() {
 
   },
-  
+
 };
