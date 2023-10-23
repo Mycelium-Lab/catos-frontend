@@ -780,22 +780,29 @@ const regProof64 = computed(() => window.history.state?.regProof64);
 const addrProof64 = computed(() => window.history.state?.addrProof64);
 const extraDocs64 = computed(() => window.history.state?.extraDocs64);
 const extraDocsType = computed(() => window.history.state?.extraDocsType);
+// console.log(
+//   role.value,
+//   phoneNumber.value,
+//   email.value,
+//   password.value,
+//   country.value,
+//   regValue.value,
+//   companyName.value,
+//   companyOGRN.value,
+//   companyAddress.value,
+//   companyWebsite.value,
+//   regProof64.value,
+//   addrProof64.value,
+//   extraDocs64.value,
+//   extraDocsType.value);
+// vars for this screen data
+const name = ref("");
+const surname = ref("");
+const middleName = ref("");
+const nationality = ref("");
+const position = ref("");
+const is25PercentHolder= ref(false);
 
-console.log(
-  role.value,
-  phoneNumber.value,
-  email.value,
-  password.value,
-  country.value,
-  regValue.value,
-  companyName.value,
-  companyOGRN.value,
-  companyAddress.value,
-  companyWebsite.value,
-  regProof64.value,
-  addrProof64.value,
-  extraDocs64.value,
-  extraDocsType.value);
 
 const value = ref("");
 const options = {
