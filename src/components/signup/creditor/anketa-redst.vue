@@ -418,7 +418,7 @@ import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
 import loaderField from "../../../components/fields/loader-field.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
-import { ref, computed, reactive, Ref } from "vue";
+import { ref, computed, reactive } from "vue";
 import { useUserDataStore } from "@/stores/userData";
 import { fileToBase64 } from "@/utils/fileToBase64";
 
