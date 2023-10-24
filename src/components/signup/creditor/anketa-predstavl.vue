@@ -23,6 +23,7 @@
                     :style="{ width: '100%' }"
                     placeholder="Гражданство"
                     :right="true"
+                    @selected="ev => (userDataStore.passport.country = ev)"
                   >
                     <template v-slot:right-icon>
                       <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -41,6 +42,7 @@
                   :style="{ width: '100%' }"
                   placeholder="1234 09876"
                   :right="true"
+                  @selected="ev => (userDataStore.passport.number = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -57,6 +59,7 @@
                     :style="{ width: '100%' }"
                     type="date"
                     placeholder="01.02.2022"
+                    @selected="ev => (userDataStore.passport.issueDate = ev)"
                   ></input-data>
                   <div class="iconscalendar-wrapper">
                     <img
@@ -81,6 +84,9 @@
               <catos-textarea
                 :style="{ width: '100%' }"
                 placeholder="ГУМВД России по Санкт-Петербургу, и Ленинградской области"
+                @selected="
+                  ev => (userDataStore.passport.issuingOrganization = ev)
+                "
               ></catos-textarea>
             </div>
           </div>
@@ -100,6 +106,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Введите имя"
                   :right="true"
+                  @selected="ev => (userDataStore.name = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -118,6 +125,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Введите фамилию"
                   :right="true"
+                  @selected="ev => (userDataStore.surname = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -136,6 +144,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Введите отчество"
                   :right="true"
+                  @selected="ev => (userDataStore.middleName = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -151,6 +160,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Национальность"
                   :right="true"
+                  @selected="ev => (userDataStore.nationality = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -169,6 +179,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Ваша должность"
                   :right="true"
+                  @selected="ev => (userDataStore.position = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -205,10 +216,13 @@
                       </span>
                     </span>
                   </div>
-                  <div class="div29">Владеете ли вы более 25% кампании?</div>
+                  <div class="div29">Владеете ли вы более 25% компании?</div>
                 </div>
               </div>
-              <button-slider :style="{ width: '100%' }"></button-slider>
+              <button-slider
+                :style="{ width: '100%' }"
+                @on-slide="ev => (userDataStore.is25PercentHolder = ev)"
+              ></button-slider>
             </div>
           </div>
           <div class="child"></div>
@@ -220,7 +234,7 @@
           </div>
         </div>
       </div>
-      <router-link class="buttonnext" to="/sign-up/anketa-verification">
+      <router-link class="buttonnext" to="/sign-up/connect-wallet">
         <b class="b1">Продолжить</b>
       </router-link>
       <div class="header">
@@ -266,10 +280,10 @@
             <catos-select
               placeholder="Северо-Западный округ"
               :options="options"
-              :value="value"
+              :value="userDataStore.registrationAddress.region"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="ev => (value = ev)"
+              @selected="ev => (userDataStore.registrationAddress.region = ev)"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -277,10 +291,10 @@
             <catos-select
               placeholder="Санкт-Петербург"
               :options="options"
-              :value="value"
+              :value="userDataStore.registrationAddress.city"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="ev => (value = ev)"
+              @selected="ev => (userDataStore.registrationAddress.city = ev)"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -291,10 +305,10 @@
             <catos-select
               placeholder="Красносельскй"
               :options="options"
-              :value="value"
+              :value="userDataStore.registrationAddress.neighborhood"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="ev => (value = ev)"
+              @selected="ev => (userDataStore.registrationAddress.neighborhood = ev)"
             ></catos-select>
           </div>
           <div class="text2">
@@ -303,6 +317,7 @@
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
               :right="true"
+              @selected="ev => (userDataStore.registrationAddress.street = ev)"
             >
               <template v-slot:right-icon>
                 <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -317,6 +332,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
+                @selected="ev => (userDataStore.registrationAddress.house = ev)"
               ></input-data>
             </div>
             <div class="parent11">
@@ -324,6 +340,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
+                @selected="ev => (userDataStore.registrationAddress.housing = ev)"
               ></input-data>
             </div>
           </div>
@@ -333,6 +350,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
+                @selected="ev => (userDataStore.registrationAddress.building = ev)"
               ></input-data>
             </div>
             <div class="parent11">
@@ -340,6 +358,7 @@
               <input-data
                 placeholder="№"
                 :style="{ width: '100%' }"
+                @selected="ev => (userDataStore.registrationAddress.apartment = ev)"
               ></input-data>
             </div>
           </div>
@@ -348,6 +367,7 @@
             <input-data
               placeholder="Индекс"
               :style="{ width: '100%' }"
+              @selected="ev => (userDataStore.registrationAddress.index = ev)"
             ></input-data>
           </div>
         </div>
@@ -370,10 +390,10 @@
             <catos-select
               placeholder="Россия"
               :options="options"
-              :value="value"
+              :value="userDataStore.livingAddress.country"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="ev => (value = ev)"
+              @selected="ev => (userDataStore.livingAddress.country = ev)"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -384,10 +404,10 @@
             <catos-select
               placeholder="Северо-западный округ"
               :options="options"
-              :value="value"
+              :value="userDataStore.livingAddress.region"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="ev => (value = ev)"
+              @selected="ev => (userDataStore.livingAddress.region = ev)"
             ></catos-select>
           </div>
           <div class="fieldsinput">
@@ -398,10 +418,10 @@
             <catos-select
               placeholder="Красносельский"
               :options="options"
-              :value="value"
+              :value="userDataStore.livingAddress.neighborhood"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="ev => (value = ev)"
+              @selected="ev => (userDataStore.livingAddress.neighborhood = ev)"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -409,10 +429,10 @@
             <catos-select
               placeholder="Санкт-Петербург"
               :options="options"
-              :value="value"
+              :value="userDataStore.livingAddress.city"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="ev => (value = ev)"
+              @selected="ev => (userDataStore.livingAddress.city = ev)"
             ></catos-select>
           </div>
           <div class="text2">
@@ -421,6 +441,7 @@
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
               :right="true"
+              @selected="ev => (userDataStore.livingAddress.street = ev)"
             >
               <template v-slot:right-icon>
                 <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -435,6 +456,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
+                @selected="ev => (userDataStore.livingAddress.house = ev)"
               ></input-data>
             </div>
             <div class="parent11">
@@ -442,6 +464,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
+                @selected="ev => (userDataStore.livingAddress.housing = ev)"
               ></input-data>
             </div>
           </div>
@@ -451,6 +474,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
+                @selected="ev => (userDataStore.livingAddress.building = ev)"
               ></input-data>
             </div>
             <div class="parent11">
@@ -458,6 +482,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
+                @selected="ev => (userDataStore.livingAddress.apartment = ev)"
               ></input-data>
             </div>
           </div>
@@ -466,6 +491,7 @@
             <input-data
               placeholder="193 984"
               :style="{ width: '100%' }"
+              @selected="ev => (userDataStore.livingAddress.index = ev)"
             ></input-data>
           </div>
         </div>
@@ -519,10 +545,14 @@
                       />
                     </div>
                   </div>
-                  <div class="div27">
-                    <p class="p">Разворот</p>
-                    <p class="p">с датой выдачи</p>
-                    <p class="p">и фотографией</p>
+                  <div class="loader-group">
+                    <loader-field
+                      name="Разворот с датой выдачи и фотографией"
+                      :obligatory-field="true"
+                      :style="{ width: '100%', paddingBottom: '0.1em' }"
+                      class="loader-file"
+                      @on-change="(file) => saveImage('passPhoto1', file)"
+                    ></loader-field>
                   </div>
                 </div>
                 <div class="loadernav">
@@ -586,9 +616,14 @@
                       src="../public/frame-18175181.svg"
                     />
                   </div>
-                  <div class="div70">
-                    <p class="p">Страница</p>
-                    <p class="p">с регистрацией</p>
+                  <div class="loader-group">
+                    <loader-field
+                      name="Страница с регистрацией"
+                      :obligatory-field="true"
+                      :style="{ width: '100%', paddingBottom: '0.1em' }"
+                      class="loader-file"
+                      @on-change="(file) => saveImage('passPhoto2', file)"
+                    ></loader-field>
                   </div>
                 </div>
                 <div class="loadernav">
@@ -633,7 +668,6 @@
               </div>
               <div class="div72">
                 <span>Загрузите страницы паспорта </span>
-                <span class="span2">*</span>
               </div>
             </div>
           </div>
@@ -652,7 +686,6 @@
                       alt=""
                       src="../public/frame-1817525.svg"
                     />
-
                     <div class="frame-wrapper3">
                       <div class="icon-wrapper">
                         <div class="icon1">
@@ -687,11 +720,16 @@
                       </div>
                     </div>
                   </div>
-                  <div class="div27">
-                    <p class="p">Ваше фото и разворот</p>
-                    <p class="p">с датой выдачи</p>
-                  </div>
                 </div>
+                <div class="loader-group">
+                <loader-field
+                  name="Загрузите селфи с разворотом паспорта и датой выдачи"
+                  :obligatory-field="true"
+                  :style="{ width: '100%', paddingBottom: '0.1em' }"
+                  class="loader-file"
+                  @on-change="(file) => saveImage('selfie', file)"
+                ></loader-field>
+              </div>
               </div>
               <div class="loadernav">
                 <div class="icons-group">
@@ -730,10 +768,6 @@
               </div>
             </div>
           </div>
-          <div class="div76">
-            <span>Загрузите селфи с разворотом паспорта </span>
-            <span class="span2">*</span>
-          </div>
         </div>
       </div>
     </div>
@@ -764,51 +798,40 @@ import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
 import buttonSlider from "../../../components/ui-kit/buttons/button-slider.vue";
+import loaderField from "../../../components/fields/loader-field.vue";
 import { ref, computed } from "vue";
-// get data prom prev sreens
-const role = computed(() => window.history.state?.role);
-const phoneNumber = computed(() => window.history.state?.phoneNumber);
-const email = computed(() => window.history.state?.email);
-const password = computed(() => window.history.state?.password);
-const country = computed(() => window.history.state?.country);
-const regValue = computed(() => window.history.state?.regValue);
-const companyName = computed(() => window.history.state?.companyName);
-const companyOGRN = computed(() => window.history.state?.companyOGRN);
-const companyAddress = computed(() => window.history.state?.companyAddress);
-const companyWebsite = computed(() => window.history.state?.companyWebsite);
-const regProof64 = computed(() => window.history.state?.regProof64);
-const addrProof64 = computed(() => window.history.state?.addrProof64);
-const extraDocs64 = computed(() => window.history.state?.extraDocs64);
-const extraDocsType = computed(() => window.history.state?.extraDocsType);
-// console.log(
-//   role.value,
-//   phoneNumber.value,
-//   email.value,
-//   password.value,
-//   country.value,
-//   regValue.value,
-//   companyName.value,
-//   companyOGRN.value,
-//   companyAddress.value,
-//   companyWebsite.value,
-//   regProof64.value,
-//   addrProof64.value,
-//   extraDocs64.value,
-//   extraDocsType.value);
-// vars for this screen data
-const name = ref("");
-const surname = ref("");
-const middleName = ref("");
-const nationality = ref("");
-const position = ref("");
-const is25PercentHolder= ref(false);
+import { useUserDataStore } from "@/stores/userData";
+import { fileToBase64 } from "@/utils/fileToBase64";
 
-
-const value = ref("");
+const userDataStore = useUserDataStore();
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
 };
+const saveImage = async (boxName: string, file: File | null) => {
+  if (file) {
+    switch (boxName) {
+      case "passPhoto1":
+        userDataStore.firstPhoto = file;
+        userDataStore.firstPhoto64 = await fileToBase64(file);
+        break;
+      case "passPhoto2":
+        userDataStore.secondPhoto = file;
+        userDataStore.secondPhoto64 = await fileToBase64(file);
+        break;
+      case "selfie":
+        userDataStore.selfie = file;
+        userDataStore.selfie64 = await fileToBase64(file);
+        break;
+      default:
+        break;
+    }
+    console.log('File saved');
+  }
+  else {
+    console.log("File is null");
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -2327,6 +2350,10 @@ const options = {
   }
   .buttonnext {
     top: 214em;
+  }
+  .loader-group {
+    gap: 0.63em;
+    width: 100%;
   }
 }
 </style>

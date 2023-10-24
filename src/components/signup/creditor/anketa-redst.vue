@@ -26,8 +26,8 @@
               <catos-select
                 placeholder="Выбрать страну:"
                 :options="options"
-                :value="country"
-                @selected="ev => (country = ev)"
+                :value="userDataStore.country"
+                @selected="ev => (userDataStore.country = ev)"
                 :optionWidth="77"
                 :style="{ width: '100%' }"
               ></catos-select>
@@ -40,8 +40,8 @@
               <catos-select
                 placeholder="Выбрать форму регистрации:"
                 :options="regOptions"
-                :value="regValue"
-                @selected="ev => (regValue = ev)"
+                :value="userDataStore.regValue"
+                @selected="ev => (userDataStore.regValue = ev)"
                 :optionWidth="77"
                 :style="{ width: '100%' }"
               ></catos-select>
@@ -53,7 +53,7 @@
               </div>
               <input-data
                 placeholder="Введите наименование"
-                @selected="ev => (companyName = ev)"
+                @selected="ev => (userDataStore.companyName = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -70,7 +70,7 @@
               </div>
               <input-data
                 placeholder="Введите номер"
-                @selected="ev => (companyOGRN = ev)"
+                @selected="ev => (userDataStore.companyOGRN = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -87,7 +87,7 @@
               </div>
               <input-data
                 placeholder="Введите адрес"
-                @selected="ev => (companyAddress = ev)"
+                @selected="ev => (userDataStore.companyAddress = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -101,7 +101,7 @@
               <div class="div10">Веб-сайт организации</div>
               <input-data
                 placeholder="Введите адрес сайта"
-                @selected="ev => (companyWebsite = ev)"
+                @selected="ev => (userDataStore.companyWebsite = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -131,7 +131,7 @@
                     class="loader-file"
                     @on-change="(file) => saveImage('regProof', file)"
                   ></loader-field>
-                  <div v-if="regProof != null" class="text-parent">
+                  <div v-if="userDataStore.regProof != null" class="text-parent">
                     <div class="icons-parent">
                       <div class="icons">
                         <div class="iconsfile">
@@ -145,7 +145,7 @@
                       <div class="frame-wrapper">
                         <div class="goa-filejpg-wrapper">
                           <div class="business-registration-proof-container">
-                            {{ regProof.name }}
+                            {{ userDataStore.regProof.name }}
                           </div>
                         </div>
                       </div>
@@ -160,7 +160,7 @@
 
                         <div class="div22">12%</div>
                       </div> -->
-                      <button class="button-remove" @click="() => regProof = null">
+                      <button class="button-remove" @click="() => userDataStore.regProof = null">
                         <img
                           class="loader-child"
                           alt=""
@@ -217,7 +217,7 @@
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                     @on-change="(file) => saveImage('addrProof', file)"
                   ></loader-field>
-                  <div v-if="addrProof != null" class="text-parent">
+                  <div v-if="userDataStore.addrProof != null" class="text-parent">
                     <div class="icons-parent">
                       <div class="icons">
                         <div class="iconsfile">
@@ -231,7 +231,7 @@
                       <div class="frame-wrapper">
                         <div class="goa-filejpg-wrapper">
                           <div class="business-registration-proof-container">
-                            {{ addrProof.name }}
+                            {{ userDataStore.addrProof.name }}
                           </div>
                         </div>
                       </div>
@@ -246,7 +246,7 @@
 
                         <div class="div22">12%</div>
                       </div> -->
-                      <button class="button-remove" @click="() => addrProof = null">
+                      <button class="button-remove" @click="() => userDataStore.addrProof = null">
                         <img
                         class="loader-child"
                         alt=""
@@ -271,7 +271,7 @@
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                     @on-change="(file) => saveImage('extraDocs', file)"
                   ></loader-field>
-                  <div v-if="extraDocs != null" class="text-parent">
+                  <div v-if="userDataStore.extraDocs != null" class="text-parent">
                     <div class="icons-parent">
                       <div class="icons">
                         <div class="iconsfile">
@@ -285,7 +285,7 @@
                       <div class="frame-wrapper">
                         <div class="goa-filejpg-wrapper">
                           <div class="business-registration-proof-container">
-                            {{ extraDocs.name }}
+                            {{ userDataStore.extraDocs.name }}
                           </div>
                         </div>
                       </div>
@@ -300,7 +300,7 @@
 
                         <div class="div22">12%</div>
                       </div> -->
-                      <button class="button-remove" @click="() => extraDocs = null">
+                      <button class="button-remove" @click="() => userDataStore.extraDocs = null">
                         <img
                           class="loader-child"
                           alt=""
@@ -316,7 +316,7 @@
                   placeholder="Тип документа"
                   :style="{ width: '86.8%', left: '5vw' }"
                   :right="true"
-                  @selected="ev => (extraDocsType = ev)"
+                  @selected="ev => (userDataStore.extraDocsType = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -372,22 +372,6 @@
           id="buttonNextContainer"
           :to="{
             name: 'anketa',
-            state: {
-              role,
-              phoneNumber,
-              email,
-              password,
-              country,
-              regValue,
-              companyName,
-              companyOGRN,
-              companyAddress,
-              companyWebsite,
-              regProof64,
-              addrProof64,
-              extraDocs64,
-              extraDocsType,
-            },
           }"
         >
           <b class="b1">Продолжить</b>
@@ -435,26 +419,10 @@ import inputData from "../../../components/fields/input-data.vue";
 import loaderField from "../../../components/fields/loader-field.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import { ref, computed, reactive, Ref } from "vue";
-// get data from prev screen
-const role = computed(() => window.history.state?.role);
-const phoneNumber = computed(() => window.history.state?.phoneNumber);
-const email = computed(() => window.history.state?.email);
-const password = computed(() => window.history.state?.password);
-// form data vars
-const country = ref("");
-const regValue = ref("");
-const companyName = ref("");
-const companyOGRN = ref("");
-const companyAddress = ref("");
-const companyWebsite = ref("");
-const regProof = ref<File | null>(null);
-const regProof64 = ref("");
-const addrProof = ref<File | null>(null);
-const addrProof64 = ref("");
-const extraDocs = ref<File | null>(null);
-const extraDocs64 = ref("");
-const extraDocsType = ref("");
-// enter options
+import { useUserDataStore } from "@/stores/userData";
+import { fileToBase64 } from "@/utils/fileToBase64";
+
+const userDataStore = useUserDataStore();
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
@@ -476,16 +444,17 @@ const saveImage = async (boxName: string, file: File | null) => {
   if (file) {
     switch (boxName) {
       case "regProof":
-        regProof.value = file;
-        regProof64.value = await fileToBase64(file);
+        userDataStore.regProof = file;
+        userDataStore.regProof = file;
+        userDataStore.regProof64 = await fileToBase64(file);
         break;
       case "addrProof":
-        addrProof.value = file;
-        addrProof64.value = await fileToBase64(file);
+        userDataStore.addrProof = file;
+        userDataStore.addrProof64 = await fileToBase64(file);
         break;
       case "extraDocs":
-        extraDocs.value = file;
-        extraDocs64.value = await fileToBase64(file);
+        userDataStore.extraDocs = file;
+        userDataStore.extraDocs64 = await fileToBase64(file);
         break;
       default:
         break;
@@ -498,23 +467,15 @@ const saveImage = async (boxName: string, file: File | null) => {
 }
 const allDataEntered = computed(() => {
   return (
-    country.value !== "" &&
-    regValue.value !== "" &&
-    companyName.value !== "" &&
-    companyOGRN.value !== "" &&
-    companyAddress.value !== "" &&
-    regProof.value !== null &&
-    addrProof.value !== null
+    userDataStore.country !== "" &&
+    userDataStore.regValue !== "" &&
+    userDataStore.companyName !== "" &&
+    userDataStore.companyOGRN !== "" &&
+    userDataStore.companyAddress !== "" &&
+    userDataStore.regProof !== null &&
+    userDataStore.addrProof !== null
   );
 });
-const fileToBase64 = (file: File): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result?.toString() || "");
-    reader.onerror = (error) => reject(error);
-  });
-};
 </script>
 
 <style scoped lang="scss">

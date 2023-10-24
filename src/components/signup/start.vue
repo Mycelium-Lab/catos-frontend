@@ -54,7 +54,7 @@
             </div>
             <input-data
               class="phone-field"
-              @selected="phoneNumber = $event"
+              @selected="userDataStore.phoneNumber = $event"
               type="phone"
               placeholder="Ваш номер телефона"
               :style="{ width: '90%' }"
@@ -78,7 +78,7 @@
             </div>
             <input-data
               class="phone-field"
-              @selected="email = $event"
+              @selected="userDataStore.email = $event"
               placeholder="Ваш email"
               :style="{ width: '90%' }"
               :left="true"
@@ -92,7 +92,7 @@
           <div class="fieldsregistration-options2">
             <input-data
               class="password-field phone-field"
-              @selected="password = $event"
+              @selected="userDataStore.password = $event"
               placeholder="Пароль"
               :style="{ width: '90%' }"
               :left="true"
@@ -141,7 +141,6 @@
             : role === 'depositor'
             ? 'signup-depositor'
             : 'signup-borrower',
-        state: { role, phoneNumber, email, password},
       }"
     >
       <b class="b1">Продолжить</b></router-link
@@ -170,23 +169,27 @@
 </template>
 
 <script setup lang="ts">
-import catosSelect from "../../components/fields/catos-select.vue";
+// import catosSelect from "../../components/fields/catos-select.vue";
 import inputData from "../../components/fields/input-data.vue";
-import loaderField from "../../components/fields/loader-field.vue";
+// import loaderField from "../../components/fields/loader-field.vue";
 import catosCheckbox from "../../components/ui-kit/catos-checkbox.vue";
 import { ref, computed, reactive } from "vue";
-const value = ref("");
-const options = {
-  sng: ["Россия", "Украина", "Казахстан"],
-  euro: ["Польша", "Латвия", "Молдова"],
-};
+import { useUserDataStore } from "@/stores/userData";
+// const value = ref("");
+// const options = {
+//   sng: ["Россия", "Украина", "Казахстан"],
+//   euro: ["Польша", "Латвия", "Молдова"],
+// };
 const title = computed(() => {  
   return window.history.state.title;
 });
 const role = computed(() => window.history.state?.role);
-const phoneNumber = ref("");
-const email = ref("");
-const password = ref("");
+
+const userDataStore = useUserDataStore();
+userDataStore.role = role.value;
+// const phoneNumber = ref("");
+// const email = ref("");
+// const password = ref("");
 const handleCheckboxChange = (checkboxName: keyof typeof checkboxes, checked: boolean) => {
   if (checkboxes.hasOwnProperty(checkboxName)) {
     checkboxes[checkboxName] = checked;
