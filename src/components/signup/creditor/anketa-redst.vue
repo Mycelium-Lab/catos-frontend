@@ -26,8 +26,8 @@
               <catos-select
                 placeholder="Выбрать страну:"
                 :options="options"
-                :value="userDataStore.country"
-                @selected="ev => (userDataStore.country = ev)"
+                :value="userDataStore.userDTO.paper.country"
+                @selected="ev => (userDataStore.userDTO.paper.country = ev)"
                 :optionWidth="77"
                 :style="{ width: '100%' }"
               ></catos-select>
@@ -40,8 +40,8 @@
               <catos-select
                 placeholder="Выбрать форму регистрации:"
                 :options="regOptions"
-                :value="userDataStore.regValue"
-                @selected="ev => (userDataStore.regValue = ev)"
+                :value="userDataStore.userDTO.paper.registration_form"
+                @selected="ev => (userDataStore.userDTO.paper.registration_form = ev)"
                 :optionWidth="77"
                 :style="{ width: '100%' }"
               ></catos-select>
@@ -53,7 +53,7 @@
               </div>
               <input-data
                 placeholder="Введите наименование"
-                @selected="ev => (userDataStore.companyName = ev)"
+                @selected="ev => (userDataStore.userDTO.paper.name= ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -70,7 +70,7 @@
               </div>
               <input-data
                 placeholder="Введите номер"
-                @selected="ev => (userDataStore.companyOGRN = ev)"
+                @selected="ev => (userDataStore.userDTO.paper.registration_number = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -87,7 +87,7 @@
               </div>
               <input-data
                 placeholder="Введите адрес"
-                @selected="ev => (userDataStore.companyAddress = ev)"
+                @selected="ev => (userDataStore.userDTO.paper.address = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -101,7 +101,7 @@
               <div class="div10">Веб-сайт организации</div>
               <input-data
                 placeholder="Введите адрес сайта"
-                @selected="ev => (userDataStore.companyWebsite = ev)"
+                @selected="ev => (userDataStore.userDTO.paper.website = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -160,7 +160,11 @@
 
                         <div class="div22">12%</div>
                       </div> -->
-                      <button class="button-remove" @click="() => userDataStore.regProof = null">
+                      <button class="button-remove" @click="() => { 
+                        userDataStore.regProof = null;
+                        userDataStore.userDTO.paper.first_photo = '';
+                        }"
+                      >
                         <img
                           class="loader-child"
                           alt=""
@@ -246,7 +250,11 @@
 
                         <div class="div22">12%</div>
                       </div> -->
-                      <button class="button-remove" @click="() => userDataStore.addrProof = null">
+                      <button class="button-remove" @click="() => {
+                        userDataStore.addrProof = null;
+                        userDataStore.userDTO.paper.second_photo = '';
+                        }"
+                      >
                         <img
                         class="loader-child"
                         alt=""
@@ -300,7 +308,11 @@
 
                         <div class="div22">12%</div>
                       </div> -->
-                      <button class="button-remove" @click="() => userDataStore.extraDocs = null">
+                      <button class="button-remove" @click="() => {
+                        userDataStore.extraDocs = null;
+                        userDataStore.userDTO.paper.third_photo = '';
+                        }"
+                      >
                         <img
                           class="loader-child"
                           alt=""
@@ -445,16 +457,15 @@ const saveImage = async (boxName: string, file: File | null) => {
     switch (boxName) {
       case "regProof":
         userDataStore.regProof = file;
-        userDataStore.regProof = file;
-        userDataStore.regProof64 = await fileToBase64(file);
+        userDataStore.userDTO.paper.first_photo = await fileToBase64(file);
         break;
       case "addrProof":
         userDataStore.addrProof = file;
-        userDataStore.addrProof64 = await fileToBase64(file);
+        userDataStore.userDTO.paper.second_photo = await fileToBase64(file);
         break;
       case "extraDocs":
         userDataStore.extraDocs = file;
-        userDataStore.extraDocs64 = await fileToBase64(file);
+        userDataStore.userDTO.paper.third_photo = await fileToBase64(file);
         break;
       default:
         break;
@@ -467,13 +478,13 @@ const saveImage = async (boxName: string, file: File | null) => {
 }
 const allDataEntered = computed(() => {
   return (
-    userDataStore.country !== "" &&
-    userDataStore.regValue !== "" &&
-    userDataStore.companyName !== "" &&
-    userDataStore.companyOGRN !== "" &&
-    userDataStore.companyAddress !== "" &&
-    userDataStore.regProof !== null &&
-    userDataStore.addrProof !== null
+    userDataStore.userDTO.paper.country !== "" &&
+    userDataStore.userDTO.paper.registration_form!== "" &&
+    userDataStore.userDTO.paper.name !== "" &&
+    userDataStore.userDTO.paper.registration_number !== 0 &&
+    userDataStore.userDTO.paper.address !== null &&
+    userDataStore.userDTO.paper.first_photo !== null &&
+    userDataStore.userDTO.paper.second_photo !== null
   );
 });
 </script>

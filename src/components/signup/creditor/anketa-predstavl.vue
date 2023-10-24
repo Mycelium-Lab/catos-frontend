@@ -23,7 +23,7 @@
                     :style="{ width: '100%' }"
                     placeholder="Гражданство"
                     :right="true"
-                    @selected="ev => (userDataStore.passport.country = ev)"
+                    @selected="ev => (userDataStore.userDTO.passport.country = ev)"
                   >
                     <template v-slot:right-icon>
                       <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -42,7 +42,7 @@
                   :style="{ width: '100%' }"
                   placeholder="1234 09876"
                   :right="true"
-                  @selected="ev => (userDataStore.passport.number = ev)"
+                  @selected="ev => (userDataStore.userDTO.passport.number = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -59,7 +59,7 @@
                     :style="{ width: '100%' }"
                     type="date"
                     placeholder="01.02.2022"
-                    @selected="ev => (userDataStore.passport.issueDate = ev)"
+                    @selected="ev => (userDataStore.userDTO.passport.issue_date = ev)"
                   ></input-data>
                   <div class="iconscalendar-wrapper">
                     <img
@@ -85,7 +85,7 @@
                 :style="{ width: '100%' }"
                 placeholder="ГУМВД России по Санкт-Петербургу, и Ленинградской области"
                 @selected="
-                  ev => (userDataStore.passport.issuingOrganization = ev)
+                  ev => (userDataStore.userDTO.passport.issuing_organization = ev)
                 "
               ></catos-textarea>
             </div>
@@ -106,7 +106,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Введите имя"
                   :right="true"
-                  @selected="ev => (userDataStore.name = ev)"
+                  @selected="ev => (userDataStore.userDTO.passport.name = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -125,7 +125,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Введите фамилию"
                   :right="true"
-                  @selected="ev => (userDataStore.surname = ev)"
+                  @selected="ev => (userDataStore.userDTO.passport.surname = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -144,7 +144,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Введите отчество"
                   :right="true"
-                  @selected="ev => (userDataStore.middleName = ev)"
+                  @selected="ev => (userDataStore.userDTO.passport.middleName = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -160,7 +160,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Национальность"
                   :right="true"
-                  @selected="ev => (userDataStore.nationality = ev)"
+                  @selected="ev => (userDataStore.userDTO.passport.country = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -179,7 +179,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Ваша должность"
                   :right="true"
-                  @selected="ev => (userDataStore.position = ev)"
+                  @selected="ev => (userDataStore.userDTO.passport)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -221,7 +221,7 @@
               </div>
               <button-slider
                 :style="{ width: '100%' }"
-                @on-slide="ev => (userDataStore.is25PercentHolder = ev)"
+                @on-slide="ev => (userDataStore.userDTO.passport)"
               ></button-slider>
             </div>
           </div>
@@ -280,10 +280,10 @@
             <catos-select
               placeholder="Северо-Западный округ"
               :options="options"
-              :value="userDataStore.registrationAddress.region"
+              :value="userDataStore.userDTO.passport.registration_address.region"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="ev => (userDataStore.registrationAddress.region = ev)"
+              @selected="ev => (userDataStore.userDTO.passport.registration_address.region = ev)"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -291,10 +291,10 @@
             <catos-select
               placeholder="Санкт-Петербург"
               :options="options"
-              :value="userDataStore.registrationAddress.city"
+              :value="userDataStore.userDTO.passport.registration_address.city"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="ev => (userDataStore.registrationAddress.city = ev)"
+              @selected="ev => (userDataStore.userDTO.passport.registration_address.city = ev)"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -305,10 +305,10 @@
             <catos-select
               placeholder="Красносельскй"
               :options="options"
-              :value="userDataStore.registrationAddress.neighborhood"
+              :value="userDataStore.userDTO.passport.registration_address.neighborhood"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="ev => (userDataStore.registrationAddress.neighborhood = ev)"
+              @selected="ev => (userDataStore.userDTO.passport.registration_address.neighborhood = ev)"
             ></catos-select>
           </div>
           <div class="text2">
@@ -317,7 +317,7 @@
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
               :right="true"
-              @selected="ev => (userDataStore.registrationAddress.street = ev)"
+              @selected="ev => (userDataStore.userDTO.passport.registration_address.street = ev)"
             >
               <template v-slot:right-icon>
                 <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -332,7 +332,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.registrationAddress.house = ev)"
+                @selected="ev => (userDataStore.userDTO.passport.registration_address.house = ev)"
               ></input-data>
             </div>
             <div class="parent11">
@@ -340,7 +340,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.registrationAddress.housing = ev)"
+                @selected="ev => (userDataStore.userDTO.passport.registration_address.housing = ev)"
               ></input-data>
             </div>
           </div>
@@ -350,7 +350,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.registrationAddress.building = ev)"
+                @selected="ev => (userDataStore.userDTO.passport.registration_address.building = ev)"
               ></input-data>
             </div>
             <div class="parent11">
@@ -358,7 +358,7 @@
               <input-data
                 placeholder="№"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.registrationAddress.apartment = ev)"
+                @selected="ev => (userDataStore.userDTO.passport.registration_address.apartment = ev)"
               ></input-data>
             </div>
           </div>
@@ -367,7 +367,7 @@
             <input-data
               placeholder="Индекс"
               :style="{ width: '100%' }"
-              @selected="ev => (userDataStore.registrationAddress.index = ev)"
+              @selected="ev => (userDataStore.userDTO.passport.registration_address.index = ev)"
             ></input-data>
           </div>
         </div>
@@ -390,10 +390,10 @@
             <catos-select
               placeholder="Россия"
               :options="options"
-              :value="userDataStore.livingAddress.country"
+              :value="userDataStore.userDTO.passport.living_address.country"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="ev => (userDataStore.livingAddress.country = ev)"
+              @selected="ev => (userDataStore.userDTO.passport.living_address.country = ev)"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -404,10 +404,10 @@
             <catos-select
               placeholder="Северо-западный округ"
               :options="options"
-              :value="userDataStore.livingAddress.region"
+              :value="userDataStore.userDTO.passport.living_address.region"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="ev => (userDataStore.livingAddress.region = ev)"
+              @selected="ev => (userDataStore.userDTO.passport.living_address.region = ev)"
             ></catos-select>
           </div>
           <div class="fieldsinput">
@@ -418,10 +418,10 @@
             <catos-select
               placeholder="Красносельский"
               :options="options"
-              :value="userDataStore.livingAddress.neighborhood"
+              :value="userDataStore.userDTO.passport.living_address.neighborhood"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="ev => (userDataStore.livingAddress.neighborhood = ev)"
+              @selected="ev => (userDataStore.userDTO.passport.living_address.neighborhood = ev)"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -429,10 +429,10 @@
             <catos-select
               placeholder="Санкт-Петербург"
               :options="options"
-              :value="userDataStore.livingAddress.city"
+              :value="userDataStore.userDTO.passport.living_address.city"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="ev => (userDataStore.livingAddress.city = ev)"
+              @selected="ev => (userDataStore.userDTO.passport.living_address.city = ev)"
             ></catos-select>
           </div>
           <div class="text2">
@@ -441,7 +441,7 @@
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
               :right="true"
-              @selected="ev => (userDataStore.livingAddress.street = ev)"
+              @selected="ev => (userDataStore.userDTO.passport.living_address.street = ev)"
             >
               <template v-slot:right-icon>
                 <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -456,7 +456,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.livingAddress.house = ev)"
+                @selected="ev => (userDataStore.userDTO.passport.living_address.house = ev)"
               ></input-data>
             </div>
             <div class="parent11">
@@ -464,7 +464,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.livingAddress.housing = ev)"
+                @selected="ev => (userDataStore.userDTO.passport.living_address.housing = ev)"
               ></input-data>
             </div>
           </div>
@@ -474,7 +474,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.livingAddress.building = ev)"
+                @selected="ev => (userDataStore.userDTO.passport.living_address.building = ev)"
               ></input-data>
             </div>
             <div class="parent11">
@@ -482,7 +482,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.livingAddress.apartment = ev)"
+                @selected="ev => (userDataStore.userDTO.passport.living_address.apartment = ev)"
               ></input-data>
             </div>
           </div>
@@ -491,7 +491,7 @@
             <input-data
               placeholder="193 984"
               :style="{ width: '100%' }"
-              @selected="ev => (userDataStore.livingAddress.index = ev)"
+              @selected="ev => (userDataStore.userDTO.passport.living_address.index = ev)"
             ></input-data>
           </div>
         </div>
@@ -812,16 +812,16 @@ const saveImage = async (boxName: string, file: File | null) => {
   if (file) {
     switch (boxName) {
       case "passPhoto1":
-        userDataStore.firstPhoto = file;
-        userDataStore.firstPhoto64 = await fileToBase64(file);
+        userDataStore.firstPhotoFile = file;
+        userDataStore.userDTO.passport.first_photo = await fileToBase64(file);
         break;
       case "passPhoto2":
-        userDataStore.secondPhoto = file;
-        userDataStore.secondPhoto64 = await fileToBase64(file);
+        userDataStore.secondPhotoFile = file;
+        userDataStore.userDTO.passport.second_photo = await fileToBase64(file);
         break;
       case "selfie":
-        userDataStore.selfie = file;
-        userDataStore.selfie64 = await fileToBase64(file);
+        userDataStore.selfieFile = file;
+        userDataStore.userDTO.passport.selfie = await fileToBase64(file);
         break;
       default:
         break;

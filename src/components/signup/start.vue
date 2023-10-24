@@ -54,7 +54,7 @@
             </div>
             <input-data
               class="phone-field"
-              @selected="userDataStore.phoneNumber = $event"
+              @selected="userDataStore.userDTO.phone = $event"
               type="phone"
               placeholder="Ваш номер телефона"
               :style="{ width: '90%' }"
@@ -78,7 +78,7 @@
             </div>
             <input-data
               class="phone-field"
-              @selected="userDataStore.email = $event"
+              @selected="userDataStore.userDTO.email = $event"
               placeholder="Ваш email"
               :style="{ width: '90%' }"
               :left="true"
@@ -92,7 +92,7 @@
           <div class="fieldsregistration-options2">
             <input-data
               class="password-field phone-field"
-              @selected="userDataStore.password = $event"
+              @selected="userDataStore.userDTO.password = $event"
               placeholder="Пароль"
               :style="{ width: '90%' }"
               :left="true"
@@ -186,7 +186,7 @@ const title = computed(() => {
 const role = computed(() => window.history.state?.role);
 
 const userDataStore = useUserDataStore();
-userDataStore.role = role.value;
+userDataStore.userDTO.role = role.value;
 // const phoneNumber = ref("");
 // const email = ref("");
 // const password = ref("");
