@@ -77,6 +77,12 @@ export default {
     });
   },
   usersConnectWallet() {
+    return axios.get('http://localhost:8000/api/users/connectWallet/', {
+      headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      },
+    });
   },
   usersSendEmail() {
 
