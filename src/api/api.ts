@@ -1,10 +1,14 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
 
-dotenv.config();
+// dotenv.config();
+
+// const apiClient = axios.create({
+//   baseURL: process.env.VUE_APP_API_URL,
+// });
 
 const apiClient = axios.create({
-  baseURL: process.env.VUE_APP_API_URL,
+  baseURL: 'http://localhost:8000/api',
 });
 
 export default {
