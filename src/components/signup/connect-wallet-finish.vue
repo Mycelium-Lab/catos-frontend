@@ -134,7 +134,12 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import api from "../../api/api"
+
+const response = await api.usersConnectWallet();
+console.log(response);
+</script>
 
 <style scoped lang="scss">
 .bg-icon {
