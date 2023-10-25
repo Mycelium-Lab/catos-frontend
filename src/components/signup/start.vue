@@ -175,17 +175,11 @@
 </template>
 
 <script setup lang="ts">
-// import catosSelect from "../../components/fields/catos-select.vue";
 import inputData from "../../components/fields/input-data.vue";
-// import loaderField from "../../components/fields/loader-field.vue";
 import catosCheckbox from "../../components/ui-kit/catos-checkbox.vue";
 import { ref, computed, reactive } from "vue";
 import { useUserDataStore } from "@/stores/userData";
-// const value = ref("");
-// const options = {
-//   sng: ["Россия", "Украина", "Казахстан"],
-//   euro: ["Польша", "Латвия", "Молдова"],
-// };
+
 const title = computed(() => {  
   return window.history.state.title;
 });

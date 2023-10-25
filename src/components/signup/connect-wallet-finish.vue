@@ -135,6 +135,7 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import { connectWallet, isConnected } from '@/api/users.api';
 import { useUserDataStore } from '@/stores/userData';
 import router from '@/router';
@@ -157,13 +158,15 @@ function waitForWalletConnection() {
 }
 
 const userDataStore = useUserDataStore();
-connectWallet()
-.then((response) => {
-  userDataStore.userDTO.tonwallet = response.data.id;
-  waitForWalletConnection();
-})
-.catch((error) => {
-  console.log(error);
+onMounted(() => {
+  connectWallet()
+  .then((response) => {
+    userDataStore.userDTO.tonwallet = response.data.id;
+    waitForWalletConnection();
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 });
 </script>
 
