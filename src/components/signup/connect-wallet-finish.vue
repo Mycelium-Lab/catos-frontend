@@ -104,7 +104,7 @@
         </div>
       </div>
       <div class="qr-code-2">
-        <img class="replace-me-icon" alt="" src="./public/replace-me@2x.png" />
+        <QrCodeStyling class="replace-me-icon" :data="qrCodeLink"/>
       </div>
       <div class="or-press-the-the-button-below-parent" id="frameContainer10">
         <div class="or-press-the">Or press the the button below</div>
@@ -135,13 +135,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { connectWallet, isConnected } from '@/api/users.api';
 import { useUserDataStore } from '@/stores/userData';
 import router from '@/router';
+import QrCodeStyling from '../qr-code-styling.vue';
 
 function waitForWalletConnection() {
-  console.log("Waiting for user to approve connection");
   setTimeout(() => {
     isConnected(userDataStore.userDTO.tonwallet)
     .then((response) => {
@@ -158,10 +158,13 @@ function waitForWalletConnection() {
 }
 
 const userDataStore = useUserDataStore();
+const qrCodeLink = ref('');
 onMounted(() => {
   connectWallet()
   .then((response) => {
+    console.log(response);
     userDataStore.userDTO.tonwallet = response.data.id;
+    qrCodeLink.value = response.data.url;
     waitForWalletConnection();
   })
   .catch((error) => {
