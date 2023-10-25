@@ -135,10 +135,36 @@
 </template>
 
 <script setup lang="ts">
-// import api from "../../api/api"
+import { connectWallet, isConnected } from '@/api/users.api';
+import { useUserDataStore } from '@/stores/userData';
+import router from '@/router';
 
-// const response = await api.usersConnectWallet();
-// console.log(response);
+function waitForWalletConnection() {
+  console.log("Waiting for user to approve connection");
+  setTimeout(() => {
+    isConnected(userDataStore.userDTO.tonwallet)
+    .then((response) => {
+      if (response.data === 200) {
+        router.push({ name: 'success' });
+      } else {
+        waitForWalletConnection();
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }, 1000);
+}
+
+const userDataStore = useUserDataStore();
+connectWallet()
+.then((response) => {
+  userDataStore.userDTO.tonwallet = response.data.id;
+  waitForWalletConnection();
+})
+.catch((error) => {
+  console.log(error);
+});
 </script>
 
 <style scoped lang="scss">
