@@ -190,9 +190,6 @@ const title = computed(() => {
   return window.history.state.title;
 });
 const userDataStore = useUserDataStore();
-// const phoneNumber = ref("");
-// const email = ref("");
-// const password = ref("");
 const handleCheckboxChange = (checkboxName: keyof typeof checkboxes, checked: boolean) => {
   if (checkboxes.hasOwnProperty(checkboxName)) {
     checkboxes[checkboxName] = checked;
