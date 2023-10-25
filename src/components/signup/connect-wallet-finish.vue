@@ -107,10 +107,10 @@
         <QrCodeStyling class="replace-me-icon" :data="qrCodeLink"/>
       </div>
       <div class="or-press-the-the-button-below-parent" id="frameContainer10">
-        <div class="or-press-the">Or press the the button below</div>
-        <router-link class="buttonnext1" to="success">
+        <div class="or-press-the">Waiting for wallet authorisation...</div>
+        <!-- <router-link class="buttonnext1" to="success">
           <b class="ton-kepeer">Sign in with Tokenkepeer</b>
-        </router-link>
+        </router-link> -->
       </div>
       <div class="we-do-not">
         We do not receive or store your wallet login details, so your TON is
@@ -146,6 +146,7 @@ function waitForWalletConnection() {
     isConnected(userDataStore.userDTO.tonwallet)
     .then((response) => {
       if (response.data === 200) {
+        loading.value = false;
         router.push({ name: 'success' });
       } else {
         waitForWalletConnection();
@@ -159,12 +160,14 @@ function waitForWalletConnection() {
 
 const userDataStore = useUserDataStore();
 const qrCodeLink = ref('');
+const loading = ref(false);
 onMounted(() => {
   connectWallet()
   .then((response) => {
     console.log(response);
     userDataStore.userDTO.tonwallet = response.data.id;
     qrCodeLink.value = response.data.url;
+    loading.value = true;
     waitForWalletConnection();
   })
   .catch((error) => {
