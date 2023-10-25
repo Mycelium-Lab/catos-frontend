@@ -18,7 +18,7 @@
           @click="() => setRole('borrower')"
           :to="{
             name: title === 'Войти' ? 'login' : 'start',
-            state: { title: 'Регистрация заемщика', role: 'borrower' },
+            state: { title: 'Регистрация заемщика'},
           }"
         >
           <div class="description-and-image">
@@ -42,7 +42,7 @@
           class="component-191"
           :to="{
             name: title === 'Войти' ? 'login' : 'start',
-            state: { title: 'Регистрация инвестора', role: 'depositor' },
+            state: { title: 'Регистрация инвестора'},
           }"
           id="component19Container1"
         >
@@ -67,7 +67,7 @@
           class="component-193"
           :to="{
             name: title === 'Войти' ? 'login' : 'start',
-            state: { title: 'Регистрация кредитора', role: 'creditor' },
+            state: { title: 'Регистрация кредитора'},
           }"
         >
           <div class="description-and-image">
@@ -99,7 +99,7 @@
           @click="() => setRole('collector')"
           :to="{
             name: title === 'Войти' ? 'login' : 'start',
-            state: { title: 'Регистрация заемщика', role: 'collector' },
+            state: { title: 'Регистрация заемщика'},
           }"
         >
           <div class="description-and-image">
@@ -162,10 +162,13 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import api from "../../api/api";
+import { useUserDataStore } from "@/stores/userData";
+import { Role } from "../../utils/constants";
 
-const setRole = (role: any) => {
-  localStorage.setItem("role", JSON.stringify(role));
+const userDataStore = useUserDataStore();
+const setRole = (role: Role) => {
+  // localStorage.setItem("role", JSON.stringify(role));
+  userDataStore.userDTO.role = role;
 };
 
 //TODO: Переписать на vue router from  компонент name вместо history

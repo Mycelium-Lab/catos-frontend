@@ -135,10 +135,10 @@
 </template>
 
 <script setup lang="ts">
-import api from "../../api/api"
+// import api from "../../api/api"
 
-const response = await api.usersConnectWallet();
-console.log(response);
+// const response = await api.usersConnectWallet();
+// console.log(response);
 </script>
 
 <style scoped lang="scss">

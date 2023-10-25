@@ -1,0 +1,1 @@
+export type Role = 'borrower' | 'creditor' | 'depositor' | 'collector'

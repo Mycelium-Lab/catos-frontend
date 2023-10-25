@@ -13,12 +13,14 @@
             <div class="component-20-parent">
               <catos-checkbox @on-change="(arg) => handleCheckboxChange('box1', arg)" variant="rounded"></catos-checkbox>
               <div class="div9">
-                Я даю согласие на обработку, хранение моих персональных данных,
-                а также данных компании, которую я представляю
+                Я даю согласие на обработку и хранение моих персональных данных
+                  <div v-if="['creditor', 'collector'].includes(userDataStore.userDTO.role)">
+                  а также данных компании, которую я представляю
+                </div>
               </div>
             </div>
             <div class="frame-group">
-              <div class="component-20-group">
+              <div class="component-20-group" v-if="['collector', 'creditor'].includes(userDataStore.userDTO.role)">
                 <catos-checkbox @on-change="(arg) => handleCheckboxChange('box2', arg)" variant="rounded"></catos-checkbox>
 
                 <div class="div9">
@@ -26,12 +28,16 @@
                   <p class="p">свою организацию</p>
                 </div>
               </div>
-              <div class="component-20-group">
+              <div class="component-20-group" v-if="['collector', 'creditor'].includes(userDataStore.userDTO.role)">
                 <catos-checkbox @on-change="(arg) => handleCheckboxChange('box3', arg)" variant="rounded"></catos-checkbox>
 
-                <div class="div9">
+                <div class="div9" v-if="userDataStore.userDTO.role === 'creditor'">
                   Продолжая, я соглашаюсь, что моя организация имеет право
                   оказания услуг кредиторской деятельности
+                </div>
+                <div class="div9" v-else-if="userDataStore.userDTO.role == 'collector'">
+                  Продолжая, я соглашаюсь, что моя организация имеет право
+                  оказания услуг коллекторской деятельности
                 </div>
               </div>
             </div>
@@ -136,9 +142,9 @@
       :class="{ disabled: !isLinkActive }"
       :to="{
         name:
-          role === 'creditor'
+          userDataStore.userDTO.role === 'creditor'
             ? 'anketa-redst'
-            : role === 'depositor'
+            :  userDataStore.userDTO.role === 'depositor'
             ? 'signup-depositor'
             : 'signup-borrower',
       }"
@@ -183,10 +189,7 @@ import { useUserDataStore } from "@/stores/userData";
 const title = computed(() => {  
   return window.history.state.title;
 });
-const role = computed(() => window.history.state?.role);
-
 const userDataStore = useUserDataStore();
-userDataStore.userDTO.role = role.value;
 // const phoneNumber = ref("");
 // const email = ref("");
 // const password = ref("");
@@ -201,7 +204,7 @@ const checkboxes = reactive({
   box3: false
 });
 const isLinkActive = computed(() => {
-  return checkboxes.box1 && checkboxes.box2 && checkboxes.box3;
+  return ['creditor', 'collector'].includes(userDataStore.userDTO.role) ? checkboxes.box1 && checkboxes.box2 && checkboxes.box3 : checkboxes.box1;
 });
 </script>
 
