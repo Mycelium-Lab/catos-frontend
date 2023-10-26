@@ -136,7 +136,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { connectWallet, isConnected } from '@/api/users.api';
+import { connectWallet, isConnected, register } from '@/api/users.api';
 import { useUserDataStore } from '@/stores/userData';
 import router from '@/router';
 import QrCodeStyling from '../qr-code-styling.vue';
@@ -146,8 +146,7 @@ function waitForWalletConnection() {
     isConnected(userDataStore.userDTO.tonwallet)
     .then((response) => {
       if (response.data === 200) {
-        loading.value = false;
-        router.push({ name: 'success' });
+        registerUser();
       } else {
         waitForWalletConnection();
       }
@@ -156,6 +155,23 @@ function waitForWalletConnection() {
       console.log(error);
     });
   }, 1000);
+}
+
+function registerUser() {
+  loading.value = false;
+  register(userDataStore.userDTO)
+  .then((response) => {
+    if (response.status === 201)
+    {
+      router.push({ name: 'success' });
+    }
+    else {
+      console.log(response);
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 }
 
 const userDataStore = useUserDataStore();
