@@ -6,7 +6,7 @@
       :readonly="readonly"
       :placeholder="mutatePlaceholder"
       :type="type"
-      @input="($event) => $emit('update:modelValue', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
       :style="
         left
           ? { paddingLeft: '3.3em' }
