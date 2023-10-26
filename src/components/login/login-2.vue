@@ -40,12 +40,14 @@
       <input-data
         v-if="activeForm === 'email'"
         placeholder="Ваша почта"
+        v-model="userLoginCredentials.email"
         :style="{ position: 'relative', zIndex: '1000', width: '100%' }"
       ></input-data>
 
       <input-data
         v-if="activeForm === 'email'"
         placeholder="Введите пароль"
+        v-model="userLoginCredentials.password"
         :style="{ position: 'relative', zIndex: '1000', width: '100%' }"
       ></input-data>
       <input-data
@@ -80,6 +82,8 @@
         :style="{ textDecoration: 'none' }"
       >
         <catos-button
+          @click="handleLogin"
+          :disabled="isLoginLoading"
           :style="{ height: '45px', width: '70vw', marginRight: '0' }"
           >Вход</catos-button
         >
@@ -92,9 +96,11 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import { useLoginApi } from '@/composables/useLoginApi'
 import catosButton from "../ui-kit/buttons/catos-button.vue";
 import inputData from "../fields/input-data.vue";
 const activeForm = ref("email");
+const {userLoginCredentials, isLoginLoading, handleLogin } = useLoginApi()
 const role = computed(() => {
   localStorage.setItem("role", JSON.stringify(window.history.state.role));
   return window.history.state.role;
