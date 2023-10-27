@@ -163,7 +163,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useUserDataStore } from "@/stores/userData";
-import { Role } from "../../utils/constants";
+import { Role } from "../../types/user.types";
 
 const userDataStore = useUserDataStore();
 const setRole = (role: Role) => {

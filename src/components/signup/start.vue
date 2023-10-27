@@ -11,31 +11,62 @@
         <div class="text-and-button">
           <div class="text">
             <div class="component-20-parent">
-              <catos-checkbox @on-change="(arg) => handleCheckboxChange('box1', arg)" variant="rounded"></catos-checkbox>
+              <catos-checkbox
+                @on-change="arg => handleCheckboxChange('box1', arg)"
+                variant="rounded"
+              ></catos-checkbox>
               <div class="div9">
                 Я даю согласие на обработку и хранение моих персональных данных
-                  <div v-if="['creditor', 'collector'].includes(userDataStore.userDTO.role)">
+                <div
+                  v-if="
+                    ['creditor', 'collector'].includes(
+                      userDataStore.userDTO.role
+                    )
+                  "
+                >
                   а также данных компании, которую я представляю
                 </div>
               </div>
             </div>
             <div class="frame-group">
-              <div class="component-20-group" v-if="['collector', 'creditor'].includes(userDataStore.userDTO.role)">
-                <catos-checkbox @on-change="(arg) => handleCheckboxChange('box2', arg)" variant="rounded"></catos-checkbox>
+              <div
+                class="component-20-group"
+                v-if="
+                  ['collector', 'creditor'].includes(userDataStore.userDTO.role)
+                "
+              >
+                <catos-checkbox
+                  @on-change="arg => handleCheckboxChange('box2', arg)"
+                  variant="rounded"
+                ></catos-checkbox>
 
                 <div class="div9">
                   <p class="p">Подтверждаю, что имею право представлять</p>
                   <p class="p">свою организацию</p>
                 </div>
               </div>
-              <div class="component-20-group" v-if="['collector', 'creditor'].includes(userDataStore.userDTO.role)">
-                <catos-checkbox @on-change="(arg) => handleCheckboxChange('box3', arg)" variant="rounded"></catos-checkbox>
+              <div
+                class="component-20-group"
+                v-if="
+                  ['collector', 'creditor'].includes(userDataStore.userDTO.role)
+                "
+              >
+                <catos-checkbox
+                  @on-change="arg => handleCheckboxChange('box3', arg)"
+                  variant="rounded"
+                ></catos-checkbox>
 
-                <div class="div9" v-if="userDataStore.userDTO.role === 'creditor'">
+                <div
+                  class="div9"
+                  v-if="userDataStore.userDTO.role === 'creditor'"
+                >
                   Продолжая, я соглашаюсь, что моя организация имеет право
                   оказания услуг кредиторской деятельности
                 </div>
-                <div class="div9" v-else-if="userDataStore.userDTO.role == 'collector'">
+                <div
+                  class="div9"
+                  v-else-if="userDataStore.userDTO.role == 'collector'"
+                >
                   Продолжая, я соглашаюсь, что моя организация имеет право
                   оказания услуг коллекторской деятельности
                 </div>
@@ -60,7 +91,7 @@
             </div>
             <input-data
               class="phone-field"
-              @selected="userDataStore.userDTO.phone = $event"
+              @update:model-value="userDataStore.userDTO.phone = $event"
               type="phone"
               placeholder="Ваш номер телефона"
               :style="{ width: '90%' }"
@@ -84,7 +115,7 @@
             </div>
             <input-data
               class="phone-field"
-              @selected="userDataStore.userDTO.email = $event"
+              @update:model-value="userDataStore.userDTO.email = $event"
               placeholder="Ваш email"
               :style="{ width: '90%' }"
               :left="true"
@@ -98,7 +129,7 @@
           <div class="fieldsregistration-options2">
             <input-data
               class="password-field phone-field"
-              @selected="userDataStore.userDTO.password = $event"
+              @update:model-value="userDataStore.userDTO.password = $event"
               placeholder="Пароль"
               :style="{ width: '90%' }"
               :left="true"
@@ -110,6 +141,7 @@
             </input-data>
             <input-data
               class="password-field-repead password-field phone-field"
+              @update:model-value="repeatPass = $event"
               placeholder="Пароль"
               :style="{ width: '90%' }"
               :left="true"
@@ -144,7 +176,7 @@
         name:
           userDataStore.userDTO.role === 'creditor'
             ? 'anketa-redst'
-            :  userDataStore.userDTO.role === 'depositor'
+            : userDataStore.userDTO.role === 'depositor'
             ? 'signup-depositor'
             : 'signup-borrower',
       }"
@@ -180,11 +212,14 @@ import catosCheckbox from "../../components/ui-kit/catos-checkbox.vue";
 import { ref, computed, reactive } from "vue";
 import { useUserDataStore } from "@/stores/userData";
 
-const title = computed(() => {  
+const title = computed(() => {
   return window.history.state.title;
 });
 const userDataStore = useUserDataStore();
-const handleCheckboxChange = (checkboxName: keyof typeof checkboxes, checked: boolean) => {
+const handleCheckboxChange = (
+  checkboxName: keyof typeof checkboxes,
+  checked: boolean
+) => {
   if (checkboxes.hasOwnProperty(checkboxName)) {
     checkboxes[checkboxName] = checked;
   }
@@ -192,10 +227,19 @@ const handleCheckboxChange = (checkboxName: keyof typeof checkboxes, checked: bo
 const checkboxes = reactive({
   box1: false,
   box2: false,
-  box3: false
+  box3: false,
 });
+const repeatPass = ref("");
 const isLinkActive = computed(() => {
-  return ['creditor', 'collector'].includes(userDataStore.userDTO.role) ? checkboxes.box1 && checkboxes.box2 && checkboxes.box3 : checkboxes.box1;
+  return (
+    (["creditor", "collector"].includes(userDataStore.userDTO.role)
+      ? checkboxes.box1 && checkboxes.box2 && checkboxes.box3
+      : checkboxes.box1) &&
+    repeatPass.value === userDataStore.userDTO.password &&
+    userDataStore.userDTO.email &&
+    userDataStore.userDTO.password &&
+    userDataStore.userDTO.phone
+  );
 });
 </script>
 
@@ -999,7 +1043,7 @@ const isLinkActive = computed(() => {
   top: 5em;
 }
 .disabled {
-    opacity: 0.5;
-    pointer-events: none;
+  opacity: 0.5;
+  pointer-events: none;
 }
 </style>

@@ -6,7 +6,7 @@
       :readonly="readonly"
       :placeholder="mutatePlaceholder"
       :type="type"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="$emit('update:modelValue',($event.target as HTMLInputElement).value)"
       :style="
         left
           ? { paddingLeft: '3.3em' }
@@ -28,7 +28,7 @@
       <slot name="right-icon" />
     </div>
   </div>
-</template>
+</template>ё
 
 <script setup lang="ts">
 import { computed } from "vue";
@@ -36,7 +36,7 @@ const { placeholder, simulate } = defineProps<{
   modelValue?: string
   placeholder?: string
   type?: string
-  left?: string
+  left?: boolean
   background?: string
   border?: string
   readonly?: boolean

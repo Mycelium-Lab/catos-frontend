@@ -23,7 +23,7 @@
                     :style="{ width: '100%' }"
                     placeholder="Гражданство"
                     :right="true"
-                    @selected="ev => (userDataStore.userDTO.passport.country = ev)"
+                    @update:model-value="ev => (userDataStore.userDTO.passport.country = ev)"
                   >
                     <template v-slot:right-icon>
                       <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -42,7 +42,7 @@
                   :style="{ width: '100%' }"
                   placeholder="1234 09876"
                   :right="true"
-                  @selected="ev => (userDataStore.userDTO.passport.number = ev)"
+                  @update:model-value="ev => (userDataStore.userDTO.passport.number = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -59,7 +59,7 @@
                     :style="{ width: '100%' }"
                     type="date"
                     placeholder="01.02.2022"
-                    @selected="ev => (userDataStore.userDTO.passport.issue_date = ev)"
+                    @update:model-value="ev => (userDataStore.userDTO.passport.issue_date = ev)"
                   ></input-data>
                   <div class="iconscalendar-wrapper">
                     <img
@@ -106,7 +106,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Введите имя"
                   :right="true"
-                  @selected="ev => (userDataStore.userDTO.passport.name = ev)"
+                  @update:model-value="ev => (userDataStore.userDTO.passport.name = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -125,7 +125,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Введите фамилию"
                   :right="true"
-                  @selected="ev => (userDataStore.userDTO.passport.surname = ev)"
+                  @update:model-value="ev => (userDataStore.userDTO.passport.surname = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -144,7 +144,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Введите отчество"
                   :right="true"
-                  @selected="ev => (userDataStore.userDTO.passport.middleName = ev)"
+                  @update:model-value="ev => (userDataStore.userDTO.passport.middleName = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -160,7 +160,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Национальность"
                   :right="true"
-                  @selected="ev => (userDataStore.userDTO.passport.country = ev)"
+                  @update:model-value="ev => (userDataStore.userDTO.passport.country = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -179,7 +179,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Ваша должность"
                   :right="true"
-                  @selected="ev => (userDataStore.userDTO.passport)"
+                  @update:model-value="ev => (userDataStore.userDTO.passport)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -317,7 +317,7 @@
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
               :right="true"
-              @selected="ev => (userDataStore.userDTO.passport.registration_address.street = ev)"
+              @update:model-value="ev => (userDataStore.userDTO.passport.registration_address.street = ev)"
             >
               <template v-slot:right-icon>
                 <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -332,7 +332,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.userDTO.passport.registration_address.house = ev)"
+                @update:model-value="ev => (userDataStore.userDTO.passport.registration_address.house = ev)"
               ></input-data>
             </div>
             <div class="parent11">
@@ -340,7 +340,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.userDTO.passport.registration_address.housing = ev)"
+                @update:model-value="ev => (userDataStore.userDTO.passport.registration_address.housing = ev)"
               ></input-data>
             </div>
           </div>
@@ -350,7 +350,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.userDTO.passport.registration_address.building = ev)"
+                @update:model-value="ev => (userDataStore.userDTO.passport.registration_address.building = ev)"
               ></input-data>
             </div>
             <div class="parent11">
@@ -358,7 +358,7 @@
               <input-data
                 placeholder="№"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.userDTO.passport.registration_address.apartment = ev)"
+                @update:model-value="ev => (userDataStore.userDTO.passport.registration_address.apartment = ev)"
               ></input-data>
             </div>
           </div>
@@ -367,7 +367,7 @@
             <input-data
               placeholder="Индекс"
               :style="{ width: '100%' }"
-              @selected="ev => (userDataStore.userDTO.passport.registration_address.index = ev)"
+              @update:model-value="ev => (userDataStore.userDTO.passport.registration_address.index = ev)"
             ></input-data>
           </div>
         </div>
@@ -441,7 +441,7 @@
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
               :right="true"
-              @selected="ev => (userDataStore.userDTO.passport.living_address.street = ev)"
+              @update:model-value="ev => (userDataStore.userDTO.passport.living_address.street = ev)"
             >
               <template v-slot:right-icon>
                 <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -456,7 +456,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.userDTO.passport.living_address.house = ev)"
+                @update:model-value="ev => (userDataStore.userDTO.passport.living_address.house = ev)"
               ></input-data>
             </div>
             <div class="parent11">
@@ -464,7 +464,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.userDTO.passport.living_address.housing = ev)"
+                @update:model-value="ev => (userDataStore.userDTO.passport.living_address.housing = ev)"
               ></input-data>
             </div>
           </div>
@@ -474,7 +474,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.userDTO.passport.living_address.building = ev)"
+                @update:model-value="ev => (userDataStore.userDTO.passport.living_address.building = ev)"
               ></input-data>
             </div>
             <div class="parent11">
@@ -482,7 +482,7 @@
               <input-data
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @selected="ev => (userDataStore.userDTO.passport.living_address.apartment = ev)"
+                @update:model-value="ev => (userDataStore.userDTO.passport.living_address.apartment = ev)"
               ></input-data>
             </div>
           </div>
@@ -491,7 +491,7 @@
             <input-data
               placeholder="193 984"
               :style="{ width: '100%' }"
-              @selected="ev => (userDataStore.userDTO.passport.living_address.index = ev)"
+              @update:model-value="ev => (userDataStore.userDTO.passport.living_address.index = ev)"
             ></input-data>
           </div>
         </div>

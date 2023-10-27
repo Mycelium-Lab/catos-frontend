@@ -22,8 +22,8 @@
                   <catos-select
                     placeholder="Россия"
                     :options="options"
-                    :value="value"
-                    @selected="ev => (value = ev)"
+                    :value="userDataStore.userDTO.passport.country"
+                    @selected="ev => (userDataStore.userDTO.passport.country = ev)"
                     :optionWidth="77"
                     :style="{ width: '100%' }"
                   ></catos-select>
@@ -36,7 +36,9 @@
                   <span>Серия и номер </span>
                   <span class="span2">* </span>
                 </div>
-                <input-data placeholder="1234 09876"></input-data>
+                <input-data
+                @update:model-value="userDataStore.userDTO.passport.number = $event"
+                placeholder="1234 09876"></input-data>
               </div>
               <div class="frame-div">
                 <div class="div10">
@@ -45,6 +47,7 @@
                 </div>
                 <div class="fields-password-and-mail-container">
                   <input-data
+                    @update:model-value="userDataStore.userDTO.passport.issue_date = $event"
                     type="date"
                     placeholder="01.02.2022"
                     :style="{ width: '100%' }"
@@ -72,6 +75,7 @@
               <catos-textarea
                 :style="{ width: '100%' }"
                 placeholder="ГУМВД России по Санкт-Петербургу, и Ленинградской области"
+                @selected="userDataStore.userDTO.passport.issuing_organization = $event"
               ></catos-textarea>
             </div>
           </div>
@@ -87,6 +91,7 @@
                 </span>
               </div>
               <input-data
+                @update:model-value="userDataStore.userDTO.passport.name = $event"
                 placeholder="Введите имя"
                 :style="{ width: '100%' }"
                 :right="true"
@@ -105,6 +110,7 @@
                 </span>
               </div>
               <input-data
+                @update:model-value="userDataStore.userDTO.passport.surname = $event"
                 placeholder="Введите фамилию"
                 :style="{ width: '100%' }"
                 :right="true"
@@ -123,6 +129,7 @@
                 </span>
               </div>
               <input-data
+                @update:model-value="userDataStore.userDTO.passport.middleName = $event"
                 placeholder="Введите отчество"
                 :style="{ width: '100%' }"
                 :right="true"
@@ -139,6 +146,7 @@
               </div>
               <div class="fields-password-and-mail-container">
                 <input-data
+                  @update:model-value="userDataStore.userDTO.passport.birthdate = $event"
                   type="date"
                   placeholder="01.02.1994"
                   :style="{ width: '100%' }"
@@ -162,7 +170,7 @@
               <div
                 class="radiobutton-parent"
                 @click="
-                  () => (isSelectedRadioButton1 = !isSelectedRadioButton1)
+                  () => {isSelectedRadioButton1 = true; isSelectedRadioButton2 = false; userDataStore.userDTO.passport.gender = 'male'}
                 "
               >
                 <catos-checkbox
@@ -176,7 +184,7 @@
               <div
                 class="radiobutton-group"
                 @click="
-                  () => (isSelectedRadioButton2 = !isSelectedRadioButton2)
+                      () => {isSelectedRadioButton2 = true; isSelectedRadioButton1 = false; userDataStore.userDTO.passport.gender = 'female'}
                 "
               >
                 <catos-checkbox
@@ -200,8 +208,7 @@
       <router-link
         class="buttonnext"
         :to="{
-          name: 'depositor-verification',
-          state: { role },
+          name: 'connect-wallet',
         }"
       >
         <b class="b1">Продолжить</b>
@@ -270,11 +277,13 @@
                       />
                     </div>
                   </div>
-                  <div class="div33">
-                    <p class="p">Разворот</p>
-                    <p class="p">с датой выдачи</p>
-                    <p class="p">и фотографией</p>
-                  </div>
+                  <loader-field
+                      name="Разворот с датой выдачи и фотографией"
+                      :obligatory-field="true"
+                      :style="{ width: '100%', paddingBottom: '0.1em' }"
+                      class="loader-file"
+                      @on-change="(file) => saveImage('passPhoto1', file)"
+                    ></loader-field>
                 </div>
                 <div class="loadernav">
                   <div class="icons-group">
@@ -373,10 +382,15 @@
                         </div>
                       </div>
                     </div>
-                    <div class="div33">
-                      <p class="p">Ваше фото и разворот</p>
-                      <p class="p">с датой выдачи</p>
-                    </div>
+                    <div class="loader-group">
+                    <loader-field
+                      name="Загрузите селфи с разворотом паспорта и датой выдачи"
+                      :obligatory-field="true"
+                      :style="{ width: '100%', paddingBottom: '0.1em' }"
+                      class="loader-file"
+                      @on-change="(file) => saveImage('selfie', file)"
+                    ></loader-field>
+                  </div>
                   </div>
                 </div>
                 <div class="loadernav">
@@ -420,10 +434,6 @@
                 </div>
               </div>
             </div>
-            <div class="div39">
-              <span>Загрузите селфи с разворотом паспорта </span>
-              <span class="span2">*</span>
-            </div>
           </div>
         </div>
       </div>
@@ -453,15 +463,42 @@ import { ref, computed } from "vue";
 import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
+import loaderField from "../../../components/fields/loader-field.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
-const role = computed(() => window.history.state?.role);
-const value = ref("");
+import { useUserDataStore } from "@/stores/userData";
+import { fileToBase64 } from "@/utils/fileToBase64";
+
+const userDataStore = useUserDataStore();
 const isSelectedRadioButton1 = ref(false);
 const isSelectedRadioButton2 = ref(false);
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
 };
+const saveImage = async (boxName: string, file: File | null) => {
+  if (file) {
+    switch (boxName) {
+      case "passPhoto1":
+        userDataStore.firstPhotoFile = file;
+        userDataStore.userDTO.passport.first_photo = await fileToBase64(file);
+        break;
+      case "passPhoto2":
+        userDataStore.secondPhotoFile = file;
+        userDataStore.userDTO.passport.second_photo = await fileToBase64(file);
+        break;
+      case "selfie":
+        userDataStore.selfieFile = file;
+        userDataStore.userDTO.passport.selfie = await fileToBase64(file);
+        break;
+      default:
+        break;
+    }
+    console.log('File saved');
+  }
+  else {
+    console.log("File is null");
+  }
+}
 </script>
 
 <style scoped lang="scss">

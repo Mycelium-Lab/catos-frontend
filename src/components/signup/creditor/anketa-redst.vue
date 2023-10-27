@@ -53,7 +53,7 @@
               </div>
               <input-data
                 placeholder="Введите наименование"
-                @selected="ev => (userDataStore.userDTO.paper.name= ev)"
+                @update:model-value="ev => (userDataStore.userDTO.paper.name= ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -70,7 +70,7 @@
               </div>
               <input-data
                 placeholder="Введите номер"
-                @selected="ev => (userDataStore.userDTO.paper.registration_number = ev)"
+                @update:model-value="ev => (userDataStore.userDTO.paper.registration_number = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -87,7 +87,7 @@
               </div>
               <input-data
                 placeholder="Введите адрес"
-                @selected="ev => (userDataStore.userDTO.paper.address = ev)"
+                @update:model-value="ev => (userDataStore.userDTO.paper.address = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -101,7 +101,7 @@
               <div class="div10">Веб-сайт организации</div>
               <input-data
                 placeholder="Введите адрес сайта"
-                @selected="ev => (userDataStore.userDTO.paper.website = ev)"
+                @update:model-value="ev => (userDataStore.userDTO.paper.website = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -328,7 +328,7 @@
                   placeholder="Тип документа"
                   :style="{ width: '86.8%', left: '5vw' }"
                   :right="true"
-                  @selected="ev => (userDataStore.extraDocsType = ev)"
+                  @update:model-value="ev => (userDataStore.extraDocsType = ev)"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
