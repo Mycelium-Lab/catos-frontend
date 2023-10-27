@@ -35,7 +35,6 @@ export type UserData = {
       index: number,
     },
     living_address: {
-      country: string,
       region: string,
       neighborhood: string,
       city: string,
@@ -71,4 +70,6 @@ export type UserData = {
     second_photo: string,
     third_photo: string,
   },
+  nationality: string,
+  ownership: boolean,
 }

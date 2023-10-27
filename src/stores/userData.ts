@@ -67,6 +67,8 @@ export const useUserDataStore = defineStore("userData", () => {
       second_photo: "",
       third_photo: "",
     },
+    nationality: "",
+    ownership: true
   });
 
   const firstPhotoFile = ref<File | null>(null);
