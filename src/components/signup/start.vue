@@ -89,18 +89,19 @@
                 <p class="p">для звонков и смс</p>
               </span>
             </div>
-            <input-data
-              class="phone-field"
-              @update:model-value="userDataStore.userDTO.phone = $event"
-              type="phone"
-              placeholder="Ваш номер телефона"
-              :style="{ width: '90%' }"
-              :left="true"
-            >
-              <template v-slot:left-icon>
-                <img src="@/assets/images/iconsmobile.svg" />
-              </template>
-            </input-data>
+              <input-data
+                class="phone-field"
+                v-model:model-value="userDataStore.userDTO.phone"
+                @update:model-value="userDataStore.userDTO.phone = $event"
+                type="phone"
+                placeholder="Ваш номер телефона"
+                :style="{ width: '90%' }"
+                :left="true"
+              >
+                <template v-slot:left-icon>
+                  <img src="@/assets/images/iconsmobile.svg" />
+                </template>
+              </input-data>
           </div>
           <div class="fieldsregistration-options1">
             <div class="text-and-fill1">
@@ -115,6 +116,7 @@
             </div>
             <input-data
               class="phone-field"
+              v-model:model-value="userDataStore.userDTO.email"
               @update:model-value="userDataStore.userDTO.email = $event"
               placeholder="Ваш email"
               :style="{ width: '90%' }"
@@ -178,6 +180,8 @@
             ? 'anketa-redst'
             : userDataStore.userDTO.role === 'investor'
             ? 'signup-depositor'
+            : userDataStore.userDTO.role === 'collector'
+            ? 'anketa-redst'
             : 'signup-borrower',
       }"
     >
@@ -209,7 +213,7 @@
 <script setup lang="ts">
 import inputData from "../../components/fields/input-data.vue";
 import catosCheckbox from "../../components/ui-kit/catos-checkbox.vue";
-import { ref, computed, reactive } from "vue";
+import { ref, computed, reactive, KeepAlive } from "vue";
 import { useUserDataStore } from "@/stores/userData";
 
 const title = computed(() => {
