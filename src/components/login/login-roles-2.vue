@@ -38,7 +38,7 @@
           </div>
         </router-link>
         <router-link
-          @click="() => setRole('depositor')"
+          @click="() => setRole('investor')"
           class="component-191"
           :to="{
             name: title === 'Войти' ? 'login' : 'start',
