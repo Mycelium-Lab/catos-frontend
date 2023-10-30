@@ -196,7 +196,7 @@
                   <div
                     class="radiobutton-parent"
                     @click="
-                      () => {isSelectedRadioButton1 = true; isSelectedRadioButton2 = false; userDataStore.userDTO.passport.gender = 'male'}
+                      () => {isSelectedRadioButton1 = true; isSelectedRadioButton2 = false; userDataStore.userDTO.passport.gender = 'М'}
                     "
                   >
                     <catos-checkbox
@@ -209,7 +209,7 @@
                   <div
                     class="radiobutton-parent"
                     @click="
-                      () => {isSelectedRadioButton2 = true; isSelectedRadioButton1 = false; userDataStore.userDTO.passport.gender = 'female'}
+                      () => {isSelectedRadioButton2 = true; isSelectedRadioButton1 = false; userDataStore.userDTO.passport.gender = 'Ж'}
                     "
                   >
                     <catos-checkbox

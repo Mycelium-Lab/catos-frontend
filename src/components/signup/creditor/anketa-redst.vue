@@ -440,7 +440,7 @@ const options = {
   euro: ["Польша", "Латвия", "Молдова"],
 };
 const regOptions = {
-  sng: ["ООО", "ОАО", "ИП", "Самозанятость"],
+  sng: ["ООО", "ОАО", "ПАО"],
   euro: ["LTD", "LLC", "Sole proprietorship"],
 }
 const checkbox = reactive({

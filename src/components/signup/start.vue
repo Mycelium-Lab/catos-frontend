@@ -176,7 +176,7 @@
         name:
           userDataStore.userDTO.role === 'creditor'
             ? 'anketa-redst'
-            : userDataStore.userDTO.role === 'depositor'
+            : userDataStore.userDTO.role === 'investor'
             ? 'signup-depositor'
             : 'signup-borrower',
       }"

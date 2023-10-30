@@ -7,7 +7,7 @@
     <router-link
       class="rectangle-parent"
       id="groupContainer"
-      :to="{ name: 'roles', state: { title: 'Войти' } }"
+      :to="{ name: 'login', state: { title: 'Войти' } }"
     >
       <div class="group-child">
         <b class="b">Войти</b>
