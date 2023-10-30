@@ -17,7 +17,7 @@
           class="component-19"
           @click="() => setRole('borrower')"
           :to="{
-            name: title === 'Войти' ? 'login' : 'start',
+            name: 'start',
             state: { title: 'Регистрация заемщика'},
           }"
         >
@@ -41,7 +41,7 @@
           @click="() => setRole('investor')"
           class="component-191"
           :to="{
-            name: title === 'Войти' ? 'login' : 'start',
+            name: 'start',
             state: { title: 'Регистрация инвестора'},
           }"
           id="component19Container1"
@@ -66,7 +66,7 @@
           @click="() => setRole('creditor')"
           class="component-193"
           :to="{
-            name: title === 'Войти' ? 'login' : 'start',
+            name: 'start',
             state: { title: 'Регистрация кредитора'},
           }"
         >
@@ -98,8 +98,8 @@
           class="component-193"
           @click="() => setRole('collector')"
           :to="{
-            name: title === 'Войти' ? 'login' : 'start',
-            state: { title: 'Регистрация заемщика'},
+            name: 'start',
+            state: { title: 'Регистрация коллектора'},
           }"
         >
           <div class="description-and-image">
