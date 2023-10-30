@@ -53,6 +53,7 @@
               </div>
               <input-data
                 placeholder="Введите наименование"
+                v-model:model-value="userDataStore.userDTO.paper.name"
                 @update:model-value="ev => (userDataStore.userDTO.paper.name= ev)"
                 :style="{ width: '100%' }"
                 :right="true"
@@ -70,6 +71,7 @@
               </div>
               <input-data
                 placeholder="Введите номер"
+                v-model:model-value="regNumberString"
                 @update:model-value="ev => (userDataStore.userDTO.paper.registration_number = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
@@ -87,6 +89,7 @@
               </div>
               <input-data
                 placeholder="Введите адрес"
+                v-model:model-value="addressString"
                 @update:model-value="ev => (userDataStore.userDTO.paper.address = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
@@ -101,6 +104,7 @@
               <div class="div10">Веб-сайт организации</div>
               <input-data
                 placeholder="Введите адрес сайта"
+                v-model:model-value="userDataStore.userDTO.paper.website"
                 @update:model-value="ev => (userDataStore.userDTO.paper.website = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
@@ -451,6 +455,12 @@ const handleCheckboxChange = (checked: boolean) => {
 };
 const isLinkActive = computed(() => {
   return checkbox.checked;
+});
+const regNumberString = computed(() => {
+  return userDataStore.userDTO.paper.registration_number.toString();
+});
+const addressString = computed(() => {
+  return userDataStore.userDTO.paper.address.toString();
 });
 const saveImage = async (boxName: string, file: File | null) => {
   if (file) {
