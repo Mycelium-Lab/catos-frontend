@@ -69,13 +69,34 @@
         </div>
         <div class="table">
           <div class="tabs">
-            <div class="tabstextactive">
+            <div
+              :class="
+                chart1 === 0
+                  ? 'tabstextactive tabstextresting'
+                  : 'tabstextresting'
+              "
+              @click="() => (chart1 = 0)"
+            >
               <div class="tab-title">День</div>
             </div>
-            <div class="tabstextresting">
+            <div
+              :class="
+                chart1 === 1
+                  ? 'tabstextactive tabstextresting'
+                  : 'tabstextresting'
+              "
+              @click="() => (chart1 = 1)"
+            >
               <div class="tab-title">Неделя</div>
             </div>
-            <div class="tabstextresting">
+            <div
+              :class="
+                chart1 === 2
+                  ? 'tabstextactive tabstextresting'
+                  : 'tabstextresting'
+              "
+              @click="() => (chart1 = 2)"
+            >
               <div class="tab-title">Месяц</div>
             </div>
           </div>
@@ -1436,20 +1457,23 @@
             <div class="frame-group">
               <div class="group">
                 <div class="div11">Выберите пулл:</div>
-                <div class="fields-password-and-mail2">
-                  <div class="frame-div">
-                    <div class="div12">Все пуллы</div>
-                    <img
-                      class="chevron-right-icon"
-                      alt=""
-                      src="@/assets/images/chevron-right.svg"
-                    />
-                  </div>
-                </div>
+                <catos-select
+                  placeholder="Все пуллы"
+                  :options="optionsPulls"
+                  :value="pull1"
+                  @selected="ev => (pull1 = ev)"
+                  :optionWidthDesk="329"
+                  :style="{ width: '100%' }"
+                ></catos-select>
               </div>
               <div class="group">
                 <div class="div11">Выберите дату:</div>
-                <input-data type="date" placeholder="01.02.2022"></input-data>
+                <input-data
+                  type="date"
+                  placeholder="01.02.2022"
+                  :value="date"
+                  @selected="e => (date = e)"
+                ></input-data>
               </div>
             </div>
           </div>
@@ -1486,13 +1510,34 @@
           </div>
           <div class="table">
             <div class="tabs">
-              <div class="tabstextactive">
+              <div
+                :class="
+                  chart1 === 0
+                    ? 'tabstextactive tabstextresting'
+                    : 'tabstextresting'
+                "
+                @click="() => (chart1 = 0)"
+              >
                 <div class="tab-title">День</div>
               </div>
-              <div class="tabstextresting">
+              <div
+                :class="
+                  chart1 === 1
+                    ? 'tabstextactive tabstextresting'
+                    : 'tabstextresting'
+                "
+                @click="() => (chart1 = 1)"
+              >
                 <div class="tab-title">Неделя</div>
               </div>
-              <div class="tabstextresting">
+              <div
+                :class="
+                  chart1 === 2
+                    ? 'tabstextactive tabstextresting'
+                    : 'tabstextresting'
+                "
+                @click="() => (chart1 = 2)"
+              >
                 <div class="tab-title">Месяц</div>
               </div>
             </div>
@@ -1536,11 +1581,14 @@
               <div class="frame-group">
                 <div class="group">
                   <div class="div11">Выберите пулл:</div>
-                  <div class="fields-password-and-mail2">
-                    <div class="frame-div">
-                      <div class="div12">Все пуллы</div>
-                    </div>
-                  </div>
+                  <catos-select
+                    placeholder="Все пуллы"
+                    :options="optionsPulls"
+                    :value="pull2"
+                    @selected="ev => (pull2 = ev)"
+                    :optionWidthDesk="329"
+                    :style="{ width: '100%' }"
+                  ></catos-select>
                 </div>
                 <div class="group">
                   <div class="div11">Выберите дату:</div>
@@ -1582,13 +1630,36 @@
           </div>
           <div class="table">
             <div class="tabs1">
-              <div class="tabstextactive">
+              <div
+                :class="
+                  chart2 === 0
+                    ? 'tabstextactive tabstextresting'
+                    : 'tabstextresting'
+                "
+                @click="() => (chart2 = 0)"
+              >
                 <div class="tab-title">День</div>
               </div>
-              <div class="tabstextresting">
+              <div
+                class="tabstextresting"
+                :class="
+                  chart2 === 1
+                    ? 'tabstextactive tabstextresting'
+                    : 'tabstextresting'
+                "
+                @click="() => (chart2 = 1)"
+              >
                 <div class="tab-title">Неделя</div>
               </div>
-              <div class="tabstextresting">
+              <div
+                class="tabstextresting"
+                :class="
+                  chart2 === 2
+                    ? 'tabstextactive tabstextresting'
+                    : 'tabstextresting'
+                "
+                @click="() => (chart2 = 2)"
+              >
                 <div class="tab-title">Месяц</div>
               </div>
             </div>
@@ -1640,6 +1711,11 @@ import sortLeftDesktop from "@/components/dashboard/depositor/sort-left-desktop.
 import sortRightDesktop from "@/components/dashboard/depositor/sort-right-desktop.vue";
 import sort from "@/components/base/desktop/sort.vue";
 import inputData from "@/components/fields/input-data.vue";
+import catosSelect from "@/components/fields/catos-select.vue";
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 
 const chartPairs = ref(["profit", "income"]);
 
@@ -1647,9 +1723,23 @@ const curentWindow = ref("Catos");
 
 const isSort = ref(false);
 
-import { useDevice } from "@/compossables/useDevice";
+const date = ref("");
 
-const { isMobile } = useDevice();
+const pull1 = ref("Все пуллы");
+const pull2 = ref("Все пуллы");
+const optionsPulls = [
+  "Все пуллы",
+  "Пуллл #1",
+  "Пуллл #2",
+  "Пуллл #3",
+  "Пуллл #4",
+  "Пуллл #5",
+  "Пуллл #6",
+  "Пуллл #7",
+];
+
+const chart1 = ref(0);
+const chart2 = ref(0);
 
 const router = useRouter();
 const toSort = () => {
@@ -2302,6 +2392,20 @@ const toggleSlide = (slideIndex: any) => {
   font-size: 0.88em;
   font-weight: 600;
 }
+
+.tabs,
+.tabstextactive,
+.tabstextresting {
+  border: 1px solid #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  cursor: pointer;
+}
+.tabstextresting {
+  padding: 0.69em 1.25em;
+  justify-content: flex-start;
+}
 .tabstextactive {
   border-radius: 8px;
   background-color: #fff;
@@ -2310,17 +2414,6 @@ const toggleSlide = (slideIndex: any) => {
   padding: 0.69em 1.25em;
   justify-content: flex-start;
   color: #3b3b3b;
-}
-.tabs,
-.tabstextactive,
-.tabstextresting {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
-.tabstextresting {
-  padding: 0.69em 1.25em;
-  justify-content: flex-start;
 }
 .tabs {
   width: 19.38em;

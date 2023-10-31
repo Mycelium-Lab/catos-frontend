@@ -26,14 +26,12 @@
                   </template>
                 </input-data>
                 <div class="frame-div">
-                  <div class="iconscalendar-parent">
-                    <img
-                      class="iconscalendar"
-                      alt=""
-                      src="@/assets/images/iconscalendar-mini.svg"
-                    />
-                    <div class="div1">Календарь</div>
-                  </div>
+                  <input-data
+                    type="date"
+                    placeholder="01.02.2022"
+                    :value="date"
+                    @selected="e => (date = e)"
+                  ></input-data>
                   <div class="menu-2-parent">
                     <img
                       class="iconscalendar"
@@ -73,6 +71,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 // @ts-ignore
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 // @ts-ignore
@@ -83,6 +82,7 @@ import inputData from "@/components/fields/input-data.vue";
 
 import { useRouter } from "vue-router";
 
+const date = ref("");
 const router = useRouter();
 const toPulls = () => {
   router.push({ name: "pulls" });

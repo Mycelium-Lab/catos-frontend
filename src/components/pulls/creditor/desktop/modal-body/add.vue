@@ -1,10 +1,13 @@
 <template>
-  <liquidity-managment-modal @close="close">
+  <liquidity-managment-modal @close="close" variant="add">
     <template v-slot:header> Пулл #12345 </template>
     <template v-slot:subheaderIcon>
       <img class="header-icon" alt="" src="@/assets/images/success-cash.svg" />
     </template>
-    <template v-slot:subheader> Добавление ликвидности в пулл #12345 </template>
+    <template v-slot:subheader>
+      {{ role === "depositor" ? "Инвестировать" : "Добавить ликвидность" }} в
+      пулл #12345
+    </template>
     <template v-slot:first-row>
       <div class="field">
         <div class="roi">Баланс кошелька:</div>
@@ -29,6 +32,8 @@
             <input-data
               :style="{ width: '456px' }"
               placeholder="10 000 TON"
+              @selected="e => (inputValue = e)"
+              type="number"
             ></input-data>
           </div>
           <div class="min-10-ton-parent">
@@ -45,6 +50,10 @@
           </div>
         </div>
       </div>
+      <calculator
+        v-if="role === 'depositor'"
+        :input="Number(inputValue)"
+      ></calculator>
     </template>
     <template v-slot:action>
       <div class="des-and-bbn_add des-and-bbn">
@@ -52,7 +61,9 @@
           variant="fourth"
           @click="qr"
           :style="{ width: '100%', margin: '0' }"
-          >Добавить</catos-button
+          >{{
+            role === "depositor" ? "Инвестировать" : "Добавить ликвидность"
+          }}</catos-button
         >
         <catos-button
           variant="fourth_outline"
@@ -66,20 +77,28 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import liquidityManagmentModal from "@/components/base/liquidity-managment-modal.vue";
 import inputData from "@/components/fields/input-data.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import catosSelect from "@/components/fields/catos-select.vue";
+import calculator from "@/components/base/calculator.vue";
+
 const valueToken = ref("");
 const options = ["TON", "CATOS"];
 const emits = defineEmits(["close", "qr"]);
+
+const inputValue = ref("");
+
 const qr = () => {
   emits("qr");
 };
 const close = () => {
   emits("close");
 };
+const role = computed(() => {
+  return JSON.parse(localStorage.getItem("role")!);
+});
 </script>
 
 <style scoped lang="scss">

@@ -15,7 +15,13 @@
         </div>
         <div class="header-pop-up-child" />
       </div>
-      <div class="frame-parent">
+      <div
+        :class="
+          role === 'depositor' && variant === 'add'
+            ? 'frame-parent_depositor frame-parent'
+            : 'frame-parent'
+        "
+      >
         <div class="frame-group">
           <div class="parent">
             <div class="div1">
@@ -50,8 +56,16 @@
   </div>
 </template>
 <script setup lang="ts">
-import catosCheckbox from "@/components/ui-kit/catos-checkbox.vue";
+import { computed } from "vue";
 const emtis = defineEmits(["close"]);
+
+const { variant } = defineProps({
+  variant: { type: String },
+});
+
+const role = computed(() => {
+  return JSON.parse(localStorage.getItem("role")!);
+});
 
 const close = () => {
   emtis("close");
@@ -449,5 +463,10 @@ const close = () => {
   color: #3b3b3b;
   font-family: Inter;
   width: 520px;
+}
+@media (max-height: 900px) {
+  .frame-parent_depositor {
+    height: 600px;
+  }
 }
 </style>

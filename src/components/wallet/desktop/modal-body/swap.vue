@@ -14,7 +14,7 @@
             <div class="fieldsinput2">
               <div class="iconsmail-parent">
                 <!--<img class="iconsmail" alt="" src="/iconsmail.svg" />-->
-                <div class="div2">≈45 556 USD</div>
+                <div class="div2">≈ 45 556 USD</div>
                 <!--<img
                   class="iconsedit-outline"
                   alt=""
@@ -49,7 +49,7 @@
               <div class="iconsmail-parent">
                 <!--<img class="iconsmail" alt="" src="/iconsmail.svg" />-->
                 <div class="div2">
-                  <span class="span">12 000</span>
+                  <span class="span">12 000 </span>
                   <span>
                     <span class="span6"> </span>
                     <span>СATOS</span>
@@ -67,7 +67,7 @@
             <div class="fieldsinput5">
               <div class="iconsmail-parent">
                 <!--<img class="iconsmail" alt="" src="/iconsmail.svg" />-->
-                <div class="div2">≈45 556 USD</div>
+                <div class="div2">≈ 45 556 USD</div>
                 <!--<img
                   class="iconsedit-outline"
                   alt=""
@@ -103,7 +103,7 @@
           </div>
           <div class="div">
             <span class="span">0.5%:</span>
-            <span> 0 TON (≈0 USD)</span>
+            <span> 0 TON ( ≈ 0 USD)</span>
           </div>
         </div>
       </div>

@@ -76,6 +76,13 @@
                     </div>
                     <div class="col-titles-bg" />
                   </div>
+                  <div class="component">
+                    <div class="field">
+                      <div class="div3">Комиссия CATOS:</div>
+                      <div class="div4">5 %</div>
+                    </div>
+                    <div class="col-titles-bg" />
+                  </div>
                 </div>
               </div>
               <div class="notification">

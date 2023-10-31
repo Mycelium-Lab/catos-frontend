@@ -174,7 +174,8 @@ const isWithdrawSuccess = ref(false);
 const emits = defineEmits(["pay-notif"]);
 
 const payNotif = () => {
-  emits("pay-notif", () => (isToUp.value = false));
+  isToUp.value = false;
+  emits("pay-notif");
 };
 const router = useRouter();
 const toTransaction = () => {

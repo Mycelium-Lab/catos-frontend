@@ -196,6 +196,7 @@ const router = createRouter({
     admin[3],
     admin[4],
     admin[5],
+    admin[6],
     adminMobile[0],
     adminMobile[1],
     adminMobile[2],

@@ -136,7 +136,7 @@
           <div class="field-wrapper">
             <div class="field">
               <div class="div5">Дата создания:</div>
-              <div class="div6">22. 05. 2023</div>
+              <div class="div6">22.05.2023</div>
             </div>
           </div>
         </div>
@@ -150,7 +150,7 @@
                 isAdd = true;
               }
             "
-            >Добавить ликвидность</catos-button
+            >Инвестировать</catos-button
           >
         </div>
       </div>
@@ -440,5 +440,11 @@ const close = () => {
   text-align: left;
   color: #a592dd;
   font-family: Inter;
+}
+@media (max-height: 900px) {
+  .frame-parent {
+    height: 500px;
+    overflow-y: auto;
+  }
 }
 </style>

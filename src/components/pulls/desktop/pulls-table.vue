@@ -109,7 +109,7 @@
               </div>
             </div>
           </div>
-          <div class="line-div" />
+
           <div class="frame-parent22">
             <div
               v-if="role === 'collector' && variant === 'debt'"
@@ -131,6 +131,10 @@
                 </div>
               </div>
             </div>
+            <div
+              v-if="role === 'collector' && variant !== 'marketplace'"
+              class="line-div"
+            />
             <div
               v-if="role === 'borrower' && variant === 'all'"
               class="frame-parent23"
@@ -293,7 +297,7 @@
                 <div class="div127">Доходность за 30 дней:</div>
               </div>
               <div class="ton-wrapper">
-                <div class="div128">75% годов</div>
+                <div class="div128">75% годовых</div>
               </div>
             </div>
 
@@ -323,7 +327,7 @@
             class="frame-parent"
           >
             <div class="wrapper">
-              <div class="div">Моя ликвидность</div>
+              <div class="div">Мои инвестиции</div>
             </div>
             <div class="frame-group">
               <div class="frame-wrapper">
@@ -423,14 +427,14 @@
                 :style="{ width: '100%' }"
                 variant="fourth"
                 @click.stop="toWidthdrawLequid"
-                >Изъять ликвидность</catos-button
+                >Вывести депозит</catos-button
               >
               <catos-button
                 v-if="role === 'depositor'"
                 :style="{ width: '100%' }"
                 variant="fourth"
                 @click.stop="toAddLequid"
-                >Добавить ликвидность</catos-button
+                >Инвестировать</catos-button
               >
               <catos-button
                 v-if="role === 'borrower' && variant === 'all'"
@@ -805,9 +809,6 @@ li {
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
-  &_collector {
-    width: 8.63em;
-  }
 }
 .iconsbar-cards {
   position: relative;
@@ -1198,18 +1199,18 @@ li {
 .desctopverpull-stats-parent {
   position: relative;
   width: 100%;
-  height: 31.8em;
+  height: 34em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
   &_depositor-all {
-    height: 42.5em;
+    height: 42.3em;
   }
   &_depositor-my {
-    height: 44em;
+    height: 46.5em;
   }
   &_creditor-my {
-    height: 34em;
+    height: 36.3em;
   }
   &_borrower-all {
     height: 36em;
@@ -1218,10 +1219,10 @@ li {
     height: 35em;
   }
   &_collector-debt {
-    height: 31.8em;
+    height: 34.5em;
   }
   &_collector-marketplace {
-    height: 31em;
+    height: 33em;
   }
 }
 .header-icon {
@@ -1438,7 +1439,7 @@ li {
   flex: 1;
   display: flex;
   flex-direction: row;
-  padding: 0.13em 0em 0.13em 0.38em;
+  //padding: 0.13em 0em 0.13em 0.38em;
   align-items: flex-start;
   justify-content: flex-start;
 }

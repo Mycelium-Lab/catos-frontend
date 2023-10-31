@@ -203,11 +203,11 @@
                   id="buttonsTabsContainer4"
                   @click="() => (isWithrow = true)"
                 >
-                  <div class="text3">Изъять ликвидность</div>
+                  <div class="text3">Вывести депозит</div>
                 </div>
                 <div class="buttons-tabs2" id="buttonsTabsContainer4">
                   <div class="text3" @click="() => (isAdd = true)">
-                    Добавить ликвидность
+                    Инвестировать
                   </div>
                 </div>
                 <div

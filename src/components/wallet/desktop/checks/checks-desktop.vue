@@ -10,6 +10,7 @@
             удобное для него время
           </div>
         </div>
+        creditor-my
         <div class="des-ckecks-desktop">
           <img
             class="des-child"
@@ -23,13 +24,13 @@
         </div>
       </div>
       <catos-button variant="secondary" @click="() => (isCreateCheck = true)"
-        >Создать чек</catos-button
+        >Выписать чек</catos-button
       >
       <checks-table></checks-table>
     </template>
   </default-desktop>
   <desktop-modal v-if="isCreateCheck" @close="() => (isCreateCheck = false)">
-    <template v-slot:title> Создать чек </template>
+    <template v-slot:title> Выписать чек </template>
     <template v-slot:body>
       <create-checks @close="() => (isCreateCheck = false)"></create-checks>
     </template>

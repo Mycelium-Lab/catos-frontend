@@ -188,14 +188,14 @@
             variant="fourth"
             :style="{ width: '100%', margin: '0' }"
             @click="widthraw"
-            >Изьять ликвидность</catos-button
+            >Вывести депозит</catos-button
           >
 
           <catos-button
             variant="fourth"
             :style="{ width: '100%', margin: '0' }"
             @click="add"
-            >Добавить ликвидность</catos-button
+            >Инвестировать</catos-button
           >
         </div>
       </div>

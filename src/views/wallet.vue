@@ -125,7 +125,15 @@
             src="@/assets/desktop/frame-1817627.svg"
           />
           <div class="parent_notification">
-            <div class="div_notification">Новый входящий платеж</div>
+            <div class="div_notification">
+              Новый входящий платеж
+              <img
+                class="icon-close-notif"
+                src="@/assets/desktop/close.svg"
+                @click="() => (isPayNotification = false)"
+              />
+            </div>
+
             <div class="ton-10-456-container_notification">
               <p class="p_notification">На сумму 100 TON (~10 456 USD)</p>
               <p class="p_notification">успешно получен</p>
@@ -1356,7 +1364,14 @@ const toHistory = () => {
   color: #3b3b3b;
   font-family: Inter;
   z-index: 10000;
-  width: 343px;
+  width: 363px;
   right: 1em;
+}
+.icon-close-notif {
+  position: relative;
+  bottom: 0.5em;
+  left: 0.2em;
+  width: 23px;
+  cursor: pointer;
 }
 </style>

@@ -42,6 +42,8 @@
                     type="date"
                     placeholder="01.02.2022"
                     :style="{ width: '100%' }"
+                    :value="date"
+                    @selected="e => (date = e)"
                   ></input-data>
                 </div>
               </div>
@@ -71,6 +73,8 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+
+const date = ref("");
 const isAll = ref(false);
 const isAllActive = ref(false);
 const isSort = ref(false);

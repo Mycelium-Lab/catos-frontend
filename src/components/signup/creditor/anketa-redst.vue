@@ -36,6 +36,7 @@
                 @selected="ev => (valueState = ev)"
                 :optionWidthDesk="352"
                 :style="{ width: '100%' }"
+                data-element="state"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise1">
@@ -50,6 +51,7 @@
                 @selected="ev => (valueFormRegistration = ev)"
                 :optionWidthDesk="352"
                 :style="{ width: '100%' }"
+                data-element="form"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -245,6 +247,7 @@
                   positio: 'absolute',
                   top: '-5.7em',
                 }"
+                data-element="file"
               ></catos-select>
             </div>
           </div>
