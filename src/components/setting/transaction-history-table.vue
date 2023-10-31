@@ -27,13 +27,6 @@
             <div class="total1">511 865.00 TON</div>
             <div class="paid1">Внесено</div>
           </div>
-          <div class="arrows-table1">
-            <img
-              class="chevron-right-icon2"
-              alt=""
-              src="@/assets/images/chevron-right.svg"
-            />
-          </div>
         </div>
         <div class="field-1" id="fieldContainer1">
           <div class="icons-info">
@@ -52,13 +45,6 @@
           <div class="details2">
             <div class="total1">555 865.00 TON</div>
             <div class="paid1">Внесено</div>
-          </div>
-          <div class="arrows-table1">
-            <img
-              class="chevron-right-icon2"
-              alt=""
-              src="@/assets/images/chevron-right.svg"
-            />
           </div>
         </div>
         <div class="field-1" id="fieldContainer2">
@@ -79,13 +65,6 @@
             <div class="total1">511 865.00 TON</div>
             <div class="paid3">Ожидание</div>
           </div>
-          <div class="arrows-table1">
-            <img
-              class="chevron-right-icon2"
-              alt=""
-              src="@/assets/images/chevron-right.svg"
-            />
-          </div>
         </div>
         <div class="field-1" id="fieldContainer3">
           <div class="icons-info">
@@ -104,13 +83,6 @@
           <div class="details2">
             <div class="total1">12 433.00 TON</div>
             <div class="paid4">В процессе</div>
-          </div>
-          <div class="arrows-table1">
-            <img
-              class="chevron-right-icon2"
-              alt=""
-              src="@/assets/images/chevron-right.svg"
-            />
           </div>
         </div>
       </div>
@@ -139,13 +111,6 @@
               <div class="total1">511 865 TON</div>
               <div class="paid1">Внесено</div>
             </div>
-            <div class="arrows-table1">
-              <img
-                class="chevron-right-icon2"
-                alt=""
-                src="@/assets/images/chevron-right.svg"
-              />
-            </div>
           </div>
           <div class="field-1" id="fieldContainer5">
             <div class="icons-info">
@@ -165,13 +130,6 @@
               <div class="total1">2 000 TON</div>
               <div class="paid1">Внесено</div>
             </div>
-            <div class="arrows-table1">
-              <img
-                class="chevron-right-icon2"
-                alt=""
-                src="@/assets/images/chevron-right.svg"
-              />
-            </div>
           </div>
           <div class="field-1" id="fieldContainer6">
             <div class="icons-info">
@@ -190,13 +148,6 @@
             <div class="details2">
               <div class="total1">84 865 TON</div>
               <div class="paid1">Внесено</div>
-            </div>
-            <div class="arrows-table1">
-              <img
-                class="chevron-right-icon2"
-                alt=""
-                src="@/assets/images/chevron-right.svg"
-              />
             </div>
           </div>
         </div>
@@ -226,13 +177,6 @@
               <div class="total1">511 865.00 TON</div>
               <div class="paid1">Внесено</div>
             </div>
-            <div class="arrows-table1">
-              <img
-                class="chevron-right-icon2"
-                alt=""
-                src="@/assets/images/chevron-right.svg"
-              />
-            </div>
           </div>
           <div class="field-1" id="fieldContainer8">
             <div class="icons-info">
@@ -251,13 +195,6 @@
             <div class="details2">
               <div class="total1">77 000 TON</div>
               <div class="paid3">Ожидание</div>
-            </div>
-            <div class="arrows-table1">
-              <img
-                class="chevron-right-icon2"
-                alt=""
-                src="@/assets/images/chevron-right.svg"
-              />
             </div>
           </div>
           <div class="field-1" id="fieldContainer9">
@@ -278,13 +215,6 @@
               <div class="total1">889 000 994 TON</div>
               <div class="paid3">Ожидание</div>
             </div>
-            <div class="arrows-table1">
-              <img
-                class="chevron-right-icon2"
-                alt=""
-                src="@/assets/images/chevron-right.svg"
-              />
-            </div>
           </div>
           <div class="field-1" id="fieldContainer10">
             <div class="icons-info">
@@ -303,13 +233,6 @@
             <div class="details2">
               <div class="total1">511 865.00 TON</div>
               <div class="paid4">В процессе</div>
-            </div>
-            <div class="arrows-table1">
-              <img
-                class="chevron-right-icon2"
-                alt=""
-                src="@/assets/images/chevron-right.svg"
-              />
             </div>
           </div>
         </div>
@@ -577,7 +500,7 @@
   flex-shrink: 0;
   display: flex;
   flex-direction: row;
-  padding: 0 0.38em;
+  padding: 0 1em;
   box-sizing: border-box;
   align-items: center;
   justify-content: space-between;
@@ -2265,5 +2188,36 @@
   text-align: left;
   color: rgba(87, 126, 247, 0.96);
   font-family: Inter;
+}
+@media (min-width: 500px) {
+  .invoice-aa-04-19-181,
+  .new-madieton-llc1 {
+    width: auto;
+  }
+  .field-1 {
+    padding: 4px 0 4px 4px;
+  }
+  .frame-parent1,
+  .frame-parent2 {
+    width: 100%;
+  }
+  .svg-gobbler-2-11 {
+    width: 48px;
+    height: 48px;
+  }
+  .group-icon1 {
+    width: 28px;
+    height: 28px;
+  }
+  .invoice-aa-04-19-181,
+  .new-madieton-llc1 {
+    font-size: 14px;
+  }
+  .details2 {
+    font-size: 18.67px;
+  }
+  .arrows-table1 {
+    width: 16px;
+  }
 }
 </style>

@@ -1,0 +1,176 @@
+.box {
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.box .desktop-wrapper {
+  border: 0px none;
+  height: 100vh;
+  width: 100vw;
+}
+
+.box .desktop {
+  background-color: #febc44;
+  height: 100vh;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+.box .overlap {
+  height: 100vh;
+  display: flex;
+  position: relative;
+
+  width: 100vw;
+}
+
+.box .image {
+  height: 100vh;
+  left: 0;
+  position: relative;
+  top: 0;
+  width: 100vw;
+}
+
+.box .overlap-group {
+  background-image: url(../../../desktop/logo-desktop.png);
+  background-size: 100% 100%;
+  height: 100vh;
+
+  position: relative;
+
+  width: 100vw;
+}
+
+.box .info {
+  height: 109px;
+  /* left: 445px; */
+  position: relative;
+  /* top: 611px; */
+  width: 550px;
+}
+
+.box .button {
+  height: 50px;
+  left: 95px;
+  position: absolute;
+  top: 0;
+  width: 362px;
+}
+
+.box .div-wrapper {
+  background-color: #ffffff;
+  border-radius: 20px;
+  height: 50px;
+  position: relative;
+  width: 360px;
+}
+
+.box .text-wrapper {
+  color: #3b3b3b;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 18px;
+  font-weight: 700;
+  height: 28px;
+  left: 153px;
+  letter-spacing: 0;
+  line-height: 23.4px;
+  position: absolute;
+  top: 11px;
+  white-space: nowrap;
+  width: 55px;
+}
+
+.box .frame {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+  left: 106px;
+  position: absolute;
+  top: 81px;
+  width: fit-content;
+}
+
+.box .div {
+  color: #3b3b3b;
+  font-family: "Inter-Medium", Helvetica;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 20.8px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.box .text-wrapper-2 {
+  color: #015de6;
+  font-family: "Inter-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 20.8px;
+  margin-top: -1px;
+  position: relative;
+  text-decoration: underline;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.box .overlap-wrapper {
+  height: 100vh;
+
+  position: absolute;
+
+  width: 100vw;
+}
+
+.box .overlap-2 {
+  position: relative;
+
+  width: 100%;
+  /* margin: 0 auto; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.box .page-title {
+  color: #3b3b3b;
+  font-family: "Inter-Bold", Helvetica;
+  font-size: 178.5px;
+  font-weight: 700;
+  height: 232px;
+  left: 0;
+  letter-spacing: 0;
+  line-height: 232px;
+  position: relative;
+  top: 0;
+  white-space: nowrap;
+  /* margin: 0 auto; */
+  margin: 0em;
+}
+
+.box .text-wrapper-3 {
+  color: #3b3b3b;
+  font-family: "Inter-Medium", Helvetica;
+  font-size: 20px;
+  font-weight: 500;
+  height: 28px;
+  /* left: 117px; */
+  letter-spacing: 0;
+  line-height: 28px;
+  position: relative;
+  text-align: center;
+  /* top: 211px; */
+  white-space: nowrap;
+}

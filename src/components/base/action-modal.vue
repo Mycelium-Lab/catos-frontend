@@ -26,7 +26,7 @@
     >
       <div class="text-and-button">
         <label>Настроить токен:</label>
-        <catos-select></catos-select>
+        <catos-select :options="[]"></catos-select>
         <div class="fieldsinput-parent">
           <div class="fieldsinput">
             <div class="div16">Введите сумму для пополнения:</div>

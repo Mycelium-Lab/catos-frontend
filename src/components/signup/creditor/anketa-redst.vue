@@ -1,5 +1,11 @@
 <template>
-  <div class="iphone-13-13-form-registr">
+  <div
+    :class="
+      isMobile
+        ? 'iphone-13-13-form-registr'
+        : 'iphone-13-13-form-registr_desktop iphone-13-13-form-registr'
+    "
+  >
     <img class="bg-icon" alt="" src="../public/bg.svg" />
 
     <div class="header">
@@ -24,12 +30,13 @@
                 <span class="span">* </span>
               </div>
               <catos-select
-                placeholder="Выбрать страну:"
-                :options="options"
-                :value="value"
-                @selected="ev => (value = ev)"
-                :optionWidth="77"
+                placeholder="Россия"
+                :options="optionsState"
+                :value="valueState"
+                @selected="ev => (valueState = ev)"
+                :optionWidthDesk="352"
                 :style="{ width: '100%' }"
+                data-element="state"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise1">
@@ -38,12 +45,13 @@
                 <span class="span">* </span>
               </div>
               <catos-select
-                placeholder="Выбрать страну:"
-                :options="options"
-                :value="value"
-                @selected="ev => (value = ev)"
-                :optionWidth="77"
+                placeholder="ОАО"
+                :options="optionsFormRegistration"
+                :value="valueFormRegistration"
+                @selected="ev => (valueFormRegistration = ev)"
+                :optionWidthDesk="352"
                 :style="{ width: '100%' }"
+                data-element="form"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -221,18 +229,26 @@
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                   ></loader-field>
                 </div>
-                <input-data
-                  background="transparent"
-                  border="1px solid rgba(101, 96, 96, 1)"
-                  placeholder="Тип фалйа"
-                  :style="{ width: '86.8%', left: '5vw' }"
-                  :right="true"
-                >
-                  <template v-slot:right-icon>
-                    <img src="@/assets/images/iconseditoutline-black.svg" />
-                  </template>
-                </input-data>
+
+                <template right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
               </div>
+              <catos-select
+                placeholder="PDF"
+                :options="optionsFile"
+                :value="valueFile"
+                @selected="ev => (valueFile = ev)"
+                :optionWidthDesk="320"
+                :style="{
+                  width: '90%',
+                  margin: '0 auto',
+                  marginTop: '0.5em',
+                  positio: 'absolute',
+                  top: '-5.7em',
+                }"
+                data-element="file"
+              ></catos-select>
             </div>
           </div>
           <div class="text-declaration">
@@ -327,11 +343,76 @@ import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
 import loaderField from "../../../components/fields/loader-field.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 import { ref } from "vue";
-const value = ref("");
-const options = {
-  sng: ["Россия", "Украина", "Казахстан"],
-  euro: ["Польша", "Латвия", "Молдова"],
+const valueState = ref("");
+const valueFormRegistration = ref("");
+const valueFile = ref("");
+const optionsFile = ["PDF", "TXT", "DOC", "ZIP", "RAR"];
+const optionsFormRegistration = ["ОАО", "АО", "ПАО"];
+const optionsState = {
+  euro: [
+    "Россия",
+    "Германия",
+    "Великобритания",
+    "Франиця",
+    "Италия",
+    "Испания",
+    "Украина",
+    "Польша",
+    "Румыния",
+    "Нидерланды",
+    "Беларусь",
+    "Греция",
+    "Португалия",
+    "Чехия",
+    "Швеция",
+  ],
+  asia: [
+    "Китай",
+    "Индия",
+    "Индонезия",
+    "Пакистан",
+    "Бангладеш",
+    "Япония",
+    "Филиппины",
+    "Вьетнам",
+    "Турция",
+    "Иран",
+    "Таиланд",
+    "Мьянма",
+    "Южная Корея",
+    "Ирак",
+    "Афганистан",
+  ],
+  africa: [
+    "Нигерия",
+    "Эфиопия",
+    "Египет",
+    "ДР Конго",
+    "Южная Африка",
+    "Танзания",
+    "Судан",
+    "Алжир",
+    "Уганда",
+    "Морокко",
+  ],
+  america: [
+    "США",
+    "Бразилия",
+    "Мексика",
+    "Колумбия",
+    "Аргентина",
+    "Перу",
+    "Венесуэла",
+    "Чили",
+    "Гватемала",
+    "Эквадор",
+  ],
+  australia_okeania: ["Австралия", "Папуа - Новая Гвинея", "Новая Зеландия"],
 };
 </script>
 
@@ -1161,5 +1242,44 @@ const options = {
   color: #3b3b3b;
   font-family: Inter;
   overflow-x: hidden;
+  &_desktop {
+    height: 125.44em;
+  }
+}
+@media (min-width: 500px) {
+  .div8 {
+    width: 400px;
+    position: relative;
+    margin: 0 auto;
+    left: 0em;
+    top: 12em;
+  }
+  .text-parent {
+    left: 1.2em;
+  }
+  .checkbox-parent {
+    left: 1.2em;
+  }
+  .registration-options-parent {
+    width: 100%;
+  }
+  .buttonnext {
+    width: 400px;
+  }
+  .header1 {
+    position: relative;
+    top: -90em;
+
+    flex-direction: row;
+    gap: 0.75em;
+    margin: 0 auto;
+    width: 400px;
+  }
+  .iphone-13-13-form-registr {
+    overflow-y: hidden;
+  }
+  .form-registration-36 {
+    height: 100%;
+  }
 }
 </style>

@@ -88,7 +88,7 @@
 }
 .headeer1 {
   position: relative;
-  top: 12.94em;
+  top: 5em;
 
   display: flex;
   flex-direction: column;
@@ -352,6 +352,42 @@
   .component-4 {
     width: 2.3em;
     height: 2.3em;
+  }
+}
+@media (min-width: 500px) {
+  .iphone-70 {
+    height: 100%;
+  }
+  .page-title1 {
+    font-size: 32px;
+  }
+  .div8 {
+    font-size: 18px;
+  }
+  .fieldsregistration-options {
+    position: relative;
+    top: 10em;
+    left: 0em;
+    width: 400px;
+    height: 13.69em;
+    margin: 0 auto;
+  }
+  .inputfields {
+    width: 0em;
+  }
+  .iphone-70-child {
+    display: table;
+    position: relative;
+    margin: auto;
+
+    top: 36em;
+    left: 50px;
+    width: 899.02px;
+  }
+  .image-wrapp {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }
 }
 </style>

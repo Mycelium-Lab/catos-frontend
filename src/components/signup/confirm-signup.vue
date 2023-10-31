@@ -97,7 +97,7 @@
           <div class="text-and-fill">
             <div class="div11">
               <span>Подтверждение номера</span>
-              <span class="span">*</span>
+              <span class="span"> *</span>
             </div>
           </div>
           <div class="fields-password-and-mail6">
@@ -114,7 +114,7 @@
             <span class="span7">ожидания</span>
             <span>:</span>
             <span class="span8"> </span>
-            <span class="span6">1 мин</span>
+            <span class="span6"> 1 мин</span>
           </div>
           <div class="frame-group">
             <div class="frame-container">
@@ -155,7 +155,7 @@
         <div class="text-and-fill">
           <div class="div11">
             <span>Подтверждение почты</span>
-            <span class="span">*</span>
+            <span class="span"> *</span>
           </div>
         </div>
         <div class="fields-password-and-mail6">
@@ -1403,7 +1403,7 @@ const role = computed(() => window.history.state?.role);
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 38.88em;
+  height: 48.88em;
 }
 .div67 {
   position: absolute;
@@ -1583,11 +1583,65 @@ const role = computed(() => window.history.state?.role);
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 800px;
+  height: 60em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
   overflow: hidden;
+}
+@media (min-width: 500px) {
+  .div19,
+  .fieldsregistration-options4 {
+    //top: 2.25em;
+    left: 0em;
+    height: 13.75em;
+    width: 400px;
+    position: relative;
+    margin: 0 auto;
+  }
+  .div19 {
+    top: 6em;
+  }
+  .fieldsregistration-options4 {
+    top: 10.44em;
+  }
+
+  .form-registration-26 {
+    height: 100%;
+  }
+  .inputfields {
+    width: 0em;
+  }
+  /*.slidersteps {
+    top: 14em;
+    right: 2em;
+    width: 160px;
+    color: #958463;
+    position: relative;
+    margin: 0 auto;
+  }*/
+  .buttonnext {
+    position: relative;
+    top: 14.44em;
+    left: 0px;
+    border-radius: 20px;
+    background-color: #ffdb6d;
+    width: 400px;
+    height: 3em;
+    overflow: hidden;
+    flex-direction: row;
+    padding: 0.5em 7.25em;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 auto;
+  }
+  /* .buttonback {
+    top: 13.5em;
+    left: 10em;
+  }*/
+  .iphone-13-13- {
+    overflow-y: auto;
+  }
 }
 @media (max-width: 370px) {
   .component-4 {

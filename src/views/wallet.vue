@@ -1,10 +1,8 @@
 <template>
-  <default-wallet>
+  <default-wallet v-if="isMobile">
     <div class="user-nav">
       <div class="info-user">
         <div class="tags-grey1">
-          <!--<img class="bg-hover-icon" alt="" src="./public/bg-hover.svg" />-->
-
           <b class="tag">Кредитор</b>
         </div>
         <div class="fields-and-photo-and-name">
@@ -114,6 +112,50 @@
     </div>
     <app-bar></app-bar>
   </default-wallet>
+  <default-desktop v-else>
+    <template v-slot:title> Кошелек Catos </template>
+    <template v-slot:body>
+      <wallet-card @payNotif="() => (isPayNotification = true)"></wallet-card>
+      <setting-card></setting-card>
+      <div v-if="isPayNotification" class="frame-parent_notification">
+        <div class="frame-group_notification">
+          <img
+            class="frame-child_notification"
+            alt=""
+            src="@/assets/desktop/frame-1817627.svg"
+          />
+          <div class="parent_notification">
+            <div class="div_notification">
+              Новый входящий платеж
+              <img
+                class="icon-close-notif"
+                src="@/assets/desktop/close.svg"
+                @click="() => (isPayNotification = false)"
+              />
+            </div>
+
+            <div class="ton-10-456-container_notification">
+              <p class="p_notification">На сумму 100 TON (~10 456 USD)</p>
+              <p class="p_notification">успешно получен</p>
+            </div>
+          </div>
+        </div>
+        <div class="frame-container_notification">
+          <div
+            class="wrapper_notification"
+            @click="
+              () => {
+                isPayNotification = false;
+                toHistory();
+              }
+            "
+          >
+            <div class="div1_notification">В историю</div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </default-desktop>
 </template>
 
 <script setup lang="ts">
@@ -121,7 +163,21 @@ import { ref } from "vue";
 import defaultWallet from "@/components/layouts/default-wallet.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";
-const isScrinnig = ref(false);
+import defaultDesktop from "@/components/layouts/default-desktop.vue";
+import walletCard from "@/components/wallet/desktop/wallet-card.vue";
+import settingCard from "@/components/wallet/desktop/setting-card.vue";
+
+const isPayNotification = ref(false);
+
+import { useDevice } from "@/compossables/useDevice";
+import { useRouter } from "vue-router";
+
+const { isMobile } = useDevice();
+
+const router = useRouter();
+const toHistory = () => {
+  router.push({ name: "transaction-history" });
+};
 </script>
 
 <style scoped lang="scss">
@@ -1199,5 +1255,123 @@ const isScrinnig = ref(false);
   text-decoration: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
+}
+/** PAY NOTIFICATION*/
+
+.frame-child_notification {
+  position: relative;
+  border-radius: 10px;
+  width: 4em;
+  height: 4em;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.div_notification {
+  align-self: stretch;
+  position: relative;
+  font-size: 1.13em;
+  line-height: 130%;
+  font-weight: 600;
+}
+.p_notification {
+  margin: 0;
+}
+.ton-10-456-container_notification {
+  align-self: stretch;
+  position: relative;
+  font-size: 0.88em;
+  line-height: 130%;
+  font-weight: 300;
+}
+.parent_notification {
+  width: 16.75em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.31em;
+}
+.frame-group_notification {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.69em;
+}
+.div1_notification {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 130%;
+  font-weight: 500;
+}
+.wrapper_notification {
+  flex: 1;
+  border-radius: 8px;
+  background-color: #a592dd;
+  height: 2.5em;
+  display: flex;
+  flex-direction: row;
+  padding: 0.63em;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.div2_notification {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 130%;
+}
+.container_notification {
+  flex: 1;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  height: 2.5em;
+  display: flex;
+  flex-direction: row;
+  padding: 0.63em;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  cursor: pointer;
+}
+.frame-container_notification {
+  width: 21.44em;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.63em;
+  color: #fff;
+  width: 100%;
+}
+.frame-parent_notification {
+  position: absolute;
+  border-radius: 16px;
+  background-color: #fff;
+  border: 1px solid #f6f4fc;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25em;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.25em;
+  text-align: left;
+  color: #3b3b3b;
+  font-family: Inter;
+  z-index: 10000;
+  width: 363px;
+  right: 1em;
+}
+.icon-close-notif {
+  position: relative;
+  bottom: 0.5em;
+  left: 0.2em;
+  width: 23px;
+  cursor: pointer;
 }
 </style>

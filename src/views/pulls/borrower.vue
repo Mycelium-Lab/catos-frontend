@@ -1,5 +1,9 @@
 <template>
-  <div class="iphone-13-13-" :class="isBackSide ? 'back-side' : ''">
+  <div
+    v-if="isMobile"
+    class="iphone-13-13-"
+    :class="isBackSide ? 'back-side' : ''"
+  >
     <div class="header">
       <div class="div8">Кредитные пуллы</div>
     </div>
@@ -36,11 +40,38 @@
     ></borrower-list>
     <app-bar></app-bar>
   </div>
+  <default-desktop v-else>
+    <template v-slot:title> Кредитные пулы </template>
+
+    <template v-slot:tools>
+      <tool-bar role="borrower" variant="pulls"></tool-bar>
+    </template>
+    <template v-slot:body>
+      <div class="frame-div">
+        <ul>
+          <li class="depositor-list" v-for="n in 5" :key="n">
+            <pulls-table
+              role="borrower"
+              :variant="curentWindow"
+              :key="curentWindow"
+            ></pulls-table>
+          </li>
+        </ul>
+      </div>
+    </template>
+  </default-desktop>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch } from "vue";
 import { useRouter } from "vue-router";
+import defaultDesktop from "@/components/layouts/default-desktop.vue";
+import toolBar from "@/components/base/desktop/tool-bar.vue";
+import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 
 import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import borrowerList from "@/components/pulls/borrower/borrower-list.vue";
@@ -67,12 +98,14 @@ const toggleSlide = (slideIndex: any) => {
 };
 
 onMounted(() => {
-  // @ts-ignore
-  document.querySelector("body").style.height = "calc(100vh + 203px)";
-  // @ts-ignore
-  document.querySelector("#app").style.height = "calc(100vh + 203px)";
-  // @ts-ignore
-  // document.querySelector(".iphone-13-13- ").style.minHeight ="calc(100vh + 300px)";
+  if (isMobile.value) {
+    // @ts-ignore
+    document.querySelector("body").style.height = "calc(100vh + 203px)";
+    // @ts-ignore
+    document.querySelector("#app").style.height = "calc(100vh + 203px)";
+    // @ts-ignore
+    // document.querySelector(".iphone-13-13- ").style.minHeight ="calc(100vh + 300px)";
+  }
 });
 
 onUnmounted(() => {
@@ -94,6 +127,13 @@ watch(curentWindow, newVal => {
 </script>
 
 <style scoped lang="scss">
+ul {
+  list-style: none;
+  padding: 0em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 38px 20px;
+}
 .pull {
   position: absolute;
   top: 0;
@@ -519,7 +559,7 @@ watch(curentWindow, newVal => {
   height: 1.5em;
 }
 .span2 {
-  text-decoration: underline;
+  cursor: pointer;
   color: #5d83f7;
 }
 .div25 {

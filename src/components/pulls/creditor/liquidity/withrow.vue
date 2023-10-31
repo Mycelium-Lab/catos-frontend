@@ -40,33 +40,33 @@
               <div class="min-10-ton-parent">
                 <div class="min-10-ton-container">
                   <span>Min:</span>
-                  <span class="span8"> </span>
-                  <span class="ton1">10 TON</span>
+
+                  <span class="ton1"> 10 TON</span>
                 </div>
                 <div class="min-10-ton-container">
                   <span>Max:</span>
-                  <span class="span8"> </span>
-                  <span class="ton1">257 324 TON</span>
+
+                  <span class="ton1"> 257 324 TON</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div
-          class="des-and-bbn_bottom_action des-and-bbn_bottom des-and-bbn"
+          class="des-and-bbn_bottom_action-widthraw des-and-bbn_bottom des-and-bbn"
           id="desAndBbn"
         >
           <div class="text-and-button">
             <catos-button
               variant="fourth"
-              :style="{ width: '97%' }"
+              :style="{ width: '97%', height: '32px' }"
               @click="toScan"
               >Вывести на кошелек CATOS</catos-button
             >
 
             <catos-button
               variant="fourth"
-              :style="{ width: '97%', top: '0.85em' }"
+              :style="{ width: '97%', top: '0.85em', height: '32px' }"
               @click="toScan"
               >Вывести на кошелек TONKeeper</catos-button
             >
@@ -262,8 +262,8 @@ const toScan = () => {
   border-radius: 14px;
   padding-top: 12px;
   padding-bottom: 12px;
-  top: 2.5em;
-  height: 101px;
+  top: 3em;
+  height: 145px;
   &_action {
     height: 146px;
   }
@@ -280,6 +280,7 @@ const toScan = () => {
 }
 .des-and-bbn_bottom_setting {
   top: 1em;
+  height: 101px;
 }
 
 .fieldsinput-parent {

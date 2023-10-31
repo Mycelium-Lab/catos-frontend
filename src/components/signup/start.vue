@@ -110,7 +110,7 @@
               </template>
             </input-data>
             <div class="div19">
-              <span>Придумайте пароль</span>
+              <span>Придумайте пароль </span>
               <span class="span">*</span>
             </div>
             <div class="div20">
@@ -743,7 +743,8 @@ const role = computed(() => window.history.state?.role);
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 48.25em;
+  height: 52.25em;
+  overflow-y: hidden;
 }
 .b1 {
   position: relative;
@@ -957,8 +958,8 @@ const role = computed(() => window.history.state?.role);
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 60.5em;
-  overflow-y: auto;
+  height: 64em;
+  overflow-y: hidden;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
@@ -974,5 +975,33 @@ const role = computed(() => window.history.state?.role);
 }
 .password-field-repead {
   top: 5em;
+}
+@media (min-width: 500px) {
+  .div8 {
+    width: 342px;
+    position: relative;
+    margin: 0 auto;
+    left: 0em;
+    top: 4em;
+  }
+  .buttonnext {
+    width: 342px;
+    position: relative;
+    margin: 0 auto;
+    left: 0em;
+    top: 58em;
+  }
+  /*.form-registration-16,
+  .iphone-13-13- {
+    height: 100%;
+  }*/
+  .div19,
+  .div20 {
+    font-size: 14px;
+  }
+  .div21,
+  .div12 {
+    font-size: 16px;
+  }
 }
 </style>

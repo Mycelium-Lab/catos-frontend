@@ -29,6 +29,7 @@ const { placeholder } = defineProps({
   line-height: 14px;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
+  resize: none;
   &::placeholder {
     color: var(--color-darkslategray-300);
     font-weight: 400;

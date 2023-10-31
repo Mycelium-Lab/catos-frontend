@@ -1,5 +1,9 @@
 <template>
-  <div class="iphone-13-13-" :class="isBackSide ? 'back-side' : ''">
+  <div
+    v-if="isMobile"
+    class="iphone-13-13-"
+    :class="isBackSide ? 'back-side' : ''"
+  >
     <div class="pull"></div>
     <div class="header">
       <div class="div8">
@@ -36,10 +40,39 @@
       :variant="curentWindow"
       @on-bottomsheet="(ev: any) => isBackSide = ev"
       @on-modal="() => (isBackSide = true)"
+      :key="curentWindow"
     ></depositor-list>
 
     <app-bar v-if="isAppBar"></app-bar>
   </div>
+
+  <default-desktop v-else>
+    <template v-slot:title> Кредитные пулы </template>
+    <template v-slot:slider>
+      <button-slider
+        :style="{ width: '254px', margin: '0' }"
+        :variantIndex="2"
+        :tabs="['Пуллы Catos', 'Мои пуллы']"
+        @on-slide="toggleSlide"
+      ></button-slider>
+    </template>
+    <template v-slot:tools>
+      <tool-bar role="depositor"></tool-bar>
+    </template>
+    <template v-slot:body>
+      <div class="frame-div">
+        <ul>
+          <li class="depositor-list" v-for="n in 5" :key="n">
+            <pulls-table
+              role="depositor"
+              :variant="curentWindow"
+              :key="curentWindow"
+            ></pulls-table>
+          </li>
+        </ul>
+      </div>
+    </template>
+  </default-desktop>
 </template>
 
 <script setup lang="ts">
@@ -48,6 +81,13 @@ import { useRouter } from "vue-router";
 import bottomsheet from "@/components/ui-kit/bottomsheet.vue";
 import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import depositorList from "@/components/pulls/depositor/depositor-list.vue";
+import defaultDesktop from "@/components/layouts/default-desktop.vue";
+import toolBar from "@/components/base/desktop/tool-bar.vue";
+import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 
 import appBar from "@/components/ui-kit/app-bar.vue";
 
@@ -68,6 +108,9 @@ const toCreatePull = () => {
   router.push({ name: "pulls-create" });
 };
 
+const isFilter = ref(false);
+const isSort = ref(false);
+
 const toggleSlide = (slideIndex: any) => {
   if (slideIndex === 0) {
     curentWindow.value = "all";
@@ -78,6 +121,13 @@ const toggleSlide = (slideIndex: any) => {
 </script>
 
 <style scoped>
+ul {
+  list-style: none;
+  padding: 0em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 38px 20px;
+}
 .pull {
   position: absolute;
   top: 0;
@@ -1317,6 +1367,9 @@ const toggleSlide = (slideIndex: any) => {
 .back-side {
   position: fixed;
 }
+/*.depositor-list {
+  width: 380px;
+}*/
 
 /*@media (max-width: 390px) {
       .pull-stats1 {

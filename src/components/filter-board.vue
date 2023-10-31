@@ -14,10 +14,10 @@
                 @click="() => (isSort = true)"
               />
 
-              <div class="div15">(1)</div>
+              <div class="div15" @click="() => (isSort = true)">(1)</div>
             </div>
           </div>
-          <div class="frame-wrapper">
+          <div class="frame-wrapper_filter">
             <div class="frame-container">
               <div class="frame-div">
                 <div class="group">
@@ -26,7 +26,7 @@
                     class="fields-password-and-mail2"
                     id="fieldsPasswordAndMail"
                   >
-                    <div class="text-icon" @click="() => (isAll = true)">
+                    <div class="text-icon" @click="() => (isAllActive = true)">
                       <div class="div12">Все активы</div>
                       <img
                         class="iconscalendar"
@@ -38,20 +38,13 @@
                 </div>
                 <div class="group">
                   <div class="div11">Выберите дату:</div>
-                  <div class="fields-password-and-mail-container">
-                    <div class="fields-password-and-mail3">
-                      <div class="parent3">
-                        <div class="div12">08.17.2023</div>
-                      </div>
-                    </div>
-                    <div class="iconscalendar-wrapper" id="frameContainer3">
-                      <img
-                        class="iconscalendar"
-                        alt=""
-                        src="@/assets/images/iconscalendar.svg"
-                      />
-                    </div>
-                  </div>
+                  <input-data
+                    type="date"
+                    placeholder="01.02.2022"
+                    :style="{ width: '100%' }"
+                    :value="date"
+                    @selected="e => (date = e)"
+                  ></input-data>
                 </div>
               </div>
             </div>
@@ -66,23 +59,31 @@
     >
       <status-filter></status-filter>
     </bottom-sheet>
-    <bottom-sheet
+    <!--<bottom-sheet
       v-if="isSort"
       defaultState="open"
       :style="{ top: '17em !importnat' }"
     >
       <sort @close="() => (isSort = false)"></sort>
-    </bottom-sheet>
+    </bottom-sheet>-->
   </div>
+  <activs v-if="isAllActive" @close="() => (isAllActive = false)"></activs>
+  <sort v-if="isSort" @close="() => (isSort = false)"></sort>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+
+const date = ref("");
 const isAll = ref(false);
+const isAllActive = ref(false);
 const isSort = ref(false);
+import inputData from "./fields/input-data.vue";
 import bottomSheet from "@/components/ui-kit/bottomsheet.vue";
 import statusFilter from "@/components/filters/status-filter.vue";
-import Sort from "./sort/sort.vue";
+import { useRouter } from "vue-router";
+import activs from "@/components/setting/desktop/modal-body/activs.vue";
+import sort from "./setting/desktop/modal-body/sort.vue";
 </script>
 
 <style scoped lang="scss">
@@ -201,7 +202,7 @@ import Sort from "./sort/sort.vue";
 .fields-password-and-mail-container,
 .frame-container,
 .frame-div,
-.frame-wrapper {
+.frame-wrapper_filter {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -213,10 +214,10 @@ import Sort from "./sort/sort.vue";
   gap: 0.75em;
 }
 .frame-container,
-.frame-wrapper {
+.frame-wrapper_filter {
   align-items: center;
 }
-.frame-wrapper {
+.frame-wrapper_filter {
   position: absolute;
   top: 4.5em;
 
@@ -1002,7 +1003,6 @@ import Sort from "./sort/sort.vue";
 }
 .field-item7,
 .fieldsinputchoise {
-  position: absolute;
   box-sizing: border-box;
 }
 .fieldsinputchoise {
@@ -2035,5 +2035,20 @@ import Sort from "./sort/sort.vue";
   margin: 0 auto;
   gap: 12em;
   margin-top: 1.665em;
+}
+@media (min-width: 500px) {
+  .tablesinvoices-list-widget {
+    width: 100%;
+  }
+  .top-content {
+    justify-content: space-between;
+    margin: 0em;
+    width: 100%;
+    padding: 20px 20px 0 20px;
+  }
+  .frame-wrapper_filter {
+    justify-content: flex-start;
+    padding: 0px 20px 20px 20px;
+  }
 }
 </style>

@@ -10,9 +10,20 @@ export const dashboardСreditor = [
     component: () => import("../components/dashboard/cards.vue"),
   },
   {
+    path: "/dashboard/cards-desktop",
+    name: "dashboard-cards-desktop",
+    component: () => import("../views/dashboard/cards/dashboard-cards.vue"),
+  },
+  {
     path: "/dashboard/analytics",
     name: "dashboard-analytics",
     component: () => import("../components/dashboard/analytics.vue"),
+  },
+  {
+    path: "/dashboard/analytics-desktop",
+    name: "dashboard-analytics-desktop",
+    component: () =>
+      import("../views/dashboard/analytics/dashboard-analytics.vue"),
   },
 ];
 

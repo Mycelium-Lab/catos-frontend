@@ -1,5 +1,5 @@
 <template>
-  <div class="iphone-13-13-">
+  <div v-if="isMobile" class="iphone-13-13-">
     <div class="col-titles-bg"></div>
     <div class="rectangle-group">
       <div class="group-item"></div>
@@ -55,7 +55,7 @@
       :key="currentWindow"
       @on-button-sheet="(ev: any) => (isAppBar = !ev)"
     ></loans-list>
-    <!---<action value="loans">
+    <action value="loans">
       <template v-slot:status-inner>
         <status-tag
           variant="reject"
@@ -63,14 +63,83 @@
           parent="loans"
         ></status-tag>
       </template>
-    </action>-->
+    </action>
   </div>
   <load-modal
-    v-if="isTable"
+    v-if="isTable && isMobile"
     variant="table"
     @on-close="() => (isTable = false)"
   ></load-modal>
-  <app-bar v-if="isAppBar"></app-bar>
+  <app-bar v-if="isAppBar && isMobile"></app-bar>
+
+  <default-desktop v-else>
+    <template v-slot:title> Займы </template>
+    <template v-slot:slider>
+      <multi-button-slider
+        :style="{ width: '385px', margin: '0em' }"
+        @on-slide="handleSlide"
+      ></multi-button-slider>
+    </template>
+    <template v-slot:tools>
+      <input-data :style="{ width: '380px' }" placeholder="Поиск" :left="true">
+        <template v-slot:left-icon>
+          <img
+            :style="{ width: '20px', height: '20px' }"
+            src="@/assets/images/iconssearch.svg"
+          />
+        </template>
+      </input-data>
+      <tool-bar role="creditor" variant="loans"></tool-bar>
+    </template>
+    <template v-slot:body>
+      <div class="rectangle-group_desktop rectangle-group">
+        <div class="group-item"></div>
+        <div class="div8">Все</div>
+        <div class="div9">
+          {{ currentWindow === "loans" ? "На продаже" : "Выданные" }}
+        </div>
+        <div class="div10">
+          {{ currentWindow === "loans" ? "Проданные" : "Одобренные" }}
+        </div>
+        <div v-if="currentWindow !== 'loans'" class="div11">Отклоненные</div>
+      </div>
+    </template>
+    <template v-slot:list>
+      <ul>
+        <li v-for="n in 5" :key="n">
+          <loans-table
+            v-if="currentWindow === 'bids'"
+            :variant="currentWindow"
+            :key="currentWindow"
+            role="creditor"
+            :status="
+              n === 1
+                ? 'approved'
+                : n === 2
+                ? 'rejected'
+                : n === 3
+                ? 'panding'
+                : 'approved'
+            "
+          ></loans-table>
+          <loans-table
+            v-else-if="currentWindow === 'loans'"
+            :variant="currentWindow"
+            :key="currentWindow + n"
+            role="creditor"
+            :status="n === 1 ? 'repaid' : n === 2 ? 'overdue' : 'sold'"
+          ></loans-table>
+          <loans-table
+            v-else-if="currentWindow === 'marketplace'"
+            :variant="currentWindow"
+            :key="currentWindow + n * 2"
+            role="creditor"
+            :status="n === 1 ? 'sales' : n === 2 ? 'sold' : 'sales'"
+          ></loans-table>
+        </li>
+      </ul>
+    </template>
+  </default-desktop>
 </template>
 
 <script setup lang="ts">
@@ -78,11 +147,18 @@ import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import inputData from "../fields/input-data.vue";
 import multiButtonSlider from "../ui-kit/buttons/multi-button-slider.vue";
+import defaultDesktop from "../layouts/default-desktop.vue";
+import loansTable from "./creditor/loans-table.vue";
+import toolBar from "../base/desktop/tool-bar.vue";
 
 import loansList from "./loans-list.vue";
 import appBar from "../ui-kit/app-bar.vue";
 
 import loadModal from "../base/load-modal.vue";
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 
 const isAppBar = ref(true);
 
@@ -116,7 +192,24 @@ const handleSlide = (index: any) => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+ul {
+  list-style: none;
+  padding: 0em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  position: relative;
+  top: -2.5em;
+}
+.frame-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.88em;
+  text-align: left;
+}
 .col-titles-bg {
   position: absolute;
   width: calc(100% - 358px);
@@ -176,6 +269,12 @@ const handleSlide = (index: any) => {
   color: rgba(59, 59, 59, 0.7);
   margin: 0 auto;
   padding: 0px;
+  &_desktop {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
 }
 .rectangle-group::-webkit-scrollbar {
   width: 0;
@@ -940,10 +1039,20 @@ const handleSlide = (index: any) => {
   position: relative;
   background-color: #fff;
   width: 100%;
-  height: 128.81em;
+  height: 125.81em;
   overflow: hidden;
   text-align: center;
   color: #3b3b3b;
   font-family: Inter;
+}
+.bar-wrapper {
+  border-radius: 16px;
+  background: rgba(246, 244, 252, 0.5);
+  display: flex;
+  height: 48px;
+  padding: 0px 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
 }
 </style>

@@ -63,11 +63,15 @@
         </div>
         <div class="frame-parent1_my frame-parent1">
           <div class="creditlabel">Кредитор:</div>
-          <catos-checkbox
-            :style="{ position: 'relative', top: '0.2em' }"
-            variant="radiobutton"
-          ></catos-checkbox>
-          <div class="creditoption">Деньги до зарплаты</div>
+
+          <div class="group-creditor">
+            <div class="div1">Деньги до зарплаты</div>
+            <img
+              class="radiobutton-icon"
+              alt=""
+              src="@/assets/images/investore.svg"
+            />
+          </div>
         </div>
         <div v-if="variant === 'all'" class="frame-parent1">
           <div class="roi-wrapper">
@@ -312,11 +316,15 @@
         </div>
         <div class="frame-parent1_my frame-parent1">
           <div class="creditlabel">Кредитор:</div>
-          <catos-checkbox
-            :style="{ position: 'relative', top: '0.2em' }"
-            variant="radiobutton"
-          ></catos-checkbox>
-          <div class="creditoption">Деньги до зарплаты</div>
+
+          <div class="group-creditor">
+            <div class="div1">Деньги до зарплаты</div>
+            <img
+              class="radiobutton-icon"
+              alt=""
+              src="@/assets/images/investore.svg"
+            />
+          </div>
         </div>
 
         <div class="frame-parent2">
@@ -721,10 +729,11 @@ const toScan = () => {
 .frame-parent1_my {
   border: 1px solid #f6f4fc;
   border-radius: 16px;
-  padding: 9px 0px 9px 13px;
+  padding: 9px 9px 9px 13px;
   margin: 0em;
   align-items: center;
   width: 100%;
+  justify-content: space-between;
 }
 .div16 {
   flex: 1;
@@ -735,17 +744,19 @@ const toScan = () => {
   line-height: 130%;
   &_close {
     color: #ff9901;
+    align-self: flex-end;
   }
   &_overdue {
     color: rgba(255, 0, 0, 1);
+    align-self: flex-end;
   }
 }
 .frame-parent3 {
   align-self: stretch;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
   gap: 0.7em;
 }
 .line-div {
@@ -756,7 +767,6 @@ const toScan = () => {
   height: 0.06em;
 }
 .ton-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: column;
   padding: 0.13em 0;
@@ -1799,15 +1809,15 @@ const toScan = () => {
   text-align: right;
   color: rgba(93, 104, 123, 0.9);
 }
-.iphone-13-13- {
-  position: relative;
-  background-color: #fff;
-  width: 100%;
-  height: 61.13em;
-  overflow: hidden;
-  text-align: center;
-  color: #3b3b3b;
-  font-family: Inter;
+
+.creditlabel,
+.creditoption {
+  color: rgba(59, 59, 59, 1);
+  font-size: 14px;
+  font-weight: 400;
+}
+.creditoption {
+  font-weight: 300;
 }
 .creditlabel,
 .creditoption {
@@ -1816,6 +1826,19 @@ const toScan = () => {
   font-weight: 400;
 }
 .creditoption {
+  font-weight: 300;
+}
+.group-creditor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.63em;
+}
+.div1 {
+  position: relative;
+  font-size: 0.88em;
+  line-height: 130%;
   font-weight: 300;
 }
 

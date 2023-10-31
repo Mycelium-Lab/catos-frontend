@@ -12,11 +12,16 @@
         </div>
         <div class="frame-wrapper1">
           <div class="frame-parent8">
-            <div class="parent1">
-              <div class="div35">Кредитор:</div>
+            <div class="frame-parent1_my frame-parent1">
+              <div class="creditlabel">Кредитор:</div>
+
               <div class="group">
-                <catos-checkbox variant="radiobutton"></catos-checkbox>
-                <div class="div36">Деньги до зарплаты</div>
+                <div class="div1">Деньги до зарплаты</div>
+                <img
+                  class="radiobutton-icon"
+                  alt=""
+                  src="@/assets/images/investore.svg"
+                />
               </div>
             </div>
             <div class="line-div"></div>
@@ -775,10 +780,13 @@ const toPay = () => {
 .ton-wrapper {
   flex: 1;
   padding: 0.13em 0;
+  justify-content: flex-end;
 }
 .frame-parent2 {
   align-self: stretch;
   gap: 4.06em;
+  justify-content: center;
+  align-items: center;
 }
 .line-div {
   align-self: stretch;
@@ -1070,7 +1078,6 @@ const toPay = () => {
   gap: 0.75em;
 }
 .div38 {
-  flex: 1;
   position: relative;
   font-size: 0.75em;
   line-height: 130%;
@@ -1406,5 +1413,38 @@ const toPay = () => {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+}
+.frame-parent1_my {
+  border: 1px solid #f6f4fc;
+  border-radius: 16px;
+  justify-content: space-between;
+  padding: 9px 13px 9px 13px;
+  margin: 0em;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  flex-direction: row;
+}
+.creditlabel,
+.creditoption {
+  color: rgba(59, 59, 59, 1);
+  font-size: 14px;
+  font-weight: 400;
+}
+.creditoption {
+  font-weight: 300;
+}
+.group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.63em;
+}
+.div1 {
+  position: relative;
+  font-size: 0.88em;
+  line-height: 130%;
+  font-weight: 300;
 }
 </style>

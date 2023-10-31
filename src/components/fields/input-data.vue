@@ -22,7 +22,11 @@
           ? { backgroundColor: 'transparent', border: 'none' }
           : ''
       "
+      :id="type === 'date' && hideNativeFormatDate ? 'input-date' : ''"
     />
+    <div class="custom-format" v-if="type === 'date' && hideNativeFormatDate">
+      дд.мм.гггг
+    </div>
     <div class="catos-fields__inner-icon_left">
       <slot name="left-icon" />
     </div>
@@ -33,8 +37,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-const { placeholder, simulate } = defineProps({
+import { ref, onMounted } from "vue";
+const { placeholder, simulate, value } = defineProps({
   placeholder: {
     type: String,
   },
@@ -60,6 +64,8 @@ const { placeholder, simulate } = defineProps({
     type: Boolean,
   },
 });
+
+const hideNativeFormatDate = ref(true);
 const emit = defineEmits(["selected"]);
 const mutatePlaceholder = ref(placeholder);
 const handleFocus = () => {
@@ -93,9 +99,9 @@ const handleBlur = () => {
   }
 };
 const selected = (ev: any) => {
-  if (simulate) {
-    emit("selected", ev.target.value);
-  }
+  hideNativeFormatDate.value = false;
+  console.log(ev.target.value);
+  emit("selected", ev.target.value);
 };
 </script>
 
@@ -148,4 +154,15 @@ const selected = (ev: any) => {
   background: none;
   z-index: 1;
 }*/
+#input-date {
+  text-indent: -500px;
+}
+.custom-format {
+  position: absolute;
+  bottom: 0.7em;
+  left: 1em;
+  width: 2em;
+  color: #b4b7c3;
+  font-weight: 300;
+}
 </style>

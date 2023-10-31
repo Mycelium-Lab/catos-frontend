@@ -9,3 +9,10 @@ export enum LoansBorrower {
   Погашенные,
   Проданные,
 }
+
+export enum LoansAdmin {
+  Заемщики,
+  Кредиторы,
+  Инвесторы,
+  Коллекторы,
+}

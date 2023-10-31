@@ -1,7 +1,7 @@
 <template>
-  <modal>
+  <modal v-if="isMobile">
     <div class="wrapper">
-      <div class="header">
+      <div class="header-checks">
         <div class="div9">Чеки</div>
       </div>
       <div class="swipe-down"></div>
@@ -14,7 +14,7 @@
               криптовалюту в удобное для него время
             </div>
           </div>
-          <div class="des">
+          <div class="des-ckecks">
             <img class="des-child" alt="" src="@/assets/images/dialog.png" />
 
             <div class="div11">
@@ -34,8 +34,8 @@
             <div class="details1">Детали</div>
           </div>
           <div class="frame-group">
-            <div class="frame-container">
-              <div class="frame-div">
+            <div class="frame-container_checks">
+              <div class="frame-div_checks">
                 <div class="svg-gobbler-2-1-group">
                   <div class="svg-wrapper">
                     <img
@@ -62,7 +62,7 @@
                   </div>
                 </div>
               </div>
-              <div class="frame-parent1">
+              <div class="frame-parent_checks">
                 <div class="title-parent">
                   <div class="title1">Чек на 10 TON</div>
                   <div class="description">
@@ -82,8 +82,8 @@
                 </div>
               </div>
             </div>
-            <div class="frame-container">
-              <div class="frame-div">
+            <div class="frame-container_checks">
+              <div class="frame-div_checks">
                 <div class="svg-gobbler-2-1-group">
                   <div class="svg-wrapper">
                     <img
@@ -109,7 +109,7 @@
                   </div>
                 </div>
               </div>
-              <div class="frame-parent1">
+              <div class="frame-parent_checks">
                 <div class="title-parent">
                   <div class="title1">Чек на 50 TON</div>
                   <div class="description">Чек без описания:</div>
@@ -126,8 +126,8 @@
                 </div>
               </div>
             </div>
-            <div class="frame-container">
-              <div class="frame-div">
+            <div class="frame-container_checks">
+              <div class="frame-div_checks">
                 <div class="svg-gobbler-2-1-group">
                   <div class="svg-wrapper">
                     <img
@@ -148,7 +148,7 @@
                   </div>
                 </div>
               </div>
-              <div class="frame-parent1">
+              <div class="frame-parent_checks">
                 <div class="title-parent">
                   <div class="title1">Чек на 50 TON</div>
                   <div class="description">Чек без описания:</div>
@@ -171,16 +171,12 @@
 
       <div id="popUpContainer" class="popup-overlay" style="display: none">
         <div class="popup-">
-          <div class="counters-graph-web">
-            <div class="bg"></div>
+          <div class="counters-graph-web-checks">
+            <div class="bg-checks"></div>
             <div class="component-26">
-              <!--<img class="share-icon" alt="" src="./public/share.svg" />-->
-
               <div class="number">Поделиться</div>
             </div>
             <div class="component-261">
-              <!-- <img class="share-icon" alt="" src="./public/copy.svg" /> -->
-
               <div class="number">Скопировать</div>
             </div>
             <div class="title-wrapper">
@@ -189,12 +185,6 @@
           </div>
           <div class="field-">
             <div class="svg-gobbler-2-1-parent">
-              <!--<img
-              class="svg-gobbler-2-1"
-              alt=""
-              src="./public/svggobbler-2-1.svg"
-            />-->
-
               <div class="name">
                 <div class="invoice-aa-04-19-18">Чек отправлен</div>
                 <div class="new-madieton-llc">Описание статуса:</div>
@@ -204,13 +194,7 @@
               <div class="total">10 TON</div>
               <div class="paid">Отправлено</div>
             </div>
-            <div class="arrows-table">
-              <!--<img
-              class="chevron-right-icon"
-              alt=""
-              src="./public/chevronright.svg"
-            />-->
-            </div>
+            <div class="arrows-table"></div>
           </div>
           <div class="div8" id="popuptext">Закрыть</div>
         </div>
@@ -219,11 +203,13 @@
       <detail v-if="isDetail"></detail>
     </div>
   </modal>
+  <checks-desktop v-else></checks-desktop>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import modal from "@/components/ui-kit/modal.vue";
+import checksDesktop from "./desktop/checks/checks-desktop.vue";
 //Отрисовать детали корректно
 import detail from "@/components/wallet/check/detail.vue";
 import { useRouter } from "vue-router";
@@ -232,19 +218,19 @@ const router = useRouter();
 const toCreateCheck = () => {
   router.push({ name: "checks-create" });
 };
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 </script>
 
 <styles scoped lang="scss">
-.wrapper {
-  height: 1300px;
-}
 .div9 {
   position: relative;
   font-size: 1em;
   line-height: 130%;
   font-weight: 600;
 }
-.header {
+.header-checks {
   position: absolute;
   top: 1.5em;
   border-radius: 8px;
@@ -290,7 +276,7 @@ const toCreateCheck = () => {
   font-size: 0.63em;
   line-height: 130%;
 }
-.des {
+.des-ckecks {
   position: absolute;
   top: -0.03em;
   left: 0;
@@ -440,7 +426,7 @@ const toCreateCheck = () => {
   color: #8181a5;
   font-family: fa-solid-900;
 }
-.frame-div {
+.frame-div_checks {
   align-self: stretch;
   display: flex;
   flex-direction: row;
@@ -508,13 +494,13 @@ const toCreateCheck = () => {
   color: #1c1d21;
   font-family: Lato;
 }
-.frame-container,
-.frame-parent1 {
+.frame-container_checks,
+.frame-parent_checks {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.frame-parent1 {
+.frame-parent_checks {
   align-self: stretch;
   border-radius: 12px;
   background-color: rgba(165, 146, 221, 0.1);
@@ -523,7 +509,7 @@ const toCreateCheck = () => {
   gap: 0.63em;
   color: #3b3b3b;
 }
-.frame-container {
+.frame-container_checks {
   border-radius: 10px;
   border: 1px solid rgba(165, 146, 221, 0.08);
   box-sizing: border-box;
@@ -561,30 +547,7 @@ const toCreateCheck = () => {
   color: #8181a5;
   padding: 0 24px;
 }
-.bg,
-.header-parent {
-  width: 100%;
-  background-color: #fff;
-}
-.header-parent {
-  position: relative;
-  border-radius: 30px 30px 0 0;
-  box-shadow: 0 12px 12px rgba(151, 71, 255, 0.04);
 
-  overflow: auto;
-  text-align: left;
-  color: #3b3b3b;
-  font-family: Inter;
-}
-.bg {
-  position: absolute;
-  height: 100%;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: 10px;
-}
 .share-icon {
   position: relative;
   width: 1.5em;
@@ -635,7 +598,7 @@ const toCreateCheck = () => {
   align-items: flex-start;
   justify-content: flex-start;
 }
-.counters-graph-web {
+.counters-graph-web-checks {
   position: absolute;
   top: 3.94em;
   left: 0.69em;

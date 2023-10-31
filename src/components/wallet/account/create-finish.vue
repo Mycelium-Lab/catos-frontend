@@ -62,19 +62,19 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="des-and-bbn-create-finish">
-        <div class="text-and-button">
-          <router-link
-            class="buttons-tabs"
-            id="buttonsTabsContainer"
-            :to="{ name: 'accounts' }"
-          >
-            <div class="text">К счетам</div>
-          </router-link>
-          <router-link class="buttons-tabs1" :to="{ name: 'wallet' }">
-            <div class="text">В кошелек</div>
-          </router-link>
+        <div class="action-gorup-create-finish">
+          <div class="text-and-button">
+            <router-link
+              class="buttons-tabs"
+              id="buttonsTabsContainer"
+              :to="{ name: 'accounts' }"
+            >
+              <div class="text">К счетам</div>
+            </router-link>
+            <router-link class="buttons-tabs1" :to="{ name: 'wallet' }">
+              <div class="text">В кошелек</div>
+            </router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -408,7 +408,7 @@ import copyPaste from "@/components/fields/copy-paste.vue";
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
 }
-.des-and-bbn-create-finish,
+
 .text-and-button {
   display: flex;
   flex-direction: column;
@@ -420,10 +420,7 @@ import copyPaste from "@/components/fields/copy-paste.vue";
   width: 100%;
   gap: 0.81em;
 }
-.des-and-bbn-create-finish {
-  position: absolute;
-  top: 34.94em;
-  left: 6vw;
+.action-gorup-create-finish {
   border-radius: 16px;
   background-color: #f9fbff;
   width: 88vw;

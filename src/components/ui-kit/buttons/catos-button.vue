@@ -109,11 +109,21 @@ const { variant, content, disabled } = defineProps({
   color: rgba(254, 254, 254, 1);
   background-color: rgba(87, 126, 247, 0.96);
   width: 19.715em;
-  height: 2.286em;
+  height: 40px;
   border-radius: 25px;
   &:hover {
     background: rgba(48, 98, 253, 1);
     cursor: pointer;
+  }
+}
+.catos-button_fourth {
+  &_disabled {
+    background: #9f93af;
+    cursor: not-allowed;
+    color: rgba(59, 59, 59, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    opacity: 0.3;
+    height: 40px;
   }
 }
 .catos-button_fourth_2 {
@@ -142,5 +152,6 @@ const { variant, content, disabled } = defineProps({
   width: 23.417em;
   height: 3.334em;
   border-radius: 36px;
+  cursor: pointer;
 }
 </style>

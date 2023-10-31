@@ -16,7 +16,5 @@
       "@/*": ["./src/*"],
       "@action/*": ["./src/ui/action/*"]
     }
-  },
-  "include": ["src/**/*.ts", "src/**/*.vue", "tests/**/*.ts"],
-  "exclude": ["node_modules"]
+  }
 }

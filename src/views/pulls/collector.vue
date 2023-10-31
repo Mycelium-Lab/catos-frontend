@@ -1,5 +1,9 @@
 <template>
-  <div class="iphone-13-13-" :class="isBackSide ? 'back-side' : ''">
+  <div
+    v-if="isMobile"
+    class="iphone-13-13-"
+    :class="isBackSide ? 'back-side' : ''"
+  >
     <div class="pull"></div>
     <div class="header">
       <div class="div8">Задолжности</div>
@@ -45,6 +49,34 @@
 
     <app-bar v-if="isAppBar"></app-bar>
   </div>
+  <default-desktop v-else>
+    <template v-slot:title> Задолжности </template>
+    <template v-slot:slider>
+      <button-slider
+        :style="{ width: '311px', margin: '0' }"
+        :variantIndex="2"
+        :tabs="['Маркетплейс', 'Купленные']"
+        @on-slide="toggleSlide"
+      ></button-slider>
+    </template>
+    <template v-slot:tools>
+      <tool-bar role="collector"></tool-bar>
+    </template>
+    <template v-slot:body>
+      <div class="frame-div">
+        <ul>
+          <li class="depositor-list" v-for="n in 5" :key="n">
+            <pulls-table
+              role="collector"
+              :variant="curentWindow"
+              :key="curentWindow"
+              @mySoldLoans="() => (curentWindow = 'debt')"
+            ></pulls-table>
+          </li>
+        </ul>
+      </div>
+    </template>
+  </default-desktop>
 </template>
 
 <script setup lang="ts">
@@ -53,6 +85,13 @@ import { useRouter } from "vue-router";
 import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import collectorList from "@/components/pulls/collector/collector-list.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";
+import defaultDesktop from "@/components/layouts/default-desktop.vue";
+import toolBar from "@/components/base/desktop/tool-bar.vue";
+import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 
 const getCurentWindow = computed(() => {
   console.log(window.history.state.curentWindow);
@@ -87,6 +126,13 @@ const toggleSlide = (slideIndex: any) => {
 </script>
 
 <style scoped>
+ul {
+  list-style: none;
+  padding: 0em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 38px 20px;
+}
 .pull {
   position: absolute;
   top: 0;

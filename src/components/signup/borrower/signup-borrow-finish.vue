@@ -4,14 +4,14 @@
 
     <div class="form-registration-46">
       <router-link
-        class="buttonnext"
+        :class="isMobile ? 'buttonnext' : 'buttonnext_desktop buttonnext'"
         :to="{
           name: 'connect-wallet',
         }"
       >
         <b class="b1">Закончить регистрацию</b>
       </router-link>
-      <div class="header">
+      <div :class="isMobile ? 'header' : 'header_desktop header'">
         <img
           class="icons3dpersona-creditors"
           alt=""
@@ -26,7 +26,9 @@
           </div>
         </div>
       </div>
-      <div class="frame-group">
+      <div
+        :class="isMobile ? 'frame-group' : 'frame-group_desktop frame-group'"
+      >
         <div class="frame-inner"></div>
         <div class="fieldsinputchoise-parent">
           <div class="fieldsinputchoise">
@@ -35,12 +37,22 @@
               <span class="span1">*</span>
             </div>
             <catos-select
-              placeholder="Выбирите вид занятости"
-              :options="options"
-              :value="value"
+              v-if="isMobile"
+              :placeholder="optionsWork[0]"
+              :options="optionsWork"
+              :value="valueWork"
+              @selected="ev => (valueWork = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="ev => (value = ev)"
+            ></catos-select>
+            <catos-select
+              v-else
+              :placeholder="optionsWork[0]"
+              :options="optionsWork"
+              :value="valueWork"
+              @selected="ev => (valueWork = ev)"
+              :optionWidthDesk="329"
+              :style="{ width: '100%' }"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -60,8 +72,18 @@
           <div class="div12">Вид занятости и доход</div>
         </div>
       </div>
-      <div class="frame-container">
-        <div class="rectangle-div"></div>
+      <div
+        :class="
+          isMobile
+            ? 'frame-container'
+            : 'frame-container_desktop frame-container'
+        "
+      >
+        <div
+          :class="
+            isMobile ? 'rectangle-div' : 'rectangle-div_desktop rectangle-div'
+          "
+        ></div>
         <div class="fieldsinputchoise-parent">
           <div class="fieldsinputchoise">
             <div class="div10">
@@ -69,12 +91,24 @@
               <span class="span1">*</span>
             </div>
             <catos-select
-              placeholder="Выбирите вид занятости"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
+              v-if="isMobile"
+              :placeholder="optionsEducation[0]"
+              :options="optionsEducation"
+              :value="valueEducation"
+              @selected="ev => (valueEducation = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
+              data-element="select-education"
+            ></catos-select>
+            <catos-select
+              v-else
+              :placeholder="optionsEducation[0]"
+              :options="optionsEducation"
+              :value="valueEducation"
+              @selected="ev => (valueEducation = ev)"
+              :optionWidthDesk="500"
+              :style="{ width: '100%' }"
+              data-element="select-education"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -83,12 +117,24 @@
               <span class="span1">*</span>
             </div>
             <catos-select
-              placeholder="Выбирите вид занятости"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
+              v-if="isMobile"
+              :placeholder="optionsFamaly[0]"
+              :options="optionsFamaly"
+              :value="valueFamaly"
+              @selected="ev => (valueFamaly = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
+              data-element="select-famaly"
+            ></catos-select>
+            <catos-select
+              v-else
+              :placeholder="optionsFamaly[0]"
+              :options="optionsFamaly"
+              :value="valueFamaly"
+              @selected="ev => (valueFamaly = ev)"
+              :optionWidthDesk="329"
+              :style="{ width: '100%' }"
+              data-element="select-famaly"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -97,12 +143,24 @@
               <span class="span1">*</span>
             </div>
             <catos-select
-              placeholder="Выбирите вид занятости"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
+              v-if="isMobile"
+              :placeholder="optionsChildren[0]"
+              :options="optionsChildren"
+              :value="valueChildren"
+              @selected="ev => (valueChildren = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
+              data-element="select-children"
+            ></catos-select>
+            <catos-select
+              v-else
+              :placeholder="optionsChildren[0]"
+              :options="optionsChildren"
+              :value="valueChildren"
+              @selected="ev => (valueChildren = ev)"
+              :optionWidthDesk="329"
+              :style="{ width: '100%' }"
+              data-element="select-children"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise">
@@ -111,12 +169,24 @@
               <span class="span1">*</span>
             </div>
             <catos-select
-              placeholder="Выбирите вид занятости"
-              :options="options"
-              :value="value"
-              @selected="ev => (value = ev)"
+              v-if="isMobile"
+              :placeholder="optionsCriminal[0]"
+              :options="optionsCriminal"
+              :value="valueCreminal"
+              @selected="ev => (valueCreminal = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
+              data-element="select-creminal"
+            ></catos-select>
+            <catos-select
+              v-else
+              :placeholder="optionsCriminal[0]"
+              :options="optionsCriminal"
+              :value="valueCreminal"
+              @selected="ev => (valueCreminal = ev)"
+              :optionWidthDesk="329"
+              :style="{ width: '100%' }"
+              data-element="select-creminal"
             ></catos-select>
           </div>
         </div>
@@ -125,16 +195,30 @@
         </div>
         <div class="fieldsinputchoise5">
           <div class="div14">
-            <span>Как вы узнали о нас? </span>
+            <span>Как вы узнали о нас ? </span>
             <span class="span1">*</span>
           </div>
           <catos-select
-            placeholder="Выбирите вид занятости"
-            :options="options"
-            :value="value"
-            @selected="ev => (value = ev)"
+            v-if="isMobile"
+            :placeholder="optionsChannel[0]"
+            :options="optionsChannel"
+            :value="valueChannel"
+            @selected="ev => (valueChannel = ev)"
             :optionWidth="77"
             :style="{ width: '100%' }"
+            top
+            data-element="select-channel"
+          ></catos-select>
+          <catos-select
+            v-else
+            :placeholder="optionsChannel[0]"
+            :options="optionsChannel"
+            :value="valueChannel"
+            @selected="ev => (valueChannel = ev)"
+            :optionWidthDesk="329"
+            :style="{ width: '100%' }"
+            top
+            data-element="select-channel"
           ></catos-select>
         </div>
       </div>
@@ -165,11 +249,69 @@ import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 const value = ref("");
+const valueWork = ref("");
+const valueEducation = ref("");
+const valueFamaly = ref("");
+const valueChildren = ref("");
+const valueCreminal = ref("");
+const valueChannel = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
 };
+const optionsWork = [
+  "Основное место работы",
+  "Дополнительное место работы",
+  "Работа по совместительству",
+  "Частичная занятость",
+  "Временная работа",
+  "Удалённая работа",
+  "Сезонная работа",
+  "Домашний труд",
+  "Самозанятые",
+  "Индивидуальные предприниматели",
+  "Фрилансеры",
+];
+const optionsEducation = [
+  "Начальное общее образование",
+  "Основное общее образование",
+  "Среднее общее образование",
+  "Начальное профессиональное образование",
+  "Среднее профессиональное образование",
+  "Высшее образование — бакалавриат",
+  "Высшее образование — специалитет",
+  "Высшее образование — магистратура",
+  "Послевузовское образование (аспирантура/докторантура)",
+];
+const optionsFamaly = [
+  "Не женат / не замужем",
+  "Женат / Замужем",
+  "В гражданском браке",
+  "В разводе",
+  "Вдовец / Вдова",
+];
+const optionsChildren = ["Нет", "1", "2", "3", "4", "5 и более"];
+const optionsCriminal = [
+  "Нет судимости",
+  "Есть судимость",
+  "Условная судимость",
+  "Судимость погашена",
+];
+const optionsChannel = [
+  "Интернет-поиск",
+  "Социальные сети",
+  "Рекомендация друзей",
+  "Реклама на ТВ",
+  "Реклама на радио",
+  "Печатная реклама",
+  "Электронная рассылка",
+  "Участие в мероприятиях",
+  "Другое",
+];
 </script>
 
 <style scoped lang="scss">
@@ -205,6 +347,28 @@ const options = {
   -webkit-tap-highlight-color: transparent;
   color: #3b3b3b;
   text-decoration: none;
+  &_desktop {
+    position: relative;
+    top: 62em;
+    left: 0em;
+    border-radius: 20px;
+    background-color: #ffdb6d;
+    width: 23.38em;
+    height: 3em;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    padding: 0.5em 0;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
+    color: #3b3b3b;
+    text-decoration: none;
+  }
 }
 .icons3dpersona-creditors {
   position: relative;
@@ -247,6 +411,16 @@ const options = {
   flex-direction: row;
   align-items: center;
   gap: 0.75em;
+  &_desktop {
+    position: relative;
+    top: 2.25em;
+    left: 0em;
+    width: 23.38em;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75em;
+    margin: 0 auto;
+  }
 }
 .span {
   font-weight: 300;
@@ -390,6 +564,14 @@ const options = {
   left: 6vw;
   width: 87.7vw;
   height: 13.19em;
+  &_desktop {
+    position: relative;
+    top: 6em;
+    left: 0em;
+    width: 23.38em;
+    height: 13.19em;
+    margin: 0 auto;
+  }
 }
 .div14 {
   position: relative;
@@ -407,11 +589,22 @@ const options = {
   border: 0.5px solid rgba(46, 58, 89, 0.4);
   box-sizing: border-box;
   height: 30em;
+  &_desktop {
+    position: relative;
+    width: 23.38em;
+    top: calc(50% - 235.5px);
+    right: 0;
+    left: 0;
+    border-radius: 15px;
+    border: 0.5px solid rgba(46, 58, 89, 0.4);
+    box-sizing: border-box;
+    height: 30em;
+  }
 }
 .fieldsinputchoise5 {
   position: absolute;
   top: 24.06em;
-  left: 5vw;
+  left: 1.31em;
   width: 87.5%;
   display: flex;
   flex-direction: column;
@@ -425,6 +618,14 @@ const options = {
   left: 6vw;
   width: 87.7vw;
   height: 29.81em;
+  &_desktop {
+    position: relative;
+    top: 9em;
+    left: 0em;
+    width: 23.38em;
+    height: 29.81em;
+    margin: 0 auto;
+  }
 }
 .form-registration-46 {
   position: absolute;

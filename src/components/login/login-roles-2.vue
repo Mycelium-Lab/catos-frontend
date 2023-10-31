@@ -8,9 +8,16 @@
     <img class="iphone-13-13-pro-66-item" alt="" src="./public/group-36.svg" />
 
     <div class="parent">
-      <div class="div2">
-        <p class="p">Выберите роль в качестве которой</p>
-        <p class="p">вы хотите присоединиться к проекту:</p>
+      <div :class="isMobile ? 'div2' : 'div2_desktop div2'">
+        <template v-if="isMobile">
+          <p class="p">Выберите роль в качестве которой</p>
+          <p class="p">вы хотите присоединиться к проекту:</p>
+        </template>
+        <template v-else>
+          <p class="p">
+            Выберите роль в качестве которой вы хотите присоединиться к проекту:
+          </p>
+        </template>
       </div>
       <div class="component-19-parent">
         <router-link
@@ -129,7 +136,7 @@
           </div>
         </router-link>
       </div>
-      <div class="group">
+      <div :class="isMobile ? 'group' : 'group_desktop group'">
         <div class="div10">
           {{
             title === "Войти"
@@ -143,9 +150,8 @@
           class="div11"
           >Зарегистрируйтесь</router-link
         >
-        <router-link v-else :to="{ name: 'login' }" class="div11"
-          >Войдите</router-link
-        >
+        <router-link v-else to="/" class="div11">Войдите</router-link>
+        <router-link to="/" @click="toAdmin"> Администратор </router-link>
       </div>
     </div>
     <div class="loader-parent">
@@ -162,9 +168,21 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+import { useDevice } from "@/compossables/useDevice";
+import { useRouter } from "vue-router";
+
+const { isMobile } = useDevice();
 
 const setRole = (role: any) => {
   localStorage.setItem("role", JSON.stringify(role));
+};
+
+const router = useRouter();
+const toAdmin = () => {
+  setRole("admin");
+  router.push(
+    isMobile.value ? { name: "admin-pannel-mobile" } : { name: "admin-pannel" }
+  );
 };
 
 //TODO: Переписать на vue router from  компонент name вместо history
@@ -204,22 +222,26 @@ const title = computed(() => {
 }
 .catos,
 .page-title {
-  position: absolute;
-  top: 2em;
+  position: relative;
+  top: 3em;
   font-size: 1.56em;
   line-height: 1.12em;
-  left: 20vw;
-  width: 90vw;
+  margin: 0 auto;
+  //width: 600px;
+  width: 100vw;
   text-align: center;
-  left: 7vw;
+}
+.page-title {
+  display: inline-block;
 }
 .catos {
   top: 5em;
-  left: 7vw;
+  // left: 7vw;
   font-size: 1em;
   line-height: 1.75em;
   font-weight: 500;
-  width: 90.6vw;
+  //width: 90.6vw;
+
   text-align: center;
 }
 .iphone-13-13-pro-66-item {
@@ -238,13 +260,13 @@ const title = computed(() => {
   margin: 0;
 }
 .div2 {
-  position: absolute;
-  top: 3%;
-  left: 17.35%;
+  position: relative;
+  top: 3em;
+
   font-size: 0.88em;
   line-height: 130%;
   text-align: center;
-  width: 67.5%;
+  width: 100vw;
 }
 .imagepersones-icon {
   position: relative;
@@ -508,6 +530,9 @@ const title = computed(() => {
   color: #1f1f1f;
   width: 50vw;
   text-align: center;
+  &_desktop {
+    top: 30em;
+  }
 }
 .parent {
   top: 10em;
@@ -650,12 +675,21 @@ const title = computed(() => {
   color: #3b3b3b;
   font-family: Inter;
 }
+.div2_desktop {
+  top: 5em;
+}
 @media (min-width: 500px) {
+  .group_desktop {
+    top: 44em;
+  }
+}
+@media (min-width: 790px) {
   .component-19,
   .component-191,
   .component-193 {
     width: 480px;
   }
+
   .component-19-parent {
     position: relative;
     flex-wrap: wrap;
@@ -679,10 +713,15 @@ const title = computed(() => {
     width: 100%;
   }
   .group {
-    top: 30em;
+    top: 45em;
   }
 }
 
+@media (min-width: 1088px) {
+  .group_desktop {
+    top: 28em;
+  }
+}
 @media (min-width: 1210px) {
   .component-19,
   .component-191,

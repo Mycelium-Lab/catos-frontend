@@ -1,5 +1,5 @@
 <template>
-  <div class="tab-1-1">
+  <div class="tab-1-1" v-if="isMobile">
     <div class="header6">
       <div class="div9">Дашбоард</div>
     </div>
@@ -47,12 +47,8 @@
           <div class="filter-2-child"></div>
           <div class="vector-wrapper" id="frameContainer9"></div>
         </div>
-        <button-slider
-          :style="{ marginTop: '1.3em' }"
-          :variantIndex="2"
-          :tabs="['Кол-вл займов', 'Займы в TON']"
-        ></button-slider>
-        <div class="container158">
+
+        <!--<div class="container158">
           <div class="containers-parent">
             <div class="containers">
               <div class="id">ID</div>
@@ -72,6 +68,46 @@
             </div>
             <div class="containers2">
               <div class="id">{{ rowPairs[1] }}</div>
+              <img
+                class="arrow-down-arrow-up-icon"
+                alt=""
+                src="@/assets/images/arrowdownarrowup.svg"
+              />
+            </div>
+            <div class="containers2">
+              <div class="id">{{ rowPairs[2] }}</div>
+              <img
+                class="arrow-down-arrow-up-icon"
+                alt=""
+                src="@/assets/images/arrowdownarrowup.svg"
+              />
+            </div>
+            <div class="containers2">
+              <div class="id">{{ rowPairs[3] }}</div>
+              <img
+                class="arrow-down-arrow-up-icon"
+                alt=""
+                src="@/assets/images/arrowdownarrowup.svg"
+              />
+            </div>
+            <div class="containers2">
+              <div class="id">{{ rowPairs[4] }}</div>
+              <img
+                class="arrow-down-arrow-up-icon"
+                alt=""
+                src="@/assets/images/arrowdownarrowup.svg"
+              />
+            </div>
+            <div class="containers2">
+              <div class="id">{{ rowPairs[5] }}</div>
+              <img
+                class="arrow-down-arrow-up-icon"
+                alt=""
+                src="@/assets/images/arrowdownarrowup.svg"
+              />
+            </div>
+            <div class="containers2">
+              <div class="id">{{ rowPairs[6] }}</div>
               <img
                 class="arrow-down-arrow-up-icon"
                 alt=""
@@ -105,7 +141,7 @@
             </button>
             <button
               class="arrows-table1"
-              :disabled="currentPage === 2 ? true : false"
+              :disabled="currentPage >= 7 ? true : false"
               @click="
                 () => {
                   isActive = 'next';
@@ -248,7 +284,7 @@
         </div>
         <div class="frame">
           <div class="div30">Раскрыть таблицу полностью</div>
-        </div>
+        </div>-->
       </div>
       <div class="component-25">
         <div class="div31" @click="toCard">
@@ -299,9 +335,9 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="1"></chart>
+          <chart id="1" :chartPairs="chartFinancePairs"></chart>
 
-          <div class="days">
+          <!--<div class="days">
             <div class="div32">Апр</div>
             <div class="div32">Май</div>
             <div class="div34">Июнь</div>
@@ -310,22 +346,51 @@
             <div class="div34">Окт</div>
             <div class="div34">Ноябрь</div>
             <div class="div34">Декабрь</div>
-          </div>
+          </div>-->
         </div>
         <div class="divider">
           <div class="line"></div>
         </div>
         <div class="slider-buttons">
-          <div class="buttons-graphsordersdown">
-            <div class="div40">Прибыль</div>
+          <div
+            :class="
+              chartFinancePairs.includes('profit')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders.svg" />
+            <div
+              :class="
+                chartFinancePairs.includes('profit')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Прибыль
+            </div>
+          </div>
+          <div
+            :class="
+              chartFinancePairs.includes('income')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <div
+              :class="
+                chartFinancePairs.includes('income')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Доход
+            </div>
           </div>
           <div class="buttons-graphsordersdown">
-            <div class="div40">Доход</div>
-          </div>
-          <div class="buttons-graphsordersdown2">
             <div class="div40">Расход</div>
           </div>
-          <div class="buttons-graphsordersdown2">
+          <div class="buttons-graphsordersdown">
             <div class="div40">ROI</div>
           </div>
         </div>
@@ -369,7 +434,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="2"></chart>
+          <chart id="2" :chartPairs="chartFinancePairs"></chart>
 
           <!--<div class="days1">
             <div class="div32">Апр</div>
@@ -439,9 +504,9 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="3"></chart>
+          <chart id="3" :chartPairs="chartFinancePairs"></chart>
 
-          <div class="days1">
+          <!--<div class="days1">
             <div class="div32">Апр</div>
             <div class="div32">Май</div>
             <div class="div34">Июнь</div>
@@ -450,7 +515,7 @@
             <div class="div34">Окт</div>
             <div class="div34">Ноябрь</div>
             <div class="div34">Декабрь</div>
-          </div>
+          </div>-->
         </div>
         <div class="divider">
           <div class="line"></div>
@@ -509,9 +574,9 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="4"></chart>
+          <chart id="4" :chartPairs="chartFinancePairs"></chart>
 
-          <div class="days1">
+          <!--<div class="days1">
             <div class="div32">Апр</div>
             <div class="div32">Май</div>
             <div class="div34">Июнь</div>
@@ -520,7 +585,7 @@
             <div class="div34">Окт</div>
             <div class="div34">Ноябрь</div>
             <div class="div34">Декабрь</div>
-          </div>
+          </div>-->
         </div>
         <div class="divider">
           <div class="line"></div>
@@ -543,7 +608,12 @@
     </div>
   </div>
 
-  <div id="container" class="popup-overlay" style="display: none">
+  <div
+    v-if="isMobile"
+    id="container"
+    class="popup-overlay"
+    style="display: none"
+  >
     <div class="div8">
       <div class="modal-date-picker">
         <div class="header-parent">
@@ -1722,40 +1792,715 @@
       </div>
     </div>
   </div>
-  <app-bar></app-bar>
+  <app-bar v-if="isMobile"></app-bar>
+
+  <default-desktop v-else>
+    <template v-slot:title> Дашбоард </template>
+
+    <template v-slot:tools> </template>
+    <template v-slot:body>
+      <pulls-statistic></pulls-statistic>
+      <div class="component-25" @click="toCardDesktop">
+        <div class="div31">Перейти к формату карточек пуллов:</div>
+        <img
+          class="chevron-right-icon"
+          alt=""
+          src="@/assets/images/chevron-right.svg"
+        />
+      </div>
+      <div class="graphsorders-mobile-01">
+        <div class="master">
+          <div class="content-frame">
+            <div class="elements-textbox-tablerow">
+              <div class="description">
+                <div class="title">Финансы</div>
+                <div class="subtitle">Catos</div>
+              </div>
+            </div>
+            <div class="text-frame">
+              <div class="info-right-side">
+                <div class="content">
+                  <div class="title">1 420 000 TON</div>
+                  <div class="info">+1.215 %</div>
+                </div>
+                <img
+                  class="arrows-down-arrow-right"
+                  alt=""
+                  src="@/assets/images/down-arrow-right.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div class="table">
+          <div class="tabs">
+            <div class="tabstextactive">
+              <div class="tab-title">День</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Неделя</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Месяц</div>
+            </div>
+          </div>
+          <chart
+            id="1"
+            :chartPairs="chartFinancePairs"
+            :key="chartFinancePairs[0] + chartFinancePairs.length"
+          ></chart>
+
+          <!--<div class="days">
+            <div class="div32">Апр</div>
+            <div class="div32">Май</div>
+            <div class="div34">Июнь</div>
+            <div class="div35">Авг</div>
+            <div class="div34">Сент</div>
+            <div class="div34">Окт</div>
+            <div class="div34">Ноябрь</div>
+            <div class="div34">Декабрь</div>
+          </div>-->
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <!--DESK-->
+        <div class="slider-buttons">
+          <div
+            :class="
+              chartFinancePairs.includes('profit')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+            @click="setChartFinancePairs"
+          >
+            <img src="@/assets/images/colors-graphsorders.svg" />
+            <div
+              :class="
+                chartFinancePairs.includes('profit')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Прибыль
+            </div>
+          </div>
+          <div
+            :class="
+              chartFinancePairs.includes('income')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+            @click="setChartFinancePairs"
+          >
+            <img src="@/assets/images/colors-graphsorders1.svg" />
+            <div
+              :class="
+                chartFinancePairs.includes('income')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Доход
+            </div>
+          </div>
+          <div
+            class="buttons-graphsordersdown"
+            @click="setChartFinancePairs"
+            :class="
+              chartFinancePairs.includes('consumption')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders2.svg" />
+            <div
+              :class="
+                chartFinancePairs.includes('consumption')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Расход
+            </div>
+          </div>
+          <div
+            class="buttons-graphsordersdown"
+            @click="setChartFinancePairs"
+            :class="
+              chartFinancePairs.includes('roi')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders4.svg" />
+            <div
+              :class="
+                chartFinancePairs.includes('roi')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              ROI
+            </div>
+          </div>
+        </div>
+        <!--DESK-->
+      </div>
+      <div class="graphsorders-mobile-01">
+        <div class="master">
+          <div class="content-frame">
+            <div class="elements-textbox-tablerow">
+              <div class="description">
+                <div class="title">GroupName</div>
+                <div class="subtitle">Catos</div>
+              </div>
+            </div>
+            <div class="text-frame">
+              <div class="info-right-side">
+                <div class="content">
+                  <div class="title">1 420 000 TON</div>
+                  <div class="info">+1.215 %</div>
+                </div>
+                <img
+                  class="arrows-down-arrow-right"
+                  alt=""
+                  src="@/assets/images/down-arrow-right.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div class="table">
+          <div class="tabs">
+            <div class="tabstextactive">
+              <div class="tab-title">День</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Неделя</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Месяц</div>
+            </div>
+          </div>
+          <chart
+            id="2"
+            :chartPairs="chartGroup1Pairs"
+            :key="chartGroup1Pairs[0] + chartGroup1Pairs.length"
+          ></chart>
+
+          <!--<div class="days">
+            <div class="div32">Апр</div>
+            <div class="div32">Май</div>
+            <div class="div34">Июнь</div>
+            <div class="div35">Авг</div>
+            <div class="div34">Сент</div>
+            <div class="div34">Окт</div>
+            <div class="div34">Ноябрь</div>
+            <div class="div34">Декабрь</div>
+          </div>-->
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div class="slider-buttons">
+          <div
+            :class="
+              chartGroup1Pairs.includes('all')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+            @click="setChartGroup1Pairs"
+          >
+            <img src="@/assets/images/colors-graphsorders1.svg" />
+            <div
+              :class="
+                chartGroup1Pairs.includes('all')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Всего
+            </div>
+          </div>
+          <div
+            :class="
+              chartGroup1Pairs.includes('new')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+            @click="setChartGroup1Pairs"
+          >
+            <img src="@/assets/images/colors-graphsorders4.svg" />
+            <div
+              :class="
+                chartFinancePairs.includes('new')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Новые
+            </div>
+          </div>
+          <div
+            class="buttons-graphsordersdown"
+            @click="setChartGroup1Pairs"
+            :class="
+              chartGroup1Pairs.includes('closed')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders.svg" />
+            <div
+              :class="
+                chartFinancePairs.includes('closed')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Закрытые
+            </div>
+          </div>
+          <div
+            class="buttons-graphsordersdown"
+            :class="
+              chartGroup1Pairs.includes('overdue')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+            @click="setChartGroup1Pairs"
+          >
+            <img src="@/assets/images/colors-graphsorders3.svg" />
+            <div
+              :class="
+                chartFinancePairs.includes('overdue')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Просроченные
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="graphsorders-mobile-01">
+        <div class="master">
+          <div class="content-frame">
+            <div class="elements-textbox-tablerow">
+              <div class="description">
+                <div class="title">Финансы</div>
+                <div class="subtitle">Catos</div>
+              </div>
+            </div>
+            <div class="text-frame">
+              <div class="info-right-side">
+                <div class="content">
+                  <div class="title">1 420 000 TON</div>
+                  <div class="info">+1.215 %</div>
+                </div>
+                <img
+                  class="arrows-down-arrow-right"
+                  alt=""
+                  src="@/assets/images/down-arrow-right.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div class="table">
+          <div class="tabs">
+            <div class="tabstextactive">
+              <div class="tab-title">День</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Неделя</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Месяц</div>
+            </div>
+          </div>
+          <chart
+            id="3"
+            :chartPairs="chartGroup2Pairs"
+            :key="chartGroup2Pairs[0] + chartGroup2Pairs.length"
+          ></chart>
+
+          <!--div class="days">
+            <div class="div32">Апр</div>
+            <div class="div32">Май</div>
+            <div class="div34">Июнь</div>
+            <div class="div35">Авг</div>
+            <div class="div34">Сент</div>
+            <div class="div34">Окт</div>
+            <div class="div34">Ноябрь</div>
+            <div class="div34">Декабрь</div>
+          </div>-->
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div class="slider-buttons">
+          <div
+            @click="setChartGroup2Pairs"
+            :class="
+              chartGroup2Pairs.includes('all')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders1.svg" />
+            <div
+              :class="
+                chartGroup2Pairs.includes('all')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Всего
+            </div>
+          </div>
+          <div
+            @click="setChartGroup2Pairs"
+            :class="
+              chartGroup2Pairs.includes('issued')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders4.svg" />
+            <div
+              :class="
+                chartGroup2Pairs.includes('issued')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Выдано
+            </div>
+          </div>
+          <div
+            @click="setChartGroup2Pairs"
+            :class="
+              chartGroup2Pairs.includes('free')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders.svg" />
+            <div
+              :class="
+                chartGroup2Pairs.includes('free')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Свободно
+            </div>
+          </div>
+          <div
+            @click="setChartGroup2Pairs"
+            :class="
+              chartGroup2Pairs.includes('noReturn')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders3.svg" />
+            <div
+              class="div40"
+              :class="
+                chartGroup2Pairs.includes('noReturn')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Не возврат
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="graphsorders-mobile-01">
+        <div class="master">
+          <div class="content-frame">
+            <div class="elements-textbox-tablerow">
+              <div class="description">
+                <div class="title">Коллекторы</div>
+                <div class="subtitle">Catos</div>
+              </div>
+            </div>
+            <div class="text-frame">
+              <div class="info-right-side">
+                <div class="content">
+                  <div class="title">1 420 000 TON</div>
+                  <div class="info">+1.215 %</div>
+                </div>
+                <img
+                  class="arrows-down-arrow-right"
+                  alt=""
+                  src="@/assets/images/down-arrow-right.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div class="table">
+          <div class="tabs">
+            <div class="tabstextactive">
+              <div class="tab-title">День</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Неделя</div>
+            </div>
+            <div class="tabstextresting">
+              <div class="tab-title">Месяц</div>
+            </div>
+          </div>
+          <chart
+            id="4"
+            :chartPairs="chartCollectorsPairs"
+            :key="chartCollectorsPairs[0] + chartCollectorsPairs.length"
+          ></chart>
+
+          <!--<div class="days">
+            <div class="div32">Апр</div>
+            <div class="div32">Май</div>
+            <div class="div34">Июнь</div>
+            <div class="div35">Авг</div>
+            <div class="div34">Сент</div>
+            <div class="div34">Окт</div>
+            <div class="div34">Ноябрь</div>
+            <div class="div34">Декабрь</div>
+          </div>-->
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div class="slider-buttons">
+          <div
+            @click="(e:any) => setChartСollectorsPairs(e)"
+            :class="
+              chartCollectorsPairs.includes('all')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders1.svg" />
+            <div
+              :class="
+                chartCollectorsPairs.includes('all')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Всего
+            </div>
+          </div>
+          <div
+            :class="
+              chartCollectorsPairs.includes('new')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+            @click="(e:any) => setChartСollectorsPairs(e)"
+          >
+            <img src="@/assets/images/colors-graphsorders4.svg" />
+            <div
+              :class="
+                chartCollectorsPairs.includes('new')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Новые
+            </div>
+          </div>
+          <div
+            class="buttons-graphsordersdown"
+            @click="(e:any) => setChartСollectorsPairs(e)"
+            :class="
+              chartCollectorsPairs.includes('closed')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+          >
+            <img src="@/assets/images/colors-graphsorders.svg" />
+            <div
+              :class="
+                chartCollectorsPairs.includes('closed')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Закрытые
+            </div>
+          </div>
+          <div
+            class="buttons-graphsordersdown"
+            :class="
+              chartCollectorsPairs.includes('overdue')
+                ? 'buttons-graphsordersdown_active buttons-graphsordersdown'
+                : 'buttons-graphsordersdown'
+            "
+            @click="(e:any) => setChartСollectorsPairs(e)"
+          >
+            <img src="@/assets/images/colors-graphsorders3.svg" />
+            <div
+              :class="
+                chartCollectorsPairs.includes('overdue')
+                  ? 'div40_active div40'
+                  : 'div40'
+              "
+            >
+              Просроченные
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </default-desktop>
 </template>
 
 <script setup lang="ts">
-import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
-import chart from "@/components/dashboard/chart.vue";
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
+import chart from "@/components/dashboard/chart.vue";
+import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";
+
+import pullsStatistic from "@/components/dashboard/pulls-statistic.vue";
 const router = useRouter();
+
 const toCard = () => {
   router.push({ name: "dashboard-cards" });
 };
-const currentPage = ref(0);
-const rows = [
-  {
-    first: "Пуллы",
-    last: "Выдано",
-  },
-  {
-    first: "Активно",
-    last: "Погашено",
-  },
-  {
-    first: "Просрочено",
-    last: "На продаже",
-  },
-];
-const isActive = ref("");
+const toCardDesktop = () => {
+  router.push({ name: "dashboard-cards-desktop" });
+};
 
-const rowPairs = computed(() => {
-  const pairs = rows[currentPage.value];
-  return Object.values(pairs);
-});
+const date = ref("");
+
+const pull = ref("Все пуллы");
+const optionsPulls = [
+  "Все пуллы",
+  "Пуллл #1",
+  "Пуллл #2",
+  "Пуллл #3",
+  "Пуллл #4",
+  "Пуллл #5",
+  "Пуллл #6",
+  "Пуллл #7",
+];
+
+const chartFinancePairs = ref(["profit", "income"]);
+const chartGroup1Pairs = ref(["all", "new"]);
+const chartGroup2Pairs = ref(["all", "issued"]);
+const chartCollectorsPairs = ref(["all", "new"]);
+const chartData = [];
+
+const setChartFinancePairs = (e: any) => {
+  let title = e.target.innerText;
+  if (chartFinancePairs.value.length === 2) {
+    chartFinancePairs.value = [];
+  }
+
+  switch (title) {
+    case "Прибыль":
+      chartFinancePairs.value.push("profit");
+      break;
+    case "Доход":
+      chartFinancePairs.value.push("income");
+      break;
+    case "Расход":
+      chartFinancePairs.value.push("consumption");
+      break;
+    case "ROI":
+      chartFinancePairs.value.push("roi");
+      break;
+  }
+};
+
+const setChartGroup1Pairs = (e: any) => {
+  let title = e.target.innerText;
+  if (chartGroup1Pairs.value.length === 2) {
+    chartGroup1Pairs.value = [];
+  }
+
+  switch (title) {
+    case "Всего":
+      chartGroup1Pairs.value.push("all");
+      break;
+    case "Новые":
+      chartGroup1Pairs.value.push("new");
+      break;
+    case "Закрытые":
+      chartGroup1Pairs.value.push("closed");
+      break;
+    case "Просроченные":
+      chartGroup1Pairs.value.push("overdue");
+      break;
+  }
+};
+
+const setChartGroup2Pairs = (e: any) => {
+  let title = e.target.innerText;
+  if (chartGroup2Pairs.value.length === 2) {
+    chartGroup2Pairs.value = [];
+  }
+
+  switch (title) {
+    case "Всего":
+      chartGroup2Pairs.value.push("all");
+      break;
+    case "Выдано":
+      chartGroup2Pairs.value.push("issued");
+      break;
+    case "Свободно":
+      chartGroup2Pairs.value.push("free");
+      break;
+    case "Не возврат":
+      chartGroup2Pairs.value.push("noReturn");
+      break;
+  }
+};
+
+const setChartСollectorsPairs = (e: any) => {
+  let title = e.target.innerText;
+  if (chartCollectorsPairs.value.length === 2) {
+    chartCollectorsPairs.value = [];
+  }
+
+  switch (title) {
+    case "Всего":
+      chartCollectorsPairs.value.push("all");
+      break;
+    case "Новые":
+      chartCollectorsPairs.value.push("new");
+      break;
+    case "Закрытые":
+      chartCollectorsPairs.value.push("closed");
+      break;
+    case "Просроченные":
+      chartCollectorsPairs.value.push("overdue");
+      break;
+  }
+};
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 </script>
 
 <style scoped lang="scss">
@@ -1795,15 +2540,17 @@ const rowPairs = computed(() => {
 .div10 {
   position: absolute;
   top: 16.13%;
-  left: 6.14%;
+  left: 2em;
   font-size: 0.88em;
   letter-spacing: 0.01em;
   line-height: 110%;
   font-weight: 500;
+  color: #3b3b3b;
 }
 .div11,
 .div12 {
   position: relative;
+  color: #3b3b3b;
 }
 .div11 {
   font-size: 0.75em;
@@ -1901,6 +2648,8 @@ const rowPairs = computed(() => {
   width: 100%;
   align-items: flex-start;
   gap: 0.75em;
+  position: relative;
+  left: 1.7em;
 }
 .filter-2-inner,
 .frame-wrapper {
@@ -1995,60 +2744,7 @@ const rowPairs = computed(() => {
   align-items: flex-start;
   justify-content: flex-start;
 }
-.id {
-  position: relative;
-  font-size: 0.75em;
-  line-height: 130%;
-  font-weight: 500;
-}
-.arrow-down-arrow-up-icon {
-  position: relative;
-  width: 1em;
-  height: 1em;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.containers,
-.containers1,
-.containers2 {
-  background-color: #fff;
-  overflow: hidden;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: flex-start;
-}
-.containers {
-  width: 3.63em;
-  display: flex;
-  flex-direction: row;
-  padding: 0.75em 0.25em 0.75em 1em;
-  gap: 0.5em;
-}
-.containers1,
-.containers2 {
-  padding: 0.75em 0.63em;
-  gap: 0.25em;
-}
-.containers1 {
-  width: 6.4em;
-  display: flex;
-  flex-direction: row;
-}
-.containers2 {
-  width: 7.63em;
-}
-.arrows1,
-.containers-parent,
-.containers2 {
-  display: flex;
-  flex-direction: row;
-}
-.containers-parent {
-  align-items: flex-start;
-  justify-content: flex-start;
-  z-index: 0;
-}
+
 .arrows1 {
   border-radius: 24px;
   background-color: #fff;
@@ -2056,86 +2752,19 @@ const rowPairs = computed(() => {
   align-items: center;
   justify-content: center;
 }
-.arrows,
-.arrows-table,
-.arrows-table1 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.arrows-table1 {
-  border-radius: 24px;
-  padding: 0.25em;
-  border: none;
-  background: transparent;
-}
-.arrows {
-  margin: 0 !important;
-  position: absolute;
-  top: calc(50% - 12.25px);
-  left: calc(50% + 103px);
-  gap: 0.25em;
-  z-index: 1;
-}
-.container158,
-.id-7 {
-  align-self: stretch;
-  position: relative;
-}
-.container158 {
-  border-bottom: 1px solid #f2f2f2;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: left;
-  color: #404040;
-}
-.id-7 {
-  font-size: 0.75em;
-  text-decoration: underline;
-  line-height: 1.33em;
-  background: linear-gradient(
-      rgba(87, 126, 247, 0.96),
-      rgba(87, 126, 247, 0.96)
-    ),
-    #b5b5c3;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.containers3 {
-  align-self: stretch;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.containers3,
-.containers4,
+
 .containers7 {
   height: 2.5em;
   padding: 0.19em 0.25em 0 1em;
   box-sizing: border-box;
   justify-content: center;
 }
-.containers4 {
-  align-self: stretch;
-  background: linear-gradient(
-      rgba(165, 146, 221, 0.04),
-      rgba(165, 146, 221, 0.04)
-    ),
-    #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+
 .containers7 {
   background-color: #fff;
   width: 3.88em;
 }
-.containers-group,
+
 .containers7,
 .containers8 {
   display: flex;
@@ -2154,109 +2783,7 @@ const rowPairs = computed(() => {
   box-sizing: border-box;
   justify-content: center;
 }
-.containers-group {
-  width: 3.63em;
-  justify-content: flex-start;
-}
-.div18 {
-  flex: 1;
-  position: relative;
-  font-size: 0.75em;
-  letter-spacing: -0.5px;
-  line-height: 1.33em;
-}
-.containers10,
-.containers9 {
-  align-self: stretch;
-  height: 2.5em;
-  display: flex;
-  flex-direction: row;
-  padding: 0.75em;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: flex-start;
-}
-.containers9 {
-  background-color: #fff;
-}
-.containers10 {
-  background: linear-gradient(
-      rgba(165, 146, 221, 0.04),
-      rgba(165, 146, 221, 0.04)
-    ),
-    #fff;
-}
-.containers-container,
-.containers-parent1 {
-  width: 5.94em;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-.containers-parent1 {
-  width: 6.63em;
-}
-.containers21,
-.containers22 {
-  align-self: stretch;
-  height: 2.5em;
-  display: flex;
-  flex-direction: row;
-  padding: 0.75em 0.75em 0.75em 1em;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
 
-  & .chevron-right-icon {
-    right: 1em;
-  }
-}
-.containers21 {
-  background-color: #fff;
-}
-.containers22 {
-  background: linear-gradient(
-      rgba(165, 146, 221, 0.04),
-      rgba(165, 146, 221, 0.04)
-    ),
-    #fff;
-}
-.containers-parent2,
-.frame-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex: 1;
-}
-.frame-container {
-  width: 87.7vw;
-  flex-direction: row;
-  text-align: left;
-  color: #404040;
-}
-.div30 {
-  position: relative;
-  font-size: 0.75em;
-  letter-spacing: 0.01em;
-  line-height: 110%;
-  font-weight: 500;
-}
-.frame {
-  align-self: stretch;
-  background: linear-gradient(
-    0deg,
-    rgba(165, 146, 221, 0.08),
-    rgba(165, 146, 221, 0)
-  );
-  display: flex;
-  flex-direction: row;
-  padding: 1.25em 0.63em 0.5em;
-  align-items: center;
-  justify-content: center;
-  color: rgba(46, 58, 89, 0.6);
-}
 .tables-light-mode {
   border-radius: 16px;
   border: 1px solid #f2f2f2;
@@ -2522,7 +3049,7 @@ const rowPairs = computed(() => {
   flex-direction: column;
   align-items: center;
   position: relative;
-  gap: 1.13em;
+
   color: #c1c4c9;
 }
 .colors-graphsorders-icon {
@@ -2531,10 +3058,16 @@ const rowPairs = computed(() => {
   height: 1em;
 }
 .div40 {
-  position: relative;
-  font-size: 0.88em;
-  line-height: 0.71em;
-  font-weight: 500;
+  color: #3b3b3b;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%; /* 15.6px */
+  &_active {
+    font-weight: 500;
+  }
 }
 .buttons-graphsordersdown,
 .buttons-graphsordersdown2,
@@ -2547,10 +3080,16 @@ const rowPairs = computed(() => {
 }
 .buttons-graphsordersdown {
   border-radius: 6px;
-  background-color: rgba(165, 146, 221, 0.1);
+  cursor: pointer;
   height: 2em;
   padding: 0.38em 0.63em;
   gap: 0.25em;
+  &_active {
+    border-radius: 6px;
+    background: rgba(165, 146, 221, 0.1);
+    padding: 6px 10px;
+    height: 32px;
+  }
 }
 .buttons-graphsordersdown2,
 .slider-buttons {
@@ -2559,6 +3098,7 @@ const rowPairs = computed(() => {
 .buttons-graphsordersdown2 {
   border-radius: 6px;
   padding: 0.38em 0.63em;
+  cursor: pointer;
   gap: 0.25em;
 }
 .slider-buttons {
@@ -2568,6 +3108,7 @@ const rowPairs = computed(() => {
   padding: 0.06em 0.63em 0.06em 1em;
   gap: 0.38em;
   text-align: center;
+  height: 32px;
 }
 .description1,
 .graphsorders-mobile-01 {
@@ -2581,7 +3122,7 @@ const rowPairs = computed(() => {
   border: 1px solid rgba(46, 58, 89, 0.2);
   box-sizing: border-box;
   width: 100%;
-  height: 33.31em;
+  height: 34.5em;
   overflow: hidden;
   flex-shrink: 0;
   padding: 1.38em 0;
@@ -3661,5 +4202,50 @@ const rowPairs = computed(() => {
   text-align: center;
   color: rgba(87, 126, 247, 0.96);
   font-family: Inter;
+}
+@media (min-width: 500px) {
+  .filter-2 {
+    width: 48.75em;
+  }
+  .filter-2-inner,
+  .tables-light-mode {
+    width: auto;
+  }
+  .frame-container {
+    width: 100%;
+  }
+  .arrows-table1 {
+    width: 24px;
+    height: 24px;
+    &:hover {
+      background: rgba(245, 247, 249, 1);
+    }
+  }
+  .arrows {
+    left: 45em;
+  }
+  .containers21,
+  .containers22 {
+    align-self: end;
+  }
+  .containers,
+  .containers1,
+  .containers2,
+  .containers-group,
+  .containers-container {
+    width: 160px;
+  }
+  .containers1 {
+    width: 130px;
+  }
+  .containers {
+    width: 125px;
+  }
+  .containers-parent1 {
+    width: 600px;
+  }
+  .containers8 {
+    width: 100%;
+  }
 }
 </style>

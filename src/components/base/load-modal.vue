@@ -2,7 +2,7 @@
   <div class="statusapi">
     <div
       class="status-reg"
-      :style="variant === 'form' ? { height: '331px' } : { height: '282px' }"
+      :style="variant === 'form' ? { height: '351px' } : { height: '282px' }"
     >
       <div class="group">
         <div class="div8">

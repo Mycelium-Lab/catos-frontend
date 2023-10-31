@@ -69,16 +69,16 @@
           <div class="parent12">
             <div class="div47">Кредитор:</div>
             <div class="alert-triangle-parent">
-              <catos-checkbox
-                variant="radiobutton"
-                :style="{ position: 'relative', top: '0.2em' }"
-              ></catos-checkbox>
-
               <div class="div74">Деньги до зарплаты</div>
+              <img
+                class="radiobutton-icon"
+                alt=""
+                src="@/assets/images/investore.svg"
+              />
             </div>
           </div>
           <div class="frame-child6"></div>
-          <div class="alert-triangle-parent">
+          <div class="alert-triangle-parent-1 alert-triangle-parent">
             <div class="div47">Пулл:</div>
             <div class="wrapper15">
               <div class="div76">#123445</div>
@@ -153,7 +153,7 @@
                 <div class="text9">Сменить статус</div>
               </div>
               <div class="buttons-tabs9" @click="toLoans">
-                <div class="text9">Перейти в Мои займы</div>
+                <div class="text9">Перейти в мои займы</div>
               </div>
             </div>
           </div>
@@ -391,7 +391,6 @@ const toLoans = () => {
   height: 0.06em;
 }
 .ton-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: row;
   padding: 0.13em 0;
@@ -1385,6 +1384,10 @@ const toLoans = () => {
   align-items: center;
   justify-content: flex-start;
   gap: 0.63em;
+  &-1 {
+    justify-content: space-between;
+    width: 100%;
+  }
 }
 .div64 {
   align-self: stretch;
@@ -2086,7 +2089,7 @@ const toLoans = () => {
   flex-direction: row;
   padding: 0.25em 0;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 0.63em;
 }
 .frame-child6 {
@@ -2116,6 +2119,7 @@ const toLoans = () => {
 .wrapper16 {
   padding: 0.13em 0;
   align-items: flex-start;
+  width: 70%;
 }
 .div78 {
   flex: 1;
@@ -2123,13 +2127,14 @@ const toLoans = () => {
   font-size: 0.88em;
   line-height: 130%;
   font-weight: 300;
+  text-align: end;
 }
 .frame-parent25 {
-  width: 100%3;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 0.5em;
 }
 .span46 {

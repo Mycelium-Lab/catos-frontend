@@ -76,7 +76,7 @@
                 target="_blank"
               >
                 <span>Код отправлен на номер:</span>
-                <span class="koahyan123gmailcom1"> Koa.Hyan123@gmail.com</span>
+                <span class="koahyan123gmailcom1"> +7 (999) 215-43-26</span>
               </a>
               <div class="div33">
                 <span>Примерное время </span>
@@ -1027,7 +1027,7 @@ const handleClose = () => {
 }
 .koahyan123gmailcom {
   position: absolute;
-  top: 11.42%;
+  top: 1rem;
   left: 6.14%;
   font-size: 0.63em;
   line-height: 1em;
@@ -1043,7 +1043,7 @@ const handleClose = () => {
 }
 .div33 {
   position: absolute;
-  top: 17.81%;
+  top: 2rem;
   left: 6.14%;
   font-size: 0.63em;
   line-height: 120%;
