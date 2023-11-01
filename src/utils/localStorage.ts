@@ -1,4 +1,5 @@
 import { AuthResponse } from "@/api/auth.api";
+import { Role } from "@/types/user.types";
 const storagePrefix = "__catos_app__";
 
 class StorageFactory<T> {
@@ -42,3 +43,4 @@ class StorageFactory<T> {
 }
 
 export const authStorage = new StorageFactory<AuthResponse>("auth");
+export const roleStorage = new StorageFactory<Role>("role");

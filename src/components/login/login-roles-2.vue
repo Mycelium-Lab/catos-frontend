@@ -164,10 +164,11 @@
 import { computed } from "vue";
 import { useUserDataStore } from "@/stores/userData";
 import { Role } from "../../types/user.types";
+import { roleStorage } from "@/utils/localStorage";
 
 const userDataStore = useUserDataStore();
 const setRole = (role: Role) => {
-  // localStorage.setItem("role", JSON.stringify(role));
+  roleStorage.set(role);
   userDataStore.userDTO.role = role;
 };
 

@@ -41,7 +41,9 @@
                 placeholder="Выбрать форму регистрации:"
                 :options="regOptions"
                 :value="userDataStore.userDTO.paper.registration_form"
-                @selected="ev => (userDataStore.userDTO.paper.registration_form = ev)"
+                @selected="
+                  ev => (userDataStore.userDTO.paper.registration_form = ev)
+                "
                 :optionWidth="77"
                 :style="{ width: '100%' }"
               ></catos-select>
@@ -54,7 +56,6 @@
               <input-data
                 placeholder="Введите наименование"
                 v-model:model-value="userDataStore.userDTO.paper.name"
-                @update:model-value="ev => (userDataStore.userDTO.paper.name= ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -71,8 +72,10 @@
               </div>
               <input-data
                 placeholder="Введите номер"
-                v-model:model-value="regNumberString"
-                @update:model-value="ev => (userDataStore.userDTO.paper.registration_number = ev)"
+                v-model:model-value="regNumberString.value"
+                @update:model-value="
+                  ev => (userDataStore.userDTO.paper.registration_number = ev)
+                "
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -89,8 +92,7 @@
               </div>
               <input-data
                 placeholder="Введите адрес"
-                v-model:model-value="addressString"
-                @update:model-value="ev => (userDataStore.userDTO.paper.address = ev)"
+                v-model:model-value="userDataStore.userDTO.paper.address.street"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -105,7 +107,6 @@
               <input-data
                 placeholder="Введите адрес сайта"
                 v-model:model-value="userDataStore.userDTO.paper.website"
-                @update:model-value="ev => (userDataStore.userDTO.paper.website = ev)"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -133,9 +134,12 @@
                     :obligatory-field="true"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                     class="loader-file"
-                    @on-change="(file) => saveImage('regProof', file)"
+                    @on-change="file => saveImage('regProof', file)"
                   ></loader-field>
-                  <div v-if="userDataStore.regProof != null" class="text-parent">
+                  <div
+                    v-if="userDataStore.regProof != null"
+                    class="text-parent"
+                  >
                     <div class="icons-parent">
                       <div class="icons">
                         <div class="iconsfile">
@@ -164,10 +168,14 @@
 
                         <div class="div22">12%</div>
                       </div> -->
-                      <button class="button-remove" @click="() => { 
-                        userDataStore.regProof = null;
-                        userDataStore.userDTO.paper.first_photo = '';
-                        }"
+                      <button
+                        class="button-remove"
+                        @click="
+                          () => {
+                            userDataStore.regProof = null;
+                            userDataStore.userDTO.paper.first_photo = '';
+                          }
+                        "
                       >
                         <img
                           class="loader-child"
@@ -223,9 +231,12 @@
                     :obligatory-field="true"
                     name="Operating address proof"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
-                    @on-change="(file) => saveImage('addrProof', file)"
+                    @on-change="file => saveImage('addrProof', file)"
                   ></loader-field>
-                  <div v-if="userDataStore.addrProof != null" class="text-parent">
+                  <div
+                    v-if="userDataStore.addrProof != null"
+                    class="text-parent"
+                  >
                     <div class="icons-parent">
                       <div class="icons">
                         <div class="iconsfile">
@@ -254,15 +265,19 @@
 
                         <div class="div22">12%</div>
                       </div> -->
-                      <button class="button-remove" @click="() => {
-                        userDataStore.addrProof = null;
-                        userDataStore.userDTO.paper.second_photo = '';
-                        }"
+                      <button
+                        class="button-remove"
+                        @click="
+                          () => {
+                            userDataStore.addrProof = null;
+                            userDataStore.userDTO.paper.second_photo = '';
+                          }
+                        "
                       >
                         <img
-                        class="loader-child"
-                        alt=""
-                        src="../public/remove.svg"
+                          class="loader-child"
+                          alt=""
+                          src="../public/remove.svg"
                         />
                       </button>
                     </div>
@@ -281,9 +296,12 @@
                     class="loader-file"
                     name="Extra documents"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
-                    @on-change="(file) => saveImage('extraDocs', file)"
+                    @on-change="file => saveImage('extraDocs', file)"
                   ></loader-field>
-                  <div v-if="userDataStore.extraDocs != null" class="text-parent">
+                  <div
+                    v-if="userDataStore.extraDocs != null"
+                    class="text-parent"
+                  >
                     <div class="icons-parent">
                       <div class="icons">
                         <div class="iconsfile">
@@ -312,10 +330,14 @@
 
                         <div class="div22">12%</div>
                       </div> -->
-                      <button class="button-remove" @click="() => {
-                        userDataStore.extraDocs = null;
-                        userDataStore.userDTO.paper.third_photo = '';
-                        }"
+                      <button
+                        class="button-remove"
+                        @click="
+                          () => {
+                            userDataStore.extraDocs = null;
+                            userDataStore.userDTO.paper.third_photo = '';
+                          }
+                        "
                       >
                         <img
                           class="loader-child"
@@ -332,7 +354,7 @@
                   placeholder="Тип документа"
                   :style="{ width: '86.8%', left: '5vw' }"
                   :right="true"
-                  @update:model-value="ev => (userDataStore.extraDocsType = ev)"
+                  v-model:model-value="userDataStore.extraDocsType"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -344,7 +366,9 @@
           <div class="text-declaration">
             <div class="declaration">Declaration:</div>
             <div class="checkbox-group">
-              <catos-checkbox @on-change="(arg) => handleCheckboxChange(arg)"></catos-checkbox>
+              <catos-checkbox
+                @on-change="arg => handleCheckboxChange(arg)"
+              ></catos-checkbox>
 
               <div class="by-submitting-this">
                 By submitting this form, you confirm that:
@@ -446,7 +470,7 @@ const options = {
 const regOptions = {
   sng: ["ООО", "ОАО", "ПАО"],
   euro: ["LTD", "LLC", "Sole proprietorship"],
-}
+};
 const checkbox = reactive({
   checked: false,
 });
@@ -456,8 +480,11 @@ const handleCheckboxChange = (checked: boolean) => {
 const isLinkActive = computed(() => {
   return checkbox.checked;
 });
-const regNumberString = computed(() => {
-  return userDataStore.userDTO.paper.registration_number.toString();
+const regNumberString = reactive({
+  value:
+    userDataStore.userDTO.paper.registration_number === 0
+      ? ""
+      : userDataStore.userDTO.paper.registration_number.toString(),
 });
 const addressString = computed(() => {
   return userDataStore.userDTO.paper.address.toString();
@@ -480,16 +507,15 @@ const saveImage = async (boxName: string, file: File | null) => {
       default:
         break;
     }
-    console.log('File saved');
-  }
-  else {
+    console.log("File saved");
+  } else {
     console.log("File is null");
   }
-}
+};
 const allDataEntered = computed(() => {
   return (
     userDataStore.userDTO.paper.country !== "" &&
-    userDataStore.userDTO.paper.registration_form!== "" &&
+    userDataStore.userDTO.paper.registration_form !== "" &&
     userDataStore.userDTO.paper.name !== "" &&
     userDataStore.userDTO.paper.registration_number !== 0 &&
     userDataStore.userDTO.paper.address !== null &&
@@ -689,7 +715,7 @@ const allDataEntered = computed(() => {
   backdrop-filter: blur(5px);
   border: 0.5px solid #2e3a59;
   box-sizing: border-box;
-  height: 41.50em;
+  height: 41.5em;
 }
 .div20 {
   position: relative;
@@ -1335,7 +1361,7 @@ const allDataEntered = computed(() => {
   overflow-x: hidden;
 }
 .disabled {
-    opacity: 0.5;
-    pointer-events: none;
+  opacity: 0.5;
+  pointer-events: none;
 }
 </style>

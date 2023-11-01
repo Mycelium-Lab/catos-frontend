@@ -19,9 +19,8 @@
                 Я даю согласие на обработку и хранение моих персональных данных
                 <div
                   v-if="
-                    ['creditor', 'collector'].includes(
-                      userDataStore.userDTO.role
-                    )
+                    roleStorage.get() === 'creditor' ||
+                    roleStorage.get() === 'collector'
                   "
                 >
                   а также данных компании, которую я представляю
@@ -32,7 +31,8 @@
               <div
                 class="component-20-group"
                 v-if="
-                  ['collector', 'creditor'].includes(userDataStore.userDTO.role)
+                  roleStorage.get() === 'creditor' ||
+                  roleStorage.get() === 'collector'
                 "
               >
                 <catos-checkbox
@@ -48,7 +48,8 @@
               <div
                 class="component-20-group"
                 v-if="
-                  ['collector', 'creditor'].includes(userDataStore.userDTO.role)
+                  roleStorage.get() === 'creditor' ||
+                  roleStorage.get() === 'collector'
                 "
               >
                 <catos-checkbox
@@ -56,17 +57,11 @@
                   variant="rounded"
                 ></catos-checkbox>
 
-                <div
-                  class="div9"
-                  v-if="userDataStore.userDTO.role === 'creditor'"
-                >
+                <div class="div9" v-if="roleStorage.get() === 'creditor'">
                   Продолжая, я соглашаюсь, что моя организация имеет право
                   оказания услуг кредиторской деятельности
                 </div>
-                <div
-                  class="div9"
-                  v-else-if="userDataStore.userDTO.role == 'collector'"
-                >
+                <div class="div9" v-else-if="roleStorage.get() === 'collector'">
                   Продолжая, я соглашаюсь, что моя организация имеет право
                   оказания услуг коллекторской деятельности
                 </div>
@@ -89,19 +84,18 @@
                 <p class="p">для звонков и смс</p>
               </span>
             </div>
-              <input-data
-                class="phone-field"
-                v-model:model-value="userDataStore.userDTO.phone"
-                @update:model-value="userDataStore.userDTO.phone = $event"
-                type="phone"
-                placeholder="Ваш номер телефона"
-                :style="{ width: '90%' }"
-                :left="true"
-              >
-                <template v-slot:left-icon>
-                  <img src="@/assets/images/iconsmobile.svg" />
-                </template>
-              </input-data>
+            <input-data
+              class="phone-field"
+              v-model:model-value="userDataStore.userDTO.phone"
+              type="phone"
+              placeholder="Ваш номер телефона"
+              :style="{ width: '90%' }"
+              :left="true"
+            >
+              <template v-slot:left-icon>
+                <img src="@/assets/images/iconsmobile.svg" />
+              </template>
+            </input-data>
           </div>
           <div class="fieldsregistration-options1">
             <div class="text-and-fill1">
@@ -117,7 +111,6 @@
             <input-data
               class="phone-field"
               v-model:model-value="userDataStore.userDTO.email"
-              @update:model-value="userDataStore.userDTO.email = $event"
               placeholder="Ваш email"
               :style="{ width: '90%' }"
               :left="true"
@@ -131,7 +124,7 @@
           <div class="fieldsregistration-options2">
             <input-data
               class="password-field phone-field"
-              @update:model-value="userDataStore.userDTO.password = $event"
+              v-model:model-value="userDataStore.userDTO.password"
               placeholder="Пароль"
               :style="{ width: '90%' }"
               :left="true"
@@ -143,7 +136,7 @@
             </input-data>
             <input-data
               class="password-field-repead password-field phone-field"
-              @update:model-value="repeatPass = $event"
+              v-model:model-value="repeatPass"
               placeholder="Пароль"
               :style="{ width: '90%' }"
               :left="true"
@@ -176,11 +169,11 @@
       :class="{ disabled: !isLinkActive }"
       :to="{
         name:
-          userDataStore.userDTO.role === 'creditor'
+          roleStorage.get() === 'creditor'
             ? 'anketa-redst'
-            : userDataStore.userDTO.role === 'investor'
+            : roleStorage.get() === 'investor'
             ? 'signup-depositor'
-            : userDataStore.userDTO.role === 'collector'
+            : roleStorage.get() === 'collector'
             ? 'anketa-redst'
             : 'signup-borrower',
       }"
@@ -215,6 +208,7 @@ import inputData from "../../components/fields/input-data.vue";
 import catosCheckbox from "../../components/ui-kit/catos-checkbox.vue";
 import { ref, computed, reactive, KeepAlive } from "vue";
 import { useUserDataStore } from "@/stores/userData";
+import { roleStorage } from "@/utils/localStorage";
 
 const title = computed(() => {
   return window.history.state.title;

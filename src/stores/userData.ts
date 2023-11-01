@@ -1,8 +1,9 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
+import { UserData } from "@/types/user.types";
 
 export const useUserDataStore = defineStore("userData", () => {
-  const userDTO = ref({
+  const userDTO = ref<UserData>({
     email: "",
     password: "",
     role: "",
@@ -31,7 +32,6 @@ export const useUserDataStore = defineStore("userData", () => {
         index: 0,
       },
       living_address: {
-        country: "",
         region: "",
         neighborhood: "",
         city: "",

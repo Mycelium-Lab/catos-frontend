@@ -390,8 +390,6 @@
             <catos-select
               placeholder="Россия"
               :options="options"
-              :value="userDataStore.userDTO.passport.living_address.country"
-              @selected="ev => (userDataStore.userDTO.passport.living_address.country = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
             ></catos-select>
