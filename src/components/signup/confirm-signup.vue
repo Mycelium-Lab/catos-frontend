@@ -3,94 +3,6 @@
     <img class="bg-icon" alt="" src="./public/bg.svg" />
 
     <div class="form-registration-26">
-      <div class="div8">
-        <div class="text-and-button">
-          <div class="text">
-            <div class="checkbox-parent">
-              <div class="div9">
-                Подтверждаю, что имею право представлять свою организацию
-              </div>
-            </div>
-            <div class="checkbox-parent">
-              <div class="div9">
-                Продолжая, я соглашаюсь, что моя организация имеет право
-                оказания услуг кредиторской деятельности
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="fieldsregistration-options-parent">
-          <div class="fieldsregistration-options">
-            <div class="fieldsregistration-options-child"></div>
-            <div class="text-and-fill">
-              <div class="div11">
-                <span>Номер телефона </span>
-                <span class="span">*</span>
-              </div>
-            </div>
-            <div class="div12">
-              <span class="txt">
-                <p class="p">Укажите действующий номер телефона организации</p>
-                <p class="p">для звонков и смс</p>
-              </span>
-            </div>
-            <div class="fields-password-and-mail2">
-              <div class="ru-wrapper">
-                <div class="ru">RU</div>
-              </div>
-              <div class="iconsmobile-parent">
-                <div class="alessowaitsongmailcom">+390-999-00-01</div>
-              </div>
-            </div>
-          </div>
-          <div class="fieldsregistration-options1">
-            <div class="text-and-fill1">
-              <div class="div11">
-                <span>Электронная почта </span>
-                <span class="span">*</span>
-              </div>
-            </div>
-            <div class="div15">
-              Укажите действующую почту. Она будет использована для авторизации
-              и восстановления доступа
-            </div>
-            <div class="fields-password-and-mail3">
-              <div class="iconsmail-group">
-                <div class="alessowaitsongmailcom">AlessoWaitson@gmail.com</div>
-              </div>
-            </div>
-          </div>
-          <div class="fieldsregistration-options2">
-            <div class="fields-password-and-mail4">
-              <div class="iconsmail-group">
-                <div class="n">3345еЕN$</div>
-              </div>
-            </div>
-            <div class="fields-password-and-mail5">
-              <div class="iconsmail-group">
-                <div class="n1">
-                  <span class="n2">3345еЕN$ </span>
-                  <span>|</span>
-                </div>
-              </div>
-            </div>
-            <div class="div16">
-              <span>Придумайте пароль</span>
-              <span class="span">*</span>
-            </div>
-            <div class="div17">
-              <span>Повторите пароль </span>
-              <span class="span">*</span>
-            </div>
-            <div class="text-and-fill1">
-              <div class="div18">
-                <span>Пароль </span>
-                <span class="span">*</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="div19">
         <div class="fieldsregistration-options3">
           <div class="fieldsregistration-options-item"></div>
@@ -107,7 +19,7 @@
           </div>
           <div class="ruadelaryagmailcom">
             <span>Код отправлен на номер:</span>
-            <span class="span6"> +7 (999) 215-43-26</span>
+            <span class="span6">{{ userDataStore.userDTO.phone }}</span>
           </div>
           <div class="div23">
             <span>Примерное время </span>
@@ -124,8 +36,9 @@
                   alt=""
                   src="../login/public/iconssend.svg"
                 />
-
-                <div class="div24">Отправить код повторно:</div>
+                <button @click="handleSendSMS">
+                  <div class="div24">Отправить код повторно</div>
+                </button>
               </div>
               <div class="frame">
                 <div class="div25">60 сек</div>
@@ -137,8 +50,9 @@
                 alt=""
                 src="../login/public/iconsedit1.svg"
               />
-
-              <div class="div24">Именить номер</div>
+              <router-link to="" @click="$router.go(-1)">
+                <div class="div24">Именить номер</div>
+              </router-link>
             </div>
           </div>
           <div class="inputfields">
@@ -165,7 +79,7 @@
         </div>
         <div class="ruadelaryagmailcom">
           <span>Код отправлен на почту:</span>
-          <span class="span6"> ruadelarya@gmail.com</span>
+          <span class="span6">{{ userDataStore.userDTO.email }}</span>
         </div>
         <div class="div23">
           <span>Примерное время </span>
@@ -181,8 +95,9 @@
                 alt=""
                 src="../login/public/iconssend.svg"
               />
-
-              <div class="div24">Отправить код повторно:</div>
+              <button @click="handleSendEmail">
+                <div class="div24">Отправить код повторно</div>
+              </button>
             </div>
             <div class="frame">
               <div class="div25">60 сек</div>
@@ -194,8 +109,9 @@
               alt=""
               src="../login/public/iconsedit1.svg"
             />
-
-            <div class="div24">Именить номер</div>
+            <router-link to="" @click="$router.go(-1)">
+              <div class="div24">Именить email</div>
+            </router-link>
           </div>
         </div>
         <div class="inputfields">
@@ -211,12 +127,13 @@
         class="buttonnext"
         :to="{
           name:
-            role === 'creditor'
-              ? 'anketa-redst'
-              : role === 'depositor'
-              ? 'signup-depositor'
-              : 'signup-borrower',
-          state: { role },
+          roleStorage.get() === 'creditor'
+            ? 'anketa-redst'
+            : roleStorage.get() === 'investor'
+            ? 'signup-depositor'
+            : roleStorage.get() === 'collector'
+            ? 'anketa-redst'
+            : 'signup-borrower',
         }"
       >
         <b class="b1">Продолжить</b>
@@ -245,13 +162,44 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-const role = computed(() => window.history.state?.role);
-const phoneNumber = computed(() => window.history.state?.phoneNumber);
-const email = computed(() => window.history.state?.email);
-const password = computed(() => window.history.state?.password);
-console.log(role.value)
-console.log(phoneNumber.value, email.value, password.value)
+import { useUserDataStore } from "@/stores/userData";
+import { roleStorage } from "@/utils/localStorage";
+import { useLoginApi } from "@/composables/useLoginApi";
+import { sendEmail, sendSMS } from "@/api/users.api";
+
+const userDataStore = useUserDataStore();
+const handleSendSMS = () => {
+  sendSMS()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+}
+const handleSendEmail = () => {
+  sendEmail()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+}
+const { userLoginCredentials, isLoginLoading, handleLogin } = useLoginApi();
+userLoginCredentials.value = {
+  email: userDataStore.userDTO.email,
+  password: userDataStore.userDTO.password,
+};
+handleLogin()
+  .then((res) => {
+    console.log(res);
+    handleSendEmail();
+    handleSendSMS();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 </script>
 
 <style scoped lang="scss">
@@ -661,6 +609,7 @@ console.log(phoneNumber.value, email.value, password.value)
   font-size: 0.75em;
   letter-spacing: 0.02em;
   line-height: 120%;
+  cursor: pointer;
 }
 .iconssend-parent {
   display: flex;
@@ -831,7 +780,7 @@ console.log(phoneNumber.value, email.value, password.value)
 }
 .registration-options-child {
   position: absolute;
-  width: 100%;
+  width: 100%;  
   top: calc(50% - 288px);
   right: 0;
   left: 0;

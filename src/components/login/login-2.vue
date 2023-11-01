@@ -100,7 +100,7 @@ import { useLoginApi } from '@/composables/useLoginApi'
 import catosButton from "../ui-kit/buttons/catos-button.vue";
 import inputData from "../fields/input-data.vue";
 const activeForm = ref("email");
-const {userLoginCredentials, isLoginLoading, handleLogin } = useLoginApi()
+const { userLoginCredentials, isLoginLoading, handleLogin } = useLoginApi();
 const role = computed(() => {
   localStorage.setItem("role", JSON.stringify(window.history.state.role));
   return window.history.state.role;
