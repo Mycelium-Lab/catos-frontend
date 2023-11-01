@@ -1,4 +1,4 @@
-import { AuthResponse } from "@/api/auth.api";
+import { AuthResponse } from "@/api/token.api";
 import { Role } from "@/types/user.types";
 const storagePrefix = "__catos_app__";
 

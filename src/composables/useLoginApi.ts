@@ -1,4 +1,4 @@
-import { login, LoginCredentials } from "@/api/auth.api";
+import { login, LoginCredentials } from "@/api/token.api";
 import { authStorage } from "@/utils/localStorage";
 import { ref } from "vue";
 

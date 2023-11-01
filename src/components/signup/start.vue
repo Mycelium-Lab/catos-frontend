@@ -66,6 +66,9 @@
                   оказания услуг коллекторской деятельности
                 </div>
               </div>
+              <div class="div9">
+                <b>{{ errorMessage }}</b>
+              </div>
             </div>
           </div>
         </div>
@@ -164,23 +167,13 @@
         </div>
       </div>
     </div>
-    <router-link
+    <div
       class="buttonnext"
+      @click.native="handleNextClick"
       :class="{ disabled: !isLinkActive }"
-      :to="{
-        name:
-          roleStorage.get() === 'creditor'
-            ? 'anketa-redst'
-            : roleStorage.get() === 'investor'
-            ? 'signup-depositor'
-            : roleStorage.get() === 'collector'
-            ? 'anketa-redst'
-            : 'signup-borrower',
-      }"
     >
-      <b class="b1">Продолжить</b></router-link
-    >
-
+      <b class="b1">Продолжить</b>
+    </div>
     <div class="slidersteps">
       <div class="loader"></div>
       <div class="numbers">
@@ -209,6 +202,8 @@ import catosCheckbox from "../../components/ui-kit/catos-checkbox.vue";
 import { ref, computed, reactive, KeepAlive } from "vue";
 import { useUserDataStore } from "@/stores/userData";
 import { roleStorage } from "@/utils/localStorage";
+import { register } from "@/api/users.api";
+import router from "@/router";
 
 const title = computed(() => {
   return window.history.state.title;
@@ -230,7 +225,7 @@ const checkboxes = reactive({
 const repeatPass = ref("");
 const isLinkActive = computed(() => {
   return (
-    (["creditor", "collector"].includes(userDataStore.userDTO.role)
+    (roleStorage.get() === "collector" || roleStorage.get() === "creditor"
       ? checkboxes.box1 && checkboxes.box2 && checkboxes.box3
       : checkboxes.box1) &&
     repeatPass.value === userDataStore.userDTO.password &&
@@ -239,6 +234,24 @@ const isLinkActive = computed(() => {
     userDataStore.userDTO.phone
   );
 });
+const handleNextClick = async () => {
+  errorMessage.value = "";
+  register(userDataStore.userDTO)
+    .then(res => {
+      console.log("User register success");
+      router.push({ name: "confirm" });
+    })
+    .catch(err => {
+      console.log("User register error:", err.response.data);
+      errorMessage.value =
+        err.response.data.type +
+        ": " +
+        err.response.data.object +
+        ": " +
+        err.response.data.details;
+    });
+};
+const errorMessage = ref("");
 </script>
 
 <style scoped lang="scss">
@@ -827,6 +840,7 @@ const isLinkActive = computed(() => {
 }
 .buttonnext {
   top: 56.13em;
+  cursor: pointer;
   left: 6vw;
   border-radius: 20px;
   background-color: #ffdb6d;
