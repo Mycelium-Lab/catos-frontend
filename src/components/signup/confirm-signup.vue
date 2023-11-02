@@ -56,11 +56,18 @@
             </div>
           </div>
           <div class="inputfields">
-            <input maxlength="1" class="component-4" />
-            <input maxlength="1" class="component-4" />
-            <input maxlength="1" class="component-4" />
-            <input maxlength="1" class="component-4" />
-            <input maxlength="1" class="component-4" />
+            <input
+              v-for="(n, index) in phoneCode"
+              class="component-4"
+              :key="index"
+              pattern="\d*"
+              :id="'input_' + index"
+              maxlength="1"
+              v-model="phoneCode[index]"
+              @input="handlePhoneInput"
+              @keypress="isNumber"
+              @keydown.delete="handleDelete"
+            />
           </div>
         </div>
       </div>
@@ -115,16 +122,24 @@
           </div>
         </div>
         <div class="inputfields">
-          <input maxlength="1" class="component-4" />
-          <input maxlength="1" class="component-4" />
-          <input maxlength="1" class="component-4" />
-          <input maxlength="1" class="component-4" />
-          <input maxlength="1" class="component-4" />
+          <input
+              v-for="(n, index) in emailCode"
+              class="component-4"
+              :key="index"
+              pattern="\d*"
+              :id="'input_' + index"
+              maxlength="1"
+              v-model="emailCode[index]"
+              @input="handleEmailInput"
+              @keypress="isNumber"
+              @keydown.delete="handleDelete"
+            />
         </div>
       </div>
 
       <router-link
         class="buttonnext"
+        :class="{ disabled: !phoneVerified || !emailVerified}"
         :to="{
           name:
           roleStorage.get() === 'creditor'
@@ -162,14 +177,85 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import { useUserDataStore } from "@/stores/userData";
 import { roleStorage } from "@/utils/localStorage";
 import { useLoginApi } from "@/composables/useLoginApi";
-import { sendEmail, sendSMS } from "@/api/users.api";
+import { verifyEmail, verifyPhone, confirmEmail, confirmPhone } from "@/api/users.api";
 
+let phoneCode: string[] = Array(6);
+let emailCode: string[] = Array(6);
+const keysAllowed: string[] = [
+  "0",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+];
+let phoneVerified = ref(false);
+let emailVerified = ref(false);
+
+function isNumber(event: Event) {
+  (event.currentTarget as HTMLInputElement).value = "";
+  const keyPressed: string = (event as KeyboardEvent).key;
+  if (!keysAllowed.includes(keyPressed)) {
+    event.preventDefault();
+  }
+}
+function handlePhoneInput(event: Event) {
+  let currentActiveElement = event.target as HTMLInputElement;
+  (currentActiveElement.nextElementSibling as HTMLElement)?.focus();
+  // Call phone verification API 
+  if (phoneCode.filter((el) => el !== undefined && el !== '').length === 6) {
+    confirmPhone(phoneCode.join(''))
+      .then((res) => {
+        if (res.status === 200) {
+          phoneVerified.value = true;
+          console.log('Phone verified');
+        }
+        else {
+          console.log(res);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+}
+function handleEmailInput(event: Event) {
+  let currentActiveElement = event.target as HTMLInputElement;
+  (currentActiveElement.nextElementSibling as HTMLElement)?.focus();
+  // Call email verification API
+  if (emailCode.filter((el) => el !== undefined && el !== '').length === 6) {
+    confirmEmail(emailCode.join(''))
+      .then((res) => {
+        if (res.status === 200) {
+          emailVerified.value = true;
+          console.log('Email verified');
+        }
+        else {
+          console.log(res);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+}
+function handleDelete(event: Event) {
+  let value = (event.target as HTMLInputElement).value;
+  let currentActiveElement = event.target as HTMLInputElement;
+  if (!value)
+    (currentActiveElement.previousElementSibling as HTMLElement)?.focus();
+}
 const userDataStore = useUserDataStore();
 const handleSendSMS = () => {
-  sendSMS()
+  verifyPhone()
       .then((res) => {
         console.log(res);
       })
@@ -178,7 +264,7 @@ const handleSendSMS = () => {
       });
 }
 const handleSendEmail = () => {
-  sendEmail()
+  verifyEmail()
       .then((res) => {
         console.log(res);
       })
@@ -193,7 +279,6 @@ userLoginCredentials.value = {
 };
 handleLogin()
   .then((res) => {
-    console.log(res);
     handleSendEmail();
     handleSendSMS();
   })
@@ -1542,6 +1627,10 @@ handleLogin()
   color: #3b3b3b;
   font-family: Inter;
   overflow: hidden;
+}
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 @media (max-width: 370px) {
   .component-4 {
