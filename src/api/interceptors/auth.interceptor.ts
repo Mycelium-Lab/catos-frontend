@@ -1,12 +1,14 @@
 import { authStorage } from "@/utils/localStorage";
 import { InternalAxiosRequestConfig } from "axios";
-import { jwtDecode } from "jwt-decode";
 import { refresh } from "../token.api";
+import { jwtDecode } from "jwt-decode";
 
-const isExpired = (date: number) => {
+const isExpired = (token: string) => {
   try {
+    const { exp: toDate } = jwtDecode(token);
     const now = Date.now();
-    return now > date * 1000;
+    if (!toDate) return true;
+    return now > toDate * 1000;
   } catch (e) {
     console.error(e);
     return true;
@@ -16,27 +18,23 @@ export const authRequestInterceptor = async (
   config: InternalAxiosRequestConfig
 ) => {
   let authData = authStorage.get();
-  if (authData){
-    const exp = jwtDecode(authData.access).exp;
-    if (exp && isExpired(exp)) {
-      const refreshExp = jwtDecode(authData.refresh).exp;
-      if (refreshExp && isExpired(refreshExp)) {
-        authStorage.clear();
-        authData = undefined;
-      } else {
-        await refresh({
-          refresh: authData.refresh,
+  if (authData && isExpired(authData.access) && config.url !== '/token/refresh') {
+    if (isExpired(authData.refresh)) {
+      authStorage.clear();
+      authData = undefined;
+    } else {
+      await refresh({
+        refresh: authData.refresh,
+      })
+        .then(response => {
+          authData = response.data;
+          authStorage.set(authData);
         })
-          .then(response => {
-            authData = response.data;
-            authStorage.set(authData);
-          })
-          .catch(e => {
-            console.error(e);
-            authStorage.clear();
-            authData = undefined;
-          });
-      }
+        .catch(e => {
+          console.error(e);
+          authStorage.clear();
+          authData = undefined;
+        });
     }
   }
   if (authData?.access) {
