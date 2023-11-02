@@ -21,14 +21,20 @@ export const register = (payload: UserData) => {
 };
 export const connectWallet = () => {
   return baseApiClient.get<ConnectWalletResponse>(
-    USER_END_POINT + "/connectWallet/"
+    USER_END_POINT + "/connectWallet"
   );
 };
-export const sendEmail = () => {
-  return baseApiClient.get(USER_END_POINT + "/sendEmail/");
+export const verifyEmail = () => {
+  return baseApiClient.get(USER_END_POINT + "/verifyEmail")
 }
-export const sendSMS = () => {
-  return baseApiClient.get(USER_END_POINT + "/sendSMS");
+export const verifyPhone = () => {
+  return baseApiClient.get(USER_END_POINT + "/verifyPhone");
+}
+export const confirmPhone = (code: string) => {
+  return baseApiClient.get(USER_END_POINT + `/confirmPhone?code=${code}`, );
+}
+export const confirmEmail = (code: string) => {
+  return baseApiClient.get(USER_END_POINT + `/confirmEmail?code=${code}`, );
 }
 // export const isConnected = (connuuid: string) => {
 //   return baseApiClient.get<Number>(USER_END_POINT + `/isConnected/${connuuid}`);
