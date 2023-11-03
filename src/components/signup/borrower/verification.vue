@@ -36,8 +36,8 @@
               <catos-select
                 placeholder="Россия"
                 :options="options"
-                :value="value"
-                @selected="ev => (value = ev)"
+                :value="userDataStore.passport.registration_address.region"
+                @selected="ev => (userDataStore.passport.registration_address.region = ev)"
                 :optionWidth="77"
                 :style="{ width: '100%' }"
               ></catos-select>
@@ -47,8 +47,8 @@
               <catos-select
                 placeholder="Россия"
                 :options="options"
-                :value="value"
-                @selected="ev => (value = ev)"
+                :value="userDataStore.passport.registration_address.city"
+                @selected="ev => (userDataStore.passport.registration_address.city = ev)"
                 :optionWidth="77"
                 :style="{ width: '100%' }"
               ></catos-select>
@@ -58,8 +58,8 @@
               <catos-select
                 placeholder="Россия"
                 :options="options"
-                :value="value"
-                @selected="ev => (value = ev)"
+                :value="userDataStore.passport.registration_address.neighborhood"
+                @selected="ev => (userDataStore.passport.registration_address.neighborhood = ev)"
                 :optionWidth="77"
                 :style="{ width: '100%' }"
               ></catos-select>
@@ -67,6 +67,7 @@
             <div class="fieldsinputchoise">
               <div class="goa-filejpg">Улица</div>
               <input-data
+                v-model:model-value="userDataStore.passport.registration_address.street"
                 placeholder="Начните вводить улицу"
                 :style="{ width: '100%' }"
                 :right="true"
@@ -82,6 +83,7 @@
               <div class="parent11">
                 <div class="div22">Дом</div>
                 <input-data
+                  v-model:model-value="userDataStore.passport.registration_address.house"
                   placeholder="1"
                   :style="{ width: '100%' }"
                 ></input-data>
@@ -89,6 +91,7 @@
               <div class="parent11">
                 <div class="div22">Корпус</div>
                 <input-data
+                  v-model:model-value="userDataStore.passport.registration_address.housing"
                   placeholder="1/2"
                   :style="{ width: '100%' }"
                 ></input-data>
@@ -98,6 +101,7 @@
               <div class="parent11">
                 <div class="div22">Строение</div>
                 <input-data
+                  v-model:model-value="userDataStore.passport.registration_address.building"
                   placeholder="-"
                   :style="{ width: '100%' }"
                 ></input-data>
@@ -105,6 +109,7 @@
               <div class="parent11">
                 <div class="div22">Квартира</div>
                 <input-data
+                  v-model:model-value="userDataStore.passport.registration_address.apartment"
                   placeholder="№23"
                   :style="{ width: '100%' }"
                 ></input-data>
@@ -113,6 +118,7 @@
             <div class="parent11">
               <div class="div22">Индекс</div>
               <input-data
+                v-model:model-value="indexString"
                 placeholder="240 432"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -137,8 +143,8 @@
                   <catos-select
                     placeholder="Россия"
                     :options="options"
-                    :value="value"
-                    @selected="ev => (value = ev)"
+                    :value="userDataStore.passport.country"
+                    @selected="ev => (userDataStore.passport.country = ev)"
                     :optionWidth="77"
                     :style="{ width: '100%' }"
                   ></catos-select>
@@ -151,7 +157,11 @@
                   <span>Серия и номер </span>
                   <span class="span1">* </span>
                 </div>
-                <input-data placeholder="33 446462"></input-data>
+                <input-data
+                  v-model:model-value="passportNumberString"
+                  placeholder="33 446462"
+                >
+                </input-data>
               </div>
               <div class="parent33">
                 <div class="div22">
@@ -160,6 +170,7 @@
                 </div>
                 <div class="fields-password-and-mail-wrapper">
                   <input-data
+                    v-model:model-value="userDataStore.passport.issue_date"
                     type="date"
                     placeholder="01.02.2022"
                     :style="{ width: '100%' }"
@@ -179,6 +190,8 @@
               </div>
               <catos-textarea
                 :style="{ width: '100%' }"
+                :value="userDataStore.passport.issuing_organization"
+                @selected="userDataStore.passport.issuing_organization = $event"
                 placeholder="ГУМВД России по Санкт-Петербургу, и Ленинградской области"
               ></catos-textarea>
             </div>
@@ -197,6 +210,7 @@
                 </div>
                 <input-data
                   placeholder="Введите ваше имя"
+                  v-model:model-value="userDataStore.passport.name"
                   :style="{ width: '100%' }"
                   :right="true"
                 >
@@ -212,6 +226,7 @@
                 </div>
                 <div class="fields-password-and-mail-parent1">
                   <input-data
+                    v-model:model-value="userDataStore.passport.birthdate"
                     type="date"
                     placeholder="01.02.1994"
                     :style="{ width: '100%' }"
@@ -235,11 +250,11 @@
                 <div
                   class="radiobutton-parent"
                   @click="
-                    () => (isSelectedRadioButton1 = !isSelectedRadioButton1)
+                    () => {isSelectedRadioButton1 = true; isSelectedRadioButton2 = false; userDataStore.passport.gender = 'М'}
                   "
                 >
                   <catos-checkbox
-                    :select="isSelectedRadioButton1"
+                    :select="userDataStore.passport.gender === 'М'"
                     variant="radiobutton"
                     :key="String(isSelectedRadioButton1)"
                   ></catos-checkbox>
@@ -249,11 +264,11 @@
                 <div
                   class="radiobutton-group"
                   @click="
-                    () => (isSelectedRadioButton2 = !isSelectedRadioButton2)
+                    () => {isSelectedRadioButton2 = true; isSelectedRadioButton1 = false; userDataStore.passport.gender = 'Ж'}
                   "
                 >
                   <catos-checkbox
-                    :select="isSelectedRadioButton2"
+                    :select="userDataStore.passport.gender === 'Ж'"
                     variant="radiobutton"
                     :key="String(isSelectedRadioButton2)"
                   ></catos-checkbox>
@@ -269,14 +284,12 @@
           </div>
         </div>
       </div>
-      <router-link
+      <div
         class="buttonnext1"
-        :to="{
-          name: 'borrower-finish',
-        }"
+        @click="handleNextClick"
       >
         <b class="b2">Сохранить и продолжить</b>
-      </router-link>
+      </div>
     </div>
     <div class="slidersteps">
       <div class="loader6"></div>
@@ -297,17 +310,47 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import router from "@/router";
 import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
+import { passports } from "@/api/documents.api";
+import { useUserDataStore } from "@/stores/userData";
+
+const userDataStore = useUserDataStore();
+const passportNumberString = computed(() => {
+  return userDataStore.passport.number.toString();
+});
+const indexString = computed(() => {
+  return userDataStore.passport.registration_address.index.toString();
+});
 const isSelectedRadioButton1 = ref(false);
 const isSelectedRadioButton2 = ref(false);
-const value = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
 };
+const isDataLoading = ref(false);
+const handleNextClick = async () => {
+  isDataLoading.value = true;
+  await passports(userDataStore.passport)
+    .then(async (res) => {
+      if (res.status === 201) {
+        console.log('Data saved');
+        router.push({name: 'borrower-finish'});
+      }
+      else {
+        console.log(res);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      isDataLoading.value = false;
+    });
+}
 </script>
 
 <style scoped lang="scss">
@@ -1960,7 +2003,7 @@ const options = {
   overflow: hidden;
   display: flex;
   flex-direction: row;
-
+  cursor: pointer;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
