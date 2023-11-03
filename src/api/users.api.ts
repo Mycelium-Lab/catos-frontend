@@ -36,6 +36,6 @@ export const confirmPhone = (code: string) => {
 export const confirmEmail = (code: string) => {
   return baseApiClient.get(USER_END_POINT + `/confirmEmail?code=${code}`, );
 }
-// export const isConnected = (connuuid: string) => {
-//   return baseApiClient.get<Number>(USER_END_POINT + `/isConnected/${connuuid}`);
-// };
+export const isWalletConnected = () => {
+  return baseApiClient.get<Boolean>(USER_END_POINT + `/isWalletConnected`);
+};
