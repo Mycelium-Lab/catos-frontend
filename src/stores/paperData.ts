@@ -24,7 +24,7 @@ export const usePaperDataStore = defineStore("paperData", () => {
     "second_photo": "",
     "third_photo": "",
     "work_position": "",
-    "ownership": false
+    "ownership": true
   });
 
   return {
