@@ -1,8 +1,8 @@
 import { Address } from "./address.type"
 
- enum Gender {
-    "M", 
-    "Ж"
+ export enum Gender {
+    'М' = 'М', 
+    'Ж' = 'Ж'
   }
 
 export type GenderString = keyof typeof Gender;
@@ -18,10 +18,10 @@ export type PassportData = {
         "series": number,
         "number": number,
         "issue_date": string,
-        "issuing_organization": String,
+        "issuing_organization": string,
         "registration_address": Address,
         "living_address": Address,
-        "first_photo": String,
-        "second_photo": String,
-        "selfie": String
+        "first_photo": string,
+        "second_photo": string,
+        "selfie": string
 }
