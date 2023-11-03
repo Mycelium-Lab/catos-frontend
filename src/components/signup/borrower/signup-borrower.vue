@@ -3706,15 +3706,15 @@ const saveImage = async (boxName: string, file: File | null) => {
     switch (boxName) {
       case "passPhoto1":
         userDataStore.firstPhotoFile = file;
-        passportDataStore.passportDTO.first_photo = await fileToBase64(file);
+        passportDataStore.passportDTO.first_photo = "TEMP_DATA"//await fileToBase64(file);
         break;
       case "passPhoto2":
         userDataStore.secondPhotoFile = file;
-        passportDataStore.passportDTO.second_photo = await fileToBase64(file);
+        passportDataStore.passportDTO.second_photo = "TEMP_DATA" //await fileToBase64(file);
         break;
       case "selfie":
         userDataStore.selfieFile = file;
-        passportDataStore.passportDTO.selfie = await fileToBase64(file);
+        passportDataStore.passportDTO.selfie = "TEMP_DATA" //await fileToBase64(file);
         break;
       default:
         break;
