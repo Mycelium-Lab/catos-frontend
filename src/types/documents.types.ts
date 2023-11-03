@@ -2,6 +2,7 @@ export type Passport = {
   name: string,
   surname: string,
   middlename: string,
+  nationality: string,
   birthdate: string,
   country: string,
   gender: string,
