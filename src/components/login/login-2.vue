@@ -65,24 +65,11 @@
       :style="activeForm === 'phone' ? { top: '54%' } : ''"
     >
       <router-link
-        :to="{
-          name:
-            activeForm === 'phone'
-              ? 'phone-confirmation'
-              : role === 'borrower'
-              ? 'pulls-borrower'
-              : role === 'depositor'
-              ? 'pulls-depositor'
-              : role === 'creditor'
-              ? 'pulls'
-              : role === 'collector'
-              ? 'pulls-collector'
-              : '',
-        }"
+        to=""
         :style="{ textDecoration: 'none' }"
       >
         <catos-button
-          @click="handleLogin"
+          @click="login"
           :disabled="isLoginLoading"
           :style="{ height: '45px', width: '70vw', marginRight: '0' }"
           >Вход</catos-button
@@ -95,16 +82,36 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { useLoginApi } from '@/composables/useLoginApi'
 import catosButton from "../ui-kit/buttons/catos-button.vue";
 import inputData from "../fields/input-data.vue";
+
+import { useRouter } from "vue-router";
+
 const activeForm = ref("email");
-const { userLoginCredentials, isLoginLoading, handleLogin } = useLoginApi();
-const role = computed(() => {
-  localStorage.setItem("role", JSON.stringify(window.history.state.role));
-  return window.history.state.role;
-});
+const { userLoginCredentials, isLoginLoading, handleLogin, handleVerify } = useLoginApi();
+
+const router = useRouter();
+const login = async () => {
+ handleLogin()
+    .then(res => handleVerify(res.access))
+    .then(res => {
+      const pathName = activeForm.value === 'phone'
+              ? 'phone-confirmation'
+              : res?.role === 'borrower'
+              ? 'pulls/borrower'
+              : res?.role === 'investor'
+              ? 'pulls/depositor'
+              : res?.role === 'creditor'
+              ? 'pulls/creditor'
+              : res?.role === 'collector'
+              ? 'pulls/collector'
+              : ''
+
+      router.push(pathName)
+    })
+}
 </script>
 
 <style scoped lang="scss">
