@@ -26,8 +26,8 @@
               <catos-select
                 placeholder="Выбрать страну:"
                 :options="options"
-                :value="userDataStore.userDTO.paper.country"
-                @selected="ev => (userDataStore.userDTO.paper.country = ev)"
+                :value="paperDataStore.paperDTO.country"
+                @selected="ev => (paperDataStore.paperDTO.country = ev)"
                 :optionWidth="77"
                 :style="{ width: '100%' }"
               ></catos-select>
@@ -40,9 +40,9 @@
               <catos-select
                 placeholder="Выбрать форму регистрации:"
                 :options="regOptions"
-                :value="userDataStore.userDTO.paper.registration_form"
+                :value="paperDataStore.paperDTO.registration_form"
                 @selected="
-                  ev => (userDataStore.userDTO.paper.registration_form = ev)
+                  ev => (paperDataStore.paperDTO.registration_form = ev)
                 "
                 :optionWidth="77"
                 :style="{ width: '100%' }"
@@ -55,7 +55,7 @@
               </div>
               <input-data
                 placeholder="Введите наименование"
-                v-model:model-value="userDataStore.userDTO.paper.name"
+                v-model:model-value="paperDataStore.paperDTO.name"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -74,7 +74,7 @@
                 placeholder="Введите номер"
                 v-model:model-value="regNumberString.value"
                 @update:model-value="
-                  ev => (userDataStore.userDTO.paper.registration_number = ev)
+                  ev => (paperDataStore.paperDTO.registration_number = ev)
                 "
                 :style="{ width: '100%' }"
                 :right="true"
@@ -86,27 +86,139 @@
               ></input-data>
             </div>
             <div class="fieldsinputchoise">
-              <div class="div10">
-                <span>Адрес представительства компании </span>
-                <span class="span">* </span>
-              </div>
-              <input-data
-                placeholder="Введите адрес"
-                v-model:model-value="userDataStore.userDTO.paper.address.street"
-                :style="{ width: '100%' }"
-                :right="true"
-              >
-                <template v-slot:right-icon>
-                  <img
-                    src="@/assets/images/iconseditoutline-black.svg"
-                  /> </template
-              ></input-data>
+            <div class="div10">
+              <span>Область, край</span>
+              <span class="span2">* </span>
             </div>
+            <catos-select
+              placeholder="Северо-западный округ"
+              :options="options"
+              :value="paperDataStore.paperDTO.address.region"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+              @selected="
+                ev =>
+                  (paperDataStore.paperDTO.address.region = ev)
+              "
+            ></catos-select>
+          </div>
+
+          <div class="fieldsinput">
+            <div class="div10">
+              <span>Район</span>
+              <span class="span2">* </span>
+            </div>
+            <catos-select
+              placeholder="Красносельский"
+              :options="options"
+              :value="
+                paperDataStore.paperDTO.address.neighborhood
+              "
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+              @selected="
+                ev =>
+                  (paperDataStore.paperDTO.address.neighborhood =
+                    ev)
+              "
+            ></catos-select>
+          </div>
+          <div class="fieldsinputchoise3">
+            <div class="div10">Населенный пункт</div>
+            <catos-select
+              placeholder="Санкт-Петербург"
+              :options="options"
+              :value="paperDataStore.paperDTO.address.city"
+              :optionWidth="77"
+              :style="{ width: '100%' }"
+              @selected="
+                ev => (paperDataStore.paperDTO.address.city = ev)
+              "
+            ></catos-select>
+          </div>
+          <div class="text2">
+            <div class="div10">Улица</div>
+            <input-data
+              placeholder="Начните вводить адресс"
+              :style="{ width: '100%' }"
+              :right="true"
+              @update:model-value="
+                ev =>
+                  (paperDataStore.paperDTO.address.street = ev)
+              "
+            >
+              <template v-slot:right-icon>
+                <img src="@/assets/images/iconseditoutline-black.svg" />
+              </template>
+            </input-data>
+          </div>
+          <div class="frame-parent5">
+            <div class="frame-parent3">
+              <div class="parent11">
+                <div class="div10">Дом</div>
+                <input-data
+                  placeholder="1"
+                  :style="{ width: '100%' }"
+                  @update:model-value="
+                    ev =>
+                      (paperDataStore.paperDTO.address.house = ev)
+                  "
+                ></input-data>
+              </div>
+              <div class="parent11">
+                <div class="div10">Корпус</div>
+                <input-data
+                  placeholder="1"
+                  :style="{ width: '100%' }"
+                  @update:model-value="
+                    ev =>
+                      (paperDataStore.paperDTO.address.housing = ev)
+                  "
+                ></input-data>
+              </div>
+            </div>
+            <div class="frame-parent3" :style="{ marginTop: '1em' }">
+              <div class="parent11">
+                <div class="div10">Строение</div>
+                <input-data
+                  placeholder="1"
+                  :style="{ width: '100%' }"
+                  @update:model-value="
+                    ev =>
+                      (paperDataStore.paperDTO.address.building =
+                        ev)
+                  "
+                ></input-data>
+              </div>
+              <div class="parent11">
+                <div class="div10">Квартира</div>
+                <input-data
+                  placeholder="1"
+                  :style="{ width: '100%' }"
+                  @update:model-value="
+                    ev =>
+                      (paperDataStore.paperDTO.address.apartment =
+                        ev)
+                  "
+                ></input-data>
+              </div>
+            </div>
+            <div class="parent11" :style="{ marginTop: '1em' }">
+              <div class="div10">Индекс</div>
+                <input-data
+                  placeholder="193 984"
+                  :style="{ width: '100%' }"
+                  @update:model-value="
+                    ev => (paperDataStore.paperDTO.address.index = ev)
+                  "
+                ></input-data>
+            </div>
+        </div>
             <div class="fieldsinputchoise">
               <div class="div10">Веб-сайт организации</div>
               <input-data
                 placeholder="Введите адрес сайта"
-                v-model:model-value="userDataStore.userDTO.paper.website"
+                v-model:model-value="paperDataStore.paperDTO.website"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -173,7 +285,7 @@
                         @click="
                           () => {
                             userDataStore.regProof = null;
-                            userDataStore.userDTO.paper.first_photo = '';
+                            paperDataStore.paperDTO.first_photo = '';
                           }
                         "
                       >
@@ -270,7 +382,7 @@
                         @click="
                           () => {
                             userDataStore.addrProof = null;
-                            userDataStore.userDTO.paper.second_photo = '';
+                            paperDataStore.paperDTO.second_photo = '';
                           }
                         "
                       >
@@ -335,7 +447,7 @@
                         @click="
                           () => {
                             userDataStore.extraDocs = null;
-                            userDataStore.userDTO.paper.third_photo = '';
+                            paperDataStore.paperDTO.third_photo = '';
                           }
                         "
                       >
@@ -460,9 +572,11 @@ import loaderField from "../../../components/fields/loader-field.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import { ref, computed, reactive } from "vue";
 import { useUserDataStore } from "@/stores/userData";
+import { usePaperDataStore } from "@/stores/paperData";
 import { fileToBase64 } from "@/utils/fileToBase64";
 
 const userDataStore = useUserDataStore();
+const paperDataStore = usePaperDataStore();
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
@@ -482,27 +596,27 @@ const isLinkActive = computed(() => {
 });
 const regNumberString = reactive({
   value:
-    userDataStore.userDTO.paper.registration_number === 0
+  paperDataStore.paperDTO.registration_number === 0
       ? ""
-      : userDataStore.userDTO.paper.registration_number.toString(),
+      : paperDataStore.paperDTO.registration_number.toString(),
 });
 const addressString = computed(() => {
-  return userDataStore.userDTO.paper.address.toString();
+  return paperDataStore.paperDTO.address.toString();
 });
 const saveImage = async (boxName: string, file: File | null) => {
   if (file) {
     switch (boxName) {
       case "regProof":
         userDataStore.regProof = file;
-        userDataStore.userDTO.paper.first_photo = await fileToBase64(file);
+        paperDataStore.paperDTO.first_photo = 'Goa_file2 .jpg';
         break;
       case "addrProof":
         userDataStore.addrProof = file;
-        userDataStore.userDTO.paper.second_photo = await fileToBase64(file);
+        paperDataStore.paperDTO.second_photo = 'Goa_file2 .jpg';
         break;
       case "extraDocs":
         userDataStore.extraDocs = file;
-        userDataStore.userDTO.paper.third_photo = await fileToBase64(file);
+        paperDataStore.paperDTO.third_photo =' Goa_file2 .jpg';
         break;
       default:
         break;
@@ -514,13 +628,13 @@ const saveImage = async (boxName: string, file: File | null) => {
 };
 const allDataEntered = computed(() => {
   return (
-    userDataStore.userDTO.paper.country !== "" &&
-    userDataStore.userDTO.paper.registration_form !== "" &&
-    userDataStore.userDTO.paper.name !== "" &&
-    userDataStore.userDTO.paper.registration_number !== 0 &&
-    userDataStore.userDTO.paper.address !== null &&
-    userDataStore.userDTO.paper.first_photo !== null &&
-    userDataStore.userDTO.paper.second_photo !== null
+    paperDataStore.paperDTO.country !== "" &&
+    paperDataStore.paperDTO.registration_form !== "" &&
+    paperDataStore.paperDTO.name !== "" &&
+    paperDataStore.paperDTO.registration_number !== 0 &&
+    paperDataStore.paperDTO.address !== null &&
+    paperDataStore.paperDTO.first_photo !== null &&
+    paperDataStore.paperDTO.second_photo !== null
   );
 });
 </script>
@@ -571,7 +685,7 @@ const allDataEntered = computed(() => {
   backdrop-filter: blur(5px);
   border: 0.5px solid #2e3a59;
   box-sizing: border-box;
-  height: 33.75em;
+  height: 63em;
 }
 .span {
   color: red;
@@ -639,7 +753,10 @@ const allDataEntered = computed(() => {
   width: 100%;
 }
 .fieldsinputchoise,
-.fieldsinputchoise1 {
+.fieldsinputchoise1,
+.fieldsinput, .fieldsinputchoise3, .text2,
+.parent11
+ {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -995,6 +1112,7 @@ const allDataEntered = computed(() => {
   height: auto;
   display: block;
   overflow: visible;
+  display: flex;
 }
 .x-forms {
   position: absolute;
@@ -1082,7 +1200,7 @@ const allDataEntered = computed(() => {
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 0.38em;
+  gap: 1em;
 }
 .frame-parent1,
 .registration-options-parent,
@@ -1096,16 +1214,19 @@ const allDataEntered = computed(() => {
   align-self: stretch;
   gap: 0.88em;
 }
-.registration-options-parent,
-.text-declaration {
-  gap: 1.25em;
+.registration-options-parent {
+  gap: 3.25em;
+}
+
+.text-declaration{
+  gap: 1.25em
 }
 .text-declaration {
   width: 100%;
 }
 .registration-options-parent {
   position: absolute;
-  top: 37.25em;
+  top: 65.25em;
   left: 0;
   width: 88.7vw;
 }
@@ -1131,7 +1252,7 @@ const allDataEntered = computed(() => {
   cursor: pointer;
 }
 .buttonnext {
-  top: 92.44em;
+  top: 124em;
   left: 0;
   border-radius: 20px;
   background-color: #ffdb6d;
@@ -1207,7 +1328,7 @@ const allDataEntered = computed(() => {
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 106.5em;
+  height: 138em;
   overflow-y: auto;
   overflow-x: hidden;
 }
