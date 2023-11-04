@@ -28,68 +28,10 @@
         <div class="div10">Последний этап</div>
         <div class="div11">Привяжите ваш тон кошелек</div>
       </div>
-      <router-link
-        v-if="isMobile"
-        class="buttonnext"
-        to="connect-wallet-finish"
-      >
+      <router-link class="buttonnext" to="connect-wallet-finish">
         <b class="ton-kepeer">Подключить TON Kepeer</b>
       </router-link>
-      <template v-else>
-        <div class="button-group">
-          <div
-            class="buttonnext_connect_desktop buttonnext_desktop"
-            @click="() => (finish = true)"
-          >
-            <b class="ton-kepeer">Подключить TON Kepeer</b>
-          </div>
-          <catos-button
-            :style="{ margin: '0 auto', width: '374px' }"
-            @click="() => (isSuccess = true)"
-            >Привязать позже</catos-button
-          >
-        </div>
-      </template>
-
-      <confirm-qr-destop
-        v-if="finish && !isMobile"
-        @close="() => (finish = false)"
-        @result="
-          () => {
-            finish = false;
-            isSuccess = true;
-          }
-        "
-      >
-        <template v-slot:header>Подключение кошелька </template>
-        <template v-slot:title>Connect TON</template>
-        <template v-slot:subtitle>
-          Scan the QR code with your phone's <br />
-          camera or Tonkeeper
-        </template>
-        <template v-slot:action>
-          <b class="ton-kepeer">Sign in with Tokenkepeery</b>
-        </template>
-        <template v-slot:footer>
-          <div class="we-do-not">
-            We do not receive or store your wallet login details, so your TON is
-            safe.
-          </div>
-        </template>
-      </confirm-qr-destop>
-      <desktop-modal v-if="isSuccess" @close="() => (isSuccess = false)">
-        <template v-slot:title>Подключение кошелька</template>
-        <template v-slot:body>
-          <success></success>
-        </template>
-      </desktop-modal>
-      <div
-        :class="
-          isMobile
-            ? 'catos-container'
-            : 'catos-container_desktop catos-container'
-        "
-      >
+      <div class="catos-container">
         <span class="ton-keeper-txt-container_preview ton-keeper-txt-container">
           <p class="catos-">CATOS - платформа кредитования</p>
           <p class="catos-">на базе блокчейна TON</p>
@@ -103,14 +45,10 @@
           </p>
         </span>
       </div>
-      <div :class="isMobile ? 'faq' : 'faq_desktop faq'">
-        <div :class="isMobile ? 'faq1' : 'faq1_desktop'">
+      <div class="faq">
+        <div class="faq1">
           <div class="faq2">FAQ:</div>
-          <div
-            :class="
-              isMobile ? 'frame-group' : 'frame-group_desktop frame-group'
-            "
-          >
+          <div class="frame-group">
             <div class="catos-group">
               <div class="catos1">
                 Полный и подробный гайд по использованию платформы CATOS
@@ -120,9 +58,9 @@
             <div class="catos-group">
               <div class="ton-keeper2">
                 <span class="ton-keeper-txt-container">
+                  <p class="catos-">Полный и подробный гайд</p>
                   <p class="catos-">
-                    Полный и подробный гайд по установке использованию
-                    криптокошелька TON Keeper
+                    по установке использованию криптокошелька TON Keeper
                   </p>
                 </span>
               </div>
@@ -131,7 +69,7 @@
           </div>
         </div>
         <div class="faq-child"></div>
-        <div :class="isMobile ? 'download' : 'download_desktop download'">
+        <div class="download">
           <div class="ton-keeper-container">
             <span>Скачать TON Keeper: </span>
             <span class="ios">для iOS, для РС, для MAC</span>
@@ -181,18 +119,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from "vue";
-import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
-import desktopModal from "@/components/base/desktop-modal.vue";
-import catosButton from "../ui-kit/buttons/catos-button.vue";
-import success from "./desktop/modal-body/success.vue";
-import { useDevice } from "@/compossables/useDevice";
-
-const { isMobile } = useDevice();
-const finish = ref(false);
-const isSuccess = ref(false);
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 .bg-icon {
@@ -317,28 +244,6 @@ const isSuccess = ref(false);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
-
-  &_desktop {
-    position: relative;
-    top: 17em;
-
-    border-radius: 20px;
-    background: linear-gradient(89.77deg, #9747ff, #ad6fff);
-    width: 23.38em;
-    height: 3em;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    box-sizing: border-box;
-    margin: 0 auto;
-    align-items: center;
-    justify-content: center;
-    color: #f3f3f3;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-    -webkit-tap-highlight-color: transparent;
-    text-decoration: none;
-    cursor: pointer;
-  }
 }
 .catos- {
   margin: 0;
@@ -362,15 +267,6 @@ const isSuccess = ref(false);
   left: 3.75em;
   font-weight: 300;
   width: 77vw;
-
-  &_desktop {
-    position: relative;
-    top: 3.5em;
-    left: 0em;
-    font-weight: 300;
-    width: 40.38em;
-    margin: 0 auto;
-  }
 }
 .catos1,
 .faq2 {
@@ -413,7 +309,7 @@ const isSuccess = ref(false);
   position: relative;
 }
 .ton-keeper-txt-container {
-  width: 100%;
+  width: 70%;
   &_preview {
     width: 100%;
   }
@@ -425,7 +321,7 @@ const isSuccess = ref(false);
   font-weight: 300;
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 21.08em;
   flex-shrink: 0;
   z-index: 0;
 }
@@ -440,15 +336,9 @@ const isSuccess = ref(false);
   gap: 1em;
   color: #3b3b3b;
   width: 77vw;
-  &_desktop {
-    width: 28em;
-  }
 }
 .faq1 {
   gap: 0.38em;
-  &_desktop {
-    width: 28em;
-  }
 }
 .faq-child {
   align-self: stretch;
@@ -514,12 +404,9 @@ const isSuccess = ref(false);
   flex-direction: column;
 }
 .download {
-  gap: 1.06em;
   width: 77vw;
+  gap: 1.06em;
   color: #3b3b3b;
-  &_desktop {
-    width: 28em;
-  }
 }
 .faq {
   position: absolute;
@@ -527,15 +414,6 @@ const isSuccess = ref(false);
   left: 11vw;
   gap: 2em;
   text-align: left;
-  &_desktop {
-    position: relative;
-    top: 14em;
-    left: 1em;
-    gap: 2em;
-    text-align: left;
-    width: 30em;
-    margin: 0 auto;
-  }
 }
 .form-registration-66 {
   position: absolute;
@@ -544,7 +422,7 @@ const isSuccess = ref(false);
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 56.56em;
+  height: 53.56em;
   text-align: center;
   color: rgba(59, 59, 59, 0.96);
 }
@@ -702,20 +580,10 @@ const isSuccess = ref(false);
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 68.81em;
+  height: 65.81em;
   overflow-y: auto;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
-}
-.buttonnext_connect_desktop {
-  position: static;
-}
-.button-group {
-  position: relative;
-  top: 17em;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
 }
 </style>
