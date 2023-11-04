@@ -45,61 +45,18 @@
                 :value="userDataStore.passport.registration_address.region"
                 @selected="ev => (userDataStore.passport.registration_address.region = ev)"
                 :optionWidth="77"
-                :style="
-                  getPasport === 'Россия'
-                    ? { width: '100%', opacity: '1' }
-                    : { width: '100%', opacity: '0.2' }
-                "
-                :disabled="getPasport !== 'Россия'"
-                data-element="select-region"
-              ></catos-select>
-              <catos-select
-                v-else
-                placeholder="Московская"
-                :options="optionsRegion"
-                :value="valueRegion"
-                @selected="ev => (valueRegion = ev)"
-                :optionWidthDesk="405"
-                :style="
-                  getPasport === 'Россия'
-                    ? { width: '100%', opacity: '1' }
-                    : { width: '100%', opacity: '0.2' }
-                "
-                :disabled="getPasport !== 'Россия'"
-                data-element="select-region"
+                :style="{ width: '100%' }"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
               <div class="goa-filejpg">Район</div>
               <catos-select
-                v-if="isMobile"
-                :placeholder="valueRegion ? getArea()[0] : 'Воскресенск'"
-                :options="getArea()"
-                :value="valueArea"
-                @selected="ev => (valueArea = ev)"
+                placeholder="Россия"
+                :options="options"
+                :value="userDataStore.passport.registration_address.neighborhood"
+                @selected="ev => (userDataStore.passport.registration_address.neighborhood = ev)"
                 :optionWidth="77"
-                :style="
-                  valueRegion
-                    ? { width: '100%', opacity: '1' }
-                    : { width: '100%', opacity: '0.2' }
-                "
-                :disabled="!valueRegion"
-                data-element="select-area"
-              ></catos-select>
-              <catos-select
-                v-else
-                :placeholder="valueRegion ? getArea()[0] : 'Воскресенск'"
-                :options="getArea()"
-                :value="valueArea"
-                @selected="ev => (valueArea = ev)"
-                :optionWidthDesk="405"
-                :style="
-                  valueRegion
-                    ? { width: '100%', opacity: '1' }
-                    : { width: '100%', opacity: '0.2' }
-                "
-                :disabled="!valueRegion"
-                data-element="select-area"
+                :style="{ width: '100%' }"
               ></catos-select>
             </div>
             <div class="fieldsinput">
@@ -109,20 +66,6 @@
                 :options="options"
                 :value="userDataStore.passport.registration_address.city"
                 @selected="ev => (userDataStore.passport.registration_address.city = ev)"
-                :optionWidth="77"
-                :style="
-                  valueRegion
-                    ? { width: '100%', opacity: '1' }
-                    : { width: '100%', opacity: '0.2' }
-                "
-                :disabled="!valueRegion"
-                data-element="select-city"
-              ></catos-select>
-              <catos-select
-                placeholder="Россия"
-                :options="options"
-                :value="userDataStore.passport.registration_address.neighborhood"
-                @selected="ev => (userDataStore.passport.registration_address.neighborhood = ev)"
                 :optionWidth="77"
                 :style="{ width: '100%' }"
               ></catos-select>
@@ -204,24 +147,12 @@
                     <span class="span1">* </span>
                   </div>
                   <catos-select
-                    v-if="isMobile"
                     placeholder="Россия"
                     :options="options"
                     :value="userDataStore.passport.country"
                     @selected="ev => (userDataStore.passport.country = ev)"
                     :optionWidth="77"
                     :style="{ width: '100%' }"
-                    data-element="select-get"
-                  ></catos-select>
-                  <catos-select
-                    v-else
-                    placeholder="Россия"
-                    :options="options"
-                    :value="getPasport"
-                    @selected="ev => (getPasport = ev)"
-                    :optionWidthDesk="405"
-                    :style="{ width: '100%' }"
-                    data-element="select-get"
                   ></catos-select>
                 </div>
               </div>
@@ -249,8 +180,6 @@
                     type="date"
                     placeholder="01.02.2022"
                     :style="{ width: '100%' }"
-                    :value="date"
-                    @selected="e => (date = e)"
                   ></input-data>
                 </div>
               </div>
@@ -307,8 +236,6 @@
                     type="date"
                     placeholder="01.02.1994"
                     :style="{ width: '100%' }"
-                    :value="date"
-                    @selected="e => (date = e)"
                   ></input-data>
                   <div class="iconscalendar-wrapper">
                     <img
@@ -3275,7 +3202,7 @@ const city = {
     "Чаплинка",
   ],
 };
-const getCity = () => {
+/*const getCity = () => {
   const valueArrs = Object.values(translateRegion);
   const index = valueArrs.indexOf(valueRegion.value);
 
@@ -3283,7 +3210,7 @@ const getCity = () => {
   const region = keyArrs[index];
   // @ts-ignore
   return city[region];
-};
+};*/
 const isDataLoading = ref(false);
 const handleNextClick = async () => {
   isDataLoading.value = true;

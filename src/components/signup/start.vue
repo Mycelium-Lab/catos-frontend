@@ -1057,6 +1057,6 @@ const errorMessage = ref("");
 }
 .disabled {
   opacity: 0.5;
-  pointer-events
+  pointer-events: none;
 }
 </style>

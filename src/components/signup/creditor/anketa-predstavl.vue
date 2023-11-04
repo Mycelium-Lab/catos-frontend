@@ -19,23 +19,7 @@
                     <span>Страна выдачи документа </span>
                     <span class="span2">* </span>
                   </div>
-                  <catos-select
-                    v-if="isMobile"
-                    placeholder="Россия"
-                    :options="options"
-                    :value="getPasport"
-                    @selected="ev => (getPasport = ev)"
-                    :optionWidth="77"
-                    :style="{ width: '100%' }"
-                    data-element="select-get"
-                  ></catos-select>
-                  <catos-select
-                    v-else
-                    placeholder="Россия"
-                    :options="options"
-                    :value="getPasport"
-                    @selected="ev => (getPasport = ev)"
-                    :optionWidthDesk="365"
+                  <input-data
                     :style="{ width: '100%' }"
                     placeholder="Гражданство"
                     :right="true"
@@ -3252,7 +3236,7 @@ const translateRegion = {
   khersonskaya: "Херсонская",
 };
 
-const getArea = (type = "register") => {
+/*const getArea = (type = "register") => {
   const values = Object.values(translateRegion);
   const keys = Object.keys(translateRegion);
   let index = 0;
@@ -3265,7 +3249,7 @@ const getArea = (type = "register") => {
 
   // @ts-ignore
   return optionsArea[keys[index]];
-};
+};*/
 
 const city = {
   adygea: ["Адыгейск", "Майкоп"],
@@ -3841,7 +3825,7 @@ const city = {
   ],
 };
 
-const getCity = (type = "register") => {
+/*const getCity = (type = "register") => {
   const valueArrs = Object.values(translateRegion);
   let index = 0;
   if (type === "register") {
@@ -3853,7 +3837,7 @@ const getCity = (type = "register") => {
   const region = keyArrs[index];
   // @ts-ignore
   return city[region];
-};
+};*/
 const saveImage = async (boxName: string, file: File | null) => {
   if (file) {
     switch (boxName) {
