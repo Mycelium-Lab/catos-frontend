@@ -1,6 +1,8 @@
 <template>
   <div class="header">
-    <div class="div8">Кредитные пуллы</div>
+    <div class="div8">
+      {{ from === "pulls" ? " Кредитные пуллы" : "Задолжности" }}
+    </div>
   </div>
   <div class="statusapi">
     <div class="status-reg">
@@ -20,8 +22,17 @@
         <div
           class="des-and-bbn_bottom_setting des-and-bbn_bottom des-and-bbn"
           id="desAndBbn"
+          @click="
+            () => {
+              isActive === 0 ? (isActive = -1) : (isActive = 0);
+            }
+          "
         >
-          <catos-checkbox variant="radiobutton"></catos-checkbox>
+          <catos-checkbox
+            variant="radiobutton"
+            id="1"
+            :select="isActive === 0"
+          ></catos-checkbox>
           <label
             >Кошелек Catos
 
@@ -30,9 +41,18 @@
         </div>
         <div
           class="des-and-bbn_bottom_setting des-and-bbn_bottom des-and-bbn"
+          @click="
+            () => {
+              isActive === 1 ? (isActive = -1) : (isActive = 1);
+            }
+          "
           id="desAndBbn"
         >
-          <catos-checkbox variant="radiobutton"></catos-checkbox>
+          <catos-checkbox
+            variant="radiobutton"
+            id="2"
+            :select="isActive === 1"
+          ></catos-checkbox>
           <label
             >Кошелек TONKeeper
             <div>Balance: 10 273 TON</div>
@@ -44,6 +64,7 @@
               variant="fourth"
               :style="{ width: '97%', marginBottom: '1em' }"
               @click="toScan"
+              :disabled="isActive === -1"
               >Продолжить</catos-button
             >
 
@@ -59,13 +80,15 @@
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { computed } from "vue";
+import { ref, computed } from "vue";
 
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import catosCheckbox from "@/components/ui-kit/catos-checkbox.vue";
+
+const isActive = ref(-1);
 const router = useRouter();
 const bottomSubTitle = computed(() => {
-  console.log(window.history.state.title);
+  console.log(window.history.state.bottomSubTitle);
   return window.history.state.bottomSubTitle;
 });
 
@@ -85,6 +108,19 @@ const routerName = computed(() => {
 const actionTitle = computed(() => {
   return window.history.state.actionTitle;
 });
+
+const from = computed(() => {
+  if (window.history.state.from) {
+    return window.history.state.from;
+  } else {
+    return "pulls";
+  }
+});
+
+const modal = computed(() => {
+  return window.history.state.modal;
+});
+
 const toScan = () => {
   router.push({
     name: "pulls-borrower-get-loan-scan",
@@ -94,7 +130,8 @@ const toScan = () => {
       routerName: routerName.value,
       actionTitle: actionTitle.value,
       bottomSubTitle: bottomSubTitle.value,
-      from: "pulls",
+      from: from.value,
+      modal: modal.value,
     },
   });
 };

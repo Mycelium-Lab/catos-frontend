@@ -79,38 +79,59 @@
           <div class="frame-parent1_my frame-parent1">
             <div class="creditlabel">Кредитор:</div>
 
-            <catos-checkbox
-              :style="{ top: '0.2em', position: 'relative' }"
-              variant="radiobutton"
-            ></catos-checkbox>
-            <div class="creditoption">Деньги до зарплаты</div>
+            <div class="group">
+              <div class="div1">Деньги до зарплаты</div>
+              <img
+                class="radiobutton-icon"
+                alt=""
+                src="@/assets/images/investore.svg"
+              />
+            </div>
           </div>
 
           <div class="frame-parent2">
+            <div v-if="variant !== 'marketplace'" class="frame-parent3">
+              <div class="roi-wrapper">
+                <div class="roi">Статус:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="div16">Не погашен</div>
+              </div>
+            </div>
+            <div v-if="variant !== 'marketplace'" class="line-div"></div>
+            <div class="frame-parent3">
+              <div class="roi-wrapper">
+                <div class="roi">Текущий долг:</div>
+              </div>
+              <div class="ton-wrapper">
+                <div class="div16">50 000 TON</div>
+              </div>
+            </div>
+            <div class="line-div"></div>
             <div class="frame-parent3">
               <div class="roi-wrapper">
                 <div class="roi">Ставка:</div>
               </div>
               <div class="ton-wrapper">
-                <div class="div16">1% в день</div>
+                <div class="div16">1 % в день</div>
               </div>
             </div>
             <div class="line-div"></div>
             <div class="frame-parent3">
               <div class="roi-wrapper">
-                <div class="roi">На срок:</div>
+                <div class="roi">Просрочен:</div>
               </div>
               <div class="ton-wrapper">
-                <div class="div16">до 30 дней</div>
+                <div class="div16">9 дней</div>
               </div>
             </div>
-            <div class="line-div"></div>
-            <div class="frame-parent3">
+            <div v-if="variant !== 'marketplace'" class="line-div"></div>
+            <div v-if="variant !== 'marketplace'" class="frame-parent3">
               <div class="roi-wrapper">
-                <div class="roi">Беспроцентный период:</div>
+                <div class="roi">Cтоимость покупки:</div>
               </div>
               <div class="ton-wrapper">
-                <div class="div16">3 дня</div>
+                <div class="div16">5 000 TON</div>
               </div>
             </div>
           </div>
@@ -455,11 +476,14 @@ const handleOpen = () => {
 .frame-parent1_my {
   border: 1px solid #f6f4fc;
   border-radius: 16px;
-  padding: 9px 0px 9px 13px;
-  margin: 2em 0em;
+  justify-content: space-between;
+  padding: 9px 13px 9px 13px;
+  margin: 0em;
   align-items: center;
-  margin-bottom: 0.5em;
-  height: 2.5em;
+  height: 40px;
+  width: 100%;
+  position: relative;
+  top: 1em;
 }
 .div16 {
   flex: 1;
@@ -513,6 +537,8 @@ const handleOpen = () => {
   width: 77vw;
   flex-direction: column;
   gap: 0.5em;
+  position: relative;
+  top: 1em;
 }
 .percent-icon1 {
   position: relative;
@@ -543,6 +569,8 @@ const handleOpen = () => {
   padding: 0.81em 0.75em;
   box-sizing: border-box;
   gap: 0.63em;
+  position: relative;
+  top: 1em;
 }
 .frame-group {
   border-radius: 20px;
@@ -778,13 +806,11 @@ const handleOpen = () => {
   flex-direction: row;
 }
 .group {
-  position: absolute;
-  top: 5em;
-  left: 1.56em;
-  width: 22.31em;
-  overflow: hidden;
-  flex-direction: column;
-  color: #2e3a59;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.63em;
 }
 .div34 {
   position: relative;
@@ -1499,6 +1525,12 @@ const handleOpen = () => {
   border-bottom-right-radius: 8px;
   align-items: center;
   border-top-right-radius: 8px;
+}
+.div1 {
+  position: relative;
+  font-size: 0.88em;
+  line-height: 130%;
+  font-weight: 300;
 }
 
 /*@media (max-width: 390px) {

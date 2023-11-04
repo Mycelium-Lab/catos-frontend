@@ -18,9 +18,7 @@ import progressBar from "./components/ui-kit/buttons/progress-bar.vue";
 import catosSelect from "./components/fields/catos-select.vue";
 import { ButtonIconVariant, ButtonSliderVariant } from "@/types/buttons-props";
 
-import Login from "@/components/login/login.vue";
 import Login2 from "@/components/login/login-2.vue";
-import LoginRoles from "@/components/login/login-roles.vue";
 import LoginRoles2 from "@/components/login/login-roles-2.vue";
 import HomeView2 from "./views/HomeView-2.vue";
 import PhoneConfirmation from "./components/login/phone-confirmation.vue";

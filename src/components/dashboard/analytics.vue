@@ -81,7 +81,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="1" />
+          <chart :chartPairs="[]" id="1" />
 
           <!--<div class="days">
             <div class="div14">Апр</div>
@@ -151,7 +151,7 @@
               <div class="tab-title">Месяц</div>
             </div>
           </div>
-          <chart id="2" />
+          <chart :chartPairs="[]" id="2" />
 
           <!--<div class="days">
             <div class="div14">Апр</div>

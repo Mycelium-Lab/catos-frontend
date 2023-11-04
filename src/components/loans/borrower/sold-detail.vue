@@ -16,12 +16,18 @@
                 <div class="div74_sold div74">Займ продан коллектору</div>
               </div>
             </div>
-            <div class="parent12">
-              <div class="number">Кредитор:</div>
-              <div class="alert-triangle-parent">
-                <catos-checkbox variant="radiobutton"></catos-checkbox>
+            <div class="frame-wrapper3">
+              <div class="frame-parent1_my frame-parent1">
+                <div class="creditlabel">Кредитор:</div>
 
-                <div class="div74">МФО доверие</div>
+                <div class="group-creditor">
+                  <div class="div1">Деньги до зарплаты</div>
+                  <img
+                    class="radiobutton-icon"
+                    alt=""
+                    src="@/assets/images/investore.svg"
+                  />
+                </div>
               </div>
             </div>
             <div class="frame-child6"></div>
@@ -371,7 +377,6 @@ const toRepay = () => {
   height: 0.06em;
 }
 .ton-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: row;
   padding: 0.13em 0;
@@ -1372,6 +1377,8 @@ const toRepay = () => {
   align-items: center;
   justify-content: flex-start;
   gap: 0.63em;
+  width: 100%;
+  justify-content: space-between;
   &_sold {
     background: rgba(165, 146, 221, 0.07);
     border-radius: 8px;
@@ -1897,6 +1904,9 @@ const toRepay = () => {
 .eqb5dze1h44-txt {
   line-break: anywhere;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 .eqb5dze1h44 {
   position: relative;
@@ -2133,6 +2143,8 @@ const toRepay = () => {
 .frame-parent25 {
   width: 100%;
   gap: 0.5em;
+  align-items: center;
+  justify-content: space-between;
 }
 .span47 {
   letter-spacing: -0.01em;
@@ -2304,5 +2316,46 @@ const toRepay = () => {
   text-align: center;
   color: #3b3b3b;
   font-family: Inter;
+}
+.frame-parent1_my {
+  border: 1px solid #f6f4fc;
+  border-radius: 16px;
+  padding: 9px 9px 9px 13px;
+  margin: 0em;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.creditlabel,
+.creditoption {
+  color: rgba(59, 59, 59, 1);
+  font-size: 14px;
+  font-weight: 400;
+}
+.creditoption {
+  font-weight: 300;
+}
+.group-creditor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.63em;
+}
+.div1 {
+  position: relative;
+  font-size: 0.88em;
+  line-height: 130%;
+  font-weight: 300;
+}
+.frame-wrapper3 {
+  align-self: stretch;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 </style>

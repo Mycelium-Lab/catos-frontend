@@ -2,15 +2,7 @@
   <div class="decor-parent">
     <span class="job-title">Фильтровать по</span>
     <span class="close" @click="toBack">Закрыть</span>
-    <chips-bar
-      :style="{
-        width: '90vw',
-        position: 'relative',
-        margin: '0 auto',
-        marginTop: '3.8em',
-      }"
-      @on-edit="handleEdit"
-    ></chips-bar>
+    <chips-bar @on-edit="handleEdit"></chips-bar>
 
     <div class="frame-parent3">
       <div class="fields-parent">
@@ -38,11 +30,11 @@
           <li>
             <label class="label">Одобренному лимиту:</label>
             <range-minmax-slider
-              :max="10000"
+              :max="3000"
               v-model:min-value="sliderMinDbt"
               v-model:max-value="sliderMaxDbt"
               :style="{ marginTop: '2em' }"
-              inputLabel="ton"
+              inputLabel="cat"
             ></range-minmax-slider>
           </li>
           <li>
@@ -131,7 +123,7 @@ const valueStatus = ref("");
 const options = ["Россия", "Украина", "Казахстан", "Белорусь"];
 
 const sliderMinDbt = ref(0);
-const sliderMaxDbt = ref(10000);
+const sliderMaxDbt = ref(3000);
 
 const sliderMinBid = ref(0.1);
 const sliderMaxBid = ref(30);

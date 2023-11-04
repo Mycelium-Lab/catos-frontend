@@ -35,8 +35,8 @@
   </div>
 </template>
 <script setup lang="ts">
+import useParsedNumber from "@/compossables/useParsedNumber";
 import { ref, watchEffect, computed } from "vue";
-
 // define component props for the slider component
 const { min, max, step, modelValue } = defineProps({
   min: {
@@ -73,14 +73,8 @@ const sliderValue = ref(modelValue);
 const slider = ref(null);
 
 const parseValue = computed(() => {
-  const arrValue = String(sliderValue.value).split("");
-  console.log(arrValue.length);
-  if (String(sliderValue.value).length === 4) {
-    arrValue.splice(1, 0, " ");
-  } else if (String(sliderValue.value).length > 4) {
-    arrValue.splice(2, 0, " ");
-  }
-  return arrValue.join("");
+  const { parsed } = useParsedNumber(sliderValue.value);
+  return parsed;
 });
 
 // function to get the progress of the slider
@@ -216,10 +210,9 @@ const handle = (target: any) => {
   border: 1px solid rgba(0, 0, 0, 0.03);
   background: #f6f4fc;
   font-size: 15.273px;
-  gap: 3vw;
   margin: 0 auto;
 }
 .input-wrapper_ton::after {
-  right: 1vw;
+  left: 0.5em;
 }
 </style>

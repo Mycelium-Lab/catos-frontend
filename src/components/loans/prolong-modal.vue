@@ -33,7 +33,7 @@
       </div>
       <div class="text-and-button">
         <div class="buttos-tabs_action buttons-tabs" @click="toLoans">
-          <div class="text">Перейти в Мои займы</div>
+          <div class="text">Перейти в мои займы</div>
         </div>
       </div>
     </div>
@@ -148,7 +148,7 @@ const getImageUrl = () => {
 
   &_text {
     top: 20.5em;
-    width: 15em;
+    width: 77vw;
     background: #f6f4fc;
     border-radius: 11px;
     margin-top: 18px;

@@ -150,7 +150,7 @@
               </template>
             </input-data>
             <div class="div19">
-              <span>Придумайте пароль</span>
+              <span>Придумайте пароль </span>
               <span class="span">*</span>
             </div>
             <div class="div20">
@@ -821,7 +821,8 @@ const errorMessage = ref("");
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 48.25em;
+  height: 52.25em;
+  overflow-y: hidden;
 }
 .b1 {
   position: relative;
@@ -1036,8 +1037,8 @@ const errorMessage = ref("");
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 60.5em;
-  overflow-y: auto;
+  height: 64em;
+  overflow-y: hidden;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
@@ -1056,6 +1057,6 @@ const errorMessage = ref("");
 }
 .disabled {
   opacity: 0.5;
-  pointer-events: none;
+  pointer-events
 }
 </style>

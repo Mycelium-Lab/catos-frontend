@@ -296,12 +296,13 @@ const toManage = () => {
   justify-content: flex-start;
 }
 .ton-wrapper {
-  flex: 1;
   padding: 0.13em 0;
 }
 .frame-group {
   align-self: stretch;
   gap: 4.06em;
+  align-items: center;
+  justify-content: space-between;
 }
 .pull-stats-child {
   align-self: stretch;
@@ -316,7 +317,7 @@ const toManage = () => {
 .roi {
   position: relative;
   font-size: 0.75em;
-  line-height: 0.83em;
+  line-height: 130%;
   font-weight: 300;
 }
 .pull-stats1 {

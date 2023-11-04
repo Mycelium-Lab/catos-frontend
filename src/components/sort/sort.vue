@@ -90,9 +90,11 @@ import catosCheckbox from "../ui-kit/catos-checkbox.vue";
 import catosSwitch from "../ui-kit/catos-switch.vue";
 import catosButton from "../ui-kit/buttons/catos-button.vue";
 import chipsBar from "../ui-kit/chips-bar.vue";
-const emit = defineEmits(["close"]);
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 const handleClose = () => {
-  emit("close");
+  router.push({ name: "transaction-history" });
 };
 </script>
 

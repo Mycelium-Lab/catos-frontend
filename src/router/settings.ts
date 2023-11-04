@@ -85,4 +85,9 @@ export const setting = [
     name: "setting-wallet-success",
     component: () => import("../components/setting/wallet-success.vue"),
   },
+  {
+    path: "/setting/transaction-history-sort",
+    name: "transaction-history-sort",
+    component: () => import("../components/sort/sort.vue"),
+  },
 ];

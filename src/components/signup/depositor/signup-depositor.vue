@@ -51,6 +51,8 @@
                     type="date"
                     placeholder="01.02.2022"
                     :style="{ width: '100%' }"
+                    :value="date"
+                    @selected="e => (date = e)"
                   ></input-data>
                   <div class="iconscalendar-wrapper">
                     <img
@@ -150,6 +152,8 @@
                   type="date"
                   placeholder="01.02.1994"
                   :style="{ width: '100%' }"
+                  :value="date"
+                  @selected="e => (date = e)"
                 ></input-data>
                 <div class="iconscalendar-wrapper">
                   <img
@@ -465,15 +469,74 @@ import inputData from "../../../components/fields/input-data.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import loaderField from "../../../components/fields/loader-field.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
+
 import { useUserDataStore } from "@/stores/userData";
 import { fileToBase64 } from "@/utils/fileToBase64";
 
 const userDataStore = useUserDataStore();
+
 const isSelectedRadioButton1 = ref(false);
 const isSelectedRadioButton2 = ref(false);
 const options = {
-  sng: ["Россия", "Украина", "Казахстан"],
-  euro: ["Польша", "Латвия", "Молдова"],
+  euro: [
+    "Россия",
+    "Германия",
+    "Великобритания",
+    "Франиця",
+    "Италия",
+    "Испания",
+    "Украина",
+    "Польша",
+    "Румыния",
+    "Нидерланды",
+    "Беларусь",
+    "Греция",
+    "Португалия",
+    "Чехия",
+    "Швеция",
+  ],
+  asia: [
+    "Китай",
+    "Индия",
+    "Индонезия",
+    "Пакистан",
+    "Бангладеш",
+    "Япония",
+    "Филиппины",
+    "Вьетнам",
+    "Турция",
+    "Иран",
+    "Таиланд",
+    "Мьянма",
+    "Южная Корея",
+    "Ирак",
+    "Афганистан",
+  ],
+  africa: [
+    "Нигерия",
+    "Эфиопия",
+    "Египет",
+    "ДР Конго",
+    "Южная Африка",
+    "Танзания",
+    "Судан",
+    "Алжир",
+    "Уганда",
+    "Морокко",
+  ],
+  america: [
+    "США",
+    "Бразилия",
+    "Мексика",
+    "Колумбия",
+    "Аргентина",
+    "Перу",
+    "Венесуэла",
+    "Чили",
+    "Гватемала",
+    "Эквадор",
+  ],
+  australia_okeania: ["Австралия", "Папуа - Новая Гвинея", "Новая Зеландия"],
 };
 const saveImage = async (boxName: string, file: File | null) => {
   if (file) {
@@ -1741,5 +1804,75 @@ const saveImage = async (boxName: string, file: File | null) => {
   color: #3b3b3b;
   font-family: Inter;
   overflow-x: hidden;
+}
+@media (min-width: 500px) {
+  .div17 {
+    position: relative;
+    top: -18em;
+    left: 0;
+    width: 23.38em;
+    height: 28.44em;
+    margin: 0 auto;
+  }
+  .header {
+    position: relative;
+    top: 1em;
+    left: 1.5em;
+    width: 23.38em;
+    flex-direction: row;
+    gap: 0.75em;
+    margin: 0 auto;
+  }
+  .group {
+    position: relative;
+    top: 30.19em;
+    left: 1em;
+    width: 23.38em;
+    gap: 1.5em;
+    margin: 0 auto;
+  }
+  .registration-options-wrapper {
+    position: relative;
+    top: 54.44em;
+    left: 0em;
+    height: 42.38em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: rgba(59, 59, 59, 0.9);
+    width: 23.38em;
+    margin: 0 auto;
+  }
+  .parent12,
+  .parent13 {
+    position: relative;
+    top: 2.25em;
+    left: 1.31em;
+    align-items: center;
+    gap: 1.13em;
+    width: 20.38em;
+  }
+  .parent13 {
+    top: 0em;
+  }
+  .buttonnext {
+    position: relative;
+    top: 105.81em;
+    left: 0em;
+    border-radius: 20px;
+    background-color: #ffdb6d;
+    width: 23.8em;
+    height: 3em;
+    overflow: hidden;
+    flex-direction: row;
+    padding: 0.5em 7.25em;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .div8 {
+    top: 11em;
+  }
 }
 </style>

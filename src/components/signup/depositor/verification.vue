@@ -133,7 +133,7 @@
                   :options="options"
                   :value="value"
                   @selected="ev => (value = ev)"
-                  :optionWidth="77"
+                  :optionWidthDesk="352"
                   :style="{ width: '100%' }"
                 ></catos-select>
               </div>
@@ -207,8 +207,65 @@ const value = ref("");
 const isSelectedRadioButton1 = ref(false);
 const isSelectedRadioButton2 = ref(false);
 const options = {
-  sng: ["Россия", "Украина", "Казахстан"],
-  euro: ["Польша", "Латвия", "Молдова"],
+  euro: [
+    "Россия",
+    "Германия",
+    "Великобритания",
+    "Франиця",
+    "Италия",
+    "Испания",
+    "Украина",
+    "Польша",
+    "Румыния",
+    "Нидерланды",
+    "Беларусь",
+    "Греция",
+    "Португалия",
+    "Чехия",
+    "Швеция",
+  ],
+  asia: [
+    "Китай",
+    "Индия",
+    "Индонезия",
+    "Пакистан",
+    "Бангладеш",
+    "Япония",
+    "Филиппины",
+    "Вьетнам",
+    "Турция",
+    "Иран",
+    "Таиланд",
+    "Мьянма",
+    "Южная Корея",
+    "Ирак",
+    "Афганистан",
+  ],
+  africa: [
+    "Нигерия",
+    "Эфиопия",
+    "Египет",
+    "ДР Конго",
+    "Южная Африка",
+    "Танзания",
+    "Судан",
+    "Алжир",
+    "Уганда",
+    "Морокко",
+  ],
+  america: [
+    "США",
+    "Бразилия",
+    "Мексика",
+    "Колумбия",
+    "Аргентина",
+    "Перу",
+    "Венесуэла",
+    "Чили",
+    "Гватемала",
+    "Эквадор",
+  ],
+  australia_okeania: ["Австралия", "Папуа - Новая Гвинея", "Новая Зеландия"],
 };
 </script>
 
@@ -849,5 +906,50 @@ const options = {
   color: #3b3b3b;
   font-family: Inter;
   overflow-x: hidden;
+}
+@media (min-width: 500px) {
+  .header {
+    position: relative;
+    top: -17.25em;
+    /* left: 1.5em; */
+    width: 23.38em;
+    flex-direction: row;
+    gap: 0.75em;
+    margin: 0 auto;
+  }
+  .div8 {
+    top: 11.25em;
+    /* left: 1.5em; */
+    width: 23.8em;
+    margin: 0 auto;
+    position: relative;
+  }
+  .parent4 {
+    position: relative;
+    top: 4.5em;
+    left: 1.81em;
+    width: 23.38em;
+    gap: 1.5em;
+    margin: 0 auto;
+  }
+  .buttonnext {
+    position: relative;
+    top: 34em;
+    left: 1.9em;
+    border-radius: 20px;
+    background-color: #ffdb6d;
+    width: 23.38em;
+    height: 3em;
+    margin: 0 auto;
+    overflow: hidden;
+    flex-direction: row;
+    padding: 0.5em 7.25em;
+    box-sizing: border-box;
+    text-align: center;
+    color: var(--color-darkslategray-100);
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+  }
 }
 </style>

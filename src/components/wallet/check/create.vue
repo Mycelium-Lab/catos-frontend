@@ -20,7 +20,7 @@
           <p class="p">Выберите криптовалюту для отправки с помошью чека</p>
         </div>
         <catos-select
-          placeholder="Россия"
+          placeholder="TON"
           :options="options"
           :value="value"
           :optionWidth="77"
@@ -112,10 +112,7 @@ import catosSelect from "@/components/fields/catos-select.vue";
 import catosSwitch from "@/components/ui-kit/catos-switch.vue";
 import copyPaste from "@/components/fields/copy-paste.vue";
 const value = ref("");
-const options = {
-  sng: ["Россия", "Украина", "Казахстан"],
-  euro: ["Польша", "Латвия", "Молдова"],
-};
+const options = ["TON", "CATOS"];
 </script>
 
 <style scoped lang="scss">

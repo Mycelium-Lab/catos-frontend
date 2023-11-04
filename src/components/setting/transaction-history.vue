@@ -1,5 +1,5 @@
 <template>
-  <div class="decor-parent">
+  <div v-if="isMobile" class="decor-parent">
     <div class="decor"></div>
     <div class="frame-parent3">
       <div class="job-title-wrapper">
@@ -55,7 +55,7 @@
                 }"
                 to="/setting"
               >
-                Сохранить
+                Вся история активности
               </router-link>
             </catos-button>
             <div class="total-invoices">
@@ -66,10 +66,71 @@
       </div>
     </div>
   </div>
-  <router-link class="buttonback" to="" @click="$router.go(-1)">
+  <router-link v-if="isMobile" class="buttonback" to="" @click="$router.go(-1)">
     <div class="div44">Назад</div>
     <img class="search-icon" alt="" src="@/assets/images/search-icon.svg" />
   </router-link>
+
+  <default-desktop v-else>
+    <template v-slot:title> История транзакций </template>
+    <template v-slot:tools>
+      <filter-board
+        :style="{ top: '0', position: 'relative', width: '51.75em' }"
+      ></filter-board
+    ></template>
+    <template v-slot:body>
+      <div class="fields">
+        <div class="title-frame">
+          <div class="title3">
+            <div
+              :class="active === 'day' ? 'tabstextactive tabstextresting' : ''"
+              class="tabstextresting"
+              @click="() => (active = 'day')"
+            >
+              <div class="bg2"></div>
+              <div class="tab-title">День</div>
+            </div>
+            <div
+              :class="active === 'week' ? 'tabstextactive tabstextresting' : ''"
+              class="tabstextresting"
+              @click="() => (active = 'week')"
+            >
+              <div class="tab-title1">Неделя</div>
+            </div>
+            <div
+              :class="
+                active === 'month' ? 'tabstextactive tabstextresting' : ''
+              "
+              class="tabstextresting"
+              @click="() => (active = 'month')"
+            >
+              <div class="tab-title2">Месяц</div>
+            </div>
+          </div>
+        </div>
+        <transaction-history-table></transaction-history-table>
+        <div class="fieldsregistration-options1">
+          <catos-button
+            :style="{ top: '2em', margin: '0 auto' }"
+            variant="secondary"
+          >
+            <router-link
+              :style="{
+                textDecoration: 'none',
+                color: '#f3f3f3',
+              }"
+              to="/setting"
+            >
+              Вся история активности
+            </router-link>
+          </catos-button>
+          <div class="total-invoices">
+            1 <span class="span">, </span>520 транзакции
+          </div>
+        </div>
+      </div>
+    </template>
+  </default-desktop>
 </template>
 
 <script setup lang="ts">
@@ -77,7 +138,12 @@ import { ref } from "vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import filterBoard from "../filter-board.vue";
 import transactionHistoryTable from "@/components/setting/transaction-history-table.vue";
+import DefaultDesktop from "../layouts/default-desktop.vue";
 const active = ref("day");
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
 </script>
 
 <style scoped lang="scss">
@@ -859,8 +925,8 @@ const active = ref("day");
 .fieldsregistration-options1 {
   position: relative;
   width: 100%;
-  height: 0em;
-  z-index: -10;
+  //height: 0em;
+  //z-index: -10;
   top: -2em;
 }
 .icon1 {
@@ -885,7 +951,7 @@ const active = ref("day");
   gap: 1.75em;
   width: 100%;
   top: 12em;
-  z-index: -10;
+  // z-index: -10;
 }
 .fieldsregistration-options-item {
   position: absolute;
@@ -1288,6 +1354,7 @@ const active = ref("day");
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .total-invoices {
@@ -1301,6 +1368,34 @@ const active = ref("day");
   padding-bottom: 1em;
   display: flex;
   justify-content: center;
+}
+
+@media (min-width: 500px) {
+  .title-frame {
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+    color: #8181a5;
+    width: 274px;
+    margin-left: 0.5em;
+  }
+  .title3 {
+    gap: 30px;
+    padding: 0em;
+  }
+  .invoice-aa-04-19-181,
+  .new-madieton-llc1 {
+    width: auto;
+  }
+  .field-1 {
+    padding: 4px 0 4px 4px;
+  }
+  .tabstextresting {
+    font-size: 14px;
+  }
+  .fields {
+    top: 0;
+  }
 }
 
 @media (max-width: 375px) {

@@ -334,7 +334,6 @@ const login = async () => {
   width: 87.7vw;
   top: 42.18%;
   right: 6.15%;
-  bottom: 24.64%;
   left: 6.15%;
   border-radius: 15px;
   border: 0.5px solid rgba(46, 58, 89, 0.2);
@@ -380,7 +379,6 @@ const login = async () => {
   width: 76.92%;
   top: 60.44%;
   right: 11.28%;
-  bottom: 28.44%;
   left: 11.79%;
   display: flex;
   flex-direction: column;
@@ -448,5 +446,72 @@ const login = async () => {
   position: relative;
   width: 300px;
   margin: 0 auto;
+}
+@media (min-width: 500px) {
+  .iphone-68-item {
+    width: 400px;
+
+    margin: 0 auto;
+    top: 16em;
+    left: 0em;
+    right: 0em;
+    height: 280px;
+  }
+  .frame-parent {
+    width: 300px;
+    position: relative;
+    margin: 0 auto;
+    left: 0em;
+    right: 0em;
+    top: 11em;
+  }
+  .group-parent {
+    top: 26em;
+  }
+  .catos-parent {
+    top: 35em;
+  }
+
+  .headeer {
+    top: 5em;
+  }
+  .method {
+    top: 6em;
+  }
+  .iphone-68 {
+    min-height: 100%;
+  }
+  .iphone-68-child {
+    display: table;
+    position: relative;
+    margin: auto;
+
+    top: 31em;
+    left: 50px;
+    width: 500px;
+    //top: 10em;
+  }
+  .image-wrapp {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}
+@media (min-width: 800px) {
+  .iphone-68-child {
+    width: 800px;
+    // top: 31em;
+  }
+}
+@media (min-width: 1030px) {
+  .iphone-68-child {
+    width: 1030px;
+    //top: 41em;
+  }
+}
+@media (max-height: 960px) and (min-width: 500px) {
+  .iphone-68-child {
+    height: 80vh;
+  }
 }
 </style>

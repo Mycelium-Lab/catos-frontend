@@ -9,7 +9,11 @@
       @change="handleChange"
     />
     <span
-      :class="`button-slider_left_${ButtonSliderVariant[variantIndex]} button-slider_left`"
+      :class="
+        isMobile
+          ? `button-slider_left_${ButtonSliderVariant[variantIndex]} button-slider_left_mobile button-slider_left`
+          : `button-slider_left_${ButtonSliderVariant[variantIndex]} button-slider_left`
+      "
       :style="
         isSide === 'left' && variantIndex !== 0
           ? { color: '#3b3b3b' }
@@ -33,7 +37,11 @@
           ? { color: 'rgb(129, 129, 165' }
           : { color: '#d9d9d9' }
       "
-      :class="`button-slider_right_${ButtonSliderVariant[variantIndex]} button-slider_right`"
+      :class="
+        isMobile
+          ? `button-slider_right_${ButtonSliderVariant[variantIndex]} button-slider_right_mobile`
+          : `button-slider_right_${ButtonSliderVariant[variantIndex]} button-slider_right`
+      "
       >{{ variantIndex !== 0 ? tabs[1] : "Не владею" }}</span
     >
   </div>
@@ -55,10 +63,11 @@ const { variantIndex, variant } = defineProps({
     type: String,
   },
 });
+import { useDevice } from "@/compossables/useDevice";
 
+const { isMobile } = useDevice();
 const isSide = ref(variant ? "right" : "left");
 const handle = (side: any) => {
-  console.log(side);
   isSide.value = side;
   const currentSlide = side === "left" ? 1 : 0;
   emit("onSlide", currentSlide);
@@ -96,12 +105,23 @@ const handleChange = (ev: any) => {
 .button-slider {
   &_left {
     position: absolute;
-    left: 5%;
+    left: 3.5em;
     top: 0.5em;
-    width: clamp(110px, 26.7vw, 100%);
+
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-tap-highlight-color: transparent;
     text-align: center;
+    cursor: pointer;
+    &_mobile {
+      position: absolute;
+      left: 5%;
+      top: 0.5em;
+      width: clamp(110px, 26.7vw, 100%);
+      -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+      -webkit-tap-highlight-color: transparent;
+      text-align: center;
+    }
+
     /*&::after {
       content: "";
       position: relative;
@@ -134,11 +154,21 @@ const handleChange = (ev: any) => {
   &_right {
     position: absolute;
     text-align: center;
-    right: 6%;
+
+    right: 3em;
     top: 0.5em;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-tap-highlight-color: transparent;
-    width: 26.2vw;
+    cursor: pointer;
+    &_mobile {
+      position: absolute;
+      text-align: center;
+      right: 6%;
+      width: 26.2vw;
+      top: 0.5em;
+      -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+      -webkit-tap-highlight-color: transparent;
+    }
 
     /*&::after {
       content: "";
@@ -393,11 +423,20 @@ input[type="radio"] {
     --s: 0.5;
   }
 }
-@media (max-width: 380px) {
+@media (min-width: 500px) {
   .button-slider {
-    &_right {
-      &_collector {
+    &_left {
+      &_dashboard {
         width: auto;
+        cursor: pointer;
+        left: 2em;
+      }
+    }
+    &_right {
+      &_dashboard {
+        width: auto;
+        cursor: pointer;
+        right: 2em;
       }
     }
   }

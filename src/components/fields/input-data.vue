@@ -20,7 +20,11 @@
           ? { backgroundColor: 'transparent', border: 'none' }
           : ''
       "
+      :id="type === 'date' && hideNativeFormatDate ? 'input-date' : ''"
     />
+    <div class="custom-format" v-if="type === 'date' && hideNativeFormatDate">
+      дд.мм.гггг
+    </div>
     <div class="catos-fields__inner-icon_left">
       <slot name="left-icon" />
     </div>
@@ -43,7 +47,6 @@ const { placeholder, simulate } = defineProps<{
   simulate?: boolean
 }>();
 const emit = defineEmits(['update:modelValue'])
-
 const mutatePlaceholder = computed(() => {
   switch (placeholder) {
     case "Ваша почта":
@@ -107,4 +110,15 @@ const mutatePlaceholder = computed(() => {
   background: none;
   z-index: 1;
 }*/
+#input-date {
+  text-indent: -500px;
+}
+.custom-format {
+  position: absolute;
+  bottom: 0.7em;
+  left: 1em;
+  width: 2em;
+  color: #b4b7c3;
+  font-weight: 300;
+}
 </style>

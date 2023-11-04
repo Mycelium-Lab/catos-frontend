@@ -1,5 +1,11 @@
 <template>
-  <div class="iphone-13-13-form-registr">
+  <div
+    :class="
+      isMobile
+        ? 'iphone-13-13-form-registr'
+        : 'iphone-13-13-form-registr_desktop iphone-13-13-form-registr'
+    "
+  >
     <img class="bg-icon" alt="" src="../public/bg.svg" />
 
     <div class="header">
@@ -30,6 +36,7 @@
                 @selected="ev => (paperDataStore.paperDTO.country = ev)"
                 :optionWidth="77"
                 :style="{ width: '100%' }"
+                data-element="state"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise1">
@@ -46,6 +53,7 @@
                 "
                 :optionWidth="77"
                 :style="{ width: '100%' }"
+                data-element="form"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -473,6 +481,21 @@
                   </template>
                 </input-data>
               </div>
+              <catos-select
+                placeholder="PDF"
+                :options="optionsFile"
+                :value="valueFile"
+                @selected="ev => (valueFile = ev)"
+                :optionWidthDesk="320"
+                :style="{
+                  width: '90%',
+                  margin: '0 auto',
+                  marginTop: '0.5em',
+                  positio: 'absolute',
+                  top: '-5.7em',
+                }"
+                data-element="file"
+              ></catos-select>
             </div>
           </div>
           <div class="text-declaration">
@@ -580,6 +603,75 @@ const paperDataStore = usePaperDataStore();
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
+
+import { useDevice } from "@/compossables/useDevice";
+
+const { isMobile } = useDevice();
+const valueState = ref("");
+const valueFormRegistration = ref("");
+const valueFile = ref("");
+const optionsFile = ["PDF", "TXT", "DOC", "ZIP", "RAR"];
+const optionsFormRegistration = ["ОАО", "АО", "ПАО"];
+const optionsState = {
+  euro: [
+    "Россия",
+    "Германия",
+    "Великобритания",
+    "Франиця",
+    "Италия",
+    "Испания",
+    "Украина",
+    "Польша",
+    "Румыния",
+    "Нидерланды",
+    "Беларусь",
+    "Греция",
+    "Португалия",
+    "Чехия",
+    "Швеция",
+  ],
+  asia: [
+    "Китай",
+    "Индия",
+    "Индонезия",
+    "Пакистан",
+    "Бангладеш",
+    "Япония",
+    "Филиппины",
+    "Вьетнам",
+    "Турция",
+    "Иран",
+    "Таиланд",
+    "Мьянма",
+    "Южная Корея",
+    "Ирак",
+    "Афганистан",
+  ],
+  africa: [
+    "Нигерия",
+    "Эфиопия",
+    "Египет",
+    "ДР Конго",
+    "Южная Африка",
+    "Танзания",
+    "Судан",
+    "Алжир",
+    "Уганда",
+    "Морокко",
+  ],
+  america: [
+    "США",
+    "Бразилия",
+    "Мексика",
+    "Колумбия",
+    "Аргентина",
+    "Перу",
+    "Венесуэла",
+    "Чили",
+    "Гватемала",
+    "Эквадор",
+  ],
+  australia_okeania: ["Австралия", "Папуа - Новая Гвинея", "Новая Зеландия"],
 };
 const regOptions = {
   sng: ["ООО", "ОАО", "ПАО"],
@@ -1480,6 +1572,45 @@ const allDataEntered = computed(() => {
   color: #3b3b3b;
   font-family: Inter;
   overflow-x: hidden;
+  &_desktop {
+    height: 125.44em;
+  }
+}
+@media (min-width: 500px) {
+  .div8 {
+    width: 400px;
+    position: relative;
+    margin: 0 auto;
+    left: 0em;
+    top: 12em;
+  }
+  .text-parent {
+    left: 1.2em;
+  }
+  .checkbox-parent {
+    left: 1.2em;
+  }
+  .registration-options-parent {
+    width: 100%;
+  }
+  .buttonnext {
+    width: 400px;
+  }
+  .header1 {
+    position: relative;
+    top: -90em;
+
+    flex-direction: row;
+    gap: 0.75em;
+    margin: 0 auto;
+    width: 400px;
+  }
+  .iphone-13-13-form-registr {
+    overflow-y: hidden;
+  }
+  .form-registration-36 {
+    height: 100%;
+  }
 }
 .disabled {
   opacity: 0.5;

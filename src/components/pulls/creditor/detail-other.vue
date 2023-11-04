@@ -1,8 +1,8 @@
 <template>
   <modal from="pulls">
     <div class="wrapper">
-      <div class="header">Информация о кредиторе</div>
-      <div class="subtitle header">Деньги до зарплаты</div>
+      <div class="header">Информация о пулле №1223</div>
+
       <div class="pull-stats">
         <div class="pull-stats1">
           <div class="frame-group">
@@ -57,7 +57,9 @@
               </div>
               <div class="statuspull-wrapper">
                 <div class="statuspull">
-                  <div class="div14">Активен</div>
+                  <div class="div14">
+                    Активен <span class="div14_change div14">[отключить]</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -100,12 +102,58 @@
               <div class="line-div"></div>
               <div class="frame-parent3">
                 <div class="roi-wrapper">
-                  <div class="roi">Свободно:</div>
+                  <div class="roi">Выдано:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">796 000 TON TON</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Займов выдано:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">10 574 раз</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Процента невозврата:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">4,5 %</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Доступно ликвидности:</div>
                 </div>
                 <div class="ton-wrapper">
                   <div class="div16">37 000 TON</div>
                 </div>
               </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Дата создания:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">22. 05. 2023</div>
+                </div>
+              </div>
+              <div class="line-div"></div>
+              <div class="frame-parent3">
+                <div class="roi-wrapper">
+                  <div class="roi">Доход:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div16">103 311 TON</div>
+                </div>
+              </div>
+
               <div class="line-div"></div>
               <div class="frame-parent3">
                 <div class="roi-wrapper">
@@ -122,11 +170,60 @@
               </div>
             </div>
           </div>
+          <!--<div class="des-and-bbn">
+          <div class="text-and-button-parent">
+            <div v-if="variant === 'all'" class="text-and-button">
+              <div class="buttons-tabs1">
+                <div class="text">Займы</div>
+              </div>
+              <div class="buttons-tabs2" id="buttonsTabsContainer2">
+                <div class="text1">Аналитика</div>
+              </div>
+            </div>
+            <div class="text-and-button">
+              <div
+                v-if="variant === 'all'"
+                class="buttons-tabs2"
+                id="buttonsTabsContainer3"
+              >
+                <div class="text2" @click="toManage">
+                  <span class="span">Упр</span>
+                  <span class="span1">. ликвид</span>
+                </div>
+              </div>
+              <div class="buttons-tabs2" id="buttonsTabsContainer4">
+                <div class="text3">Закрыть</div>
+              </div>
+            </div>
+          </div>
+        </div>-->
           <div class="des-and-bbn">
             <div class="text-and-button-parent">
-              <div class="text-and-button" @click="toBack">
-                <div class="buttons-tabs2">
-                  <div class="text">Закрыть</div>
+              <div class="text-and-button">
+                <div class="buttons-tabs1" @click="toLoans">
+                  <div class="text">Займы</div>
+                </div>
+                <div
+                  class="buttons-tabs2"
+                  id="buttonsTabsContainer2"
+                  @click="toAnalytics"
+                >
+                  <div class="text1">Аналитика</div>
+                </div>
+              </div>
+              <div class="text-and-button">
+                <div class="buttons-tabs2" id="buttonsTabsContainer3">
+                  <div class="text2" @click="toManage">
+                    <span class="span">Упр</span>
+                    <span class="span1">. ликвид</span>
+                  </div>
+                </div>
+                <div
+                  class="buttons-tabs2_close buttons-tabs2"
+                  id="buttonsTabsContainer4"
+                  @click="toBack"
+                >
+                  <div class="text3">Закрыть</div>
                 </div>
               </div>
             </div>
@@ -139,20 +236,34 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+
 import modal from "@/components/ui-kit/modal.vue";
 import { useRouter } from "vue-router";
+
 const variant = computed(() => {
   return window.history.state.variant;
 });
 const router = useRouter();
+const toAnalytics = () => {
+  router.push({ name: "dashboard-analytics" });
+};
+const toLoans = () => {
+  router.push({ name: "loans", state: { variant: variant.value } });
+};
 const toBack = () => {
   router.push({ name: "pulls", state: { variant: variant.value } });
 };
+const toManage = () => {
+  router.push({
+    name: "pulls-liquidity-management",
+    state: { variant: variant.value },
+  });
+};
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .wrapper {
-  height: 660px;
+  height: 1100px;
 }
 .pull {
   position: absolute;
@@ -358,6 +469,9 @@ const toBack = () => {
   display: flex;
   align-items: center;
 }
+.div14_change {
+  left: 6em;
+}
 .statuspull {
   position: relative;
   width: 3.44em;
@@ -371,7 +485,6 @@ const toBack = () => {
   justify-content: flex-start;
 }
 .statuspull-wrapper {
-  flex: 1;
   padding: 0.13em 0;
   color: #1cbd62;
 }
@@ -392,8 +505,8 @@ const toBack = () => {
   align-self: stretch;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
   gap: 4.06em;
 }
 .line-div {
@@ -404,7 +517,6 @@ const toBack = () => {
   height: 0.06em;
 }
 .ton-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: row;
   padding: 0.13em 0;
@@ -433,6 +545,7 @@ const toBack = () => {
   width: 77vw;
   flex-direction: column;
   gap: 0.5em;
+  justify-content: space-between;
 }
 .percent-icon1 {
   position: relative;
@@ -470,9 +583,9 @@ const toBack = () => {
   gap: 0.88em;
 }
 .text {
-  position: relative;
+  position: absolute;
   top: calc(50% - 9px);
-  text-align: center;
+  left: calc(50% - 24.5px);
   font-size: 0.88em;
   letter-spacing: 0.02em;
   line-height: 120%;
@@ -500,12 +613,16 @@ const toBack = () => {
   align-self: stretch;
   position: relative;
   border-radius: 25px;
-  background: transparent;
+  background-color: rgba(87, 126, 247, 0.96);
   border: 0.5px solid rgba(87, 126, 247, 0.96);
   box-sizing: border-box;
   height: 2em;
   cursor: pointer;
-  color: rgba(85, 85, 98, 1);
+  &_close {
+    background: transparent;
+    color: rgba(85, 85, 98, 1);
+    text-align: center;
+  }
 }
 .text-and-button {
   flex: 1;
@@ -523,18 +640,13 @@ const toBack = () => {
 }
 .text2,
 .text3 {
-  position: absolute;
+  position: relative;
   top: 0.5em;
   font-size: 0.88em;
   line-height: 120%;
   font-weight: 500;
-}
-.text2 {
-  left: 1.79em;
-}
-.text3 {
-  left: calc(50% - 41px);
   letter-spacing: 0.02em;
+  text-align: center;
 }
 .text-and-button-parent {
   align-self: stretch;
@@ -570,11 +682,12 @@ const toBack = () => {
 .pull-stats {
   position: relative;
   top: 6em;
-  height: 30.56em;
+  height: 47em;
   text-align: left;
   margin: 0px 24px;
   border: 0.5px solid rgba(46, 58, 89, 0.4);
   border-radius: 15px;
+  margin-bottom: 13em;
 }
 .frame-icon {
   position: relative;
@@ -804,6 +917,7 @@ const toBack = () => {
   top: 10.81em;
   left: 1.5em;
   gap: 1.44em;
+  justify-content: space-between;
 }
 .div27,
 .fill {

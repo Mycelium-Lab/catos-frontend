@@ -61,11 +61,15 @@
         </div>
         <div class="frame-parent1_my frame-parent1">
           <div class="creditlabel">Кредитор:</div>
-          <catos-checkbox
-            variant="radiobutton"
-            :style="{ position: 'relative', top: '0.1em' }"
-          ></catos-checkbox>
-          <div class="creditoption">Деньги до зарплаты</div>
+
+          <div class="group">
+            <div class="div1">Деньги до зарплаты</div>
+            <img
+              class="radiobutton-icon"
+              alt=""
+              src="@/assets/images/investore.svg"
+            />
+          </div>
         </div>
         <div v-if="variant === 'all'" class="frame-parent1">
           <div class="roi-wrapper">
@@ -73,6 +77,11 @@
           </div>
           <div class="statuspull-wrapper">
             <div class="statuspull">
+              <img
+                class="colors-graphsorders-icon"
+                alt=""
+                src="@/assets/images/colors-graphsorders1.svg"
+              />
               <div class="div14">Активен</div>
             </div>
           </div>
@@ -402,8 +411,8 @@ const getLoan = () => {
 .statuspull-wrapper {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 .statuspull-wrapper {
   flex: 1;
@@ -419,14 +428,14 @@ const getLoan = () => {
 .frame-parent1_my {
   border: 1px solid #f6f4fc;
   border-radius: 16px;
-  padding: 9px 0px 9px 13px;
+  justify-content: space-between;
+  padding: 9px 13px 9px 13px;
   margin: 0em;
   align-items: center;
   height: 40px;
   width: 100%;
 }
 .div16 {
-  flex: 1;
   position: relative;
   font-size: 0.75em;
   line-height: 0.83em;
@@ -452,8 +461,8 @@ const getLoan = () => {
   display: flex;
   flex-direction: row;
   padding: 0.13em 0;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 .roi {
   position: relative;
@@ -737,7 +746,7 @@ const getLoan = () => {
 .tag1 {
   border: 1px solid #e4e0f1;
 }
-.group,
+
 .tags-brand {
   display: flex;
   align-items: flex-start;
@@ -749,15 +758,7 @@ const getLoan = () => {
   overflow-x: auto;
   flex-direction: row;
 }
-.group {
-  position: absolute;
-  top: 5em;
-  left: 1.56em;
-  width: 22.31em;
-  overflow: hidden;
-  flex-direction: column;
-  color: #2e3a59;
-}
+
 .div34 {
   position: relative;
   font-size: 0.88em;
@@ -1465,7 +1466,26 @@ const getLoan = () => {
 .creditoption {
   font-weight: 300;
 }
-
+.group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.63em;
+}
+.div1 {
+  position: relative;
+  font-size: 0.88em;
+  line-height: 130%;
+  font-weight: 300;
+}
+.colors-graphsorders-icon {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  top: -0.25em;
+  right: 1.2em;
+}
 /*@media (max-width: 390px) {
       .pull-stats1 {
         margin: 0 8px;

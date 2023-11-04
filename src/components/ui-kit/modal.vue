@@ -73,7 +73,7 @@ const options = {
   left: 0;
   border-radius: 30px 30px 0 0;
   background-color: #fff;
-
+  min-height: 100vh;
   overflow: hidden;
   width: 100vw;
 }

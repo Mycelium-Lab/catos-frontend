@@ -18,7 +18,7 @@
               </div>
 
               <catos-select
-                placeholder="Выберите токен"
+                placeholder="TON"
                 :options="options"
                 :value="value"
                 :optionWidth="77"
@@ -100,10 +100,7 @@ const sliderMinDay = ref(1);
 const sliderMaxDay = ref(365);
 
 const value = ref("");
-const options = {
-  sng: ["Россия", "Украина", "Казахстан"],
-  euro: ["Польша", "Латвия", "Молдова"],
-};
+const options = ["TON", "CATOS"];
 
 const router = useRouter();
 const toPull = () => {

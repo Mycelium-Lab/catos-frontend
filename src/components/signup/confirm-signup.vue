@@ -9,7 +9,7 @@
           <div class="text-and-fill">
             <div class="div11">
               <span>Подтверждение номера</span>
-              <span class="span">*</span>
+              <span class="span"> *</span>
             </div>
           </div>
           <div class="fields-password-and-mail6">
@@ -26,7 +26,7 @@
             <span class="span7">ожидания</span>
             <span>:</span>
             <span class="span8"> </span>
-            <span class="span6">1 мин</span>
+            <span class="span6"> 1 мин</span>
           </div>
           <div class="frame-group">
             <div class="frame-container">
@@ -76,7 +76,7 @@
         <div class="text-and-fill">
           <div class="div11">
             <span>Подтверждение почты</span>
-            <span class="span">*</span>
+            <span class="span"> *</span>
           </div>
         </div>
         <div class="fields-password-and-mail6">
@@ -1442,7 +1442,7 @@ handleLogin()
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 38.88em;
+  height: 48.88em;
 }
 .div67 {
   position: absolute;
@@ -1622,7 +1622,7 @@ handleLogin()
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 800px;
+  height: 60em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;

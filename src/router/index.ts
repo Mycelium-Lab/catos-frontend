@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { admin, adminMobile } from "./admin";
 
 import { dashboardDepositor, dashboardСreditor } from "./dashboard";
 import { borrowerLoans, loans } from "./loans";
@@ -133,6 +134,7 @@ const router = createRouter({
     setting[14],
     setting[15],
     setting[16],
+    setting[17],
     wallet[0],
     wallet[1],
     wallet[2],
@@ -177,6 +179,8 @@ const router = createRouter({
     dashboardСreditor[0],
     dashboardСreditor[1],
     dashboardСreditor[2],
+    dashboardСreditor[3],
+    dashboardСreditor[4],
     dashboardDepositor[0],
     dashboardDepositor[1],
     borrowerLoans[0],
@@ -186,6 +190,35 @@ const router = createRouter({
     borrowerLoans[4],
     borrowerLoans[5],
     borrowerLoans[6],
+    admin[0],
+    admin[1],
+    admin[2],
+    admin[3],
+    admin[4],
+    admin[5],
+    admin[6],
+    adminMobile[0],
+    adminMobile[1],
+    adminMobile[2],
+    adminMobile[3],
+    adminMobile[4],
+    adminMobile[5],
+    adminMobile[6],
+    adminMobile[7],
+    adminMobile[8],
+    adminMobile[9],
+    adminMobile[10],
+    adminMobile[11],
+    adminMobile[12],
+    adminMobile[13],
+    adminMobile[14],
+    adminMobile[15],
+    adminMobile[16],
+    adminMobile[17],
+    adminMobile[18],
+    adminMobile[19],
+    adminMobile[20],
+    adminMobile[21],
   ],
   // @ts-ignore
   scrollBehavior(to, from, savedPosition) {
