@@ -2919,7 +2919,7 @@ const translateRegion = {
   khersonskaya: "Херсонская",
 };
 
-const getArea = (type = "register") => {
+/*const getArea = (type = "register") => {
   const values = Object.values(translateRegion);
   const keys = Object.keys(translateRegion);
   let index = 0;
@@ -2932,7 +2932,7 @@ const getArea = (type = "register") => {
 
   // @ts-ignore
   return optionsArea[keys[index]];
-};
+};*/
 
 const city = {
   adygea: ["Адыгейск", "Майкоп"],
@@ -3508,7 +3508,7 @@ const city = {
   ],
 };
 
-const getCity = (type = "register") => {
+/*const getCity = (type = "register") => {
   const valueArrs = Object.values(translateRegion);
   let index = 0;
   if (type === "register") {
@@ -3520,7 +3520,7 @@ const getCity = (type = "register") => {
   const region = keyArrs[index];
   // @ts-ignore
   return city[region];
-};
+};*/
 const passportNumberString = reactive({
   value:
   passportDataStore.passportDTO.number === 0

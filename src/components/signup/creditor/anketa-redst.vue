@@ -603,6 +603,7 @@ const paperDataStore = usePaperDataStore();
 const options = {
   sng: ["Россия", "Украина", "Казахстан"],
   euro: ["Польша", "Латвия", "Молдова"],
+}
 
 import { useDevice } from "@/compossables/useDevice";
 
