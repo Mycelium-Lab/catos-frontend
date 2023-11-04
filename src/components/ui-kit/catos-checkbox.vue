@@ -1,26 +1,22 @@
 <template>
-  <div
-    v-if="variant === 'square'"
-    class="catos-wrapper__checkbox_square"
-    @click.stop="change"
-  >
+  <div>
     <div
-      :class="checked ? 'catos__checkbox_square_checked' : ''"
-      class="catos__checkbox_square catos__checkbox"
-    ></div>
-    <img
-      v-if="checked"
-      class="check-mark check-mark_square"
-      src="../../assets/images/ui-kit/check-mark-square.svg"
-      alt="checkbox mark"
-    />
-  </div>
+      v-if="variant === 'square'"
+      class="catos-wrapper__checkbox_square"
+      @click="change"
+    >
+      <div
+        :class="checked ? 'catos__checkbox_square_checked' : ''"
+        class="catos__checkbox_square catos__checkbox"
+      ></div>
+      <img
+        v-if="checked"
+        class="check-mark check-mark_square"
+        src="../../assets/images/ui-kit/check-mark-square.svg"
+        alt="checkbox mark"
+      />
+    </div>
 
-  <div
-    v-if="variant === 'rounded'"
-    class="catos-wrapper__checkbox_rounded"
-    @click="() => (checked = !checked)"
-  >
     <div
       v-if="variant === 'rounded'"
       class="catos-wrapper__checkbox_rounded"
@@ -59,19 +55,15 @@ import { ref } from "vue";
 const props = defineProps({
   variant: { type: String, default: "square" },
   select: { type: Boolean, default: false },
-  isChecked: { type: Boolean, default: false },
 });
 
 const emit = defineEmits(["onChange"]);
 
-const checked = ref(props.isChecked);
+const checked = ref(false);
 
 const change = () => {
   checked.value = !checked.value;
   emit("onChange", checked.value);
-};
-const handleRadioButton = (ev: any) => {
-  checked.value = !checked.value;
 };
 </script>
 
