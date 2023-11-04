@@ -5106,6 +5106,7 @@ const handleNextClick = async () => {
   position: absolute;
   top: 65.63em;
   left: 0;
+  width: 100%;
   //width: 88.7vw;
   height: 38.19em;
 }
@@ -5233,7 +5234,7 @@ const handleNextClick = async () => {
     position: relative;
     width: 360px;
     left: 0em;
-    top: -10em;
+    top: 45em;
   }
 }
 .frame-parent12 {

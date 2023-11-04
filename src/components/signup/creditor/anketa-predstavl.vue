@@ -167,9 +167,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Национальность"
                   :right="true"
-                  @update:model-value="
-                    ev => (passportDataStore.passportDTO.nationality = ev)
-                  "
+                  v-model:model-value="passportDataStore.passportDTO.nationality"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -4301,7 +4299,7 @@ const passportNumberString = reactive({
   border-radius: 15px;
   border: 0.5px solid rgba(46, 58, 89, 0.4);
   box-sizing: border-box;
-  height: 41.06em;
+  height: 53em;
 }
 .div30 {
   position: relative;
@@ -5382,12 +5380,12 @@ const passportNumberString = reactive({
   }
   .group {
     width: 360px;
-    top: 47em;
+    top: 60em;
     left: 0em;
   }
   .registration-options {
     position: relative;
-    top: 72.31em;
+    top: 84em;
     width: 400px;
     height: 37.63em;
     margin: 0 auto;
@@ -5395,7 +5393,7 @@ const passportNumberString = reactive({
   }
   .registration-options1 {
     position: relative;
-    top: 76em;
+    top: 87em;
     left: 1em;
     width: 400px;
     height: 43.31em;
@@ -5403,7 +5401,7 @@ const passportNumberString = reactive({
   }
   .registration-options-wrapper {
     position: relative;
-    top: 80em;
+    top: 90em;
     left: 1em;
     height: 50.56em;
     display: flex;
@@ -5424,7 +5422,7 @@ const passportNumberString = reactive({
   }
   .buttonnext {
     position: relative;
-    top: 222em;
+    top: 235em;
     margin: 0 auto;
     left: 1em;
     width: 400px;
@@ -5476,5 +5474,13 @@ const passportNumberString = reactive({
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.38em;
+}
+.parent39{
+  width: 100%;
+}
+.frame-parent17{
+  display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 </style>

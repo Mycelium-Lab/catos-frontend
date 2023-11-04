@@ -1421,7 +1421,7 @@ const allDataEntered = computed(() => {
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 138em;
+  height: 160em;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -1574,7 +1574,7 @@ const allDataEntered = computed(() => {
   font-family: Inter;
   overflow-x: hidden;
   &_desktop {
-    height: 125.44em;
+    height: 160em;
   }
 }
 @media (min-width: 500px) {
@@ -1609,9 +1609,9 @@ const allDataEntered = computed(() => {
   .iphone-13-13-form-registr {
     overflow-y: hidden;
   }
-  .form-registration-36 {
+  /*.form-registration-36 {
     height: 100%;
-  }
+  }*/
 }
 .disabled {
   opacity: 0.5;
