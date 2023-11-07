@@ -20,11 +20,7 @@
           ? { backgroundColor: 'transparent', border: 'none' }
           : ''
       "
-      :id="type === 'date' && hideNativeFormatDate ? 'input-date' : ''"
     />
-    <div class="custom-format" v-if="type === 'date' && hideNativeFormatDate">
-      дд.мм.гггг
-    </div>
     <div class="catos-fields__inner-icon_left">
       <slot name="left-icon" />
     </div>
@@ -32,7 +28,7 @@
       <slot name="right-icon" />
     </div>
   </div>
-</template>ё
+</template>
 
 <script setup lang="ts">
 import { computed } from "vue";
