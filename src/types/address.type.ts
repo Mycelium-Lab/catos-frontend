@@ -7,5 +7,5 @@ export type  Address = {
     "housing": string,
     "building": string,
     "apartment": string,
-    "index": 0
+    "index": number
 }
