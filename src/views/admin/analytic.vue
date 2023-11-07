@@ -40,7 +40,7 @@
                     type="date"
                     placeholder="01.02.2022"
                     :value="date2"
-                    @selected="e => (date2 = e)"
+                    @selected="(e: any) => (date2 = e)"
                   ></input-data>
                 </div>
               </div>
@@ -133,7 +133,7 @@
                     type="date"
                     placeholder="01.02.2022"
                     :value="date3"
-                    @selected="e => (date3 = e)"
+                    @selected="(e: any) => (date3 = e)"
                   ></input-data>
                 </div>
               </div>
@@ -226,7 +226,7 @@
                     type="date"
                     placeholder="01.02.2022"
                     :value="date1"
-                    @selected="e => (date1 = e)"
+                    @selected="(e: any) => (date1 = e)"
                   ></input-data>
                 </div>
               </div>

@@ -43,7 +43,7 @@
                     placeholder="01.02.2022"
                     :style="{ width: '100%' }"
                     :value="date"
-                    @selected="e => (date = e)"
+                    @selected="(e:any) => (date = e)"
                   ></input-data>
                 </div>
               </div>
