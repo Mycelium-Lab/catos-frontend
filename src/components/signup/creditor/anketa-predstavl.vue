@@ -597,7 +597,7 @@
           <div class="parent11">
             <div class="div10">Индекс</div>
             <input-data
-            @update:model-value="passportDataStore.passportDTO.living_address.index = $event"
+              @update:model-value="passportDataStore.passportDTO.living_address.index = $event"
               placeholder="193 984"
               :style="{ width: '100%' }"
             ></input-data>

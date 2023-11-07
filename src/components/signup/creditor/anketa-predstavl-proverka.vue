@@ -3552,7 +3552,7 @@ const handleNextClick = async () => {
   .then((res) => {
       if (res.status === 201) {
           console.log('Data saved');
-         router.push({name: 'connect-wallet'});
+          router.push({name: 'connect-wallet'});
         }
         else {
           console.log(res);

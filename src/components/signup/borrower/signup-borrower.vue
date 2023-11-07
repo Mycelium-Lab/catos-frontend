@@ -284,8 +284,8 @@
             <catos-select
               placeholder="Россия"
               :options="options"
-              :value="passportDataStore.passportDTO.registration_address.neighborhood"
-              @selected="ev => (passportDataStore.passportDTO.registration_address.neighborhood = ev)"
+              :value="passportDataStore.passportDTO.registration_address.region"
+              @selected="ev => (passportDataStore.passportDTO.registration_address.region = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
             ></catos-select>
@@ -298,8 +298,8 @@
             <catos-select
               placeholder="Красносельский"
               :options="options"
-              :value="passportDataStore.passportDTO.registration_address.region"
-              @selected="ev => (passportDataStore.passportDTO.registration_address.region = ev)"
+              :value="passportDataStore.passportDTO.registration_address.neighborhood"
+              @selected="ev => (passportDataStore.passportDTO.registration_address.neighborhood = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
             ></catos-select>

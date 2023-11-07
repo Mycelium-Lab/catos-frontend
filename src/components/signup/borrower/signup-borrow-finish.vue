@@ -4,10 +4,9 @@
 
     <div class="form-registration-46">
       <router-link
+        to=""
         :class="isMobile ? 'buttonnext' : 'buttonnext_desktop buttonnext'"
-        :to="{
-          name: 'connect-wallet',
-        }"
+        @click="handleNextButton"
       >
         <b class="b1">Закончить регистрацию</b>
       </router-link>
@@ -40,8 +39,8 @@
               v-if="isMobile"
               :placeholder="optionsWork[0]"
               :options="optionsWork"
-              :value="valueWork"
-              @selected="ev => (valueWork = ev)"
+              :value="borrowerDataStore.borrowerDTO.employment_type"
+              @selected="ev => (borrowerDataStore.borrowerDTO.employment_type = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
             ></catos-select>
@@ -49,8 +48,8 @@
               v-else
               :placeholder="optionsWork[0]"
               :options="optionsWork"
-              :value="valueWork"
-              @selected="ev => (valueWork = ev)"
+              :value="borrowerDataStore.borrowerDTO.employment_type"
+              @selected="ev => (borrowerDataStore.borrowerDTO.employment_type = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
             ></catos-select>
@@ -61,6 +60,8 @@
               placeholder="В рублях или долларах"
               :style="{ width: '100%' }"
               :right="true"
+              :model-value="valueRevenue"
+              @update:model-value="borrowerDataStore.borrowerDTO.revenue = $event"
             >
               <template v-slot:right-icon>
                 <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -94,8 +95,8 @@
               v-if="isMobile"
               :placeholder="optionsEducation[0]"
               :options="optionsEducation"
-              :value="valueEducation"
-              @selected="ev => (valueEducation = ev)"
+              :value="borrowerDataStore.borrowerDTO.education"
+              @selected="ev => (borrowerDataStore.borrowerDTO.education = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
               data-element="select-education"
@@ -104,8 +105,8 @@
               v-else
               :placeholder="optionsEducation[0]"
               :options="optionsEducation"
-              :value="valueEducation"
-              @selected="ev => (valueEducation = ev)"
+              :value="borrowerDataStore.borrowerDTO.education"
+              @selected="ev => (borrowerDataStore.borrowerDTO.education = ev)"
               :optionWidthDesk="500"
               :style="{ width: '100%' }"
               data-element="select-education"
@@ -120,8 +121,8 @@
               v-if="isMobile"
               :placeholder="optionsFamaly[0]"
               :options="optionsFamaly"
-              :value="valueFamaly"
-              @selected="ev => (valueFamaly = ev)"
+              :value="borrowerDataStore.borrowerDTO.relationship"
+              @selected="ev => (borrowerDataStore.borrowerDTO.relationship = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
               data-element="select-famaly"
@@ -130,8 +131,8 @@
               v-else
               :placeholder="optionsFamaly[0]"
               :options="optionsFamaly"
-              :value="valueFamaly"
-              @selected="ev => (valueFamaly = ev)"
+              :value="borrowerDataStore.borrowerDTO.relationship"
+              @selected="ev => (borrowerDataStore.borrowerDTO.relationship = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
               data-element="select-famaly"
@@ -147,7 +148,7 @@
               :placeholder="optionsChildren[0]"
               :options="optionsChildren"
               :value="valueChildren"
-              @selected="ev => (valueChildren = ev)"
+              @selected="ev => (borrowerDataStore.borrowerDTO.children = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
               data-element="select-children"
@@ -157,7 +158,7 @@
               :placeholder="optionsChildren[0]"
               :options="optionsChildren"
               :value="valueChildren"
-              @selected="ev => (valueChildren = ev)"
+              @selected="ev => (borrowerDataStore.borrowerDTO.children = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
               data-element="select-children"
@@ -172,8 +173,8 @@
               v-if="isMobile"
               :placeholder="optionsCriminal[0]"
               :options="optionsCriminal"
-              :value="valueCreminal"
-              @selected="ev => (valueCreminal = ev)"
+              :value="borrowerDataStore.borrowerDTO.criminal"
+              @selected="ev => (borrowerDataStore.borrowerDTO.criminal = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
               data-element="select-creminal"
@@ -182,8 +183,8 @@
               v-else
               :placeholder="optionsCriminal[0]"
               :options="optionsCriminal"
-              :value="valueCreminal"
-              @selected="ev => (valueCreminal = ev)"
+              :value="borrowerDataStore.borrowerDTO.criminal"
+              @selected="ev => (borrowerDataStore.borrowerDTO.criminal = ev)"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
               data-element="select-creminal"
@@ -202,8 +203,8 @@
             v-if="isMobile"
             :placeholder="optionsChannel[0]"
             :options="optionsChannel"
-            :value="valueChannel"
-            @selected="ev => (valueChannel = ev)"
+            :value="borrowerDataStore.borrowerDTO.survey"
+            @selected="ev => (borrowerDataStore.borrowerDTO.survey = ev)"
             :optionWidth="77"
             :style="{ width: '100%' }"
             top
@@ -213,8 +214,8 @@
             v-else
             :placeholder="optionsChannel[0]"
             :options="optionsChannel"
-            :value="valueChannel"
-            @selected="ev => (valueChannel = ev)"
+            :value="borrowerDataStore.borrowerDTO.survey"
+            @selected="ev => (borrowerDataStore.borrowerDTO.survey = ev)"
             :optionWidthDesk="329"
             :style="{ width: '100%' }"
             top
@@ -244,25 +245,34 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
+import router from '@/router';
 import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
-import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
-import catosTextarea from "../../../components/fields/catos-textarea.vue";
 import { useDevice } from "@/compossables/useDevice";
+import { useBorrowerDataStore } from "@/stores/borrowerData";
+import { userinfo } from '@/api/documents.api';
 
 const { isMobile } = useDevice();
-const value = ref("");
-const valueWork = ref("");
-const valueEducation = ref("");
-const valueFamaly = ref("");
-const valueChildren = ref("");
-const valueCreminal = ref("");
-const valueChannel = ref("");
-const options = {
-  sng: ["Россия", "Украина", "Казахстан"],
-  euro: ["Польша", "Латвия", "Молдова"],
+const valueChildren = computed(() => borrowerDataStore.borrowerDTO.children === 0 ? '' : borrowerDataStore.borrowerDTO.children.toString());
+const valueRevenue = computed(() => borrowerDataStore.borrowerDTO.revenue === 0 ? '' : borrowerDataStore.borrowerDTO.revenue.toString());
+const handleNextButton = async () => {
+  await userinfo(borrowerDataStore.borrowerDTO)
+    .then((res) => {
+      if (res.status === 201) {
+        console.log('Data saved');
+        router.push({name: 'connect-wallet'});
+      }
+      else {
+        console.log(res);
+      }
+      })
+    .catch((err) => {
+      console.log(err);
+    })  
 };
+
+const borrowerDataStore = useBorrowerDataStore();
 const optionsWork = [
   "Основное место работы",
   "Дополнительное место работы",
