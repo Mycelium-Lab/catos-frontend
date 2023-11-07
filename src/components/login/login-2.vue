@@ -71,7 +71,18 @@
         <catos-button
           @click="login"
           :disabled="isLoginLoading"
-          :style="{ height: '45px', width: '70vw', marginRight: '0' }"
+          :style="
+            !isSmSize && activeForm === 'phone'
+              ? {
+                  height: '45px',
+                  width: '300px',
+                  marginRight: '0',
+                  top: '-6em',
+                }
+              : isSmSize
+              ? { height: '45px', width: '70vw', marginRight: '0' }
+              : { height: '45px', width: '300px', marginRight: '0' }
+          "
           >Вход</catos-button
         >
       </router-link>
@@ -91,6 +102,15 @@ import { useRouter } from "vue-router";
 
 const activeForm = ref("email");
 const { userLoginCredentials, isLoginLoading, handleLogin, handleVerify } = useLoginApi();
+
+const isSmSize = ref(false);
+window.addEventListener(
+  "resize",
+  function () {
+    isSmSize.value = innerHeight > innerWidth;
+  },
+  false
+);
 
 const router = useRouter();
 const login = async () => {
