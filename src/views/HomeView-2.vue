@@ -51,7 +51,7 @@ import { useDevice } from "@/compossables/useDevice";
 const { isMobile } = useDevice();
 const router = useRouter();
 const login = () => {
-  router.push({ name: "roles", state: { title: "Войти" } });
+  router.push({ name: "login", state: { title: "Войти" } });
 };
 const register = () => {
   router.push({ name: "roles", state: { title: "Регистрация" } });
