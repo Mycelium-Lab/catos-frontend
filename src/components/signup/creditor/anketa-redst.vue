@@ -468,31 +468,19 @@
                     </div>
                   </div>
                 </div>
-                <input-data
-                  background="transparent"
-                  border="1px solid rgba(101, 96, 96, 1)"
-                  placeholder="Тип документа"
-                  :style="{ width: '86.8%', left: '5vw' }"
-                  :right="true"
-                  v-model:model-value="userDataStore.extraDocsType"
-                >
-                  <template v-slot:right-icon>
-                    <img src="@/assets/images/iconseditoutline-black.svg" />
-                  </template>
-                </input-data>
               </div>
               <catos-select
                 placeholder="PDF"
-                :options="optionsFile"
-                :value="valueFile"
-                @selected="ev => (valueFile = ev)"
+                 :options="optionsFile"
+                :value="userDataStore.extraDocsType"
+                @selected="
+                  ev => (userDataStore.extraDocsType = ev)
+                "
                 :optionWidthDesk="320"
                 :style="{
                   width: '90%',
                   margin: '0 auto',
-                  marginTop: '0.5em',
-                  positio: 'absolute',
-                  top: '-5.7em',
+                  marginTop: '0.5em'
                 }"
                 data-element="file"
               ></catos-select>
@@ -675,7 +663,7 @@ const optionsState = {
   australia_okeania: ["Австралия", "Папуа - Новая Гвинея", "Новая Зеландия"],
 };
 const regOptions = {
-  sng: ["ООО", "ОАО", "ПАО"],
+  sng: ["ОАО", "АО", "ПАО"],
   euro: ["LTD", "LLC", "Sole proprietorship"],
 };
 const checkbox = reactive({
