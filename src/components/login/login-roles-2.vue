@@ -169,7 +169,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useUserDataStore } from "@/stores/userData";
-import { Role } from "../../types/user.types";
+import { type Role } from "../../types/user.types";
 import { roleStorage } from "@/utils/localStorage";
 import { useDevice } from "@/compossables/useDevice";
 import { useRouter } from "vue-router";
