@@ -22,8 +22,8 @@
                   <catos-select
                     placeholder="Россия"
                     :options="options"
-                    :value="userDataStore.userDTO.passport.country"
-                    @selected="ev => (userDataStore.userDTO.passport.country = ev)"
+                    :value="userDataStore.passport.country"
+                    @selected="ev => (userDataStore.passport.country = ev)"
                     :optionWidth="77"
                     :style="{ width: '100%' }"
                   ></catos-select>
@@ -37,7 +37,7 @@
                   <span class="span2">* </span>
                 </div>
                 <input-data
-                @update:model-value="userDataStore.userDTO.passport.number = $event"
+                @update:model-value="userDataStore.passport.number = $event"
                 placeholder="1234 09876"></input-data>
               </div>
               <div class="frame-div">
@@ -47,12 +47,10 @@
                 </div>
                 <div class="fields-password-and-mail-container">
                   <input-data
-                    @update:model-value="userDataStore.userDTO.passport.issue_date = $event"
+                    @update:model-value="userDataStore.passport.issue_date = $event"
                     type="date"
                     placeholder="01.02.2022"
                     :style="{ width: '100%' }"
-                    :value="date"
-                    @selected="e => (date = e)"
                   ></input-data>
                   <div class="iconscalendar-wrapper">
                     <img
@@ -77,7 +75,7 @@
               <catos-textarea
                 :style="{ width: '100%' }"
                 placeholder="ГУМВД России по Санкт-Петербургу, и Ленинградской области"
-                @selected="userDataStore.userDTO.passport.issuing_organization = $event"
+                @selected="userDataStore.passport.issuing_organization = $event"
               ></catos-textarea>
             </div>
           </div>
@@ -93,7 +91,7 @@
                 </span>
               </div>
               <input-data
-                @update:model-value="userDataStore.userDTO.passport.name = $event"
+                @update:model-value="userDataStore.passport.name = $event"
                 placeholder="Введите имя"
                 :style="{ width: '100%' }"
                 :right="true"
@@ -112,7 +110,7 @@
                 </span>
               </div>
               <input-data
-                @update:model-value="userDataStore.userDTO.passport.surname = $event"
+                @update:model-value="userDataStore.passport.surname = $event"
                 placeholder="Введите фамилию"
                 :style="{ width: '100%' }"
                 :right="true"
@@ -131,7 +129,7 @@
                 </span>
               </div>
               <input-data
-                @update:model-value="userDataStore.userDTO.passport.middleName = $event"
+                @update:model-value="userDataStore.passport.middlename = $event"
                 placeholder="Введите отчество"
                 :style="{ width: '100%' }"
                 :right="true"
@@ -148,12 +146,11 @@
               </div>
               <div class="fields-password-and-mail-container">
                 <input-data
-                  @update:model-value="userDataStore.userDTO.passport.birthdate = $event"
+                  @update:model-value="userDataStore.passport.birthdate = $event"
                   type="date"
                   placeholder="01.02.1994"
                   :style="{ width: '100%' }"
                   :value="date"
-                  @selected="e => (date = e)"
                 ></input-data>
                 <div class="iconscalendar-wrapper">
                   <img
@@ -174,7 +171,7 @@
               <div
                 class="radiobutton-parent"
                 @click="
-                  () => {isSelectedRadioButton1 = true; isSelectedRadioButton2 = false; userDataStore.userDTO.passport.gender = 'male'}
+                  () => {isSelectedRadioButton1 = true; isSelectedRadioButton2 = false; userDataStore.passport.gender = 'male'}
                 "
               >
                 <catos-checkbox
@@ -188,7 +185,7 @@
               <div
                 class="radiobutton-group"
                 @click="
-                      () => {isSelectedRadioButton2 = true; isSelectedRadioButton1 = false; userDataStore.userDTO.passport.gender = 'female'}
+                      () => {isSelectedRadioButton2 = true; isSelectedRadioButton1 = false; userDataStore.passport.gender = 'female'}
                 "
               >
                 <catos-checkbox
@@ -477,6 +474,7 @@ const userDataStore = useUserDataStore();
 
 const isSelectedRadioButton1 = ref(false);
 const isSelectedRadioButton2 = ref(false);
+const date = ref("");
 const options = {
   euro: [
     "Россия",
@@ -543,15 +541,15 @@ const saveImage = async (boxName: string, file: File | null) => {
     switch (boxName) {
       case "passPhoto1":
         userDataStore.firstPhotoFile = file;
-        userDataStore.userDTO.passport.first_photo = await fileToBase64(file);
+        userDataStore.passport.first_photo = await fileToBase64(file);
         break;
       case "passPhoto2":
         userDataStore.secondPhotoFile = file;
-        userDataStore.userDTO.passport.second_photo = await fileToBase64(file);
+        userDataStore.passport.second_photo = await fileToBase64(file);
         break;
       case "selfie":
         userDataStore.selfieFile = file;
-        userDataStore.userDTO.passport.selfie = await fileToBase64(file);
+        userDataStore.passport.selfie = await fileToBase64(file);
         break;
       default:
         break;
