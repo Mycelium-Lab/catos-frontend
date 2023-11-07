@@ -37,7 +37,7 @@
             </div>
           </div>
         </div>
-        <div class="buttonnext" id="buttonNextContainer" @click="toPulls">
+        <div class="buttonnext" id="buttonNextContainer" @click="toLogin">
           <b class="b1">Выбрать пулл</b>
         </div>
         <div class="frame-div">
@@ -80,20 +80,8 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 const router = useRouter();
-const toPulls = () => {
-  const role = JSON.parse(localStorage.getItem("role")!);
-  let pulls = "";
-  console.log(role);
-  if (role === "borrower") {
-    pulls = "pulls-borrower";
-  } else if (role === "depositor") {
-    pulls = "pulls-depositor";
-  } else if (role === "creditor") {
-    pulls = "pulls";
-  } else if (role === "collector") {
-    pulls = "pulls-collector";
-  }
-  router.push({ name: pulls });
+const toLogin = () => {
+  router.push('/login');
 };
 </script>
 
