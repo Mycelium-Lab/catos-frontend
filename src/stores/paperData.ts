@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import { PaperData } from "@/types/paper.types";
+import { type PaperData } from "@/types/paper.types";
 
 export const usePaperDataStore = defineStore("paperData", () => {
   const paperDTO = ref<PaperData>({

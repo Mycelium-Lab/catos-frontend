@@ -1,5 +1,5 @@
 import { baseApiClient } from "./baseApiClient";
-import { UserData } from "@/types/user.types";
+import { type UserData } from "@/types/user.types";
 
 const USER_END_POINT = "/users";
 

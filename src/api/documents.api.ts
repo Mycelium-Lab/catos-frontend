@@ -1,7 +1,7 @@
 import { baseApiClient } from "./baseApiClient";
-import { Passport, Paper } from "@/types/documents.types";
-import { PassportData } from "@/types/passport.type";
-import { PaperData } from "@/types/paper.types";
+import { type Passport, type Paper } from "@/types/documents.types";
+import { type PassportData } from "@/types/passport.types";
+import { type PaperData } from "@/types/paper.types";
 
 const DOC_END_POINT = "/documents";
 

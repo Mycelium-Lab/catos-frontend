@@ -1,7 +1,7 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import { UserData } from "@/types/user.types";
-import { Passport, Paper } from "@/types/documents.types";
+import { type UserData } from "@/types/user.types";
+import { type Passport } from "@/types/documents.types";
 
 export const useUserDataStore = defineStore("userData", () => {
   const userDTO = ref<UserData>({

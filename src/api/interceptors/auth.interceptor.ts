@@ -1,5 +1,5 @@
 import { authStorage } from "@/utils/localStorage";
-import { InternalAxiosRequestConfig } from "axios";
+import { type InternalAxiosRequestConfig } from "axios";
 import { refresh } from "../token.api";
 import { jwtDecode } from "jwt-decode";
 

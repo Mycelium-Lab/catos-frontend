@@ -1,5 +1,5 @@
-import { AuthResponse } from "@/api/token.api";
-import { Role } from "@/types/user.types";
+import { type AuthResponse } from "@/api/token.api";
+import { type Role } from "@/types/user.types";
 const storagePrefix = "__catos_app__";
 
 class StorageFactory<T> {

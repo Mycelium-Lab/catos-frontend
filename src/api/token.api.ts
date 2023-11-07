@@ -1,4 +1,4 @@
-import { Role } from "@/types/user.types";
+import { type Role } from "@/types/user.types";
 import { baseApiClient } from "./baseApiClient";
 
 const AUTH_END_POINT = "/token";

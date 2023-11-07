@@ -1,6 +1,6 @@
-import { login, LoginCredentials, verify } from "@/api/token.api";
+import { login, type LoginCredentials, verify } from "@/api/token.api";
 import { authStorage } from "@/utils/localStorage";
-import { Role } from "@/types/user.types";
+import { type Role } from "@/types/user.types";
 import { roleStorage } from "@/utils/localStorage";
 import { ref } from "vue";
 

@@ -1,4 +1,4 @@
-import { Address } from "./address.type"
+import { type Address } from "./address.type"
 
 export type PaperData = {
     "country": string,
