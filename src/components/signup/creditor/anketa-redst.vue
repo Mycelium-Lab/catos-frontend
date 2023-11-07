@@ -689,15 +689,15 @@ const saveImage = async (boxName: string, file: File | null) => {
     switch (boxName) {
       case "regProof":
         userDataStore.regProof = file;
-        paperDataStore.paperDTO.first_photo = 'Goa_file2 .jpg';
+        paperDataStore.paperDTO.first_photo = 'Goa_file2.jpg';
         break;
       case "addrProof":
         userDataStore.addrProof = file;
-        paperDataStore.paperDTO.second_photo = 'Goa_file2 .jpg';
+        paperDataStore.paperDTO.second_photo = 'Goa_file2.jpg';
         break;
       case "extraDocs":
         userDataStore.extraDocs = file;
-        paperDataStore.paperDTO.third_photo =' Goa_file2 .jpg';
+        paperDataStore.paperDTO.third_photo =' Goa_file2.jpg';
         break;
       default:
         break;

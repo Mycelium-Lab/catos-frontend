@@ -379,30 +379,21 @@
             <catos-select
               placeholder="Красносельскй"
               :options="options"
-              :value="
-                passportDataStore.passportDTO.registration_address.neighborhood
-              "
+              :value="passportDataStore.passportDTO.registration_address.neighborhood"
+              @selected=" ev => (passportDataStore.passportDTO.registration_address.neighborhood = ev)"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="
-                ev =>
-                  (passportDataStore.passportDTO.registration_address.neighborhood =
-                    ev)
-              "
             ></catos-select>
           </div>
 
           <div class="text2">
             <div class="div10">Улица</div>
             <input-data
+              :modelValue="passportDataStore.passportDTO.registration_address.street"
+              @update:model-value="passportDataStore.passportDTO.registration_address.street = $event"
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
               :right="true"
-              @update:model-value="
-                ev =>
-                  (passportDataStore.passportDTO.registration_address.street =
-                    ev)
-              "
             >
               <template v-slot:right-icon>
                 <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -415,25 +406,19 @@
             <div class="parent11">
               <div class="div10">Дом</div>
               <input-data
+                :modelValue="passportDataStore.passportDTO.registration_address.house"
+              @update:model-value="passportDataStore.passportDTO.registration_address.house = $event"
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @update:model-value="
-                  ev =>
-                    (passportDataStore.passportDTO.registration_address.house =
-                      ev)
-                "
               ></input-data>
             </div>
             <div class="parent11">
               <div class="div10">Корпус</div>
               <input-data
+              :modelValue="passportDataStore.passportDTO.registration_address.housing"
+              @update:model-value="passportDataStore.passportDTO.registration_address.housing = $event"
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @update:model-value="
-                  ev =>
-                    (passportDataStore.passportDTO.registration_address.housing =
-                      ev)
-                "
               ></input-data>
             </div>
           </div>
@@ -441,38 +426,28 @@
             <div class="parent11">
               <div class="div10">Строение</div>
               <input-data
+              :modelValue="passportDataStore.passportDTO.registration_address.building"
+              @update:model-value="passportDataStore.passportDTO.registration_address.building = $event"
                 placeholder="1"
                 :style="{ width: '100%' }"
-                @update:model-value="
-                  ev =>
-                    (passportDataStore.passportDTO.registration_address.building =
-                      ev)
-                "
               ></input-data>
             </div>
             <div class="parent11">
               <div class="div10">Квартира</div>
               <input-data
+              :modelValue="passportDataStore.passportDTO.registration_address.apartment"
+              @update:model-value="passportDataStore.passportDTO.registration_address.apartment = $event"
                 placeholder="№"
                 :style="{ width: '100%' }"
-                @update:model-value="
-                  ev =>
-                    (passportDataStore.passportDTO.registration_address.apartment =
-                      ev)
-                "
               ></input-data>
             </div>
           </div>
           <div class="parent11">
             <div class="div10">Индекс</div>
             <input-data
-              placeholder="Индекс"
+              @update:model-value="passportDataStore.passportDTO.registration_address.index = $event"
+              placeholder="193 984"
               :style="{ width: '100%' }"
-              @update:model-value="
-                ev =>
-                  (passportDataStore.passportDTO.registration_address.index =
-                    ev)
-              "
             ></input-data>
           </div>
         </div>
@@ -510,10 +485,7 @@
               :value="passportDataStore.passportDTO.living_address.region"
               :optionWidth="77"
               :style="{ width: '100%' }"
-              @selected="
-                ev =>
-                  (passportDataStore.passportDTO.living_address.region = ev)
-              "
+              @selected="ev => (passportDataStore.passportDTO.living_address.region = ev)"
             ></catos-select>
           </div>
           <div class="fieldsinput">
@@ -552,13 +524,14 @@
           <div class="text2">
             <div class="div10">Улица</div>
             <input-data
-              placeholder="Начните вводить адресс"
-              :style="{ width: '100%' }"
-              :right="true"
-              @update:model-value="
+            :modelValue="passportDataStore.passportDTO.living_address.street"
+            @update:model-value="
                 ev =>
                   (passportDataStore.passportDTO.living_address.street = ev)
               "
+              placeholder="Начните вводить адресс"
+              :style="{ width: '100%' }"
+              :right="true"
             >
               <template v-slot:right-icon>
                 <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -571,23 +544,25 @@
             <div class="parent11">
               <div class="div10">Дом</div>
               <input-data
-                placeholder="1"
-                :style="{ width: '100%' }"
-                @update:model-value="
+              :modelValue="passportDataStore.passportDTO.living_address.house"
+              @update:model-value="
                   ev =>
                     (passportDataStore.passportDTO.living_address.house = ev)
                 "
+                placeholder="1"
+                :style="{ width: '100%' }"
               ></input-data>
             </div>
             <div class="parent11">
               <div class="div10">Корпус</div>
               <input-data
-                placeholder="1"
-                :style="{ width: '100%' }"
-                @update:model-value="
+              :modelValue="passportDataStore.passportDTO.living_address.housing"
+              @update:model-value="
                   ev =>
                     (passportDataStore.passportDTO.living_address.housing = ev)
                 "
+                placeholder="1"
+                :style="{ width: '100%' }"
               ></input-data>
             </div>
           </div>
@@ -595,36 +570,36 @@
             <div class="parent11">
               <div class="div10">Строение</div>
               <input-data
-                placeholder="1"
-                :style="{ width: '100%' }"
-                @update:model-value="
+              :modelValue="passportDataStore.passportDTO.living_address.building"
+              @update:model-value="
                   ev =>
                     (passportDataStore.passportDTO.living_address.building =
                       ev)
                 "
+                placeholder="1"
+                :style="{ width: '100%' }"
               ></input-data>
             </div>
             <div class="parent11">
               <div class="div10">Квартира</div>
               <input-data
-                placeholder="1"
-                :style="{ width: '100%' }"
-                @update:model-value="
+              :modelValue="passportDataStore.passportDTO.living_address.apartment"
+              @update:model-value="
                   ev =>
                     (passportDataStore.passportDTO.living_address.apartment =
                       ev)
                 "
+                placeholder="1"
+                :style="{ width: '100%' }"
               ></input-data>
             </div>
           </div>
           <div class="parent11">
             <div class="div10">Индекс</div>
             <input-data
+            @update:model-value="passportDataStore.passportDTO.living_address.index = $event"
               placeholder="193 984"
               :style="{ width: '100%' }"
-              @update:model-value="
-                ev => (passportDataStore.passportDTO.living_address.index = ev)
-              "
             ></input-data>
           </div>
         </div>
@@ -3841,15 +3816,15 @@ const saveImage = async (boxName: string, file: File | null) => {
     switch (boxName) {
       case "passPhoto1":
         userDataStore.firstPhotoFile = file;
-        passportDataStore.passportDTO.first_photo = 'Goa_file2 .jpg';
+        passportDataStore.passportDTO.first_photo = 'Goa_file2.jpg';
         break;
       case "passPhoto2":
         userDataStore.secondPhotoFile = file;
-        passportDataStore.passportDTO.second_photo = 'Goa_file2 .jpg';
+        passportDataStore.passportDTO.second_photo = 'Goa_file2.jpg';
         break;
       case "selfie":
         userDataStore.selfieFile = file;
-        passportDataStore.passportDTO.selfie = 'Goa_file2 .jpg';
+        passportDataStore.passportDTO.selfie = 'Goa_file2.jpg';
         break;
       default:
         break;
