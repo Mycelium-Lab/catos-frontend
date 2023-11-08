@@ -30,8 +30,8 @@
                 <span class="span">* </span>
               </div>
               <catos-select
-                placeholder="Выбрать страну:"
-                :options="options"
+                placeholder="Выбрать страну"
+                :options="countries"
                 :value="paperDataStore.paperDTO.country"
                 @selected="ev => (paperDataStore.paperDTO.country = ev)"
                 :optionWidth="77"
@@ -99,15 +99,20 @@
               <span class="span2">* </span>
             </div>
             <catos-select
-              placeholder="Северо-западный округ"
-              :options="options"
+              placeholder="Московская"
+              :options="regions"
               :value="paperDataStore.paperDTO.address.region"
               :optionWidth="77"
-              :style="{ width: '100%' }"
+              :style="
+                paperDataStore.paperDTO.country !== 'Россия'
+                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                  : { width: '100%', opacity: '1' }
+              "
               @selected="
                 ev =>
                   (paperDataStore.paperDTO.address.region = ev)
               "
+              :disabled="paperDataStore.paperDTO.country !== 'Россия'"
             ></catos-select>
           </div>
 
@@ -117,31 +122,41 @@
               <span class="span2">* </span>
             </div>
             <catos-select
-              placeholder="Красносельский"
-              :options="options"
+              :placeholder="paperDataStore.paperDTO.address.region !== '' && neighborhoods ? neighborhoods[0] : 'Воскресенск'"
+              :options="neighborhoods"
               :value="
                 paperDataStore.paperDTO.address.neighborhood
               "
               :optionWidth="77"
-              :style="{ width: '100%' }"
+              :style="
+                paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'
+                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                  : { width: '100%', opacity: '1' }
+              "
               @selected="
                 ev =>
                   (paperDataStore.paperDTO.address.neighborhood =
                     ev)
               "
+              :disabled="paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
             <div class="div10">Населенный пункт</div>
             <catos-select
-              placeholder="Санкт-Петербург"
-              :options="options"
+              :placeholder="paperDataStore.paperDTO.address.region !== '' && cities ? cities[0] : 'Москва'"
+              :options="cities"
               :value="paperDataStore.paperDTO.address.city"
               :optionWidth="77"
-              :style="{ width: '100%' }"
+              :style="
+               paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'
+                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                  : { width: '100%', opacity: '1' }
+              "
               @selected="
                 ev => (paperDataStore.paperDTO.address.city = ev)
               "
+               :disabled="paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'"
             ></catos-select>
           </div>
           <div class="text2">
@@ -583,89 +598,34 @@ import loaderField from "../../../components/fields/loader-field.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import { ref, computed, reactive } from "vue";
 import { useUserDataStore } from "@/stores/userData";
-import { usePaperDataStore } from "@/stores/paperData";
-import { fileToBase64 } from "@/utils/fileToBase64";
+import { usePaperDataStore } from "@/stores/paperData"
+import countries from "@/json/countries.json"
+import regions from "@/json/regions.json"
+import { useCityList } from '@/composables/useCityList'
+import { useNeighborhoodList } from "@/composables/useNeighborhoodList"
+import { useDevice } from "@/compossables/useDevice";
 
 const userDataStore = useUserDataStore();
 const paperDataStore = usePaperDataStore();
-const options = {
-  sng: ["Россия", "Украина", "Казахстан"],
-  euro: ["Польша", "Латвия", "Молдова"],
-}
-
-import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();
-const valueState = ref("");
-const valueFormRegistration = ref("");
-const valueFile = ref("");
 const optionsFile = ["PDF", "TXT", "DOC", "ZIP", "RAR"];
-const optionsFormRegistration = ["ОАО", "АО", "ПАО"];
-const optionsState = {
-  euro: [
-    "Россия",
-    "Германия",
-    "Великобритания",
-    "Франиця",
-    "Италия",
-    "Испания",
-    "Украина",
-    "Польша",
-    "Румыния",
-    "Нидерланды",
-    "Беларусь",
-    "Греция",
-    "Португалия",
-    "Чехия",
-    "Швеция",
-  ],
-  asia: [
-    "Китай",
-    "Индия",
-    "Индонезия",
-    "Пакистан",
-    "Бангладеш",
-    "Япония",
-    "Филиппины",
-    "Вьетнам",
-    "Турция",
-    "Иран",
-    "Таиланд",
-    "Мьянма",
-    "Южная Корея",
-    "Ирак",
-    "Афганистан",
-  ],
-  africa: [
-    "Нигерия",
-    "Эфиопия",
-    "Египет",
-    "ДР Конго",
-    "Южная Африка",
-    "Танзания",
-    "Судан",
-    "Алжир",
-    "Уганда",
-    "Морокко",
-  ],
-  america: [
-    "США",
-    "Бразилия",
-    "Мексика",
-    "Колумбия",
-    "Аргентина",
-    "Перу",
-    "Венесуэла",
-    "Чили",
-    "Гватемала",
-    "Эквадор",
-  ],
-  australia_okeania: ["Австралия", "Папуа - Новая Гвинея", "Новая Зеландия"],
-};
+
 const regOptions = {
   sng: ["ОАО", "АО", "ПАО"],
   euro: ["LTD", "LLC", "Sole proprietorship"],
 };
+
+const {citiesByRegion} = useCityList('registration', 'paper')
+const {neighborhoodByRegion} = useNeighborhoodList('registration', 'paper')
+
+const cities = computed(() => {
+    return citiesByRegion.value
+});
+const neighborhoods = computed(() => {
+    return neighborhoodByRegion.value
+});
+
 const checkbox = reactive({
   checked: false,
 });
@@ -675,6 +635,7 @@ const handleCheckboxChange = (checked: boolean) => {
 const isLinkActive = computed(() => {
   return checkbox.checked;
 });
+
 const regNumberString = reactive({
   value:
   paperDataStore.paperDTO.registration_number === 0
