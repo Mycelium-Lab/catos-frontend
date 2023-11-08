@@ -347,7 +347,7 @@
               "
               :optionWidth="77"
               :style="
-                passportDataStore.passportDTO.country !== 'Россия' && passportDataStore.passportDTO.country !== 'Россия'
+              passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
                   : { width: '100%', opacity: '1' }
               "
@@ -371,7 +371,7 @@
               @selected=" ev => (passportDataStore.passportDTO.registration_address.neighborhood = ev)"
               :optionWidth="77"
               :style="
-                 passportDataStore.passportDTO.country !== 'Россия' || passportDataStore.passportDTO.country !== 'Россия'
+                passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
                   : { width: '100%', opacity: '1' }
               "
@@ -386,7 +386,7 @@
               :value="passportDataStore.passportDTO.registration_address.city"
               :optionWidth="77"
               :style="
-                 passportDataStore.passportDTO.country !== 'Россия' || passportDataStore.passportDTO.country !== 'Россия'
+                 passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
                   : { width: '100%', opacity: '1' }
               "
@@ -514,7 +514,7 @@
                   (passportDataStore.passportDTO.living_address.neighborhood =
                     ev)
               "
-               :disabled="passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
+               :disabled="passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -532,7 +532,7 @@
               @selected="
                 ev => (passportDataStore.passportDTO.living_address.city = ev)
               "
-              :disabled="passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
+              :disabled="passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
             ></catos-select>
           </div>
           <div class="text2">
