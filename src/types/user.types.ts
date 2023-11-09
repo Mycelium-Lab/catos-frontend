@@ -3,13 +3,13 @@ export enum UserRoles {
   collector = "Коллектор",
   investor = "Инвестор",
   creditor = "Кредитор",
-  admin = "Администратор"
+  admin = "Администратор",
 }
 export type Role = keyof typeof UserRoles;
 
 export type UserData = {
-  email: string,
-  phone: string,
-  password: string,
-  role: string,
-}
+  email: string;
+  phone: string;
+  password: string;
+  role: string;
+};

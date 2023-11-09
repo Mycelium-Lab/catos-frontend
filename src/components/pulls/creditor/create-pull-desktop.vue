@@ -15,7 +15,7 @@
           <div class="header-pop-up-child" />
         </div>
         <div class="fieldsinputchoise-parent">
-          <div class="fieldsinputchoise">
+          <!-- <div class="fieldsinputchoise">
             <div class="div1">Настройте токен:</div>
             <catos-select
               placeholder="TON"
@@ -24,7 +24,7 @@
               @selected="ev => (valueToken = ev)"
               :optionWidthDesk="210"
             ></catos-select>
-          </div>
+          </div> -->
           <div class="frame-wrapper">
             <div class="instance-parent">
               <div class="frame-parent">

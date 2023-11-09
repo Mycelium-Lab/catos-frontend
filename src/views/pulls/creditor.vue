@@ -82,17 +82,11 @@
       </div>
     </template>
     <template v-slot:body>
-      <div class="frame-div">
-        <ul class="list-desktop">
-          <li v-for="n in 5" :key="n">
-            <pulls-table
-              role="creditor"
-              :variant="curentWindow"
-              :key="curentWindow"
-            ></pulls-table>
-          </li>
-        </ul>
-      </div>
+      <pulls-table
+        role="creditor"
+        :variant="curentWindow"
+        :key="curentWindow"
+      ></pulls-table>
 
       <create-pull-desktop
         v-if="isСreatePull"
