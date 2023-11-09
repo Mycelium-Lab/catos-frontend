@@ -62,7 +62,7 @@
     <template v-slot:body>
       <div class="frame-div">
         <ul>
-          <li class="depositor-list" v-for="n in 5" :key="n">
+          <li v-for="pool in pools" :key="pool.id" class="depositor-list">
             <pulls-table
               role="depositor"
               :variant="curentWindow"
@@ -76,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 import bottomsheet from "@/components/ui-kit/bottomsheet.vue";
 import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
@@ -84,7 +84,7 @@ import depositorList from "@/components/pulls/depositor/depositor-list.vue";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
 import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
-
+import { listPools } from "@/api/pools.api";
 import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();
@@ -95,7 +95,11 @@ const isBackSide = ref(false);
 const curentWindow = ref("all");
 
 const isAppBar = ref(true);
-
+const pools = ref([]);
+listPools().then(res => {
+  console.log(res);
+  pools.value = res.data;
+});
 const router = useRouter();
 
 const toSort = () => {

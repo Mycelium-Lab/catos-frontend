@@ -10,7 +10,7 @@ export type AuthResponse = {
 };
 
 export type VerifyResponse = {
-  role: Role
+  role: Role;
 };
 
 export type LoginCredentials = {
@@ -22,8 +22,8 @@ type RefreshCredentials = {
 };
 
 export type TokenCredentials = {
-    token: string
-}
+  token: string;
+};
 export const refresh = (payload: RefreshCredentials) => {
   return baseApiClient.post<AuthResponse>(AUTH_END_POINT + "/refresh", payload);
 };
@@ -31,5 +31,8 @@ export const login = (payload: LoginCredentials) => {
   return baseApiClient.post<AuthResponse>(AUTH_END_POINT + "/pair", payload);
 };
 export const verify = (payload: TokenCredentials) => {
-  return baseApiClient.post<VerifyResponse>(AUTH_END_POINT + "/verify", payload);
+  return baseApiClient.post<VerifyResponse>(
+    AUTH_END_POINT + "/verify",
+    payload
+  );
 };

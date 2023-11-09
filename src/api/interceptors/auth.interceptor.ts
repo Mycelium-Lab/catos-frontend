@@ -18,7 +18,11 @@ export const authRequestInterceptor = async (
   config: InternalAxiosRequestConfig
 ) => {
   let authData = authStorage.get();
-  if (authData && isExpired(authData.access) && config.url !== '/token/refresh') {
+  if (
+    authData &&
+    isExpired(authData.access) &&
+    config.url !== "/token/refresh"
+  ) {
     if (isExpired(authData.refresh)) {
       authStorage.clear();
       authData = undefined;
