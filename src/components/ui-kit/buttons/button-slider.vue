@@ -1,5 +1,5 @@
 <template>
-  <div
+  <label
     :class="`button-slider__wrapper_${ButtonSliderVariant[variantIndex]}
     button-slider__wrapper`"
   >
@@ -23,11 +23,11 @@
           ? { color: 'rgb(129, 129, 165' }
           : { color: '#d9d9d9' }
       "
-      @click="() => handle('left')"
+
       >{{ variantIndex !== 0 ? tabs[0] : "Владею" }}</span
     >
     <span
-      @click="() => handle('right')"
+ 
       :style="
         isSide === 'right' && variantIndex !== 0
           ? { color: '#3b3b3b' }
@@ -44,7 +44,7 @@
       "
       >{{ variantIndex !== 0 ? tabs[1] : "Не владею" }}</span
     >
-  </div>
+</label>
 </template>
 
 <script setup lang="ts">
@@ -67,16 +67,16 @@ import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();
 const isSide = ref(variant ? "right" : "left");
-const handle = (side: any) => {
-  isSide.value = side;
-  const currentSlide = side === "left" ? 1 : 0;
-  emit("onSlide", currentSlide);
-};
 
 const emit = defineEmits(["onSlide"]);
 
 const handleChange = (ev: any) => {
-  isSide.value = ev.target.checked ? "right" : "left";
+  if(variant === "right") {
+    isSide.value = ev.target.checked ? "left" : "right";
+  }
+  else {
+    isSide.value = ev.target.checked ? "right" : "left";
+  }
 
   const currentSlide = Number(ev.target.checked);
   emit("onSlide", currentSlide);
