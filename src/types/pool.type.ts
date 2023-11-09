@@ -19,3 +19,12 @@ export type Pool = {
   is_verified: boolean;
   roi: number;
 };
+
+export type CreatePoolData = {
+  millipercent: number;
+  overdue_millipercent: number;
+  max_loan_amount: number;
+  min_invest_amount: number;
+  max_duration: number;
+  free_period: number;
+};

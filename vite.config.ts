@@ -14,7 +14,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:8000",
+        target: "http://http://77.222.43.48",
         changeOrigin: true,
         secure: false,
         ws: false,

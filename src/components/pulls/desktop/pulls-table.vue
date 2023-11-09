@@ -1,7 +1,11 @@
 <template>
   <div class="frame-div">
     <ul>
-      <li v-for="pool in pools" :key="pool.id" class="pulls-table">
+      <li
+        v-for="pool in poolListStore.pools"
+        :key="pool.id"
+        class="pulls-table"
+      >
         <div
           :class="`desctopverpull-stats-parent_${role}-${variant} desctopverpull-stats-parent`"
           @click="toDetail"
@@ -16,11 +20,7 @@
               "
             >
               <div class="wrapper">
-                <div class="div120">
-                  {{
-                    role === "collector" ? "Задолжность №1223" : "Пулл №1223"
-                  }}
-                </div>
+                <div class="div120">Пулл № {{ pool.id }}</div>
               </div>
             </div>
             <div class="pull-stats6">
@@ -40,7 +40,9 @@
                         >
                           Цена:
                         </div>
-                        <div class="ton18">{{ pool.max_loan_amount }} TON</div>
+                        <div class="ton18">
+                          {{ pool.available_liquidity }} TON
+                        </div>
                         <div
                           v-if="role === 'borrower'"
                           class="txt2_borrower txt2"
@@ -652,8 +654,7 @@ import myCollectorPulls from "@/components/pulls/collector/desktop/my-collector-
 import buy from "@/components/pulls/collector/desktop/buy.vue";
 import { useRouter } from "vue-router";
 import { parse } from "tinyduration";
-import { Pool } from "@/types/pool.type";
-import { listPools } from "@/api/pools.api";
+import { usePoolListStore } from "@/stores/poolList";
 
 const { variant, role } = defineProps({
   variant: {
@@ -668,13 +669,7 @@ const emits = defineEmits(["mySoldLoans"]);
 const toMySold = () => {
   emits("mySoldLoans");
 };
-const pools: Ref<Pool[]> = ref([]);
-listPools().then(res => {
-  console.log(res);
-  pools.value = res.data;
-});
-const SECONDS_IN_DAY = 60 * 60 * 24;
-
+const poolListStore = usePoolListStore();
 const isAllCreditor = ref(false);
 const isMyCreditor = ref(false);
 const isAllBorrower = ref(false);
