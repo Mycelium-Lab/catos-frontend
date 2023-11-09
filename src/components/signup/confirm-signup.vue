@@ -3,94 +3,6 @@
     <img class="bg-icon" alt="" src="./public/bg.svg" />
 
     <div class="form-registration-26">
-      <div class="div8">
-        <div class="text-and-button">
-          <div class="text">
-            <div class="checkbox-parent">
-              <div class="div9">
-                Подтверждаю, что имею право представлять свою организацию
-              </div>
-            </div>
-            <div class="checkbox-parent">
-              <div class="div9">
-                Продолжая, я соглашаюсь, что моя организация имеет право
-                оказания услуг кредиторской деятельности
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="fieldsregistration-options-parent">
-          <div class="fieldsregistration-options">
-            <div class="fieldsregistration-options-child"></div>
-            <div class="text-and-fill">
-              <div class="div11">
-                <span>Номер телефона </span>
-                <span class="span">*</span>
-              </div>
-            </div>
-            <div class="div12">
-              <span class="txt">
-                <p class="p">Укажите действующий номер телефона организации</p>
-                <p class="p">для звонков и смс</p>
-              </span>
-            </div>
-            <div class="fields-password-and-mail2">
-              <div class="ru-wrapper">
-                <div class="ru">RU</div>
-              </div>
-              <div class="iconsmobile-parent">
-                <div class="alessowaitsongmailcom">+390-999-00-01</div>
-              </div>
-            </div>
-          </div>
-          <div class="fieldsregistration-options1">
-            <div class="text-and-fill1">
-              <div class="div11">
-                <span>Электронная почта </span>
-                <span class="span">*</span>
-              </div>
-            </div>
-            <div class="div15">
-              Укажите действующую почту. Она будет использована для авторизации
-              и восстановления доступа
-            </div>
-            <div class="fields-password-and-mail3">
-              <div class="iconsmail-group">
-                <div class="alessowaitsongmailcom">AlessoWaitson@gmail.com</div>
-              </div>
-            </div>
-          </div>
-          <div class="fieldsregistration-options2">
-            <div class="fields-password-and-mail4">
-              <div class="iconsmail-group">
-                <div class="n">3345еЕN$</div>
-              </div>
-            </div>
-            <div class="fields-password-and-mail5">
-              <div class="iconsmail-group">
-                <div class="n1">
-                  <span class="n2">3345еЕN$ </span>
-                  <span>|</span>
-                </div>
-              </div>
-            </div>
-            <div class="div16">
-              <span>Придумайте пароль</span>
-              <span class="span">*</span>
-            </div>
-            <div class="div17">
-              <span>Повторите пароль </span>
-              <span class="span">*</span>
-            </div>
-            <div class="text-and-fill1">
-              <div class="div18">
-                <span>Пароль </span>
-                <span class="span">*</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="div19">
         <div class="fieldsregistration-options3">
           <div class="fieldsregistration-options-item"></div>
@@ -107,7 +19,7 @@
           </div>
           <div class="ruadelaryagmailcom">
             <span>Код отправлен на номер:</span>
-            <span class="span6"> +7 (999) 215-43-26</span>
+            <span class="span6">{{ userDataStore.userDTO.phone }}</span>
           </div>
           <div class="div23">
             <span>Примерное время </span>
@@ -124,8 +36,9 @@
                   alt=""
                   src="../login/public/iconssend.svg"
                 />
-
-                <div class="div24">Отправить код повторно:</div>
+                <button @click="handleSendSMS">
+                  <div class="div24">Отправить код повторно</div>
+                </button>
               </div>
               <div class="frame">
                 <div class="div25">60 сек</div>
@@ -137,16 +50,24 @@
                 alt=""
                 src="../login/public/iconsedit1.svg"
               />
-
-              <div class="div24">Именить номер</div>
+              <router-link to="" @click="$router.go(-1)">
+                <div class="div24">Именить номер</div>
+              </router-link>
             </div>
           </div>
           <div class="inputfields">
-            <input maxlength="1" class="component-4" />
-            <input maxlength="1" class="component-4" />
-            <input maxlength="1" class="component-4" />
-            <input maxlength="1" class="component-4" />
-            <input maxlength="1" class="component-4" />
+            <input
+              v-for="(n, index) in phoneCode"
+              class="component-4"
+              :key="index"
+              pattern="\d*"
+              :id="'input_' + index"
+              maxlength="1"
+              v-model="phoneCode[index]"
+              @input="handlePhoneInput"
+              @keypress="isNumber"
+              @keydown.delete="handleDelete"
+            />
           </div>
         </div>
       </div>
@@ -165,7 +86,7 @@
         </div>
         <div class="ruadelaryagmailcom">
           <span>Код отправлен на почту:</span>
-          <span class="span6"> ruadelarya@gmail.com</span>
+          <span class="span6">{{ userDataStore.userDTO.email }}</span>
         </div>
         <div class="div23">
           <span>Примерное время </span>
@@ -181,8 +102,9 @@
                 alt=""
                 src="../login/public/iconssend.svg"
               />
-
-              <div class="div24">Отправить код повторно:</div>
+              <button @click="handleSendEmail">
+                <div class="div24">Отправить код повторно</div>
+              </button>
             </div>
             <div class="frame">
               <div class="div25">60 сек</div>
@@ -194,29 +116,39 @@
               alt=""
               src="../login/public/iconsedit1.svg"
             />
-
-            <div class="div24">Именить номер</div>
+            <router-link to="" @click="$router.go(-1)">
+              <div class="div24">Именить email</div>
+            </router-link>
           </div>
         </div>
         <div class="inputfields">
-          <input maxlength="1" class="component-4" />
-          <input maxlength="1" class="component-4" />
-          <input maxlength="1" class="component-4" />
-          <input maxlength="1" class="component-4" />
-          <input maxlength="1" class="component-4" />
+          <input
+              v-for="(n, index) in emailCode"
+              class="component-4"
+              :key="index"
+              pattern="\d*"
+              :id="'input_' + index"
+              maxlength="1"
+              v-model="emailCode[index]"
+              @input="handleEmailInput"
+              @keypress="isNumber"
+              @keydown.delete="handleDelete"
+            />
         </div>
       </div>
 
       <router-link
         class="buttonnext"
+        :class="{ disabled: !phoneVerified || !emailVerified}"
         :to="{
           name:
-            role === 'creditor'
-              ? 'anketa-redst'
-              : role === 'depositor'
-              ? 'signup-depositor'
-              : 'signup-borrower',
-          state: { role },
+          roleStorage.get() === 'creditor'
+            ? 'anketa-redst'
+            : roleStorage.get() === 'investor'
+            ? 'signup-depositor'
+            : roleStorage.get() === 'collector'
+            ? 'anketa-redst'
+            : 'signup-borrower',
         }"
       >
         <b class="b1">Продолжить</b>
@@ -245,8 +177,114 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-const role = computed(() => window.history.state?.role);
+import { ref } from "vue";
+import { useUserDataStore } from "@/stores/userData";
+import { roleStorage } from "@/utils/localStorage";
+import { useLoginApi } from "@/composables/useLoginApi";
+import { verifyEmail, verifyPhone, confirmEmail, confirmPhone } from "@/api/users.api";
+
+let phoneCode: string[] = Array(6);
+let emailCode: string[] = Array(6);
+const keysAllowed: string[] = [
+  "0",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+];
+let phoneVerified = ref(false);
+let emailVerified = ref(false);
+
+function isNumber(event: Event) {
+  (event.currentTarget as HTMLInputElement).value = "";
+  const keyPressed: string = (event as KeyboardEvent).key;
+  if (!keysAllowed.includes(keyPressed)) {
+    event.preventDefault();
+  }
+}
+function handlePhoneInput(event: Event) {
+  let currentActiveElement = event.target as HTMLInputElement;
+  (currentActiveElement.nextElementSibling as HTMLElement)?.focus();
+  // Call phone verification API 
+  if (phoneCode.filter((el) => el !== undefined && el !== '').length === 6) {
+    confirmPhone(phoneCode.join(''))
+      .then((res) => {
+        if (res.status === 200) {
+          phoneVerified.value = true;
+          console.log('Phone verified');
+        }
+        else {
+          console.log(res);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+}
+function handleEmailInput(event: Event) {
+  let currentActiveElement = event.target as HTMLInputElement;
+  (currentActiveElement.nextElementSibling as HTMLElement)?.focus();
+  // Call email verification API
+  if (emailCode.filter((el) => el !== undefined && el !== '').length === 6) {
+    confirmEmail(emailCode.join(''))
+      .then((res) => {
+        if (res.status === 200) {
+          emailVerified.value = true;
+          console.log('Email verified');
+        }
+        else {
+          console.log(res);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+}
+function handleDelete(event: Event) {
+  let value = (event.target as HTMLInputElement).value;
+  let currentActiveElement = event.target as HTMLInputElement;
+  if (!value)
+    (currentActiveElement.previousElementSibling as HTMLElement)?.focus();
+}
+const userDataStore = useUserDataStore();
+const handleSendSMS = () => {
+  verifyPhone()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+}
+const handleSendEmail = () => {
+  verifyEmail()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+}
+const { userLoginCredentials, isLoginLoading, handleLogin } = useLoginApi();
+userLoginCredentials.value = {
+  email: userDataStore.userDTO.email,
+  password: userDataStore.userDTO.password,
+};
+handleLogin()
+  .then((res) => {
+    handleSendEmail();
+    handleSendSMS();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 </script>
 
 <style scoped lang="scss">
@@ -656,6 +694,7 @@ const role = computed(() => window.history.state?.role);
   font-size: 0.75em;
   letter-spacing: 0.02em;
   line-height: 120%;
+  cursor: pointer;
 }
 .iconssend-parent {
   display: flex;
@@ -826,7 +865,7 @@ const role = computed(() => window.history.state?.role);
 }
 .registration-options-child {
   position: absolute;
-  width: 100%;
+  width: 100%;  
   top: calc(50% - 288px);
   right: 0;
   left: 0;
@@ -1589,59 +1628,9 @@ const role = computed(() => window.history.state?.role);
   font-family: Inter;
   overflow: hidden;
 }
-@media (min-width: 500px) {
-  .div19,
-  .fieldsregistration-options4 {
-    //top: 2.25em;
-    left: 0em;
-    height: 13.75em;
-    width: 400px;
-    position: relative;
-    margin: 0 auto;
-  }
-  .div19 {
-    top: 6em;
-  }
-  .fieldsregistration-options4 {
-    top: 10.44em;
-  }
-
-  .form-registration-26 {
-    height: 100%;
-  }
-  .inputfields {
-    width: 0em;
-  }
-  /*.slidersteps {
-    top: 14em;
-    right: 2em;
-    width: 160px;
-    color: #958463;
-    position: relative;
-    margin: 0 auto;
-  }*/
-  .buttonnext {
-    position: relative;
-    top: 14.44em;
-    left: 0px;
-    border-radius: 20px;
-    background-color: #ffdb6d;
-    width: 400px;
-    height: 3em;
-    overflow: hidden;
-    flex-direction: row;
-    padding: 0.5em 7.25em;
-    box-sizing: border-box;
-    text-align: center;
-    margin: 0 auto;
-  }
-  /* .buttonback {
-    top: 13.5em;
-    left: 10em;
-  }*/
-  .iphone-13-13- {
-    overflow-y: auto;
-  }
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 @media (max-width: 370px) {
   .component-4 {

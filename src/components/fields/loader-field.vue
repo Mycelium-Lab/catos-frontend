@@ -1,12 +1,12 @@
 <template>
   <div class="organizm-loader-Nmi" id="995:25323">
     <div class="frame-1817439-tk4" id="I995:25323;967:72927">
-      <input class="input-load" type="file" />
+      <input class="input-load" type="file" @change="onFileChanged($event)" accept="image/*" capture/>
       <div class="business-registration-proof--SFn" id="I995:25323;967:72928">
         <span class="business-registration-proof--SFn-sub-0"
-          >Business registration proof
+          >{{ name }}
         </span>
-        <span class="business-registration-proof--SFn-sub-1">*</span>
+        <span class="business-registration-proof--SFn-sub-1">{{ obligatoryField ? "*" : "" }}</span>
       </div>
       <div class="loader-8np" id="I995:25323;967:72929">
         <div class="frame-1817477-FcY" id="I995:25323;967:72929;967:72866">
@@ -26,42 +26,60 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-const { placeholder } = defineProps({
+const { placeholder, name, obligatoryField } = defineProps({
   placeholder: {
     type: String,
   },
+  name: {
+    type: String,
+  },
+  obligatoryField: {
+    type: Boolean,
+  },
 });
-const mutatePlaceholder = ref(placeholder);
-const handleFocus = () => {
-  switch (mutatePlaceholder.value) {
-    case "Ваша почта":
-      mutatePlaceholder.value = "Введите вашу почту";
-      break;
-    case "Ваш номер телефона":
-      mutatePlaceholder.value = "Введите ваш номер телефона";
-      break;
-    case "Пароль":
-      mutatePlaceholder.value = "Введите ваш пароль";
-      break;
-    default:
-      break;
+const emit = defineEmits(["onChange"]);
+const file = ref<File | null>(null);
+const form = ref<HTMLFormElement>();
+
+const onFileChanged = ($event: Event) => {
+  const target = $event.target as HTMLInputElement;
+  if (target && target.files) {
+    file.value = target.files[0];
+    emit("onChange", file.value);
+    // console.log(file.value);
   }
 };
-const handleBlur = () => {
-  switch (mutatePlaceholder.value) {
-    case "Введите вашу почту":
-      mutatePlaceholder.value = "Ваша почта";
-      break;
-    case "Введите ваш номер телефона":
-      mutatePlaceholder.value = "Ваш номер телефона";
-      break;
-    case "Введите ваш пароль":
-      mutatePlaceholder.value = "Пароль";
-      break;
-    default:
-      break;
-  }
-};
+// const mutatePlaceholder = ref(placeholder);
+// const handleFocus = () => {
+//   switch (mutatePlaceholder.value) {
+//     case "Ваша почта":
+//       mutatePlaceholder.value = "Введите вашу почту";
+//       break;
+//     case "Ваш номер телефона":
+//       mutatePlaceholder.value = "Введите ваш номер телефона";
+//       break;
+//     case "Пароль":
+//       mutatePlaceholder.value = "Введите ваш пароль";
+//       break;
+//     default:
+//       break;
+//   }
+// };
+// const handleBlur = () => {
+//   switch (mutatePlaceholder.value) {
+//     case "Введите вашу почту":
+//       mutatePlaceholder.value = "Ваша почта";
+//       break;
+//     case "Введите ваш номер телефона":
+//       mutatePlaceholder.value = "Ваш номер телефона";
+//       break;
+//     case "Введите ваш пароль":
+//       mutatePlaceholder.value = "Пароль";
+//       break;
+//     default:
+//       break;
+//   }
+// };
 </script>
 
 <style scoped lang="scss">

@@ -1,14 +1,12 @@
 <template>
   <div class="catos-fields__wrapper">
     <input
-      :value="value"
+      :value="modelValue"
       class="catos-fields"
       :readonly="readonly"
       :placeholder="mutatePlaceholder"
-      @focus="handleFocus"
-      @blur="handleBlur"
       :type="type"
-      @input="selected"
+      @input="$emit('update:modelValue',($event.target as HTMLInputElement).value)"
       :style="
         left
           ? { paddingLeft: '3.3em' }
@@ -22,11 +20,7 @@
           ? { backgroundColor: 'transparent', border: 'none' }
           : ''
       "
-      :id="type === 'date' && hideNativeFormatDate ? 'input-date' : ''"
     />
-    <div class="custom-format" v-if="type === 'date' && hideNativeFormatDate">
-      дд.мм.гггг
-    </div>
     <div class="catos-fields__inner-icon_left">
       <slot name="left-icon" />
     </div>
@@ -37,72 +31,30 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-const { placeholder, simulate, value } = defineProps({
-  placeholder: {
-    type: String,
-  },
-  type: {
-    type: String,
-  },
-  left: {
-    type: Boolean,
-  },
-  background: {
-    type: String,
-  },
-  border: {
-    type: String,
-  },
-  readonly: {
-    type: Boolean,
-  },
-  value: {
-    type: String,
-  },
-  simulate: {
-    type: Boolean,
-  },
-});
-
-const hideNativeFormatDate = ref(true);
-const emit = defineEmits(["selected"]);
-const mutatePlaceholder = ref(placeholder);
-const handleFocus = () => {
-  switch (mutatePlaceholder.value) {
+import { computed } from "vue";
+const { placeholder, simulate } = defineProps<{
+  modelValue?: string
+  placeholder?: string
+  type?: string
+  left?: boolean
+  background?: string
+  border?: string
+  readonly?: boolean
+  simulate?: boolean
+}>();
+const emit = defineEmits(['update:modelValue'])
+const mutatePlaceholder = computed(() => {
+  switch (placeholder) {
     case "Ваша почта":
-      mutatePlaceholder.value = "Введите вашу почту";
-      break;
+      return "Введите вашу почту";
     case "Ваш номер телефона":
-      mutatePlaceholder.value = "Введите ваш номер телефона";
-      break;
+      return "Введите ваш номер телефона";
     case "Пароль":
-      mutatePlaceholder.value = "Введите ваш пароль";
-      break;
+      return "Введите ваш пароль";
     default:
-      break;
+      return placeholder;
   }
-};
-const handleBlur = () => {
-  switch (mutatePlaceholder.value) {
-    case "Введите вашу почту":
-      mutatePlaceholder.value = "Ваша почта";
-      break;
-    case "Введите ваш номер телефона":
-      mutatePlaceholder.value = "Ваш номер телефона";
-      break;
-    case "Введите ваш пароль":
-      mutatePlaceholder.value = "Пароль";
-      break;
-    default:
-      break;
-  }
-};
-const selected = (ev: any) => {
-  hideNativeFormatDate.value = false;
-  console.log(ev.target.value);
-  emit("selected", ev.target.value);
-};
+});
 </script>
 
 <style scoped>

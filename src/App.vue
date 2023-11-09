@@ -34,6 +34,7 @@ import ConfirmSignup from "./components/signup/confirm-signup.vue";
 import Success from "./components/signup/success.vue";
 import Support from "./components/signup/support.vue";
 import AcceptedRequest from "./components/signup/accepted-request.vue";
+import qrCodeStyling from "./components/qr-code-styling.vue";
 
 import ButtomSheet from "./components/ui-kit/bottomsheet.vue";
 
@@ -57,7 +58,7 @@ const place = ref("Выберите страну проживания:");
 const value = ref("");
 const options = {
   sng: ["Россия", "Украина", "Казахстан", "Белорусь"],
-  euro: ["Польша", "Латвия", "Молдова", "Литва", "Шведция"],
+  euro: ["Польша", "Латвия", "Молдова", "Литва", "Швеция"],
 };*/
 
 import { RouterView, useRoute } from "vue-router";

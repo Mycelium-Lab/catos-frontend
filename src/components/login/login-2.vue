@@ -40,12 +40,14 @@
       <input-data
         v-if="activeForm === 'email'"
         placeholder="Ваша почта"
+        v-model="userLoginCredentials.email"
         :style="{ position: 'relative', zIndex: '1000', width: '100%' }"
       ></input-data>
 
       <input-data
         v-if="activeForm === 'email'"
         placeholder="Введите пароль"
+        v-model="userLoginCredentials.password"
         :style="{ position: 'relative', zIndex: '1000', width: '100%' }"
       ></input-data>
       <input-data
@@ -63,23 +65,12 @@
       :style="activeForm === 'phone' ? { top: '54%' } : ''"
     >
       <router-link
-        :to="{
-          name:
-            activeForm === 'phone'
-              ? 'phone-confirmation'
-              : role === 'borrower'
-              ? 'pulls-borrower'
-              : role === 'depositor'
-              ? 'pulls-depositor'
-              : role === 'creditor'
-              ? 'pulls'
-              : role === 'collector'
-              ? 'pulls-collector'
-              : '',
-        }"
+        to=""
         :style="{ textDecoration: 'none' }"
       >
         <catos-button
+          @click="login"
+          :disabled="isLoginLoading"
           :style="
             !isSmSize && activeForm === 'phone'
               ? {
@@ -102,9 +93,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
+import { ref } from "vue";
+import { useLoginApi } from '@/composables/useLoginApi'
 import catosButton from "../ui-kit/buttons/catos-button.vue";
 import inputData from "../fields/input-data.vue";
+
+import { useRouter } from "vue-router";
+
+const activeForm = ref("email");
+const { userLoginCredentials, isLoginLoading, handleLogin, handleVerify } = useLoginApi();
 
 const isSmSize = ref(false);
 window.addEventListener(
@@ -115,23 +112,26 @@ window.addEventListener(
   false
 );
 
-const activeForm = ref("email");
-3;
-const role = computed(() => {
-  localStorage.setItem("role", JSON.stringify(window.history.state.role));
-  return window.history.state.role;
-});
+const router = useRouter();
+const login = async () => {
+ handleLogin()
+    .then(res => handleVerify(res.access))
+    .then(res => {
+      const pathName = activeForm.value === 'phone'
+              ? 'phone-confirmation'
+              : res?.role === 'borrower'
+              ? 'pulls/borrower'
+              : res?.role === 'investor'
+              ? 'pulls/depositor'
+              : res?.role === 'creditor'
+              ? 'pulls/creditor'
+              : res?.role === 'collector'
+              ? 'pulls/collector'
+              : ''
 
-onMounted(() => {
-  isSmSize.value = innerHeight > innerWidth;
-  window.addEventListener(
-    "resize",
-    function () {
-      isSmSize.value = innerHeight > innerWidth;
-    },
-    false
-  );
-});
+      router.push(pathName)
+    })
+}
 </script>
 
 <style scoped lang="scss">

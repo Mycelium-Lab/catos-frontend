@@ -69,7 +69,7 @@ const { isMobile } = useDevice();
 const isSide = ref(variant ? "right" : "left");
 const handle = (side: any) => {
   isSide.value = side;
-  const currentSlide = side === "left" ? 0 : 1;
+  const currentSlide = side === "left" ? 1 : 0;
   emit("onSlide", currentSlide);
 };
 

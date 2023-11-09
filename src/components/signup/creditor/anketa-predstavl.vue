@@ -19,25 +19,13 @@
                     <span>Страна выдачи документа </span>
                     <span class="span2">* </span>
                   </div>
-                  <catos-select
-                    v-if="isMobile"
+                   <catos-select
                     placeholder="Россия"
-                    :options="options"
-                    :value="getPasport"
-                    @selected="ev => (getPasport = ev)"
+                    :options="countries"
+                    :value="passportDataStore.passportDTO.country"
+                    @selected="ev => (passportDataStore.passportDTO.country = ev)"
                     :optionWidth="77"
                     :style="{ width: '100%' }"
-                    data-element="select-get"
-                  ></catos-select>
-                  <catos-select
-                    v-else
-                    placeholder="Россия"
-                    :options="options"
-                    :value="getPasport"
-                    @selected="ev => (getPasport = ev)"
-                    :optionWidthDesk="365"
-                    :style="{ width: '100%' }"
-                    data-element="select-get"
                   ></catos-select>
                 </div>
               </div>
@@ -52,6 +40,8 @@
                   :style="{ width: '100%' }"
                   placeholder="1234 09876"
                   :right="true"
+                  v-model:model-value="passportNumberString.value"
+                  @update:model-value="ev => passportDataStore.passportDTO.number = ev"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -68,8 +58,9 @@
                     :style="{ width: '100%' }"
                     type="date"
                     placeholder="01.02.2022"
-                    :value="date"
-                    @selected="e => (date = e)"
+                    v-model:model-value="
+                      passportDataStore.passportDTO.issue_date
+                    "
                   ></input-data>
                   <div class="iconscalendar-wrapper">
                     <img
@@ -94,6 +85,13 @@
               <catos-textarea
                 :style="{ width: '100%', resize: 'none' }"
                 placeholder="ГУМВД России по Санкт-Петербургу, и Ленинградской области"
+                v-model:model-value="
+                  passportDataStore.passportDTO.issuing_organization
+                "
+                @selected="
+                  ev =>
+                    (passportDataStore.passportDTO.issuing_organization = ev)
+                "
               ></catos-textarea>
             </div>
           </div>
@@ -113,6 +111,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Введите имя"
                   :right="true"
+                  v-model:model-value="passportDataStore.passportDTO.name"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -131,6 +130,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Введите фамилию"
                   :right="true"
+                  v-model:model-value="passportDataStore.passportDTO.surname"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -149,6 +149,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Введите отчество"
                   :right="true"
+                  v-model:model-value="passportDataStore.passportDTO.middlename"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -164,12 +165,70 @@
                   :style="{ width: '100%' }"
                   placeholder="Национальность"
                   :right="true"
+                  v-model:model-value="passportDataStore.passportDTO.nationality"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
                   </template>
                 </input-data>
               </div>
+              <div class="parent37">
+                <div class="div22">
+                  <span>Дата рождения: </span>
+                  <span class="span1">* </span>
+                </div>
+                <div class="fields-password-and-mail-parent1">
+                  <input-data
+                    v-model:model-value="passportDataStore.passportDTO.birthdate"
+                    type="date"
+                    placeholder="01.02.1994"
+                    :style="{ width: '100%' }"
+                  ></input-data>
+                  <div class="iconscalendar-wrapper">
+                    <img
+                      class="iconscalendar"
+                      alt=""
+                      src="../public/iconscalendar.svg"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="parent39">
+              <div class="div22">
+                <span>Пол: </span>
+                <span class="span1">* </span>
+              </div>
+              <div class="frame-parent17">
+                <div
+                  class="radiobutton-parent"
+                  @click="
+                    () => {isSelectedRadioButton1 = true; isSelectedRadioButton2 = false; passportDataStore.passportDTO.gender = 'М'}
+                  "
+                >
+                  <catos-checkbox
+                    :select="passportDataStore.passportDTO.gender === 'М'"
+                    variant="radiobutton"
+                    :key="String(isSelectedRadioButton1)"
+                  ></catos-checkbox>
+
+                  <div class="text">Мужской</div>
+                </div>
+                <div
+                  class="radiobutton-group"
+                  @click="
+                    () => {isSelectedRadioButton2 = true; isSelectedRadioButton1 = false; passportDataStore.passportDTO.gender = 'Ж'}
+                  "
+                >
+                  <catos-checkbox
+                    :select="passportDataStore.passportDTO.gender === 'Ж'"
+                    variant="radiobutton"
+                    :key="String(isSelectedRadioButton2)"
+                  ></catos-checkbox>
+
+                  <div class="text">Женский</div>
+                </div>
+              </div>
+            </div>
               <div class="fieldsinput">
                 <div class="div18">
                   <span class="span8">Должность </span>
@@ -182,6 +241,7 @@
                   :style="{ width: '100%' }"
                   placeholder="Ваша должность"
                   :right="true"
+                  v-model:model-value="paperDataStore.paperDTO.work_position"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -218,10 +278,13 @@
                       </span>
                     </span>
                   </div>
-                  <div class="div29">Владеете ли вы более 25% кампании?</div>
+                  <div class="div29">Владеете ли вы более 25% компании?</div>
                 </div>
               </div>
-              <button-slider :style="{ width: '100%' }"></button-slider>
+              <button-slider
+                :style="{ width: '100%' }"
+                @on-slide="ev => paperDataStore.paperDTO.ownership = Boolean(ev)"
+              ></button-slider>
             </div>
           </div>
           <div class="child"></div>
@@ -278,17 +341,22 @@
             </div>
             <catos-select
               placeholder="Московская"
-              :options="optionsRegion"
-              :value="valueRegion"
-              :optionWidthDesk="352"
-              @selected="ev => (valueRegion = ev)"
-              :style="
-                getPasport === 'Россия'
-                  ? { width: '100%', opacity: '1' }
-                  : { width: '100%', opacity: '0.2' }
+              :options="regions"
+              :value="
+                passportDataStore.passportDTO.registration_address.region
               "
-              :disabled="getPasport !== 'Россия'"
-              data-element="select-region"
+              :optionWidth="77"
+              :style="
+              passportDataStore.passportDTO.country !== 'Россия'
+                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                  : { width: '100%', opacity: '1' }
+              "
+              @selected="
+                ev =>
+                  (passportDataStore.passportDTO.registration_address.region =
+                    ev)
+              "
+              :disabled="passportDataStore.passportDTO.country !== 'Россия'"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -297,41 +365,44 @@
               <span class="span2">* </span>
             </div>
             <catos-select
-              :placeholder="valueRegion ? getArea()[0] : 'Воскресенск'"
-              :options="getArea()"
-              :value="valueArea"
-              :optionWidthDesk="352"
-              @selected="ev => (valueArea = ev)"
+              :placeholder="passportDataStore.passportDTO.registration_address.region !== '' && neighborhoodsReg ? neighborhoodsReg[0] : 'Воскресенск'"
+              :options="neighborhoodsReg"
+              :value="passportDataStore.passportDTO.registration_address.neighborhood"
+              @selected=" ev => (passportDataStore.passportDTO.registration_address.neighborhood = ev)"
+              :optionWidth="77"
               :style="
-                valueRegion
-                  ? { width: '100%', opacity: '1' }
-                  : { width: '100%', opacity: '0.2' }
+                passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
+                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                  : { width: '100%', opacity: '1' }
               "
-              :disabled="!valueRegion"
-              data-element="select-area"
+              :disabled="passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
             <div class="div10">Населенный пункт</div>
             <catos-select
-              :placeholder="valueRegion ? getCity()[0] : 'Москва'"
-              :options="getCity()"
-              :value="value"
-              :optionWidthDesk="352"
-              @selected="ev => (value = ev)"
+            :placeholder="passportDataStore.passportDTO.registration_address.region !== '' && citiesReg ? citiesReg[0] : 'Москва'"
+              :options="citiesReg"
+              :value="passportDataStore.passportDTO.registration_address.city"
+              :optionWidth="77"
               :style="
-                valueRegion
-                  ? { width: '100%', opacity: '1' }
-                  : { width: '100%', opacity: '0.2' }
+                 passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
+                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                  : { width: '100%', opacity: '1' }
               "
-              :disabled="!valueRegion"
-              data-element="select-city"
+              @selected="
+                ev =>
+                  (passportDataStore.passportDTO.registration_address.city =
+                    ev)
+              "
+             :disabled="passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
             ></catos-select>
           </div>
-
           <div class="text2">
             <div class="div10">Улица</div>
             <input-data
+              :modelValue="passportDataStore.passportDTO.registration_address.street"
+              @update:model-value="passportDataStore.passportDTO.registration_address.street = $event"
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
               :right="true"
@@ -347,6 +418,8 @@
             <div class="parent11">
               <div class="div10">Дом</div>
               <input-data
+                :modelValue="passportDataStore.passportDTO.registration_address.house"
+              @update:model-value="passportDataStore.passportDTO.registration_address.house = $event"
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -354,6 +427,8 @@
             <div class="parent11">
               <div class="div10">Корпус</div>
               <input-data
+              :modelValue="passportDataStore.passportDTO.registration_address.housing"
+              @update:model-value="passportDataStore.passportDTO.registration_address.housing = $event"
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -363,6 +438,8 @@
             <div class="parent11">
               <div class="div10">Строение</div>
               <input-data
+              :modelValue="passportDataStore.passportDTO.registration_address.building"
+              @update:model-value="passportDataStore.passportDTO.registration_address.building = $event"
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -370,6 +447,8 @@
             <div class="parent11">
               <div class="div10">Квартира</div>
               <input-data
+              :modelValue="passportDataStore.passportDTO.registration_address.apartment"
+              @update:model-value="passportDataStore.passportDTO.registration_address.apartment = $event"
                 placeholder="№"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -378,7 +457,8 @@
           <div class="parent11">
             <div class="div10">Индекс</div>
             <input-data
-              placeholder="Индекс"
+              @update:model-value="passportDataStore.passportDTO.registration_address.index = $event"
+              placeholder="193 984"
               :style="{ width: '100%' }"
             ></input-data>
           </div>
@@ -393,40 +473,23 @@
           </div>
         </div>
         <div class="fieldsinputchoise-parent">
-          <div class="fieldsinputchoise">
-            <div class="div10">
-              <span>Страна </span>
-              <span class="span2">* </span>
-            </div>
-
-            <catos-select
-              placeholder="Россия"
-              :options="options"
-              :value="accommodation"
-              :optionWidthDesk="352"
-              :style="{ width: '100%' }"
-              @selected="ev => (accommodation = ev)"
-              data-element="select-fact-accommodation"
-            ></catos-select>
-          </div>
+         
           <div class="fieldsinputchoise">
             <div class="div10">
               <span>Область, край </span>
               <span class="span2">* </span>
             </div>
             <catos-select
-              placeholder="Московская"
-              :options="optionsRegion"
-              :value="valueRegionFact"
-              :optionWidthDesk="352"
-              @selected="ev => (valueRegionFact = ev)"
-              :style="
-                accommodation === 'Россия'
-                  ? { width: '100%', opacity: '1' }
-                  : { width: '100%', opacity: '0.2' }
+            placeholder="Московская"
+              :options="regions"
+              :value="passportDataStore.passportDTO.living_address.region"
+              :optionWidth="77"
+              :style="passportDataStore.passportDTO.country !== 'Россия'
+                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                  : { width: '100%', opacity: '1' }
               "
-              :disabled="accommodation !== 'Россия'"
-              data-element="select-fact-region"
+              @selected="ev => (passportDataStore.passportDTO.living_address.region = ev)"
+              :disabled="passportDataStore.passportDTO.country !== 'Россия'"
             ></catos-select>
           </div>
           <div class="fieldsinput">
@@ -435,42 +498,51 @@
               <span class="span2">* </span>
             </div>
             <catos-select
-              :placeholder="
-                valueRegionFact ? getArea('fact')[0] : 'Воскресенск'
+              :placeholder="passportDataStore.passportDTO.living_address.region !== '' && neighborhoodsLiv ? neighborhoodsLiv[0] : 'Воскресенск'"
+              :options="neighborhoodsLiv"
+              :value="
+                passportDataStore.passportDTO.living_address.neighborhood
               "
-              :options="getArea('fact')"
-              :value="valueAreaFact"
-              :optionWidthDesk="352"
-              @selected="ev => (valueAreaFact = ev)"
+              :optionWidth="77"
               :style="
-                valueRegionFact
-                  ? { width: '100%', opacity: '1' }
-                  : { width: '100%', opacity: '0.2' }
+                passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
+                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                  : { width: '100%', opacity: '1' }
               "
-              :disabled="!valueRegionFact"
-              data-element="select-fact-area"
+              @selected="
+                ev =>
+                  (passportDataStore.passportDTO.living_address.neighborhood =
+                    ev)
+              "
+               :disabled="passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
             <div class="div10">Населенный пункт</div>
             <catos-select
-              :placeholder="valueRegionFact ? getCity('fact')[0] : 'Москва'"
-              :options="getCity('fact')"
-              :value="valueFact"
-              :optionWidthDesk="352"
-              @selected="ev => (valueFact = ev)"
+              :placeholder="passportDataStore.passportDTO.living_address.region !== '' && citiesLiv ? citiesLiv[0] : 'Москва'"
+              :options="citiesLiv"
+              :value="passportDataStore.passportDTO.living_address.city"
+              :optionWidth="77"
               :style="
-                valueRegionFact
-                  ? { width: '100%', opacity: '1' }
-                  : { width: '100%', opacity: '0.2' }
+                 passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
+                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                  : { width: '100%', opacity: '1' }
               "
-              :disabled="!valueRegionFact"
-              data-element="select-fact-city"
+              @selected="
+                ev => (passportDataStore.passportDTO.living_address.city = ev)
+              "
+              :disabled="passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
             ></catos-select>
           </div>
           <div class="text2">
             <div class="div10">Улица</div>
             <input-data
+            :modelValue="passportDataStore.passportDTO.living_address.street"
+            @update:model-value="
+                ev =>
+                  (passportDataStore.passportDTO.living_address.street = ev)
+              "
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
               :right="true"
@@ -486,6 +558,11 @@
             <div class="parent11">
               <div class="div10">Дом</div>
               <input-data
+              :modelValue="passportDataStore.passportDTO.living_address.house"
+              @update:model-value="
+                  ev =>
+                    (passportDataStore.passportDTO.living_address.house = ev)
+                "
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -493,6 +570,11 @@
             <div class="parent11">
               <div class="div10">Корпус</div>
               <input-data
+              :modelValue="passportDataStore.passportDTO.living_address.housing"
+              @update:model-value="
+                  ev =>
+                    (passportDataStore.passportDTO.living_address.housing = ev)
+                "
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -502,6 +584,12 @@
             <div class="parent11">
               <div class="div10">Строение</div>
               <input-data
+              :modelValue="passportDataStore.passportDTO.living_address.building"
+              @update:model-value="
+                  ev =>
+                    (passportDataStore.passportDTO.living_address.building =
+                      ev)
+                "
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -509,6 +597,12 @@
             <div class="parent11">
               <div class="div10">Квартира</div>
               <input-data
+              :modelValue="passportDataStore.passportDTO.living_address.apartment"
+              @update:model-value="
+                  ev =>
+                    (passportDataStore.passportDTO.living_address.apartment =
+                      ev)
+                "
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -517,6 +611,7 @@
           <div class="parent11">
             <div class="div10">Индекс</div>
             <input-data
+              @update:model-value="passportDataStore.passportDTO.living_address.index = $event"
               placeholder="193 984"
               :style="{ width: '100%' }"
             ></input-data>
@@ -572,10 +667,14 @@
                       />
                     </div>
                   </div>
-                  <div class="div27">
-                    <p class="p">Разворот</p>
-                    <p class="p">с датой выдачи</p>
-                    <p class="p">и фотографией</p>
+                  <div class="loader-group">
+                    <loader-field
+                      name="Разворот с датой выдачи и фотографией"
+                      :obligatory-field="true"
+                      :style="{ width: '100%', paddingBottom: '0.1em' }"
+                      class="loader-file"
+                      @on-change="file => saveImage('passPhoto1', file)"
+                    ></loader-field>
                   </div>
                 </div>
                 <div class="loadernav">
@@ -639,9 +738,14 @@
                       src="../public/frame-18175181.svg"
                     />
                   </div>
-                  <div class="div70">
-                    <p class="p">Страница</p>
-                    <p class="p">с регистрацией</p>
+                  <div class="loader-group">
+                    <loader-field
+                      name="Страница с регистрацией"
+                      :obligatory-field="true"
+                      :style="{ width: '100%', paddingBottom: '0.1em' }"
+                      class="loader-file"
+                      @on-change="file => saveImage('passPhoto2', file)"
+                    ></loader-field>
                   </div>
                 </div>
                 <div class="loadernav">
@@ -686,7 +790,6 @@
               </div>
               <div class="div72">
                 <span>Загрузите страницы паспорта </span>
-                <span class="span2">*</span>
               </div>
             </div>
           </div>
@@ -705,7 +808,6 @@
                       alt=""
                       src="../public/frame-1817525.svg"
                     />
-
                     <div class="frame-wrapper3">
                       <div class="icon-wrapper">
                         <div class="icon1">
@@ -740,10 +842,15 @@
                       </div>
                     </div>
                   </div>
-                  <div class="div27">
-                    <p class="p">Ваше фото и разворот</p>
-                    <p class="p">с датой выдачи</p>
-                  </div>
+                </div>
+                <div class="loader-group">
+                  <loader-field
+                    name="Загрузите селфи с разворотом паспорта и датой выдачи"
+                    :obligatory-field="true"
+                    :style="{ width: '100%', paddingBottom: '0.1em' }"
+                    class="loader-file"
+                    @on-change="file => saveImage('selfie', file)"
+                  ></loader-field>
                 </div>
               </div>
               <div class="loadernav">
@@ -783,10 +890,6 @@
               </div>
             </div>
           </div>
-          <div class="div76">
-            <span>Загрузите селфи с разворотом паспорта </span>
-            <span class="span2">*</span>
-          </div>
         </div>
       </div>
     </div>
@@ -818,2908 +921,75 @@ import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
 import buttonSlider from "../../../components/ui-kit/buttons/button-slider.vue";
-import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
+import loaderField from "../../../components/fields/loader-field.vue";
+import { ref, computed, reactive } from "vue";
+import { useUserDataStore } from "@/stores/userData";
+import { usePaperDataStore } from "@/stores/paperData";
+import { usePassportDataStore } from "@/stores/passportData";
+import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
+import { useCityList } from '@/composables/useCityList'
+import { useNeighborhoodList } from "@/composables/useNeighborhoodList"
+import countries from "@/json/countries.json"
+import regions from "@/json/regions.json"
+
+const paperDataStore = usePaperDataStore()
+const passportDataStore = usePassportDataStore()
+const userDataStore = useUserDataStore();
+
+const {citiesByRegion: ctitesRegistration} = useCityList('registration', 'passport')
+const {citiesByRegion: ctitesLiving} = useCityList('living', 'passport')
+const {neighborhoodByRegion: neighborhoodRegistration} = useNeighborhoodList('registration', 'passport')
+const {neighborhoodByRegion: neighborhoodLiving} = useNeighborhoodList('living', 'passport')
+
+const citiesReg = computed(() => {
+    return ctitesRegistration.value
+});
+const citiesLiv = computed(() => {
+    return ctitesLiving.value
+});
+const neighborhoodsReg = computed(() => {
+    return neighborhoodRegistration.value
+});
+const neighborhoodsLiv = computed(() => {
+    return neighborhoodLiving.value
+});
+
+const isSelectedRadioButton1 = ref(false);
+const isSelectedRadioButton2 = ref(false);
 import { useDevice } from "@/compossables/useDevice";
 
+
 const { isMobile } = useDevice();
-import { ref } from "vue";
 
-const date = ref("");
-const getPasport = ref("");
-const valueRegion = ref("");
-const valueArea = ref("");
-const valueRegionFact = ref("");
-const valueAreaFact = ref("");
-const value = ref("");
-const valueFact = ref("");
-const accommodation = ref("");
-const options = {
-  euro: [
-    "Россия",
-    "Германия",
-    "Великобритания",
-    "Франиця",
-    "Италия",
-    "Испания",
-    "Украина",
-    "Польша",
-    "Румыния",
-    "Нидерланды",
-    "Беларусь",
-    "Греция",
-    "Португалия",
-    "Чехия",
-    "Швеция",
-  ],
-  asia: [
-    "Китай",
-    "Индия",
-    "Индонезия",
-    "Пакистан",
-    "Бангладеш",
-    "Япония",
-    "Филиппины",
-    "Вьетнам",
-    "Турция",
-    "Иран",
-    "Таиланд",
-    "Мьянма",
-    "Южная Корея",
-    "Ирак",
-    "Афганистан",
-  ],
-  africa: [
-    "Нигерия",
-    "Эфиопия",
-    "Египет",
-    "ДР Конго",
-    "Южная Африка",
-    "Танзания",
-    "Судан",
-    "Алжир",
-    "Уганда",
-    "Морокко",
-  ],
-  america: [
-    "США",
-    "Бразилия",
-    "Мексика",
-    "Колумбия",
-    "Аргентина",
-    "Перу",
-    "Венесуэла",
-    "Чили",
-    "Гватемала",
-    "Эквадор",
-  ],
-  australia_okeania: ["Австралия", "Папуа - Новая Гвинея", "Новая Зеландия"],
-};
-const optionsRegion = {
-  republic: [
-    "Адыгея",
-    "Башкортостан",
-    "Бурятия",
-    "Алтай",
-    "Дагестан",
-    "Донецкая Народная Республика",
-    "Ингушетия",
-    "Кабардино-Балкария",
-    "Калмыкия",
-    "Карачаево-Черкесия",
-    "Карелия",
-    "Коми",
-    "Крым",
-    "Луганская Народная Республика",
-    "Марий Эл",
-    "Мордовия",
-    "Саха / Якутия",
-    "Северная Осетия - Алания",
-    "Татарстан",
-    "Тыва",
-    "Удмуртия",
-    "Хакасия",
-    "Чеченская",
-    "Чувашская - Чувашия",
-  ],
-  edge: [
-    "Алтайский",
-    "Забайкальский",
-    "Камчатский",
-    "Краснодарский",
-    "Красноярский",
-    "Пермский",
-    "Приморский",
-    "Ставропольский",
-    "Хабаровский",
-  ],
-  region: [
-    "Амурская",
-    "Архангельская",
-    "Астраханская",
-    "Белгородская",
-    "Брянская",
-    "Владимирская",
-    "Волгоградская",
-    "Вологодская",
-    "Воронежская",
-    "Еврейская Автономная",
-    "Запорожская",
-    "Ивановская",
-    "Иркутская",
-    "Калининградская",
-    "Калужская",
-    "Кемеровская - Кузбасс",
-    "Кировская",
-    "Костромская",
-    "Курганская",
-    "Курская",
-    "Ленинградская",
-    "Липецкая",
-    "Магаданская",
-    "Московская",
-    "Мурманская",
-    "Нижегородская",
-    "Новгородская",
-    "Новосибирская",
-    "Омская",
-    "Оренбургская",
-    "Орловская",
-    "Пензенская",
-    "Псковская",
-    "Ростовская",
-    "Рязанская",
-    "Самарская",
-    "Саратовская",
-    "Сахалинская",
-    "Свердловская",
-    "Смоленская",
-    "Тамбовская",
-    "Тверская",
-    "Томская",
-    "Тульская",
-    "Тюменская",
-    "Ульяновская",
-    "Херсонская",
-    "Челябинская",
-    "Ярославская",
-  ],
-};
-
-const optionsArea = {
-  adygea: [
-    "Гиагинский",
-    "Кошехабльский",
-    "Красногвардейский",
-    "Майкопский",
-    "Тахтамукайский",
-    "Теучежский",
-    "Шовгеновский",
-  ],
-  bashkortostan: [
-    "Абзелиловский",
-    "Альшеевский",
-    "Архангельский",
-    "Аскинский",
-    "Аургазинский",
-    "Баймакский",
-    "Бакалинский",
-    "Балтачевский",
-    "Белебеевский",
-    "Белокатайский",
-    "Белорецкий",
-    "Бижбулякский",
-    "Бирский",
-    "Благоварский",
-    "Благовещенский",
-    "Буздякский",
-    "Бураевский",
-    "Бурзянский",
-    "Гафурийский",
-    "Давлекановский",
-    "Дуванский",
-    "Дюртюлинский",
-    "Ермекеевский",
-    "Зианчуринский",
-    "Зилаирский",
-    "Иглинский",
-    "Илишевский",
-    "Ишимбайский",
-    "Калтасинский",
-    "Караидельский",
-    "Кармаскалинский",
-    "Кигинский",
-    "Краснокамский",
-    "Кугарчинский",
-    "Кушнаренковский",
-    "Куюргазинский",
-    "Мелеузовский",
-    "Мечетлинский",
-    "Мишкинский",
-    "Миякинский",
-    "Нуримановский",
-    "Салаватский",
-    "Стерлибашевский",
-    "Стерлитамакский",
-    "Татышлинский",
-    "Туймазинский",
-    "Уфимский",
-    "Учалинский",
-    "Федоровский",
-    "Хайбуллинский",
-    "Чекмагушевский",
-    "Чишминский",
-    "Шаранский",
-    "Янаульский",
-  ],
-  buryatia: [
-    "Баргузинский",
-    "Баунтовский эвенкийский",
-    "Бичурский",
-    "Джидинский",
-    "Еравнинский",
-    "Заиграевский",
-    "Закаменский",
-    "Иволгинский",
-    "Кабанский",
-    "Кижингинский",
-    "Курумканский",
-    "Кяхтинский",
-    "Муйский",
-    "Мухоршибирский",
-    "Окинский",
-    "Прибайкальский",
-    "Северобайкальский",
-    "Селенгинский",
-    "Тарбагатайский",
-    "Тункинский",
-    "Хоринский",
-  ],
-  altay: [
-    "Кош-Агачский",
-    "Майминский",
-    "Онгудайский",
-    "Турочакский",
-    "Улаганский",
-    "Усть-Канский",
-    "Усть-Коксинский",
-    "Чемальский",
-    "Чойский",
-    "Шебалинский",
-  ],
-  dagestan: [
-    "Агульский",
-    "Акушинский",
-    "Ахвахский",
-    "Ахтынский",
-    "Бабаюртовский",
-    "Ботлихский",
-    "Буйнакский",
-    "Гергебильский",
-    "Гумбетовский",
-    "Гунибский",
-    "Дахадаевский",
-    "Дербентский",
-    "Докузпаринский",
-    "Казбековский",
-    "Кайтагский",
-    "Карабудахкентский",
-    "Каякентский",
-    "Кизилюртовский",
-    "Кизлярский",
-    "Кулинский",
-    "Кумторкалинский",
-    "Курахский",
-    "Лакский",
-    "Левашинский",
-    "Магарамкентский",
-    "Новолакский",
-    "Ногайский",
-    "Рутульский",
-    "Сергокалинский",
-    "Сулейман-Стальский",
-    "Табасаранский",
-    "Тарумовский",
-    "Тляратинский",
-    "Унцукульский",
-    "Хасавюртовский",
-    "Хивский",
-    "Хунзахский",
-    "Цумадинский",
-    "Цунтинский",
-    "Чародинский",
-    "Шамильский",
-  ],
-  ingushetia: ["Джейрахский", "Малгобекский", "Назрановский", "Сунженский"],
-  dnr: [
-    "Артемовский",
-    "Волновахский",
-    "Володарский",
-    "Донецк",
-    "Енакиево",
-    "Краматорский",
-    "Красноармейский",
-    "Першотравневый",
-    "Харцызск",
-  ],
-  "kabardino-balkaria": [
-    "Баксанский",
-    "Зольский",
-    "Лескенский",
-    "Майский",
-    "Прохладненский",
-    "Терский",
-    "Урванский",
-    "Чегемский",
-    "Черекский",
-    "Эльбрусский",
-  ],
-  kalmykia: [
-    "Городовиковский",
-    "Ики-Бурульский",
-    "Кетченеровский",
-    "Лаганский",
-    "Малодербетовский",
-    "Октябрьский",
-    "Приютненский",
-    "Сарпинский",
-    "Целинный",
-    "Черноземельский",
-    "Юстинский",
-    "Яшалтинский",
-    "Яшкульский",
-  ],
-  "karachay-cherkessia": [
-    "Абазинский",
-    "Адыге-Хабльский",
-    "Зеленчукский",
-    "Карачаевский",
-    "Малокарачаевский",
-    "Ногайский",
-    "Прикубанский",
-    "Урупский",
-    "Усть-Джегутинский",
-    "Хабезский",
-  ],
-  karelia: [
-    "Беломорский",
-    "Калевальский",
-    "Кемский",
-    "Кондопожский",
-    "Лахденпохский",
-    "Лоухский",
-    "Медвежьегорский",
-    "Муезерский",
-    "Олонецкий",
-    "Питкярантский",
-    "Прионежский",
-    "Пряжинский",
-    "Пудожский",
-    "Сегежский",
-    "Суоярвский",
-  ],
-  komi: [
-    "Ижемский",
-    "Княжпогостский",
-    "Койгородский",
-    "Корткеросский",
-    "Прилузский",
-    "Сыктывдинский",
-    "Сысольский",
-    "Троицко-Печорский",
-    "Удорский",
-    "Усть-Вымский",
-    "Усть-Куломский",
-    "Усть-Цилемский",
-  ],
-  "mariy-el": [
-    "Волжский",
-    "Горномарийский",
-    "Звениговский",
-    "Килемарский",
-    "Куженерский",
-    "Мари-Турекский",
-    "Медведевский",
-    "Моркинский",
-    "Новоторъяльский",
-    "Оршанский",
-    "Параньгинский",
-    "Сернурский",
-    "Советский",
-    "Юринский",
-  ],
-  mordovia: [
-    "Ардатовский",
-    "Атюрьевский",
-    "Атяшевский",
-    "Большеберезниковский",
-    "Большеигнатовский",
-    "Дубенский",
-    "Ельниковский",
-    "Зубово-Полянский",
-    "Инсарский",
-    "Ичалковский",
-    "Кадошкинский",
-    "Ковылкинский",
-    "Кочкуровский",
-    "Краснослободский",
-    "Лямбирский",
-    "Ромодановский",
-    "Рузаевский",
-    "Старошайговский",
-    "Темниковский",
-    "Теньгушевский",
-    "Торбеевский",
-    "Чамзинский",
-  ],
-  saha: [
-    "Абыйский",
-    "Алданский",
-    "Аллаиховский",
-    "Амгинский",
-    "Анабарский",
-    "Булунский",
-    "Верхневилюйский",
-    "Верхнеколымский",
-    "Верхоянский",
-    "Вилюйский",
-    "Горный",
-    "Жиганский",
-    "Кобяйский",
-    "Ленский",
-    "Мегино-Кангаласский",
-    "Мирнинский",
-    "Момский",
-    "Намский",
-    "Нерюнгринский",
-    "Нижнеколымский",
-    "Нюрбинский",
-    "Оймяконский",
-    "Олекминский",
-    "Оленекский",
-    "эвенкийский",
-    "национальный",
-    "Среднеколымский",
-    "Сунтарский",
-    "Таттинский",
-    "Томпонский",
-    "Усть-Алданский",
-    "Усть-Майский",
-    "Усть-Янский",
-    "Хангаласский",
-    "Чурапчинский",
-    "Эвено-Бытантайский",
-    "Национальный",
-  ],
-  alanya: [
-    "Алагирский",
-    "Ардонский",
-    "Дигорский",
-    "Ирафский",
-    "Кировский",
-    "Моздокский",
-    "Правобережный",
-    "Пригородный",
-  ],
-  tatarstan: [
-    "Агрызский",
-    "Азнакаевский",
-    "Аксубаевский",
-    "Актанышский",
-    "Алексеевский",
-    "Алькеевский",
-    "Альметьевский",
-    "Апастовский",
-    "Арский",
-    "Атнинский",
-    "Бавлинский",
-    "Балтасинский",
-    "Бугульминский",
-    "Буинский",
-    "Верхнеуслонский",
-    "Высокогорский",
-    "Дрожжановский",
-    "Елабужский",
-    "Заинский",
-    "Зеленодольский",
-    "Кайбицкий",
-    "Камско-Устьинский",
-    "Кукморский",
-    "Лаишевский",
-    "Лениногорский",
-    "Мамадышский",
-    "Менделеевский",
-    "Мензелинский",
-    "Муслюмовский",
-    "Нижнекамский",
-    "Новошешминский",
-    "Нурлатский",
-    "Пестречинский",
-    "Рыбно-Слободский",
-    "Сабинский",
-    "Сармановский",
-    "Спасский",
-    "Тетюшский",
-    "Тукаевский",
-    "Тюлячинский",
-    "Черемшанский",
-    "Чистопольский",
-    "Ютазинский",
-  ],
-  tuva: [
-    "Бай-Тайгинский",
-    "Барун-Хемчикский",
-    "Дзун-Хемчикский",
-    "Каа-Хемский",
-    "Кызылский",
-    "Монгун-Тайгинский",
-    "Овюрский",
-    "Пий-Хемский",
-    "Сут-Хольский",
-    "Тандинский",
-    "Тере-Хольский",
-    "Тес-Хемский",
-    "Тоджинский",
-    "Улуг-Хемский",
-    "Чаа-Хольский",
-    "Чеди-Хольский",
-    "Эрзинский",
-  ],
-  udmurtia: [
-    "Алнашский",
-    "Балезинский",
-    "Вавожский",
-    "Воткинский",
-    "Глазовский",
-    "Граховский",
-    "Дебёсский",
-    "Дебесский",
-    "Завьяловский",
-    "Игринский",
-    "Камбарский",
-    "Каракулинский",
-    "Кезский",
-    "Кизнерский",
-    "Киясовский",
-    "Красногорский",
-    "Малопургинский",
-    "Можгинский",
-    "Сарапульский",
-    "Селтинский",
-    "Сюмсинский",
-    "Увинский",
-    "Шарканский",
-    "Юкаменский",
-    "Якшур-Бодьинский",
-    "Ярский",
-  ],
-  hakasia: [
-    "Алтайский",
-    "Аскизский",
-    "Бейский",
-    "Боградский",
-    "Орджоникидзевский",
-    "Таштыпский",
-    "Усть-Абаканский",
-    "Ширинский",
-  ],
-  сhechnya: [
-    "Ачхой-Мартановский",
-    "Веденский",
-    "Грозненский",
-    "Гудермесский",
-    "Итум-Калинский",
-    "Курчалоевский",
-    "Надтеречный",
-    "Наурский",
-    "Ножай-Юртовский",
-    "Серноводский",
-    "Урус-Мартановский",
-    "Шалинский",
-    "Шаройский",
-    "Шатойский",
-    "Шелковской",
-  ],
-  сhuvashia: [
-    "Алатырский",
-    "Аликовский",
-    "Батыревский",
-    "Вурнарский",
-    "Ибресинский",
-    "Канашский",
-    "Козловский",
-    "Комсомольский",
-    "Красноармейский",
-    "Красночетайский",
-    "Мариинско-Посадский",
-    "Моргаушский",
-    "Порецкий",
-    "Урмарский",
-    "Цивильский",
-    "Чебоксарский",
-    "Шемуршинский",
-    "Шумерлинский",
-    "Ядринский",
-    "Яльчикский",
-    "Янтиковский",
-  ],
-  altai: [
-    "Алейский",
-    "Алтайский",
-    "Баевский",
-    "Бийский",
-    "Благовещенский",
-    "Бурлинский",
-    "Быстроистокский",
-    "Волчихинский",
-    "Егорьевский",
-    "Ельцовский",
-    "Завьяловский",
-    "Залесовский",
-    "Заринский",
-    "Змеиногорский",
-    "Зональный",
-    "Калманский",
-    "Каменский",
-    "Ключевский",
-    "Косихинский",
-    "Красногорский",
-    "Краснощёковский",
-    "Крутихинский",
-    "Кулундинский",
-    "Курьинский",
-    "Кытмановский",
-    "Локтевский",
-    "Мамонтовский",
-    "Михайловский",
-    "Немецкий",
-    "национальный",
-    "Новичихинский",
-    "Павловский",
-    "Панкрушихинский",
-    "Первомайский",
-    "Петропавловский",
-    "Поспелихинский",
-    "Ребрихинский",
-    "Родинский",
-    "Романовский",
-    "Рубцовский",
-    "Смоленский",
-    "Советский",
-    "Солонешенский",
-    "Солтонский",
-    "Суетский",
-    "Табунский",
-    "Тальменский",
-    "Тогульский",
-    "Топчихинский",
-    "Третьяковский",
-    "Троицкий",
-    "Тюменцевский",
-    "Угловский",
-    "Усть-Калманский",
-    "Усть-Пристанский",
-    "Хабарский",
-    "Целинный",
-    "Чарышский",
-    "Шелаболихинский",
-    "Шипуновский",
-  ],
-  krasnodarskiy: [
-    "Абинский",
-    "Анапский",
-    "Апшеронский",
-    "Белоглинский",
-    "Белореченский",
-    "Брюховецкий",
-    "Выселковский",
-    "Гулькевичский",
-    "Динской",
-    "Ейский",
-    "Кавказский",
-    "Калининский",
-    "Каневской",
-    "Кореновский",
-    "Красноармейский",
-    "Крыловский",
-    "Крымский",
-    "Курганинский",
-    "Кущевский",
-    "Лабинский",
-    "Ленинградский",
-    "Мостовский",
-    "Новокубанский",
-    "Новопокровский",
-    "Отрадненский",
-    "Павловский",
-    "Приморско-Ахтарский",
-    "Северский",
-    "Славянский",
-    "Староминский",
-    "Тбилисский",
-    "Темрюкский",
-    "Тимашевский",
-    "Тихорецкий",
-    "Туапсинский",
-    "Успенский",
-    "Усть-Лабинский",
-    "Щербиновский",
-  ],
-  krasnoyarskiy: [
-    "Абанский",
-    "Ачинский",
-    "Балахтинский",
-    "Березовский",
-    "Бирилюсский",
-    "Боготольский",
-    "Богучанский",
-    "Большемуртинский",
-    "Большеулуйский",
-    "Дзержинский",
-    "Емельяновский",
-    "Енисейский",
-    "Ермаковский",
-    "Идринский",
-    "Иланский",
-    "Ирбейский",
-    "Казачинский",
-    "Канский",
-    "Каратузский",
-    "Кежемский",
-    "Козульский",
-    "Краснотуранский",
-    "Курагинский",
-    "Манский",
-    "Минусинский",
-    "Мотыгинский",
-    "Назаровский",
-    "Нижнеингашский",
-    "Новоселовский",
-    "Партизанский",
-    "Пировский",
-    "Рыбинский",
-    "Саянский",
-    "Северо-Енисейский",
-    "Сухобузимский",
-    "Таймырский",
-    "Долгано-Ненецкий",
-    "Тасеевский",
-    "Туруханский",
-    "Тюхтетский",
-    "Ужурский",
-    "Уярский",
-    "Шарыповский",
-    "Шушенский",
-    "Эвенкийский",
-  ],
-  primorskiy: [
-    "Анучинский",
-    "Дальнереченский",
-    "Кавалеровский",
-    "Кировский",
-    "Красноармейский",
-    "Лазовский",
-    "Михайловский",
-    "Надеждинский",
-    "Октябрьский",
-    "Ольгинский",
-    "Партизанский",
-    "Пограничный",
-    "Пожарский",
-    "Спасский",
-    "Тернейский",
-    "Уссурийский",
-    "Ханкайский",
-    "Хасанский",
-    "Хорольский",
-    "Черниговский",
-    "Чугуевский",
-    "Шкотовский",
-    "Яковлевский",
-  ],
-  stavropolskiy: [
-    "Александровский",
-    "Андроповский",
-    "Апанасенковский",
-    "Арзгирский",
-    "Благодарненский",
-    "Буденновский",
-    "Георгиевский",
-    "Грачевский",
-    "Изобильненский",
-    "Ипатовский",
-    "Кировский",
-    "Кочубеевский",
-    "Красногвардейский",
-    "Курский",
-    "Левокумский",
-    "Минераловодский",
-    "Нефтекумский",
-    "Новоалександровский",
-    "Новоселицкий",
-    "Петровский",
-    "Предгорный",
-    "Советский",
-    "Степновский",
-    "Труновский",
-    "Туркменский",
-    "Шпаковский",
-  ],
-  khabarovkiy: [
-    "Амурский",
-    "Аяно-Майский",
-    "Бикинский",
-    "Ванинский",
-    "Верхнебуреинский",
-    "Вяземский",
-    "Имени Лазо",
-    "Имени Полины Осипенко",
-    "Комсомольский",
-    "Нанайский",
-    "Николаевский",
-    "Охотский",
-    "Советско-Гаванский",
-    "Солнечный",
-    "Тугуро-Чумиканский",
-    "Ульчский",
-    "Хабаровский",
-  ],
-  amurskaya: [
-    "Архаринский",
-    "Белогорский",
-    "Благовещенский",
-    "Бурейский",
-    "Завитинский",
-    "Зейский",
-    "Ивановский",
-    "Константиновский",
-    "Магдагачинский",
-    "Мазановский",
-    "Михайловский",
-    "Октябрьский",
-    "Ромненский",
-    "Свободненский",
-    "Селемджинский",
-    "Серышевский",
-    "Сковородинский",
-    "Тамбовский",
-    "Тындинский",
-    "Шимановский",
-  ],
-  arkhangelskay: [
-    "Вельский",
-    "Верхнетоемский",
-    "Вилегодский",
-    "Виноградовский",
-    "Каргопольский",
-    "Коношский",
-    "Котласский",
-    "Красноборский",
-    "Ленский",
-    "Лешуконский",
-    "Мезенский",
-    "Новая Земля",
-    "Няндомский",
-    "Онежский",
-    "Пинежский",
-    "Плесецкий",
-    "Приморский",
-    "Устьянский",
-    "Холмогорский",
-    "Шенкурский",
-  ],
-  astrakhanskaya: [
-    "Ахтубинский",
-    "Володарский",
-    "Енотаевский",
-    "Икрянинский",
-    "Камызякский",
-    "Красноярский",
-    "Лиманский",
-    "Наримановский",
-    "Приволжский",
-    "Харабалинский",
-    "Черноярский",
-  ],
-  belgorodskaya: [
-    "Алексеевский",
-    "Белгородский",
-    "Борисовский",
-    "Валуйский",
-    "Вейделевский",
-    "Волоконовский",
-    "Грайворонский",
-    "Губкинский",
-    "Ивнянский",
-    "Корочанский",
-    "Красненский",
-    "Красногвардейский",
-    "Краснояружский",
-    "Новооскольский",
-    "Прохоровский",
-    "Ракитянский",
-    "Ровеньский",
-    "Старооскольский",
-    "Чернянский",
-    "Шебекинский",
-    "Яковлевский",
-  ],
-  bryanskaya: [
-    "Брасовский",
-    "Брянский",
-    "Выгоничский",
-    "Гордеевский",
-    "Дубровский",
-    "Дятьковский",
-    "Жирятинский",
-    "Жуковский",
-    "Злынковский",
-    "Карачевский",
-    "Клетнянский",
-    "Климовский",
-    "Клинцовский",
-    "Комаричский",
-    "Красногорский",
-    "Мглинский",
-    "Навлинский",
-    "Новозыбковский",
-    "Погарский",
-    "Почепский",
-    "Рогнединский",
-    "Севский",
-    "Стародубский",
-    "Суземский",
-    "Суражский",
-    "Трубчевский",
-    "Унечский",
-  ],
-  vladimirskaya: [
-    "Александровский",
-    "Вязниковский",
-    "Гороховецкий",
-    "Гусь-Хрустальный",
-    "Камешковский",
-    "Киржачский",
-    "Ковровский",
-    "Кольчугинский",
-    "Меленковский",
-    "Муромский",
-    "Петушинский",
-    "Селивановский",
-    "Собинский",
-    "Судогодский",
-    "Суздальский",
-    "Юрьев-Польский",
-  ],
-  volgogradskaya: [
-    "Алексеевский",
-    "Быковский",
-    "Городищенский",
-    "Даниловский",
-    "Дубовский",
-    "Еланский",
-    "Жирновский",
-    "Иловлинский",
-    "Калачевский",
-    "Камышинский",
-    "Киквидзенский",
-    "Клетский",
-    "Котельниковский",
-    "Котовский",
-    "Кумылженский",
-    "Ленинский",
-    "Михайловский",
-    "Нехаевский",
-    "Николаевский",
-    "Новоаннинский",
-    "Новониколаевский",
-    "Октябрьский",
-    "Ольховский",
-    "Палласовский",
-    "Руднянский",
-    "Светлоярский",
-    "Серафимовичский",
-    "Среднеахтубинский",
-    "Старополтавский",
-    "Суровикинский",
-    "Урюпинский",
-    "Фроловский",
-    "Чернышковский",
-  ],
-  vologodskaya: [
-    "Бабаевский",
-    "Бабушкинский",
-    "Белозерский",
-    "Вашкинский",
-    "Великоустюгский",
-    "Верховажский",
-    "Вожегодский",
-    "Вологодский",
-    "Вытегорский",
-    "Грязовецкий",
-    "Кадуйский",
-    "Кирилловский",
-    "Кичменгско-Городецкий",
-    "Междуреченский",
-    "Никольский",
-    "Нюксенский",
-    "Сокольский",
-    "Сямженский",
-    "Тарногский",
-    "Тотемский",
-    "Усть-Кубинский",
-    "Устюженский",
-    "Харовский",
-    "Чагодощенский",
-    "Череповецкий",
-    "Шекснинский",
-  ],
-  voronezhskaya: [
-    "Аннинский",
-    "Бобровский",
-    "Богучарский",
-    "Борисоглебский",
-    "Бутурлиновский",
-    "Верхнемамонский",
-    "Верхнехавский",
-    "Воробьевский",
-    "Грибановский",
-    "Калачеевский",
-    "Каменский",
-    "Кантемировский",
-    "Каширский",
-    "Лискинский",
-    "Нижнедевицкий",
-    "Новоусманский",
-    "Новохопёрский",
-    "Ольховатский",
-    "Острогожский",
-    "Павловский",
-    "Панинский",
-    "Петропавловский",
-    "Поворинский",
-    "Подгоренский",
-    "Рамонский",
-    "Репьёвский",
-    "Россошанский",
-    "Семилукский",
-    "Таловский",
-    "Терновский",
-    "Хохольский",
-    "Эртильский",
-  ],
-  ivanovskaya: [
-    "Верхнеландеховский",
-    "Вичугский",
-    "Гаврилово-Посадский",
-    "Заволжский",
-    "Ивановский",
-    "Ильинский",
-    "Кинешемский",
-    "Комсомольский",
-    "Лежневский",
-    "Лухский",
-    "Палехский",
-    "Пестяковский",
-    "Приволжский",
-    "Пучежский",
-    "Родниковский",
-    "Савинский",
-    "Тейковский",
-    "Фурмановский",
-    "Шуйский",
-    "Южский",
-    "Юрьевецкий",
-  ],
-  irkutskaya: [
-    "Аларский",
-    "Ангарский",
-    "Балаганский",
-    "Баяндаевский",
-    "Бодайбинский",
-    "Боханский",
-    "Братский",
-    "Жигаловский",
-    "Заларинский",
-    "Зиминский",
-    "Иркутский",
-    "Казачинско-Ленский",
-    "Катангский",
-    "Качугский",
-    "Киренский",
-    "Куйтунский",
-    "Мамско-Чуйский",
-    "Нижнеилимский",
-    "Нижнеудинский",
-    "Нукутский",
-    "Ольхонский",
-    "Осинский",
-    "Слюдянский",
-    "Тайшетский",
-    "Тулунский",
-    "Усольский",
-    "Усть-Илимский",
-    "Усть-Кутский",
-    "Усть-Удинский",
-    "Черемховский",
-    "Чунский",
-    "Шелеховский",
-    "Эхирит-Булагатский",
-  ],
-  kaliningradskaya: [
-    "Багратионовский",
-    "Балтийский",
-    "Гвардейский",
-    "Гурьевский",
-    "Гусевский",
-    "Зеленоградский",
-    "Краснознаменский",
-    "Неманский",
-    "Нестеровский",
-    "Озерский",
-    "Полесский",
-    "Правдинский",
-    "Светлогорский",
-    "Славский",
-    "Черняховский",
-  ],
-  kaluzhskaya: [
-    "Бабынинский",
-    "Барятинский",
-    "Боровский",
-    "Дзержинский",
-    "Думиничский",
-    "Жиздринский",
-    "Жуковский",
-    "Износковский",
-    "Кировский",
-    "Козельский",
-    "Куйбышевский",
-    "Людиновский",
-    "Малоярославецкий",
-    "Медынский",
-    "Мещовский",
-    "Мосальский",
-    "Перемышльский",
-    "Спас-Деменский",
-    "Сухиничский",
-    "Тарусский",
-    "Ульяновский",
-    "Ферзиковский",
-    "Хвастовичский",
-    "Юхновский",
-  ],
-  kamchatskiy: [
-    "Алеутский",
-    "Быстринский",
-    "Елизовский",
-    "Карагинский",
-    "Мильковский",
-    "Олюторский",
-    "Пенжинский",
-    "Соболевский",
-    "Тигильский",
-    "Усть-Большерецкий",
-    "Усть-Камчатский",
-  ],
-  kemerovskaya: [
-    "Беловский",
-    "Гурьевский",
-    "Ижморский",
-    "Кемеровский",
-    "Крапивинский",
-    "Ленинск-Кузнецкий",
-    "Мариинский",
-    "Новокузнецкий",
-    "Прокопьевский",
-    "Промышленновский",
-    "Таштагольский",
-    "Тисульский",
-    "Топкинский",
-    "Тяжинский",
-    "Чебулинский",
-    "Юргинский",
-    "Яйский",
-    "Яшкинский",
-  ],
-  kirovskaya: [
-    "Арбажский",
-    "Афанасьевский",
-    "Белохолуницкий",
-    "Богородский",
-    "Верхнекамский",
-    "Верхошижемский",
-    "Вятскополянский",
-    "Даровской",
-    "Зуевский",
-    "Кикнурский",
-    "Кильмезский",
-    "Кирово-Чепецкий",
-    "Котельничский",
-    "Куменский",
-    "Лебяжский",
-    "Лузский",
-    "Малмыжский",
-    "Мурашинский",
-    "Нагорский",
-    "Немский",
-    "Нолинский",
-    "Омутнинский",
-    "Опаринский",
-    "Оричевский",
-    "Орловский",
-    "Пижанский",
-    "Подосиновский",
-    "Санчурский",
-    "Свечинский",
-    "Слободской",
-    "Советский",
-    "Сунский",
-    "Тужинский",
-    "Унинский",
-    "Уржумский",
-    "Фаленский",
-    "Халтуринский",
-    "Шабалинский",
-    "Юрьянский",
-    "Яранский",
-  ],
-  kostromskaya: [
-    "Антроповский",
-    "Буйский",
-    "Вохомский",
-    "Галичский",
-    "Кадыйский",
-    "Кологривский",
-    "Костромской",
-    "Красносельский",
-    "Макарьевский",
-    "Мантуровский",
-    "Межевской",
-    "Нейский",
-    "Нерехтский",
-    "Октябрьский",
-    "Островский",
-    "Павинский",
-    "Парфеньевский",
-    "Поназыревский",
-    "Пыщугский",
-    "Солигаличский",
-    "Судиславский",
-    "Сусанинский",
-    "Чухломский",
-    "Шарьинский",
-  ],
-  kurganskaya: [
-    "Альменевский",
-    "Белозерский",
-    "Варгашинский",
-    "Далматовский",
-    "Звериноголовский",
-    "Каргапольский",
-    "Катайский",
-    "Кетовский",
-    "Куртамышский",
-    "Лебяжьевский",
-    "Макушинский",
-    "Мишкинский",
-    "Мокроусовский",
-    "Петуховский",
-    "Половинский",
-    "Притобольный",
-    "Сафакулевский",
-    "Целинный",
-    "Частоозерский",
-    "Шадринский",
-    "Шатровский",
-    "Шумихинский",
-    "Щучанский",
-    "Юргамышский",
-  ],
-  kurskaya: [
-    "Беловский",
-    "Большесолдатский",
-    "Глушковский",
-    "Горшеченский",
-    "Дмитриевский",
-    "Железногорский",
-    "Золотухинский",
-    "Касторенский",
-    "Конышевский",
-    "Кореневский",
-    "Курский",
-    "Курчатовский",
-    "Льговский",
-    "Мантуровский",
-    "Медвенский",
-    "Обоянский",
-    "Октябрьский",
-    "Поныровский",
-    "Пристенский",
-    "Рыльский",
-    "Советский",
-    "Солнцевский",
-    "Суджанский",
-    "Тимский",
-    "Фатежский",
-    "Хомутовский",
-    "Черемисиновский",
-    "Щигровский",
-  ],
-  leningradskaya: [
-    "Волосовский",
-    "Волховский",
-    "Всеволожский",
-    "Выборгский",
-    "Гатчинский",
-    "Кингисеппский",
-    "Киришский",
-    "Кировский",
-    "Лодейнопольский",
-    "Ломоносовский",
-    "Лужский",
-    "Подпорожский",
-    "Приозерский",
-    "Сланцевский",
-    "Тихвинский",
-    "Тосненский",
-  ],
-  lipetskaya: [
-    "Воловский",
-    "Грязинский",
-    "Данковский",
-    "Добринский",
-    "Добровский",
-    "Долгоруковский",
-    "Елецкий",
-    "Задонский",
-    "Измалковский",
-    "Краснинский",
-    "Лебедянский",
-    "Лев-Толстовский",
-    "Липецкий",
-    "Становлянский",
-    "Тербунский",
-    "Усманский",
-    "Хлевенский",
-    "Чаплыгинский",
-  ],
-  magadanskaya: [
-    "Ольский",
-    "Омсукчанский",
-    "Северо-Эвенский",
-    "Среднеканский",
-    "Сусуманский",
-    "Тенькинский",
-    "Хасынский",
-    "Ягоднинский",
-  ],
-  moskovskaya: [
-    "Воскресенск",
-    "Зеленоград",
-    "Дмитров",
-    "Истра",
-    "Клин",
-    "Коломна",
-    "Москва",
-    "Наро-Фоминск",
-    "Ногинск",
-    "Одинцово",
-    "Орехово-Зуево",
-    "Пушкино",
-    "Сергиев Посад",
-    "Троицк",
-    "Чеховский",
-    "Шатура",
-    "Щербинка",
-  ],
-  murmanskaya: [
-    "Кандалакшский",
-    "Ковдорский",
-    "Кольский",
-    "Ловозерский",
-    "Печенгский",
-    "Терский",
-  ],
-  nizhegorodskaya: [
-    "Ардатовский",
-    "Арзамасский",
-    "Балахнинский",
-    "Богородский",
-    "Большеболдинский",
-    "Большемурашкинский",
-    "Бутурлинский",
-    "Вадский",
-    "Варнавинский",
-    "Вачский",
-    "Ветлужский",
-    "Вознесенский",
-    "Володарский",
-    "Воротынский",
-    "Воскресенский",
-    "Гагинский",
-    "Городецкий",
-    "Дальнеконстантиновский",
-    "Дивеевский",
-    "Княгининский",
-    "Ковернинский",
-    "Краснобаковский",
-    "Краснооктябрьский",
-    "Кстовский",
-    "Лукояновский",
-    "Лысковский",
-    "Павловский",
-    "Пильнинский",
-    "Починковский",
-    "Сергачский",
-    "Сеченовский",
-    "Сокольский",
-    "Сосновский",
-    "Спасский",
-    "Тонкинский",
-    "Тоншаевский",
-    "Уренский",
-    "Чкаловский",
-    "Шарангский",
-    "Шатковский",
-  ],
-  novgorodskaya: [
-    "Батецкий",
-    "Боровичский",
-    "Валдайский",
-    "Волотовский",
-    "Демянский",
-    "Крестецкий",
-    "Любытинский",
-    "Маловишерский",
-    "Марёвский",
-    "Мошенской",
-    "Новгородский",
-    "Окуловский",
-    "Парфинский",
-    "Пестовский",
-    "Поддорский",
-    "Солецкий",
-    "Старорусский",
-    "Хвойнинский",
-    "Холмский",
-    "Чудовский",
-    "Шимский",
-  ],
-  novosibirskaya: [
-    "Баганский",
-    "Барабинский",
-    "Болотнинский",
-    "Венгеровский",
-    "Доволенский",
-    "Здвинский",
-    "Искитимский",
-    "Карасукский",
-    "Каргатский",
-    "Колыванский",
-    "Коченевский",
-    "Кочковский",
-    "Краснозерский",
-    "Куйбышевский",
-    "Купинский",
-    "Кыштовский",
-    "Маслянинский",
-    "Мошковский",
-    "Новосибирский",
-    "Ордынский",
-    "Северный",
-    "Сузунский",
-    "Татарский",
-    "Тогучинский",
-    "Убинский",
-    "Усть-Таркский",
-    "Чановский",
-    "Черепановский",
-    "Чистоозерный",
-    "Чулымский",
-  ],
-  omskaya: [
-    "Азовский немецкий национальный",
-    "Большереченский",
-    "Большеуковский",
-    "Горьковский",
-    "Знаменский",
-    "Исилькульский",
-    "Калачинский",
-    "Колосовский",
-    "Кормиловский",
-    "Крутинский",
-    "Любинский",
-    "Марьяновский",
-    "Москаленский",
-    "Муромцевский",
-    "Называевский",
-    "Нижнеомский",
-    "Нововаршавский",
-    "Одесский",
-    "Оконешниковский",
-    "Омский",
-    "Павлоградский",
-    "Полтавский",
-    "Русско-Полянский",
-    "Саргатский",
-    "Седельниковский",
-    "Таврический",
-    "Тарский",
-    "Тевризский",
-    "Тюкалинский",
-    "Усть-Ишимский",
-    "Черлакский",
-    "Шербакульский",
-  ],
-  orenburskaya: [
-    "Абдулинский",
-    "Адамовский",
-    "Акбулакский",
-    "Александровский",
-    "Асекеевский",
-    "Беляевский",
-    "Бугурусланский",
-    "Бузулукский",
-    "Гайский",
-    "Грачевский",
-    "Домбаровский",
-    "Илекский",
-    "Кваркенский",
-    "Красногвардейский",
-    "Кувандыкский",
-    "Курманаевский",
-    "Матвеевский",
-    "Новоорский",
-    "Новосергиевский",
-    "Октябрьский",
-    "Оренбургский",
-    "Первомайский",
-    "Переволоцкий",
-    "Пономаревский",
-    "Сакмарский",
-    "Саракташский",
-    "Светлинский",
-    "Северный",
-    "Соль-Илецкий",
-    "Сорочинский",
-    "Ташлинский",
-    "Тоцкий",
-    "Тюльганский",
-    "Шарлыкский",
-  ],
-  orlovskaya: [
-    "Болховский",
-    "Верховский",
-    "Глазуновский",
-    "Дмитровский",
-    "Должанский",
-    "Залегощенский",
-    "Знаменский",
-    "Колпнянский",
-    "Корсаковский",
-    "Краснозоренский",
-    "Кромской",
-    "Ливенский",
-    "Малоархангельский",
-    "Мценский",
-    "Новодеревеньковский",
-    "Новосильский",
-    "Орловский",
-    "Покровский",
-    "Свердловский",
-    "Сосковский",
-    "Троснянский",
-    "Урицкий",
-    "Хотынецкий",
-    "Шаблыкинский",
-  ],
-  pensenskaya: [
-    "Башмаковский",
-    "Бековский",
-    "Белинский",
-    "Бессоновский",
-    "Вадинский",
-    "Городищенский",
-    "Земетчинский",
-    "Иссинский",
-    "Каменский",
-    "Камешкирский",
-    "Колышлейский",
-    "Кузнецкий",
-    "Лопатинский",
-    "Лунинский",
-    "Малосердобинский",
-    "Мокшанский",
-    "Наровчатский",
-    "Неверкинский",
-    "Нижнеломовский",
-    "Никольский",
-    "Пачелмский",
-    "Пензенский",
-    "Сердобский",
-    "Сосновоборский",
-    "Спасский",
-    "Тамалинский",
-    "Шемышейский",
-  ],
-  permskiy: [
-    "Бардымский",
-    "Березовский",
-    "Большесосновский",
-    "Верещагинский",
-    "Гайнский",
-    "Горнозаводский",
-    "Еловский",
-    "Ильинский",
-    "Карагайский",
-    "Кишертский",
-    "Косинский",
-    "Кочевский",
-    "Красновишерский",
-    "Кудымкарский",
-    "Куединский",
-    "Кунгурский",
-    "Нытвенский",
-    "Октябрьский",
-    "Ординский",
-    "Осинский",
-    "Оханский",
-    "Очерский",
-    "Пермский",
-    "Сивинский",
-    "Соликамский",
-    "Суксунский",
-    "Уинский",
-    "Усольский",
-    "Частинский",
-    "Чердынский",
-    "Чернушинский",
-    "Юрлинский",
-    "Юсьвинский",
-  ],
-  psovskaya: [
-    "Бежаницкий",
-    "Великолукский",
-    "Гдовский",
-    "Дедовичский",
-    "Дновский",
-    "Красногородский",
-    "Куньинский",
-    "Локнянский",
-    "Невельский",
-    "Новоржевский",
-    "Новосокольнический",
-    "Опочецкий",
-    "Островский",
-    "Палкинский",
-    "Печорский",
-    "Плюсский",
-    "Порховский",
-    "Псковский",
-    "Пустошкинский",
-    "Пушкиногорский",
-    "Пыталовский",
-    "Себежский",
-    "Струго-Красненский",
-    "Усвятский",
-  ],
-  rostovskya: [
-    "Азовский",
-    "Аксайский",
-    "Багаевский",
-    "Белокалитвинский",
-    "Боковский",
-    "Верхнедонской",
-    "Веселовский",
-    "Волгодонской",
-    "Дубовский",
-    "Егорлыкский",
-    "Заветинский",
-    "Зерноградский",
-    "Зимовниковский",
-    "Кагальницкий",
-    "Каменский",
-    "Кашарский",
-    "Константиновский",
-    "Красносулинский",
-    "Куйбышевский",
-    "Мартыновский",
-    "Матвеево-Курганский",
-    "Миллеровский",
-    "Милютинский",
-    "Морозовский",
-    "Мясниковский",
-    "Неклиновский",
-    "Обливский",
-    "Октябрьский",
-    "Орловский",
-    "Песчанокопский",
-    "Пролетарский",
-    "Ремонтненский",
-    "Родионово-Несветайский",
-    "Сальский",
-    "Семикаракорский",
-    "Советский",
-    "Тарасовский",
-    "Тацинский",
-    "Усть-Донецкий",
-    "Целинский",
-    "Цимлянский",
-    "Чертковский",
-    "Шолоховский",
-  ],
-  ryzanskaya: [
-    "Александро-Невский",
-    "Ермишинский",
-    "Захаровский",
-    "Кадомский",
-    "Касимовский",
-    "Клепиковский",
-    "Кораблинский",
-    "Милославский",
-    "Михайловский",
-    "Пителинский",
-    "Пронский",
-    "Путятинский",
-    "Рыбновский",
-    "Ряжский",
-    "Рязанский",
-    "Сапожковский",
-    "Сараевский",
-    "Сасовский",
-    "Скопинский",
-    "Спасский",
-    "Старожиловский",
-    "Ухоловский",
-    "Чучковский",
-    "Шацкий",
-    "Шиловский",
-  ],
-  samarskaya: [
-    "Александро-Невский",
-    ,
-    "Ермишинский",
-    "Захаровский",
-    "Кадомский",
-    "Касимовский",
-    "Клепиковский",
-    "Кораблинский",
-    "Милославский",
-    "Михайловский",
-    "Пителинский",
-    "Пронский",
-    "Путятинский",
-    "Рыбновский",
-    "Ряжский",
-    "Рязанский",
-    "Сапожковский",
-    "Сараевский",
-    "Сасовский",
-    "Скопинский",
-    "Спасский",
-    "Старожиловский",
-    "Ухоловский",
-    "Чучковский",
-    "Шацкий",
-    "Шиловский",
-  ],
-  saratovkaya: [
-    "Александрово-Гайский",
-    "Аркадакский",
-    "Аткарский",
-    "Базарно-Карабулакский",
-    "Балаковский",
-    "Балашовский",
-    "Балтайский",
-    "Вольский",
-    "Воскресенский",
-    "Дергачевский",
-    "Духовницкий",
-    "Екатериновский",
-    "Ершовский",
-    "Ивантеевский",
-    "Калининский",
-    "Красноармейский",
-    "Краснокутский",
-    "Краснопартизанский",
-    "Лысогорский",
-    "Марксовский",
-    "Новобурасский",
-    "Новоузенский",
-    "Озинский",
-    "Перелюбский",
-    "Петровский",
-    "Питерский",
-    "Пугачевский",
-    "Ровенский",
-    "Романовский",
-    "Ртищевский",
-    "Самойловский",
-    "Саратовский",
-    "Советский",
-    "Татищевский",
-    "Турковский",
-    "Федоровский",
-    "Хвалынский",
-    "Энгельсский",
-  ],
-  sakhalinskaya: [
-    "Александровск-Сахалинский",
-    "Анивский",
-    "Долинский",
-    "Корсаковский",
-    "Курильский",
-    "Макаровский",
-    "Невельский",
-    "Ногликский",
-    "Охинский",
-    "Поронайский",
-    "Северо-Курильский",
-    "Смирныховский",
-    "Томаринский",
-    "Тымовский",
-    "Углегорский",
-    "Холмский",
-    "Южно-Курильский",
-  ],
-  sverdlovskaya: [
-    "Алапаевский",
-    "Артемовский",
-    "Артинский",
-    "Ачитский",
-    "Байкаловский",
-    "Белоярский",
-    "Богдановичский",
-    "Верхнесалдинский",
-    "Верхотурский",
-    "Гаринский",
-    "Ирбитский",
-    "Каменский",
-    "Камышловский",
-    "Красноуфимский",
-    "Невьянский",
-    "Нижнесергинский",
-    "Новолялинский",
-    "Пригородный",
-    "Пышминский",
-    "Режевский",
-    "Серовский",
-    "Слободо-Туринский",
-    "Сухоложский",
-    "Сысертский",
-    "Таборинский",
-    "Тавдинский",
-    "Талицкий",
-    "Тугулымский",
-    "Туринский",
-    "Шалинский",
-  ],
-  smolenskaya: [
-    "Велижский",
-    "Вяземский",
-    "Гагаринский",
-    "Глинковский",
-    "Демидовский",
-    "Дорогобужский",
-    "Духовщинский",
-    "Ельнинский",
-    "Ершичский",
-    "Кардымовский",
-    "Краснинский",
-    "Монастырщинский",
-    "Новодугинский",
-    "Починковский",
-    "Рославльский",
-    "Руднянский",
-    "Сафоновский",
-    "Смоленский",
-    "Сычевский",
-    "Темкинский",
-    "Угранский",
-    "Хиславичский",
-    "Холм-Жирковский",
-    "Шумячский",
-    "Ярцевский",
-  ],
-  tamboskaya: [
-    "Бондарский",
-    "Гавриловский",
-    "Жердевский",
-    "Знаменский",
-    "Инжавинский",
-    "Кирсановский",
-    "Мичуринский",
-    "Мордовский",
-    "Моршанский",
-    "Мучкапский",
-    "Никифоровский",
-    "Первомайский",
-    "Петровский",
-    "Пичаевский",
-    "Рассказовский",
-    "Ржаксинский",
-    "Сампурский",
-    "Сосновский",
-    "Староюрьевский",
-    "Тамбовский",
-    "Токаревский",
-    "Уваровский",
-    "Уметский",
-  ],
-  tverskaya: [
-    "Андреапольский",
-    "Бежецкий",
-    "Бельский",
-    "Бологовский",
-    "Весьегонский",
-    "Вышневолоцкий",
-    "Жарковский",
-    "Западнодвинский",
-    "Зубцовский",
-    "Калининский",
-    "Калязинский",
-    "Кашинский",
-    "Кесовогорский",
-    "Кимрский",
-    "Конаковский",
-    "Краснохолмский",
-    "Кувшиновский",
-    "Лесной",
-    "Лихославльский",
-    "Максатихинский",
-    "Молоковский",
-    "Оленинский",
-    "Пеновский",
-    "Рамешковский",
-    "Ржевский",
-    "Сандовский",
-    "Селижаровский",
-    "Сонковский",
-    "Спировский",
-    "Старицкий",
-    "Торжокский",
-    "Торопецкий",
-    "Фировский",
-  ],
-  tomskaya: [
-    "Александровский",
-    "Асиновский",
-    "Бакчарский",
-    "Верхнекетский",
-    "Зырянский",
-    "Каргасокский",
-    "Кожевниковский",
-    "Колпашевский",
-    "Кривошеинский",
-    "Молчановский",
-    "Парабельский",
-    "Первомайский",
-    "Тегульдетский",
-    "Томский",
-    "Чаинский",
-    "Шегарский",
-  ],
-  tulskaya: [
-    "Алексинский",
-    "Арсеньевский",
-    "Белевский",
-    "Богородицкий",
-    "Веневский",
-    "Воловский",
-    "Дубенский",
-    "Ефремовский",
-    "Заокский",
-    "Каменский",
-    "Кимовский",
-    "Киреевский",
-    "Куркинский",
-    "Ленинский",
-    "Новомосковский",
-    "Одоевский",
-    "Плавский",
-    "Суворовский",
-    "Тепло-Огаревский",
-    "Узловский",
-    "Чернский",
-    "Щекинский",
-    "Ясногорский",
-  ],
-  tumenskaya: [
-    "Абатский",
-    "Армизонский",
-    "Аромашевский",
-    "Бердюжский",
-    "Вагайский",
-    "Викуловский",
-    "Голышмановский",
-    "Заводоуковский",
-    "Исетский",
-    "Ишимский",
-    "Казанский",
-    "Нижнетавдинский",
-    "Омутинский",
-    "Сладковский",
-    "Сорокинский",
-    "Тобольский",
-    "Тюменский",
-    "Уватский",
-    "Упоровский",
-    "Юргинский",
-    "Ялуторовский",
-    "Ярковский",
-  ],
-  ulyanovskaya: [
-    "Базарносызганский",
-    "Барышский",
-    "Вешкаймский",
-    "Инзенский",
-    "Карсунский",
-    "Кузоватовский",
-    "Майнский",
-    "Мелекесский",
-    "Николаевский",
-    "Новомалыклинский",
-    "Новоспасский",
-    "Павловский",
-    "Радищевский",
-    "Сенгилеевский",
-    "Старокулаткинский",
-    "Старомайнский",
-    "Сурский",
-    "Тереньгульский",
-    "Ульяновский",
-    "Цильнинский",
-    "Чердаклинский",
-  ],
-  chelyabinskaya: [
-    "Агаповский",
-    "Аргаяшский",
-    "Ашинский",
-    "Брединский",
-    "Варненский",
-    "Верхнеуральский",
-    "Еманжелинский",
-    "Еткульский",
-    "Карталинский",
-    "Каслинский",
-    "Катав-Ивановский",
-    "Кизильский",
-    "Коркинский",
-    "Красноармейский",
-    "Кунашакский",
-    "Кусинский",
-    "Нагайбакский",
-    "Нязепетровский",
-    "Октябрьский",
-    "Пластовский",
-    "Саткинский",
-    "Сосновский",
-    "Троицкий",
-    "Увельский",
-    "Уйский",
-    "Чебаркульский",
-    "Чесменский",
-  ],
-  zabaykalskiy: [
-    "Агинский",
-    "Акшинский",
-    "Александрово-Заводский",
-    "Балейский",
-    "Борзинский",
-    "Газимуро-Заводский",
-    "Дульдургинский",
-    "Забайкальский",
-    "Каларский",
-    "Калганский",
-    "Карымский",
-    "Краснокаменский",
-    "Красночикойский",
-    "Кыринский",
-    "Могойтуйский",
-    "Могочинский",
-    "Нерчинский",
-    "Нерчинско-Заводский",
-    "Оловяннинский",
-    "Ононский",
-    "Петровск-Забайкальский",
-    "Приаргунский",
-    "Сретенский",
-    "Тунгиро-Олекминский",
-    "Тунгокоченский",
-    "Улётовский",
-    "Хилокский",
-    "Чернышевский",
-    "Читинский",
-    "Шелопугинский",
-    "Шилкинский",
-  ],
-  yaroslavskaya: [
-    "Большесельский",
-    "Борисоглебский",
-    "Брейтовский",
-    "Гаврилов-Ямский",
-    "Даниловский",
-    "Любимский",
-    "Мышкинский",
-    "Некоузский",
-    "Некрасовский",
-    "Первомайский",
-    "Переславский",
-    "Пошехонский",
-    "Ростовский",
-    "Рыбинский",
-    "Тутаевский",
-    "Угличский",
-    "Ярославский",
-  ],
-  evreyskaya: [
-    "Биробиджанский",
-    "Ленинский",
-    "Облученский",
-    "Октябрьский",
-    "Смидовичский",
-  ],
-  zaporozhskaya: [
-    "Акимовский",
-    "Бердянский",
-    "Васильевский",
-    "Веселовский",
-    "Запорожский",
-    "Каменско-Днепровский",
-    "Куйбышевский",
-    "Мелитопольский",
-    "Михайловский",
-    "Пологовский",
-    "Приазовский",
-    "Приморский",
-    "Токмакский",
-    "Черниговский",
-  ],
-  сrimea: [
-    "Бахчисарайский",
-    ,
-    "Белогорский",
-    "Джанкойский",
-    "Кировский",
-    "Красногвардейский",
-    "Красноперекопский",
-    "Ленинский",
-    "Нижнегорский",
-    "Первомайский",
-    "Раздольненский",
-    "Сакский",
-    "Симферопольский",
-    "Советский",
-    "Черноморский",
-  ],
-  lnr: [
-    "Алчевск",
-    "Антрацит",
-    "Антрацитовский",
-    "Беловодский",
-    "Белокуракинский",
-    "Брянка",
-    "Кировск",
-    "Краснодон",
-    "Краснодонский",
-    "Красный",
-    "луч",
-    "Кременской",
-    "Лисичанск",
-    "Луганск",
-    "Лутугинский",
-    "Марковский",
-    "Меловский",
-    "Новоайдарский",
-    "Новопсковский",
-    "Первомайск",
-    "Перевальский",
-    "Сватовский",
-    "Свердловск",
-    "Свердловский",
-    "Северодонецкий",
-    "Славяносербский",
-    "Станично-Луганский",
-    "Старобельский",
-    "Стаханов",
-    "Счастьенский",
-    "Троицкий",
-  ],
-  khersonskaya: [
-    "Бериславский",
-    "Генический",
-    "Каховский",
-    "Скадовский",
-    "Херсонский",
-  ],
-};
-const translateRegion = {
-  adygea: "Адыгея",
-  bashkortostan: "Башкортостан",
-  buryatia: "Бурятия",
-  altay: "Алтай",
-  dagestan: "Дагестан",
-  ingushetia: "Ингушетия",
-  dnr: "Донецкая Народная Республика",
-  "kabardino-balkaria": "Кабардино-Балкария",
-  kalmykia: "Калмыкия",
-  "karachay-cherkessia": "Карачаево-Черкесия",
-  karelia: "Карелия",
-  komi: "Коми",
-  "mariy-el": "Марий Эл",
-  mordovia: "Мордовия",
-  saha: "Саха / Якутия",
-  alanya: "Северная Осетия - Алания",
-  tatarstan: "Татарстан",
-  tuva: "Тыва",
-  udmurtia: "Удмуртия",
-  hakasia: "Хакасия",
-  сhechnya: "Чеченская",
-  сhuvashia: "Чувашская - Чувашия",
-  altai: "Алтайский",
-  krasnodarskiy: "Краснодарский",
-  krasnoyarskiy: "Красноярский",
-  primorskiy: "Приморский",
-  stavropolskiy: "Ставропольский",
-  khabarovkiy: "Хабаровский",
-  amurskaya: "Амурская",
-  arkhangelskay: "Архангельская",
-  astrakhanskaya: "Астраханская",
-  belgorodskaya: "Белгородская",
-  bryanskaya: "Брянская",
-  vladimirskaya: "Владимирская",
-  volgogradskaya: "Волгоградская",
-  vologodskaya: "Вологодская",
-  voronezhskaya: "Воронежская",
-  ivanovskaya: "Ивановская",
-  irkutskaya: "Иркутская",
-  kaliningradskaya: "Калининградская",
-  kaluzhskaya: "Калужская",
-  kamchatskiy: "Камчатский",
-  kemerovskaya: "Кемеровская - Кузбасс",
-  kirovskaya: "Кировская",
-  kostromskaya: "Костромская",
-  kurganskaya: "Курганская",
-  kurskaya: "Курская",
-  leningradskaya: "Ленинградская",
-  lipetskaya: "Липецкая",
-  magadanskaya: "Магаданская",
-  moskovskaya: "Московская",
-  murmanskaya: "Мурманская",
-  nizhegorodskaya: "Нижегородская",
-  novgorodskaya: "Новгородская",
-  novosibirskaya: "Новосибирская",
-  omskaya: "Омская",
-  orenburskaya: "Оренбурская",
-  orlovskaya: "Орловская",
-  pensenskaya: "Пензенская",
-  permskiy: "Пермский",
-  psovskaya: "Псковская",
-  rostovskya: "Ростовская",
-  ryzanskaya: "Рязанская",
-  samarskaya: "Самарская",
-  saratovkaya: "Саратовская",
-  sakhalinskaya: "Сахалинская",
-  sverdlovskaya: "Свердловская",
-  smolenskaya: "Смоленская",
-  tamboskaya: "Тамбовская",
-  tverskaya: "Тверская",
-  tomskaya: "Томская",
-  tulskaya: "Тульская",
-  tumenskaya: "Тюменская",
-  ulyanovskaya: "Ульяновская",
-  chelyabinskaya: "Челябинская",
-  zabaykalskiy: "Забайкальский",
-  yaroslavskaya: "Ярославская",
-  evreyskaya: "Еврейская Автономная",
-  zaporozhskaya: "Запорожская",
-  сrimea: "Крым",
-  lnr: "Луганская Народная Республика",
-  khersonskaya: "Херсонская",
-};
-
-const getArea = (type = "register") => {
-  const values = Object.values(translateRegion);
-  const keys = Object.keys(translateRegion);
-  let index = 0;
-  // @ts-ignore
-  if (type === "register") {
-    index = values.indexOf(valueRegion.value);
+const saveImage = async (boxName: string, file: File | null) => {
+  if (file) {
+    switch (boxName) {
+      case "passPhoto1":
+        userDataStore.firstPhotoFile = file;
+        passportDataStore.passportDTO.first_photo = 'Goa_file2.jpg';
+        break;
+      case "passPhoto2":
+        userDataStore.secondPhotoFile = file;
+        passportDataStore.passportDTO.second_photo = 'Goa_file2.jpg';
+        break;
+      case "selfie":
+        userDataStore.selfieFile = file;
+        passportDataStore.passportDTO.selfie = 'Goa_file2.jpg';
+        break;
+      default:
+        break;
+    }
+    console.log("File saved");
   } else {
-    index = values.indexOf(valueRegionFact.value);
+    console.log("File is null");
   }
-
-  // @ts-ignore
-  return optionsArea[keys[index]];
 };
-
-const city = {
-  adygea: ["Адыгейск", "Майкоп"],
-  bashkortostan: [
-    "Агидель",
-    "Амзинский",
-    "Сельсовет",
-    "Кумертау",
-    "Маячинский",
-    "Межгорье",
-    "Нефтекамск",
-    "Октябрьский",
-    "Подгорный",
-    "Салават",
-    "Сибай",
-    "Стерлитамак",
-    "Ташкиновский",
-    "Туялясский",
-    "Уфа",
-  ],
-  buryatia: ["Северобайкальск", "Улан-Удэ"],
-  altay: ["Горно-Алтайск"],
-  dagestan: [
-    "Буйнакск",
-    "Дагестанские Огни",
-    "Дербент",
-    "Избербаш",
-    "Каспийск",
-    "Кизилюрт",
-    "Кизляр",
-    "Махачкала",
-    "Хасавюрт",
-    "Южно-Сухокумск",
-  ],
-  ingushetia: ["Карабулак", "Магас", "Малгобек", "Назрань", "Сунжа"],
-  dnr: [
-    "Авдеевка",
-    "Амвросиевка",
-    "Волноваха",
-    "Горловка",
-    "Дебальцево",
-    "Докучаевск",
-    "Ждановка",
-    "Кировское",
-    "Макеевка",
-    "Мариуполь",
-    "Новоазовск",
-    "Снежное",
-    "Старобешево",
-    "Тельманово",
-    "Торез",
-    "Углегорск",
-    "Шахтерск",
-    "Ясиноватая",
-  ],
-  "kabardino-balkaria": ["Баксан", "Нальчик", "Прохладный"],
-  kalmykia: ["Элиста"],
-  "karachay-cherkessia": ["Карачаевск", "Теберда", "Черкесск"],
-  karelia: ["Костомукша", "Петрозаводск", "Сортавала", ""],
-  komi: [
-    "Воркута",
-    "Вуктыл",
-    "Инта",
-    "Печора",
-    "Сосногорск",
-    "Сыктывкар",
-    "Усинск",
-    "Ухта",
-  ],
-  "mariy-el": ["Волжск", "Йошкар-Ола", "Козьмодемьянск"],
-  mordovia: ["Ковылкино", "Рузаевка", "Саранск"],
-  saha: ["Якутск"],
-  alanya: ["Владикавказ"],
-  tatarstan: ["Казань", "Набережные Челны"],
-  tuva: ["Ак-Довурак", "Кызыл"],
-  udmurtia: ["Воткинск", "Глазов", "Ижевск", "Можга", "Сарапул"],
-  hakasia: ["Абаза", "Абакан", "Саяногорск", "Сорск", "Черногорск"],
-  сhechnya: ["Аргун", "Грозный"],
-  сhuvashia: ["Алатырь", "Канаш", "Новочебоксарск", "Чебоксары", "Шумерля"],
-  altai: [
-    "Алейск",
-    "Барнаул",
-    "Белокуриха",
-    "Бийск",
-    "Заринск",
-    "Новоалтайск",
-    "Рубцовск",
-    "Славгород",
-    "Яровое",
-  ],
-  krasnodarskiy: [
-    "Армавир",
-    "Геленджик",
-    "Горячий",
-    "Ключ",
-    "Краснодар",
-    "Новороссийск",
-    "Сириус",
-    "Сочи",
-  ],
-  krasnoyarskiy: [
-    "Ачинск",
-    "Боготол",
-    "Бородино",
-    "Дивногорск",
-    "Енисейск",
-    "Железногорск",
-    "Зеленогорск",
-    "Канск",
-    "Кедровый",
-    "Красноярск",
-    "Лесосибирск",
-    "Минусинск",
-    "Назарово",
-    "Норильск",
-    "Подгорный",
-    "Солнечный",
-    "Сосновоборск",
-    "Шарыпово",
-  ],
-  primorskiy: [
-    "Арсеньев",
-    "Артем",
-    "Большой",
-    "Камень",
-    "Владивосток",
-    "Дальнегорск",
-    "Дальнереченск",
-    "Лесозаводск",
-    "Находка",
-    "Партизанск",
-    "Спасск-Дальний",
-    "Уссурийск",
-    "Фокино",
-  ],
-  stavropolskiy: [
-    "Георгиевск",
-    "Ессентуки",
-    "Железноводск",
-    "Кисловодск",
-    "Лермонтов",
-    "Невинномысск",
-    "Пятигорск",
-    "Ставрополь",
-  ],
-  khabarovkiy: [
-    "Амурск",
-    "Бикин",
-    "Комсомольск-на-Амуре",
-    "Николаевск-на-Амуре",
-    "Советская Гавань",
-    "Хабаровск",
-  ],
-  amurskaya: [
-    "Белогорск",
-    "Белогорск",
-    "Город",
-    "Благовещенск",
-    "Зея",
-    "Прогресс",
-    "Райчихинск",
-    "Свободный",
-    "Тында",
-    "Циолковский",
-    "Шимановск",
-  ],
-  arkhangelskay: [
-    "Архангельск",
-    "Коряжма",
-    "Мирный",
-    "Новодвинск",
-    "Северодвинск",
-  ],
-  astrakhanskaya: ["Астрахань", "Знаменск"],
-  belgorodskaya: ["Белгород", "Губкин", "Старый", "Оскол", "Шебекино"],
-  bryanskaya: [
-    "Брянск",
-    "Клинцы",
-    "Новозыбков",
-    "Сельцо",
-    "Стародуб",
-    "Фокино",
-  ],
-  vladimirskaya: [
-    "Владимир",
-    "Гусь-Хрустальный",
-    "Ковров",
-    "Муром",
-    "Радужный",
-  ],
-  volgogradskaya: [
-    "Волгоград",
-    "Волжский",
-    "Камышин",
-    "Михайловка",
-    "Урюпинск",
-    "Фролово",
-  ],
-  vologodskaya: ["Вологда", "Череповец"],
-  voronezhskaya: ["Воронеж", "Воронеж-45", "Нововоронеж"],
-  ivanovskaya: ["Иваново", "Кинешма"],
-  irkutskaya: [
-    "Бодайбо",
-    "Братск",
-    "Зима",
-    "Иркутск",
-    "Нижнеудинск",
-    "Саянск",
-    "Свирск",
-    "Тайшет",
-    "Тулун",
-    "Усолье-Сибирское",
-    "Усть-Илимск",
-    "Усть-Кут",
-    "Черемхово",
-    "Шелехов",
-  ],
-  kaliningradskaya: [
-    "Калининград",
-    "Ладушкин",
-    "Мамоново",
-    "Пионерский",
-    "Светлый",
-    "Советск",
-    "Янтарный",
-  ],
-  kaluzhskaya: ["Калуга", "Обнинск"],
-  kamchatskiy: ["Вилючинск", "Петропавловск-Камчатский"],
-  kemerovskaya: [
-    "Анжеро-Судженск",
-    "Белово",
-    "Березовский",
-    "Калтан",
-    "Кемерово",
-    "Киселевск",
-    "Краснобродский",
-    "Ленинск-Кузнецкий",
-    "Междуреченск",
-    "Мыски",
-    "Новокузнецк",
-    "Осинники",
-    "Полысаево",
-    "Прокопьевск",
-    "Тайга",
-    "Юрга",
-  ],
-  kirovskaya: ["Киров", "Кирово-Чепецк", "Первомайский"],
-  kostromskaya: ["Волгореченск", "Кострома"],
-  kurganskaya: ["Курган", "Шадринск"],
-  kurskaya: ["Железногорск", "Курск", "Курчатов", "Льгов", "Щигры"],
-  leningradskaya: [
-    "Зеленогорск",
-    "Колпино",
-    "Красное Село",
-    "Кронштадт",
-    "Ломоносов",
-    "Павловск",
-    "Петергоф",
-    "Пушкин",
-    "Санкт-Петербург",
-    "Сестрорецк ",
-    "Сосновый Бор",
-  ],
-  lipetskaya: ["Елец", "Липецк"],
-  magadanskaya: ["Магадан"],
-  moskovskaya: [
-    "Балашиха",
-    "Бронницы",
-    "Видное",
-    "Волоколамск",
-    "Дзержинский",
-    "Долгопрудный",
-    "Домодедово",
-    "Дубна",
-    "Егорьевск",
-    "Жуковский",
-    "Зарайск",
-    "Кашира",
-    "Королёв",
-    "Котельники",
-    "Красногорск",
-    "Краснознаменск",
-    "Лобня",
-    "Лосино-Петровский",
-    "Лотошино",
-    "Рабочий",
-    "поселок",
-    "Луховицы",
-    "Лыткарино",
-    "Люберцы",
-    "Можайск",
-    "Мытищи",
-    "Павловский",
-    "Посад",
-    "Подольск",
-    "Протвино",
-    "Пущино",
-    "Раменское",
-    "Реутов",
-    "Руза",
-    "Серебряные",
-    "Пруды",
-    "Серпухов",
-    "Солнечногорск",
-    "Ступино",
-    "Талдом",
-    "Фрязино",
-    "Химки",
-    "Черноголовка",
-    "Чехов",
-    "Шаховская",
-    "Щёлково",
-    "Электрогорск",
-    "Электросталь",
-  ],
-  murmanskaya: [
-    "Апатиты",
-    "Гаджиево",
-    "Заозерск",
-    "Кировск",
-    "Мончегорск",
-    "Мурманск",
-    "Оленегорск",
-    "Оленегорск-1",
-    "Оленегорск-2",
-    "Островной",
-    "Полярные",
-    "Зори",
-    "Полярный",
-    "Североморск",
-    "Снежногорск",
-  ],
-  nizhegorodskaya: [
-    "Арзамаc",
-    "Бор",
-    "Выкса",
-    "Дзержинск",
-    "Кулебаки",
-    "Навашино",
-    "Нижний",
-    "Новгород",
-    "Первомайск",
-    "Перевоз",
-    "Саров",
-    "Семенов",
-    "Шахунья",
-  ],
-  novgorodskaya: ["Великий Новгород"],
-  novosibirskaya: ["Бердск", "Искитим", "Кольцово", "Новосибирск", "Обь"],
-  omskaya: ["Омск"],
-  orenburskaya: [
-    "Бугуруслан",
-    "Бузулук",
-    "Гай",
-    "Кувандык",
-    "Медногорск",
-    "Новотроицк",
-    "Оренбург",
-    "Орск",
-    "Сорочинск",
-    "Ясный",
-  ],
-  orlovskaya: ["Ливны", "Мценск", "Орёл"],
-  pensenskaya: ["Ливны", "Мценск", "Орёл"],
-  permskiy: [
-    "Александровск",
-    "Березники",
-    "Гремячинск",
-    "Губаха",
-    "Добрянка",
-    "Кизел",
-    "Краснокамск",
-    "Кудымкар",
-    "Кунгур",
-    "Лысьва",
-    "Пермь",
-    "Соликамск",
-    "Чайковский",
-    "Чусовой",
-  ],
-  psovskaya: ["Великие Луки", "Псков"],
-  rostovskya: [
-    "Азов",
-    "Батайск",
-    "Волгодонск",
-    "Гуково",
-    "Донецк",
-    "Зверево",
-    "Каменск-Шахтинский",
-    "Новочеркасск",
-    "Новошахтинск",
-    "Ростов-на-Дону",
-    "Таганрог",
-    "Шахты",
-  ],
-  ryzanskaya: ["Касимов", "Рязань", "Сасово", "Скопин"],
-  samarskaya: [
-    "Жигулевск",
-    "Кинель",
-    "Новокуйбышевск",
-    "Октябрьск",
-    "Отрадный",
-    "Похвистнево",
-    "Самара",
-    "Сызрань",
-    "Тольятти",
-    "Чапаевск",
-  ],
-  saratovkaya: [
-    "Аткарск",
-    "Балаково",
-    "Балашов",
-    "Вольск",
-    "Красноармейск",
-    "Маркс",
-    "Пугачев",
-    "Ртищево",
-    "Саратов",
-    "Хвалынск",
-    "Шиханы",
-    "Энгельс",
-  ],
-  sakhalinskaya: ["Южно-Сахалинск"],
-  sverdlovskaya: [
-    "Алапаевск",
-    "Асбест",
-    "Березовский",
-    "Верхний Тагил",
-    "Верхняя Пышма",
-    "Верхняя Тура",
-    "Волчанск",
-    "Дегтярск",
-    "Екатеринбург",
-    "Заречный",
-    "Ивдель",
-    "Ирбит",
-    "Каменск-Уральский",
-    "Камышлов",
-    "Карпинск",
-    "Качканар",
-    "Кировград",
-    "Краснотурьинск",
-    "Красноуральск",
-    "Красноуфимск",
-    "Кушва",
-    "Лесной",
-    "Малышев",
-    "Нижний Тагил",
-    "Нижняя Салда",
-    "Нижняя Тура",
-    "Новоуральск",
-    "Первоуральск",
-    "Полевской",
-    "Ревда",
-    "Североуральск",
-    "Серов",
-    "Среднеуральск",
-  ],
-  smolenskaya: ["Десногорск", "Смоленск"],
-  tamboskaya: [
-    "Кирсанов",
-    "Котовск",
-    "Мичуринск",
-    "Моршанск",
-    "Рассказово",
-    "Тамбов",
-    "Уварово",
-  ],
-  tverskaya: [
-    "Андреаполь",
-    "Белый",
-    "Весьегонск",
-    "Вышний",
-    "Волочек",
-    "Жарковский",
-    "Западная",
-    "Двина",
-    "Зубцов",
-    "Кашин",
-    "Кесова",
-    "Гора",
-    "Кимры",
-    "Красный",
-    "Холм",
-    "Лесное",
-    "Село",
-    "Лихославль",
-    "Максатиха",
-    "Молоково",
-    "Нелидово",
-    "Озерный",
-    "Оленино",
-    "Осташков",
-    "Пено",
-    "Рамешки",
-    "Ржев",
-    "Сандово",
-    "Селижарово",
-    "Сонково",
-    "Спирово",
-    "Старица",
-    "Тверь",
-    "Торжок",
-    "Удомля",
-  ],
-  tomskaya: ["Кедровый", "Северск", "Стрежевой", "Томск"],
-  tulskaya: ["Донской", "Тула"],
-  tumenskaya: ["Заводоуковск", "Ишим", "Тобольск", "Тюмень", "Ялуторовск"],
-  ulyanovskaya: ["Димитровград", "Новоульяновск", "Ульяновск"],
-  chelyabinskaya: [
-    "Верхний Уфалей",
-    "Златоуст",
-    "Карабаш",
-    "Копейск",
-    "Коркино",
-    "Кыштым",
-    "Магнитогорск",
-    "Миасс",
-    "Озерск",
-    "Снежинск",
-    "Трехгорный",
-    "Трехгорный-1",
-    "Троицк",
-    "Усть-Катав",
-    "Чебаркуль",
-    "Челябинск",
-    "Южноуральск",
-  ],
-  zabaykalskiy: ["Горный", "Чита"],
-  yaroslavskaya: ["Переславль-Залесский", "Ярославль"],
-  evreyskaya: ["Биробиджан"],
-  zaporozhskaya: ["Бердянск", "Мелитополь", "Энергодар", "Горо"],
-  сrimea: [
-    "Алушта",
-    "Армянск",
-    "Джанкой",
-    "Евпатория",
-    "Керчь",
-    "Красноперекопск",
-    "Саки",
-    "Симферополь",
-    "Судак",
-    "Феодосия",
-    "Ялта",
-  ],
-  lnr: ["Ровеньки", "Рубежное", "Северодонецк"],
-  khersonskaya: [
-    "Алёшки",
-    "Белозёрка",
-    "Берислав",
-    "Великая",
-    "Александровка",
-    "Лепетиха",
-    "Верхний",
-    "Рогачик",
-    "Высокополье",
-    "Геническ",
-    "Голая",
-    "Пристань",
-    "Горностаевка",
-    "Ивановка",
-    "Каланчак",
-    "Каховка",
-    "Нижние",
-    "Серогозы",
-    "Новая",
-    "Нововоронцовка",
-    "Новотроицкое",
-    "Скадовск",
-    "Снигирёвка",
-    "Херсон",
-    "Чаплинка",
-  ],
-};
-
-const getCity = (type = "register") => {
-  const valueArrs = Object.values(translateRegion);
-  let index = 0;
-  if (type === "register") {
-    index = valueArrs.indexOf(valueRegion.value);
-  } else {
-    index = valueArrs.indexOf(valueRegionFact.value);
-  }
-  const keyArrs = Object.keys(translateRegion);
-  const region = keyArrs[index];
-  // @ts-ignore
-  return city[region];
-};
+const passportNumberString = reactive({
+  value:
+  passportDataStore.passportDTO.number === 0
+      ? ""
+      : passportDataStore.passportDTO.number.toString(),
+});
 </script>
 
 <style scoped lang="scss">
@@ -3949,7 +1219,7 @@ const getCity = (type = "register") => {
 }
 .group {
   position: absolute;
-  top: 40.81em;
+  top: 55em;
   left: 1.31em;
   width: 77vw;
   gap: 1.5em;
@@ -4154,7 +1424,7 @@ const getCity = (type = "register") => {
   border-radius: 15px;
   border: 0.5px solid rgba(46, 58, 89, 0.4);
   box-sizing: border-box;
-  height: 41.06em;
+  height: 53em;
 }
 .div30 {
   position: relative;
@@ -4206,7 +1476,7 @@ const getCity = (type = "register") => {
 }
 .buttonnext {
   position: absolute;
-  top: 209.06em;
+  top: 230em;
   left: 1.5em;
   border-radius: 20px;
   background-color: #ffdb6d;
@@ -4346,7 +1616,7 @@ const getCity = (type = "register") => {
 }
 .registration-options {
   position: absolute;
-  top: 72.31em;
+  top: 86.31em;
   left: 6vw;
   width: 87.7vw;
   height: 37.63em;
@@ -4366,7 +1636,7 @@ const getCity = (type = "register") => {
 }
 .frame-parent5 {
   position: absolute;
-  top: 28.63em;
+  top: 23.63em;
   left: 1.31em;
   display: flex;
   flex-direction: column;
@@ -4377,7 +1647,7 @@ const getCity = (type = "register") => {
 }
 .registration-options1 {
   position: absolute;
-  top: 111.94em;
+  top: 126.94em;
   left: 1.5em;
   width: 87.8vw;
   height: 43.31em;
@@ -5025,7 +2295,7 @@ const getCity = (type = "register") => {
 }
 .registration-options-wrapper {
   position: absolute;
-  top: 157.25em;
+  top: 173em;
   left: 1.5em;
   height: 50.56em;
   display: flex;
@@ -5040,7 +2310,7 @@ const getCity = (type = "register") => {
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 225.44em;
+  height: 250em;
 }
 .page-title1 {
   color: #3b3b3b;
@@ -5216,7 +2486,7 @@ const getCity = (type = "register") => {
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 225.63em;
+  height: 250em;
   overflow-y: hidden;
   text-align: left;
   color: #3b3b3b;
@@ -5235,12 +2505,12 @@ const getCity = (type = "register") => {
   }
   .group {
     width: 360px;
-    top: 47em;
+    top: 60em;
     left: 0em;
   }
   .registration-options {
     position: relative;
-    top: 72.31em;
+    top: 84em;
     width: 400px;
     height: 37.63em;
     margin: 0 auto;
@@ -5248,7 +2518,7 @@ const getCity = (type = "register") => {
   }
   .registration-options1 {
     position: relative;
-    top: 76em;
+    top: 87em;
     left: 1em;
     width: 400px;
     height: 43.31em;
@@ -5256,7 +2526,7 @@ const getCity = (type = "register") => {
   }
   .registration-options-wrapper {
     position: relative;
-    top: 80em;
+    top: 90em;
     left: 1em;
     height: 50.56em;
     display: flex;
@@ -5277,7 +2547,7 @@ const getCity = (type = "register") => {
   }
   .buttonnext {
     position: relative;
-    top: 222em;
+    top: 235em;
     margin: 0 auto;
     left: 1em;
     width: 400px;
@@ -5305,5 +2575,37 @@ const getCity = (type = "register") => {
   .buttonnext {
     top: 214em;
   }
+  .loader-group {
+    gap: 0.63em;
+    width: 100%;
+  }
+}
+.parent37 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  z-index: 100;
+}
+.parent37 {
+  width: 100%;
+  height: 4em;
+  gap: 0.5em;
+}
+.fields-password-and-mail-parent1 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.38em;
+}
+.parent39{
+  width: 100%;
+}
+.frame-parent17{
+  display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 </style>

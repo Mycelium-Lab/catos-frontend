@@ -24,8 +24,8 @@
           class="component-19"
           @click="() => setRole('borrower')"
           :to="{
-            name: title === 'Войти' ? 'login' : 'start',
-            state: { title: 'Регистрация заемщика', role: 'borrower' },
+            name: 'start',
+            state: { title: 'Регистрация заемщика'},
           }"
         >
           <div class="description-and-image">
@@ -45,11 +45,11 @@
           </div>
         </router-link>
         <router-link
-          @click="() => setRole('depositor')"
+          @click="() => setRole('investor')"
           class="component-191"
           :to="{
-            name: title === 'Войти' ? 'login' : 'start',
-            state: { title: 'Регистрация инвестора', role: 'depositor' },
+            name: 'start',
+            state: { title: 'Регистрация инвестора'},
           }"
           id="component19Container1"
         >
@@ -73,8 +73,8 @@
           @click="() => setRole('creditor')"
           class="component-193"
           :to="{
-            name: title === 'Войти' ? 'login' : 'start',
-            state: { title: 'Регистрация кредитора', role: 'creditor' },
+            name: 'start',
+            state: { title: 'Регистрация кредитора'},
           }"
         >
           <div class="description-and-image">
@@ -105,8 +105,8 @@
           class="component-193"
           @click="() => setRole('collector')"
           :to="{
-            name: title === 'Войти' ? 'login' : 'start',
-            state: { title: 'Регистрация заемщика', role: 'collector' },
+            name: 'start',
+            state: { title: 'Регистрация коллектора'},
           }"
         >
           <div class="description-and-image">
@@ -168,13 +168,18 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+import { useUserDataStore } from "@/stores/userData";
+import { type Role } from "../../types/user.types";
+import { roleStorage } from "@/utils/localStorage";
 import { useDevice } from "@/compossables/useDevice";
 import { useRouter } from "vue-router";
 
 const { isMobile } = useDevice();
 
-const setRole = (role: any) => {
-  localStorage.setItem("role", JSON.stringify(role));
+const userDataStore = useUserDataStore();
+const setRole = (role: Role) => {
+  roleStorage.set(role);
+  userDataStore.userDTO.role = role;
 };
 
 const router = useRouter();

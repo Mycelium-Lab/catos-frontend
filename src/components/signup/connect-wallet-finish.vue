@@ -104,13 +104,13 @@
         </div>
       </div>
       <div class="qr-code-2">
-        <img class="replace-me-icon" alt="" src="./public/replace-me@2x.png" />
+        <QrCodeStyling class="replace-me-icon" :data="qrCodeLink"/>
       </div>
       <div class="or-press-the-the-button-below-parent" id="frameContainer10">
-        <div class="or-press-the">Or press the the button below</div>
-        <router-link class="buttonnext1" to="success">
+        <div class="or-press-the">Waiting for wallet authorisation...</div>
+        <!-- <router-link class="buttonnext1" to="success">
           <b class="ton-kepeer">Sign in with Tokenkepeer</b>
-        </router-link>
+        </router-link> -->
       </div>
       <div class="we-do-not">
         We do not receive or store your wallet login details, so your TON is
@@ -134,7 +134,46 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { connectWallet, isWalletConnected } from '@/api/users.api';
+import { useUserDataStore } from '@/stores/userData';
+import router from '@/router';
+import QrCodeStyling from '../qr-code-styling.vue';
+
+function waitForWalletConnection() {
+  setTimeout(() => {
+    isWalletConnected()
+    .then((response) => {
+      if (response.data === true) {
+        console.log(response);
+        loading.value = false;
+        router.push({ name: 'success' });      
+      } else {
+        waitForWalletConnection();
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }, 1000);
+}
+
+const qrCodeLink = ref('');
+const loading = ref(false);
+onMounted(() => {
+  connectWallet()
+  .then((response) => {
+    console.log(response);
+    qrCodeLink.value = response.data.url;
+    loading.value = true;
+    waitForWalletConnection();
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+});
+</script>
 
 <style scoped lang="scss">
 .bg-icon {

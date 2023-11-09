@@ -30,7 +30,7 @@
                     type="date"
                     placeholder="01.02.2022"
                     :value="date"
-                    @selected="e => (date = e)"
+                    @selected="(e: any) => (date = e)"
                   ></input-data>
                   <div class="menu-2-parent">
                     <img

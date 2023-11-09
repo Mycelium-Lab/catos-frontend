@@ -1,5 +1,5 @@
 <template>
-  <textarea class="catos-textarea" :placeholder="placeholder"></textarea>
+  <textarea class="catos-textarea" :placeholder="placeholder" @input="selected"></textarea>
 </template>
 
 <script setup lang="ts">
@@ -11,6 +11,13 @@ const { placeholder } = defineProps({
     type: String,
   },
 });
+const emit = defineEmits(["selected"]);
+const selected = ($event: Event) => {
+  const target = $event.target as HTMLInputElement;
+  if (target) {
+    emit("selected", target.value);
+  }
+};
 </script>
 
 <style scoped lang="scss">

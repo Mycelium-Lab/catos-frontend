@@ -30,11 +30,11 @@
                 <span class="span">* </span>
               </div>
               <catos-select
-                placeholder="Россия"
-                :options="optionsState"
-                :value="valueState"
-                @selected="ev => (valueState = ev)"
-                :optionWidthDesk="352"
+                placeholder="Выбрать страну"
+                :options="countries"
+                :value="paperDataStore.paperDTO.country"
+                @selected="ev => (paperDataStore.paperDTO.country = ev)"
+                :optionWidth="77"
                 :style="{ width: '100%' }"
                 data-element="state"
               ></catos-select>
@@ -45,11 +45,13 @@
                 <span class="span">* </span>
               </div>
               <catos-select
-                placeholder="ОАО"
-                :options="optionsFormRegistration"
-                :value="valueFormRegistration"
-                @selected="ev => (valueFormRegistration = ev)"
-                :optionWidthDesk="352"
+                placeholder="Выбрать форму регистрации:"
+                :options="regOptions"
+                :value="paperDataStore.paperDTO.registration_form"
+                @selected="
+                  ev => (paperDataStore.paperDTO.registration_form = ev)
+                "
+                :optionWidth="77"
                 :style="{ width: '100%' }"
                 data-element="form"
               ></catos-select>
@@ -61,6 +63,7 @@
               </div>
               <input-data
                 placeholder="Введите наименование"
+                v-model:model-value="paperDataStore.paperDTO.name"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -77,6 +80,10 @@
               </div>
               <input-data
                 placeholder="Введите номер"
+                v-model:model-value="regNumberString.value"
+                @update:model-value="
+                  ev => (paperDataStore.paperDTO.registration_number = ev)
+                "
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -87,25 +94,154 @@
               ></input-data>
             </div>
             <div class="fieldsinputchoise">
-              <div class="div10">
-                <span>Адрес представительства компании </span>
-                <span class="span">* </span>
-              </div>
-              <input-data
-                placeholder="Ленинский пр-т 77, Г. Москва, ..."
-                :style="{ width: '100%' }"
-                :right="true"
-              >
-                <template v-slot:right-icon>
-                  <img
-                    src="@/assets/images/iconseditoutline-black.svg"
-                  /> </template
-              ></input-data>
+            <div class="div10">
+              <span>Область, край</span>
+              <span class="span2">* </span>
             </div>
+            <catos-select
+              placeholder="Московская"
+              :options="regions"
+              :value="paperDataStore.paperDTO.address.region"
+              :optionWidth="77"
+              :style="
+                paperDataStore.paperDTO.country !== 'Россия'
+                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                  : { width: '100%', opacity: '1' }
+              "
+              @selected="
+                ev =>
+                  (paperDataStore.paperDTO.address.region = ev)
+              "
+              :disabled="paperDataStore.paperDTO.country !== 'Россия'"
+            ></catos-select>
+          </div>
+
+          <div class="fieldsinput">
+            <div class="div10">
+              <span>Район</span>
+              <span class="span2">* </span>
+            </div>
+            <catos-select
+              :placeholder="paperDataStore.paperDTO.address.region !== '' && neighborhoods ? neighborhoods[0] : 'Воскресенск'"
+              :options="neighborhoods"
+              :value="
+                paperDataStore.paperDTO.address.neighborhood
+              "
+              :optionWidth="77"
+              :style="
+                paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'
+                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                  : { width: '100%', opacity: '1' }
+              "
+              @selected="
+                ev =>
+                  (paperDataStore.paperDTO.address.neighborhood =
+                    ev)
+              "
+              :disabled="paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'"
+            ></catos-select>
+          </div>
+          <div class="fieldsinputchoise3">
+            <div class="div10">Населенный пункт</div>
+            <catos-select
+              :placeholder="paperDataStore.paperDTO.address.region !== '' && cities ? cities[0] : 'Москва'"
+              :options="cities"
+              :value="paperDataStore.paperDTO.address.city"
+              :optionWidth="77"
+              :style="
+               paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'
+                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                  : { width: '100%', opacity: '1' }
+              "
+              @selected="
+                ev => (paperDataStore.paperDTO.address.city = ev)
+              "
+               :disabled="paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'"
+            ></catos-select>
+          </div>
+          <div class="text2">
+            <div class="div10">Улица</div>
+            <input-data
+              placeholder="Начните вводить адресс"
+              :style="{ width: '100%' }"
+              :right="true"
+              @update:model-value="
+                ev =>
+                  (paperDataStore.paperDTO.address.street = ev)
+              "
+            >
+              <template v-slot:right-icon>
+                <img src="@/assets/images/iconseditoutline-black.svg" />
+              </template>
+            </input-data>
+          </div>
+          <div class="frame-parent5">
+            <div class="frame-parent3">
+              <div class="parent11">
+                <div class="div10">Дом</div>
+                <input-data
+                  placeholder="1"
+                  :style="{ width: '100%' }"
+                  @update:model-value="
+                    ev =>
+                      (paperDataStore.paperDTO.address.house = ev)
+                  "
+                ></input-data>
+              </div>
+              <div class="parent11">
+                <div class="div10">Корпус</div>
+                <input-data
+                  placeholder="1"
+                  :style="{ width: '100%' }"
+                  @update:model-value="
+                    ev =>
+                      (paperDataStore.paperDTO.address.housing = ev)
+                  "
+                ></input-data>
+              </div>
+            </div>
+            <div class="frame-parent3" :style="{ marginTop: '1em' }">
+              <div class="parent11">
+                <div class="div10">Строение</div>
+                <input-data
+                  placeholder="1"
+                  :style="{ width: '100%' }"
+                  @update:model-value="
+                    ev =>
+                      (paperDataStore.paperDTO.address.building =
+                        ev)
+                  "
+                ></input-data>
+              </div>
+              <div class="parent11">
+                <div class="div10">Квартира</div>
+                <input-data
+                  placeholder="1"
+                  :style="{ width: '100%' }"
+                  @update:model-value="
+                    ev =>
+                      (paperDataStore.paperDTO.address.apartment =
+                        ev)
+                  "
+                ></input-data>
+              </div>
+            </div>
+            <div class="parent11" :style="{ marginTop: '1em' }">
+              <div class="div10">Индекс</div>
+                <input-data
+                  placeholder="193 984"
+                  :style="{ width: '100%' }"
+                  @update:model-value="
+                    ev => (paperDataStore.paperDTO.address.index = ev)
+                  "
+                ></input-data>
+            </div>
+        </div>
             <div class="fieldsinputchoise">
               <div class="div10">Веб-сайт организации</div>
               <input-data
-                placeholder="catos.ru"
+                placeholder="Введите адрес сайта"
+                v-model:model-value="paperDataStore.paperDTO.website"
                 :style="{ width: '100%' }"
                 :right="true"
               >
@@ -129,10 +265,16 @@
               <div class="organizmloader">
                 <div class="frame-group">
                   <loader-field
+                    name="Business registration proof"
+                    :obligatory-field="true"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                     class="loader-file"
+                    @on-change="file => saveImage('regProof', file)"
                   ></loader-field>
-                  <div class="text-parent">
+                  <div
+                    v-if="userDataStore.regProof != null"
+                    class="text-parent"
+                  >
                     <div class="icons-parent">
                       <div class="icons">
                         <div class="iconsfile">
@@ -146,14 +288,13 @@
                       <div class="frame-wrapper">
                         <div class="goa-filejpg-wrapper">
                           <div class="business-registration-proof-container">
-                            Goa_file
-                            <span class="jpg1">.jpg</span>
+                            {{ userDataStore.regProof.name }}
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="loader1">
-                      <div class="loader2">
+                      <!-- <div class="loader2">
                         <img
                           class="loader-child"
                           alt=""
@@ -161,15 +302,25 @@
                         />
 
                         <div class="div22">12%</div>
-                      </div>
-                      <img
-                        class="loader-child"
-                        alt=""
-                        src="../public/remove.svg"
-                      />
+                      </div> -->
+                      <button
+                        class="button-remove"
+                        @click="
+                          () => {
+                            userDataStore.regProof = null;
+                            paperDataStore.paperDTO.first_photo = '';
+                          }
+                        "
+                      >
+                        <img
+                          class="loader-child"
+                          alt=""
+                          src="../public/remove.svg"
+                        />
+                      </button>
                     </div>
                   </div>
-                  <div class="text-parent">
+                  <!-- <div class="text-parent">
                     <div class="icons-parent">
                       <div class="icons">
                         <div class="iconsfile">
@@ -205,15 +356,67 @@
                         src="../public/remove.svg"
                       />
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="organizmloader1">
                 <div class="business-registration-proof-group">
                   <loader-field
                     class="loader-file"
+                    :obligatory-field="true"
+                    name="Operating address proof"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
+                    @on-change="file => saveImage('addrProof', file)"
                   ></loader-field>
+                  <div
+                    v-if="userDataStore.addrProof != null"
+                    class="text-parent"
+                  >
+                    <div class="icons-parent">
+                      <div class="icons">
+                        <div class="iconsfile">
+                          <img
+                            class="vector-icon"
+                            alt=""
+                            src="../public/vector.svg"
+                          />
+                        </div>
+                      </div>
+                      <div class="frame-wrapper">
+                        <div class="goa-filejpg-wrapper">
+                          <div class="business-registration-proof-container">
+                            {{ userDataStore.addrProof.name }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="loader1">
+                      <!-- <div class="loader2">
+                        <img
+                          class="loader-child"
+                          alt=""
+                          src="../public/frame-1817486.svg"
+                        />
+
+                        <div class="div22">12%</div>
+                      </div> -->
+                      <button
+                        class="button-remove"
+                        @click="
+                          () => {
+                            userDataStore.addrProof = null;
+                            paperDataStore.paperDTO.second_photo = '';
+                          }
+                        "
+                      >
+                        <img
+                          class="loader-child"
+                          alt=""
+                          src="../public/remove.svg"
+                        />
+                      </button>
+                    </div>
+                  </div>
                 </div>
                 <div class="checkbox-parent">
                   <catos-checkbox></catos-checkbox>
@@ -226,26 +429,73 @@
                 <div class="business-registration-proof-group">
                   <loader-field
                     class="loader-file"
+                    name="Extra documents"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
+                    @on-change="file => saveImage('extraDocs', file)"
                   ></loader-field>
-                </div>
+                  <div
+                    v-if="userDataStore.extraDocs != null"
+                    class="text-parent"
+                  >
+                    <div class="icons-parent">
+                      <div class="icons">
+                        <div class="iconsfile">
+                          <img
+                            class="vector-icon"
+                            alt=""
+                            src="../public/vector.svg"
+                          />
+                        </div>
+                      </div>
+                      <div class="frame-wrapper">
+                        <div class="goa-filejpg-wrapper">
+                          <div class="business-registration-proof-container">
+                            {{ userDataStore.extraDocs.name }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="loader1">
+                      <!-- <div class="loader2">
+                        <img
+                          class="loader-child"
+                          alt=""
+                          src="../public/frame-1817486.svg"
+                        />
 
-                <template right-icon>
-                  <img src="@/assets/images/iconseditoutline-black.svg" />
-                </template>
+                        <div class="div22">12%</div>
+                      </div> -->
+                      <button
+                        class="button-remove"
+                        @click="
+                          () => {
+                            userDataStore.extraDocs = null;
+                            paperDataStore.paperDTO.third_photo = '';
+                          }
+                        "
+                      >
+                        <img
+                          class="loader-child"
+                          alt=""
+                          src="../public/remove.svg"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
               <catos-select
                 placeholder="PDF"
-                :options="optionsFile"
-                :value="valueFile"
-                @selected="ev => (valueFile = ev)"
+                 :options="optionsFile"
+                :value="userDataStore.extraDocsType"
+                @selected="
+                  ev => (userDataStore.extraDocsType = ev)
+                "
                 :optionWidthDesk="320"
                 :style="{
                   width: '90%',
                   margin: '0 auto',
-                  marginTop: '0.5em',
-                  positio: 'absolute',
-                  top: '-5.7em',
+                  marginTop: '0.5em'
                 }"
                 data-element="file"
               ></catos-select>
@@ -254,7 +504,9 @@
           <div class="text-declaration">
             <div class="declaration">Declaration:</div>
             <div class="checkbox-group">
-              <catos-checkbox></catos-checkbox>
+              <catos-checkbox
+                @on-change="arg => handleCheckboxChange(arg)"
+              ></catos-checkbox>
 
               <div class="by-submitting-this">
                 By submitting this form, you confirm that:
@@ -294,6 +546,7 @@
         </div>
         <router-link
           class="buttonnext"
+          :class="{ disabled: !isLinkActive || !allDataEntered }"
           id="buttonNextContainer"
           :to="{
             name: 'anketa',
@@ -343,77 +596,89 @@ import catosSelect from "../../../components/fields/catos-select.vue";
 import inputData from "../../../components/fields/input-data.vue";
 import loaderField from "../../../components/fields/loader-field.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
-
+import { ref, computed, reactive } from "vue";
+import { useUserDataStore } from "@/stores/userData";
+import { usePaperDataStore } from "@/stores/paperData"
+import countries from "@/json/countries.json"
+import regions from "@/json/regions.json"
+import { useCityList } from '@/composables/useCityList'
+import { useNeighborhoodList } from "@/composables/useNeighborhoodList"
 import { useDevice } from "@/compossables/useDevice";
 
+const userDataStore = useUserDataStore();
+const paperDataStore = usePaperDataStore();
+
 const { isMobile } = useDevice();
-import { ref } from "vue";
-const valueState = ref("");
-const valueFormRegistration = ref("");
-const valueFile = ref("");
 const optionsFile = ["PDF", "TXT", "DOC", "ZIP", "RAR"];
-const optionsFormRegistration = ["ОАО", "АО", "ПАО"];
-const optionsState = {
-  euro: [
-    "Россия",
-    "Германия",
-    "Великобритания",
-    "Франиця",
-    "Италия",
-    "Испания",
-    "Украина",
-    "Польша",
-    "Румыния",
-    "Нидерланды",
-    "Беларусь",
-    "Греция",
-    "Португалия",
-    "Чехия",
-    "Швеция",
-  ],
-  asia: [
-    "Китай",
-    "Индия",
-    "Индонезия",
-    "Пакистан",
-    "Бангладеш",
-    "Япония",
-    "Филиппины",
-    "Вьетнам",
-    "Турция",
-    "Иран",
-    "Таиланд",
-    "Мьянма",
-    "Южная Корея",
-    "Ирак",
-    "Афганистан",
-  ],
-  africa: [
-    "Нигерия",
-    "Эфиопия",
-    "Египет",
-    "ДР Конго",
-    "Южная Африка",
-    "Танзания",
-    "Судан",
-    "Алжир",
-    "Уганда",
-    "Морокко",
-  ],
-  america: [
-    "США",
-    "Бразилия",
-    "Мексика",
-    "Колумбия",
-    "Аргентина",
-    "Перу",
-    "Венесуэла",
-    "Чили",
-    "Гватемала",
-    "Эквадор",
-  ],
-  australia_okeania: ["Австралия", "Папуа - Новая Гвинея", "Новая Зеландия"],
+
+const regOptions = {
+  sng: ["ОАО", "АО", "ПАО"],
+  euro: ["LTD", "LLC", "Sole proprietorship"],
 };
+
+const {citiesByRegion} = useCityList('registration', 'paper')
+const {neighborhoodByRegion} = useNeighborhoodList('registration', 'paper')
+
+const cities = computed(() => {
+    return citiesByRegion.value
+});
+const neighborhoods = computed(() => {
+    return neighborhoodByRegion.value
+});
+
+const checkbox = reactive({
+  checked: false,
+});
+const handleCheckboxChange = (checked: boolean) => {
+  checkbox.checked = checked;
+};
+const isLinkActive = computed(() => {
+  return checkbox.checked;
+});
+
+const regNumberString = reactive({
+  value:
+  paperDataStore.paperDTO.registration_number === 0
+      ? ""
+      : paperDataStore.paperDTO.registration_number.toString(),
+});
+const addressString = computed(() => {
+  return paperDataStore.paperDTO.address.toString();
+});
+const saveImage = async (boxName: string, file: File | null) => {
+  if (file) {
+    switch (boxName) {
+      case "regProof":
+        userDataStore.regProof = file;
+        paperDataStore.paperDTO.first_photo = 'Goa_file2.jpg';
+        break;
+      case "addrProof":
+        userDataStore.addrProof = file;
+        paperDataStore.paperDTO.second_photo = 'Goa_file2.jpg';
+        break;
+      case "extraDocs":
+        userDataStore.extraDocs = file;
+        paperDataStore.paperDTO.third_photo =' Goa_file2.jpg';
+        break;
+      default:
+        break;
+    }
+    console.log("File saved");
+  } else {
+    console.log("File is null");
+  }
+};
+const allDataEntered = computed(() => {
+  return (
+    paperDataStore.paperDTO.country !== "" &&
+    paperDataStore.paperDTO.registration_form !== "" &&
+    paperDataStore.paperDTO.name !== "" &&
+    paperDataStore.paperDTO.registration_number !== 0 &&
+    paperDataStore.paperDTO.address !== null &&
+    paperDataStore.paperDTO.first_photo !== null &&
+    paperDataStore.paperDTO.second_photo !== null
+  );
+});
 </script>
 
 <style scoped lang="scss">
@@ -462,7 +727,7 @@ const optionsState = {
   backdrop-filter: blur(5px);
   border: 0.5px solid #2e3a59;
   box-sizing: border-box;
-  height: 33.75em;
+  height: 63em;
 }
 .span {
   color: red;
@@ -530,7 +795,10 @@ const optionsState = {
   width: 100%;
 }
 .fieldsinputchoise,
-.fieldsinputchoise1 {
+.fieldsinputchoise1,
+.fieldsinput, .fieldsinputchoise3, .text2,
+.parent11
+ {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -606,7 +874,7 @@ const optionsState = {
   backdrop-filter: blur(5px);
   border: 0.5px solid #2e3a59;
   box-sizing: border-box;
-  height: 40.75em;
+  height: 41.5em;
 }
 .div20 {
   position: relative;
@@ -883,7 +1151,10 @@ const optionsState = {
   background-color: rgba(237, 244, 255, 0.3);
   overflow: hidden;
   gap: 0.63em;
-  height: 10.57em;
+  height: auto;
+  display: block;
+  overflow: visible;
+  display: flex;
 }
 .x-forms {
   position: absolute;
@@ -971,7 +1242,7 @@ const optionsState = {
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 0.38em;
+  gap: 1em;
 }
 .frame-parent1,
 .registration-options-parent,
@@ -985,16 +1256,19 @@ const optionsState = {
   align-self: stretch;
   gap: 0.88em;
 }
-.registration-options-parent,
-.text-declaration {
-  gap: 1.25em;
+.registration-options-parent {
+  gap: 3.25em;
+}
+
+.text-declaration{
+  gap: 1.25em
 }
 .text-declaration {
   width: 100%;
 }
 .registration-options-parent {
   position: absolute;
-  top: 37.25em;
+  top: 65.25em;
   left: 0;
   width: 88.7vw;
 }
@@ -1013,8 +1287,14 @@ const optionsState = {
   position: absolute;
   width: 21.38em;
 }
+.button-remove {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
 .buttonnext {
-  top: 92.44em;
+  top: 124em;
   left: 0;
   border-radius: 20px;
   background-color: #ffdb6d;
@@ -1090,7 +1370,7 @@ const optionsState = {
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 106.5em;
+  height: 160em;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -1243,7 +1523,7 @@ const optionsState = {
   font-family: Inter;
   overflow-x: hidden;
   &_desktop {
-    height: 125.44em;
+    height: 160em;
   }
 }
 @media (min-width: 500px) {
@@ -1278,8 +1558,12 @@ const optionsState = {
   .iphone-13-13-form-registr {
     overflow-y: hidden;
   }
-  .form-registration-36 {
+  /*.form-registration-36 {
     height: 100%;
-  }
+  }*/
+}
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 </style>

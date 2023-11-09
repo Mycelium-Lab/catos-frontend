@@ -11,29 +11,63 @@
         <div class="text-and-button">
           <div class="text">
             <div class="component-20-parent">
-              <catos-checkbox variant="rounded"></catos-checkbox>
-
+              <catos-checkbox
+                @on-change="arg => handleCheckboxChange('box1', arg)"
+                variant="rounded"
+              ></catos-checkbox>
               <div class="div9">
-                Я даю согласие на обработку, хранение моих персональных данных ,
-                а так жа данных компании, которую я представляю
+                Я даю согласие на обработку и хранение моих персональных данных
+                <div
+                  v-if="
+                    roleStorage.get() === 'creditor' ||
+                    roleStorage.get() === 'collector'
+                  "
+                >
+                  а также данных компании, которую я представляю
+                </div>
               </div>
             </div>
             <div class="frame-group">
-              <div class="component-20-group">
-                <catos-checkbox variant="rounded"></catos-checkbox>
+              <div
+                class="component-20-group"
+                v-if="
+                  roleStorage.get() === 'creditor' ||
+                  roleStorage.get() === 'collector'
+                "
+              >
+                <catos-checkbox
+                  @on-change="arg => handleCheckboxChange('box2', arg)"
+                  variant="rounded"
+                ></catos-checkbox>
 
                 <div class="div9">
                   <p class="p">Подтверждаю, что имею право представлять</p>
                   <p class="p">свою организацию</p>
                 </div>
               </div>
-              <div class="component-20-group">
-                <catos-checkbox variant="rounded"></catos-checkbox>
+              <div
+                class="component-20-group"
+                v-if="
+                  roleStorage.get() === 'creditor' ||
+                  roleStorage.get() === 'collector'
+                "
+              >
+                <catos-checkbox
+                  @on-change="arg => handleCheckboxChange('box3', arg)"
+                  variant="rounded"
+                ></catos-checkbox>
 
-                <div class="div9">
+                <div class="div9" v-if="roleStorage.get() === 'creditor'">
                   Продолжая, я соглашаюсь, что моя организация имеет право
                   оказания услуг кредиторской деятельности
                 </div>
+                <div class="div9" v-else-if="roleStorage.get() === 'collector'">
+                  Продолжая, я соглашаюсь, что моя организация имеет право
+                  оказания услуг коллекторской деятельности
+                </div>
+              </div>
+              <div class="div9">
+                <b>{{ errorMessage }}</b>
               </div>
             </div>
           </div>
@@ -55,6 +89,8 @@
             </div>
             <input-data
               class="phone-field"
+              v-model:model-value="userDataStore.userDTO.phone"
+              type="phone"
               placeholder="Ваш номер телефона"
               :style="{ width: '90%' }"
               :left="true"
@@ -77,9 +113,11 @@
             </div>
             <input-data
               class="phone-field"
+              v-model:model-value="userDataStore.userDTO.email"
               placeholder="Ваш email"
               :style="{ width: '90%' }"
               :left="true"
+              type="email"
             >
               <template v-slot:left-icon>
                 <img src="@/assets/images/iconsmail.svg" />
@@ -89,6 +127,7 @@
           <div class="fieldsregistration-options2">
             <input-data
               class="password-field phone-field"
+              v-model:model-value="userDataStore.userDTO.password"
               placeholder="Пароль"
               :style="{ width: '90%' }"
               :left="true"
@@ -100,6 +139,7 @@
             </input-data>
             <input-data
               class="password-field-repead password-field phone-field"
+              v-model:model-value="repeatPass"
               placeholder="Пароль"
               :style="{ width: '90%' }"
               :left="true"
@@ -127,16 +167,13 @@
         </div>
       </div>
     </div>
-    <router-link
+    <div
       class="buttonnext"
-      :to="{
-        name: 'confirm',
-        state: { role },
-      }"
+      @click.native="handleNextClick"
+      :class="{ disabled: !isLinkActive }"
     >
-      <b class="b1">Продолжить</b></router-link
-    >
-
+      <b class="b1">Продолжить</b>
+    </div>
     <div class="slidersteps">
       <div class="loader"></div>
       <div class="numbers">
@@ -160,20 +197,61 @@
 </template>
 
 <script setup lang="ts">
-import catosSelect from "../../components/fields/catos-select.vue";
 import inputData from "../../components/fields/input-data.vue";
-import loaderField from "../../components/fields/loader-field.vue";
 import catosCheckbox from "../../components/ui-kit/catos-checkbox.vue";
-import { ref, computed } from "vue";
-const value = ref("");
-const options = {
-  sng: ["Россия", "Украина", "Казахстан"],
-  euro: ["Польша", "Латвия", "Молдова"],
-};
+import { ref, computed, reactive, KeepAlive } from "vue";
+import { useUserDataStore } from "@/stores/userData";
+import { roleStorage } from "@/utils/localStorage";
+import { register } from "@/api/users.api";
+import router from "@/router";
+
 const title = computed(() => {
   return window.history.state.title;
 });
-const role = computed(() => window.history.state?.role);
+const userDataStore = useUserDataStore();
+const handleCheckboxChange = (
+  checkboxName: keyof typeof checkboxes,
+  checked: boolean
+) => {
+  if (checkboxes.hasOwnProperty(checkboxName)) {
+    checkboxes[checkboxName] = checked;
+  }
+};
+const checkboxes = reactive({
+  box1: false,
+  box2: false,
+  box3: false,
+});
+const repeatPass = ref("");
+const isLinkActive = computed(() => {
+  return (
+    (roleStorage.get() === "collector" || roleStorage.get() === "creditor"
+      ? checkboxes.box1 && checkboxes.box2 && checkboxes.box3
+      : checkboxes.box1) &&
+    repeatPass.value === userDataStore.userDTO.password &&
+    userDataStore.userDTO.email &&
+    userDataStore.userDTO.password &&
+    userDataStore.userDTO.phone
+  );
+});
+const handleNextClick = async () => {
+  errorMessage.value = "";
+  register(userDataStore.userDTO)
+    .then(res => {
+      console.log("User register success");
+      router.push({ name: "confirm" });
+    })
+    .catch(err => {
+      console.log("User register error:", err.response.data);
+      errorMessage.value =
+        err.response.data.type +
+        ": " +
+        err.response.data.object +
+        ": " +
+        err.response.data.details;
+    });
+};
+const errorMessage = ref("");
 </script>
 
 <style scoped lang="scss">
@@ -763,6 +841,7 @@ const role = computed(() => window.history.state?.role);
 }
 .buttonnext {
   top: 56.13em;
+  cursor: pointer;
   left: 6vw;
   border-radius: 20px;
   background-color: #ffdb6d;
@@ -976,32 +1055,8 @@ const role = computed(() => window.history.state?.role);
 .password-field-repead {
   top: 5em;
 }
-@media (min-width: 500px) {
-  .div8 {
-    width: 342px;
-    position: relative;
-    margin: 0 auto;
-    left: 0em;
-    top: 4em;
-  }
-  .buttonnext {
-    width: 342px;
-    position: relative;
-    margin: 0 auto;
-    left: 0em;
-    top: 58em;
-  }
-  /*.form-registration-16,
-  .iphone-13-13- {
-    height: 100%;
-  }*/
-  .div19,
-  .div20 {
-    font-size: 14px;
-  }
-  .div21,
-  .div12 {
-    font-size: 16px;
-  }
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 </style>

@@ -59,24 +59,16 @@
     <template v-slot:tools>
       <tool-bar role="depositor"></tool-bar>
     </template>
-    <template v-slot:body>
-      <div class="frame-div">
-        <ul>
-          <li class="depositor-list" v-for="n in 5" :key="n">
-            <pulls-table
-              role="depositor"
-              :variant="curentWindow"
-              :key="curentWindow"
-            ></pulls-table>
-          </li>
-        </ul>
-      </div>
-    </template>
+    <pulls-table
+      role="depositor"
+      :variant="curentWindow"
+      :key="curentWindow"
+    ></pulls-table>
   </default-desktop>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { Ref, computed, ref } from "vue";
 import { useRouter } from "vue-router";
 import bottomsheet from "@/components/ui-kit/bottomsheet.vue";
 import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
@@ -84,9 +76,9 @@ import depositorList from "@/components/pulls/depositor/depositor-list.vue";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
 import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
-
+import { listPools } from "@/api/pools.api";
 import { useDevice } from "@/compossables/useDevice";
-
+import { Pool } from "@/types/pool.type";
 const { isMobile } = useDevice();
 
 import appBar from "@/components/ui-kit/app-bar.vue";
@@ -284,7 +276,6 @@ ul {
   line-height: 0.83em;
 }
 .buttons-tabs-parent,
-.frame-div,
 .percent-parent {
   display: flex;
   flex-direction: row;
@@ -293,11 +284,6 @@ ul {
   gap: 0.5em;
 }
 .buttons-tabs-parent,
-.frame-div {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.63em;
-}
 .buttons-tabs-parent {
   position: absolute;
   top: 0.94em;

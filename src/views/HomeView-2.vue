@@ -7,7 +7,7 @@
     <router-link
       class="rectangle-parent"
       id="groupContainer"
-      :to="{ name: 'roles', state: { title: 'Войти' } }"
+      :to="{ name: 'login', state: { title: 'Войти' } }"
     >
       <div class="group-child">
         <b class="b">Войти</b>
@@ -51,7 +51,7 @@ import { useDevice } from "@/compossables/useDevice";
 const { isMobile } = useDevice();
 const router = useRouter();
 const login = () => {
-  router.push({ name: "roles", state: { title: "Войти" } });
+  router.push({ name: "login", state: { title: "Войти" } });
 };
 const register = () => {
   router.push({ name: "roles", state: { title: "Регистрация" } });

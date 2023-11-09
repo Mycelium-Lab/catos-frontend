@@ -32,7 +32,7 @@
             <input-data
               :style="{ width: '456px' }"
               placeholder="10 000 TON"
-              @selected="e => (inputValue = e)"
+              @selected="(e:any) => (inputValue = e)"
               type="number"
             ></input-data>
           </div>

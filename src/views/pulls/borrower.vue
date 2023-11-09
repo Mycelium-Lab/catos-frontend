@@ -47,17 +47,11 @@
       <tool-bar role="borrower" variant="pulls"></tool-bar>
     </template>
     <template v-slot:body>
-      <div class="frame-div">
-        <ul>
-          <li class="depositor-list" v-for="n in 5" :key="n">
-            <pulls-table
-              role="borrower"
-              :variant="curentWindow"
-              :key="curentWindow"
-            ></pulls-table>
-          </li>
-        </ul>
-      </div>
+      <pulls-table
+        role="borrower"
+        :variant="curentWindow"
+        :key="curentWindow"
+      ></pulls-table>
     </template>
   </default-desktop>
 </template>
@@ -301,7 +295,6 @@ ul {
   line-height: 0.83em;
 }
 .buttons-tabs-parent,
-.frame-div,
 .percent-parent {
   display: flex;
   flex-direction: row;
@@ -310,11 +303,6 @@ ul {
   gap: 0.5em;
 }
 .buttons-tabs-parent,
-.frame-div {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.63em;
-}
 .buttons-tabs-parent {
   position: absolute;
   top: 0.94em;
