@@ -91,12 +91,6 @@
       <create-pull-desktop
         v-if="isСreatePull"
         @close="() => (isСreatePull = false)"
-        @create="
-          () => {
-            isСreatePull = false;
-            isСonfirmQr = true;
-          }
-        "
       ></create-pull-desktop>
       <confirm-qr-destop
         v-if="isСonfirmQr"
