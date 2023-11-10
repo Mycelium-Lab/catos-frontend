@@ -122,14 +122,14 @@
           <catos-button
             variant="fourth"
             :style="{ width: '100%', margin: '0' }"
-            @click="getLoan"
-            >Получить займ</catos-button
+            @click="toWidthdraw"
+            >Изъять ликвидность</catos-button
           >
           <catos-button
             variant="fourth"
             :style="{ width: '100%', margin: '0' }"
-            @click="toInvest"
-            >Инвестировать в пулл</catos-button
+            @click="toAdd"
+            >Добавить ликвидность</catos-button
           >
         </div>
       </div>
@@ -147,12 +147,13 @@ import desktopModal from "@/components/base/desktop-modal.vue";
 // @ts-ignore
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
-const emits = defineEmits(["close", "get-loan", "invest"]);
-const toInvest = () => {
-  emits("invest");
+const emits = defineEmits(["close", "add", "widthdraw"]);
+
+const toAdd = () => {
+  emits("add");
 };
-const getLoan = () => {
-  emits("get-loan");
+const toWidthdraw = () => {
+  emits("widthdraw");
 };
 const close = () => {
   emits("close");
