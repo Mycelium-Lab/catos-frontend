@@ -59,16 +59,18 @@
     <template v-slot:tools>
       <tool-bar role="depositor"></tool-bar>
     </template>
-    <pulls-table
-      role="depositor"
-      :variant="curentWindow"
-      :key="curentWindow"
-    ></pulls-table>
+    <template v-slot:body>
+      <pulls-table
+        role="depositor"
+        :variant="curentWindow"
+        :key="curentWindow"
+      ></pulls-table>
+    </template>
   </default-desktop>
 </template>
 
 <script setup lang="ts">
-import { Ref, computed, ref } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import bottomsheet from "@/components/ui-kit/bottomsheet.vue";
 import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
@@ -76,9 +78,7 @@ import depositorList from "@/components/pulls/depositor/depositor-list.vue";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
 import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
-import { listPools } from "@/api/pools.api";
 import { useDevice } from "@/compossables/useDevice";
-import { Pool } from "@/types/pool.type";
 const { isMobile } = useDevice();
 
 import appBar from "@/components/ui-kit/app-bar.vue";
