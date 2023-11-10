@@ -10,3 +10,12 @@ export const listPools = () => {
 export const createPool = (payload: CreatePoolData) => {
   return baseApiClient.post(POOL_END_POINT, payload);
 };
+export const investToPool = () => {
+  return baseApiClient.post(POOL_END_POINT + '/invest');
+};
+export const depositToPool = (payload: CreatePoolData) => {
+  return baseApiClient.post(POOL_END_POINT + '/deposit', payload);
+};
+export const withdrawFromPool = (payload: CreatePoolData) => {
+  return baseApiClient.post(POOL_END_POINT + '/withdraw', payload);
+};

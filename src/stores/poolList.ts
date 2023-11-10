@@ -14,8 +14,12 @@ export const usePoolListStore = defineStore("poolList", () => {
     const userId = getUserId();
     return pools.value.filter(val => val.owner_id == userId);
   });
+  const verifiedPools = computed(() => {
+    return pools.value.filter(val => val.is_verified == true);
+  });
   return {
     pools,
     creditorPools,
+    verifiedPools,
   };
 });
