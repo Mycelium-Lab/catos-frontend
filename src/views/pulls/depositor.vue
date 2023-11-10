@@ -59,10 +59,10 @@
     <template v-slot:tools>
       <tool-bar role="depositor"></tool-bar>
     </template>
-    <pools>
+    <pools
       role="depositor"
       :variant="curentWindow"
-      :key="curentWindow"
+      :key="curentWindow">
     </pools>
   </default-desktop>
 </template>
