@@ -60,11 +60,11 @@
       <tool-bar role="depositor"></tool-bar>
     </template>
     <template v-slot:body>
-      <pulls-table
+      <pools
         role="depositor"
         :variant="curentWindow"
-        :key="curentWindow"
-      ></pulls-table>
+        :key="curentWindow">
+      </pools>
     </template>
   </default-desktop>
 </template>
@@ -77,17 +77,14 @@ import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import depositorList from "@/components/pulls/depositor/depositor-list.vue";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
-import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
 import { useDevice } from "@/compossables/useDevice";
-const { isMobile } = useDevice();
-
+import pools from "./pulls.vue"
 import appBar from "@/components/ui-kit/app-bar.vue";
 
+const { isMobile } = useDevice();
 const isBackSide = ref(false);
 const curentWindow = ref("all");
-
 const isAppBar = ref(true);
-
 const router = useRouter();
 
 const toSort = () => {
