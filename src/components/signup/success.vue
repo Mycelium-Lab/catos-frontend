@@ -83,7 +83,24 @@ import { roleStorage } from "@/utils/localStorage";
 
 const router = useRouter();
 const toPools = () => {
-  router.push(`/pulls/${roleStorage.get()}`);
+  switch(roleStorage.get()) {
+    case 'borrower': {
+      router.push(`/pulls/borrower`);
+      break;
+    }
+    case 'collector': {
+      router.push(`/pulls/collector`);
+      break;
+    }
+    case 'investor': {
+      router.push(`/pulls/depositor`);
+      break;
+    }
+    case 'creditor': {
+      router.push(`/pulls/creditor`);
+      break;
+    }
+  }
 };
 </script>
 
