@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title> Информация о пулле №1223 </template>
+    <template v-slot:title> {{ `Информация о пулле №${pool.id}`}} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -12,7 +12,7 @@
                 src="@/assets/images/pie-chart.svg"
               />
               <div class="ton-parent">
-                <div class="ton">1 537 000 TON</div>
+                <div class="ton">{{ pool.available_liquidity }} TON</div>
                 <div class="div1">Одобренный лимит</div>
               </div>
             </div>
@@ -65,28 +65,28 @@
           <div class="field-parent">
             <div class="field">
               <div class="div7">Одобренный лимит:</div>
-              <div class="ton1">до 50 000 TON</div>
+              <div class="ton1">до {{ pool.available_liquidity }} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div7">Ставка:</div>
-              <div class="ton1">1% в день</div>
+              <div class="ton1">{{ pool.millipercent }}% в день</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div7">Беспроцентный период:</div>
-              <div class="ton1">3 дня</div>
+              <div class="ton1">{{ freePeriodParsed }}</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div7">Всего ликвидности:</div>
-              <div class="ton1">450 000 TON</div>
+              <div class="ton1">{{ pool.all_liquidity }} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -122,14 +122,14 @@
           <catos-button
             variant="fourth"
             :style="{ width: '100%', margin: '0' }"
-            @click="toWidthdraw"
-            >Изъять ликвидность</catos-button
+            @click="getLoan"
+            >Получить займ</catos-button
           >
           <catos-button
             variant="fourth"
             :style="{ width: '100%', margin: '0' }"
-            @click="toAdd"
-            >Добавить ликвидность</catos-button
+            @click="toInvest"
+            >Инвестировать в пулл</catos-button
           >
         </div>
       </div>
@@ -141,19 +141,29 @@
   ></creditor-info>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType } from "vue";
 // @ts-ignore
 import desktopModal from "@/components/base/desktop-modal.vue";
 // @ts-ignore
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
-const emits = defineEmits(["close", "add", "widthdraw"]);
+import { Pool } from "@/types/pool.type";
 
-const toAdd = () => {
-  emits("add");
+const { pool } = defineProps({
+  pool: {
+    type: Object as PropType<Pool>,
+    required: true
+  },
+  freePeriodParsed: {type: String},
+  durationParsed: {type: String}
+});
+
+const emits = defineEmits(["close", "get-loan", "invest"]);
+const toInvest = () => {
+  emits("invest");
 };
-const toWidthdraw = () => {
-  emits("widthdraw");
+const getLoan = () => {
+  emits("get-loan");
 };
 const close = () => {
   emits("close");

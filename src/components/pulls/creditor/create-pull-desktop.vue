@@ -87,13 +87,20 @@
         </div>
       </div>
     </div>
+    <transaction-desktop v-if="isTransaction && !transactionStatus" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
   </div>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
 // import catosSelect from "@/components/fields/catos-select.vue";
 import rangeSlider from "@/components/ui-kit/range-slider.vue";
+import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import { createPool } from "@/api/pools.api";
+
+const isTransaction = ref(false)
+const transactionStatus = ref('')
 
 const emtis = defineEmits(["close", "create"]);
 // const valueToken = ref("");
@@ -106,6 +113,7 @@ const close = () => {
 };
 const toSeconds = (days: number) => days * 24 * 60 * 60;
 const create = async () => {
+  isTransaction.value = true
   await createPool({
     millipercent: percent.value * 100,
     overdue_millipercent: percent.value * 100, // TODO: добавить поля для ввода остальных данных
@@ -115,8 +123,11 @@ const create = async () => {
     free_period: toSeconds(freePeriod.value),
   }).then(res => {
     console.log(res);
-  });
-  emtis("create");
+    transactionStatus.value = 'success'
+  }).catch(e => {
+    transactionStatus.value = 'fail'
+    console.error(e)
+  })
 };
 </script>
 <style scoped lang="scss">

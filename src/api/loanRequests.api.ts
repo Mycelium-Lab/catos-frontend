@@ -1,7 +1,7 @@
 import { baseApiClient } from "./baseApiClient";
 import { LoansRequestPayload, LoansRequestResponse } from "../types/loan.types"
 
-const LOAN_REQUESTS_END_POINT = "/loanRequests";
+const LOAN_REQUESTS_END_POINT = "/loanRequests/";
 
 export const listLoanRequest = () => {
     return baseApiClient.get<LoansRequestResponse[]>(LOAN_REQUESTS_END_POINT)
