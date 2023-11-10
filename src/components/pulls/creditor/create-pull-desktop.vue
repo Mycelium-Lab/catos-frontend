@@ -27,43 +27,58 @@
           </div> -->
           <div class="frame-wrapper">
             <div class="instance-parent">
-              <div class="frame-parent">
-                <div class="group">
-                  <div class="div2">Дневной ставке:</div>
-                  <!-- <img
-                    class="vector-icon"
-                    alt=""
-                    src="@/assets/desktop/fallback/vector.svg"
-                  />-->
+                <div>
+                  <div class="frame-parent">
+                  <div class="group">
+                    <div class="div2">Дневной ставке:</div>
+                    <!-- <img
+                      class="vector-icon"
+                      alt=""
+                      src="@/assets/desktop/fallback/vector.svg"
+                    />-->
+                  </div>
+                  <range-slider
+                    :max="30"
+                    v-model="percent"
+                    rangeWidth="100%"
+                    inputLabel="percent"
+                  ></range-slider>
                 </div>
-                <range-slider
-                  :max="30"
-                  v-model="percent"
-                  rangeWidth="100%"
-                  inputLabel="percent"
-                ></range-slider>
-              </div>
-              <div class="frame-parent">
-                <div class="group">
-                  <div class="div2">Беспроцентный период</div>
+                <div class="frame-parent" :style="{ marginTop: '50px' }">
+                  <div class="group">
+                    <div class="div2">Беспроцентный период</div>
+                  </div>
+                  <range-slider
+                    :max="30"
+                    v-model="freePeriod"
+                    rangeWidth="100%"
+                    inputLabel="invest"
+                  ></range-slider>
                 </div>
-                <range-slider
-                  :max="30"
-                  v-model="freePeriod"
-                  rangeWidth="100%"
-                  inputLabel="invest"
-                ></range-slider>
               </div>
-              <div class="frame-parent">
+              <div>
+                <div class="frame-parent">
                 <div class="group">
                   <div class="div2">Срок</div>
                 </div>
                 <range-slider
                   :max="30"
-                  :modelValue="duration"
+                  v-model="duration"
                   rangeWidth="100%"
                   inputLabel="invest"
                 ></range-slider>
+              </div>
+              <div class="frame-parent"  :style="{ marginTop: '50px' }" >
+                <div class="group">
+                  <div class="div2">min_invest_amount</div>
+                </div>
+                <range-slider
+                  :max="30"
+                  v-model="minInvestAmount"
+                  rangeWidth="100%"
+                  inputLabel="invest"
+                ></range-slider>
+              </div>
               </div>
             </div>
           </div>
@@ -108,6 +123,8 @@ const emtis = defineEmits(["close", "create"]);
 const percent = ref(0);
 const freePeriod = ref(0);
 const duration = ref(0);
+const minInvestAmount = ref(0)
+
 const close = () => {
   emtis("close");
 };
@@ -118,7 +135,7 @@ const create = async () => {
     millipercent: percent.value * 100,
     overdue_millipercent: percent.value * 100, // TODO: добавить поля для ввода остальных данных
     max_loan_amount: 1000,
-    min_invest_amount: 0,
+    min_invest_amount: minInvestAmount.value,
     max_duration: toSeconds(duration.value),
     free_period: toSeconds(freePeriod.value),
   }).then(res => {
