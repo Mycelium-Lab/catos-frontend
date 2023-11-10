@@ -135,7 +135,7 @@
         <catos-button
           variant="secondary"
           :style="{ width: '100%', margin: '0' }"
-          @click="toPayment"
+          @click="take"
         >
           <template v-slot:icon>
             <img alt="" src="@/assets/images/iconsstars.svg" />
@@ -149,6 +149,9 @@
     v-if="isCreditorInfo"
     @close="() => (isCreditorInfo = false)"
   ></creditor-info>
+  <transaction-desktop v-if="isTransaction && !transactionStatus" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
 </template>
 <script setup lang="ts">
 import { ref, computed } from "vue";
@@ -157,8 +160,14 @@ import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 import rangeSlider from "@/components/ui-kit/range-slider.vue";
 import useParsedNumber from "@/compossables/useParsedNumber";
+import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
+import { createLoanRequest } from "@/api/loanRequests.api";
 
-const emits = defineEmits(["close", "payment"]);
+const {id} = defineProps({
+  id: {type: Number, required: true}
+}) 
+
+const emits = defineEmits(["close"]);
 const isCreditorInfo = ref(false);
 const sumLoans = ref(1);
 const term = ref(1);
@@ -168,9 +177,24 @@ const parseValue = computed(() => {
   return parsed;
 });
 
-const toPayment = () => {
-  emits("payment");
+const isTransaction = ref(false)
+const transactionStatus = ref('')
+
+const take = async () => {
+  isTransaction.value = true
+  await createLoanRequest({
+    pool_id: id,
+    amount: Number(sumLoans.value),
+    duration: Number(term.value)
+  }).then(res => {
+    console.log(res);
+    transactionStatus.value = 'success'
+  }).catch(e => {
+    transactionStatus.value = 'fail'
+    console.error(e)
+  })
 };
+
 const close = () => {
   emits("close");
 };
