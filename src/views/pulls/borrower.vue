@@ -41,17 +41,18 @@
     <app-bar></app-bar>
   </div>
   <default-desktop v-else>
-    <template v-slot:title> Кредитные пулы </template>
+    <template v-slot:title> Кредитные пуллы </template>
 
     <template v-slot:tools>
       <tool-bar role="borrower" variant="pulls"></tool-bar>
     </template>
     <template v-slot:body>
-      <pulls-table
-        role="borrower"
+      <pools
+      role="borrower"
         :variant="curentWindow"
         :key="curentWindow"
-      ></pulls-table>
+      > 
+      </pools>
     </template>
   </default-desktop>
 </template>
@@ -61,7 +62,7 @@ import { ref, onMounted, onUnmounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
-import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
+import pools from "./pulls.vue"
 
 import { useDevice } from "@/compossables/useDevice";
 

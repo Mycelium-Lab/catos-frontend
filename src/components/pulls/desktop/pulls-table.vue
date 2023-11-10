@@ -1,11 +1,5 @@
 <template>
   <div class="frame-div">
-    <ul class="list-desktop">
-      <li
-        v-for="pool in poolListStore.pools"
-        :key="pool.id"
-        class="pulls-table"
-      >
         <div
           :class="`desctopverpull-stats-parent_${role}-${variant} desctopverpull-stats-parent`"
           @click="toDetail"
@@ -57,16 +51,7 @@
                         </div>
                       </div>
                     </div>
-                    <!--<div class="status-all">
-                <div class="colors-graphsorders-parent">
-                  <img
-                    class="colors-graphsorders-icon"
-                    alt=""
-                    src="@/assets/images/colors-graphsorders.svg"
-                  />
-                  <div class="div121">Просрочен</div>
-                </div>
-              </div>-->
+              
                   </div>
                   <div class="frame-parent20">
                     <div class="iconsbar-cards-parent">
@@ -501,10 +486,7 @@
           </div>
         </div>
 
-        <!--<detail-personal-desktop
-    v-if="isDetailPersonal"
-    @close="isDetailPersonal = false"
-  ></detail-personal-desktop>-->
+
         <all-creditor-pulls
           v-if="isAllCreditor"
           @close="() => (isAllCreditor = false)"
@@ -523,6 +505,7 @@
         >
         </my-creditor-pulls>
         <all-borrower-pulls
+          :pool="pool"
           v-if="isAllBorrower"
           :state="allBorrowerState"
           @close="
@@ -633,13 +616,11 @@
             }
           "
         ></buy>
-      </li>
-    </ul>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Ref, computed, ref } from "vue";
+import { Ref, computed, ref, PropType } from "vue";
 
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import allCreditorPulls from "@/components/pulls/creditor/desktop/all-creditor-pulls.vue";
@@ -654,7 +635,7 @@ import myCollectorPulls from "@/components/pulls/collector/desktop/my-collector-
 import buy from "@/components/pulls/collector/desktop/buy.vue";
 import { useRouter } from "vue-router";
 import { parse } from "tinyduration";
-import { usePoolListStore } from "@/stores/poolList";
+import { Pool } from "@/types/pool.type";
 
 const { variant, role } = defineProps({
   variant: {
@@ -663,13 +644,16 @@ const { variant, role } = defineProps({
   role: {
     type: String,
   },
+  pool: {
+    type: Object as PropType<Pool>,
+    required: true,
+  }
 });
 
 const emits = defineEmits(["mySoldLoans"]);
 const toMySold = () => {
   emits("mySoldLoans");
 };
-const poolListStore = usePoolListStore();
 const isAllCreditor = ref(false);
 const isMyCreditor = ref(false);
 const isAllBorrower = ref(false);
@@ -798,13 +782,6 @@ const toAnalytics = () => {
 </script>
 
 <style scoped lang="scss">
-.list-desktop {
-  list-style: none;
-  padding: 0em;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 38px 20px;
-}
 li {
   &:hover .desctopverpull-stats-child {
     background-color: #fcfcfe;

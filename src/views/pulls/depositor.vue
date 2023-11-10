@@ -59,11 +59,11 @@
     <template v-slot:tools>
       <tool-bar role="depositor"></tool-bar>
     </template>
-    <pulls-table
+    <pools>
       role="depositor"
       :variant="curentWindow"
       :key="curentWindow"
-    ></pulls-table>
+    </pools>
   </default-desktop>
 </template>
 
@@ -75,11 +75,10 @@ import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import depositorList from "@/components/pulls/depositor/depositor-list.vue";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
-import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
 import { listPools } from "@/api/pools.api";
 import { useDevice } from "@/compossables/useDevice";
-import { Pool } from "@/types/pool.type";
 const { isMobile } = useDevice();
+import pools from "./pulls.vue"
 
 import appBar from "@/components/ui-kit/app-bar.vue";
 
