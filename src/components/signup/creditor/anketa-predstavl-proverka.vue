@@ -150,6 +150,7 @@
               </div>
               <button-slider
                 :style="{ width: '100%' }"
+                variant='right'
                 @on-slide="ev => paperDataStore.paperDTO.ownership = Boolean(ev)"
               ></button-slider>
             </div>

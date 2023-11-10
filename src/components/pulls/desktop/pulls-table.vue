@@ -1,6 +1,6 @@
 <template>
   <div class="frame-div">
-    <ul>
+    <ul class="list-desktop">
       <li
         v-for="pool in poolListStore.pools"
         :key="pool.id"
@@ -798,6 +798,13 @@ const toAnalytics = () => {
 </script>
 
 <style scoped lang="scss">
+.list-desktop {
+  list-style: none;
+  padding: 0em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 38px 20px;
+}
 li {
   &:hover .desctopverpull-stats-child {
     background-color: #fcfcfe;
