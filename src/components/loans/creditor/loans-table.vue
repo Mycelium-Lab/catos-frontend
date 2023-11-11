@@ -1,6 +1,6 @@
 <template>
   <div class="cards-parent" @click="toDetail">
-    <div class="cards">
+        <div class="cards">
       <div class="statusbar-cards" v-if="role === 'creditor'">
         <div class="buttons-tabs">
           <div class="checkboxdone-parent">
@@ -123,7 +123,7 @@
               <div class="ton18">37 000 TON</div>
 
               <div
-                v-if="role === 'creditor' || role === 'depositor'"
+                v-if="role === 'creditor' || role === 'investor'"
                 class="txt2"
               >
                 Доступно ликвидности
@@ -381,8 +381,8 @@
             <div class="text">Подробнее</div>
           </button>
         </div>
+        </div>
       </div>
-    </div>
   </div>
   <!--<loans-modal-desktop
     v-if="isModal"
@@ -454,6 +454,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
+import { roleStorage } from "@/utils/localStorage";
 import catosCheckbox from "../../ui-kit/catos-checkbox.vue";
 import bids from "./desktop/bids.vue";
 import loans from "./desktop/loans.vue";
@@ -462,17 +463,16 @@ import active from "../borrower/desktop/active.vue";
 import repaid from "../borrower/desktop/repaid.vue";
 import sold from "../borrower/desktop/sold.vue";
 
-const { variant, role, status } = defineProps({
+const { variant, status } = defineProps({
   variant: {
-    type: String,
-  },
-  role: {
     type: String,
   },
   status: {
     type: String,
   },
 });
+
+const role = roleStorage.get()
 
 const bidsState = {
   detailModal: false,

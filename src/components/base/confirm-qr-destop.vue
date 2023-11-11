@@ -42,18 +42,19 @@
               </div>
             </div>
           </div>
-          <img
+          <!--<img
             class="replace-me-icon"
             alt=""
             src="@/assets/images/replace-me@2x.png"
-          />
+          />-->
           <div class="or-press-the-the-button-below-parent">
-            <div class="scan-the-qr-container">
+           <!-- <div class="scan-the-qr-container">
               Or press the the button below
-            </div>
+            </div>-->
             <catos-button
               variant="secondary"
               :style="{ width: '100%' }"
+              :disabled="disabled"
               @click="handle"
             >
               <slot name="action"> </slot
@@ -77,6 +78,10 @@ const { variant } = defineProps({
   toBack: {
     type: Function,
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  }
 });
 const emtis = defineEmits(["close", "result"]);
 const close = () => {

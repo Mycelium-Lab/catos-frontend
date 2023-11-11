@@ -15,7 +15,6 @@ export const useLoanListStore = defineStore("useLoans", () => {
     loans.value = res.data;
     })
     .catch(e => {
-      console.error(e)
       hasError.value = true
     }) 
     .finally( () => {

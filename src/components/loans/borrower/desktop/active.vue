@@ -1,17 +1,12 @@
 <template>
-  <prolong v-if="isProlong" :toInit="setInit" @close="close"></prolong>
-  <repay v-if="isRepay" @close="close"></repay>
+  <prolong v-if="isProlong" :toInit="setInit" @close="close" @payment="handleProlong"></prolong>
+  <repay v-if="isRepay" @close="close" :id="1"></repay>
   <active-detail v-if="isDetail && status === 'active'" @close="close">
   </active-detail>
   <overdue-detail
     v-if="isDetail && status === 'overdue'"
     @close="close"
-    @repay="
-      () => {
-        isDetail = false;
-        isRepay = true;
-      }
-    "
+    @repay="handleRepay"
     @prolong="prolongation"
   ></overdue-detail>
 </template>
@@ -32,7 +27,7 @@ const { status, state } = defineProps({
   },
 });
 
-const emits = defineEmits(["close"]);
+const emits = defineEmits(["close", "repay", "prolong"]);
 const close = () => {
   isProlong.value = false;
   isDetail.value = false;
@@ -52,6 +47,13 @@ const setInit = () => {
     close();
   }
 };
+
+const handleRepay = () => {
+    emits('repay')
+}
+const handleProlong = () => {
+  emits('prolong')
+}
 
 const prolongation = () => {
   isDetail.value = false;

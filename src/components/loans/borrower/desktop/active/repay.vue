@@ -1,15 +1,14 @@
 <template>
-  <confirm-qr-destop @close="close" @result="close">
+  <confirm-qr-destop @close="close" @result="repay" :disabled="isDisabled">
     <template v-slot:header> Займ из пулла #12345 </template>
-    <template v-slot:title>Repay the loan</template>
+    <template v-slot:title>Погасить займ</template>
     <template v-slot:subtitle>
-      {{ `Scan the QR code and pay ${amount} TON with` }}
-      <br />
-      Tonkeeper using
-    </template>
-    <template v-slot:link> EQB5...dzE1hа44 </template>
-    <template v-slot:action>Repay the loan </template>
-    <template v-slot:footer>
+      <input-data
+              :style="{ margin: '20px 0px' }"
+              placeholder="10 000 TON"
+              v-model="amount"
+              type="number"
+      ></input-data>
       <div class="frame-parent-repay">
         <div class="frame-group-repay">
           <div class="frame-wrapper-repay">
@@ -18,7 +17,7 @@
                 <div class="div1-repay">Cумма к погашению:</div>
               </div>
               <div class="ton-wrapper-repay">
-                <div class="ton1-repay">13 512 TON</div>
+                <div class="ton1-repay">512 TON</div>
               </div>
             </div>
           </div>
@@ -41,35 +40,71 @@
               </div>
               <div class="ton-container-repay">
                 <div class="ton1-repay">
-                  <b>{{ amount }} TON</b>
+                  <b>{{ toRepay }} TON</b>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </template>
+    
+    <template v-slot:action>Погасить займ </template>
+    <template v-slot:footer>
       <p class="policy-text">
         By proceeding, you accept the <br />
         and Privacy Policy.
       </p>
     </template>
   </confirm-qr-destop>
+    <transaction-desktop v-if="isTransaction && !transactionStatus" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import ConfirmQrDestop from "@/components/base/confirm-qr-destop.vue";
 import useParsedNumber from "@/compossables/useParsedNumber";
+import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
+import inputData from "@/components/fields/input-data.vue";
+import { repayLoan } from "@/api/loans.api";
+
+const {id} = defineProps({
+  id: {type: Number, required: true}
+})
+
 const emits = defineEmits(["close"]);
 const close = () => {
   emits("close");
 };
 
-const amount = computed(() => {
-  const calculated = Math.ceil(13512 * 1.05);
+const isTransaction = ref(false)
+const transactionStatus = ref('')
+
+const amount = ref("0");
+
+const isDisabled = computed(() => {
+  return Number(amount.value) <= 0 || '' ? true : false
+})
+
+const toRepay = computed(() => {
+  const sumRepay = 512
+  const calculated = Math.ceil(sumRepay * 1.05 * Number(amount.value));
   const { parsed } = useParsedNumber(calculated);
   return parsed;
 });
+
+const repay = async () => {
+  isTransaction.value = true
+  await repayLoan(id, Number(amount.value))
+  .then(res => {
+    transactionStatus.value = 'success'
+  }).catch(e => {
+    transactionStatus.value = 'fail'
+    console.error(e)
+  })
+}
 </script>
 
 <style scoped lang="scss">
