@@ -57,9 +57,22 @@
       </p>
     </template>
   </confirm-qr-destop>
-    <transaction-desktop v-if="isTransaction && !transactionStatus" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
+    <transaction-desktop v-if="isTransaction && !transactionStatus" 
+      @close="isTransaction = false" 
+      :status="transactionStatus"
+      title="Подтвердите погашение займа"
+      subtitle="Пожалуйста, подтвердите погашение займ в своем кошельке"
+      ></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" 
+    @close="isTransaction = false" 
+    :status="transactionStatus"
+    subtitle="Вы успешно погасили займ"
+    ></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" 
+    @close="isTransaction = false" 
+    :status="transactionStatus"
+    title="Произогла ошибка при погашении займа"
+    ></transaction-desktop>
 </template>
 
 <script setup lang="ts">

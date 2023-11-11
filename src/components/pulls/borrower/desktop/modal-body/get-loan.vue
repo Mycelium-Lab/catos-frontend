@@ -149,9 +149,22 @@
     v-if="isCreditorInfo"
     @close="() => (isCreditorInfo = false)"
   ></creditor-info>
-  <transaction-desktop v-if="isTransaction && !transactionStatus" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
+  <transaction-desktop v-if="isTransaction && !transactionStatus" 
+    @close="isTransaction = false" 
+    :status="transactionStatus"
+    title="Подтвердите взятие займа"
+    subtitle="Пожалуйста, подтвердите взятие займа в своем кошельке"
+    ></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" 
+    @close="isTransaction = false" 
+    :status="transactionStatus"
+    subtitle="Вы успешно взяли займ"
+    ></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" 
+    @close="isTransaction = false" 
+    :status="transactionStatus"
+    title="Произошла ошибка при взятии займа"
+    ></transaction-desktop>
 </template>
 <script setup lang="ts">
 import { ref, computed } from "vue";

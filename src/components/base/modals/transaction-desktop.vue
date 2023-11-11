@@ -5,8 +5,8 @@
         @close="handleClose"
       >
         <template v-slot:header> Транзакция №591561351 </template>
-        <template v-slot:title> Подтвердите создание пулла </template>
-        <template v-slot:subtitle> Пожалуйста, подтвердите создание пулла в своем кошельке </template>
+        <template v-slot:title> {{ title }}</template>
+        <template v-slot:subtitle> {{ subtitle }} </template>
         <template v-slot:image>
          <loader></loader>
         </template>
@@ -20,7 +20,7 @@
             <template v-slot:header> Транзакция №591561351 </template>
             <template v-slot:title> Транзакция успешно выполнена </template>
             <template v-slot:subtitle> 
-            <p class="status-subtitle"> Вы успешно создали пулл <a class="status-subtitle-link">#123456</a> </p>
+            <p class="status-subtitle"> {{ subtitle }} <a class="status-subtitle-link">#123456</a> </p>
             <p class="status-subtitle"> 
                 <a class="status-subtitle-link">Просмотр транзакции в Tonscan</a>
             </p>
@@ -36,7 +36,7 @@
         @close="handleClose"
       >
         <template v-slot:header> Транзакция №591561351 </template>
-        <template v-slot:title> Произошла ошибка при создании пулла </template>
+        <template v-slot:title> {{ title }} </template>
         <template v-slot:subtitle> 
           <p class="status-subtitle">Указание причины: <br>Причина 01</p>
           <p class="status-subtitle"> 
@@ -56,7 +56,9 @@ import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
 import loader from "@/components/base/loader.vue"
 
 const {status} = defineProps({
-  status: {type: String}
+  status: {type: String},
+  title: {type: String},
+  subtitle: {type: String},
 })
 const emits = defineEmits(['close'])
 

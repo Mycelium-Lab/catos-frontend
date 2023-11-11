@@ -55,9 +55,21 @@
     <template v-slot:action-first>Посмотреть информацию о займе</template>
     <template v-slot:action-last>Перейти в мои займы</template>
   </status-modal-desktop>
-  <transaction-desktop v-if="isTransaction && !transactionStatus" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
+  <transaction-desktop v-if="isTransaction && !transactionStatus" 
+    @close="isTransaction = false" 
+    :status="transactionStatus"
+    title="Подтвердите пролонгацию займа"
+    subtitle="Пожалуйста, подтвердите пролонгацию займа в своем кошельке"
+    ></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" 
+    @close="isTransaction = false" 
+    :status="transactionStatus"
+    subtitle="Вы успешно пролонгировали займ"
+    ></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" 
+    @close="isTransaction = false" 
+    title="Произошла ошибка при пролонгации займа"
+    :status="transactionStatus"></transaction-desktop>
 </template>
 
 <script setup lang="ts">

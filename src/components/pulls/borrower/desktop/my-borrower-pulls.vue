@@ -19,7 +19,6 @@
     </detail>
 
     <add v-if="isAdd" @close="() => {
-        isAdd = false;
         close()
     }"
     @qr="handleTransaction"
@@ -28,17 +27,18 @@
     </add>
 
     <withdraw v-if="isWidthdraw" @close="() => {
-         isWidthdraw = false;
          close()
     }"
     @qr="handleTransaction"
     >
     </withdraw>
     
-    <transaction-desktop v-if="isTransaction" @close="() => {
-        isTransaction = false
-        close()
-      }">
+    <transaction-desktop v-if="isTransaction" 
+    @close="close"
+    :title="isAdd ? 'Подтвердите добавление ликвидности' : 'Подтвердите изъятие ликвидности'"
+    :subtitle="isAdd ? 'Пожалуйста, подтвердите доавление ликвидности в своем кошельке' 
+    : 'Пожалуйста, подтвердите изъятие ликвидности в своем кошельке'"
+    >
     </transaction-desktop>
   
   </template>
@@ -71,6 +71,9 @@
   
   const close = () => {
     emits("close");
+    isAdd.value = false
+    isWidthdraw.value = false
+    isTransaction.value = false
   };
 
   const handleTransaction = () => {
