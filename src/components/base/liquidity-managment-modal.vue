@@ -17,7 +17,7 @@
       </div>
       <div
         :class="
-          role === 'depositor' && variant === 'add'
+          role === 'investor' && variant === 'add'
             ? 'frame-parent_depositor frame-parent'
             : 'frame-parent'
         "
