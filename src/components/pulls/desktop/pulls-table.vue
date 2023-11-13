@@ -538,6 +538,7 @@
               resetState('all-depositor');
             }
           "
+          :poolId="pool.id"
         ></add-liquid>
         <withdraw-liquid
           v-if="
