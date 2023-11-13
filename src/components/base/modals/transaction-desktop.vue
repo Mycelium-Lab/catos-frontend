@@ -5,8 +5,8 @@
         @close="handleClose"
       >
         <template v-slot:header> Транзакция №591561351 </template>
-        <template v-slot:title> Подтвердите создание пулла </template>
-        <template v-slot:subtitle> Пожалуйста, подтвердите создание пулла в своем кошельке </template>
+        <template v-slot:title> {{ title }} </template>
+        <template v-slot:subtitle> Пожалуйста, подтвердите транзакцию в своем кошельке </template>
         <template v-slot:image>
          <loader></loader>
         </template>
@@ -55,8 +55,9 @@ import { ref } from "vue";
 import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
 import loader from "@/components/base/loader.vue"
 
-const {status} = defineProps({
-  status: {type: String}
+const { status, title } = defineProps({
+  status: String,
+  title: String
 })
 const emits = defineEmits(['close'])
 
