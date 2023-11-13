@@ -23,7 +23,9 @@
                     placeholder="Россия"
                     :options="countries"
                     :value="passportDataStore.passportDTO.country"
-                    @selected="ev => (passportDataStore.passportDTO.country = ev)"
+                    @selected="
+                      ev => (passportDataStore.passportDTO.country = ev)
+                    "
                     :optionWidth="77"
                     :style="{ width: '100%' }"
                   ></catos-select>
@@ -36,10 +38,18 @@
                   <span>Серия и номер </span>
                   <span class="span2">* </span>
                 </div>
-                <input-data 
-                @update:model-value="passportDataStore.passportDTO.number = $event"
-                placeholder="1234 09876"
-                type="passport"></input-data>
+                <input-data
+                  @update:model-value="
+                    event => {
+                      passportDataStore.passportDTO.series =
+                        event.split(' ')[0];
+                      passportDataStore.passportDTO.number =
+                        event.split(' ')[1];
+                    }
+                  "
+                  placeholder="1234 09876"
+                  type="passport"
+                ></input-data>
               </div>
               <div class="frame-div">
                 <div class="div10">
@@ -48,7 +58,9 @@
                 </div>
                 <div class="fields-password-and-mail-container">
                   <input-data
-                    @update:model-value="passportDataStore.passportDTO.issue_date = $event"
+                    @update:model-value="
+                      passportDataStore.passportDTO.issue_date = $event
+                    "
                     type="date"
                     placeholder="01.02.2022"
                     :style="{ width: '100%' }"
@@ -87,7 +99,9 @@
               <catos-textarea
                 :style="{ width: '100%' }"
                 placeholder="ГУМВД России по Санкт-Петербургу, и Ленинградской области"
-                @selected="passportDataStore.passportDTO.issuing_organization = $event"
+                @selected="
+                  passportDataStore.passportDTO.issuing_organization = $event
+                "
               ></catos-textarea>
             </div>
           </div>
@@ -104,7 +118,9 @@
                   </span>
                 </div>
                 <input-data
-                  @update:model-value="passportDataStore.passportDTO.name = $event"
+                  @update:model-value="
+                    passportDataStore.passportDTO.name = $event
+                  "
                   placeholder="Введите имя"
                   :style="{ width: '100%' }"
                   :right="true"
@@ -123,7 +139,9 @@
                   </span>
                 </div>
                 <input-data
-                  @update:model-value="passportDataStore.passportDTO.surname = $event"
+                  @update:model-value="
+                    passportDataStore.passportDTO.surname = $event
+                  "
                   placeholder="Введите фамилию"
                   :style="{ width: '100%' }"
                   :right="true"
@@ -143,7 +161,9 @@
                   </span>
                 </div>
                 <input-data
-                  @update:model-value="passportDataStore.passportDTO.middlename = $event"
+                  @update:model-value="
+                    passportDataStore.passportDTO.middlename = $event
+                  "
                   placeholder="Введите отчество"
                   :style="{ width: '100%' }"
                   :right="true"
@@ -160,7 +180,9 @@
                 </div>
                 <div class="fields-password-and-mail-container">
                   <input-data
-                    @update:model-value="passportDataStore.passportDTO.birthdate = $event"
+                    @update:model-value="
+                      passportDataStore.passportDTO.birthdate = $event
+                    "
                     type="date"
                     placeholder="01.02.1994"
                     :style="{ width: '100%' }"
@@ -196,7 +218,11 @@
                   <div
                     class="radiobutton-parent"
                     @click="
-                      () => {isSelectedRadioButton1 = true; isSelectedRadioButton2 = false; passportDataStore.passportDTO.gender = 'М'}
+                      () => {
+                        isSelectedRadioButton1 = true;
+                        isSelectedRadioButton2 = false;
+                        passportDataStore.passportDTO.gender = 'М';
+                      }
                     "
                   >
                     <catos-checkbox
@@ -209,7 +235,11 @@
                   <div
                     class="radiobutton-parent"
                     @click="
-                      () => {isSelectedRadioButton2 = true; isSelectedRadioButton1 = false; passportDataStore.passportDTO.gender = 'Ж'}
+                      () => {
+                        isSelectedRadioButton2 = true;
+                        isSelectedRadioButton1 = false;
+                        passportDataStore.passportDTO.gender = 'Ж';
+                      }
                     "
                   >
                     <catos-checkbox
@@ -282,17 +312,27 @@
               </span>
             </div>
             <catos-select
-            placeholder="Московская"
+              placeholder="Московская"
               :options="regions"
               :value="passportDataStore.passportDTO.registration_address.region"
-              @selected="ev => (passportDataStore.passportDTO.registration_address.region = ev)"
+              @selected="
+                ev =>
+                  (passportDataStore.passportDTO.registration_address.region =
+                    ev)
+              "
               :optionWidth="77"
               :style="
-                passportDataStore.passportDTO.country !== 'Россия' && passportDataStore.passportDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                passportDataStore.passportDTO.country !== 'Россия' &&
+                passportDataStore.passportDTO.country !== 'Россия'
+                  ? {
+                      width: '100%',
+                      opacity: '0.2',
+                      cursor: 'not-allowed',
+                      pointerEvents: 'none',
+                    }
                   : { width: '100%', opacity: '1' }
               "
-                :disabled="passportDataStore.passportDTO.country !== 'Россия'"
+              :disabled="passportDataStore.passportDTO.country !== 'Россия'"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
@@ -301,39 +341,79 @@
               <span class="span2">* </span>
             </div>
             <catos-select
-            :placeholder="passportDataStore.passportDTO.registration_address.region !== '' && neighborhoodsReg ? neighborhoodsReg[0] : 'Воскресенск'"
+              :placeholder="
+                passportDataStore.passportDTO.registration_address.region !==
+                  '' && neighborhoodsReg
+                  ? neighborhoodsReg[0]
+                  : 'Воскресенск'
+              "
               :options="neighborhoodsReg"
-              :value="passportDataStore.passportDTO.registration_address.neighborhood"
-              @selected="ev => (passportDataStore.passportDTO.registration_address.neighborhood = ev)"
+              :value="
+                passportDataStore.passportDTO.registration_address.neighborhood
+              "
+              @selected="
+                ev =>
+                  (passportDataStore.passportDTO.registration_address.neighborhood =
+                    ev)
+              "
               :optionWidth="77"
               :style="
-                passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                passportDataStore.passportDTO.registration_address.region ===
+                  '' || passportDataStore.passportDTO.country !== 'Россия'
+                  ? {
+                      width: '100%',
+                      opacity: '0.2',
+                      cursor: 'not-allowed',
+                      pointerEvents: 'none',
+                    }
                   : { width: '100%', opacity: '1' }
               "
-                :disabled="passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
+              :disabled="
+                passportDataStore.passportDTO.registration_address.region ===
+                  '' || passportDataStore.passportDTO.country !== 'Россия'
+              "
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
             <div class="div10">Населенный пункт</div>
             <catos-select
-            :placeholder="passportDataStore.passportDTO.registration_address.region !== '' && citiesReg ? citiesReg[0] : 'Москва'"
+              :placeholder="
+                passportDataStore.passportDTO.registration_address.region !==
+                  '' && citiesReg
+                  ? citiesReg[0]
+                  : 'Москва'
+              "
               :options="citiesReg"
               :value="passportDataStore.passportDTO.registration_address.city"
-              @selected="ev => (passportDataStore.passportDTO.registration_address.city = ev)"
+              @selected="
+                ev =>
+                  (passportDataStore.passportDTO.registration_address.city = ev)
+              "
               :optionWidth="77"
               :style="
-                 passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                passportDataStore.passportDTO.registration_address.region ===
+                  '' || passportDataStore.passportDTO.country !== 'Россия'
+                  ? {
+                      width: '100%',
+                      opacity: '0.2',
+                      cursor: 'not-allowed',
+                      pointerEvents: 'none',
+                    }
                   : { width: '100%', opacity: '1' }
               "
-               :disabled="passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
+              :disabled="
+                passportDataStore.passportDTO.registration_address.region ===
+                  '' || passportDataStore.passportDTO.country !== 'Россия'
+              "
             ></catos-select>
           </div>
           <div class="fieldsinputchoise1">
             <div class="div10">Улица</div>
             <input-data
-              @update:model-value="passportDataStore.passportDTO.registration_address.street = $event"
+              @update:model-value="
+                passportDataStore.passportDTO.registration_address.street =
+                  $event
+              "
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
               :right="true"
@@ -350,7 +430,10 @@
             <div class="parent13">
               <div class="div10">Дом</div>
               <input-data
-                @update:model-value="passportDataStore.passportDTO.registration_address.house = $event"
+                @update:model-value="
+                  passportDataStore.passportDTO.registration_address.house =
+                    $event
+                "
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -358,7 +441,10 @@
             <div class="parent13">
               <div class="div10">Корпус</div>
               <input-data
-              @update:model-value="passportDataStore.passportDTO.registration_address.housing = $event"
+                @update:model-value="
+                  passportDataStore.passportDTO.registration_address.housing =
+                    $event
+                "
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -368,7 +454,10 @@
             <div class="parent13">
               <div class="div10">Строение</div>
               <input-data
-                @update:model-value="passportDataStore.passportDTO.registration_address.building = $event"
+                @update:model-value="
+                  passportDataStore.passportDTO.registration_address.building =
+                    $event
+                "
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -376,7 +465,10 @@
             <div class="parent13">
               <div class="div10">Квартира</div>
               <input-data
-                @update:model-value="passportDataStore.passportDTO.registration_address.apartment = $event"
+                @update:model-value="
+                  passportDataStore.passportDTO.registration_address.apartment =
+                    $event
+                "
                 placeholder="№"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -385,7 +477,10 @@
           <div class="parent13">
             <div class="div10">Индекс</div>
             <input-data
-              @update:model-value="passportDataStore.passportDTO.registration_address.index = $event"
+              @update:model-value="
+                passportDataStore.passportDTO.registration_address.index =
+                  $event
+              "
               placeholder="193 984"
               :style="{ width: '100%' }"
             ></input-data>
@@ -413,13 +508,21 @@
               <span class="span2">* </span>
             </div>
             <catos-select
-            placeholder="Московская"
+              placeholder="Московская"
               :options="regions"
               :value="passportDataStore.passportDTO.living_address.region"
-              @selected="ev => (passportDataStore.passportDTO.living_address.region = ev)"
+              @selected="
+                ev => (passportDataStore.passportDTO.living_address.region = ev)
+              "
               :optionWidth="77"
-              :style="passportDataStore.passportDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+              :style="
+                passportDataStore.passportDTO.country !== 'Россия'
+                  ? {
+                      width: '100%',
+                      opacity: '0.2',
+                      cursor: 'not-allowed',
+                      pointerEvents: 'none',
+                    }
                   : { width: '100%', opacity: '1' }
               "
               :disabled="passportDataStore.passportDTO.country !== 'Россия'"
@@ -431,39 +534,75 @@
               <span class="span2">* </span>
             </div>
             <catos-select
-            :placeholder="passportDataStore.passportDTO.living_address.region !== '' && neighborhoodsLiv ? neighborhoodsLiv[0] : 'Воскресенск'"
+              :placeholder="
+                passportDataStore.passportDTO.living_address.region !== '' &&
+                neighborhoodsLiv
+                  ? neighborhoodsLiv[0]
+                  : 'Воскресенск'
+              "
               :options="neighborhoodsLiv"
               :value="passportDataStore.passportDTO.living_address.neighborhood"
-              @selected="ev => (passportDataStore.passportDTO.living_address.neighborhood = ev)"
+              @selected="
+                ev =>
+                  (passportDataStore.passportDTO.living_address.neighborhood =
+                    ev)
+              "
               :optionWidth="77"
               :style="
-                passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                passportDataStore.passportDTO.living_address.region === '' ||
+                passportDataStore.passportDTO.country !== 'Россия'
+                  ? {
+                      width: '100%',
+                      opacity: '0.2',
+                      cursor: 'not-allowed',
+                      pointerEvents: 'none',
+                    }
                   : { width: '100%', opacity: '1' }
               "
-               :disabled="passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
+              :disabled="
+                passportDataStore.passportDTO.living_address.region === '' ||
+                passportDataStore.passportDTO.country !== 'Россия'
+              "
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
             <div class="div10">Населенный пункт</div>
             <catos-select
-            :placeholder="passportDataStore.passportDTO.living_address.region !== '' && citiesLiv ? citiesLiv[0] : 'Москва'"
+              :placeholder="
+                passportDataStore.passportDTO.living_address.region !== '' &&
+                citiesLiv
+                  ? citiesLiv[0]
+                  : 'Москва'
+              "
               :options="citiesLiv"
               :value="passportDataStore.passportDTO.living_address.city"
-              @selected="ev => (passportDataStore.passportDTO.living_address.city = ev)"
+              @selected="
+                ev => (passportDataStore.passportDTO.living_address.city = ev)
+              "
               :optionWidth="77"
               :style="
-                 passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                passportDataStore.passportDTO.living_address.region === '' ||
+                passportDataStore.passportDTO.country !== 'Россия'
+                  ? {
+                      width: '100%',
+                      opacity: '0.2',
+                      cursor: 'not-allowed',
+                      pointerEvents: 'none',
+                    }
                   : { width: '100%', opacity: '1' }
               "
-               :disabled="passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
+              :disabled="
+                passportDataStore.passportDTO.registration_address.region ===
+                  '' || passportDataStore.passportDTO.country !== 'Россия'
+              "
             ></catos-select>
           </div>
           <div class="fieldsinputchoise1">
             <div class="div10">Улица</div>
             <input-data
-              @update:model-value="passportDataStore.passportDTO.living_address.street = $event"
+              @update:model-value="
+                passportDataStore.passportDTO.living_address.street = $event
+              "
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
               :right="true"
@@ -479,7 +618,9 @@
             <div class="parent13">
               <div class="div10">Дом</div>
               <input-data
-                @update:model-value="passportDataStore.passportDTO.living_address.house = $event"
+                @update:model-value="
+                  passportDataStore.passportDTO.living_address.house = $event
+                "
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -487,7 +628,9 @@
             <div class="parent13">
               <div class="div10">Корпус</div>
               <input-data
-                @update:model-value="passportDataStore.passportDTO.living_address.housing = $event"
+                @update:model-value="
+                  passportDataStore.passportDTO.living_address.housing = $event
+                "
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -497,7 +640,9 @@
             <div class="parent13">
               <div class="div10">Строение</div>
               <input-data
-                @update:model-value="passportDataStore.passportDTO.living_address.building = $event"
+                @update:model-value="
+                  passportDataStore.passportDTO.living_address.building = $event
+                "
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -505,7 +650,10 @@
             <div class="parent13">
               <div class="div10">Квартира</div>
               <input-data
-                @update:model-value="passportDataStore.passportDTO.living_address.apartment = $event"
+                @update:model-value="
+                  passportDataStore.passportDTO.living_address.apartment =
+                    $event
+                "
                 placeholder="№"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -514,7 +662,9 @@
           <div class="parent13">
             <div class="div10">Индекс</div>
             <input-data
-              @update:model-value="passportDataStore.passportDTO.living_address.index = $event"
+              @update:model-value="
+                passportDataStore.passportDTO.living_address.index = $event
+              "
               placeholder="193 894"
               :style="{ width: '100%' }"
             ></input-data>
@@ -582,7 +732,7 @@
                       :obligatory-field="true"
                       :style="{ width: '100%', paddingBottom: '0.1em' }"
                       class="loader-file"
-                      @on-change="(file) => saveImage('passPhoto1', file)"
+                      @on-change="file => saveImage('passPhoto1', file)"
                     ></loader-field>
                   </div>
                 </div>
@@ -653,7 +803,7 @@
                       :obligatory-field="true"
                       :style="{ width: '100%', paddingBottom: '0.1em' }"
                       class="loader-file"
-                      @on-change="(file) => saveImage('passPhoto2', file)"
+                      @on-change="file => saveImage('passPhoto2', file)"
                     ></loader-field>
                   </div>
                 </div>
@@ -754,14 +904,14 @@
                     </div>
                   </div>
                   <div class="loader-group">
-                  <loader-field
-                    name="Загрузите селфи с разворотом паспорта и датой выдачи"
-                    :obligatory-field="true"
-                    :style="{ width: '100%', paddingBottom: '0.1em' }"
-                    class="loader-file"
-                    @on-change="(file) => saveImage('selfie', file)"
-                  ></loader-field>
-                </div>
+                    <loader-field
+                      name="Загрузите селфи с разворотом паспорта и датой выдачи"
+                      :obligatory-field="true"
+                      :style="{ width: '100%', paddingBottom: '0.1em' }"
+                      class="loader-file"
+                      @on-change="file => saveImage('selfie', file)"
+                    ></loader-field>
+                  </div>
                 </div>
               </div>
               <div class="loadernav">
@@ -838,10 +988,10 @@ import loaderField from "../../../components/fields/loader-field.vue";
 import catosTextarea from "../../../components/fields/catos-textarea.vue";
 import { useUserDataStore } from "@/stores/userData";
 import { usePassportDataStore } from "@/stores/passportData";
-import { useCityList } from '@/composables/useCityList'
-import { useNeighborhoodList } from "@/composables/useNeighborhoodList"
-import countries from "@/json/countries.json"
-import regions from "@/json/regions.json"
+import { useCityList } from "@/composables/useCityList";
+import { useNeighborhoodList } from "@/composables/useNeighborhoodList";
+import countries from "@/json/countries.json";
+import regions from "@/json/regions.json";
 
 const userDataStore = useUserDataStore();
 const passportDataStore = usePassportDataStore();
@@ -849,22 +999,31 @@ const isSelectedRadioButton1 = ref(false);
 const isSelectedRadioButton2 = ref(false);
 const date = ref("");
 
-const {citiesByRegion: ctitesRegistration} = useCityList('registration', 'passport')
-const {citiesByRegion: ctitesLiving} = useCityList('living', 'passport')
-const {neighborhoodByRegion: neighborhoodRegistration} = useNeighborhoodList('registration', 'passport')
-const {neighborhoodByRegion: neighborhoodLiving} = useNeighborhoodList('living', 'passport')
+const { citiesByRegion: ctitesRegistration } = useCityList(
+  "registration",
+  "passport"
+);
+const { citiesByRegion: ctitesLiving } = useCityList("living", "passport");
+const { neighborhoodByRegion: neighborhoodRegistration } = useNeighborhoodList(
+  "registration",
+  "passport"
+);
+const { neighborhoodByRegion: neighborhoodLiving } = useNeighborhoodList(
+  "living",
+  "passport"
+);
 
 const citiesReg = computed(() => {
-    return ctitesRegistration.value
+  return ctitesRegistration.value;
 });
 const citiesLiv = computed(() => {
-    return ctitesLiving.value
+  return ctitesLiving.value;
 });
 const neighborhoodsReg = computed(() => {
-    return neighborhoodRegistration.value
+  return neighborhoodRegistration.value;
 });
 const neighborhoodsLiv = computed(() => {
-    return neighborhoodLiving.value
+  return neighborhoodLiving.value;
 });
 
 const saveImage = async (boxName: string, file: File | null) => {
@@ -872,25 +1031,24 @@ const saveImage = async (boxName: string, file: File | null) => {
     switch (boxName) {
       case "passPhoto1":
         userDataStore.firstPhotoFile = file;
-        passportDataStore.passportDTO.first_photo = "TEMP_DATA"//await fileToBase64(file);
+        passportDataStore.passportDTO.first_photo = "TEMP_DATA"; //await fileToBase64(file);
         break;
       case "passPhoto2":
         userDataStore.secondPhotoFile = file;
-        passportDataStore.passportDTO.second_photo = "TEMP_DATA" //await fileToBase64(file);
+        passportDataStore.passportDTO.second_photo = "TEMP_DATA"; //await fileToBase64(file);
         break;
       case "selfie":
         userDataStore.selfieFile = file;
-        passportDataStore.passportDTO.selfie = "TEMP_DATA" //await fileToBase64(file);
+        passportDataStore.passportDTO.selfie = "TEMP_DATA"; //await fileToBase64(file);
         break;
       default:
         break;
     }
-    console.log('File saved');
-  }
-  else {
+    console.log("File saved");
+  } else {
     console.log("File is null");
   }
-}
+};
 import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();

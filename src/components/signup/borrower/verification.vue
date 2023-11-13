@@ -180,7 +180,7 @@
                 </div>
                 <input-data
                   v-model:model-value="passportNumberString"
-                  placeholder="33 446462"
+                  placeholder="1234 446462"
                 >
                 </input-data>
               </div>
@@ -344,10 +344,9 @@ import { useNeighborhoodList } from "@/composables/useNeighborhoodList"
 import countries from "@/json/countries.json"
 import regions from "@/json/regions.json"
 
-const userDataStore = useUserDataStore();
 const passportDataStore = usePassportDataStore();
 const passportNumberString = computed(() => {
-  return passportDataStore.passportDTO.number.toString();
+  return passportDataStore.passportDTO.series.toString() + ' ' + passportDataStore.passportDTO.number.toString();
 });
 const indexString = computed(() => {
   return passportDataStore.passportDTO.registration_address.index.toString();
