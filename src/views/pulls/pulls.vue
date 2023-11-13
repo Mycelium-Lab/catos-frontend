@@ -1,7 +1,7 @@
 <template>
      <ul class="list-desktop">
         <li
-            v-for="pool in poolListStore.pools"
+            v-for="pool in pools"
             :key="pool.id"
         >
         <pulls-table
@@ -15,10 +15,12 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
+import { Pool } from "@/types/pool.type";
 import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
 import { usePoolListStore } from "@/stores/poolList";
-const poolListStore = usePoolListStore();
 
+const poolListStore = usePoolListStore();
 const { variant, role } = defineProps({
   variant: {
     type: String,
@@ -27,6 +29,7 @@ const { variant, role } = defineProps({
     type: String,
   },
 });
+const pools = computed<Pool[]>(() => role === 'depositor' ? poolListStore.verifiedPools : poolListStore.pools);
 </script>
 
 <style scoped lang="scss">
