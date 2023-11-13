@@ -5,7 +5,7 @@
       <img class="header-icon" alt="" src="@/assets/images/success-cash.svg" />
     </template>
     <template v-slot:subheader>
-      {{ role === "depositor" ? "Инвестировать" : "Добавить ликвидность" }} в
+      {{ role === "investor" ? "Инвестировать" : "Добавить ликвидность" }} в
       пулл #12345
     </template>
     <template v-slot:first-row>
@@ -32,7 +32,7 @@
             <input-data
               :style="{ width: '456px' }"
               placeholder="10 000 TON"
-              @selected="(e:any) => (inputValue = e)"
+              @update:model-value="event => onChange(event)"
               type="number"
             ></input-data>
           </div>
@@ -51,7 +51,7 @@
         </div>
       </div>
       <calculator
-        v-if="role === 'depositor'"
+        v-if="role === 'investor'"
         :input="Number(inputValue)"
       ></calculator>
     </template>
@@ -62,7 +62,7 @@
           @click="qr"
           :style="{ width: '100%', margin: '0' }"
           >{{
-            role === "depositor" ? "Инвестировать" : "Добавить ликвидность"
+            role === "investor" ? "Инвестировать" : "Добавить ликвидность"
           }}</catos-button
         >
         <catos-button
@@ -83,10 +83,11 @@ import inputData from "@/components/fields/input-data.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import catosSelect from "@/components/fields/catos-select.vue";
 import calculator from "@/components/base/calculator.vue";
+import { emit } from "process";
 
 const valueToken = ref("");
 const options = ["TON", "CATOS"];
-const emits = defineEmits(["close", "qr"]);
+const emits = defineEmits(["close", "qr", "change"]);
 
 const inputValue = ref("");
 
@@ -99,6 +100,10 @@ const close = () => {
 const role = computed(() => {
   return JSON.parse(localStorage.getItem("role")!);
 });
+const onChange = (ev: any) => {
+  inputValue.value = ev;
+  emits("change", ev);
+};
 </script>
 
 <style scoped lang="scss">
