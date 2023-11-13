@@ -31,77 +31,77 @@
         <div class="frame-parent13">
           <div class="fieldsinput-group">
             <div class="fieldsinput">
-                <div class="div18">
-                  <span class="span8">Имя </span>
-                  <span class="span2">
-                    <span>*</span>
-                    <span class="span10"> </span>
-                  </span>
-                </div>
-                <input-data
-                  :style="{ width: '100%' }"
-                  placeholder="Введите имя"
-                  :right="true"
-                  v-model:model-value="passportDataStore.passportDTO.name"
-                >
-                  <template v-slot:right-icon>
-                    <img src="@/assets/images/iconseditoutline-black.svg" />
-                  </template>
-                </input-data>
+              <div class="div18">
+                <span class="span8">Имя </span>
+                <span class="span2">
+                  <span>*</span>
+                  <span class="span10"> </span>
+                </span>
               </div>
-              <div class="fieldsinput">
-                <div class="div18">
-                  <span class="span8">Фамилия </span>
-                  <span class="span2">
-                    <span>*</span>
-                    <span class="span10"> </span>
-                  </span>
-                </div>
-                <input-data
-                  :style="{ width: '100%' }"
-                  placeholder="Введите фамилию"
-                  :right="true"
-                  v-model:model-value="passportDataStore.passportDTO.surname"
-                >
-                  <template v-slot:right-icon>
-                    <img src="@/assets/images/iconseditoutline-black.svg" />
-                  </template>
-                </input-data>
+              <input-data
+                :style="{ width: '100%' }"
+                placeholder="Введите имя"
+                :right="true"
+                v-model:model-value="passportDataStore.passportDTO.name"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
+            </div>
+            <div class="fieldsinput">
+              <div class="div18">
+                <span class="span8">Фамилия </span>
+                <span class="span2">
+                  <span>*</span>
+                  <span class="span10"> </span>
+                </span>
               </div>
-              <div class="fieldsinput">
-                <div class="div22">
-                  <span class="span14">Отчество (если есть) </span>
-                  <span class="span15">
-                    <span>*</span>
-                    <span class="span10"> </span>
-                  </span>
-                </div>
-                <input-data
-                  :style="{ width: '100%' }"
-                  placeholder="Введите отчество"
-                  :right="true"
-                  v-model:model-value="passportDataStore.passportDTO.middlename"
-                >
-                  <template v-slot:right-icon>
-                    <img src="@/assets/images/iconseditoutline-black.svg" />
-                  </template>
-                </input-data>
+              <input-data
+                :style="{ width: '100%' }"
+                placeholder="Введите фамилию"
+                :right="true"
+                v-model:model-value="passportDataStore.passportDTO.surname"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
+            </div>
+            <div class="fieldsinput">
+              <div class="div22">
+                <span class="span14">Отчество (если есть) </span>
+                <span class="span15">
+                  <span>*</span>
+                  <span class="span10"> </span>
+                </span>
               </div>
+              <input-data
+                :style="{ width: '100%' }"
+                placeholder="Введите отчество"
+                :right="true"
+                v-model:model-value="passportDataStore.passportDTO.middlename"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
+            </div>
             <div class="fieldsinput6">
               <div class="div15">
                 <span class="span9">Национальность</span>
                 <span class="span7"> </span>
               </div>
               <input-data
-                  :style="{ width: '100%' }"
-                  placeholder="Национальность"
-                  :right="true"
-                  v-model:model-value="passportDataStore.passportDTO.nationality"
-                >
-                  <template v-slot:right-icon>
-                    <img src="@/assets/images/iconseditoutline-black.svg" />
-                  </template>
-                </input-data>
+                :style="{ width: '100%' }"
+                placeholder="Национальность"
+                :right="true"
+                v-model:model-value="passportDataStore.passportDTO.nationality"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
             </div>
             <div class="fieldsinput6">
               <div class="goa-filejpg">Должность</div>
@@ -150,8 +150,10 @@
               </div>
               <button-slider
                 :style="{ width: '100%' }"
-                variant='right'
-                @on-slide="ev => paperDataStore.paperDTO.ownership = Boolean(ev)"
+                variant="right"
+                @on-slide="
+                  ev => (paperDataStore.paperDTO.ownership = Boolean(ev))
+                "
               ></button-slider>
             </div>
           </div>
@@ -162,7 +164,6 @@
               <span class="span1">*</span>
             </div>
           </div>
-          
         </div>
         <div class="registration-options3">
           <div class="registration-options-child1"></div>
@@ -182,62 +183,96 @@
                 placeholder="Московская"
                 :options="regions"
                 :value="
-                passportDataStore.passportDTO.registration_address.region
+                  passportDataStore.passportDTO.registration_address.region
                 "
                 @selected="
-                ev =>
-                  (passportDataStore.passportDTO.registration_address.region =
-                    ev)
-              "
+                  ev =>
+                    (passportDataStore.passportDTO.registration_address.region =
+                      ev)
+                "
                 :optionWidth="77"
                 :style="
-                passportDataStore.passportDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
-                  : { width: '100%', opacity: '1' }
-              "
-               :disabled="passportDataStore.passportDTO.country !== 'Россия'"
+                  passportDataStore.passportDTO.country !== 'Россия'
+                    ? {
+                        width: '100%',
+                        opacity: '0.2',
+                        cursor: 'not-allowed',
+                        pointerEvents: 'none',
+                      }
+                    : { width: '100%', opacity: '1' }
+                "
+                :disabled="passportDataStore.passportDTO.country !== 'Россия'"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
               <div class="goa-filejpg">Район</div>
               <catos-select
-                :placeholder="passportDataStore.passportDTO.registration_address.region !== '' && neighborhoodsReg ? neighborhoodsReg[0] : 'Воскресенск'"
+                :placeholder="
+                  passportDataStore.passportDTO.registration_address.region !==
+                    '' && neighborhoodsReg
+                    ? neighborhoodsReg[0]
+                    : 'Воскресенск'
+                "
                 :options="neighborhoodsReg"
                 :value="passportDataStore.passportDTO.registration_address.city"
                 @selected="
-                ev =>
-                  (passportDataStore.passportDTO.registration_address.city =
-                    ev)
-              "
+                  ev =>
+                    (passportDataStore.passportDTO.registration_address.city =
+                      ev)
+                "
                 :optionWidth="77"
                 :style="
-                passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
-                  : { width: '100%', opacity: '1' }
-              "
-               :disabled="passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
+                  passportDataStore.passportDTO.registration_address.region ===
+                    '' || passportDataStore.passportDTO.country !== 'Россия'
+                    ? {
+                        width: '100%',
+                        opacity: '0.2',
+                        cursor: 'not-allowed',
+                        pointerEvents: 'none',
+                      }
+                    : { width: '100%', opacity: '1' }
+                "
+                :disabled="
+                  passportDataStore.passportDTO.registration_address.region ===
+                    '' || passportDataStore.passportDTO.country !== 'Россия'
+                "
               ></catos-select>
             </div>
             <div class="fieldsinput">
               <div class="goa-filejpg">Населенный пункт</div>
               <catos-select
-              :placeholder="passportDataStore.passportDTO.registration_address.region !== '' && citiesReg ? citiesReg[0] : 'Москва'"
-              :options="citiesReg"
+                :placeholder="
+                  passportDataStore.passportDTO.registration_address.region !==
+                    '' && citiesReg
+                    ? citiesReg[0]
+                    : 'Москва'
+                "
+                :options="citiesReg"
                 :value="
-                passportDataStore.passportDTO.registration_address.neighborhood
-              "
+                  passportDataStore.passportDTO.registration_address
+                    .neighborhood
+                "
                 @selected="
-                ev =>
-                  (passportDataStore.passportDTO.registration_address.neighborhood =
-                    ev)
-              "
+                  ev =>
+                    (passportDataStore.passportDTO.registration_address.neighborhood =
+                      ev)
+                "
                 :optionWidth="77"
                 :style="
-                passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
-                  : { width: '100%', opacity: '1' }
-              "
-               :disabled="passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
+                  passportDataStore.passportDTO.registration_address.region ===
+                    '' || passportDataStore.passportDTO.country !== 'Россия'
+                    ? {
+                        width: '100%',
+                        opacity: '0.2',
+                        cursor: 'not-allowed',
+                        pointerEvents: 'none',
+                      }
+                    : { width: '100%', opacity: '1' }
+                "
+                :disabled="
+                  passportDataStore.passportDTO.registration_address.region ===
+                    '' || passportDataStore.passportDTO.country !== 'Россия'
+                "
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -246,7 +281,9 @@
                 placeholder="Введите улицу"
                 :style="{ width: '100%' }"
                 :right="true"
-                v-model:model-value="passportDataStore.passportDTO.registration_address.street"
+                v-model:model-value="
+                  passportDataStore.passportDTO.registration_address.street
+                "
               >
                 <template v-slot:right-icon>
                   <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -258,8 +295,12 @@
             <div class="frame-parent3">
               <div class="parent11">
                 <div class="div22">Дом</div>
-                <input-data placeholder="1" :style="{ width: '100%' }"
-                v-model:model-value="passportDataStore.passportDTO.registration_address.house"
+                <input-data
+                  placeholder="1"
+                  :style="{ width: '100%' }"
+                  v-model:model-value="
+                    passportDataStore.passportDTO.registration_address.house
+                  "
                 >
                 </input-data>
               </div>
@@ -268,7 +309,9 @@
                 <input-data
                   placeholder="1/2"
                   :style="{ width: '100%' }"
-                  v-model:model-value="passportDataStore.passportDTO.registration_address.housing"
+                  v-model:model-value="
+                    passportDataStore.passportDTO.registration_address.housing
+                  "
                 ></input-data>
               </div>
             </div>
@@ -278,7 +321,9 @@
                 <input-data
                   placeholder="-"
                   :style="{ width: '100%' }"
-                  v-model:model-value="passportDataStore.passportDTO.registration_address.building"
+                  v-model:model-value="
+                    passportDataStore.passportDTO.registration_address.building
+                  "
                 ></input-data>
               </div>
               <div class="parent11">
@@ -286,7 +331,9 @@
                 <input-data
                   placeholder="№23"
                   :style="{ width: '100%' }"
-                  v-model:model-value="passportDataStore.passportDTO.registration_address.apartment"
+                  v-model:model-value="
+                    passportDataStore.passportDTO.registration_address.apartment
+                  "
                 ></input-data>
               </div>
             </div>
@@ -391,125 +438,155 @@
                 <span class="span2">* </span>
               </div>
               <catos-select
-              placeholder="Московская"
-              :options="regions"
+                placeholder="Московская"
+                :options="regions"
                 :value="paperDataStore.paperDTO.address.region"
                 :optionWidth="77"
-                :style="paperDataStore.paperDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
-                  : { width: '100%', opacity: '1' }
-              "
-                @selected="
-                  ev =>
-                    (paperDataStore.paperDTO.address.region = ev)
+                :style="
+                  paperDataStore.paperDTO.country !== 'Россия'
+                    ? {
+                        width: '100%',
+                        opacity: '0.2',
+                        cursor: 'not-allowed',
+                        pointerEvents: 'none',
+                      }
+                    : { width: '100%', opacity: '1' }
                 "
-                 :disabled="paperDataStore.paperDTO.country !== 'Россия'"
+                @selected="ev => (paperDataStore.paperDTO.address.region = ev)"
+                :disabled="paperDataStore.paperDTO.country !== 'Россия'"
               ></catos-select>
             </div>
             <div class="fieldsinput">
-            <div class="div22">
-              <span>Район</span>
-              <span class="span2">* </span>
+              <div class="div22">
+                <span>Район</span>
+                <span class="span2">* </span>
+              </div>
+              <catos-select
+                :placeholder="
+                  paperDataStore.paperDTO.country !== '' &&
+                  neighborhoodsRegPaper
+                    ? neighborhoodsRegPaper[0]
+                    : 'Воскресенск'
+                "
+                :options="neighborhoodsRegPaper"
+                :value="paperDataStore.paperDTO.address.neighborhood"
+                :optionWidth="77"
+                :style="
+                  paperDataStore.paperDTO.address.region === '' ||
+                  paperDataStore.paperDTO.country !== 'Россия'
+                    ? {
+                        width: '100%',
+                        opacity: '0.2',
+                        cursor: 'not-allowed',
+                        pointerEvents: 'none',
+                      }
+                    : { width: '100%', opacity: '1' }
+                "
+                @selected="
+                  ev => (paperDataStore.paperDTO.address.neighborhood = ev)
+                "
+                :disabled="
+                  paperDataStore.paperDTO.address.region === '' ||
+                  paperDataStore.paperDTO.country !== 'Россия'
+                "
+              ></catos-select>
             </div>
-            <catos-select
-            :placeholder="paperDataStore.paperDTO.country !== '' && neighborhoodsRegPaper ? neighborhoodsRegPaper[0] : 'Воскресенск'"
-              :options="neighborhoodsRegPaper"
-              :value="
-                paperDataStore.paperDTO.address.neighborhood
-              "
-              :optionWidth="77"
-              :style="
-               paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
-                  : { width: '100%', opacity: '1' }
-              "
-              @selected="
-                ev =>
-                  (paperDataStore.paperDTO.address.neighborhood =
-                    ev)
-              "
-              :disabled="paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'"
-            ></catos-select>
-          </div>
-          <div class="fieldsinputchoise3">
-            <div class="div22">Населенный пункт</div>
-            <catos-select
-            :placeholder="paperDataStore.paperDTO.country !== '' && citiesRegPaper ? citiesRegPaper[0] : 'Москва'"
-              :options="citiesRegPaper"
-              :value="paperDataStore.paperDTO.address.city"
-              :optionWidth="77"
-              :style="
-              paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
-                  : { width: '100%', opacity: '1' }
-              "
-              @selected="
-                ev => (paperDataStore.paperDTO.address.city = ev)
-              "
-              :disabled="paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'"
-            ></catos-select>
-          </div>
-          <div class="fieldsinputchoise3">
-            <div class="div10">Улица</div>
-            <input-data
-              placeholder="Начните вводить адресс"
-              :style="{ width: '100%' }"
-              :right="true"
-              v-model:model-value="paperDataStore.paperDTO.address.street"
-            >
-              <template v-slot:right-icon>
-                <img src="@/assets/images/iconseditoutline-black.svg" />
-              </template>
-            </input-data>
-          </div>
-        
-          <div class="frame-parent5">
-            <div class="frame-parent3">
-              <div class="parent11">
-                <div class="div10">Дом</div>
-                <input-data
-                  placeholder="1"
-                  :style="{ width: '100%' }"
-                   v-model:model-value="paperDataStore.paperDTO.address.house"
-                ></input-data>
-              </div>
-              <div class="parent11">
-                <div class="div10">Корпус</div>
-                <input-data
-                  placeholder="1"
-                  :style="{ width: '100%' }"
-                  v-model:model-value="paperDataStore.paperDTO.address.housing"
-                ></input-data>
-              </div>
+            <div class="fieldsinputchoise3">
+              <div class="div22">Населенный пункт</div>
+              <catos-select
+                :placeholder="
+                  paperDataStore.paperDTO.country !== '' && citiesRegPaper
+                    ? citiesRegPaper[0]
+                    : 'Москва'
+                "
+                :options="citiesRegPaper"
+                :value="paperDataStore.paperDTO.address.city"
+                :optionWidth="77"
+                :style="
+                  paperDataStore.paperDTO.address.region === '' ||
+                  paperDataStore.paperDTO.country !== 'Россия'
+                    ? {
+                        width: '100%',
+                        opacity: '0.2',
+                        cursor: 'not-allowed',
+                        pointerEvents: 'none',
+                      }
+                    : { width: '100%', opacity: '1' }
+                "
+                @selected="ev => (paperDataStore.paperDTO.address.city = ev)"
+                :disabled="
+                  paperDataStore.paperDTO.address.region === '' ||
+                  paperDataStore.paperDTO.country !== 'Россия'
+                "
+              ></catos-select>
             </div>
-            <div class="frame-parent3" :style="{ marginTop: '1em' }">
-              <div class="parent11">
-                <div class="div10">Строение</div>
-                <input-data
-                  placeholder="1"
-                  :style="{ width: '100%' }"
-                  v-model:model-value="paperDataStore.paperDTO.address.building"
-                ></input-data>
-              </div>
-              <div class="parent11">
-                <div class="div10">Квартира</div>
-                <input-data
-                  placeholder="1"
-                  :style="{ width: '100%' }"
-                  v-model:model-value="paperDataStore.paperDTO.address.apartment"
-                ></input-data>
-              </div>
+            <div class="fieldsinputchoise3">
+              <div class="div10">Улица</div>
+              <input-data
+                placeholder="Начните вводить адресс"
+                :style="{ width: '100%' }"
+                :right="true"
+                v-model:model-value="paperDataStore.paperDTO.address.street"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
             </div>
-            <div class="parent11" :style="{ marginTop: '1em' }">
-              <div class="div10">Индекс</div>
+
+            <div class="frame-parent5">
+              <div class="frame-parent3">
+                <div class="parent11">
+                  <div class="div10">Дом</div>
+                  <input-data
+                    placeholder="1"
+                    :style="{ width: '100%' }"
+                    v-model:model-value="paperDataStore.paperDTO.address.house"
+                  ></input-data>
+                </div>
+                <div class="parent11">
+                  <div class="div10">Корпус</div>
+                  <input-data
+                    placeholder="1"
+                    :style="{ width: '100%' }"
+                    v-model:model-value="
+                      paperDataStore.paperDTO.address.housing
+                    "
+                  ></input-data>
+                </div>
+              </div>
+              <div class="frame-parent3" :style="{ marginTop: '1em' }">
+                <div class="parent11">
+                  <div class="div10">Строение</div>
+                  <input-data
+                    placeholder="1"
+                    :style="{ width: '100%' }"
+                    v-model:model-value="
+                      paperDataStore.paperDTO.address.building
+                    "
+                  ></input-data>
+                </div>
+                <div class="parent11">
+                  <div class="div10">Квартира</div>
+                  <input-data
+                    placeholder="1"
+                    :style="{ width: '100%' }"
+                    v-model:model-value="
+                      paperDataStore.paperDTO.address.apartment
+                    "
+                  ></input-data>
+                </div>
+              </div>
+              <div class="parent11" :style="{ marginTop: '1em' }">
+                <div class="div10">Индекс</div>
                 <input-data
                   placeholder="193 984"
                   :style="{ width: '100%' }"
                   v-model:model-value="indexPaperString"
                 ></input-data>
+              </div>
             </div>
-        </div>
-          
+
             <div class="fieldsinputchoise">
               <div class="goa-filejpg">Веб-сайт организации</div>
               <input-data
@@ -544,7 +621,9 @@
                     placeholder="Россия"
                     :options="countries"
                     :value="passportDataStore.passportDTO.country"
-                    @selected="ev => (passportDataStore.passportDTO.country = ev)"
+                    @selected="
+                      ev => (passportDataStore.passportDTO.country = ev)
+                    "
                     :optionWidth="77"
                     :style="{ width: '100%' }"
                   ></catos-select>
@@ -584,7 +663,6 @@
                   ></input-data>
                 </div>
               </div>
-              
             </div>
             <div class="fieldsinputchoise">
               <div class="div22">
@@ -598,8 +676,10 @@
               </div>
               <catos-textarea
                 placeholder="МВД России по Москве, и Московской области"
-                :value=" passportDataStore.passportDTO.issuing_organization"
-                @selected="passportDataStore.passportDTO.issuing_organization = $event"
+                :value="passportDataStore.passportDTO.issuing_organization"
+                @selected="
+                  passportDataStore.passportDTO.issuing_organization = $event
+                "
               ></catos-textarea>
             </div>
           </div>
@@ -634,16 +714,16 @@ import buttonSlider from "../../../components/ui-kit/buttons/button-slider.vue";
 import { useUserDataStore } from "@/stores/userData";
 import { usePaperDataStore } from "@/stores/paperData";
 import { usePassportDataStore } from "@/stores/passportData";
-import { ref, reactive , computed} from "vue";
+import { ref, reactive, computed } from "vue";
 import { passports, papers } from "@/api/documents.api";
 import router from "@/router";
-import countries from "@/json/countries.json"
-import regions from "@/json/regions.json"
-import { useCityList } from '@/composables/useCityList'
-import { useNeighborhoodList } from "@/composables/useNeighborhoodList"
+import countries from "@/json/countries.json";
+import regions from "@/json/regions.json";
+import { useCityList } from "@/composables/useCityList";
+import { useNeighborhoodList } from "@/composables/useNeighborhoodList";
 
-const paperDataStore = usePaperDataStore()
-const passportDataStore = usePassportDataStore()
+const paperDataStore = usePaperDataStore();
+const passportDataStore = usePassportDataStore();
 
 const indexPassportString = computed(() => {
   return passportDataStore.passportDTO.registration_address.index.toString();
@@ -655,7 +735,7 @@ const indexPaperString = computed(() => {
 
 const regNumberString = reactive({
   value:
-  paperDataStore.paperDTO.registration_number === 0
+    paperDataStore.paperDTO.registration_number === 0
       ? ""
       : paperDataStore.paperDTO.registration_number.toString(),
 });
@@ -664,24 +744,34 @@ import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();
 
-const {citiesByRegion: ctitesRegistration} = useCityList('registration', 'passport')
-const {citiesByRegion: ctitesRegistrationPaper} = useCityList('registration', 'paper')
-const {neighborhoodByRegion: neighborhoodRegistration} = useNeighborhoodList('registration', 'passport')
-const {neighborhoodByRegion: neighborhoodRegistrationPaper} = useNeighborhoodList('registration', 'paper')
+const { citiesByRegion: ctitesRegistration } = useCityList(
+  "registration",
+  "passport"
+);
+const { citiesByRegion: ctitesRegistrationPaper } = useCityList(
+  "registration",
+  "paper"
+);
+const { neighborhoodByRegion: neighborhoodRegistration } = useNeighborhoodList(
+  "registration",
+  "passport"
+);
+const { neighborhoodByRegion: neighborhoodRegistrationPaper } =
+  useNeighborhoodList("registration", "paper");
 
 const citiesReg = computed(() => {
-    return ctitesRegistration.value
+  return ctitesRegistration.value;
 });
 const citiesRegPaper = computed(() => {
-    return ctitesRegistrationPaper.value
+  return ctitesRegistrationPaper.value;
 });
 
 const neighborhoodsReg = computed(() => {
-    return neighborhoodRegistration.value
+  return neighborhoodRegistration.value;
 });
 
 const neighborhoodsRegPaper = computed(() => {
-    return neighborhoodRegistrationPaper.value
+  return neighborhoodRegistrationPaper.value;
 });
 
 const regOptions = {
@@ -691,45 +781,43 @@ const regOptions = {
 
 const passportNumberString = reactive({
   value:
-  passportDataStore.passportDTO.number === 0
+    passportDataStore.passportDTO.number === 0
       ? ""
-      : passportDataStore.passportDTO.number.toString(),
+      : passportDataStore.passportDTO.series.toString() +
+        " " +
+        passportDataStore.passportDTO.number.toString(),
 });
-
 
 const isDataLoading = ref(false);
 const handleNextClick = async () => {
   isDataLoading.value = true;
   await passports(passportDataStore.passportDTO)
-    .then((res) => {
+    .then(res => {
       if (res.status === 201) {
-          console.log('Data saved');
-          papers(paperDataStore.paperDTO)
-            .then((res) => {
+        console.log("Data saved");
+        papers(paperDataStore.paperDTO)
+          .then(res => {
             if (res.status === 201) {
-                console.log('Data saved');
-                router.push({name: 'connect-wallet'});
-              }
-              else {
-                console.log(res);
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            })
-        }
-        else {
-          console.log(res);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        isDataLoading.value = false;
-      });
-  }
-
+              console.log("Data saved");
+              router.push({ name: "connect-wallet" });
+            } else {
+              console.log(res);
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      } else {
+        console.log(res);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => {
+      isDataLoading.value = false;
+    });
+};
 </script>
 
 <style scoped lang="scss">
@@ -1300,8 +1388,7 @@ const handleNextClick = async () => {
   flex-direction: row;
   align-items: center;
 }
-.parent11
- {
+.parent11 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1356,7 +1443,6 @@ const handleNextClick = async () => {
   height: 42.19em;
 }
 .frame-parent5 {
-
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -2645,9 +2731,10 @@ const handleNextClick = async () => {
 }
 .fieldsinputchoise,
 .fieldsinputchoise1,
-.fieldsinput, .fieldsinputchoise3, .text2,
-.parent11
- {
+.fieldsinput,
+.fieldsinputchoise3,
+.text2,
+.parent11 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;

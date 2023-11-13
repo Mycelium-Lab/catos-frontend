@@ -37,7 +37,7 @@
             </div>
           </div>
         </div>
-        <div class="buttonnext" id="buttonNextContainer" @click="toLogin">
+        <div class="buttonnext" id="buttonNextContainer" @click="toPools">
           <b class="b1">Выбрать пулл</b>
         </div>
         <div class="frame-div">
@@ -79,9 +79,28 @@
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
+import { roleStorage } from "@/utils/localStorage";
+
 const router = useRouter();
-const toLogin = () => {
-  router.push('/login');
+const toPools = () => {
+  switch(roleStorage.get()) {
+    case 'borrower': {
+      router.push(`/pulls/borrower`);
+      break;
+    }
+    case 'collector': {
+      router.push(`/pulls/collector`);
+      break;
+    }
+    case 'investor': {
+      router.push(`/pulls/depositor`);
+      break;
+    }
+    case 'creditor': {
+      router.push(`/pulls/creditor`);
+      break;
+    }
+  }
 };
 </script>
 

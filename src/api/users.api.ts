@@ -21,7 +21,7 @@ export const register = (payload: UserData) => {
 };
 export const connectWallet = () => {
   return baseApiClient.get<ConnectWalletResponse>(
-    USER_END_POINT + "/connectWallet"
+    USER_END_POINT + "/connectWallet/"
   );
 };
 export const verifyEmail = () => {

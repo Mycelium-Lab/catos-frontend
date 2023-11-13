@@ -38,11 +38,16 @@
                 </div>
                 <input-data
                   :style="{ width: '100%' }"
-                  placeholder="1234 09876"
+                  placeholder="1234 098761"
                   :right="true"
-                  v-model:model-value="passportNumberString.value"
-                  @update:model-value="ev => passportDataStore.passportDTO.number = ev"
-                >
+                  @update:model-value="
+                    event => {
+                      passportDataStore.passportDTO.series =
+                        event.split(' ')[0];
+                      passportDataStore.passportDTO.number =
+                        event.split(' ')[1];
+                    }
+                  "                >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
                   </template>
