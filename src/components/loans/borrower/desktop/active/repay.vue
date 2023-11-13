@@ -1,6 +1,6 @@
 <template>
   <confirm-qr-destop @close="close" @result="repay" :disabled="isDisabled">
-    <template v-slot:header> Займ из пулла #12345 </template>
+    <template v-slot:header> Займ из пулла № {{ id }} </template>
     <template v-slot:title>Погасить займ</template>
     <template v-slot:subtitle>
       <input-data
@@ -71,7 +71,7 @@
     <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" 
     @close="isTransaction = false" 
     :status="transactionStatus"
-    title="Произогла ошибка при погашении займа"
+    title="Произошла ошибка при погашении займа"
     ></transaction-desktop>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
-  <prolong v-if="isProlong" :toInit="setInit" :id="1" @close="close"></prolong>
-  <repay v-if="isRepay" @close="close" :id="1"></repay>
+  <prolong v-if="isProlong" :toInit="setInit" :id="loan.id" @close="close"></prolong>
+  <repay v-if="isRepay" @close="close" :id="loan.id"></repay>
   <active-detail v-if="isDetail && status === 'active'" @close="close">
   </active-detail>
   <overdue-detail
@@ -15,11 +15,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType } from "vue";
 import prolong from "./active/prolong.vue";
 import repay from "./active/repay.vue";
 import overdueDetail from "./active/overdue-detail.vue";
 import activeDetail from "./active/active-detail.vue";
+import { LoansResponse } from "@/types/loan.types";
+
 const { status, state } = defineProps({
   state: {
     type: Object,
@@ -28,6 +30,10 @@ const { status, state } = defineProps({
   status: {
     type: String,
   },
+  loan: {
+    type: Object as PropType<LoansResponse>,
+    required: true,
+  }
 });
 
 const emits = defineEmits(["close", "repay", "prolong"]);

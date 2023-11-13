@@ -1,60 +1,39 @@
 <template>
-    <!-- <h3 v-if="!loanListStore.loans.length">
+     <h3 v-if="!actualLoans.length">
       Займы пока отсутствуют
-    </h3>-->
+    </h3>
     <ul class="list-desktop">
-      <!-- <li
-           v-for="loan in variant === 'active' ? loanListStore.activeLoan
-            : variant === 'repaid' ? loanListStore.paidLoan
-            : variant === 'sold' ? loanListStore.soldLoan
-            : loanListStore.loans"
+      <li
+           v-for="loan in actualLoans"
             :key="loan.id"
         >
             <loans-table
-                :variant="variant"
                 :key="variant"
-                :status="status"
+                :loan="loan"
+                :variant ="loan.status"
             >
           </loans-table>
-       </li> -->
-       <li
-           v-for="n in 5"
-            :key="n"
-        >
-            <loans-table
-                :variant="variant"
-                :key="variant"
-                :status="getStatus(n)"
-            >
-          </loans-table>
-        </li>
+       </li> 
      </ul>
 </template>
 
 <script setup lang="ts">
-import {computed} from "vue"
 import loansTable from "@/components/loans/creditor/loans-table.vue";
 import { useLoanListStore } from "@/stores/loanList";
+import { computed } from "vue";
 
-const loanListStore = useLoanListStore();
 
-const { variant, role } = defineProps({
+const { variant} = defineProps({
  variant: {
    type: String,
- },
- role: {
-   type: String,
- },
+ }
 });
+const loansStore = useLoanListStore();
 
-const getStatus = (id: number) => {
-    if(id !== 1 && id !== 2) {
-        return 'overdue'
-    }
-    else {
-        return 'active'
-    }
-}
+const actualLoans = computed(() => {
+    return loansStore.loans.filter(v => v.status === variant) 
+})
+
 </script>
 
 <style scoped lang="scss">
