@@ -44,7 +44,7 @@
                           Одобренный лимит
                         </div>
                         <div
-                          v-if="role === 'creditor' || role === 'depositor'"
+                          v-if="role === 'creditor' || role === 'investor'"
                           class="txt2"
                         >
                           Доступно ликвидности
@@ -228,7 +228,7 @@
                   <div
                     v-if="
                       role === 'creditor' ||
-                      role === 'depositor' ||
+                      role === 'investor' ||
                       (role === 'borrower' && variant === 'my')
                     "
                     class="line-div"
@@ -236,7 +236,7 @@
                   <div
                     v-if="
                       role === 'creditor' ||
-                      role === 'depositor' ||
+                      role === 'investor' ||
                       (role === 'borrower' && variant === 'my')
                     "
                     class="frame-parent23"
@@ -251,7 +251,7 @@
                   <div
                     v-if="
                       role === 'creditor' ||
-                      role === 'depositor' ||
+                      role === 'investor' ||
                       (role === 'borrower' && variant === 'my')
                     "
                     class="line-div"
@@ -259,7 +259,7 @@
                   <div
                     v-if="
                       role === 'creditor' ||
-                      role === 'depositor' ||
+                      role === 'investor' ||
                       (role === 'borrower' && variant === 'my')
                     "
                     class="frame-parent23"
@@ -274,11 +274,11 @@
                     </div>
                   </div>
                   <div
-                    v-if="role === 'depositor' && variant === 'all'"
+                    v-if="role === 'investor' && variant === 'all'"
                     class="line-div"
                   />
                   <div
-                    v-if="role === 'depositor' && variant === 'all'"
+                    v-if="role === 'investor' && variant === 'all'"
                     class="frame-parent23"
                   >
                     <div class="frame">
@@ -289,11 +289,11 @@
                     </div>
                   </div>
                   <div
-                    v-if="role === 'depositor' && variant === 'all'"
+                    v-if="role === 'investor' && variant === 'all'"
                     class="line-div"
                   />
                   <div
-                    v-if="role === 'depositor' && variant === 'all'"
+                    v-if="role === 'investor' && variant === 'all'"
                     class="frame-parent23"
                   >
                     <div class="frame">
@@ -303,8 +303,8 @@
                       <div class="div128">273</div>
                     </div>
                   </div>
-                  <div v-if="role === 'depositor'" class="line-div" />
-                  <div v-if="role === 'depositor'" class="frame-parent23">
+                  <div v-if="role === 'investor'" class="line-div" />
+                  <div v-if="role === 'investor'" class="frame-parent23">
                     <div class="frame">
                       <div class="div127">Доходность за 30 дней:</div>
                     </div>
@@ -337,7 +337,7 @@
                 </div>
 
                 <div
-                  v-if="role === 'depositor' && variant === 'my'"
+                  v-if="role === 'investor' && variant === 'my'"
                   class="frame-parent"
                 >
                   <div class="wrapper">
@@ -437,14 +437,14 @@
                     </button>
 
                     <catos-button
-                      v-if="role === 'depositor' && variant === 'my'"
+                      v-if="role === 'investor' && variant === 'my'"
                       :style="{ width: '100%' }"
                       variant="fourth"
                       @click.stop="toWidthdrawLequid"
                       >Вывести депозит</catos-button
                     >
                     <catos-button
-                      v-if="role === 'depositor'"
+                      v-if="role === 'investor'"
                       :style="{ width: '100%' }"
                       variant="fourth"
                       @click.stop="toAddLequid"
@@ -527,7 +527,7 @@
   >
   </my-borrower-pulls>
 
-        <add-liquid
+        <add
           v-if="
             (isAllDepositor || isMyDepositor) &&
             allDepositorState.addLiquidModal
@@ -539,7 +539,7 @@
             }
           "
           :poolId="pool.id"
-        ></add-liquid>
+        ></add>
         <withdraw-liquid
           v-if="
             (isAllDepositor || isMyDepositor) &&
@@ -558,6 +558,7 @@
             !allDepositorState.addLiquidModal &&
             !allDepositorState.widthrawLiquidModal
           "
+          :poolId="pool.id"
           @close="
             () => {
               isAllDepositor = false;
@@ -640,7 +641,7 @@ import myCreditorPulls from "@/components/pulls/creditor/desktop/my-creditor-pul
 import myBorrowerPulls from "@/components/pulls/borrower/desktop/my-borrower-pulls.vue";
 import allBorrowerPulls from "@/components/pulls/borrower/desktop/all-borrower-pulls.vue";
 import allDepositorPulls from "@/components/pulls/depositor/desktop/all-depositor-pulls.vue";
-import addLiquid from "@/components/pulls/depositor/desktop/add-liquid.vue";
+import add from "@/components/pulls/creditor/desktop/modal-body/add.vue";
 import myDepositorPulls from "@/components/pulls/depositor/desktop/my-depositor-pulls.vue";
 import withdrawLiquid from "@/components/pulls/depositor/desktop/withdraw-liquid.vue";
 import allCollectorPulls from "@/components/pulls/collector/desktop/all-collector-pulls.vue";
@@ -649,12 +650,10 @@ import buy from "@/components/pulls/collector/desktop/buy.vue";
 import { useRouter } from "vue-router";
 import { parse } from "tinyduration";
 import { Pool } from "@/types/pool.type";
+import { roleStorage } from "@/utils/localStorage";
 
-const { variant, role } = defineProps({
+const { variant } = defineProps({
   variant: {
-    type: String,
-  },
-  role: {
     type: String,
   },
   pool: {
@@ -664,6 +663,11 @@ const { variant, role } = defineProps({
 });
 
 const emits = defineEmits(["mySoldLoans"]);
+
+const role = computed(() => {
+  return roleStorage.get()
+})
+
 const toMySold = () => {
   emits("mySoldLoans");
 };
@@ -757,7 +761,7 @@ const toBuy = () => {
 };
 
 const toDetail = () => {
-  if (role === "creditor") {
+  if (role.value === "creditor") {
     if (variant === "my") {
       isMyCreditor.value = true;
       myCreditorState.detailOtherModal = true;
@@ -765,7 +769,7 @@ const toDetail = () => {
     if (variant === "all") {
       isAllCreditor.value = true;
     }
-  } else if (role === "borrower") {
+  } else if (role.value === "borrower") {
     if (variant === "my") {
       isMyBorrower.value = true;
       myBorrowerState.detailMyModal = true;
@@ -774,7 +778,7 @@ const toDetail = () => {
       isAllBorrower.value = true;
       allBorrowerState.detailOtherModal = true;
     }
-  } else if (role === "investor") {
+  } else if (role.value === "investor") {
     if (variant === "all") {
       isAllDepositor.value = true;
       allDepositorState.detailOtherModal = true;
@@ -783,7 +787,7 @@ const toDetail = () => {
       isMyDepositor.value = true;
       myDepositorState.detailOtherModal = true;
     }
-  } else if (role === "collector") {
+  } else if (role.value === "collector") {
     if (variant === "marketplace") {
       isAllCollector.value = true;
       allCollectorState.detailOtherModal = true;
@@ -1253,10 +1257,10 @@ li {
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
-  &_depositor-all {
+  &_investor-all {
     height: 42.3em;
   }
-  &_depositor-my {
+  &_investor-my {
     height: 46.5em;
   }
   &_creditor-my {
