@@ -103,7 +103,7 @@
     </transaction-desktop>
     <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" 
       :status="transactionStatus"
-      :title="role === 'investor' ? 'Произошла ошибка при выводе депозита из пулла' : 'Произошла ошибка при изъятии ликвидности из пулл'"
+      :title="role === 'investor' ? 'Произошла ошибка при выводе депозита из пулла' : 'Произошла ошибка при изъятии ликвидности из пулла'"
       >
     </transaction-desktop>
 </template>
