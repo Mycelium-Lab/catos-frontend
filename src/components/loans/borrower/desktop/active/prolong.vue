@@ -5,12 +5,7 @@
     <template v-slot:body>
       <prolong-body
         @close="close"
-        @payment="
-          () => {
-            isEnter = false;
-            isPayment = true;
-          }
-        "
+       @prolong="handlePayment"
       ></prolong-body>
     </template>
   </desktop-modal>
@@ -38,37 +33,7 @@
       ></payment-method>
     </template>
   </desktop-modal>
-  <confirm-qr-destop
-    v-if="isExtend"
-    @close="close"
-    variant="back"
-    :toBack="
-      () => {
-        isExtend = false;
-        isPayment = true;
-      }
-    "
-    @result="
-      () => {
-        isExtend = false;
-        isResult = true;
-      }
-    "
-  >
-    <template v-slot:header> Пролонгация займа </template>
-    <template v-slot:header-link> #557946 </template>
-    <template v-slot:title>Extend the loan </template>
-    <template v-slot:subtitle
-      >Scan the QR code and pay 512 TON with Tonkeeper <br />
-      using
-    </template>
-    <template v-slot:link>EQB5...dzE1hа44 </template>
-    <template v-slot:action>Extend the loan</template>
-    <template v-slot:footer
-      >By proceeding, you accept the <br />
-      CATOS Terms of Service and Privacy Policy.</template
-    >
-  </confirm-qr-destop>
+  
   <status-modal-desktop
     v-if="isResult"
     actionGroupColumn
@@ -90,21 +55,43 @@
     <template v-slot:action-first>Посмотреть информацию о займе</template>
     <template v-slot:action-last>Перейти в мои займы</template>
   </status-modal-desktop>
+  <transaction-desktop v-if="isTransaction && !transactionStatus" 
+    @close="isTransaction = false" 
+    :status="transactionStatus"
+    title="Подтвердите пролонгацию займа"
+    subtitle="Пожалуйста, подтвердите пролонгацию займа в своем кошельке"
+    ></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" 
+    @close="isTransaction = false" 
+    :status="transactionStatus"
+    subtitle="Вы успешно пролонгировали займ"
+    ></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" 
+    @close="isTransaction = false" 
+    title="Произошла ошибка при пролонгации займа"
+    :status="transactionStatus"></transaction-desktop>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import prolongBody from "../modal-body/prolong-body.vue";
-import ConfirmQrDestop from "@/components/base/confirm-qr-destop.vue";
 import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
-import paymentMethod from "@/components/base/desktop/modal-body/payment-method.vue";
-const { toInit } = defineProps({
+import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
+import { prolongateLoan } from "@/api/loans.api";
+
+const { toInit, id } = defineProps({
   toInit: {
     type: Function,
   },
+  id: {type: Number, required: true}
 });
 const emits = defineEmits(["close"]);
+
+const isTransaction = ref(false)
+const transactionStatus = ref('')
+
+
 const close = () => {
   emits("close");
 };
@@ -113,6 +100,17 @@ const finish = () => {
   emits("close");
   isResult.value = false;
 };
+
+const handlePayment = async (value: number) => {
+  isTransaction.value = true
+  await prolongateLoan(id, value)
+  .then(res => {
+    transactionStatus.value = 'success'
+  }).catch(e => {
+    transactionStatus.value = 'fail'
+    console.error(e)
+  })
+}
 
 const isEnter = ref(true);
 const isPayment = ref(false);

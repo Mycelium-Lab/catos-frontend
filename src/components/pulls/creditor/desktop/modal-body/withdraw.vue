@@ -66,12 +66,13 @@
     </template>
     <template v-slot:action>
       <div class="des-and-bbn_withdraw des-and-bbn">
-        <catos-button
+      <!--  <catos-button
           variant="fourth"
           :style="{ width: '100%', margin: '0' }"
           @click="qr"
           >Вывести на кошелек CATOS</catos-button
         >
+      -->
 
         <catos-button
           variant="fourth"

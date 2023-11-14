@@ -102,9 +102,24 @@
         </div>
       </div>
     </div>
-    <transaction-desktop v-if="isTransaction && !transactionStatus" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
+    <transaction-desktop 
+    v-if="isTransaction && !transactionStatus" 
+    @close="isTransaction = false" 
+    :status="transactionStatus"
+    title="Подтвердите создание пулла"
+    subtitle="Пожалуйста, подтвердите создание пулла в своем кошельке"
+    ></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" 
+    @close="isTransaction = 
+    false" 
+    :status="transactionStatus"
+    subtitle="Вы успешно создали пулл"
+    ></transaction-desktop>
+    <transaction-desktop 
+    v-else-if="isTransaction && transactionStatus === 'fail'" 
+    @close="isTransaction = false" 
+    title="Произошла ошибка при создании пулла"
+    :status="transactionStatus"></transaction-desktop>
   </div>
 </template>
 <script setup lang="ts">
