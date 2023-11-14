@@ -17,7 +17,7 @@
       </div>
       <div
         :class="
-          role === 'depositor' && variant === 'add'
+          role === 'investor' && variant === 'add'
             ? 'frame-parent_depositor frame-parent'
             : 'frame-parent'
         "
@@ -43,7 +43,7 @@
           </div>
           <div class="field-parent">
             <div class="field">
-              <div class="roi">Баланс кошелька: EQB5...dzE1h</div>
+              <div class="roi">Адрес кошелька: EQB5...dzE1h</div>
               <div class="div9"><span>(Изменить)</span></div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close" v-if="isDetail">
-    <template v-slot:title> Информация о пулле №1223 </template>
+    <template v-slot:title> Информация о пулле №{{ poolId }} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -156,29 +156,33 @@
       </div>
     </template>
   </desktop-modal>
-  <add-liquid
-    v-if="isAdd"
+  <add  
+  v-if="isAdd"
+    :poolId="poolId"
     @close="
       () => {
         isAdd = false;
         close();
       }
-    "
-  ></add-liquid>
+    ">
+  </add>
+
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
 // @ts-ignore
 import desktopModal from "@/components/base/desktop-modal.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
-import addLiquid from "./add-liquid.vue";
 import add from "../../creditor/desktop/modal-body/add.vue";
-import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
-import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
 const isDetail = ref(true);
 const isAdd = ref(false);
 
 const emits = defineEmits(["close"]);
+
+const {poolId} = defineProps({
+  poolId: {type: Number, required: true}
+})
+
 const close = () => {
   emits("close");
 };

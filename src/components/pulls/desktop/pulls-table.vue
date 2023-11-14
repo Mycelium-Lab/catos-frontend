@@ -516,18 +516,19 @@
           "
         ></all-borrower-pulls>
         <my-borrower-pulls  
-    v-if="isMyBorrower"
-    :state="myBorrowerState"
-    @close="
-      () => {
-        isMyBorrower = false;
-        resetState('my-borrower');
-      }
-      "
+          v-if="isMyBorrower"
+          :poolId="pool.id"
+          :state="myBorrowerState"
+          @close="
+            () => {
+              isMyBorrower = false;
+              resetState('my-borrower');
+            }
+            "
   >
   </my-borrower-pulls>
 
-        <add-liquid
+        <add
           v-if="
             (isAllDepositor || isMyDepositor) &&
             allDepositorState.addLiquidModal
@@ -538,8 +539,9 @@
               resetState('all-depositor');
             }
           "
-        ></add-liquid>
-        <withdraw-liquid
+          :poolId="pool.id"
+        ></add>
+        <withdraw
           v-if="
             (isAllDepositor || isMyDepositor) &&
             allDepositorState.widthrawLiquidModal
@@ -550,13 +552,15 @@
               resetState('all-depositor');
             }
           "
-        ></withdraw-liquid>
+           :poolId="pool.id"
+        ></withdraw>
         <all-depositor-pulls
           v-if="
             isAllDepositor &&
             !allDepositorState.addLiquidModal &&
             !allDepositorState.widthrawLiquidModal
           "
+          :poolId="pool.id"
           @close="
             () => {
               isAllDepositor = false;
@@ -639,9 +643,9 @@ import myCreditorPulls from "@/components/pulls/creditor/desktop/my-creditor-pul
 import myBorrowerPulls from "@/components/pulls/borrower/desktop/my-borrower-pulls.vue";
 import allBorrowerPulls from "@/components/pulls/borrower/desktop/all-borrower-pulls.vue";
 import allDepositorPulls from "@/components/pulls/depositor/desktop/all-depositor-pulls.vue";
-import addLiquid from "@/components/pulls/depositor/desktop/add-liquid.vue";
+import add from "@/components/pulls/creditor/desktop/modal-body/add.vue";
+import withdraw from "@/components/pulls/creditor/desktop/modal-body/withdraw.vue";
 import myDepositorPulls from "@/components/pulls/depositor/desktop/my-depositor-pulls.vue";
-import withdrawLiquid from "@/components/pulls/depositor/desktop/withdraw-liquid.vue";
 import allCollectorPulls from "@/components/pulls/collector/desktop/all-collector-pulls.vue";
 import myCollectorPulls from "@/components/pulls/collector/desktop/my-collector-pulls.vue";
 import buy from "@/components/pulls/collector/desktop/buy.vue";
@@ -654,18 +658,18 @@ const { variant } = defineProps({
   variant: {
     type: String,
   },
-
   pool: {
     type: Object as PropType<Pool>,
     required: true,
   }
 });
 
+const emits = defineEmits(["mySoldLoans"]);
+
 const role = computed(() => {
   return roleStorage.get()
 })
 
-const emits = defineEmits(["mySoldLoans"]);
 const toMySold = () => {
   emits("mySoldLoans");
 };
