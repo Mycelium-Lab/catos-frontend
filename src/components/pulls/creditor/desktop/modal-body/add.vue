@@ -93,7 +93,7 @@ const {poolId} = defineProps({
   poolId: {type: Number, required: true}
 })
 
-const emits = defineEmits(["close", "add", "change"]);
+const emits = defineEmits(["close"]);
 
 const amount = ref("")
 const isTransaction = ref(false)

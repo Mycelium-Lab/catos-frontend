@@ -1,12 +1,12 @@
 <template>
   <liquidity-managment-modal @close="close">
-    <template v-slot:header> Пулл #12345 </template>
+    <template v-slot:header> Пулл #{{ poolId }} </template>
     <template v-slot:subheaderIcon>
       <img class="header-icon" alt="" src="@/assets/images/change-cash.svg" />
     </template>
     <template v-slot:subheader>
-      {{ role === "depositor" ? "Вывести депозит" : "Изъять ликвидность" }} из
-      пулла #12345
+      {{ role === "investor" ? "Вывести депозит" : "Изъять ликвидность" }} из
+      пулла #{{poolId}}
     </template>
     <template v-slot:first-row>
       <div class="field">
@@ -16,21 +16,21 @@
         </div>
       </div>
 
-      <div v-if="role === 'depositor'" class="field">
+      <div v-if="role === 'investor'" class="field">
         <div class="roi">Тело депозита</div>
         <div class="div9">
           <span>{{ deposit }} TON</span>
         </div>
       </div>
 
-      <div v-if="role === 'depositor'" class="field">
+      <div v-if="role === 'investor'" class="field">
         <div class="roi">Прибыль</div>
         <div class="div9">
           <span>{{ profit }} TON</span>
         </div>
       </div>
 
-      <div v-if="role === 'depositor'" class="field">
+      <div v-if="role === 'investor'" class="field">
         <div class="roi">Сервисный сбор CATOS (5%)</div>
         <div class="div9">
           <span>{{ comis }} TON</span>
@@ -45,7 +45,7 @@
             <input-data
               :style="{ width: '456px' }"
               placeholder="10 000 TON"
-              @selected="(e:any) => (input = e)"
+              v-model="amount"
               type="number"
             ></input-data>
           </div>
@@ -66,17 +66,18 @@
     </template>
     <template v-slot:action>
       <div class="des-and-bbn_withdraw des-and-bbn">
-        <catos-button
+       <!-- <catos-button
           variant="fourth"
           :style="{ width: '100%', margin: '0' }"
           @click="qr"
           >Вывести на кошелек CATOS</catos-button
         >
+       -->
 
         <catos-button
           variant="fourth"
           :style="{ width: '100%', margin: '0' }"
-          @click="qr"
+          @click="handleWithdraw"
           >Вывести на кошелек TONKeeper</catos-button
         >
 
@@ -89,6 +90,9 @@
       </div>
     </template>
   </liquidity-managment-modal>
+  <transaction-desktop v-if="isTransaction && !transactionStatus" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
 </template>
 
 <script setup lang="ts">
@@ -96,18 +100,41 @@ import { computed, ref } from "vue";
 import liquidityManagmentModal from "@/components/base/liquidity-managment-modal.vue";
 import inputData from "@/components/fields/input-data.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
+import { roleStorage } from "@/utils/localStorage";
+import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
+import { withdrawFromPool } from "@/api/pools.api";
+
+const {poolId} = defineProps({
+  poolId: {type: Number, required: true}
+})
+
+const amount = ref("")
+const isTransaction = ref(false)
+const transactionStatus = ref('')
 
 const role = computed(() => {
-  return JSON.parse(localStorage.getItem("role")!);
+  return roleStorage.get()
 });
 
-const emits = defineEmits(["close", "qr"]);
-const qr = () => {
-  emits("qr");
-};
+const emits = defineEmits(["close"]);
+
 const close = () => {
   emits("close");
 };
+
+const handleWithdraw = async () => {
+  isTransaction.value = true
+  await withdrawFromPool({
+    pool_id: poolId,
+    amount: Number(amount.value)
+  })
+  .then(res => {
+    transactionStatus.value = 'success'
+  }).catch(e => {
+    transactionStatus.value = 'fail'
+    console.error(e)
+  })
+}
 
 const input = ref("");
 const deposit = computed(() => Number(Number(input.value) * 0.8).toFixed(3));

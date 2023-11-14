@@ -540,7 +540,7 @@
           "
           :poolId="pool.id"
         ></add>
-        <withdraw-liquid
+        <withdraw
           v-if="
             (isAllDepositor || isMyDepositor) &&
             allDepositorState.widthrawLiquidModal
@@ -551,7 +551,8 @@
               resetState('all-depositor');
             }
           "
-        ></withdraw-liquid>
+           :poolId="pool.id"
+        ></withdraw>
         <all-depositor-pulls
           v-if="
             isAllDepositor &&
@@ -642,8 +643,8 @@ import myBorrowerPulls from "@/components/pulls/borrower/desktop/my-borrower-pul
 import allBorrowerPulls from "@/components/pulls/borrower/desktop/all-borrower-pulls.vue";
 import allDepositorPulls from "@/components/pulls/depositor/desktop/all-depositor-pulls.vue";
 import add from "@/components/pulls/creditor/desktop/modal-body/add.vue";
+import withdraw from "@/components/pulls/creditor/desktop/modal-body/withdraw.vue";
 import myDepositorPulls from "@/components/pulls/depositor/desktop/my-depositor-pulls.vue";
-import withdrawLiquid from "@/components/pulls/depositor/desktop/withdraw-liquid.vue";
 import allCollectorPulls from "@/components/pulls/collector/desktop/all-collector-pulls.vue";
 import myCollectorPulls from "@/components/pulls/collector/desktop/my-collector-pulls.vue";
 import buy from "@/components/pulls/collector/desktop/buy.vue";
