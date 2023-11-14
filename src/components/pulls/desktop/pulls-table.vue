@@ -516,14 +516,15 @@
           "
         ></all-borrower-pulls>
         <my-borrower-pulls  
-    v-if="isMyBorrower"
-    :state="myBorrowerState"
-    @close="
-      () => {
-        isMyBorrower = false;
-        resetState('my-borrower');
-      }
-      "
+          v-if="isMyBorrower"
+          :poolId="pool.id"
+          :state="myBorrowerState"
+          @close="
+            () => {
+              isMyBorrower = false;
+              resetState('my-borrower');
+            }
+            "
   >
   </my-borrower-pulls>
 
@@ -657,18 +658,11 @@ const { variant } = defineProps({
   variant: {
     type: String,
   },
-
-
-
   pool: {
     type: Object as PropType<Pool>,
     required: true,
   }
 });
-
-const role = computed(() => {
-  return roleStorage.get()
-})
 
 const emits = defineEmits(["mySoldLoans"]);
 

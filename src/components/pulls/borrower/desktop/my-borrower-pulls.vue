@@ -28,7 +28,9 @@
 
     <withdraw v-if="isWidthdraw" @close="() => {
          close()
-    }">
+    }"
+    :poolId="poolId"
+    >
     </withdraw>
     
     <!--<transaction-desktop v-if="isTransaction" 
