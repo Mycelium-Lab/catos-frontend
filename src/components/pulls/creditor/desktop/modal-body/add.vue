@@ -1,12 +1,12 @@
 <template>
   <liquidity-managment-modal @close="close" variant="add">
-    <template v-slot:header> Пулл #12345 </template>
+    <template v-slot:header> Пулл #{{ poolId }} </template>
     <template v-slot:subheaderIcon>
       <img class="header-icon" alt="" src="@/assets/images/success-cash.svg" />
     </template>
     <template v-slot:subheader>
       {{ role === "investor" ? "Инвестировать" : "Добавить ликвидность" }} в
-      пулл #12345
+      пулл #{{ poolId }}
     </template>
     <template v-slot:first-row>
       <div class="field">
@@ -17,7 +17,7 @@
     <template v-slot:form>
       <div class="text-and-button_action text-and-button">
         <div class="fieldsinput-parent_add fieldsinput-parent">
-          <label class="label">Настроить токен:</label>
+          <!--<label class="label">Настроить токен:</label>
           <div :style="{ margin: '0 auto', width: '456px' }">
             <catos-select
               placeholder="TON"
@@ -26,13 +26,13 @@
               :optionWidthDesk="456"
               @selected="(ev:any) => (valueToken = ev)"
             ></catos-select>
-          </div>
+          </div>-->
           <div class="fieldsinput">
             <div class="div16">Введите сумму для пополнения:</div>
             <input-data
               :style="{ width: '456px' }"
               placeholder="10 000 TON"
-              @update:model-value="event => onChange(event)"
+              v-model="amount"
               type="number"
             ></input-data>
           </div>
@@ -52,14 +52,14 @@
       </div>
       <calculator
         v-if="role === 'investor'"
-        :input="Number(inputValue)"
+        :input="Number(amount)"
       ></calculator>
     </template>
     <template v-slot:action>
       <div class="des-and-bbn_add des-and-bbn">
         <catos-button
           variant="fourth"
-          @click="qr"
+          @click="handleAdd"
           :style="{ width: '100%', margin: '0' }"
           >{{
             role === "investor" ? "Инвестировать" : "Добавить ликвидность"
@@ -74,6 +74,9 @@
       </div>
     </template>
   </liquidity-managment-modal>
+    <transaction-desktop v-if="isTransaction && !transactionStatus" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
 </template>
 
 <script setup lang="ts">
@@ -81,29 +84,43 @@ import { ref, computed } from "vue";
 import liquidityManagmentModal from "@/components/base/liquidity-managment-modal.vue";
 import inputData from "@/components/fields/input-data.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
-import catosSelect from "@/components/fields/catos-select.vue";
+import { roleStorage } from "@/utils/localStorage";
 import calculator from "@/components/base/calculator.vue";
-import { emit } from "process";
+import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
+import { investToPool } from "@/api/pools.api";
 
-const valueToken = ref("");
-const options = ["TON", "CATOS"];
-const emits = defineEmits(["close", "qr", "change"]);
+const {poolId} = defineProps({
+  poolId: {type: Number, required: true}
+})
 
-const inputValue = ref("");
+const emits = defineEmits(["close", "add", "change"]);
 
-const qr = () => {
-  emits("qr");
-};
+const amount = ref("")
+const isTransaction = ref(false)
+const transactionStatus = ref('')
+
 const close = () => {
   emits("close");
 };
+
+const handleAdd = async () => {
+  isTransaction.value = true
+  await investToPool({
+    pool_id: poolId,
+    amount: Number(amount.value)
+  })
+  .then(res => {
+    transactionStatus.value = 'success'
+  }).catch(e => {
+    transactionStatus.value = 'fail'
+    console.error(e)
+  })
+}
+
 const role = computed(() => {
-  return JSON.parse(localStorage.getItem("role")!);
+  return roleStorage.get()
 });
-const onChange = (ev: any) => {
-  inputValue.value = ev;
-  emits("change", ev);
-};
+
 </script>
 
 <style scoped lang="scss">
