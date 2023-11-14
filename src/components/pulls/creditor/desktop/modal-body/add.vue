@@ -74,9 +74,21 @@
       </div>
     </template>
   </liquidity-managment-modal>
-    <transaction-desktop v-if="isTransaction && !transactionStatus" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" :status="transactionStatus"></transaction-desktop>
+    <transaction-desktop v-if="isTransaction && !transactionStatus" @close="isTransaction = false" 
+      :status="transactionStatus"
+      :title="role === 'investor' ? 'Подтвердите инвестирование в пулл' : 'Подтвердите добавление ликвидности в пулл'"
+      :subtitle="role === 'investor' ? 'Пожалуйста, подтвердите инвестирование в пулл в своем кошельке' : 'Пожалуйста, добавление ликвидности в пулл в своем кошельке'"
+    ></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" @close="isTransaction = false" 
+      :status="transactionStatus"
+      :subtitle="role === 'investor' ? 'Вы успешно инвестировали в пулл' : 'Вы успешно добавил ликвидность в пулл'"
+    >
+    </transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" 
+      :status="transactionStatus"
+      :title="role === 'investor' ? 'Произошла ошибка при инвестировании в пулл' : 'Произошла ошибка при добавлении ликвидности в пулл'"
+    >
+    </transaction-desktop>
 </template>
 
 <script setup lang="ts">
