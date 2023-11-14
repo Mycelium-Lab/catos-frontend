@@ -17,7 +17,7 @@
     <template v-slot:form>
       <div class="text-and-button_action text-and-button">
         <div class="fieldsinput-parent_add fieldsinput-parent">
-          <!--<label class="label">Настроить токен:</label>
+        <!--  <label class="label">Настроить токен:</label>
           <div :style="{ margin: '0 auto', width: '456px' }">
             <catos-select
               placeholder="TON"
@@ -26,7 +26,8 @@
               :optionWidthDesk="456"
               @selected="(ev:any) => (valueToken = ev)"
             ></catos-select>
-          </div>-->
+          </div>
+        -->
           <div class="fieldsinput">
             <div class="div16">Введите сумму для пополнения:</div>
             <input-data

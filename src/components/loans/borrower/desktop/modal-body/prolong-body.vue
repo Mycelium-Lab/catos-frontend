@@ -92,10 +92,17 @@
       </div>
     </div>
     <div class="des-and-bbn">
+      <input-data
+              :style="{ margin: '20px 0px', width: '100%' }"
+              placeholder="10 000 TON"
+              v-model="amount"
+              type="number"
+      ></input-data>
       <catos-button
         variant="secondary"
         :style="{ width: '100%' }"
         @click="handle"
+        :disabled="isDisabled"
         >Оплатить 512 TON и пролонгировтаь</catos-button
       >
 
@@ -108,14 +115,22 @@
   </div>
 </template>
 <script setup lang="ts">
+import { ref, computed } from "vue";
 import catosButton from "@/components//ui-kit/buttons/catos-button.vue";
-const emtis = defineEmits(["close", "payment"]);
+import inputData from "@/components/fields/input-data.vue";
+const emtis = defineEmits(["close", "prolong"]);
+
 const close = () => {
   emtis("close");
 };
 const handle = () => {
-  emtis("payment");
+  emtis("prolong", Number(amount.value));
 };
+const amount = ref("0");
+
+const isDisabled = computed(() => {
+  return Number(amount.value) <= 0 || '' ? true : false
+})
 </script>
 <style scoped>
 .pie-chart-icon {

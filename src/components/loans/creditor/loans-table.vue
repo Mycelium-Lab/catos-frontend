@@ -1,6 +1,6 @@
 <template>
   <div class="cards-parent" @click="toDetail">
-    <div class="cards">
+        <div class="cards">
       <div class="statusbar-cards" v-if="role === 'creditor'">
         <div class="buttons-tabs">
           <div class="checkboxdone-parent">
@@ -21,13 +21,13 @@
               <div class="colors-graphsorders-parent">
                 <template v-if="variant === 'bids'">
                   <img
-                    v-if="status === 'approved'"
+                    v-if="loanRequestStatus === 'approved'"
                     class="colors-graphsorders-icon"
                     alt=""
                     src="@/assets/images/colors-graphsorders1.svg"
                   />
                   <img
-                    v-else-if="status === 'rejected'"
+                    v-else-if="loanRequestStatus === 'rejected'"
                     class="colors-graphsorders-icon"
                     alt=""
                     src="@/assets/images/colors-graphsorders3.svg"
@@ -41,7 +41,7 @@
                 </template>
                 <template v-else-if="variant === 'loans'">
                   <img
-                    v-if="status === 'repaid'"
+                    v-if="loanRequestStatus === 'repaid'"
                     class="colors-graphsorders-icon"
                     alt=""
                     src="@/assets/images/colors-graphsorders1.svg"
@@ -61,7 +61,7 @@
                 </template>
                 <template v-else-if="variant === 'marketplace'">
                   <img
-                    v-if="status === 'sales'"
+                    v-if="loanRequestStatus === 'sales'"
                     class="colors-graphsorders-icon"
                     alt=""
                     src="@/assets/images/colors-graphsorders2.svg"
@@ -76,16 +76,16 @@
 
                 <div v-if="variant === 'bids'" class="div">
                   {{
-                    status === "approved"
+                    loanRequestStatus === "approved"
                       ? "Одобрена"
-                      : status === "rejected"
+                      : loanRequestStatus === "rejected"
                       ? "Отклонена"
                       : "Ожидание"
                   }}
                 </div>
                 <div v-else-if="variant === 'loans'" class="div">
                   {{
-                    status === "repaid"
+                    loanRequestStatus === "repaid"
                       ? "Погашен"
                       : status === "overdue"
                       ? "Просрочен"
@@ -93,7 +93,7 @@
                   }}
                 </div>
                 <div v-else-if="variant === 'marketplace'" class="div">
-                  {{ status === "sales" ? "Продается" : "Продан" }}
+                  {{ loanRequestStatus === "sales" ? "Продается" : "Продан" }}
                 </div>
               </div>
               <img
@@ -123,7 +123,7 @@
               <div class="ton18">37 000 TON</div>
 
               <div
-                v-if="role === 'creditor' || role === 'depositor'"
+                v-if="loanRequestStatus === 'creditor' || role === 'investor'"
                 class="txt2"
               >
                 Доступно ликвидности
@@ -362,7 +362,7 @@
           </div>
           <button
             v-else-if="
-              role === 'creditor' && status !== 'repaid' && status !== 'sold'
+              role === 'creditor' && loanRequestStatus !== 'repaid' && loanRequestStatus !== 'sold'
             "
             class="buttons-tabs1"
             @click="toAction"
@@ -381,8 +381,8 @@
             <div class="text">Подробнее</div>
           </button>
         </div>
+        </div>
       </div>
-    </div>
   </div>
   <!--<loans-modal-desktop
     v-if="isModal"
@@ -431,6 +431,7 @@
     v-if="isActive"
     :state="activeState"
     :status="status"
+    :loan="loan"
     @close="
       () => {
         isActive = false;
@@ -453,7 +454,8 @@
   <sold v-if="isSold" @close="() => (isSold = false)"></sold>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType, computed } from "vue";
+import { roleStorage } from "@/utils/localStorage";
 import catosCheckbox from "../../ui-kit/catos-checkbox.vue";
 import bids from "./desktop/bids.vue";
 import loans from "./desktop/loans.vue";
@@ -461,18 +463,32 @@ import marketplace from "./desktop/marketplace.vue";
 import active from "../borrower/desktop/active.vue";
 import repaid from "../borrower/desktop/repaid.vue";
 import sold from "../borrower/desktop/sold.vue";
+import { LoansResponse } from "@/types/loan.types";
 
-const { variant, role, status } = defineProps({
+const { variant, loan, loanRequestStatus } = defineProps({
   variant: {
     type: String,
   },
-  role: {
-    type: String,
+  loan: {
+    type: Object as PropType<LoansResponse>,
+    required: true,
   },
-  status: {
-    type: String,
-  },
+  loanRequestStatus: {
+    type: String
+  }
 });
+
+const status = computed(() => {
+  const end = new Date(loan.end);
+  const now = new Date();
+  if(now > end) {
+    return 'overdue'
+  }
+  return 'active'
+})
+const role = computed(() => {
+  return roleStorage.get()
+})
 
 const bidsState = {
   detailModal: false,
@@ -528,13 +544,13 @@ const isSold = ref(false);
 const isChecked = ref(false);
 
 const toAction = () => {
-  if (role === "creditor") {
+  if (role.value === "creditor") {
     if (variant === "bids") {
       bidsState.statusChangeModal = true;
       bids.value = true;
     }
 
-    if (status === "overdue") {
+    if (status.value === "overdue") {
       loansState.exposeModal = true;
       isLoans.value = true;
     }
@@ -542,7 +558,7 @@ const toAction = () => {
 };
 
 const toDetail = () => {
-  if (role === "creditor") {
+  if (role.value === "creditor") {
     if (variant === "bids") {
       bidsState.detailModal = true;
       isBids.value = true;
@@ -553,14 +569,14 @@ const toDetail = () => {
     }
     if (variant === "marketplace") {
       isMarketplace.value = true;
-      if (status === "sales") {
+      if (loanRequestStatus === "sales") {
         marketplaceState.salesDetailModal = true;
       } else {
         marketplaceState.soldDetailModal = true;
       }
     }
     //isModal.value = true;
-  } else if (role === "borrower") {
+  } else if (role.value === "borrower") {
     if (variant === "active") {
       isActive.value = true;
       toActive("detail");

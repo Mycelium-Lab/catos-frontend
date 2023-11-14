@@ -657,11 +657,18 @@ const { variant } = defineProps({
   variant: {
     type: String,
   },
+
+
+
   pool: {
     type: Object as PropType<Pool>,
     required: true,
   }
 });
+
+const role = computed(() => {
+  return roleStorage.get()
+})
 
 const emits = defineEmits(["mySoldLoans"]);
 

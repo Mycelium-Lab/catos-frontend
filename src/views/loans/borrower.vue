@@ -67,19 +67,12 @@
       <tool-bar variant="loans" role="borrower"></tool-bar>
     </template>
 
-    <template v-slot:list>
-      <ul>
-        <li v-for="n in 4" :key="n">
-          <loans-table
-            :variant="currentWindow"
-            :key="currentWindow"
-            role="borrower"
-            :status="n === 1 || n === 2 ? 'active' : 'overdue'"
-          >
-            <template v-slot:blody></template>
-          </loans-table>
-        </li>
-      </ul>
+    <template v-slot:body>
+      <loans 
+      :variant="currentWindow"
+          :key="currentWindow"
+      >
+      </loans>
     </template>
   </default-desktop>
 </template>
@@ -89,7 +82,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import multiButtonSlider from "@/components/ui-kit/buttons/multi-button-slider.vue";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
-import loansTable from "@/components/loans/creditor/loans-table.vue";
+import loans from "./loans.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
 import loansList from "@/components/loans/borrower/loans-list.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";

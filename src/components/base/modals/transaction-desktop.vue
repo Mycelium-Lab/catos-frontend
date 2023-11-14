@@ -1,26 +1,44 @@
 <template>
-  <status-modal-desktop
-      v-if="isProgress && !isSuccess && !isFail"
-      @result="() => (isProgress = false)"
-      @close="handleClose"
-    >
-      <template v-slot:header> Транзакция №591561351 </template>
-      <template v-slot:title> {{ title }}</template>
-      <template v-slot:subtitle> {{ subtitle }} </template>
-      <template v-slot:image>
-       <loader></loader>
-      </template>
-      <template v-slot:action> Ок </template>
-  </status-modal-desktop>
-  <status-modal-desktop
-          v-if="isSuccess"
-          @result="() => (isSuccess = false)"
-          @close="handleClose"
+    <status-modal-desktop
+        v-if="isProgress && !isSuccess && !isFail"
+        @result="() => (isProgress = false)"
+        @close="handleClose"
       >
-          <template v-slot:header> Транзакция №591561351 </template>
-          <template v-slot:title> Транзакция успешно выполнена </template>
-          <template v-slot:subtitle> 
-          <p class="status-subtitle"> {{ subtitle }} <a class="status-subtitle-link">#123456</a> </p>
+        <template v-slot:header> Транзакция №591561351 </template>
+        <template v-slot:title> {{ title }}</template>
+        <template v-slot:subtitle> {{ subtitle }} </template>
+        <template v-slot:image>
+         <loader></loader>
+        </template>
+        <template v-slot:action> Ок </template>
+    </status-modal-desktop>
+    <status-modal-desktop
+            v-if="isSuccess"
+            @result="() => (isSuccess = false)"
+            @close="handleClose"
+        >
+            <template v-slot:header> Транзакция №591561351 </template>
+            <template v-slot:title> Транзакция успешно выполнена </template>
+            <template v-slot:subtitle> 
+            <p class="status-subtitle"> {{ subtitle }} <a class="status-subtitle-link">#123456</a> </p>
+            <p class="status-subtitle"> 
+                <a class="status-subtitle-link">Просмотр транзакции в Tonscan</a>
+            </p>
+            </template>
+            <template v-slot:image>
+            <img src="@/assets/images/success-transaction.svg" />
+            </template>
+            <template v-slot:action> Ок </template>
+      </status-modal-desktop>
+      <status-modal-desktop
+        v-if="isFail"
+        @result="() => (isFail = false)"
+        @close="handleClose"
+      >
+        <template v-slot:header> Транзакция №591561351 </template>
+        <template v-slot:title> {{ title }} </template>
+        <template v-slot:subtitle> 
+          <p class="status-subtitle">Указание причины: <br>Причина 01</p>
           <p class="status-subtitle"> 
               <a class="status-subtitle-link">Просмотр транзакции в Tonscan</a>
           </p>
@@ -56,9 +74,9 @@ import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
 import loader from "@/components/base/loader.vue"
 
 const {status} = defineProps({
-status: {type: String},
-title: {type: String},
-subtitle: {type: String},
+  status: {type: String},
+  title: {type: String},
+  subtitle: {type: String},
 })
 const emits = defineEmits(['close'])
 
