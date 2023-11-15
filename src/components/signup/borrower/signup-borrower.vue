@@ -39,12 +39,13 @@
                   <span class="span2">* </span>
                 </div>
                 <input-data
+                  value="passportData"
                   @update:model-value="
                     event => {
                       passportDataStore.passportDTO.series =
-                        event.split(' ')[0];
+                        Number(event.split(' ')[0]);
                       passportDataStore.passportDTO.number =
-                        event.split(' ')[1];
+                        Number(event.split(' ')[1]);
                     }
                   "
                   placeholder="1234 09876"
@@ -58,31 +59,13 @@
                 </div>
                 <div class="fields-password-and-mail-container">
                   <input-data
-                    @update:model-value="
-                      passportDataStore.passportDTO.issue_date = $event
+                    v-model:model-value="
+                      passportDataStore.passportDTO.issue_date
                     "
                     type="date"
                     placeholder="01.02.2022"
                     :style="{ width: '100%' }"
                   ></input-data>
-                  <div class="iconscalendar-wrapper">
-                    <!--<input-data
-                      :simulate="true"
-                      type="date"
-                      placeholder="01.02.1994"
-                      :style="{
-                        width: '100%',
-                        position: 'relative',
-                        right: '0.5em',
-                      }"
-                      @selected="e => (date = e)"
-                    ></input-data>-->
-                    <img
-                      class="iconscalendar"
-                      alt=""
-                      src="../public/iconscalendar.svg"
-                    />
-                  </div>
                 </div>
               </div>
             </div>
@@ -188,8 +171,8 @@
                     :style="{ width: '100%' }"
                     :value="date"
                   ></input-data>
-                  <div class="iconscalendar-wrapper">
-                    <!--<input-data
+                  <!--<div class="iconscalendar-wrapper">
+                   <input-data
                       :simulate="true"
                       type="date"
                       placeholder="01.02.1994"
@@ -199,14 +182,14 @@
                         right: '0.5em',
                       }"
                       @selected="e => (date = e)"
-                    ></input-data>-->
+                    ></input-data>
                     <img
                       class="iconscalendar"
                       alt=""
                       src="../public/iconscalendar.svg"
                       :style="{ position: 'absolute' }"
                     />
-                  </div>
+                  </div>-->
                 </div>
               </div>
               <div class="parent10">
@@ -998,6 +981,17 @@ const passportDataStore = usePassportDataStore();
 const isSelectedRadioButton1 = ref(false);
 const isSelectedRadioButton2 = ref(false);
 const date = ref("");
+const passportData = computed(() => {
+  return (
+    (passportDataStore.passportDTO.series != 0
+      ? passportDataStore.passportDTO.series.toString()
+      : "") +
+    " " +
+    (passportDataStore.passportDTO.number != 0
+      ? passportDataStore.passportDTO.number.toString()
+      : "")
+  );
+});
 
 const { citiesByRegion: ctitesRegistration } = useCityList(
   "registration",
