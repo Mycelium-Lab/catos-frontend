@@ -343,6 +343,7 @@ import { useCityList } from '@/composables/useCityList'
 import { useNeighborhoodList } from "@/composables/useNeighborhoodList"
 import countries from "@/json/countries.json"
 import regions from "@/json/regions.json"
+import { roleStorage } from "@/utils/localStorage";
 
 const passportDataStore = usePassportDataStore();
 const passportNumberString = computed(() => {
@@ -367,8 +368,6 @@ const neighborhoodsReg = computed(() => {
     return neighborhoodRegistration.value
 });
 
-
-
 const isDataLoading = ref(false);
 const handleNextClick = async () => {
   isDataLoading.value = true;
@@ -376,7 +375,7 @@ const handleNextClick = async () => {
     .then(async (res) => {
       if (res.status === 201) {
         console.log('Data saved');
-        router.push({name: 'borrower-finish'});
+        router.push(roleStorage.get() === 'borrower' ? {name: 'borrower-finish'} : {name: 'connect-wallet'});
       }
       else {
         console.log(res);
