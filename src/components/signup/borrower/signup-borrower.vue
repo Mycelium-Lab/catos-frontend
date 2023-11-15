@@ -436,7 +436,7 @@
               v-model:model-value="calcRegIndex"
               @update:model-value="
                 passportDataStore.passportDTO.registration_address.index =
-                  $event
+                  Number($event)
               "
               placeholder="193 984"
               :style="{ width: '100%' }"
@@ -620,7 +620,8 @@
             <input-data
               v-model:model-value="calcLivingIndex"
               @update:model-value="
-                passportDataStore.passportDTO.living_address.index = $event
+                passportDataStore.passportDTO.living_address.index =
+                  Number($event)
               "
               placeholder="193 894"
               :style="{ width: '100%' }"
@@ -969,12 +970,14 @@ const passportData = computed(() => {
       : "")
   );
 });
-const calcRegIndex = computed(() =>
-  passportDataStore.passportDTO.registration_address.index.toString()
-);
-const calcLivingIndex = computed(() =>
-  passportDataStore.passportDTO.living_address.index.toString()
-);
+const calcRegIndex = computed(() => {
+  if (passportDataStore.passportDTO.registration_address.index > 0)
+    return passportDataStore.passportDTO.registration_address.index.toString();
+});
+const calcLivingIndex = computed(() => {
+  if (passportDataStore.passportDTO.living_address.index > 0)
+    return passportDataStore.passportDTO.living_address.index.toString();
+});
 const { citiesByRegion: ctitesRegistration } = useCityList(
   "registration",
   "passport"
