@@ -147,8 +147,8 @@
               v-if="isMobile"
               :placeholder="optionsChildren[0]"
               :options="optionsChildren"
-              :value="valueChildren"
-              @selected="ev => (borrowerDataStore.borrowerDTO.children = ev)"
+              :value="optionsChildren[borrowerDataStore.borrowerDTO.children]"
+              @selected="ev => (borrowerDataStore.borrowerDTO.children = optionsChildren.indexOf(ev))"
               :optionWidth="77"
               :style="{ width: '100%' }"
               data-element="select-children"
@@ -157,8 +157,8 @@
               v-else
               :placeholder="optionsChildren[0]"
               :options="optionsChildren"
-              :value="valueChildren"
-              @selected="ev => (borrowerDataStore.borrowerDTO.children = ev)"
+              :value="optionsChildren[borrowerDataStore.borrowerDTO.children]"
+              @selected="ev => (borrowerDataStore.borrowerDTO.children = optionsChildren.indexOf(ev))"
               :optionWidthDesk="329"
               :style="{ width: '100%' }"
               data-element="select-children"
@@ -254,7 +254,6 @@ import { useBorrowerDataStore } from "@/stores/borrowerData";
 import { userinfo } from '@/api/documents.api';
 
 const { isMobile } = useDevice();
-const valueChildren = computed(() => borrowerDataStore.borrowerDTO.children === 0 ? '' : borrowerDataStore.borrowerDTO.children.toString());
 const valueRevenue = computed(() => borrowerDataStore.borrowerDTO.revenue === 0 ? '' : borrowerDataStore.borrowerDTO.revenue.toString());
 const handleNextButton = async () => {
   await userinfo(borrowerDataStore.borrowerDTO)
