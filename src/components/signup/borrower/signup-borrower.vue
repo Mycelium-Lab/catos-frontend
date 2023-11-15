@@ -39,7 +39,7 @@
                   <span class="span2">* </span>
                 </div>
                 <input-data
-                  value="passportData"
+                  :model-value="passportData"
                   @update:model-value="
                     event => {
                       passportDataStore.passportDTO.series =
@@ -983,12 +983,11 @@ const isSelectedRadioButton2 = ref(false);
 const date = ref("");
 const passportData = computed(() => {
   return (
-    (passportDataStore.passportDTO.series != 0
+    (passportDataStore.passportDTO.series > 0
       ? passportDataStore.passportDTO.series.toString()
       : "") +
-    " " +
-    (passportDataStore.passportDTO.number != 0
-      ? passportDataStore.passportDTO.number.toString()
+    (passportDataStore.passportDTO.number > 0
+      ? " " + passportDataStore.passportDTO.number.toString()
       : "")
   );
 });
