@@ -18,14 +18,14 @@
           <div class="wrapper">
             <div class="div2">Ставка:</div>
           </div>
-          <div class="div3">1% в день</div>
+          <div class="div3">{{ interestRate }}% в день</div>
         </div>
         <div class="frame-child" />
         <div class="frame-parent1">
           <div class="container">
             <div class="div2">Беспроцентный период:</div>
           </div>
-          <div class="div3">3 дня</div>
+          <div class="div3">{{ `${freePeriod ? freePeriod + ' дня': '-'} ` }}</div>
         </div>
       </div>
       <div class="fields-parent">
@@ -95,7 +95,7 @@
           </div>
           <div class="header">
             <div class="div14">Сумма займа:</div>
-            <div class="ton1">{{ parseValue }} TON</div>
+            <div class="ton1">{{ sum }} TON</div>
           </div>
           <div class="parent3">
             <div class="div14">Возврат в течении:</div>
@@ -152,18 +152,18 @@
   <transaction-desktop v-if="isTransaction && !transactionStatus" 
     @close="isTransaction = false" 
     :status="transactionStatus"
-    title="Подтвердите взятие займа"
-    subtitle="Пожалуйста, подтвердите взятие займа в своем кошельке"
+    title="Подтвердите создание заявки на займ"
+    subtitle="Пожалуйста, подтвердите создание заявки на займ в своем кошельке"
     ></transaction-desktop>
     <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" 
     @close="isTransaction = false" 
     :status="transactionStatus"
-    subtitle="Вы успешно взяли займ"
+    subtitle="Ваша заявка на займ успешно принята, ожидайде подтверждения"
     ></transaction-desktop>
     <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" 
     @close="isTransaction = false" 
     :status="transactionStatus"
-    title="Произошла ошибка при взятии займа"
+    title="Произошла ошибка при отправки заявки на займ"
     ></transaction-desktop>
 </template>
 <script setup lang="ts">
@@ -176,8 +176,10 @@ import useParsedNumber from "@/compossables/useParsedNumber";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import { createLoanRequest } from "@/api/loanRequests.api";
 
-const {id} = defineProps({
-  id: {type: Number, required: true}
+const {id, interestRate, freePeriod} = defineProps({
+  id: {type: Number, required: true},
+  interestRate: {type: Number, required: true},
+  freePeriod: {type: Number, required: true},
 }) 
 
 const emits = defineEmits(["close"]);
@@ -185,10 +187,31 @@ const isCreditorInfo = ref(false);
 const sumLoans = ref(1);
 const term = ref(1);
 
-const parseValue = computed(() => {
+const parsedTrim = computed(() => {
   const { parsed } = useParsedNumber(sumLoans.value);
-  return parsed;
+  return parsed.replaceAll(' ', '')
+})
+
+const sum = computed(() => {
+  const amountWithoutInterestRatePeriod = sumWithFreePeriod.value
+  if(Number(term.value) - freePeriod <= 0 && freePeriod !== 0) {
+    // const { parsed } = useParsedNumber(amount);
+    return amountWithoutInterestRatePeriod
+  }
+  const value = interestRate / 100
+  //const sumWithInterestRate = Number(parsedTrim.value) * value + Number(parsedTrim.value);
+  const sumWithInterestRate = Number(sumLoans.value) * value + Number(sumLoans.value);
+  //const {parsed} = useParsedNumber(sumWithInterestRate); 
+  //const a = parsed.replaceAll(' ', '')
+  const withInterestRatePeriod = Number(term.value) - freePeriod
+  const amountWithInterestRatePeriod = sumWithInterestRate * withInterestRatePeriod
+  //const { parsed: result } = useParsedNumber(amount);
+  return (amountWithInterestRatePeriod + amountWithoutInterestRatePeriod).toFixed(3)
 });
+
+const sumWithFreePeriod = computed(() => {
+  return Number(sumLoans.value) * freePeriod
+})
 
 const isTransaction = ref(false)
 const transactionStatus = ref('')
