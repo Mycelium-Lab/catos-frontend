@@ -30,7 +30,10 @@
   >
     <template v-slot:title>{{ `Получить займ из пулла № ${pool?.id}`  }}</template>
     <template v-slot:body>
-      <get-loan :id="pool?.id"
+      <get-loan 
+      :id="pool?.id"
+      :interestRate="pool?.millipercent ? pool?.millipercent : 0"
+      :freePeriod="freePeriod"
       >
     </get-loan>
     </template>
@@ -73,8 +76,11 @@ const { state } = defineProps({
   },
   pool: {
     type: Object as PropType<Pool>,
-  }
-})
+  },
+  freePeriod: {
+    type: Number,
+    required: true,
+}})
 
 const isDetailOther = ref(state.detailOtherModal);
 const isGetLoan = ref(state.getLoanModal);

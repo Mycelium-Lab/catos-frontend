@@ -177,7 +177,9 @@ import transactionDesktop from "@/components/base/modals/transaction-desktop.vue
 import { createLoanRequest } from "@/api/loanRequests.api";
 
 const {id} = defineProps({
-  id: {type: Number}
+  id: {type: Number},
+  interestRate: {type: Number, required: true},
+  freePeriod: {type: Number, required: true},
 }) 
 
 const emits = defineEmits(["close"]);
