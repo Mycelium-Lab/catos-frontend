@@ -1,8 +1,11 @@
 <template>
-   <h3 v-if="!pools.length || !loans.length">
-      {{ `${role === 'collector' ? 'Задолжности пока отсутствуют' : 'Пуллы пока отсутствуют'}` }}
+   <h3 v-if="role === 'collector' && !loans.length">
+      Задолжности пока отсутствуют
     </h3>
-   <ul v-if="role === 'collector'" class="list-desktop">
+    <h3 v-else-if="role !== 'collector' && !pools.length ">
+      Пуллы пока отсутствуют
+    </h3>
+   <ul v-else-if="role === 'collector'" class="list-desktop">
         <li
             v-for="loan in loans"
             :key="loan.id"
