@@ -19,11 +19,13 @@
                     <span>Страна выдачи документа </span>
                     <span class="span2">* </span>
                   </div>
-                   <catos-select
+                  <catos-select
                     placeholder="Россия"
                     :options="countries"
                     :value="passportDataStore.passportDTO.country"
-                    @selected="ev => (passportDataStore.passportDTO.country = ev)"
+                    @selected="
+                      ev => (passportDataStore.passportDTO.country = ev)
+                    "
                     :optionWidthDesk="352"
                     :style="{ width: '100%' }"
                   ></catos-select>
@@ -40,14 +42,19 @@
                   :style="{ width: '100%' }"
                   placeholder="1234 098761"
                   :right="true"
+                  :model-value="passportData"
                   @update:model-value="
                     event => {
-                      passportDataStore.passportDTO.series =
-                        event.split(' ')[0];
-                      passportDataStore.passportDTO.number =
-                        event.split(' ')[1];
+                      passportDataStore.passportDTO.series = Number(
+                        event.split(' ')[0]
+                      );
+                      passportDataStore.passportDTO.number = Number(
+                        event.split(' ')[1]
+                      );
                     }
-                  "                >
+                  "
+                  type="passport"
+                >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
                   </template>
@@ -88,14 +95,11 @@
                 </span>
               </div>
               <catos-textarea
+                :value="passportDataStore.passportDTO.issuing_organization"
                 :style="{ width: '100%', resize: 'none' }"
                 placeholder="ГУМВД России по Санкт-Петербургу, и Ленинградской области"
-                v-model:model-value="
-                  passportDataStore.passportDTO.issuing_organization
-                "
                 @selected="
-                  ev =>
-                    (passportDataStore.passportDTO.issuing_organization = ev)
+                  passportDataStore.passportDTO.issuing_organization = $event
                 "
               ></catos-textarea>
             </div>
@@ -170,7 +174,9 @@
                   :style="{ width: '100%' }"
                   placeholder="Национальность"
                   :right="true"
-                  v-model:model-value="passportDataStore.passportDTO.nationality"
+                  v-model:model-value="
+                    passportDataStore.passportDTO.nationality
+                  "
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -184,7 +190,9 @@
                 </div>
                 <div class="fields-password-and-mail-parent1">
                   <input-data
-                    v-model:model-value="passportDataStore.passportDTO.birthdate"
+                    v-model:model-value="
+                      passportDataStore.passportDTO.birthdate
+                    "
                     type="date"
                     placeholder="01.02.1994"
                     :style="{ width: '100%' }"
@@ -199,41 +207,49 @@
                 </div>
               </div>
               <div class="parent39">
-              <div class="div22">
-                <span>Пол: </span>
-                <span class="span1">* </span>
-              </div>
-              <div class="frame-parent17">
-                <div
-                  class="radiobutton-parent"
-                  @click="
-                    () => {isSelectedRadioButton1 = true; isSelectedRadioButton2 = false; passportDataStore.passportDTO.gender = 'М'}
-                  "
-                >
-                  <catos-checkbox
-                    :select="passportDataStore.passportDTO.gender === 'М'"
-                    variant="radiobutton"
-                    :key="String(isSelectedRadioButton1)"
-                  ></catos-checkbox>
-
-                  <div class="text">Мужской</div>
+                <div class="div22">
+                  <span>Пол: </span>
+                  <span class="span1">* </span>
                 </div>
-                <div
-                  class="radiobutton-group"
-                  @click="
-                    () => {isSelectedRadioButton2 = true; isSelectedRadioButton1 = false; passportDataStore.passportDTO.gender = 'Ж'}
-                  "
-                >
-                  <catos-checkbox
-                    :select="passportDataStore.passportDTO.gender === 'Ж'"
-                    variant="radiobutton"
-                    :key="String(isSelectedRadioButton2)"
-                  ></catos-checkbox>
+                <div class="frame-parent17">
+                  <div
+                    class="radiobutton-parent"
+                    @click="
+                      () => {
+                        isSelectedRadioButton1 = true;
+                        isSelectedRadioButton2 = false;
+                        passportDataStore.passportDTO.gender = 'М';
+                      }
+                    "
+                  >
+                    <catos-checkbox
+                      :select="passportDataStore.passportDTO.gender === 'М'"
+                      variant="radiobutton"
+                      :key="String(isSelectedRadioButton1)"
+                    ></catos-checkbox>
 
-                  <div class="text">Женский</div>
+                    <div class="text">Мужской</div>
+                  </div>
+                  <div
+                    class="radiobutton-group"
+                    @click="
+                      () => {
+                        isSelectedRadioButton2 = true;
+                        isSelectedRadioButton1 = false;
+                        passportDataStore.passportDTO.gender = 'Ж';
+                      }
+                    "
+                  >
+                    <catos-checkbox
+                      :select="passportDataStore.passportDTO.gender === 'Ж'"
+                      variant="radiobutton"
+                      :key="String(isSelectedRadioButton2)"
+                    ></catos-checkbox>
+
+                    <div class="text">Женский</div>
+                  </div>
                 </div>
               </div>
-            </div>
               <div class="fieldsinput">
                 <div class="div18">
                   <span class="span8">Должность </span>
@@ -287,9 +303,12 @@
                 </div>
               </div>
               <button-slider
+                :value="paperDataStore.paperDTO.ownership"
                 :style="{ width: '100%' }"
-                variant='right'
-                @on-slide="ev => paperDataStore.paperDTO.ownership = Boolean(ev)"
+                variant="right"
+                @on-slide="
+                  ev => (paperDataStore.paperDTO.ownership = Boolean(ev))
+                "
               ></button-slider>
             </div>
           </div>
@@ -348,13 +367,16 @@
             <catos-select
               placeholder="Московская"
               :options="regions"
-              :value="
-                passportDataStore.passportDTO.registration_address.region
-              "
+              :value="passportDataStore.passportDTO.registration_address.region"
               :optionWidthDesk="352"
               :style="
-              passportDataStore.passportDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                passportDataStore.passportDTO.country !== 'Россия'
+                  ? {
+                      width: '100%',
+                      opacity: '0.2',
+                      cursor: 'not-allowed',
+                      pointerEvents: 'none',
+                    }
                   : { width: '100%', opacity: '1' }
               "
               @selected="
@@ -371,44 +393,78 @@
               <span class="span2">* </span>
             </div>
             <catos-select
-              :placeholder="passportDataStore.passportDTO.registration_address.region !== '' && neighborhoodsReg ? neighborhoodsReg[0] : 'Воскресенск'"
+              :placeholder="
+                passportDataStore.passportDTO.registration_address.region !==
+                  '' && neighborhoodsReg
+                  ? neighborhoodsReg[0]
+                  : 'Воскресенск'
+              "
               :options="neighborhoodsReg"
-              :value="passportDataStore.passportDTO.registration_address.neighborhood"
-              @selected=" ev => (passportDataStore.passportDTO.registration_address.neighborhood = ev)"
+              :value="
+                passportDataStore.passportDTO.registration_address.neighborhood
+              "
+              @selected="
+                ev =>
+                  (passportDataStore.passportDTO.registration_address.neighborhood =
+                    ev)
+              "
               :optionWidthDesk="352"
               :style="
-                passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                passportDataStore.passportDTO.registration_address.region ===
+                  '' || passportDataStore.passportDTO.country !== 'Россия'
+                  ? {
+                      width: '100%',
+                      opacity: '0.2',
+                      cursor: 'not-allowed',
+                      pointerEvents: 'none',
+                    }
                   : { width: '100%', opacity: '1' }
               "
-              :disabled="passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
+              :disabled="
+                passportDataStore.passportDTO.registration_address.region ===
+                  '' || passportDataStore.passportDTO.country !== 'Россия'
+              "
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
             <div class="div10">Населенный пункт</div>
             <catos-select
-            :placeholder="passportDataStore.passportDTO.registration_address.region !== '' && citiesReg ? citiesReg[0] : 'Москва'"
+              :placeholder="
+                passportDataStore.passportDTO.registration_address.region !==
+                  '' && citiesReg
+                  ? citiesReg[0]
+                  : 'Москва'
+              "
               :options="citiesReg"
               :value="passportDataStore.passportDTO.registration_address.city"
               :optionWidthDesk="352"
               :style="
-                 passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                passportDataStore.passportDTO.registration_address.region ===
+                  '' || passportDataStore.passportDTO.country !== 'Россия'
+                  ? {
+                      width: '100%',
+                      opacity: '0.2',
+                      cursor: 'not-allowed',
+                      pointerEvents: 'none',
+                    }
                   : { width: '100%', opacity: '1' }
               "
               @selected="
                 ev =>
-                  (passportDataStore.passportDTO.registration_address.city =
-                    ev)
+                  (passportDataStore.passportDTO.registration_address.city = ev)
               "
-             :disabled="passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
+              :disabled="
+                passportDataStore.passportDTO.registration_address.region ===
+                  '' || passportDataStore.passportDTO.country !== 'Россия'
+              "
             ></catos-select>
           </div>
           <div class="text2">
             <div class="div10">Улица</div>
             <input-data
-              :modelValue="passportDataStore.passportDTO.registration_address.street"
-              @update:model-value="passportDataStore.passportDTO.registration_address.street = $event"
+              v-model:modelValue="
+                passportDataStore.passportDTO.registration_address.street
+              "
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
               :right="true"
@@ -424,8 +480,9 @@
             <div class="parent11">
               <div class="div10">Дом</div>
               <input-data
-                :modelValue="passportDataStore.passportDTO.registration_address.house"
-              @update:model-value="passportDataStore.passportDTO.registration_address.house = $event"
+                v-model:modelValue="
+                  passportDataStore.passportDTO.registration_address.house
+                "
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -433,8 +490,9 @@
             <div class="parent11">
               <div class="div10">Корпус</div>
               <input-data
-              :modelValue="passportDataStore.passportDTO.registration_address.housing"
-              @update:model-value="passportDataStore.passportDTO.registration_address.housing = $event"
+                v-model:modelValue="
+                  passportDataStore.passportDTO.registration_address.housing
+                "
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -444,8 +502,9 @@
             <div class="parent11">
               <div class="div10">Строение</div>
               <input-data
-              :modelValue="passportDataStore.passportDTO.registration_address.building"
-              @update:model-value="passportDataStore.passportDTO.registration_address.building = $event"
+                v-model:modelValue="
+                  passportDataStore.passportDTO.registration_address.building
+                "
                 placeholder="1"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -453,8 +512,9 @@
             <div class="parent11">
               <div class="div10">Квартира</div>
               <input-data
-              :modelValue="passportDataStore.passportDTO.registration_address.apartment"
-              @update:model-value="passportDataStore.passportDTO.registration_address.apartment = $event"
+                v-model:modelValue="
+                  passportDataStore.passportDTO.registration_address.apartment
+                "
                 placeholder="№"
                 :style="{ width: '100%' }"
               ></input-data>
@@ -463,8 +523,12 @@
           <div class="parent11">
             <div class="div10">Индекс</div>
             <input-data
-              @update:model-value="passportDataStore.passportDTO.registration_address.index = $event"
-              placeholder="193 984"
+              v-model:model-value="calcIndex"
+              @update:model-value="
+                passportDataStore.passportDTO.registration_address.index =
+                  Number($event)
+              "
+              placeholder="193984"
               :style="{ width: '100%' }"
             ></input-data>
           </div>
@@ -479,23 +543,42 @@
           </div>
         </div>
         <div class="fieldsinputchoise-parent">
-         
+          <div class="component-20-parent">
+            <catos-checkbox
+              variant="rounded"
+              @on-change="ev => isSameAddressHandler(ev)"
+            ></catos-checkbox>
+            <div class="div10">
+              <span>Совпадает с адресом регистрации</span>
+            </div>
+          </div>
           <div class="fieldsinputchoise">
             <div class="div10">
               <span>Область, край </span>
               <span class="span2">* </span>
             </div>
             <catos-select
-            placeholder="Московская"
+              placeholder="Московская"
               :options="regions"
               :value="passportDataStore.passportDTO.living_address.region"
               :optionWidthDesk="352"
-              :style="passportDataStore.passportDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+              :style="
+                passportDataStore.passportDTO.country !== 'Россия'
+                  ? {
+                      width: '100%',
+                      opacity: '0.2',
+                      cursor: 'not-allowed',
+                      pointerEvents: 'none',
+                    }
                   : { width: '100%', opacity: '1' }
               "
-              @selected="ev => (passportDataStore.passportDTO.living_address.region = ev)"
-              :disabled="passportDataStore.passportDTO.country !== 'Россия'"
+              @selected="
+                ev => (passportDataStore.passportDTO.living_address.region = ev)
+              "
+              :disabled="
+                passportDataStore.passportDTO.country !== 'Россия' ||
+                isSameAddress
+              "
             ></catos-select>
           </div>
           <div class="fieldsinput">
@@ -504,15 +587,24 @@
               <span class="span2">* </span>
             </div>
             <catos-select
-              :placeholder="passportDataStore.passportDTO.living_address.region !== '' && neighborhoodsLiv ? neighborhoodsLiv[0] : 'Воскресенск'"
-              :options="neighborhoodsLiv"
-              :value="
-                passportDataStore.passportDTO.living_address.neighborhood
+              :placeholder="
+                passportDataStore.passportDTO.living_address.region !== '' &&
+                neighborhoodsLiv
+                  ? neighborhoodsLiv[0]
+                  : 'Воскресенск'
               "
-               :optionWidthDesk="352"
+              :options="neighborhoodsLiv"
+              :value="passportDataStore.passportDTO.living_address.neighborhood"
+              :optionWidthDesk="352"
               :style="
-                passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                passportDataStore.passportDTO.living_address.region === '' ||
+                passportDataStore.passportDTO.country !== 'Россия'
+                  ? {
+                      width: '100%',
+                      opacity: '0.2',
+                      cursor: 'not-allowed',
+                      pointerEvents: 'none',
+                    }
                   : { width: '100%', opacity: '1' }
               "
               @selected="
@@ -520,38 +612,63 @@
                   (passportDataStore.passportDTO.living_address.neighborhood =
                     ev)
               "
-               :disabled="passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
+              :disabled="
+                passportDataStore.passportDTO.living_address.region === '' ||
+                passportDataStore.passportDTO.country !== 'Россия' ||
+                isSameAddress
+              "
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
             <div class="div10">Населенный пункт</div>
             <catos-select
-              :placeholder="passportDataStore.passportDTO.living_address.region !== '' && citiesLiv ? citiesLiv[0] : 'Москва'"
+              :placeholder="
+                passportDataStore.passportDTO.living_address.region !== '' &&
+                citiesLiv
+                  ? citiesLiv[0]
+                  : 'Москва'
+              "
               :options="citiesLiv"
               :value="passportDataStore.passportDTO.living_address.city"
               :optionWidthDesk="352"
               :style="
-                 passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
+                passportDataStore.passportDTO.living_address.region === '' ||
+                passportDataStore.passportDTO.country !== 'Россия'
+                  ? {
+                      width: '100%',
+                      opacity: '0.2',
+                      cursor: 'not-allowed',
+                      pointerEvents: 'none',
+                    }
                   : { width: '100%', opacity: '1' }
               "
               @selected="
                 ev => (passportDataStore.passportDTO.living_address.city = ev)
               "
-              :disabled="passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
+              :disabled="
+                passportDataStore.passportDTO.living_address.region === '' ||
+                passportDataStore.passportDTO.country !== 'Россия' ||
+                isSameAddress
+              "
             ></catos-select>
           </div>
           <div class="text2">
             <div class="div10">Улица</div>
             <input-data
-            :modelValue="passportDataStore.passportDTO.living_address.street"
-            @update:model-value="
-                ev =>
-                  (passportDataStore.passportDTO.living_address.street = ev)
+              v-model:modelValue="
+                passportDataStore.passportDTO.living_address.street
+              "
+              @update:model-value="
+                ev => (passportDataStore.passportDTO.living_address.street = ev)
               "
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
               :right="true"
+              :readonly="
+                passportDataStore.passportDTO.living_address.city === '' ||
+                passportDataStore.passportDTO.country !== 'Россия' ||
+                isSameAddress
+              "
             >
               <template v-slot:right-icon>
                 <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -564,25 +681,39 @@
             <div class="parent11">
               <div class="div10">Дом</div>
               <input-data
-              :modelValue="passportDataStore.passportDTO.living_address.house"
-              @update:model-value="
+                v-model:modelValue="
+                  passportDataStore.passportDTO.living_address.house
+                "
+                @update:model-value="
                   ev =>
                     (passportDataStore.passportDTO.living_address.house = ev)
                 "
                 placeholder="1"
                 :style="{ width: '100%' }"
+                :readonly="
+                  passportDataStore.passportDTO.living_address.street === '' ||
+                  passportDataStore.passportDTO.country !== 'Россия' ||
+                  isSameAddress
+                "
               ></input-data>
             </div>
             <div class="parent11">
               <div class="div10">Корпус</div>
               <input-data
-              :modelValue="passportDataStore.passportDTO.living_address.housing"
-              @update:model-value="
+                v-model:modelValue="
+                  passportDataStore.passportDTO.living_address.housing
+                "
+                @update:model-value="
                   ev =>
                     (passportDataStore.passportDTO.living_address.housing = ev)
                 "
                 placeholder="1"
                 :style="{ width: '100%' }"
+                :readonly="
+                  passportDataStore.passportDTO.living_address.street === '' ||
+                  passportDataStore.passportDTO.country !== 'Россия' ||
+                  isSameAddress
+                "
               ></input-data>
             </div>
           </div>
@@ -590,36 +721,58 @@
             <div class="parent11">
               <div class="div10">Строение</div>
               <input-data
-              :modelValue="passportDataStore.passportDTO.living_address.building"
-              @update:model-value="
+                v-model:modelValue="
+                  passportDataStore.passportDTO.living_address.building
+                "
+                @update:model-value="
                   ev =>
-                    (passportDataStore.passportDTO.living_address.building =
-                      ev)
+                    (passportDataStore.passportDTO.living_address.building = ev)
                 "
                 placeholder="1"
                 :style="{ width: '100%' }"
+                :readonly="
+                  passportDataStore.passportDTO.living_address.street === '' ||
+                  passportDataStore.passportDTO.country !== 'Россия' ||
+                  isSameAddress
+                "
               ></input-data>
             </div>
             <div class="parent11">
               <div class="div10">Квартира</div>
               <input-data
-              :modelValue="passportDataStore.passportDTO.living_address.apartment"
-              @update:model-value="
+                v-model:modelValue="
+                  passportDataStore.passportDTO.living_address.apartment
+                "
+                @update:model-value="
                   ev =>
                     (passportDataStore.passportDTO.living_address.apartment =
                       ev)
                 "
                 placeholder="1"
                 :style="{ width: '100%' }"
+                :readonly="
+                  passportDataStore.passportDTO.living_address.street === '' ||
+                  passportDataStore.passportDTO.country !== 'Россия' ||
+                  isSameAddress
+                "
               ></input-data>
             </div>
           </div>
           <div class="parent11">
             <div class="div10">Индекс</div>
             <input-data
-              @update:model-value="passportDataStore.passportDTO.living_address.index = $event"
+              v-model:model-value="calcLivingIndex"
+              @update:model-value="
+                passportDataStore.passportDTO.living_address.index =
+                  Number($event)
+              "
               placeholder="193 984"
               :style="{ width: '100%' }"
+              :readonly="
+                passportDataStore.passportDTO.living_address.street === '' ||
+                passportDataStore.passportDTO.country !== 'Россия' ||
+                isSameAddress
+              "
             ></input-data>
           </div>
         </div>
@@ -936,37 +1089,45 @@ import { useUserDataStore } from "@/stores/userData";
 import { usePaperDataStore } from "@/stores/paperData";
 import { usePassportDataStore } from "@/stores/passportData";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
-import { useCityList } from '@/composables/useCityList'
-import { useNeighborhoodList } from "@/composables/useNeighborhoodList"
-import countries from "@/json/countries.json"
-import regions from "@/json/regions.json"
+import { useCityList } from "@/composables/useCityList";
+import { useNeighborhoodList } from "@/composables/useNeighborhoodList";
+import countries from "@/json/countries.json";
+import regions from "@/json/regions.json";
 
-const paperDataStore = usePaperDataStore()
-const passportDataStore = usePassportDataStore()
+const paperDataStore = usePaperDataStore();
+const passportDataStore = usePassportDataStore();
 const userDataStore = useUserDataStore();
 
-const {citiesByRegion: ctitesRegistration} = useCityList('registration', 'passport')
-const {citiesByRegion: ctitesLiving} = useCityList('living', 'passport')
-const {neighborhoodByRegion: neighborhoodRegistration} = useNeighborhoodList('registration', 'passport')
-const {neighborhoodByRegion: neighborhoodLiving} = useNeighborhoodList('living', 'passport')
+const { citiesByRegion: ctitesRegistration } = useCityList(
+  "registration",
+  "passport"
+);
+const { citiesByRegion: ctitesLiving } = useCityList("living", "passport");
+const { neighborhoodByRegion: neighborhoodRegistration } = useNeighborhoodList(
+  "registration",
+  "passport"
+);
+const { neighborhoodByRegion: neighborhoodLiving } = useNeighborhoodList(
+  "living",
+  "passport"
+);
 
 const citiesReg = computed(() => {
-    return ctitesRegistration.value
+  return ctitesRegistration.value;
 });
 const citiesLiv = computed(() => {
-    return ctitesLiving.value
+  return ctitesLiving.value;
 });
 const neighborhoodsReg = computed(() => {
-    return neighborhoodRegistration.value
+  return neighborhoodRegistration.value;
 });
 const neighborhoodsLiv = computed(() => {
-    return neighborhoodLiving.value
+  return neighborhoodLiving.value;
 });
 
 const isSelectedRadioButton1 = ref(false);
 const isSelectedRadioButton2 = ref(false);
 import { useDevice } from "@/compossables/useDevice";
-
 
 const { isMobile } = useDevice();
 
@@ -975,15 +1136,15 @@ const saveImage = async (boxName: string, file: File | null) => {
     switch (boxName) {
       case "passPhoto1":
         userDataStore.firstPhotoFile = file;
-        passportDataStore.passportDTO.first_photo = 'Goa_file2.jpg';
+        passportDataStore.passportDTO.first_photo = "Goa_file2.jpg";
         break;
       case "passPhoto2":
         userDataStore.secondPhotoFile = file;
-        passportDataStore.passportDTO.second_photo = 'Goa_file2.jpg';
+        passportDataStore.passportDTO.second_photo = "Goa_file2.jpg";
         break;
       case "selfie":
         userDataStore.selfieFile = file;
-        passportDataStore.passportDTO.selfie = 'Goa_file2.jpg';
+        passportDataStore.passportDTO.selfie = "Goa_file2.jpg";
         break;
       default:
         break;
@@ -993,12 +1154,44 @@ const saveImage = async (boxName: string, file: File | null) => {
     console.log("File is null");
   }
 };
-const passportNumberString = reactive({
-  value:
-  passportDataStore.passportDTO.number === 0
-      ? ""
-      : passportDataStore.passportDTO.number.toString(),
+const passportData = computed(() => {
+  return (
+    (passportDataStore.passportDTO.series > 0
+      ? passportDataStore.passportDTO.series.toString()
+      : "") +
+    (passportDataStore.passportDTO.number > 0
+      ? " " + passportDataStore.passportDTO.number.toString()
+      : "")
+  );
 });
+const calcIndex = computed(() => {
+  if (passportDataStore.passportDTO.registration_address.index > 0)
+    return passportDataStore.passportDTO.registration_address.index.toString();
+});
+const calcLivingIndex = computed(() => {
+  if (passportDataStore.passportDTO.living_address.index > 0)
+    return passportDataStore.passportDTO.living_address.index.toString();
+});
+const isSameAddress = ref(false);
+const isSameAddressHandler = (ev: boolean) => {
+  isSameAddress.value = ev;
+  if (ev) {
+    passportDataStore.passportDTO.living_address =
+      passportDataStore.passportDTO.registration_address;
+  } else {
+    passportDataStore.passportDTO.living_address = {
+      region: "",
+      neighborhood: "",
+      city: "",
+      street: "",
+      house: "",
+      housing: "",
+      building: "",
+      apartment: "",
+      index: 0,
+    };
+  }
+};
 </script>
 
 <style scoped lang="scss">
@@ -2031,7 +2224,8 @@ const passportNumberString = reactive({
   z-index: 1;
   width: 100%;
 }
-.div72, .div73 {
+.div72,
+.div73 {
   position: absolute;
   margin: 0 !important;
   top: 1.67em;
@@ -2042,7 +2236,7 @@ const passportNumberString = reactive({
   z-index: 2;
   color: #3b3b3b;
 }
-.div73{
+.div73 {
   top: 55em;
 }
 .organizmloader,
@@ -2612,12 +2806,21 @@ const passportNumberString = reactive({
   justify-content: flex-start;
   gap: 0.38em;
 }
-.parent39{
+.parent39 {
   width: 100%;
 }
-.frame-parent17{
+.frame-parent17 {
   display: flex;
-    justify-content: space-between;
-    width: 100%;
+  justify-content: space-between;
+  width: 100%;
+}
+.component-20-parent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5em;
+  width: 100%;
 }
 </style>

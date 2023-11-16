@@ -82,10 +82,12 @@
                 placeholder="Введите номер"
                 v-model:model-value="regNumberString.value"
                 @update:model-value="
-                  ev => (paperDataStore.paperDTO.registration_number = ev)
+                  ev =>
+                    (paperDataStore.paperDTO.registration_number = Number(ev))
                 "
                 :style="{ width: '100%' }"
                 :right="true"
+                type="number"
               >
                 <template v-slot:right-icon>
                   <img
@@ -94,149 +96,161 @@
               ></input-data>
             </div>
             <div class="fieldsinputchoise">
-            <div class="div10">
-              <span>Область, край</span>
-              <span class="span2">* </span>
+              <div class="div10">
+                <span>Область, край</span>
+                <span class="span2">* </span>
+              </div>
+              <catos-select
+                placeholder="Московская"
+                :options="regions"
+                :value="paperDataStore.paperDTO.address.region"
+                :optionWidthDesk="352"
+                :style="
+                  paperDataStore.paperDTO.country !== 'Россия'
+                    ? {
+                        width: '100%',
+                        opacity: '0.2',
+                        cursor: 'not-allowed',
+                        pointerEvents: 'none',
+                      }
+                    : { width: '100%', opacity: '1' }
+                "
+                @selected="ev => (paperDataStore.paperDTO.address.region = ev)"
+                :disabled="paperDataStore.paperDTO.country !== 'Россия'"
+              ></catos-select>
             </div>
-            <catos-select
-              placeholder="Московская"
-              :options="regions"
-              :value="paperDataStore.paperDTO.address.region"
-              :optionWidthDesk="352"
-              :style="
-                paperDataStore.paperDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
-                  : { width: '100%', opacity: '1' }
-              "
-              @selected="
-                ev =>
-                  (paperDataStore.paperDTO.address.region = ev)
-              "
-              :disabled="paperDataStore.paperDTO.country !== 'Россия'"
-            ></catos-select>
-          </div>
 
-          <div class="fieldsinput">
-            <div class="div10">
-              <span>Район</span>
-              <span class="span2">* </span>
+            <div class="fieldsinput">
+              <div class="div10">
+                <span>Район</span>
+                <span class="span2">* </span>
+              </div>
+              <catos-select
+                :placeholder="
+                  paperDataStore.paperDTO.address.region !== '' && neighborhoods
+                    ? neighborhoods[0]
+                    : 'Воскресенск'
+                "
+                :options="neighborhoods"
+                :value="paperDataStore.paperDTO.address.neighborhood"
+                :optionWidthDesk="352"
+                :style="
+                  paperDataStore.paperDTO.address.region === '' ||
+                  paperDataStore.paperDTO.country !== 'Россия'
+                    ? {
+                        width: '100%',
+                        opacity: '0.2',
+                        cursor: 'not-allowed',
+                        pointerEvents: 'none',
+                      }
+                    : { width: '100%', opacity: '1' }
+                "
+                @selected="
+                  ev => (paperDataStore.paperDTO.address.neighborhood = ev)
+                "
+                :disabled="
+                  paperDataStore.paperDTO.address.region === '' ||
+                  paperDataStore.paperDTO.country !== 'Россия'
+                "
+              ></catos-select>
             </div>
-            <catos-select
-              :placeholder="paperDataStore.paperDTO.address.region !== '' && neighborhoods ? neighborhoods[0] : 'Воскресенск'"
-              :options="neighborhoods"
-              :value="
-                paperDataStore.paperDTO.address.neighborhood
-              "
-               :optionWidthDesk="352"
-              :style="
-                paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
-                  : { width: '100%', opacity: '1' }
-              "
-              @selected="
-                ev =>
-                  (paperDataStore.paperDTO.address.neighborhood =
-                    ev)
-              "
-              :disabled="paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'"
-            ></catos-select>
-          </div>
-          <div class="fieldsinputchoise3">
-            <div class="div10">Населенный пункт</div>
-            <catos-select
-              :placeholder="paperDataStore.paperDTO.address.region !== '' && cities ? cities[0] : 'Москва'"
-              :options="cities"
-              :value="paperDataStore.paperDTO.address.city"
-              :optionWidthDesk="352"
-              :style="
-               paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'
-                  ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
-                  : { width: '100%', opacity: '1' }
-              "
-              @selected="
-                ev => (paperDataStore.paperDTO.address.city = ev)
-              "
-               :disabled="paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'"
-            ></catos-select>
-          </div>
-          <div class="text2">
-            <div class="div10">Улица</div>
-            <input-data
-              placeholder="Начните вводить адресс"
-              :style="{ width: '100%' }"
-              :right="true"
-              @update:model-value="
-                ev =>
-                  (paperDataStore.paperDTO.address.street = ev)
-              "
-            >
-              <template v-slot:right-icon>
-                <img src="@/assets/images/iconseditoutline-black.svg" />
-              </template>
-            </input-data>
-          </div>
-          <div class="frame-parent5">
-            <div class="frame-parent3">
-              <div class="parent11">
-                <div class="div10">Дом</div>
+            <div class="fieldsinputchoise3">
+              <div class="div10">Населенный пункт</div>
+              <catos-select
+                :placeholder="
+                  paperDataStore.paperDTO.address.region !== '' && cities
+                    ? cities[0]
+                    : 'Москва'
+                "
+                :options="cities"
+                :value="paperDataStore.paperDTO.address.city"
+                :optionWidthDesk="352"
+                :style="
+                  paperDataStore.paperDTO.address.region === '' ||
+                  paperDataStore.paperDTO.country !== 'Россия'
+                    ? {
+                        width: '100%',
+                        opacity: '0.2',
+                        cursor: 'not-allowed',
+                        pointerEvents: 'none',
+                      }
+                    : { width: '100%', opacity: '1' }
+                "
+                @selected="ev => (paperDataStore.paperDTO.address.city = ev)"
+                :disabled="
+                  paperDataStore.paperDTO.address.region === '' ||
+                  paperDataStore.paperDTO.country !== 'Россия'
+                "
+              ></catos-select>
+            </div>
+            <div class="text2">
+              <div class="div10">Улица</div>
+              <input-data
+                placeholder="Начните вводить адресс"
+                :style="{ width: '100%' }"
+                :right="true"
+                v-model:model-value="paperDataStore.paperDTO.address.street"
+              >
+                <template v-slot:right-icon>
+                  <img src="@/assets/images/iconseditoutline-black.svg" />
+                </template>
+              </input-data>
+            </div>
+            <div class="frame-parent5">
+              <div class="frame-parent3">
+                <div class="parent11">
+                  <div class="div10">Дом</div>
+                  <input-data
+                    placeholder="1"
+                    :style="{ width: '100%' }"
+                    v-model:model-value="paperDataStore.paperDTO.address.house"
+                  ></input-data>
+                </div>
+                <div class="parent11">
+                  <div class="div10">Корпус</div>
+                  <input-data
+                    placeholder="1"
+                    :style="{ width: '100%' }"
+                    v-model:model-value="
+                      paperDataStore.paperDTO.address.housing
+                    "
+                  ></input-data>
+                </div>
+              </div>
+              <div class="frame-parent3" :style="{ marginTop: '1em' }">
+                <div class="parent11">
+                  <div class="div10">Строение</div>
+                  <input-data
+                    placeholder="1"
+                    :style="{ width: '100%' }"
+                    v-model:model-value="
+                      paperDataStore.paperDTO.address.building
+                    "
+                  ></input-data>
+                </div>
+                <div class="parent11">
+                  <div class="div10">Квартира</div>
+                  <input-data
+                    placeholder="1"
+                    :style="{ width: '100%' }"
+                    v-model:model-value="
+                      paperDataStore.paperDTO.address.apartment
+                    "
+                  ></input-data>
+                </div>
+              </div>
+              <div class="parent11" :style="{ marginTop: '1em' }">
+                <div class="div10">Индекс</div>
                 <input-data
-                  placeholder="1"
+                  placeholder="193984"
                   :style="{ width: '100%' }"
+                  v-model:model-value="calcIndex"
                   @update:model-value="
-                    ev =>
-                      (paperDataStore.paperDTO.address.house = ev)
+                    ev => (paperDataStore.paperDTO.address.index = Number(ev))
                   "
                 ></input-data>
               </div>
-              <div class="parent11">
-                <div class="div10">Корпус</div>
-                <input-data
-                  placeholder="1"
-                  :style="{ width: '100%' }"
-                  @update:model-value="
-                    ev =>
-                      (paperDataStore.paperDTO.address.housing = ev)
-                  "
-                ></input-data>
-              </div>
             </div>
-            <div class="frame-parent3" :style="{ marginTop: '1em' }">
-              <div class="parent11">
-                <div class="div10">Строение</div>
-                <input-data
-                  placeholder="1"
-                  :style="{ width: '100%' }"
-                  @update:model-value="
-                    ev =>
-                      (paperDataStore.paperDTO.address.building =
-                        ev)
-                  "
-                ></input-data>
-              </div>
-              <div class="parent11">
-                <div class="div10">Квартира</div>
-                <input-data
-                  placeholder="1"
-                  :style="{ width: '100%' }"
-                  @update:model-value="
-                    ev =>
-                      (paperDataStore.paperDTO.address.apartment =
-                        ev)
-                  "
-                ></input-data>
-              </div>
-            </div>
-            <div class="parent11" :style="{ marginTop: '1em' }">
-              <div class="div10">Индекс</div>
-                <input-data
-                  placeholder="193 984"
-                  :style="{ width: '100%' }"
-                  @update:model-value="
-                    ev => (paperDataStore.paperDTO.address.index = ev)
-                  "
-                ></input-data>
-            </div>
-        </div>
             <div class="fieldsinputchoise">
               <div class="div10">Веб-сайт организации</div>
               <input-data
@@ -486,16 +500,14 @@
               </div>
               <catos-select
                 placeholder="PDF"
-                 :options="optionsFile"
+                :options="optionsFile"
                 :value="userDataStore.extraDocsType"
-                @selected="
-                  ev => (userDataStore.extraDocsType = ev)
-                "
+                @selected="ev => (userDataStore.extraDocsType = ev)"
                 :optionWidthDesk="320"
                 :style="{
                   width: '90%',
                   margin: '0 auto',
-                  marginTop: '0.5em'
+                  marginTop: '0.5em',
                 }"
                 data-element="file"
               ></catos-select>
@@ -598,11 +610,11 @@ import loaderField from "../../../components/fields/loader-field.vue";
 import catosCheckbox from "../../../components/ui-kit/catos-checkbox.vue";
 import { ref, computed, reactive } from "vue";
 import { useUserDataStore } from "@/stores/userData";
-import { usePaperDataStore } from "@/stores/paperData"
-import countries from "@/json/countries.json"
-import regions from "@/json/regions.json"
-import { useCityList } from '@/composables/useCityList'
-import { useNeighborhoodList } from "@/composables/useNeighborhoodList"
+import { usePaperDataStore } from "@/stores/paperData";
+import countries from "@/json/countries.json";
+import regions from "@/json/regions.json";
+import { useCityList } from "@/composables/useCityList";
+import { useNeighborhoodList } from "@/composables/useNeighborhoodList";
 import { useDevice } from "@/compossables/useDevice";
 
 const userDataStore = useUserDataStore();
@@ -616,16 +628,15 @@ const regOptions = {
   euro: ["LTD", "LLC", "Sole proprietorship"],
 };
 
-const {citiesByRegion} = useCityList('registration', 'paper')
-const {neighborhoodByRegion} = useNeighborhoodList('registration', 'paper')
+const { citiesByRegion } = useCityList("registration", "paper");
+const { neighborhoodByRegion } = useNeighborhoodList("registration", "paper");
 
 const cities = computed(() => {
-    return citiesByRegion.value
+  return citiesByRegion.value;
 });
 const neighborhoods = computed(() => {
-    return neighborhoodByRegion.value
+  return neighborhoodByRegion.value;
 });
-
 const checkbox = reactive({
   checked: false,
 });
@@ -638,7 +649,7 @@ const isLinkActive = computed(() => {
 
 const regNumberString = reactive({
   value:
-  paperDataStore.paperDTO.registration_number === 0
+    paperDataStore.paperDTO.registration_number === 0
       ? ""
       : paperDataStore.paperDTO.registration_number.toString(),
 });
@@ -650,15 +661,15 @@ const saveImage = async (boxName: string, file: File | null) => {
     switch (boxName) {
       case "regProof":
         userDataStore.regProof = file;
-        paperDataStore.paperDTO.first_photo = 'Goa_file2.jpg';
+        paperDataStore.paperDTO.first_photo = "Goa_file2.jpg";
         break;
       case "addrProof":
         userDataStore.addrProof = file;
-        paperDataStore.paperDTO.second_photo = 'Goa_file2.jpg';
+        paperDataStore.paperDTO.second_photo = "Goa_file2.jpg";
         break;
       case "extraDocs":
         userDataStore.extraDocs = file;
-        paperDataStore.paperDTO.third_photo =' Goa_file2.jpg';
+        paperDataStore.paperDTO.third_photo = " Goa_file2.jpg";
         break;
       default:
         break;
@@ -668,6 +679,13 @@ const saveImage = async (boxName: string, file: File | null) => {
     console.log("File is null");
   }
 };
+const calcIndex = computed(() => {
+  if (paperDataStore.paperDTO.address.index === 0) {
+    return "";
+  } else {
+    return paperDataStore.paperDTO.address.index.toString();
+  }
+});
 const allDataEntered = computed(() => {
   return (
     paperDataStore.paperDTO.country !== "" &&
@@ -675,8 +693,8 @@ const allDataEntered = computed(() => {
     paperDataStore.paperDTO.name !== "" &&
     paperDataStore.paperDTO.registration_number !== 0 &&
     paperDataStore.paperDTO.address !== null &&
-    paperDataStore.paperDTO.first_photo !== null &&
-    paperDataStore.paperDTO.second_photo !== null
+    paperDataStore.paperDTO.first_photo !== "" &&
+    paperDataStore.paperDTO.second_photo !== ""
   );
 });
 </script>
@@ -797,9 +815,10 @@ const allDataEntered = computed(() => {
 }
 .fieldsinputchoise,
 .fieldsinputchoise1,
-.fieldsinput, .fieldsinputchoise3, .text2,
-.parent11
- {
+.fieldsinput,
+.fieldsinputchoise3,
+.text2,
+.parent11 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1261,8 +1280,8 @@ const allDataEntered = computed(() => {
   gap: 3.25em;
 }
 
-.text-declaration{
-  gap: 1.25em
+.text-declaration {
+  gap: 1.25em;
 }
 .text-declaration {
   width: 100%;
