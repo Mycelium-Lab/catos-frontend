@@ -706,7 +706,7 @@
                     </div>
                   </div>
                   <div class="loader">
-                    <div class="loader1">
+                    <!--<div class="loader1">
                       <img
                         class="loader-child"
                         alt=""
@@ -714,7 +714,7 @@
                       />
 
                       <div class="div69">100%</div>
-                    </div>
+                    </div>-->
                     <img
                       class="loader-child"
                       alt=""
@@ -777,7 +777,7 @@
                     </div>
                   </div>
                   <div class="loader">
-                    <div class="loader1">
+                    <!--<div class="loader1">
                       <img
                         class="loader-child"
                         alt=""
@@ -785,7 +785,7 @@
                       />
 
                       <div class="div69">100%</div>
-                    </div>
+                    </div>-->
                     <img
                       class="loader-child"
                       alt=""
@@ -885,7 +885,7 @@
                   </div>
                 </div>
                 <div class="loader">
-                  <div class="loader5">
+                  <!--<div class="loader5">
                     <img
                       class="loader-child"
                       alt=""
@@ -893,7 +893,7 @@
                     />
 
                     <div class="div69">12%</div>
-                  </div>
+                  </div>-->
                   <img class="loader-child" alt="" src="../public/remove.svg" />
                 </div>
               </div>
