@@ -14,7 +14,7 @@
               "
             >
               <div class="wrapper">
-                <div class="div120">Пулл № {{ pool.id }}</div>
+                <div class="div120">{{  role === 'collector' ? 'Задолжность №' :  'Пулл №' }} {{  role === 'collector' ? loan?.id : pool?.id }}</div>
               </div>
             </div>
             <div class="pull-stats6">
@@ -35,7 +35,7 @@
                           Цена:
                         </div>
                         <div class="ton18">
-                          {{ pool.available_liquidity }} TON
+                          {{ role === 'collector' ? 1 : pool?.available_liquidity }} TON
                         </div>
                         <div
                           v-if="role === 'borrower'"
@@ -146,7 +146,7 @@
                     </div>
                     <div class="ton-wrapper">
                       <div class="div128">
-                        до {{ pool.max_loan_amount }} TON
+                        до {{ pool?.max_loan_amount }} TON
                       </div>
                     </div>
                   </div>
@@ -172,9 +172,9 @@
                     <div class="frame">
                       <div class="div127">Ставка:</div>
                     </div>
-                    <div class="ton-wrapper">
+                    <div v-if="pool?.millipercent" class="ton-wrapper">
                       <div class="div128">
-                        {{ pool.millipercent / 100 }}% в день
+                        {{ pool?.millipercent / 100 }}% в день
                       </div>
                     </div>
                   </div>
@@ -192,9 +192,9 @@
                     <div class="frame">
                       <div class="div127">На срок:</div>
                     </div>
-                    <div class="ton-wrapper">
+                    <div v-if="pool?.max_duration" class="ton-wrapper">
                       <div class="div128">
-                        до {{ parse(pool.max_duration).days }} дней
+                        до {{ parse(pool?.max_duration).days }} дней
                       </div>
                     </div>
                   </div>
@@ -203,9 +203,9 @@
                     <div class="frame_period frame">
                       <div class="div127">Беспроцентный период:</div>
                     </div>
-                    <div class="ton-wrapper">
+                    <div v-if="pool?.free_period" class="ton-wrapper">
                       <div class="div128">
-                        {{ parse(pool.free_period).days }} дней
+                        {{ parse(pool?.free_period).days }} дней
                       </div>
                     </div>
                   </div>
@@ -245,7 +245,7 @@
                       <div class="div127">Всего ликвидности:</div>
                     </div>
                     <div class="ton-wrapper">
-                      <div class="div128">{{ pool.all_liquidity }} TON</div>
+                      <div class="div128">{{ pool?.all_liquidity }} TON</div>
                     </div>
                   </div>
                   <div
@@ -269,7 +269,7 @@
                     </div>
                     <div class="ton-wrapper">
                       <div class="div128">
-                        {{ pool.available_liquidity }} TON
+                        {{ pool?.available_liquidity }} TON
                       </div>
                     </div>
                   </div>
@@ -518,7 +518,7 @@
         ></all-borrower-pulls>
         <my-borrower-pulls  
           v-if="isMyBorrower"
-          :poolId="pool.id"
+          :poolId="pool?.id ? pool?.id : 0"
           :state="myBorrowerState"
           @close="
             () => {
@@ -540,7 +540,7 @@
               resetState('all-depositor');
             }
           "
-          :poolId="pool.id"
+          :poolId="pool?.id ? pool?.id : 0"
         ></add>
         <withdraw
           v-if="
@@ -553,7 +553,7 @@
               resetState('all-depositor');
             }
           "
-           :poolId="pool.id"
+           :poolId="pool?.id ? pool?.id : 0"
         ></withdraw>
         <all-depositor-pulls
           v-if="
@@ -561,7 +561,7 @@
             !allDepositorState.addLiquidModal &&
             !allDepositorState.widthrawLiquidModal
           "
-          :poolId="pool.id"
+          :poolId="pool?.id ? pool?.id : 0"
           @close="
             () => {
               isAllDepositor = false;
@@ -618,6 +618,7 @@
         </my-collector-pulls>
         <buy
           v-if="allCollectorState.buyModal"
+          :poolId="loan?.id ? loan?.id : 0"
           @close="
             () => {
               isAllCollector = false;
@@ -654,6 +655,7 @@ import { useRouter } from "vue-router";
 import { parse } from "tinyduration";
 import { Pool } from "@/types/pool.type";
 import { roleStorage } from "@/utils/localStorage";
+import { LoansResponse } from "@/types/loan.types";
 
 const { variant } = defineProps({
   variant: {
@@ -661,7 +663,9 @@ const { variant } = defineProps({
   },
   pool: {
     type: Object as PropType<Pool>,
-    required: true,
+  },
+  loan : {
+    type: Object as PropType<LoansResponse>,
   }
 });
 

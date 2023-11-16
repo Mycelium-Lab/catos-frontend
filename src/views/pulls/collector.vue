@@ -17,7 +17,6 @@
       }"
       :variantIndex="3"
       :tabs="['Маркетплейс', 'Выкупленные задолжности']"
-      :variant="getCurentWindow"
       @on-slide="toggleSlide"
     ></button-slider>
     <div class="frame-parent9">
@@ -41,8 +40,8 @@
 
     <collector-list
       :style="{ top: '8.5em' }"
-      :variant="curentWindow"
-      :key="curentWindow"
+      :variant="currentWindow"
+      :key="currentWindow"
       @on-bottomsheet="(ev: any) => isBackSide = ev"
       @on-modal="() => (isBackSide = true)"
     ></collector-list>
@@ -63,17 +62,18 @@
       <tool-bar role="collector"></tool-bar>
     </template>
     <template v-slot:body>
+      <!--<loans 
+      :variant="currentWindow"
+          :key="currentWindow"
+      >
+      </loans>-->
       <div class="frame-div">
-        <ul>
-          <li class="depositor-list" v-for="n in 5" :key="n">
-            <pulls-table
-              role="collector"
-              :variant="curentWindow"
-              :key="curentWindow"
-              @mySoldLoans="() => (curentWindow = 'debt')"
-            ></pulls-table>
-          </li>
-        </ul>
+        <pools  
+        role="collector"
+        :variant="currentWindow"
+        :key="currentWindow"
+        @mySoldLoans="() => toggleSlide(1)">
+      </pools>
       </div>
     </template>
   </default-desktop>
@@ -84,26 +84,30 @@ import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import buttonSlider from "@/components/ui-kit/buttons/button-slider.vue";
 import collectorList from "@/components/pulls/collector/collector-list.vue";
+import pools from "./pulls.vue"
+import loans from "../loans/loans.vue"
 import appBar from "@/components/ui-kit/app-bar.vue";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
-import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
 
 import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();
 
-const getCurentWindow = computed(() => {
-  console.log(window.history.state.curentWindow);
-  return window.history.state.curentWindow;
-});
 
+const currentWindow = ref("marketplace");
 const isBackSide = ref(false);
-const curentWindow = ref(
-  getCurentWindow.value ? getCurentWindow.value : "marketplace"
-);
 
 const isAppBar = ref(true);
+
+const toggleSlide = (slideIndex: any) => {
+  if (slideIndex === 0) {
+    currentWindow.value = "marketplace";
+  } else if (slideIndex === 1) {
+    currentWindow.value = "debt";
+  }
+};
+
 
 const router = useRouter();
 const toSort = () => {
@@ -112,17 +116,10 @@ const toSort = () => {
 const toFilter = () => {
   router.push({
     name: "pulls-collector-filter",
-    state: { variant: curentWindow.value },
+    state: { variant: currentWindow.value },
   });
 };
 
-const toggleSlide = (slideIndex: any) => {
-  if (slideIndex === 0) {
-    curentWindow.value = "marketplace";
-  } else if (slideIndex === 1) {
-    curentWindow.value = "debt";
-  }
-};
 </script>
 
 <style scoped>

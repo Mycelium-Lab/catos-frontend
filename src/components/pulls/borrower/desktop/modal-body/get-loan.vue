@@ -177,7 +177,7 @@ import transactionDesktop from "@/components/base/modals/transaction-desktop.vue
 import { createLoanRequest } from "@/api/loanRequests.api";
 
 const {id, interestRate, freePeriod} = defineProps({
-  id: {type: Number, required: true},
+  id: {type: Number},
   interestRate: {type: Number, required: true},
   freePeriod: {type: Number, required: true},
 }) 
@@ -219,7 +219,7 @@ const transactionStatus = ref('')
 const take = async () => {
   isTransaction.value = true
   await createLoanRequest({
-    pool_id: id,
+    pool_id: id ? id : 0,
     amount: Number(sumLoans.value),
     duration: Number(term.value)
   }).then(res => {
