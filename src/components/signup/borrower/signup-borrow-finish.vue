@@ -61,7 +61,8 @@
               :style="{ width: '100%' }"
               :right="true"
               :model-value="valueRevenue"
-              @update:model-value="borrowerDataStore.borrowerDTO.revenue = $event"
+              @update:model-value="borrowerDataStore.borrowerDTO.revenue = Number($event)"
+              type="number"
             >
               <template v-slot:right-icon>
                 <img src="@/assets/images/iconseditoutline-black.svg" />

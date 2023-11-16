@@ -1,13 +1,16 @@
 <template>
-  <textarea class="catos-textarea" :placeholder="placeholder" @input="selected"></textarea>
+  <textarea class="catos-textarea" :value="value" :placeholder="placeholder" @input="selected"></textarea>
 </template>
 
 <script setup lang="ts">
-const { placeholder } = defineProps({
+const { placeholder, value } = defineProps({
   placeholder: {
     type: String,
   },
   type: {
+    type: String,
+  },
+  value: {
     type: String,
   },
 });
