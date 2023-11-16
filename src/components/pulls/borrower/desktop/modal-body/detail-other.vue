@@ -79,7 +79,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div7">Беспроцентный период:</div>
-              <div class="ton1">{{ freePeriodParsed }}</div>
+              <div class="ton1">{{ `${freePeriod ? freePeriod + ' дня': '-'} ` }}</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -154,7 +154,7 @@ const { pool } = defineProps({
     type: Object as PropType<Pool>,
     required: true
   },
-  freePeriodParsed: {type: String},
+  freePeriod: {type: Number, required: true},
   durationParsed: {type: String}
 });
 

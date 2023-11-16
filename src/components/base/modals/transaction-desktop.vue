@@ -20,7 +20,7 @@
             <template v-slot:header> Транзакция №591561351 </template>
             <template v-slot:title> Транзакция успешно выполнена </template>
             <template v-slot:subtitle> 
-            <p class="status-subtitle"> {{ subtitle }} <a class="status-subtitle-link">#123456</a> </p>
+            <p class="status-subtitle"> {{ subtitle }} <a class="status-subtitle-link"></a> </p>
             <p class="status-subtitle"> 
                 <a class="status-subtitle-link">Просмотр транзакции в Tonscan</a>
             </p>
@@ -91,6 +91,10 @@ const handleClose = () => {
 </script>
 
 <style scoped lang="scss">
+.status-subtitle {
+  width: 70%;
+  text-align: center;
+}
 .status-subtitle-link {
 color: rgba(87, 126, 247, 0.96);
 text-align: center;

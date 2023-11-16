@@ -26,7 +26,7 @@
                     @selected="
                       ev => (passportDataStore.passportDTO.country = ev)
                     "
-                    :optionWidth="77"
+                   :optionWidthDesk="329"
                     :style="{ width: '100%' }"
                   ></catos-select>
                 </div>
@@ -68,6 +68,13 @@
                     placeholder="01.02.2022"
                     :style="{ width: '100%' }"
                   ></input-data>
+                  <!--<div class="iconscalendar-wrapper">
+                    <img
+                      class="iconscalendar"
+                      alt=""
+                      src="../public/iconscalendar.svg"
+                    />
+                  </div>-->
                 </div>
               </div>
             </div>
@@ -168,6 +175,14 @@
                     :style="{ width: '100%' }"
                     :value="date"
                   ></input-data>
+                  <!--<div class="iconscalendar-wrapper">
+                    <img
+                      class="iconscalendar"
+                      alt=""
+                      src="../public/iconscalendar.svg"
+                      :style="{ position: 'absolute' }"
+                    />
+                  </div>-->
                 </div>
               </div>
               <div class="parent10">
@@ -225,7 +240,7 @@
       </div>
       <router-link
         :to="'borrower-verification'"
-        class="buttonnext"
+        :class="isMobile ? 'buttonnext' : 'buttonnext_desktop buttonnext'"
         id="buttonNextContainer"
       >
         <b class="b1">Продолжить</b>
@@ -281,7 +296,7 @@
                   (passportDataStore.passportDTO.registration_address.region =
                     ev)
               "
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                 passportDataStore.passportDTO.country !== 'Россия' &&
                 passportDataStore.passportDTO.country !== 'Россия'
@@ -317,7 +332,7 @@
                   (passportDataStore.passportDTO.registration_address.neighborhood =
                     ev)
               "
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
@@ -350,7 +365,7 @@
                 ev =>
                   (passportDataStore.passportDTO.registration_address.city = ev)
               "
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
@@ -480,7 +495,7 @@
               @selected="
                 ev => (passportDataStore.passportDTO.living_address.region = ev)
               "
-              :optionWidth="77"
+               :optionWidthDesk="329"
               :style="
                 passportDataStore.passportDTO.country !== 'Россия'
                   ? {
@@ -513,7 +528,7 @@
                   (passportDataStore.passportDTO.living_address.neighborhood =
                     ev)
               "
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="
                 passportDataStore.passportDTO.living_address.region === '' ||
                 passportDataStore.passportDTO.country !== 'Россия'
@@ -546,7 +561,7 @@
               @selected="
                 ev => (passportDataStore.passportDTO.living_address.city = ev)
               "
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="
                 passportDataStore.passportDTO.living_address.region === '' ||
                 passportDataStore.passportDTO.country !== 'Россия'
@@ -746,7 +761,7 @@
                     </div>
                   </div>
                   <div class="loader">
-                    <div class="loader1">
+                    <!--<div class="loader1">
                       <img
                         class="loader-child"
                         alt=""
@@ -754,7 +769,7 @@
                       />
 
                       <div class="div68">100%</div>
-                    </div>
+                    </div>-->
                     <img
                       class="loader-child"
                       alt=""
@@ -817,7 +832,7 @@
                     </div>
                   </div>
                   <div class="loader">
-                    <div class="loader1">
+                    <!--<div class="loader1">
                       <img
                         class="loader-child"
                         alt=""
@@ -825,7 +840,7 @@
                       />
 
                       <div class="div68">100%</div>
-                    </div>
+                    </div>-->
                     <img
                       class="loader-child"
                       alt=""
@@ -835,8 +850,11 @@
                 </div>
               </div>
               <div class="div71">
-                <span>Загрузите страницы паспорта </span>
-                <span class="span2">*</span>
+                <span><b>Загрузите страницы паспорта</b></span>
+
+              </div>
+              <div class="div72">
+                <span><b>Загрузите селфи с разворотом паспорта</b></span>
               </div>
             </div>
           </div>
@@ -894,7 +912,7 @@
                     <loader-field
                       name="Cелфи с разворотом паспорта и датой выдачи"
                       :obligatory-field="true"
-                      :style="{ width: '100%', paddingBottom: '0.1em' }"
+                      :style="{ width: '100%', paddingBottom: '0.1em', position: 'relative', left: '1.5em' }"
                       class="loader-file"
                       @on-change="file => saveImage('selfie', file)"
                     ></loader-field>
@@ -924,7 +942,7 @@
                   </div>
                 </div>
                 <div class="loader">
-                  <div class="loader5">
+                  <!--<div class="loader5">
                     <img
                       class="loader-child"
                       alt=""
@@ -932,7 +950,7 @@
                     />
 
                     <div class="div68">12%</div>
-                  </div>
+                  </div>-->
                   <img class="loader-child" alt="" src="../public/remove.svg" />
                 </div>
               </div>
@@ -1315,7 +1333,7 @@ const { isMobile } = useDevice();
 
   gap: 1.5em;
   &_desktop {
-    top: 32em;
+    top: 31em;
     width: 23.38em;
   }
 }
@@ -1518,7 +1536,7 @@ const { isMobile } = useDevice();
   text-decoration: none;
   &_desktop {
     position: relative;
-    top: 158em;
+    top: 172em;
     left: 1.5em;
     border-radius: 20px;
     background-color: #ffdb6d;
@@ -1599,7 +1617,7 @@ const { isMobile } = useDevice();
   backdrop-filter: blur(5px);
   border: 0.5px solid rgba(46, 58, 89, 0.2);
   box-sizing: border-box;
-  height: 37.44em;
+  height: 39em;
 }
 .text-and-fill {
   position: absolute;
@@ -1730,7 +1748,7 @@ const { isMobile } = useDevice();
 }
 .registration-options-item {
   position: absolute;
-  height: 43em;
+  height: 39em;
   width: 100%;
   top: 0.44%;
   right: 0;
@@ -1754,16 +1772,16 @@ const { isMobile } = useDevice();
   width: 88%;
 }
 .frame-parent5 {
-  top: 28.5em;
+  top: 24em;
   gap: 1em;
 }
 
 .registration-options1_desktop {
-  top: 13.5em;
+  top: 14em;
 }
 .registration-options-inner {
   position: absolute;
-  height: 175.7%;
+  height: 180%;
   width: 100%;
   top: -0.22%;
   right: 0;
@@ -1955,7 +1973,7 @@ const { isMobile } = useDevice();
 .icons-parent {
   align-self: stretch;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 1.06em;
@@ -2129,8 +2147,8 @@ const { isMobile } = useDevice();
   justify-content: flex-start;
 }
 .icons-container {
-  width: 17.25em;
-  flex-direction: row;
+  width: 100%;
+  flex-direction: column;
   align-items: center;
   gap: 1.06em;
 }
@@ -2141,7 +2159,7 @@ const { isMobile } = useDevice();
   z-index: 1;
   width: 100%;
 }
-.div71 {
+.div71, .div72 {
   position: absolute;
   margin: 0 !important;
   top: 1.67em;
@@ -2151,6 +2169,9 @@ const { isMobile } = useDevice();
   font-weight: 300;
   z-index: 2;
   color: #3b3b3b;
+}
+.div72{
+  top: 56em;
 }
 .organizmloader,
 .parent24 {
@@ -2350,10 +2371,11 @@ const { isMobile } = useDevice();
   position: relative;
   width: 7.25em;
   height: 5.19em;
+  left: 1.5em;
 }
 .frame-parent10 {
   width: 17.81em;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   gap: 1.19em;
 }
@@ -2392,7 +2414,7 @@ const { isMobile } = useDevice();
 }
 .parent25 {
   position: absolute;
-  top: 30.88em;
+  top: 42em;
   left: 1.31em;
   align-items: center;
   gap: 1.13em;
@@ -2410,11 +2432,11 @@ const { isMobile } = useDevice();
 .registration-options2 {
   position: relative;
   width: 100%;
-  height: 28.81em;
+  height: 40.81em;
 }
 
 .registration-options-wrapper_desktop {
-  top: 22.5em;
+  top: 18em;
 }
 .form-registration-46 {
   position: absolute;
@@ -2425,7 +2447,7 @@ const { isMobile } = useDevice();
   width: 100vw;
   /*min-height: 100vh;
   min-height: calc(var(--vh, 1vh) * 130);*/
-  height: 3600px;
+  height: 3800px;
 }
 .page-title1 {
   position: relative;
@@ -2598,7 +2620,7 @@ const { isMobile } = useDevice();
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 225.75em;
+  height: 240em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
