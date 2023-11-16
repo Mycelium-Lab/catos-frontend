@@ -57,7 +57,7 @@
           <div class="fieldsinputchoise">
             <div class="div11">Ежемесячный доход</div>
             <input-data
-              placeholder="В рублях или долларах"
+              placeholder="В рублях"
               :style="{ width: '100%' }"
               :right="true"
               :model-value="valueRevenue"
