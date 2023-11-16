@@ -1,7 +1,6 @@
 <template>
   <div class="iphone-13-13-form-registr-proverka">
     <img class="bg-icon" alt="" src="../public/bg.svg" />
-
     <div class="form-registration-56">
       <div class="header2">
         <img
@@ -9,7 +8,6 @@
           alt=""
           src="../public/icons3dpersona-creditors@2x.png"
         />
-
         <div class="parent9">
           <div class="div75">
             <span class="span51">Пожалуйста проверьте еще раз ваши данные</span
@@ -43,6 +41,7 @@
                 placeholder="Введите имя"
                 :right="true"
                 v-model:model-value="passportDataStore.passportDTO.name"
+                :readonly="true"
               >
                 <template v-slot:right-icon>
                   <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -62,6 +61,7 @@
                 placeholder="Введите фамилию"
                 :right="true"
                 v-model:model-value="passportDataStore.passportDTO.surname"
+                :readonly="true"
               >
                 <template v-slot:right-icon>
                   <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -81,6 +81,7 @@
                 placeholder="Введите отчество"
                 :right="true"
                 v-model:model-value="passportDataStore.passportDTO.middlename"
+                :readonly="true"
               >
                 <template v-slot:right-icon>
                   <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -97,6 +98,7 @@
                 placeholder="Национальность"
                 :right="true"
                 v-model:model-value="passportDataStore.passportDTO.nationality"
+                :readonly="true"
               >
                 <template v-slot:right-icon>
                   <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -110,6 +112,7 @@
                 :style="{ width: '100%' }"
                 :right="true"
                 v-model:model-value="paperDataStore.paperDTO.work_position"
+                :readonly="true"
               >
                 <template v-slot:right-icon>
                   <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -201,7 +204,7 @@
                       }
                     : { width: '100%', opacity: '1' }
                 "
-                :disabled="passportDataStore.passportDTO.country !== 'Россия'"
+                :disabled="true"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -232,10 +235,7 @@
                       }
                     : { width: '100%', opacity: '1' }
                 "
-                :disabled="
-                  passportDataStore.passportDTO.registration_address.region ===
-                    '' || passportDataStore.passportDTO.country !== 'Россия'
-                "
+                :disabled="true"
               ></catos-select>
             </div>
             <div class="fieldsinput">
@@ -269,10 +269,7 @@
                       }
                     : { width: '100%', opacity: '1' }
                 "
-                :disabled="
-                  passportDataStore.passportDTO.registration_address.region ===
-                    '' || passportDataStore.passportDTO.country !== 'Россия'
-                "
+                :disabled="true"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -284,6 +281,7 @@
                 v-model:model-value="
                   passportDataStore.passportDTO.registration_address.street
                 "
+                :readonly="true"
               >
                 <template v-slot:right-icon>
                   <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -301,6 +299,7 @@
                   v-model:model-value="
                     passportDataStore.passportDTO.registration_address.house
                   "
+                  :readonly="true"
                 >
                 </input-data>
               </div>
@@ -312,6 +311,7 @@
                   v-model:model-value="
                     passportDataStore.passportDTO.registration_address.housing
                   "
+                  :readonly="true"
                 ></input-data>
               </div>
             </div>
@@ -324,6 +324,7 @@
                   v-model:model-value="
                     passportDataStore.passportDTO.registration_address.building
                   "
+                  :readonly="true"
                 ></input-data>
               </div>
               <div class="parent11">
@@ -334,6 +335,7 @@
                   v-model:model-value="
                     passportDataStore.passportDTO.registration_address.apartment
                   "
+                  :readonly="true"
                 ></input-data>
               </div>
             </div>
@@ -343,6 +345,7 @@
                 placeholder="240 432"
                 :style="{ width: '100%' }"
                 v-model:model-value="indexPassportString"
+                :readonly="true"
               ></input-data>
             </div>
           </div>
@@ -369,6 +372,7 @@
                 :optionWidthDesk="329"
                 :style="{ width: '100%' }"
                 data-element="state"
+                :disabled="true"
               ></catos-select>
             </div>
             <div class="fieldsinput">
@@ -386,9 +390,10 @@
                 @selected="
                   ev => (paperDataStore.paperDTO.registration_form = ev)
                 "
-           :optionWidthDesk="329"
+                :optionWidthDesk="329"
                 :style="{ width: '100%' }"
                 data-element="select-form"
+                :disabled="true"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -404,6 +409,7 @@
                 :style="{ width: '100%' }"
                 :right="true"
                 v-model:model-value="paperDataStore.paperDTO.name"
+                :readonly="true"
               >
                 <template v-slot:right-icon>
                   <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -426,6 +432,7 @@
                 @update:model-value="
                   ev => (paperDataStore.paperDTO.registration_number = ev)
                 "
+                :readonly="true"
               >
                 <template v-slot:right-icon>
                   <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -453,7 +460,7 @@
                     : { width: '100%', opacity: '1' }
                 "
                 @selected="ev => (paperDataStore.paperDTO.address.region = ev)"
-                :disabled="paperDataStore.paperDTO.country !== 'Россия'"
+                :disabled="true"
               ></catos-select>
             </div>
             <div class="fieldsinput">
@@ -485,10 +492,7 @@
                 @selected="
                   ev => (paperDataStore.paperDTO.address.neighborhood = ev)
                 "
-                :disabled="
-                  paperDataStore.paperDTO.address.region === '' ||
-                  paperDataStore.paperDTO.country !== 'Россия'
-                "
+                :disabled="true"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise3">
@@ -514,10 +518,7 @@
                     : { width: '100%', opacity: '1' }
                 "
                 @selected="ev => (paperDataStore.paperDTO.address.city = ev)"
-                :disabled="
-                  paperDataStore.paperDTO.address.region === '' ||
-                  paperDataStore.paperDTO.country !== 'Россия'
-                "
+                :disabled="true"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise3">
@@ -527,6 +528,7 @@
                 :style="{ width: '100%' }"
                 :right="true"
                 v-model:model-value="paperDataStore.paperDTO.address.street"
+                :readonly="true"
               >
                 <template v-slot:right-icon>
                   <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -542,6 +544,7 @@
                     placeholder="1"
                     :style="{ width: '100%' }"
                     v-model:model-value="paperDataStore.paperDTO.address.house"
+                    :readonly="true"
                   ></input-data>
                 </div>
                 <div class="parent11">
@@ -552,6 +555,7 @@
                     v-model:model-value="
                       paperDataStore.paperDTO.address.housing
                     "
+                    :readonly="true"
                   ></input-data>
                 </div>
               </div>
@@ -564,6 +568,7 @@
                     v-model:model-value="
                       paperDataStore.paperDTO.address.building
                     "
+                    :readonly="true"
                   ></input-data>
                 </div>
                 <div class="parent11">
@@ -574,6 +579,7 @@
                     v-model:model-value="
                       paperDataStore.paperDTO.address.apartment
                     "
+                    :readonly="true"
                   ></input-data>
                 </div>
               </div>
@@ -583,6 +589,7 @@
                   placeholder="193 984"
                   :style="{ width: '100%' }"
                   v-model:model-value="indexPaperString"
+                  :readonly="true"
                 ></input-data>
               </div>
             </div>
@@ -594,6 +601,7 @@
                 :style="{ width: '100%' }"
                 :right="true"
                 v-model:model-value="paperDataStore.paperDTO.website"
+                :readonly="true"
               >
                 <template v-slot:right-icon>
                   <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -626,6 +634,7 @@
                     "
                     :optionWidthDesk="352"
                     :style="{ width: '100%' }"
+                    :disabled="true"
                   ></catos-select>
                 </div>
               </div>
@@ -637,10 +646,11 @@
                   <span class="span1">* </span>
                 </div>
                 <input-data
-                  placeholder="34 446462"
+                  placeholder="3114 446462"
                   :style="{ width: '100%' }"
                   :right="true"
                   v-model:model-value="passportNumberString.value"
+                  :readonly="true"
                 >
                   <template v-slot:right-icon>
                     <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -660,6 +670,7 @@
                     v-model:model-value="
                       passportDataStore.passportDTO.issue_date
                     "
+                    :readonly="true"
                   ></input-data>
                 </div>
               </div>
@@ -680,6 +691,7 @@
                 @selected="
                   passportDataStore.passportDTO.issuing_organization = $event
                 "
+                :disabled="true"
               ></catos-textarea>
             </div>
           </div>
