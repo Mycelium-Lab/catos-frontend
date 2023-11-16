@@ -2351,8 +2351,8 @@ const passportNumberString = reactive({
 .header1 {
   position: absolute;
   height: 1.33%;
-  width: 100;
-  top: 3.55%;
+  width: 100vw;
+  top: 3.9%;
   right: -0.26%;
   bottom: 95.12%;
   left: -0.26%;

@@ -694,6 +694,7 @@ const allDataEntered = computed(() => {
   font-size: 1.25em;
   letter-spacing: -1px;
   line-height: 1.4em;
+  top: -0.6em;
 }
 .page-title4 {
   color: rgba(59, 59, 59, 0.17);
