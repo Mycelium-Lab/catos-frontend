@@ -4,7 +4,7 @@
       <div class="fields-password-and-mail">
         <div class="iconsmail-parent">
           <img class="iconsmail" alt="" src="@/views/public/iconsmail.svg" />
-          <div class="alessowaitsongmailcom">AlessoWaitson@gmail.com</div>
+          <div class="alessowaitsongmailcom">{{ email }}</div>
           <img
             class="iconsedit-1"
             alt=""
@@ -16,7 +16,7 @@
       <div class="fields-password-and-mail">
         <div class="iconsmail-parent">
           <img class="iconsmail" alt="" src="@/assets/images/iconsmobile.svg" />
-          <div class="alessowaitsongmailcom">+390-999-00-01</div>
+          <div class="alessowaitsongmailcom">{{ phone }}</div>
           <img
             class="iconsedit-1"
             alt=""
@@ -29,7 +29,7 @@
     <div class="fields-password-and-mail2">
       <div class="iconsmail-parent">
         <img class="iconsmail" alt="" src="@/views/public/iconslock.svg" />
-        <div class="alessowaitsongmailcom">**********</div>
+        <div class="alessowaitsongmailcom">*****</div>
         <img
           class="iconsedit-1"
           alt=""
@@ -444,6 +444,11 @@ const isChangePhone = ref(false);
 const isChangePassword = ref(false);
 const isSuccessChangePassword = ref(false);
 const isRestorePassword = ref(false);
+
+const {email, phone} = defineProps({
+  email: {type: String, required: true},
+  phone: {type: String, required: true},
+})
 
 const route = useRoute();
 const currentPage = computed(() => {

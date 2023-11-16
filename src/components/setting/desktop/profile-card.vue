@@ -7,7 +7,13 @@
           alt=""
           src="@/assets/desktop/fallback/bg-hover.svg"
         />
-        <div class="tag">Кредитор</div>
+        <div class="tag">{{    role === "borrower"
+                ? "Заемщик"
+                : role === "collector"
+                ? "Коллектор"
+                : role === "investor"
+                ? "Инвестор"
+                : "Кредитор" }}</div>
       </div>
       <div class="buttons-icon-outline-arr-parent">
         <div class="buttons-icon-outline-arr">
@@ -32,7 +38,15 @@
         alt=""
         src="@/assets/desktop/fallback/bg-hover.svg"
       />
-      <b class="tag1">Кредитор</b>
+      <b class="tag1">{{ 
+         role === "borrower"
+                ? "Заемщик"
+                : role === "collector"
+                ? "Коллектор"
+                : role === "investor"
+                ? "Инвестор"
+                : "Кредитор"
+           }}</b>
     </div>
     <div class="fields-and-photo-and-name">
       <div class="photo-and-name">
@@ -52,15 +66,32 @@
           </div>
         </div>
         <div class="name">
-          <b class="name1">Валентин Иванович Бабаев</b>
-          <div class="job-title">Кредитор</div>
+          <b class="name1">{{`${profile.name} ${profile.middlename} ${profile.surname}`}}</b>
+          <div class="job-title">{{ 
+             role === "borrower"
+                ? "Заемщик"
+                : role === "collector"
+                ? "Коллектор"
+                : role === "investor"
+                ? "Инвестор"
+                : "Кредитор"
+          }}</div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { roleStorage, profileStorage } from "@/utils/localStorage";
+import { computed } from "vue";
+
+const role = computed(() => {
+  return roleStorage.get()
+})
+
+const profile = computed(() => {
+  return profileStorage.get()!
+})
 </script>
 <style scoped>
 .bg-hover-icon {

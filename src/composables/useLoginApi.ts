@@ -1,8 +1,9 @@
 import { login, type LoginCredentials, verify } from "@/api/token.api";
 import { authStorage } from "@/utils/localStorage";
 import { type Role } from "@/types/user.types";
-import { roleStorage } from "@/utils/localStorage";
+import { roleStorage, profileStorage } from "@/utils/localStorage";
 import { ref } from "vue";
+import { Profile } from "@/types/profile.types";
 
 export const useLoginApi = () => {
   const isLoginLoading = ref(false);
@@ -38,10 +39,21 @@ export const useLoginApi = () => {
     const setRole = (role: Role) => {
       roleStorage.set(role);
     };
+    const setProfile = (profile: Profile) => {
+      profileStorage.set(profile);
+    };
    return verify({token})
    .then(res => {
     localStorage.setItem('role', JSON.stringify(res.data.role))
     setRole(res.data.role)
+    setProfile({
+      email: res.data.email ? res.data.email : '', 
+      phone: res.data.phone ? res.data.phone : '', 
+      name: res.data.passport.name ? res.data.passport.name : '',
+      surname: res.data.passport.surname ? res.data.passport.surname : '',
+      middlename: res.data.passport.middlename ? res.data.passport.middlename : ''
+    })
+  
     return {
       role: res.data.role
      }
