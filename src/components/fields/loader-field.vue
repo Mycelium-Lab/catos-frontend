@@ -101,7 +101,8 @@ const onFileChanged = ($event: Event) => {
   background-color: rgba(237, 244, 255, 0.3000000119);
   border-radius: 1.6rem;
   overflow: hidden;
-  padding: 1.25rem 1.2rem;
+  // padding: 1.25rem 1.2rem;
+  padding: 0rem 1.2rem;
   width: 18.4rem;
   .frame-1817439-tk4 {
     position: relative;

@@ -306,7 +306,7 @@
         </div>
       </div>
       <div
-        class="buttonnext1"
+      :class="isMobile ? 'buttonnext1' : 'buttonnext1_desktop'"
         @click="handleNextClick"
       >
         <b class="b2">Сохранить и продолжить</b>
@@ -1809,7 +1809,7 @@ const handleNextClick = async () => {
 }
 .registration-options3 {
   position: absolute;
-  top: 39.31em;
+  top: 40.5em;
   left: 0;
   width: 100%;
   height: 38.19em;
@@ -2071,7 +2071,7 @@ const handleNextClick = async () => {
   text-decoration: none;
   &_desktop {
     position: relative;
-    top: 11.06em;
+    top: 12.5em;
     left: 0.2em;
     border-radius: 20px;
     background-color: #fdd674;
@@ -2089,6 +2089,7 @@ const handleNextClick = async () => {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     -webkit-tap-highlight-color: transparent;
     text-decoration: none;
+    cursor: pointer;
   }
 }
 .swipe-down {
