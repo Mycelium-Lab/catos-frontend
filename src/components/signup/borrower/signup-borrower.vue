@@ -438,7 +438,7 @@
                 passportDataStore.passportDTO.registration_address.index =
                   Number($event)
               "
-              placeholder="193 984"
+              placeholder="193984"
               :style="{ width: '100%' }"
             ></input-data>
           </div>
@@ -459,6 +459,15 @@
           </div>
         </div>
         <div class="fieldsinputchoise-group">
+          <div class="component-20-parent">
+            <catos-checkbox
+              variant="rounded"
+              @on-change="ev => isSameAddressHandler(ev)"
+            ></catos-checkbox>
+            <div class="div10">
+              <span>Совпадает с адресом регистрации</span>
+            </div>
+          </div>
           <div class="fieldsinputchoise">
             <div class="div10">
               <span>Область, край </span>
@@ -482,7 +491,7 @@
                     }
                   : { width: '100%', opacity: '1' }
               "
-              :disabled="passportDataStore.passportDTO.country !== 'Россия'"
+              :disabled="passportDataStore.passportDTO.country !== 'Россия' || isSameAddress"
             ></catos-select>
           </div>
           <div class="fieldsinput">
@@ -518,7 +527,8 @@
               "
               :disabled="
                 passportDataStore.passportDTO.living_address.region === '' ||
-                passportDataStore.passportDTO.country !== 'Россия'
+                passportDataStore.passportDTO.country !== 'Россия' ||
+                isSameAddress
               "
             ></catos-select>
           </div>
@@ -551,6 +561,7 @@
               :disabled="
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
+                  || isSameAddress
               "
             ></catos-select>
           </div>
@@ -563,6 +574,9 @@
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
               :right="true"
+              :readonly="passportDataStore.passportDTO.living_address.city === ''
+                || passportDataStore.passportDTO.country !== 'Россия'
+                || isSameAddress"
             >
               <template v-slot:right-icon>
                 <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -580,6 +594,9 @@
                 "
                 placeholder="1"
                 :style="{ width: '100%' }"
+                :readonly="passportDataStore.passportDTO.living_address.street === ''
+                || passportDataStore.passportDTO.country !== 'Россия'
+                || isSameAddress"
               ></input-data>
             </div>
             <div class="parent13">
@@ -590,6 +607,9 @@
                 "
                 placeholder="1"
                 :style="{ width: '100%' }"
+                :readonly="passportDataStore.passportDTO.living_address.street === ''
+                || passportDataStore.passportDTO.country !== 'Россия'
+                || isSameAddress"
               ></input-data>
             </div>
           </div>
@@ -602,6 +622,9 @@
                 "
                 placeholder="1"
                 :style="{ width: '100%' }"
+                :readonly="passportDataStore.passportDTO.living_address.street === ''
+                || passportDataStore.passportDTO.country !== 'Россия'
+                || isSameAddress"
               ></input-data>
             </div>
             <div class="parent13">
@@ -612,6 +635,9 @@
                 "
                 placeholder="№"
                 :style="{ width: '100%' }"
+                :readonly="passportDataStore.passportDTO.living_address.street === ''
+                || passportDataStore.passportDTO.country !== 'Россия'
+                || isSameAddress"
               ></input-data>
             </div>
           </div>
@@ -623,8 +649,11 @@
                 passportDataStore.passportDTO.living_address.index =
                   Number($event)
               "
-              placeholder="193 894"
+              placeholder="193894"
               :style="{ width: '100%' }"
+              :readonly="passportDataStore.passportDTO.living_address.street === ''
+                || passportDataStore.passportDTO.country !== 'Россия'
+                || isSameAddress"
             ></input-data>
           </div>
         </div>
@@ -653,7 +682,7 @@
             <div class="organizmloader">
               <div class="frame-parent8">
                 <div class="icons-parent">
-                  <div class="icons">
+                  <!-- <div class="icons">
                     <div class="icon">
                       <div class="icon-child"></div>
                       <div class="icon-item"></div>
@@ -683,7 +712,7 @@
                         src="../public/frame-1817518.svg"
                       />
                     </div>
-                  </div>
+                  </div> -->
                   <div class="loader-group">
                     <loader-field
                       name="Разворот с датой выдачи и фотографией"
@@ -736,7 +765,7 @@
               </div>
               <div class="frame-parent9">
                 <div class="icons-container">
-                  <div class="icons">
+                  <!-- <div class="icons">
                     <div class="icon-child"></div>
                     <div class="icon-item"></div>
                     <div class="icons-inner">
@@ -754,7 +783,7 @@
                       alt=""
                       src="../public/frame-18175181.svg"
                     />
-                  </div>
+                  </div> -->
                   <div class="loader-group">
                     <loader-field
                       name="Страница с регистрацией"
@@ -820,7 +849,7 @@
             <div class="organizmloader1">
               <div class="frame-wrapper">
                 <div class="frame-parent10">
-                  <div class="frame-parent11">
+                  <!-- <div class="frame-parent11">
                     <img
                       class="frame-child11"
                       alt=""
@@ -860,10 +889,10 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="loader-group">
                     <loader-field
-                      name="Загрузите селфи с разворотом паспорта и датой выдачи"
+                      name="Cелфи с разворотом паспорта и датой выдачи"
                       :obligatory-field="true"
                       :style="{ width: '100%', paddingBottom: '0.1em' }"
                       class="loader-file"
@@ -953,6 +982,7 @@ import regions from "@/json/regions.json";
 
 const userDataStore = useUserDataStore();
 const passportDataStore = usePassportDataStore();
+const isSameAddress = ref(false);
 const isSelectedRadioButton1 = ref(
   passportDataStore.passportDTO.gender === "М"
 );
@@ -1004,7 +1034,25 @@ const neighborhoodsReg = computed(() => {
 const neighborhoodsLiv = computed(() => {
   return neighborhoodLiving.value;
 });
-
+const isSameAddressHandler = (ev: boolean) => {
+  isSameAddress.value = ev;
+  if (ev) {
+    passportDataStore.passportDTO.living_address =
+      passportDataStore.passportDTO.registration_address;
+  } else {
+    passportDataStore.passportDTO.living_address = {
+      region: '',
+      neighborhood: '',
+      city: '',
+      street: '',
+      house: '',
+      housing: '',
+      building: '',
+      apartment: '',
+      index: 0,
+    };
+  }
+}
 const saveImage = async (boxName: string, file: File | null) => {
   if (file) {
     switch (boxName) {
@@ -2555,5 +2603,14 @@ const { isMobile } = useDevice();
   color: #3b3b3b;
   font-family: Inter;
   overflow: hidden;
+}
+.component-20-parent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5em;
+  width: 100%;
 }
 </style>
