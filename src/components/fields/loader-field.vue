@@ -1,7 +1,7 @@
 <template>
   <div class="organizm-loader-Nmi" id="995:25323">
     <div class="frame-1817439-tk4" id="I995:25323;967:72927">
-      <input class="input-load" type="file" @change="onFileChanged($event)" accept="image/*" capture/>
+      <input class="input-load" type="file" @change="onFileChanged($event)" :value="value" accept="image/*" capture/>
       <div class="business-registration-proof--SFn" id="I995:25323;967:72928">
         <span class="business-registration-proof--SFn-sub-0"
           >{{ name }}
@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-const { placeholder, name, obligatoryField } = defineProps({
+const { placeholder, name, obligatoryField, value } = defineProps({
   placeholder: {
     type: String,
   },
@@ -35,6 +35,9 @@ const { placeholder, name, obligatoryField } = defineProps({
   },
   obligatoryField: {
     type: Boolean,
+  },
+  value: {
+    type: String,
   },
 });
 const emit = defineEmits(["onChange"]);
