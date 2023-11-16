@@ -80,7 +80,8 @@ const { state } = defineProps({
   freePeriod: {
     type: Number,
     required: true,
-}})
+  }
+})
 
 const isDetailOther = ref(state.detailOtherModal);
 const isGetLoan = ref(state.getLoanModal);

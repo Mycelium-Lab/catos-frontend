@@ -176,7 +176,7 @@ import useParsedNumber from "@/compossables/useParsedNumber";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import { createLoanRequest } from "@/api/loanRequests.api";
 
-const {id} = defineProps({
+const {id, interestRate, freePeriod} = defineProps({
   id: {type: Number},
   interestRate: {type: Number, required: true},
   freePeriod: {type: Number, required: true},
