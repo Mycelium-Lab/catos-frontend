@@ -44,7 +44,7 @@
               :options="regions"
                 :value="passportDataStore.passportDTO.registration_address.region"
                 @selected="ev => (passportDataStore.passportDTO.registration_address.region = ev)"
-                :optionWidth="77"
+                :optionWidthDesk="405"
                 :style="
                 passportDataStore.passportDTO.country !== 'Россия' && passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
@@ -60,7 +60,7 @@
               :options="neighborhoodsReg"
                 :value="passportDataStore.passportDTO.registration_address.city"
                 @selected="ev => (passportDataStore.passportDTO.registration_address.city = ev)"
-                :optionWidth="77"
+                :optionWidthDesk="405"
                 :style="
                 passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
@@ -76,7 +76,7 @@
               :options="citiesReg"
                 :value="passportDataStore.passportDTO.registration_address.neighborhood"
                 @selected="ev => (passportDataStore.passportDTO.registration_address.neighborhood = ev)"
-                :optionWidth="77"
+                :optionWidthDesk="405"
                 :style="
                  passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
@@ -166,7 +166,7 @@
                     :options="countries"
                     :value="passportDataStore.passportDTO.country"
                     @selected="ev => (passportDataStore.passportDTO.country = ev)"
-                    :optionWidth="77"
+                    :optionWidthDesk="405"
                     :style="{ width: '100%' }"
                   ></catos-select>
                 </div>

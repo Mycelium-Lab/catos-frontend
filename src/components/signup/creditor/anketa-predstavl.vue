@@ -24,7 +24,7 @@
                     :options="countries"
                     :value="passportDataStore.passportDTO.country"
                     @selected="ev => (passportDataStore.passportDTO.country = ev)"
-                    :optionWidth="77"
+                    :optionWidthDesk="352"
                     :style="{ width: '100%' }"
                   ></catos-select>
                 </div>
@@ -351,7 +351,7 @@
               :value="
                 passportDataStore.passportDTO.registration_address.region
               "
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
               passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
@@ -375,7 +375,7 @@
               :options="neighborhoodsReg"
               :value="passportDataStore.passportDTO.registration_address.neighborhood"
               @selected=" ev => (passportDataStore.passportDTO.registration_address.neighborhood = ev)"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                 passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
@@ -390,7 +390,7 @@
             :placeholder="passportDataStore.passportDTO.registration_address.region !== '' && citiesReg ? citiesReg[0] : 'Москва'"
               :options="citiesReg"
               :value="passportDataStore.passportDTO.registration_address.city"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                  passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
@@ -489,7 +489,7 @@
             placeholder="Московская"
               :options="regions"
               :value="passportDataStore.passportDTO.living_address.region"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
                   : { width: '100%', opacity: '1' }
@@ -509,7 +509,7 @@
               :value="
                 passportDataStore.passportDTO.living_address.neighborhood
               "
-              :optionWidth="77"
+               :optionWidthDesk="352"
               :style="
                 passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
@@ -529,7 +529,7 @@
               :placeholder="passportDataStore.passportDTO.living_address.region !== '' && citiesLiv ? citiesLiv[0] : 'Москва'"
               :options="citiesLiv"
               :value="passportDataStore.passportDTO.living_address.city"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                  passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }

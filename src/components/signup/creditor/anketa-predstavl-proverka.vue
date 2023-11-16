@@ -190,7 +190,7 @@
                     (passportDataStore.passportDTO.registration_address.region =
                       ev)
                 "
-                :optionWidth="77"
+                 :optionWidthDesk="329"
                 :style="
                   passportDataStore.passportDTO.country !== 'Россия'
                     ? {
@@ -220,7 +220,7 @@
                     (passportDataStore.passportDTO.registration_address.city =
                       ev)
                 "
-                :optionWidth="77"
+             :optionWidthDesk="329"
                 :style="
                   passportDataStore.passportDTO.registration_address.region ===
                     '' || passportDataStore.passportDTO.country !== 'Россия'
@@ -257,7 +257,7 @@
                     (passportDataStore.passportDTO.registration_address.neighborhood =
                       ev)
                 "
-                :optionWidth="77"
+                 :optionWidthDesk="329"
                 :style="
                   passportDataStore.passportDTO.registration_address.region ===
                     '' || passportDataStore.passportDTO.country !== 'Россия'
@@ -366,7 +366,7 @@
                 :options="countries"
                 :value="paperDataStore.paperDTO.country"
                 @selected="ev => (paperDataStore.paperDTO.country = ev)"
-                :optionWidth="77"
+                :optionWidthDesk="329"
                 :style="{ width: '100%' }"
                 data-element="state"
               ></catos-select>
@@ -386,7 +386,7 @@
                 @selected="
                   ev => (paperDataStore.paperDTO.registration_form = ev)
                 "
-                :optionWidth="77"
+           :optionWidthDesk="329"
                 :style="{ width: '100%' }"
                 data-element="select-form"
               ></catos-select>
@@ -441,7 +441,7 @@
                 placeholder="Московская"
                 :options="regions"
                 :value="paperDataStore.paperDTO.address.region"
-                :optionWidth="77"
+                :optionWidthDesk="329"
                 :style="
                   paperDataStore.paperDTO.country !== 'Россия'
                     ? {
@@ -470,7 +470,7 @@
                 "
                 :options="neighborhoodsRegPaper"
                 :value="paperDataStore.paperDTO.address.neighborhood"
-                :optionWidth="77"
+                :optionWidthDesk="329"
                 :style="
                   paperDataStore.paperDTO.address.region === '' ||
                   paperDataStore.paperDTO.country !== 'Россия'
@@ -501,7 +501,7 @@
                 "
                 :options="citiesRegPaper"
                 :value="paperDataStore.paperDTO.address.city"
-                :optionWidth="77"
+                :optionWidthDesk="329"
                 :style="
                   paperDataStore.paperDTO.address.region === '' ||
                   paperDataStore.paperDTO.country !== 'Россия'
@@ -624,7 +624,7 @@
                     @selected="
                       ev => (passportDataStore.passportDTO.country = ev)
                     "
-                    :optionWidth="77"
+                    :optionWidthDesk="352"
                     :style="{ width: '100%' }"
                   ></catos-select>
                 </div>
@@ -1106,7 +1106,7 @@ const handleNextClick = async () => {
   align-self: stretch;
 }
 .frame-wrapper {
-  width: 21.38em;
+  width: 100%;
 }
 .div24 {
   position: relative;

@@ -26,7 +26,7 @@
                     @selected="
                       ev => (passportDataStore.passportDTO.country = ev)
                     "
-                    :optionWidth="77"
+                   :optionWidthDesk="329"
                     :style="{ width: '100%' }"
                   ></catos-select>
                 </div>
@@ -300,7 +300,7 @@
                   (passportDataStore.passportDTO.registration_address.region =
                     ev)
               "
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                 passportDataStore.passportDTO.country !== 'Россия' &&
                 passportDataStore.passportDTO.country !== 'Россия'
@@ -336,7 +336,7 @@
                   (passportDataStore.passportDTO.registration_address.neighborhood =
                     ev)
               "
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
@@ -369,7 +369,7 @@
                 ev =>
                   (passportDataStore.passportDTO.registration_address.city = ev)
               "
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
@@ -494,7 +494,7 @@
               @selected="
                 ev => (passportDataStore.passportDTO.living_address.region = ev)
               "
-              :optionWidth="77"
+               :optionWidthDesk="329"
               :style="
                 passportDataStore.passportDTO.country !== 'Россия'
                   ? {
@@ -527,7 +527,7 @@
                   (passportDataStore.passportDTO.living_address.neighborhood =
                     ev)
               "
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="
                 passportDataStore.passportDTO.living_address.region === '' ||
                 passportDataStore.passportDTO.country !== 'Россия'
@@ -559,7 +559,7 @@
               @selected="
                 ev => (passportDataStore.passportDTO.living_address.city = ev)
               "
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="
                 passportDataStore.passportDTO.living_address.region === '' ||
                 passportDataStore.passportDTO.country !== 'Россия'
