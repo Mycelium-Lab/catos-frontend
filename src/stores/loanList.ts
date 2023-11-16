@@ -32,13 +32,21 @@ export const useLoanListStore = defineStore("useLoans", () => {
   const soldLoan = computed(() => {
     return borrowerLoan.value.filter(val => val.status === 'sold')
   })
-
+  const marketPlaceLoans = computed(() => {
+    return loans.value.filter(val => val.status === 'for_sale')
+  })
+  const collectorLoans = computed(() => {
+    const userId = getUserId();
+    return loans.value.filter(val => val.status === 'sold' && val.buyer_id === userId)
+  })
   return {
     loans,
     borrowerLoan,
     activeLoan,
     paidLoan,
     soldLoan,
-    hasLoading
+    marketPlaceLoans,
+    collectorLoans,
+    hasLoading,
   };
 });

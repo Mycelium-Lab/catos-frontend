@@ -1,6 +1,6 @@
 <template>
      <h3 v-if="!actualLoans.length">
-      Займы пока отсутствуют
+      {{ `${role === 'collector' ? 'Задолжности пока отсутствуют' : 'Займы пока отсутствуют'}` }}
     </h3>
     <ul class="list-desktop">
       <li
@@ -21,16 +21,23 @@
 import loansTable from "@/components/loans/creditor/loans-table.vue";
 import { useLoanListStore } from "@/stores/loanList";
 import { computed } from "vue";
-
-
+import { roleStorage } from "@/utils/localStorage";
 const { variant} = defineProps({
  variant: {
    type: String,
  }
 });
+
+const role = computed(() => {
+  return roleStorage.get()
+})
 const loansStore = useLoanListStore();
 
 const actualLoans = computed(() => {
+  if(role.value === 'collector' ) {
+    return loansStore.loans.filter(v => v.status === "for_sale") 
+  }
+  // bayerLoans
     return loansStore.loans.filter(v => v.status === variant) 
 })
 
