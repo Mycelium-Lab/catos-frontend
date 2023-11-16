@@ -1005,7 +1005,7 @@ const allDataEntered = computed(() => {
 }
 .frame-wrapper,
 .icons-parent {
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
 }
 .frame-wrapper {
