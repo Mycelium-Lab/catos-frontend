@@ -18,7 +18,7 @@ export type PassportData = {
   series: number;
   number: number;
   issue_date: string;
-  issuing_organization: String;
+  issuing_organization: string;
   registration_address: Address;
   living_address: Address;
   first_photo: string;

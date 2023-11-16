@@ -126,7 +126,7 @@ const close = () => {
 const handle = () => {
   emtis("prolong", Number(amount.value));
 };
-const amount = ref("0");
+const amount = ref("");
 
 const isDisabled = computed(() => {
   return Number(amount.value) <= 0 || '' ? true : false

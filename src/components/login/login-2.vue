@@ -49,6 +49,7 @@
         placeholder="Введите пароль"
         v-model="userLoginCredentials.password"
         :style="{ position: 'relative', zIndex: '1000', width: '100%' }"
+        type="password"
       ></input-data>
       <input-data
         v-if="activeForm === 'phone'"

@@ -26,7 +26,7 @@
                     @selected="
                       ev => (passportDataStore.passportDTO.country = ev)
                     "
-                    :optionWidth="77"
+                   :optionWidthDesk="329"
                     :style="{ width: '100%' }"
                   ></catos-select>
                 </div>
@@ -39,12 +39,15 @@
                   <span class="span2">* </span>
                 </div>
                 <input-data
+                  :model-value="passportData"
                   @update:model-value="
                     event => {
-                      passportDataStore.passportDTO.series =
-                        event.split(' ')[0];
-                      passportDataStore.passportDTO.number =
-                        event.split(' ')[1];
+                      passportDataStore.passportDTO.series = Number(
+                        event.split(' ')[0]
+                      );
+                      passportDataStore.passportDTO.number = Number(
+                        event.split(' ')[1]
+                      );
                     }
                   "
                   placeholder="1234 09876"
@@ -58,31 +61,20 @@
                 </div>
                 <div class="fields-password-and-mail-container">
                   <input-data
-                    @update:model-value="
-                      passportDataStore.passportDTO.issue_date = $event
+                    v-model:model-value="
+                      passportDataStore.passportDTO.issue_date
                     "
                     type="date"
                     placeholder="01.02.2022"
                     :style="{ width: '100%' }"
                   ></input-data>
-                  <div class="iconscalendar-wrapper">
-                    <!--<input-data
-                      :simulate="true"
-                      type="date"
-                      placeholder="01.02.1994"
-                      :style="{
-                        width: '100%',
-                        position: 'relative',
-                        right: '0.5em',
-                      }"
-                      @selected="e => (date = e)"
-                    ></input-data>-->
+                  <!--<div class="iconscalendar-wrapper">
                     <img
                       class="iconscalendar"
                       alt=""
                       src="../public/iconscalendar.svg"
                     />
-                  </div>
+                  </div>-->
                 </div>
               </div>
             </div>
@@ -97,6 +89,7 @@
                 </span>
               </div>
               <catos-textarea
+                :value="passportDataStore.passportDTO.issuing_organization"
                 :style="{ width: '100%' }"
                 placeholder="ГУМВД России по Санкт-Петербургу, и Ленинградской области"
                 @selected="
@@ -118,9 +111,7 @@
                   </span>
                 </div>
                 <input-data
-                  @update:model-value="
-                    passportDataStore.passportDTO.name = $event
-                  "
+                  v-model:model-value="passportDataStore.passportDTO.name"
                   placeholder="Введите имя"
                   :style="{ width: '100%' }"
                   :right="true"
@@ -139,9 +130,7 @@
                   </span>
                 </div>
                 <input-data
-                  @update:model-value="
-                    passportDataStore.passportDTO.surname = $event
-                  "
+                  v-model:model-value="passportDataStore.passportDTO.surname"
                   placeholder="Введите фамилию"
                   :style="{ width: '100%' }"
                   :right="true"
@@ -161,9 +150,7 @@
                   </span>
                 </div>
                 <input-data
-                  @update:model-value="
-                    passportDataStore.passportDTO.middlename = $event
-                  "
+                  v-model:model-value="passportDataStore.passportDTO.middlename"
                   placeholder="Введите отчество"
                   :style="{ width: '100%' }"
                   :right="true"
@@ -180,33 +167,22 @@
                 </div>
                 <div class="fields-password-and-mail-container">
                   <input-data
-                    @update:model-value="
-                      passportDataStore.passportDTO.birthdate = $event
+                    v-model:model-value="
+                      passportDataStore.passportDTO.birthdate
                     "
                     type="date"
                     placeholder="01.02.1994"
                     :style="{ width: '100%' }"
                     :value="date"
                   ></input-data>
-                  <div class="iconscalendar-wrapper">
-                    <!--<input-data
-                      :simulate="true"
-                      type="date"
-                      placeholder="01.02.1994"
-                      :style="{
-                        width: '100%',
-                        position: 'relative',
-                        right: '0.5em',
-                      }"
-                      @selected="e => (date = e)"
-                    ></input-data>-->
+                  <!--<div class="iconscalendar-wrapper">
                     <img
                       class="iconscalendar"
                       alt=""
                       src="../public/iconscalendar.svg"
                       :style="{ position: 'absolute' }"
                     />
-                  </div>
+                  </div>-->
                 </div>
               </div>
               <div class="parent10">
@@ -264,7 +240,7 @@
       </div>
       <router-link
         :to="'borrower-verification'"
-        class="buttonnext"
+        :class="isMobile ? 'buttonnext' : 'buttonnext_desktop buttonnext'"
         id="buttonNextContainer"
       >
         <b class="b1">Продолжить</b>
@@ -320,7 +296,7 @@
                   (passportDataStore.passportDTO.registration_address.region =
                     ev)
               "
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                 passportDataStore.passportDTO.country !== 'Россия' &&
                 passportDataStore.passportDTO.country !== 'Россия'
@@ -356,7 +332,7 @@
                   (passportDataStore.passportDTO.registration_address.neighborhood =
                     ev)
               "
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
@@ -389,7 +365,7 @@
                 ev =>
                   (passportDataStore.passportDTO.registration_address.city = ev)
               "
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
@@ -410,9 +386,8 @@
           <div class="fieldsinputchoise1">
             <div class="div10">Улица</div>
             <input-data
-              @update:model-value="
-                passportDataStore.passportDTO.registration_address.street =
-                  $event
+              v-model:model-value="
+                passportDataStore.passportDTO.registration_address.street
               "
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
@@ -430,9 +405,8 @@
             <div class="parent13">
               <div class="div10">Дом</div>
               <input-data
-                @update:model-value="
-                  passportDataStore.passportDTO.registration_address.house =
-                    $event
+                v-model:model-value="
+                  passportDataStore.passportDTO.registration_address.house
                 "
                 placeholder="1"
                 :style="{ width: '100%' }"
@@ -441,9 +415,8 @@
             <div class="parent13">
               <div class="div10">Корпус</div>
               <input-data
-                @update:model-value="
-                  passportDataStore.passportDTO.registration_address.housing =
-                    $event
+                v-model:model-value="
+                  passportDataStore.passportDTO.registration_address.housing
                 "
                 placeholder="1"
                 :style="{ width: '100%' }"
@@ -454,9 +427,8 @@
             <div class="parent13">
               <div class="div10">Строение</div>
               <input-data
-                @update:model-value="
-                  passportDataStore.passportDTO.registration_address.building =
-                    $event
+                v-model:model-value="
+                  passportDataStore.passportDTO.registration_address.building
                 "
                 placeholder="1"
                 :style="{ width: '100%' }"
@@ -465,9 +437,8 @@
             <div class="parent13">
               <div class="div10">Квартира</div>
               <input-data
-                @update:model-value="
-                  passportDataStore.passportDTO.registration_address.apartment =
-                    $event
+                v-model:model-value="
+                  passportDataStore.passportDTO.registration_address.apartment
                 "
                 placeholder="№"
                 :style="{ width: '100%' }"
@@ -477,11 +448,12 @@
           <div class="parent13">
             <div class="div10">Индекс</div>
             <input-data
+              v-model:model-value="calcRegIndex"
               @update:model-value="
                 passportDataStore.passportDTO.registration_address.index =
-                  $event
+                  Number($event)
               "
-              placeholder="193 984"
+              placeholder="193984"
               :style="{ width: '100%' }"
             ></input-data>
           </div>
@@ -502,6 +474,15 @@
           </div>
         </div>
         <div class="fieldsinputchoise-group">
+          <div class="component-20-parent">
+            <catos-checkbox
+              variant="rounded"
+              @on-change="ev => isSameAddressHandler(ev)"
+            ></catos-checkbox>
+            <div class="div10">
+              <span>Совпадает с адресом регистрации</span>
+            </div>
+          </div>
           <div class="fieldsinputchoise">
             <div class="div10">
               <span>Область, край </span>
@@ -514,7 +495,7 @@
               @selected="
                 ev => (passportDataStore.passportDTO.living_address.region = ev)
               "
-              :optionWidth="77"
+               :optionWidthDesk="329"
               :style="
                 passportDataStore.passportDTO.country !== 'Россия'
                   ? {
@@ -525,7 +506,7 @@
                     }
                   : { width: '100%', opacity: '1' }
               "
-              :disabled="passportDataStore.passportDTO.country !== 'Россия'"
+              :disabled="passportDataStore.passportDTO.country !== 'Россия' || isSameAddress"
             ></catos-select>
           </div>
           <div class="fieldsinput">
@@ -547,7 +528,7 @@
                   (passportDataStore.passportDTO.living_address.neighborhood =
                     ev)
               "
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="
                 passportDataStore.passportDTO.living_address.region === '' ||
                 passportDataStore.passportDTO.country !== 'Россия'
@@ -561,7 +542,8 @@
               "
               :disabled="
                 passportDataStore.passportDTO.living_address.region === '' ||
-                passportDataStore.passportDTO.country !== 'Россия'
+                passportDataStore.passportDTO.country !== 'Россия' ||
+                isSameAddress
               "
             ></catos-select>
           </div>
@@ -579,7 +561,7 @@
               @selected="
                 ev => (passportDataStore.passportDTO.living_address.city = ev)
               "
-              :optionWidth="77"
+              :optionWidthDesk="329"
               :style="
                 passportDataStore.passportDTO.living_address.region === '' ||
                 passportDataStore.passportDTO.country !== 'Россия'
@@ -594,18 +576,22 @@
               :disabled="
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
+                  || isSameAddress
               "
             ></catos-select>
           </div>
           <div class="fieldsinputchoise1">
             <div class="div10">Улица</div>
             <input-data
-              @update:model-value="
-                passportDataStore.passportDTO.living_address.street = $event
+              v-model:model-value="
+                passportDataStore.passportDTO.living_address.street
               "
               placeholder="Начните вводить адресс"
               :style="{ width: '100%' }"
               :right="true"
+              :readonly="passportDataStore.passportDTO.living_address.city === ''
+                || passportDataStore.passportDTO.country !== 'Россия'
+                || isSameAddress"
             >
               <template v-slot:right-icon>
                 <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -618,21 +604,27 @@
             <div class="parent13">
               <div class="div10">Дом</div>
               <input-data
-                @update:model-value="
-                  passportDataStore.passportDTO.living_address.house = $event
+                v-model:model-value="
+                  passportDataStore.passportDTO.living_address.house
                 "
                 placeholder="1"
                 :style="{ width: '100%' }"
+                :readonly="passportDataStore.passportDTO.living_address.street === ''
+                || passportDataStore.passportDTO.country !== 'Россия'
+                || isSameAddress"
               ></input-data>
             </div>
             <div class="parent13">
               <div class="div10">Корпус</div>
               <input-data
-                @update:model-value="
-                  passportDataStore.passportDTO.living_address.housing = $event
+                v-model:model-value="
+                  passportDataStore.passportDTO.living_address.housing
                 "
                 placeholder="1"
                 :style="{ width: '100%' }"
+                :readonly="passportDataStore.passportDTO.living_address.street === ''
+                || passportDataStore.passportDTO.country !== 'Россия'
+                || isSameAddress"
               ></input-data>
             </div>
           </div>
@@ -640,33 +632,43 @@
             <div class="parent13">
               <div class="div10">Строение</div>
               <input-data
-                @update:model-value="
-                  passportDataStore.passportDTO.living_address.building = $event
+                v-model:model-value="
+                  passportDataStore.passportDTO.living_address.building
                 "
                 placeholder="1"
                 :style="{ width: '100%' }"
+                :readonly="passportDataStore.passportDTO.living_address.street === ''
+                || passportDataStore.passportDTO.country !== 'Россия'
+                || isSameAddress"
               ></input-data>
             </div>
             <div class="parent13">
               <div class="div10">Квартира</div>
               <input-data
-                @update:model-value="
-                  passportDataStore.passportDTO.living_address.apartment =
-                    $event
+                v-model:model-value="
+                  passportDataStore.passportDTO.living_address.apartment
                 "
                 placeholder="№"
                 :style="{ width: '100%' }"
+                :readonly="passportDataStore.passportDTO.living_address.street === ''
+                || passportDataStore.passportDTO.country !== 'Россия'
+                || isSameAddress"
               ></input-data>
             </div>
           </div>
           <div class="parent13">
             <div class="div10">Индекс</div>
             <input-data
+              v-model:model-value="calcLivingIndex"
               @update:model-value="
-                passportDataStore.passportDTO.living_address.index = $event
+                passportDataStore.passportDTO.living_address.index =
+                  Number($event)
               "
-              placeholder="193 894"
+              placeholder="193894"
               :style="{ width: '100%' }"
+              :readonly="passportDataStore.passportDTO.living_address.street === ''
+                || passportDataStore.passportDTO.country !== 'Россия'
+                || isSameAddress"
             ></input-data>
           </div>
         </div>
@@ -695,7 +697,7 @@
             <div class="organizmloader">
               <div class="frame-parent8">
                 <div class="icons-parent">
-                  <div class="icons">
+                  <!-- <div class="icons">
                     <div class="icon">
                       <div class="icon-child"></div>
                       <div class="icon-item"></div>
@@ -725,7 +727,7 @@
                         src="../public/frame-1817518.svg"
                       />
                     </div>
-                  </div>
+                  </div> -->
                   <div class="loader-group">
                     <loader-field
                       name="Разворот с датой выдачи и фотографией"
@@ -759,7 +761,7 @@
                     </div>
                   </div>
                   <div class="loader">
-                    <div class="loader1">
+                    <!--<div class="loader1">
                       <img
                         class="loader-child"
                         alt=""
@@ -767,7 +769,7 @@
                       />
 
                       <div class="div68">100%</div>
-                    </div>
+                    </div>-->
                     <img
                       class="loader-child"
                       alt=""
@@ -778,7 +780,7 @@
               </div>
               <div class="frame-parent9">
                 <div class="icons-container">
-                  <div class="icons">
+                  <!-- <div class="icons">
                     <div class="icon-child"></div>
                     <div class="icon-item"></div>
                     <div class="icons-inner">
@@ -796,7 +798,7 @@
                       alt=""
                       src="../public/frame-18175181.svg"
                     />
-                  </div>
+                  </div> -->
                   <div class="loader-group">
                     <loader-field
                       name="Страница с регистрацией"
@@ -830,7 +832,7 @@
                     </div>
                   </div>
                   <div class="loader">
-                    <div class="loader1">
+                    <!--<div class="loader1">
                       <img
                         class="loader-child"
                         alt=""
@@ -838,7 +840,7 @@
                       />
 
                       <div class="div68">100%</div>
-                    </div>
+                    </div>-->
                     <img
                       class="loader-child"
                       alt=""
@@ -848,8 +850,11 @@
                 </div>
               </div>
               <div class="div71">
-                <span>Загрузите страницы паспорта </span>
-                <span class="span2">*</span>
+                <span><b>Загрузите страницы паспорта</b></span>
+
+              </div>
+              <div class="div72">
+                <span><b>Загрузите селфи с разворотом паспорта</b></span>
               </div>
             </div>
           </div>
@@ -862,7 +867,7 @@
             <div class="organizmloader1">
               <div class="frame-wrapper">
                 <div class="frame-parent10">
-                  <div class="frame-parent11">
+                  <!-- <div class="frame-parent11">
                     <img
                       class="frame-child11"
                       alt=""
@@ -902,12 +907,12 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="loader-group">
                     <loader-field
-                      name="Загрузите селфи с разворотом паспорта и датой выдачи"
+                      name="Cелфи с разворотом паспорта и датой выдачи"
                       :obligatory-field="true"
-                      :style="{ width: '100%', paddingBottom: '0.1em' }"
+                      :style="{ width: '100%', paddingBottom: '0.1em', position: 'relative', left: '1.5em' }"
                       class="loader-file"
                       @on-change="file => saveImage('selfie', file)"
                     ></loader-field>
@@ -937,7 +942,7 @@
                   </div>
                 </div>
                 <div class="loader">
-                  <div class="loader5">
+                  <!--<div class="loader5">
                     <img
                       class="loader-child"
                       alt=""
@@ -945,7 +950,7 @@
                     />
 
                     <div class="div68">12%</div>
-                  </div>
+                  </div>-->
                   <img class="loader-child" alt="" src="../public/remove.svg" />
                 </div>
               </div>
@@ -995,10 +1000,32 @@ import regions from "@/json/regions.json";
 
 const userDataStore = useUserDataStore();
 const passportDataStore = usePassportDataStore();
-const isSelectedRadioButton1 = ref(false);
-const isSelectedRadioButton2 = ref(false);
+const isSameAddress = ref(false);
+const isSelectedRadioButton1 = ref(
+  passportDataStore.passportDTO.gender === "М"
+);
+const isSelectedRadioButton2 = ref(
+  passportDataStore.passportDTO.gender === "Ж"
+);
 const date = ref("");
-
+const passportData = computed(() => {
+  return (
+    (passportDataStore.passportDTO.series > 0
+      ? passportDataStore.passportDTO.series.toString()
+      : "") +
+    (passportDataStore.passportDTO.number > 0
+      ? " " + passportDataStore.passportDTO.number.toString()
+      : "")
+  );
+});
+const calcRegIndex = computed(() => {
+  if (passportDataStore.passportDTO.registration_address.index > 0)
+    return passportDataStore.passportDTO.registration_address.index.toString();
+});
+const calcLivingIndex = computed(() => {
+  if (passportDataStore.passportDTO.living_address.index > 0)
+    return passportDataStore.passportDTO.living_address.index.toString();
+});
 const { citiesByRegion: ctitesRegistration } = useCityList(
   "registration",
   "passport"
@@ -1025,7 +1052,25 @@ const neighborhoodsReg = computed(() => {
 const neighborhoodsLiv = computed(() => {
   return neighborhoodLiving.value;
 });
-
+const isSameAddressHandler = (ev: boolean) => {
+  isSameAddress.value = ev;
+  if (ev) {
+    passportDataStore.passportDTO.living_address =
+      passportDataStore.passportDTO.registration_address;
+  } else {
+    passportDataStore.passportDTO.living_address = {
+      region: '',
+      neighborhood: '',
+      city: '',
+      street: '',
+      house: '',
+      housing: '',
+      building: '',
+      apartment: '',
+      index: 0,
+    };
+  }
+}
 const saveImage = async (boxName: string, file: File | null) => {
   if (file) {
     switch (boxName) {
@@ -1288,7 +1333,7 @@ const { isMobile } = useDevice();
 
   gap: 1.5em;
   &_desktop {
-    top: 32em;
+    top: 31em;
     width: 23.38em;
   }
 }
@@ -1491,7 +1536,7 @@ const { isMobile } = useDevice();
   text-decoration: none;
   &_desktop {
     position: relative;
-    top: 158em;
+    top: 172em;
     left: 1.5em;
     border-radius: 20px;
     background-color: #ffdb6d;
@@ -1572,7 +1617,7 @@ const { isMobile } = useDevice();
   backdrop-filter: blur(5px);
   border: 0.5px solid rgba(46, 58, 89, 0.2);
   box-sizing: border-box;
-  height: 37.44em;
+  height: 39em;
 }
 .text-and-fill {
   position: absolute;
@@ -1703,7 +1748,7 @@ const { isMobile } = useDevice();
 }
 .registration-options-item {
   position: absolute;
-  height: 43em;
+  height: 39em;
   width: 100%;
   top: 0.44%;
   right: 0;
@@ -1727,16 +1772,16 @@ const { isMobile } = useDevice();
   width: 88%;
 }
 .frame-parent5 {
-  top: 28.5em;
+  top: 24em;
   gap: 1em;
 }
 
 .registration-options1_desktop {
-  top: 13.5em;
+  top: 14em;
 }
 .registration-options-inner {
   position: absolute;
-  height: 175.7%;
+  height: 180%;
   width: 100%;
   top: -0.22%;
   right: 0;
@@ -1928,7 +1973,7 @@ const { isMobile } = useDevice();
 .icons-parent {
   align-self: stretch;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 1.06em;
@@ -2102,8 +2147,8 @@ const { isMobile } = useDevice();
   justify-content: flex-start;
 }
 .icons-container {
-  width: 17.25em;
-  flex-direction: row;
+  width: 100%;
+  flex-direction: column;
   align-items: center;
   gap: 1.06em;
 }
@@ -2114,7 +2159,7 @@ const { isMobile } = useDevice();
   z-index: 1;
   width: 100%;
 }
-.div71 {
+.div71, .div72 {
   position: absolute;
   margin: 0 !important;
   top: 1.67em;
@@ -2124,6 +2169,9 @@ const { isMobile } = useDevice();
   font-weight: 300;
   z-index: 2;
   color: #3b3b3b;
+}
+.div72{
+  top: 56em;
 }
 .organizmloader,
 .parent24 {
@@ -2323,10 +2371,11 @@ const { isMobile } = useDevice();
   position: relative;
   width: 7.25em;
   height: 5.19em;
+  left: 1.5em;
 }
 .frame-parent10 {
   width: 17.81em;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   gap: 1.19em;
 }
@@ -2365,7 +2414,7 @@ const { isMobile } = useDevice();
 }
 .parent25 {
   position: absolute;
-  top: 30.88em;
+  top: 42em;
   left: 1.31em;
   align-items: center;
   gap: 1.13em;
@@ -2383,11 +2432,11 @@ const { isMobile } = useDevice();
 .registration-options2 {
   position: relative;
   width: 100%;
-  height: 28.81em;
+  height: 40.81em;
 }
 
 .registration-options-wrapper_desktop {
-  top: 22.5em;
+  top: 18em;
 }
 .form-registration-46 {
   position: absolute;
@@ -2398,7 +2447,7 @@ const { isMobile } = useDevice();
   width: 100vw;
   /*min-height: 100vh;
   min-height: calc(var(--vh, 1vh) * 130);*/
-  height: 3600px;
+  height: 3800px;
 }
 .page-title1 {
   position: relative;
@@ -2571,10 +2620,19 @@ const { isMobile } = useDevice();
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 225.75em;
+  height: 240em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
   overflow: hidden;
+}
+.component-20-parent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5em;
+  width: 100%;
 }
 </style>

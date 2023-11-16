@@ -1,6 +1,7 @@
 <template>
   <detail-other
    :pool="pool"
+   :freePeriod="freePeriod"
     v-if="isDetailOther"
     @close="close"
     @get-loan="
@@ -76,6 +77,10 @@ const { state } = defineProps({
   },
   pool: {
     type: Object as PropType<Pool>,
+  },
+  freePeriod: {
+    type: Number,
+    required: true,
   },
   freePeriod: {
     type: Number,

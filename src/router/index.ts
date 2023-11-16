@@ -61,13 +61,13 @@ const router = createRouter({
       path: "/sign-up/depositor",
       name: "signup-depositor",
       component: () =>
-        import("../components/signup/depositor/signup-depositor.vue"),
+        import("../components/signup/borrower/signup-borrower.vue"),
     },
     {
       path: "/sign-up/depositor-verification",
       name: "depositor-verification",
       component: () =>
-        import("../components/signup/depositor/verification.vue"),
+        import("../components/signup/borrower/verification.vue"),
     },
     {
       path: "/sign-up/borrower",

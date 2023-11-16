@@ -38,7 +38,7 @@
             <span class="name">Профиль</span>
           </router-link>
         </li>
-        <li class="item">
+        <!--<li class="item">
           <router-link class="navigation" :to="{ name: 'wallet' }">
             <img
               v-if="currentPage === 'wallet'"
@@ -49,6 +49,7 @@
             <span class="name">Кошелек</span>
           </router-link>
         </li>
+      -->
       </template>
 
       <!--BORROWER-->
@@ -92,7 +93,7 @@
             <span class="name">Профиль</span>
           </router-link>
         </li>
-        <li class="item">
+        <!--<li class="item">
           <router-link class="navigation" :to="{ name: 'wallet' }">
             <img
               v-if="currentPage === 'wallet'"
@@ -102,7 +103,7 @@
             <img v-else src="@/assets/wallet-not-active.svg" alt="" />
             <span class="name">Кошелек</span>
           </router-link>
-        </li>
+        </li>-->
       </template>
 
       <template v-else>
@@ -163,7 +164,7 @@
             <span class="name">Настройки</span>
           </router-link>
         </li>
-        <li class="item">
+       <!-- <li class="item">
           <router-link class="navigation" :to="{ name: 'wallet' }">
             <img
               v-if="currentPage === 'wallet'"
@@ -173,7 +174,7 @@
             <img v-else src="@/assets/wallet-not-active.svg" alt="" />
             <span class="name">Кошелек</span>
           </router-link>
-        </li>
+        </li>-->
       </template>
     </ul>
   </div>
