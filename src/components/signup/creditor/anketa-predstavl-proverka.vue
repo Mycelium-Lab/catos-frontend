@@ -190,7 +190,7 @@
                     (passportDataStore.passportDTO.registration_address.region =
                       ev)
                 "
-                :optionWidth="77"
+                 :optionWidthDesk="329"
                 :style="
                   passportDataStore.passportDTO.country !== 'Россия'
                     ? {
@@ -220,7 +220,7 @@
                     (passportDataStore.passportDTO.registration_address.city =
                       ev)
                 "
-                :optionWidth="77"
+             :optionWidthDesk="329"
                 :style="
                   passportDataStore.passportDTO.registration_address.region ===
                     '' || passportDataStore.passportDTO.country !== 'Россия'
@@ -257,7 +257,7 @@
                     (passportDataStore.passportDTO.registration_address.neighborhood =
                       ev)
                 "
-                :optionWidth="77"
+                 :optionWidthDesk="329"
                 :style="
                   passportDataStore.passportDTO.registration_address.region ===
                     '' || passportDataStore.passportDTO.country !== 'Россия'
@@ -366,7 +366,7 @@
                 :options="countries"
                 :value="paperDataStore.paperDTO.country"
                 @selected="ev => (paperDataStore.paperDTO.country = ev)"
-                :optionWidth="77"
+                :optionWidthDesk="329"
                 :style="{ width: '100%' }"
                 data-element="state"
               ></catos-select>
@@ -386,7 +386,7 @@
                 @selected="
                   ev => (paperDataStore.paperDTO.registration_form = ev)
                 "
-                :optionWidth="77"
+           :optionWidthDesk="329"
                 :style="{ width: '100%' }"
                 data-element="select-form"
               ></catos-select>
@@ -441,7 +441,7 @@
                 placeholder="Московская"
                 :options="regions"
                 :value="paperDataStore.paperDTO.address.region"
-                :optionWidth="77"
+                :optionWidthDesk="329"
                 :style="
                   paperDataStore.paperDTO.country !== 'Россия'
                     ? {
@@ -470,7 +470,7 @@
                 "
                 :options="neighborhoodsRegPaper"
                 :value="paperDataStore.paperDTO.address.neighborhood"
-                :optionWidth="77"
+                :optionWidthDesk="329"
                 :style="
                   paperDataStore.paperDTO.address.region === '' ||
                   paperDataStore.paperDTO.country !== 'Россия'
@@ -501,7 +501,7 @@
                 "
                 :options="citiesRegPaper"
                 :value="paperDataStore.paperDTO.address.city"
-                :optionWidth="77"
+                :optionWidthDesk="329"
                 :style="
                   paperDataStore.paperDTO.address.region === '' ||
                   paperDataStore.paperDTO.country !== 'Россия'
@@ -624,7 +624,7 @@
                     @selected="
                       ev => (passportDataStore.passportDTO.country = ev)
                     "
-                    :optionWidth="77"
+                    :optionWidthDesk="352"
                     :style="{ width: '100%' }"
                   ></catos-select>
                 </div>
@@ -685,7 +685,9 @@
           </div>
         </div>
       </div>
-      <router-link class="buttonnext1" to="" @click="handleNextClick">
+      <router-link to="" 
+      :class="isMobile ? 'buttonnext1' : 'buttonnext1_desktop buttonnext1'"
+      @click="handleNextClick">
         <b class="b2">Сохранить и продолжить</b>
       </router-link>
     </div>
@@ -1104,7 +1106,7 @@ const handleNextClick = async () => {
   align-self: stretch;
 }
 .frame-wrapper {
-  width: 21.38em;
+  width: 100%;
 }
 .div24 {
   position: relative;
@@ -2255,7 +2257,7 @@ const handleNextClick = async () => {
   border-radius: 15px;
   border: 0.5px solid rgba(46, 58, 89, 0.4);
   box-sizing: border-box;
-  height: 40em;
+  height: 42em;
 }
 .des-and-bbn1,
 .text-and-button1,
@@ -2307,7 +2309,7 @@ const handleNextClick = async () => {
   backdrop-filter: blur(5px);
   border: 0.5px solid rgba(46, 58, 89, 0.4);
   box-sizing: border-box;
-  height: 38.5em;
+  height: 39.5em;
 }
 .text14,
 .text15 {
@@ -2354,7 +2356,7 @@ const handleNextClick = async () => {
 }
 .registration-options3 {
   position: absolute;
-  top: 65.63em;
+  top: 66em;
   left: 0;
   width: 100%;
   //width: 88.7vw;
@@ -2370,7 +2372,7 @@ const handleNextClick = async () => {
   backdrop-filter: blur(5px);
   border: 0.5px solid rgba(46, 58, 89, 0.4);
   box-sizing: border-box;
-  height: 64.5em;
+  height: 65.5em;
 }
 .div109 {
   position: relative;
@@ -2380,7 +2382,7 @@ const handleNextClick = async () => {
 }
 .registration-options4 {
   position: absolute;
-  top: 107em;
+  top: 108em;
   left: 0;
   width: 88.7vw;
 
@@ -2496,7 +2498,7 @@ const handleNextClick = async () => {
 
   &_desktop {
     position: relative;
-    top: 6.63em;
+    top: 6em;
     left: 1.5em;
     width: 23.38em;
     height: 121.25em;
@@ -2529,7 +2531,7 @@ const handleNextClick = async () => {
   text-decoration: none;
   &_desktop {
     position: relative;
-    top: 10.38em;
+    top: 61em;
     left: 1.5em;
     border-radius: 20px;
     background-color: #fdd674;
@@ -2557,7 +2559,7 @@ const handleNextClick = async () => {
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100%;
-  height: 188em;
+  height: 195em;
 }
 .battery-icon {
   position: absolute;
@@ -2701,7 +2703,7 @@ const handleNextClick = async () => {
   position: relative;
   background-color: #fdd674;
   width: 100vw;
-  height: 168.69em;
+  height: 180em;
   overflow-y: auto;
   text-align: left;
   color: #3b3b3b;

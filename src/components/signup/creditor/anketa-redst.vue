@@ -34,7 +34,7 @@
                 :options="countries"
                 :value="paperDataStore.paperDTO.country"
                 @selected="ev => (paperDataStore.paperDTO.country = ev)"
-                :optionWidth="77"
+                :optionWidthDesk="352"
                 :style="{ width: '100%' }"
                 data-element="state"
               ></catos-select>
@@ -51,7 +51,7 @@
                 @selected="
                   ev => (paperDataStore.paperDTO.registration_form = ev)
                 "
-                :optionWidth="77"
+                :optionWidthDesk="352"
                 :style="{ width: '100%' }"
                 data-element="form"
               ></catos-select>
@@ -102,7 +102,7 @@
               placeholder="Московская"
               :options="regions"
               :value="paperDataStore.paperDTO.address.region"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                 paperDataStore.paperDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
@@ -127,7 +127,7 @@
               :value="
                 paperDataStore.paperDTO.address.neighborhood
               "
-              :optionWidth="77"
+               :optionWidthDesk="352"
               :style="
                 paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
@@ -147,7 +147,7 @@
               :placeholder="paperDataStore.paperDTO.address.region !== '' && cities ? cities[0] : 'Москва'"
               :options="cities"
               :value="paperDataStore.paperDTO.address.city"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                paperDataStore.paperDTO.address.region === '' || paperDataStore.paperDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
@@ -694,6 +694,7 @@ const allDataEntered = computed(() => {
   font-size: 1.25em;
   letter-spacing: -1px;
   line-height: 1.4em;
+  top: -0.6em;
 }
 .page-title4 {
   color: rgba(59, 59, 59, 0.17);
@@ -1005,7 +1006,7 @@ const allDataEntered = computed(() => {
 }
 .frame-wrapper,
 .icons-parent {
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
 }
 .frame-wrapper {

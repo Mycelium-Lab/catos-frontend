@@ -24,7 +24,7 @@
                     :options="countries"
                     :value="passportDataStore.passportDTO.country"
                     @selected="ev => (passportDataStore.passportDTO.country = ev)"
-                    :optionWidth="77"
+                    :optionWidthDesk="352"
                     :style="{ width: '100%' }"
                   ></catos-select>
                 </div>
@@ -351,7 +351,7 @@
               :value="
                 passportDataStore.passportDTO.registration_address.region
               "
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
               passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
@@ -375,7 +375,7 @@
               :options="neighborhoodsReg"
               :value="passportDataStore.passportDTO.registration_address.neighborhood"
               @selected=" ev => (passportDataStore.passportDTO.registration_address.neighborhood = ev)"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                 passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
@@ -390,7 +390,7 @@
             :placeholder="passportDataStore.passportDTO.registration_address.region !== '' && citiesReg ? citiesReg[0] : 'Москва'"
               :options="citiesReg"
               :value="passportDataStore.passportDTO.registration_address.city"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                  passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
@@ -489,7 +489,7 @@
             placeholder="Московская"
               :options="regions"
               :value="passportDataStore.passportDTO.living_address.region"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
                   : { width: '100%', opacity: '1' }
@@ -509,7 +509,7 @@
               :value="
                 passportDataStore.passportDTO.living_address.neighborhood
               "
-              :optionWidth="77"
+               :optionWidthDesk="352"
               :style="
                 passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
@@ -529,7 +529,7 @@
               :placeholder="passportDataStore.passportDTO.living_address.region !== '' && citiesLiv ? citiesLiv[0] : 'Москва'"
               :options="citiesLiv"
               :value="passportDataStore.passportDTO.living_address.city"
-              :optionWidth="77"
+              :optionWidthDesk="352"
               :style="
                  passportDataStore.passportDTO.living_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'
                   ? { width: '100%', opacity: '0.2', cursor: 'not-allowed', pointerEvents: 'none' }
@@ -706,7 +706,7 @@
                     </div>
                   </div>
                   <div class="loader">
-                    <div class="loader1">
+                    <!--<div class="loader1">
                       <img
                         class="loader-child"
                         alt=""
@@ -714,7 +714,7 @@
                       />
 
                       <div class="div69">100%</div>
-                    </div>
+                    </div>-->
                     <img
                       class="loader-child"
                       alt=""
@@ -777,7 +777,7 @@
                     </div>
                   </div>
                   <div class="loader">
-                    <div class="loader1">
+                    <!--<div class="loader1">
                       <img
                         class="loader-child"
                         alt=""
@@ -785,7 +785,7 @@
                       />
 
                       <div class="div69">100%</div>
-                    </div>
+                    </div>-->
                     <img
                       class="loader-child"
                       alt=""
@@ -795,7 +795,10 @@
                 </div>
               </div>
               <div class="div72">
-                <span>Загрузите страницы паспорта </span>
+                <span><b>Загрузите страницы паспорта</b></span>
+              </div>
+              <div class="div73">
+                <span><b>Загрузите селфи с разворотом паспорта</b></span>
               </div>
             </div>
           </div>
@@ -851,7 +854,7 @@
                 </div>
                 <div class="loader-group">
                   <loader-field
-                    name="Загрузите селфи с разворотом паспорта и датой выдачи"
+                    name="Загрузите и разворот с датой выдачи"
                     :obligatory-field="true"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                     class="loader-file"
@@ -882,7 +885,7 @@
                   </div>
                 </div>
                 <div class="loader">
-                  <div class="loader5">
+                  <!--<div class="loader5">
                     <img
                       class="loader-child"
                       alt=""
@@ -890,7 +893,7 @@
                     />
 
                     <div class="div69">12%</div>
-                  </div>
+                  </div>-->
                   <img class="loader-child" alt="" src="../public/remove.svg" />
                 </div>
               </div>
@@ -1073,6 +1076,7 @@ const passportNumberString = reactive({
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  gap: 1.06em;
 }
 .div12 {
   position: relative;
@@ -1458,8 +1462,7 @@ const passportNumberString = reactive({
   height: 41.44em;
 }
 .div8 {
-  top: 11em;
-
+  top: 8em;
   left: 6vw;
   height: 59.06em;
 }
@@ -1531,7 +1534,7 @@ const passportNumberString = reactive({
 .header {
   // position: absolute;
   position: relative;
-  top: 2.25em;
+  top: 1em;
   // left: 1.5em;
   width: 21.38em;
   flex-direction: row;
@@ -1629,7 +1632,7 @@ const passportNumberString = reactive({
 }
 .registration-options-item {
   position: absolute;
-  height: 99.56%;
+  height: 88%;
   width: 100%;
   top: 0.44%;
   right: 0;
@@ -1660,7 +1663,7 @@ const passportNumberString = reactive({
 }
 .registration-options-inner {
   position: absolute;
-  height: 175.7%;
+  height: 235%;
   width: 100%;
   top: -0.22%;
   right: 0;
@@ -1843,7 +1846,7 @@ const passportNumberString = reactive({
 .icons-parent {
   align-self: stretch;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 1.06em;
@@ -2017,7 +2020,7 @@ const passportNumberString = reactive({
 }
 .icons-container {
   width: 17.25em;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   gap: 1.06em;
 }
@@ -2028,7 +2031,7 @@ const passportNumberString = reactive({
   z-index: 1;
   width: 100%;
 }
-.div72 {
+.div72, .div73 {
   position: absolute;
   margin: 0 !important;
   top: 1.67em;
@@ -2038,6 +2041,9 @@ const passportNumberString = reactive({
   font-weight: 300;
   z-index: 2;
   color: #3b3b3b;
+}
+.div73{
+  top: 55em;
 }
 .organizmloader,
 .parent22 {
@@ -2249,7 +2255,7 @@ const passportNumberString = reactive({
 .organizmloader1,
 .parent23 {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 }
 .loader5 {
   border-radius: 24px;
@@ -2278,7 +2284,7 @@ const passportNumberString = reactive({
 }
 .parent23 {
   position: absolute;
-  top: 30.88em;
+  top: 42em;
   left: 1.31em;
   align-items: center;
   gap: 1.13em;
@@ -2333,7 +2339,7 @@ const passportNumberString = reactive({
 }
 .page-title-parent {
   position: absolute;
-  top: 0.63em;
+  top: -0.63em;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -2345,8 +2351,8 @@ const passportNumberString = reactive({
 .header1 {
   position: absolute;
   height: 1.33%;
-  width: 100;
-  top: 3.55%;
+  width: 100vw;
+  top: 3.9%;
   right: -0.26%;
   bottom: 95.12%;
   left: -0.26%;
@@ -2516,7 +2522,7 @@ const passportNumberString = reactive({
   }
   .registration-options {
     position: relative;
-    top: 84em;
+    top: 82.5em;
     width: 400px;
     height: 37.63em;
     margin: 0 auto;
@@ -2524,7 +2530,7 @@ const passportNumberString = reactive({
   }
   .registration-options1 {
     position: relative;
-    top: 87em;
+    top: 86em;
     left: 1em;
     width: 400px;
     height: 43.31em;
@@ -2532,7 +2538,7 @@ const passportNumberString = reactive({
   }
   .registration-options-wrapper {
     position: relative;
-    top: 90em;
+    top: 85em;
     left: 1em;
     height: 50.56em;
     display: flex;
@@ -2546,14 +2552,14 @@ const passportNumberString = reactive({
     width: 100%;
   }
   .iphone-13-13-form-registr {
-    height: 250.44em;
+    height: 265em;
   }
   .form-registration-46 {
     height: 100%;
   }
   .buttonnext {
     position: relative;
-    top: 235em;
+    top: 245em;
     margin: 0 auto;
     left: 1em;
     width: 400px;

@@ -44,12 +44,12 @@
         </div>
         <div class="div1">Настройки</div>
       </div>-->
-      <div class="component-211" @click="toWallet">
+      <!--<div class="component-211" @click="toWallet">
         <div class="iconsmenu1">
           <img alt="" src="@/assets/desktop/menu-wallet.svg" />
         </div>
         <div class="div1">Кошелек</div>
-      </div>
+      </div>-->
       <div class="component-211" @click="toProfile">
         <div class="iconsmenu1">
           <div class="container-icon">
