@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title> {{ `Информация о пулле №${pool.id}`}} </template>
+    <template v-slot:title> {{ `Информация о пулле № ${pool?.id}`}} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -12,7 +12,7 @@
                 src="@/assets/images/pie-chart.svg"
               />
               <div class="ton-parent">
-                <div class="ton">{{ pool.available_liquidity }} TON</div>
+                <div class="ton">{{ pool?.available_liquidity }} TON</div>
                 <div class="div1">Одобренный лимит</div>
               </div>
             </div>
@@ -65,14 +65,14 @@
           <div class="field-parent">
             <div class="field">
               <div class="div7">Одобренный лимит:</div>
-              <div class="ton1">до {{ pool.available_liquidity }} TON</div>
+              <div class="ton1">до {{ pool?.available_liquidity }} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div7">Ставка:</div>
-              <div class="ton1">{{ pool.millipercent }}% в день</div>
+              <div class="ton1">{{ pool?.millipercent }}% в день</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -86,7 +86,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div7">Всего ликвидности:</div>
-              <div class="ton1">{{ pool.all_liquidity }} TON</div>
+              <div class="ton1">{{ pool?.all_liquidity }} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -152,7 +152,6 @@ import { Pool } from "@/types/pool.type";
 const { pool } = defineProps({
   pool: {
     type: Object as PropType<Pool>,
-    required: true
   },
   freePeriodParsed: {type: String},
   durationParsed: {type: String}

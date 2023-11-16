@@ -28,9 +28,9 @@
       }
     "
   >
-    <template v-slot:title>{{ `Получить займ из пулла №${pool.id}`  }}</template>
+    <template v-slot:title>{{ `Получить займ из пулла № ${pool?.id}`  }}</template>
     <template v-slot:body>
-      <get-loan :id="pool.id"
+      <get-loan :id="pool?.id"
       >
     </get-loan>
     </template>
@@ -73,7 +73,6 @@ const { state } = defineProps({
   },
   pool: {
     type: Object as PropType<Pool>,
-    required: true,
   }
 })
 

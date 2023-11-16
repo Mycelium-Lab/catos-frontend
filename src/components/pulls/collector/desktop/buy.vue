@@ -1,46 +1,17 @@
 <template>
-  <desktop-modal v-if="isPayment" @close="close">
-    <template v-slot:title> Покупка задолженности #12345 </template>
+  <transaction-desktop v-if="isTransaction && !transactionStatus" @close="isTransaction = false" 
+      :status="transactionStatus"
+      title="Подтвердите покупку задолжности"
+      subtitle="Пожалуйста, подтвердите покупку задолжности в своем кошельке"
+    ></transaction-desktop>
 
-    <template v-slot:body>
-      <payment-method
-        @qr="
-          () => {
-            isPayment = false;
-            isExtend = true;
-          }
-        "
-      ></payment-method>
-    </template>
-  </desktop-modal>
-  <confirm-qr-destop
-    v-if="isExtend"
-    @close="close"
-    @result="
-      () => {
-        isExtend = false;
-        isResult = true;
-      }
-    "
-  >
-    <template v-slot:header> Покупка задолженности #12345 </template>
-    <template v-slot:title>Take the loan </template>
-    <template v-slot:subtitle
-      >Scan the QR code with your phone's camera or <br />Tonkeeper
-    </template>
-
-    <template v-slot:action>Make transaction with Tokenkeeper</template>
-    <template v-slot:footer
-      >By proceeding, you accept the <br />
-      CATOS Terms of Service and Privacy Policy.</template
+    <status-modal-desktop
+      v-else-if="isTransaction && transactionStatus === 'success'"
+      actionGroupColumn
+      :firstAction="toMyLoans"
+      :lastAction="close"
+      @close="close"
     >
-  </confirm-qr-destop>
-  <status-modal-desktop
-    v-if="isResult"
-    actionGroupColumn
-    :lastAction="finish"
-    @close="close"
-  >
     <template v-slot:header> Получить займ из пулла #12345 </template>
 
     <template v-slot:title> Транзакция успешно выполнена </template>
@@ -60,35 +31,46 @@
       >Продолжить покупки</template
     >
   </status-modal-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" 
+      :status="transactionStatus"
+      title="Произошла ошибка при покупке задолжности"
+    >
+    </transaction-desktop>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-// @ts-ignore
-import desktopModal from "@/components/base/desktop-modal.vue";
-// @ts-ignore
-import ConfirmQrDestop from "@/components/base/confirm-qr-destop.vue";
-// @ts-ignore
+import { buyLoan } from "@/api/loans.api";
+import { ref, onMounted } from "vue";
+import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
-// @ts-ignore
-import paymentMethod from "@/components/base/desktop/modal-body/payment-method.vue";
+
+const isTransaction = ref(false)
+const transactionStatus = ref('')
+
+onMounted(async () =>{
+  isTransaction.value = true
+  await buyLoan(poolId, 1)
+  .then(res => {
+    transactionStatus.value = 'success'
+  }).catch(e => {
+    transactionStatus.value = 'fail'
+    console.error(e)
+  })
+})
+
+const {poolId} = defineProps({
+  poolId: {type: Number, required: true}
+})
+
 const emits = defineEmits(["close", "myLoans"]);
 const close = () => {
   emits("close");
 };
 const toMyLoans = () => {
-  console.log("sold");
   emits("myLoans");
 };
 
-const finish = () => {
-  emits("close");
-  isResult.value = false;
-};
 
-const isPayment = ref(true);
-const isExtend = ref(false);
-const isResult = ref(false);
 </script>
 
 <style scoped>
