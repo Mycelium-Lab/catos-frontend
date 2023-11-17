@@ -28,6 +28,7 @@
                     "
                    :optionWidthDesk="329"
                     :style="{ width: '100%' }"
+                    data-element="country"
                   ></catos-select>
                 </div>
               </div>
@@ -309,6 +310,7 @@
                   : { width: '100%', opacity: '1' }
               "
               :disabled="passportDataStore.passportDTO.country !== 'Россия'"
+              data-element="region"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
@@ -348,6 +350,7 @@
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
               "
+                data-element="neighborhood"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
@@ -381,6 +384,7 @@
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
               "
+               data-element="city"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise1">
@@ -507,6 +511,7 @@
                   : { width: '100%', opacity: '1' }
               "
               :disabled="passportDataStore.passportDTO.country !== 'Россия' || isSameAddress"
+              data-element="country_living"
             ></catos-select>
           </div>
           <div class="fieldsinput">
@@ -545,6 +550,7 @@
                 passportDataStore.passportDTO.country !== 'Россия' ||
                 isSameAddress
               "
+                data-element="region_living"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
@@ -578,6 +584,7 @@
                   '' || passportDataStore.passportDTO.country !== 'Россия'
                   || isSameAddress
               "
+               data-element="city_living"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise1">
