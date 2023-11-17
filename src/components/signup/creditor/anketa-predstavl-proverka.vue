@@ -2715,8 +2715,8 @@ const handleNextClick = async () => {
   position: relative;
   background-color: #fdd674;
   width: 100vw;
-  height: 180em;
-  overflow-y: auto;
+  height: 200em;
+  overflow-y: hidden;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;

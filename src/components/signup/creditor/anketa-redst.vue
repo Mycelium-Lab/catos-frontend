@@ -508,6 +508,8 @@
                   width: '90%',
                   margin: '0 auto',
                   marginTop: '0.5em',
+                  poision: 'relative',
+                  bottom: '20px'
                 }"
                 data-element="file"
               ></catos-select>
@@ -894,7 +896,7 @@ const allDataEntered = computed(() => {
   backdrop-filter: blur(5px);
   border: 0.5px solid #2e3a59;
   box-sizing: border-box;
-  height: 41.5em;
+  height: 43em;
 }
 .div20 {
   position: relative;
@@ -1097,7 +1099,7 @@ const allDataEntered = computed(() => {
   overflow: hidden;
   color: #fff;
   width: 100%;
-  height: 12.7em;
+  height: 10em;
 }
 .business-registration-proof-group {
   gap: 1.06em;
@@ -1171,7 +1173,7 @@ const allDataEntered = computed(() => {
   background-color: rgba(237, 244, 255, 0.3);
   overflow: hidden;
   gap: 0.63em;
-  height: auto;
+  height: 10em;
   display: block;
   overflow: visible;
   display: flex;
@@ -1277,7 +1279,7 @@ const allDataEntered = computed(() => {
   gap: 0.88em;
 }
 .registration-options-parent {
-  gap: 3.25em;
+  gap: 5.25em;
 }
 
 .text-declaration {
@@ -1288,7 +1290,7 @@ const allDataEntered = computed(() => {
 }
 .registration-options-parent {
   position: absolute;
-  top: 65.25em;
+  top: 66.5em;
   left: 0;
   width: 88.7vw;
 }
@@ -1314,7 +1316,7 @@ const allDataEntered = computed(() => {
   cursor: pointer;
 }
 .buttonnext {
-  top: 124em;
+  top: 128em;
   left: 0;
   border-radius: 20px;
   background-color: #ffdb6d;

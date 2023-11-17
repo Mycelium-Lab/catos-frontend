@@ -252,13 +252,13 @@
                     placeholder="01.02.1994"
                     :style="{ width: '100%' }"
                   ></input-data>
-                  <div class="iconscalendar-wrapper">
+                  <!--<div class="iconscalendar-wrapper">
                     <img
                       class="iconscalendar"
                       alt=""
                       src="../public/iconscalendar.svg"
                     />
-                  </div>
+                  </div>-->
                 </div>
               </div>
             </div>
