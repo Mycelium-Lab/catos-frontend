@@ -374,4 +374,19 @@ const toPools = () => {
   font-family: Inter;
   overflow: hidden;
 }
+@media(min-width: 500px) {
+  .frame-group {
+    width: 352px;
+    position: relative;
+    margin: 0 auto;
+    left: 0px;
+    top: 10.13em;
+  }
+  .buttonnext, .frame-div,.frame-wrapper{
+    width: 100% !important;
+  }
+  .wrapper2{
+    display: none;
+  }
+}
 </style>
