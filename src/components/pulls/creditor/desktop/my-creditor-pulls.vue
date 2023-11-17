@@ -38,6 +38,7 @@
     "
   ></liquidity-management-desktop>
   <withdraw
+    :poolId="poolId"
     v-if="isWithdraw"
     @close="close"
     @qr="
@@ -48,6 +49,7 @@
     "
   ></withdraw>
   <add
+  :poolId="poolId"
     v-if="isAdd"
     @close="close"
     @qr="
@@ -159,6 +161,10 @@ const { state } = defineProps({
     type: Object,
     required: true,
   },
+  poolId: {
+    type: Number,
+    required: true
+  }
 });
 
 const isDetailOther = ref(state.detailOtherModal);

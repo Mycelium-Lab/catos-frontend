@@ -492,6 +492,7 @@
           @close="() => (isAllCreditor = false)"
         ></all-creditor-pulls>
         <my-creditor-pulls
+          :poolId="pool?.id ? pool?.id : 0"
           v-if="isMyCreditor"
           :state="myCreditorState"
           @loans="toLoans"
@@ -506,7 +507,7 @@
         </my-creditor-pulls>
         <all-borrower-pulls
           :pool="pool"
-          :freePeriod="parse(pool.free_period).days ? parse(pool.free_period).days : 0"
+          :freePeriod="pool?.free_period ? parse(pool.free_period).days : 0"
           v-if="isAllBorrower"
           :state="allBorrowerState"
           @close="
