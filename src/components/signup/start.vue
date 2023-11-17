@@ -19,8 +19,8 @@
                 Я даю согласие на обработку и хранение моих персональных данных
                 <div
                   v-if="
-                    roleStorage.get() === 'creditor' ||
-                    roleStorage.get() === 'collector'
+                    role === 'creditor' ||
+                    role === 'collector'
                   "
                 >
                   а также данных компании, которую я представляю
@@ -31,8 +31,8 @@
               <div
                 class="component-20-group"
                 v-if="
-                  roleStorage.get() === 'creditor' ||
-                  roleStorage.get() === 'collector'
+                  role === 'creditor' ||
+                  role === 'collector'
                 "
               >
                 <catos-checkbox
@@ -48,8 +48,8 @@
               <div
                 class="component-20-group"
                 v-if="
-                  roleStorage.get() === 'creditor' ||
-                  roleStorage.get() === 'collector'
+                  role === 'creditor' ||
+                  role === 'collector'
                 "
               >
                 <catos-checkbox
@@ -57,11 +57,11 @@
                   variant="rounded"
                 ></catos-checkbox>
 
-                <div class="div9" v-if="roleStorage.get() === 'creditor'">
+                <div class="div9" v-if="role === 'creditor'">
                   Продолжая, я соглашаюсь, что моя организация имеет право
                   оказания услуг кредиторской деятельности
                 </div>
-                <div class="div9" v-else-if="roleStorage.get() === 'collector'">
+                <div class="div9" v-else-if="role === 'collector'">
                   Продолжая, я соглашаюсь, что моя организация имеет право
                   оказания услуг коллекторской деятельности
                 </div>
@@ -167,8 +167,17 @@
         </div>
       </div>
     </div>
-    <div
+    <div 
+      v-if="role === 'creditor' || role === 'collector'"
       class="buttonnext"
+      @click.native="handleNextClick"
+      :class="{ disabled: !isLinkActive }"
+    >
+      <b class="b1">Продолжить</b>
+    </div>
+    <div 
+      v-else
+      class="buttonnext_borrower buttonnext"
       @click.native="handleNextClick"
       :class="{ disabled: !isLinkActive }"
     >
@@ -223,9 +232,14 @@ const checkboxes = reactive({
   box3: false,
 });
 const repeatPass = ref("");
+
+const role = computed(() => {
+  return roleStorage.get()
+})
+
 const isLinkActive = computed(() => {
   return (
-    (roleStorage.get() === "collector" || roleStorage.get() === "creditor"
+    (role.value === "collector" || role.value === "creditor"
       ? checkboxes.box1 && checkboxes.box2 && checkboxes.box3
       : checkboxes.box1) &&
     repeatPass.value === userDataStore.userDTO.password &&
@@ -1073,7 +1087,11 @@ const errorMessage = ref("");
     margin: 0 auto;
     left: 0em;
     top: 58em;
+    &_borrower {
+      top: 50em
+    }
   }
+  
   /*.form-registration-16,
   .iphone-13-13- {
     height: 100%;

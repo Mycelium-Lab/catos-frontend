@@ -28,6 +28,7 @@
                     "
                     :optionWidthDesk="352"
                     :style="{ width: '100%' }"
+                    data-element="countries"
                   ></catos-select>
                 </div>
               </div>
@@ -74,13 +75,13 @@
                       passportDataStore.passportDTO.issue_date
                     "
                   ></input-data>
-                  <div class="iconscalendar-wrapper">
+                  <!--<div class="iconscalendar-wrapper">
                     <img
                       class="iconscalendar"
                       alt=""
                       src="../public/iconscalendar.svg"
                     />
-                  </div>
+                  </div>-->
                 </div>
               </div>
             </div>
@@ -197,13 +198,13 @@
                     placeholder="01.02.1994"
                     :style="{ width: '100%' }"
                   ></input-data>
-                  <div class="iconscalendar-wrapper">
+                 <!-- <div class="iconscalendar-wrapper">
                     <img
                       class="iconscalendar"
                       alt=""
                       src="../public/iconscalendar.svg"
                     />
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="parent39">
@@ -385,6 +386,7 @@
                     ev)
               "
               :disabled="passportDataStore.passportDTO.country !== 'Россия'"
+              data-element="region"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -424,6 +426,7 @@
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
               "
+                data-element="neighborhood"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -457,6 +460,7 @@
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
               "
+               data-element="city"
             ></catos-select>
           </div>
           <div class="text2">
@@ -579,6 +583,7 @@
                 passportDataStore.passportDTO.country !== 'Россия' ||
                 isSameAddress
               "
+               data-element="region_living"
             ></catos-select>
           </div>
           <div class="fieldsinput">
@@ -617,6 +622,7 @@
                 passportDataStore.passportDTO.country !== 'Россия' ||
                 isSameAddress
               "
+               data-element="neighborhood_living"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -650,6 +656,7 @@
                 passportDataStore.passportDTO.country !== 'Россия' ||
                 isSameAddress
               "
+               data-element="city_living"
             ></catos-select>
           </div>
           <div class="text2">
@@ -1825,7 +1832,7 @@ const isSameAddressHandler = (ev: boolean) => {
 }
 .registration-options-item {
   position: absolute;
-  height: 88%;
+  height: 96.5%;
   width: 100%;
   top: 0.44%;
   right: 0;
@@ -1838,7 +1845,7 @@ const isSameAddressHandler = (ev: boolean) => {
 }
 .frame-parent5 {
   position: absolute;
-  top: 23.63em;
+  top: 27em;
   left: 1.31em;
   display: flex;
   flex-direction: column;
@@ -2732,7 +2739,7 @@ const isSameAddressHandler = (ev: boolean) => {
   }
   .registration-options-wrapper {
     position: relative;
-    top: 85em;
+    top: 88em;
     left: 1em;
     height: 50.56em;
     display: flex;
@@ -2753,7 +2760,7 @@ const isSameAddressHandler = (ev: boolean) => {
   }
   .buttonnext {
     position: relative;
-    top: 245em;
+    top: 247em;
     margin: 0 auto;
     left: 1em;
     width: 400px;
@@ -2818,7 +2825,7 @@ const isSameAddressHandler = (ev: boolean) => {
   align-self: stretch;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   gap: 0.5em;
   width: 100%;

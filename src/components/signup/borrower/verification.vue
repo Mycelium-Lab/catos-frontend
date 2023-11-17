@@ -51,6 +51,7 @@
                   : { width: '100%', opacity: '1' }
               "
                 :disabled="passportDataStore.passportDTO.country !== 'Россия'"
+                data-element="country"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -67,6 +68,7 @@
                   : { width: '100%', opacity: '1' }
               "
                 :disabled="passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
+                data-element="neighborhoods"
               ></catos-select>
             </div>
             <div class="fieldsinput">
@@ -83,6 +85,7 @@
                   : { width: '100%', opacity: '1' }
               "
                :disabled="passportDataStore.passportDTO.registration_address.region === '' || passportDataStore.passportDTO.country !== 'Россия'"
+               data-element="country"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -168,6 +171,7 @@
                     @selected="ev => (passportDataStore.passportDTO.country = ev)"
                     :optionWidthDesk="405"
                     :style="{ width: '100%' }"
+                    data-element="country_passport"
                   ></catos-select>
                 </div>
               </div>
@@ -252,13 +256,13 @@
                     placeholder="01.02.1994"
                     :style="{ width: '100%' }"
                   ></input-data>
-                  <div class="iconscalendar-wrapper">
+                  <!--<div class="iconscalendar-wrapper">
                     <img
                       class="iconscalendar"
                       alt=""
                       src="../public/iconscalendar.svg"
                     />
-                  </div>
+                  </div>-->
                 </div>
               </div>
             </div>

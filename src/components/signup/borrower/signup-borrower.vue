@@ -28,6 +28,7 @@
                     "
                    :optionWidthDesk="329"
                     :style="{ width: '100%' }"
+                    data-element="country"
                   ></catos-select>
                 </div>
               </div>
@@ -309,6 +310,7 @@
                   : { width: '100%', opacity: '1' }
               "
               :disabled="passportDataStore.passportDTO.country !== 'Россия'"
+              data-element="region"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
@@ -348,6 +350,7 @@
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
               "
+                data-element="neighborhood"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
@@ -381,6 +384,7 @@
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
               "
+               data-element="city"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise1">
@@ -507,6 +511,7 @@
                   : { width: '100%', opacity: '1' }
               "
               :disabled="passportDataStore.passportDTO.country !== 'Россия' || isSameAddress"
+              data-element="country_living"
             ></catos-select>
           </div>
           <div class="fieldsinput">
@@ -545,6 +550,7 @@
                 passportDataStore.passportDTO.country !== 'Россия' ||
                 isSameAddress
               "
+                data-element="region_living"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise2">
@@ -578,6 +584,7 @@
                   '' || passportDataStore.passportDTO.country !== 'Россия'
                   || isSameAddress
               "
+               data-element="city_living"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise1">
@@ -1536,7 +1543,7 @@ const { isMobile } = useDevice();
   text-decoration: none;
   &_desktop {
     position: relative;
-    top: 172em;
+    top: 158em;
     left: 1.5em;
     border-radius: 20px;
     background-color: #ffdb6d;
@@ -1746,9 +1753,12 @@ const { isMobile } = useDevice();
   height: 37.75em;
   margin: 0 auto;
 }
+.registration-options-wrapper_desktop {
+  height: 28.75em;
+}
 .registration-options-item {
   position: absolute;
-  height: 39em;
+  height: 43em;
   width: 100%;
   top: 0.44%;
   right: 0;
@@ -1772,7 +1782,7 @@ const { isMobile } = useDevice();
   width: 88%;
 }
 .frame-parent5 {
-  top: 24em;
+  top: 27em;
   gap: 1em;
 }
 
@@ -2171,7 +2181,7 @@ const { isMobile } = useDevice();
   color: #3b3b3b;
 }
 .div72{
-  top: 56em;
+  top: 39.8em;
 }
 .organizmloader,
 .parent24 {
@@ -2414,7 +2424,7 @@ const { isMobile } = useDevice();
 }
 .parent25 {
   position: absolute;
-  top: 42em;
+  top: 30em;
   left: 1.31em;
   align-items: center;
   gap: 1.13em;
@@ -2432,11 +2442,11 @@ const { isMobile } = useDevice();
 .registration-options2 {
   position: relative;
   width: 100%;
-  height: 40.81em;
+  height: 28em;
 }
 
 .registration-options-wrapper_desktop {
-  top: 18em;
+  top: 22.2em;
 }
 .form-registration-46 {
   position: absolute;
@@ -2620,7 +2630,7 @@ const { isMobile } = useDevice();
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 240em;
+  height: 225em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
@@ -2634,5 +2644,6 @@ const { isMobile } = useDevice();
   justify-content: flex-start;
   gap: 0.5em;
   width: 100%;
+  align-items: center;
 }
 </style>
