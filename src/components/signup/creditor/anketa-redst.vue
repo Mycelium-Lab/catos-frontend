@@ -117,6 +117,7 @@
                 "
                 @selected="ev => (paperDataStore.paperDTO.address.region = ev)"
                 :disabled="paperDataStore.paperDTO.country !== 'Россия'"
+                data-element="region"
               ></catos-select>
             </div>
 
@@ -152,6 +153,7 @@
                   paperDataStore.paperDTO.address.region === '' ||
                   paperDataStore.paperDTO.country !== 'Россия'
                 "
+                data-element="neighborhood"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise3">
@@ -181,6 +183,7 @@
                   paperDataStore.paperDTO.address.region === '' ||
                   paperDataStore.paperDTO.country !== 'Россия'
                 "
+                data-element="city"
               ></catos-select>
             </div>
             <div class="text2">

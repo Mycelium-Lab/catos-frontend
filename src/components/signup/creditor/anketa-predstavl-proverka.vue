@@ -205,6 +205,7 @@
                     : { width: '100%', opacity: '1' }
                 "
                 :disabled="true"
+                data-element="region"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -236,6 +237,7 @@
                     : { width: '100%', opacity: '1' }
                 "
                 :disabled="true"
+                data-element="neighborhoods"
               ></catos-select>
             </div>
             <div class="fieldsinput">
@@ -270,6 +272,7 @@
                     : { width: '100%', opacity: '1' }
                 "
                 :disabled="true"
+                data-element="city"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -371,8 +374,8 @@
                 @selected="ev => (paperDataStore.paperDTO.country = ev)"
                 :optionWidthDesk="329"
                 :style="{ width: '100%' }"
-                data-element="state"
                 :disabled="true"
+                data-element="country_redst"
               ></catos-select>
             </div>
             <div class="fieldsinput">
@@ -392,8 +395,8 @@
                 "
                 :optionWidthDesk="329"
                 :style="{ width: '100%' }"
-                data-element="select-form"
                 :disabled="true"
+                data-element="form"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise">
@@ -461,6 +464,7 @@
                 "
                 @selected="ev => (paperDataStore.paperDTO.address.region = ev)"
                 :disabled="true"
+                data-element="region_redst"
               ></catos-select>
             </div>
             <div class="fieldsinput">
@@ -493,6 +497,7 @@
                   ev => (paperDataStore.paperDTO.address.neighborhood = ev)
                 "
                 :disabled="true"
+                data-element="neighborhood_redst"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise3">
@@ -519,6 +524,7 @@
                 "
                 @selected="ev => (paperDataStore.paperDTO.address.city = ev)"
                 :disabled="true"
+                data-element="city_redst"
               ></catos-select>
             </div>
             <div class="fieldsinputchoise3">
@@ -635,6 +641,7 @@
                     :optionWidthDesk="352"
                     :style="{ width: '100%' }"
                     :disabled="true"
+                    data-element="city_passport"
                   ></catos-select>
                 </div>
               </div>

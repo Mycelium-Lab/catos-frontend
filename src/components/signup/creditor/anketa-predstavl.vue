@@ -28,6 +28,7 @@
                     "
                     :optionWidthDesk="352"
                     :style="{ width: '100%' }"
+                    data-element="countries"
                   ></catos-select>
                 </div>
               </div>
@@ -385,6 +386,7 @@
                     ev)
               "
               :disabled="passportDataStore.passportDTO.country !== 'Россия'"
+              data-element="region"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -424,6 +426,7 @@
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
               "
+                data-element="neighborhood"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -457,6 +460,7 @@
                 passportDataStore.passportDTO.registration_address.region ===
                   '' || passportDataStore.passportDTO.country !== 'Россия'
               "
+               data-element="city"
             ></catos-select>
           </div>
           <div class="text2">
@@ -579,6 +583,7 @@
                 passportDataStore.passportDTO.country !== 'Россия' ||
                 isSameAddress
               "
+               data-element="region_living"
             ></catos-select>
           </div>
           <div class="fieldsinput">
@@ -617,6 +622,7 @@
                 passportDataStore.passportDTO.country !== 'Россия' ||
                 isSameAddress
               "
+               data-element="neighborhood_living"
             ></catos-select>
           </div>
           <div class="fieldsinputchoise3">
@@ -650,6 +656,7 @@
                 passportDataStore.passportDTO.country !== 'Россия' ||
                 isSameAddress
               "
+               data-element="city_living"
             ></catos-select>
           </div>
           <div class="text2">
