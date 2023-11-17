@@ -67,7 +67,7 @@
                 </div>
               </div>
               <div class="div9">
-                <b>{{ errorMessage }}</b>
+                <b>{{ !isValidEmail ? '' : errorMessage }}</b>
               </div>
             </div>
           </div>
@@ -107,9 +107,10 @@
                 <span class="span">*</span>
               </div>
             </div>
-            <div class="div16">
-              Укажите действующую почту. Она будет использована для авторизации
-              и восстановления доступа
+            <div :class="isValidEmail ? 'div16' : 'div16_error div16'">
+              {{ 
+                !isValidEmail ? errorMessage : ' Укажите действующую почту. Она будет использована для авторизации и восстановления доступа'  
+              }}
             </div>
             <input-data
               class="phone-field"
@@ -208,11 +209,12 @@
 <script setup lang="ts">
 import inputData from "../../components/fields/input-data.vue";
 import catosCheckbox from "../../components/ui-kit/catos-checkbox.vue";
-import { ref, computed, reactive, KeepAlive } from "vue";
+import { ref, computed, reactive, watch } from "vue";
 import { useUserDataStore } from "@/stores/userData";
 import { roleStorage } from "@/utils/localStorage";
 import { register } from "@/api/users.api";
 import router from "@/router";
+import { validateEmail } from '@/utils/validateInput'
 
 const title = computed(() => {
   return window.history.state.title;
@@ -245,7 +247,8 @@ const isLinkActive = computed(() => {
     repeatPass.value === userDataStore.userDTO.password &&
     userDataStore.userDTO.email &&
     userDataStore.userDTO.password &&
-    userDataStore.userDTO.phone
+    userDataStore.userDTO.phone &&
+    isValidEmail.value
   );
 });
 const handleNextClick = async () => {
@@ -266,6 +269,28 @@ const handleNextClick = async () => {
     });
 };
 const errorMessage = ref("");
+const isValidEmail = ref(true);
+
+
+watch(userDataStore, (newVal) => {
+  console.log('newVal', newVal.userDTO.email)
+  if(newVal?.userDTO?.email) {
+    const isValid = validateEmail(newVal.userDTO.email)  
+    if(!isValid) {
+      errorMessage.value = 'Некорректный адрес электронной почты. Пример, example@mail.com'
+      isValidEmail.value = false
+    }
+    else {
+      errorMessage.value = ''
+      isValidEmail.value = true
+    }
+  }
+  else {
+      errorMessage.value = ''
+      isValidEmail.value = true
+    }
+
+}, {deep: true})
 </script>
 
 <style scoped lang="scss">
@@ -403,7 +428,7 @@ const errorMessage = ref("");
   font-size: 0.63em;
   line-height: 120%;
   font-weight: 300;
-  color: #78789a;
+  color: rgba(59, 59, 59, 0.58);
   display: flex;
   align-items: center;
 }
@@ -476,6 +501,9 @@ const errorMessage = ref("");
   font-weight: 300;
   color: rgba(59, 59, 59, 0.58);
   align-items: center;
+  &_error{
+    color: #E93E33;
+  }
 }
 .alessowaitsongmailcom {
   flex: 1;
