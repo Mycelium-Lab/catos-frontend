@@ -28,10 +28,16 @@
         <div class="div10">Последний этап</div>
         <div class="div11">Привяжите ваш тон кошелек</div>
       </div>
-      <router-link class="buttonnext" to="connect-wallet-finish">
+      <div class="button-group">
+        <router-link :class="isMobile ? 'buttonnext' : 'buttonnext_connect_desktop buttonnext_desktop'" to="connect-wallet-finish">
         <b class="ton-kepeer">Подключить TON Kepeer</b>
       </router-link>
-      <div class="catos-container">
+      </div>
+      <div    :class="
+          isMobile
+            ? 'catos-container'
+            : 'catos-container_desktop catos-container'
+        ">
         <span class="ton-keeper-txt-container_preview ton-keeper-txt-container">
           <p class="catos-">CATOS - платформа кредитования</p>
           <p class="catos-">на базе блокчейна TON</p>
@@ -45,10 +51,14 @@
           </p>
         </span>
       </div>
-      <div class="faq">
-        <div class="faq1">
+      <div :class="isMobile ? 'faq' : 'faq_desktop faq'">
+        <div :class="isMobile ? 'faq1' : 'faq1_desktop'">
           <div class="faq2">FAQ:</div>
-          <div class="frame-group">
+          <div
+            :class="
+              isMobile ? 'frame-group' : 'frame-group_desktop frame-group'
+            "
+          >
             <div class="catos-group">
               <div class="catos1">
                 Полный и подробный гайд по использованию платформы CATOS
@@ -58,9 +68,9 @@
             <div class="catos-group">
               <div class="ton-keeper2">
                 <span class="ton-keeper-txt-container">
-                  <p class="catos-">Полный и подробный гайд</p>
                   <p class="catos-">
-                    по установке использованию криптокошелька TON Keeper
+                    Полный и подробный гайд по установке использованию
+                    криптокошелька TON Keeper
                   </p>
                 </span>
               </div>
@@ -69,7 +79,7 @@
           </div>
         </div>
         <div class="faq-child"></div>
-        <div class="download">
+        <div :class="isMobile ? 'download' : 'download_desktop download'">
           <div class="ton-keeper-container">
             <span>Скачать TON Keeper: </span>
             <span class="ios">для iOS, для РС, для MAC</span>
@@ -119,7 +129,10 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useDevice } from "@/compossables/useDevice";
+const { isMobile } = useDevice();
+</script>
 
 <style scoped lang="scss">
 .bg-icon {
@@ -244,6 +257,28 @@
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
+
+  &_desktop {
+    position: relative;
+    top: 17em;
+
+    border-radius: 20px;
+    background: linear-gradient(89.77deg, #9747ff, #ad6fff);
+    width: 23.38em;
+    height: 3em;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    color: #f3f3f3;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    cursor: pointer;
+  }
 }
 .catos- {
   margin: 0;
@@ -267,6 +302,15 @@
   left: 3.75em;
   font-weight: 300;
   width: 77vw;
+
+  &_desktop {
+    position: relative;
+    top: 8.5em;
+    left: 0em;
+    font-weight: 300;
+    width: 40.38em;
+    margin: 0 auto;
+  }
 }
 .catos1,
 .faq2 {
@@ -309,7 +353,7 @@
   position: relative;
 }
 .ton-keeper-txt-container {
-  width: 70%;
+  width: 100%;
   &_preview {
     width: 100%;
   }
@@ -321,7 +365,7 @@
   font-weight: 300;
   display: flex;
   align-items: center;
-  width: 21.08em;
+  width: 80%;
   flex-shrink: 0;
   z-index: 0;
 }
@@ -336,9 +380,15 @@
   gap: 1em;
   color: #3b3b3b;
   width: 77vw;
+  &_desktop {
+    width: 28em;
+  }
 }
 .faq1 {
   gap: 0.38em;
+  &_desktop {
+    width: 28em;
+  }
 }
 .faq-child {
   align-self: stretch;
@@ -404,9 +454,12 @@
   flex-direction: column;
 }
 .download {
-  width: 77vw;
   gap: 1.06em;
+  width: 77vw;
   color: #3b3b3b;
+  &_desktop {
+    width: 28em;
+  }
 }
 .faq {
   position: absolute;
@@ -414,6 +467,15 @@
   left: 11vw;
   gap: 2em;
   text-align: left;
+  &_desktop {
+    position: relative;
+    top: 14em;
+    left: 1em;
+    gap: 2em;
+    text-align: left;
+    width: 30em;
+    margin: 0 auto;
+  }
 }
 .form-registration-66 {
   position: absolute;
@@ -422,7 +484,7 @@
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 53.56em;
+  height: 56.56em;
   text-align: center;
   color: rgba(59, 59, 59, 0.96);
 }
@@ -580,10 +642,20 @@
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 65.81em;
+  height: 68.81em;
   overflow-y: auto;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
+}
+.buttonnext_connect_desktop {
+  position: static;
+}
+.button-group {
+  position: relative;
+  top: 17em;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 </style>
