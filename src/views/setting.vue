@@ -9,7 +9,7 @@
                 ? "Заемщик"
                 : role === "collector"
                 ? "Коллектор"
-                : role === "depositor"
+                : role === "investor"
                 ? "Инвестор"
                 : "Кредитор"
             }}</b>
@@ -70,7 +70,7 @@
                     ? "Заемщик"
                     : role === "collector"
                     ? "Коллектор"
-                    : role === "depositor"
+                    : role === "investor"
                     ? "Инвестор"
                     : "Кредитор"
                 }}
@@ -161,7 +161,7 @@
           <img class="iconchange" alt="" src="./public/iconchange.svg" />
         </router-link>
         <router-link
-          v-if="role === 'collector' || role === 'depositor'"
+          v-if="role === 'collector' || role === 'investor'"
           class="field-button"
           id="fieldButtonContainer1"
           :to="{ name: 'scrinning' }"
@@ -170,7 +170,7 @@
           <img class="iconchange" alt="" src="./public/iconchange.svg" />
         </router-link>
         <div
-          v-if="role === 'creditor' || role === 'depositor'"
+          v-if="role === 'creditor' || role === 'investor'"
           class="field-button"
         >
           <div class="api">Изменить данные компании</div>
@@ -192,14 +192,14 @@
     <template v-slot:title> Профиль </template>
     <template v-slot:body>
       <profile-card></profile-card>
-      <edit-card></edit-card>
+      <edit-card :email="profile.email" :phone="profile.phone"></edit-card>
       <setting-card></setting-card>
     </template>
   </default-desktop>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import defaultSetting from "@/components/layouts/default-setting.vue";
 import catosSwitch from "@/components/ui-kit/catos-switch.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";
@@ -208,8 +208,8 @@ import DefaultDesktop from "@/components/layouts/default-desktop.vue";
 import profileCard from "@/components/setting/desktop/profile-card.vue";
 import editCard from "@/components/setting/desktop/edit-card.vue";
 import settingCard from "@/components/setting/desktop/setting-card.vue";
-
 import { useDevice } from "@/compossables/useDevice";
+import { roleStorage, profileStorage } from "@/utils/localStorage";
 
 const { isMobile } = useDevice();
 
@@ -217,9 +217,14 @@ const isLoadPhoto = ref(false);
 
 const router = useRouter();
 
-const role = ref(
-  localStorage.getItem ? JSON.parse(localStorage.getItem("role")!) : ""
-);
+const role = computed(() => {
+  return roleStorage.get()
+})
+
+const profile = computed(() => {
+  return profileStorage.get()!
+})
+
 
 const editPhoto = () => {
   router.push({ name: "edit-photo" });
