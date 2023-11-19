@@ -981,10 +981,10 @@
         <div class="div68">3 шаг</div>
       </div>
     </div>
-    <router-link to="" @click="$router.go(-1)" class="buttonback">
+    <!-- <router-link to="" @click="$router.go(-1)" class="buttonback">
       <div class="div81">Назад</div>
       <img class="search-icon" alt="" src="../public/search-icon.svg" />
-    </router-link>
+    </router-link> -->
     <div class="header1">
       <b class="page-title1">Регистрация заемщика</b>
     </div>

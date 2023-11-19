@@ -601,10 +601,10 @@
         <div class="div22">3 шаг</div>
       </div>
     </div>
-    <router-link class="buttonback" to="" @click="$router.go(-1)">
+    <!-- <router-link class="buttonback" to="" @click="$router.go(-1)">
       <div class="div34">Назад</div>
       <img class="search-icon" alt="" src="../public/search-icon.svg" />
-    </router-link>
+    </router-link> -->
   </div>
 </template>
 

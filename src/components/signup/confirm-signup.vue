@@ -44,7 +44,7 @@
                 <div class="div25">60 сек</div>
               </div>-->
             </div>
-            <div class="iconssend-parent">
+            <!-- <div class="iconssend-parent">
               <img
                 class="iconsmobile"
                 alt=""
@@ -53,7 +53,7 @@
               <router-link to="" @click="$router.go(-1)">
                 <div class="div24">Именить номер</div>
               </router-link>
-            </div>
+            </div> -->
           </div>
           <div class="inputfields">
             <input
@@ -110,7 +110,7 @@
               <div class="div25">60 сек</div>
             </div>-->
           </div>
-          <div class="iconssend-parent">
+          <!-- <div class="iconssend-parent">
             <img
               class="iconsmobile"
               alt=""
@@ -119,7 +119,7 @@
             <router-link to="" @click="$router.go(-1)">
               <div class="div24">Именить email</div>
             </router-link>
-          </div>
+          </div> -->
         </div>
         <div class="inputfields">
           <input
@@ -154,10 +154,10 @@
         <b class="b1">Продолжить</b>
       </router-link>
     </div>
-    <router-link class="buttonback" to="" @click="$router.go(-1)">
+    <!-- <router-link class="buttonback" to="" @click="$router.go(-1)">
       <div class="div67">Назад</div>
       <img class="search-icon" alt="" src="./public/search-icon.svg" />
-    </router-link>
+    </router-link> -->
     <div class="header">
       <div class="page-title-parent">
         <b class="page-title1">Подтверждение регистрации</b>

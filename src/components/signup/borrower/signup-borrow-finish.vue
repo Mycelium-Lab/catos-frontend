@@ -238,10 +238,10 @@
         <div class="div23">5 шаг</div>
       </div>
     </div>
-    <router-link class="buttonback" to="" @click="$router.go(-1)">
+    <!-- <router-link class="buttonback" to="" @click="$router.go(-1)">
       <div class="div24">Назад</div>
       <img class="search-icon" alt="" src="../public/search-icon.svg" />
-    </router-link>
+    </router-link> -->
   </div>
 </template>
 
