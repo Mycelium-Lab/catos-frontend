@@ -47,11 +47,11 @@ export const useLoginApi = () => {
     localStorage.setItem('role', JSON.stringify(res.data.role))
     setRole(res.data.role)
     setProfile({
-      email: res.data.email ? res.data.email : '', 
-      phone: res.data.phone ? res.data.phone : '', 
-      name: res.data.passport.name ? res.data.passport.name : '',
-      surname: res.data.passport.surname ? res.data.passport.surname : '',
-      middlename: res.data.passport.middlename ? res.data.passport.middlename : ''
+      email: res.data?.email ? res.data?.email : '', 
+      phone: res.data?.phone ? res.data?.phone : '', 
+      name: res.data?.passport?.name ? res.data?.passport?.name : '',
+      surname: res.data?.passport?.surname ? res.data?.passport?.surname : '',
+      middlename: res.data?.passport?.middlename ? res.data?.passport?.middlename : ''
     })
   
     return {
