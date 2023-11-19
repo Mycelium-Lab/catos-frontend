@@ -82,10 +82,6 @@ const { state } = defineProps({
     type: Number,
     required: true,
   },
-  freePeriod: {
-    type: Number,
-    required: true,
-  }
 })
 
 const isDetailOther = ref(state.detailOtherModal);
