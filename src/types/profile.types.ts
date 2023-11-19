@@ -9,6 +9,8 @@ export type ProfileData = {
 "phone_verified": boolean,
 "role": Role,
 "address": string,
+"wl_status": string,
+"kyc": boolean,
 "passport": {
   "name": string,
   "surname": string,
@@ -50,6 +52,7 @@ export type ProfileData = {
   "selfie": string,
   "id": number
 },
+"passport_id": number,
 "userinfo_id": number
 }
 
