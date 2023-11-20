@@ -54,7 +54,7 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Просрочен на:</div>
-                        <div class="ton">{{ expired }}</div>
+                        <div class="ton">{{ expired }} дня</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
