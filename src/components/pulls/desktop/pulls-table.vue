@@ -614,6 +614,7 @@
         ></all-collector-pulls>
         <my-collector-pulls
           v-if="isMyCollector"
+          :loan="loan"
           @close="
             () => {
               isMyCollector = false;

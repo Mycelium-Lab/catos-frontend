@@ -1,6 +1,6 @@
 <template>
   <desktop-modal v-if="isDetail" @close="close">
-    <template v-slot:title> Информация о задолженности #12345 </template>
+    <template v-slot:title> Информация о задолженности #{{ loan?.id }} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -163,35 +163,37 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div23">Имя:</div>
-                        <div class="ton">Иван Иванов</div>
+                        <div class="ton">
+                          {{ loan?.borrower?.passport?.name ? loan?.borrower?.passport?.name : ''}} 
+                        </div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div23">Проживает в:</div>
-                        <div class="ton">Москве</div>
+                        <div class="ton">{{  loan?.borrower?.passport?.living_address?.city ? loan?.borrower?.passport?.living_address?.city : ''  }}</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div23">Возраст:</div>
-                        <div class="ton">37 лет</div>
+                        <div class="ton">{{ age }} лет</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div23">Годовой доход:</div>
-                        <div class="ton">2 700 000 руб</div>
+                        <div class="ton">{{ loan?.borrower?.userinfo?.revenue ? loan?.borrower?.userinfo?.revenue : '' }} руб</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div23">Сфера деятельности:</div>
-                        <div class="ton">Програмист</div>
+                        <div class="ton">{{ loan?.borrower?.userinfo?.employment_type ? loan?.borrower?.userinfo?.employment_type : ''}}</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -233,7 +235,7 @@
                       />
                       <div class="container">
                         <div class="div34">Стоимость:</div>
-                        <div class="ton5">1 537 000 TON</div>
+                        <div class="ton5">{{ loan?.price }} TON</div>
                       </div>
                     </div>
                     <div class="frame-child" />
@@ -297,21 +299,35 @@
   ></status-change>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType, computed } from "vue";
 // @ts-ignore
 import desktopModal from "@/components/base/desktop-modal.vue";
 // @ts-ignore
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 import statusChange from "@/components/loans/creditor/desktop/modal-body/ status-change.vue";
+import { LoansBoughtResponse } from "@/types/loan.types";
 const isDetail = ref(true);
 const isStatusChange = ref(false);
 const emits = defineEmits(["close"]);
 
+const {loan} = defineProps({
+  loan: { type: Object as PropType<LoansBoughtResponse>, }
+})
 const close = () => {
   emits("close");
 };
 const isCreditorInfo = ref(false);
+
+const age = computed(() => {
+  if(loan?.borrower?.passport?.birthdate) {
+    const nowYear = new Date().getFullYear()  
+    const yearBirth = loan?.borrower?.passport?.birthdate.split('-')[0]
+    return nowYear - Number(yearBirth)
+  }
+  else return ''
+  
+})
 </script>
 <style scoped lang="scss">
 .div {
