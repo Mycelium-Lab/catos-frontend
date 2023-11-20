@@ -60,7 +60,8 @@
                         alt=""
                         src="@/assets/images/percent.svg"
                       />
-                      <div class="div122">1 день = 1%</div>
+                      <div v-if="role === 'collector'" class="div122">{{`1 день = ${poolByLoan?.millipercent / 100 }%`}}</div>
+                      <div v-else class="div122">1 день = 1%</div>
                     </div>
                     <div class="iconsbar-cards-parent">
                       <img
@@ -68,7 +69,8 @@
                         alt=""
                         src="@/assets/images/clock.svg"
                       />
-                      <div class="div123">3 дня = 0%</div>
+                      <div v-if="poolByLoan?.free_period && role === 'collector'" class="div123"> {{ parse(poolByLoan?.free_period).days }} дней = 0%</div>
+                       <div v-else class="div123"> 3 дня = 0%</div>
                     </div>
 
                     <div class="iconsbar-cards-parent">
@@ -77,7 +79,8 @@
                         alt=""
                         src="@/assets/images/activity.svg"
                       />
-                      <div class="div124">ROI = 75%</div>
+                      <div v-if="role === 'collector'" class="div124">{{`ROI = ${poolByLoan?.roi}%`}}</div>
+                      <div v-else class="div124">ROI = 50%</div>
                     </div>
                   </div>
                 </div>
@@ -155,7 +158,7 @@
                       <div class="div127"><b>Цена продажи:</b></div>
                     </div>
                     <div class="ton-wrapper">
-                      <div class="div128"><b>4 000 TON</b></div>
+                      <div class="div128"><b>{{ loan?.price }} TON</b></div>
                     </div>
                   </div>
                   <div v-if="role === 'collector'" class="line-div" />
@@ -164,7 +167,7 @@
                       <div class="div127">Текущий долг:</div>
                     </div>
                     <div class="ton-wrapper">
-                      <div class="div128">50 000 TON</div>
+                      <div class="div128">{{duty}} TON</div>
                     </div>
                   </div>
                   <div class="line-div" />
@@ -189,7 +192,7 @@
                       <div class="div127">Просрочен:</div>
                     </div>
                     <div class="ton-wrapper">
-                      <div class="div128">9 дней</div>
+                      <div class="div128">{{expired}} дней</div>
                     </div>
                   </div>
                   <div v-if="role !== 'collector'" class="line-div" />
@@ -227,7 +230,7 @@
                       <div class="div127">Стоимость покупки:</div>
                     </div>
                     <div class="ton-wrapper">
-                      <div class="div128">9 000 TON</div>
+                      <div class="div128">{{ loan?.price }} TON</div>
                     </div>
                   </div>
                   <div
@@ -614,6 +617,7 @@
         ></all-collector-pulls>
         <my-collector-pulls
           v-if="isMyCollector"
+          :poolByLoan="poolByLoan"
           :loan="loan"
           @close="
             () => {
@@ -644,7 +648,7 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, computed, ref, PropType } from "vue";
+import { Ref, computed, ref, PropType, onMounted } from "vue";
 
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import allCreditorPulls from "@/components/pulls/creditor/desktop/all-creditor-pulls.vue";
@@ -663,8 +667,9 @@ import { parse } from "tinyduration";
 import { Pool } from "@/types/pool.type";
 import { roleStorage } from "@/utils/localStorage";
 import { LoansResponse, LoansBoughtResponse } from "@/types/loan.types";
+import { usePoolItemStore } from "@/stores/poolItem"
 
-const { variant } = defineProps({
+const { variant, loan } = defineProps({
   variant: {
     type: String,
   },
@@ -680,6 +685,29 @@ const emits = defineEmits(["mySoldLoans"]);
 
 const role = computed(() => {
   return roleStorage.get()
+})
+
+const { poolItem } = usePoolItemStore()
+
+// @ts-ignore
+const poolByLoan = computed(() => poolItem(loan?.pool_id))
+
+const duty = computed(() => {
+  if(loan?.amount && loan?.paid_amount) {
+    return loan?.amount - loan?.paid_amount
+  }
+  else {
+    return ''
+  }
+})
+
+const expired = computed(() => {
+  if(loan?.end) {
+    const end = new Date(loan?.end);
+    const now = new Date();
+    const result = new Date(Number(now) - Number(end)).getDate()
+    return result
+  }
 })
 
 const toMySold = () => {
