@@ -44,6 +44,7 @@
                   placeholder="1234 098761"
                   :right="true"
                   :model-value="passportData"
+                  name="passport"
                   @update:model-value="
                     event => {
                       passportDataStore.passportDTO.series = Number(
@@ -306,7 +307,7 @@
               <button-slider
                 :value="paperDataStore.paperDTO.ownership"
                 :style="{ width: '100%' }"
-                variant="right"
+                :variant="paperDataStore.paperDTO.ownership ? 'left' : 'right'"
                 @on-slide="
                   ev => (paperDataStore.paperDTO.ownership = Boolean(ev))
                 "
@@ -843,7 +844,7 @@
                     ></loader-field>
                   </div>
                 </div>
-                <div class="loadernav">
+                <div v-if="userDataStore.firstPhotoFile != null" class="loadernav">
                   <div class="icons-group">
                     <div class="icons1">
                       <div class="iconsfile">
@@ -853,14 +854,12 @@
                           src="../public/vector.svg"
                         />
 
-                        <div class="jpg">JPG</div>
                       </div>
                     </div>
                     <div class="frame-wrapper1">
                       <div class="goa-filejpg-wrapper">
                         <div class="goa-filejpg">
-                          Goa_file2
-                          <span class="jpg1">.jpg</span>
+                          {{ userDataStore.firstPhotoFile.name }}
                         </div>
                       </div>
                     </div>
@@ -876,6 +875,11 @@
                       <div class="div69">100%</div>
                     </div>-->
                     <img
+                    @click="
+                          () => {
+                            userDataStore.firstPhotoFile = null;
+                          }
+                        "
                       class="loader-child"
                       alt=""
                       src="../public/remove.svg"
@@ -908,13 +912,13 @@
                     <loader-field
                       name="Страница с регистрацией"
                       :obligatory-field="true"
-                      :style="{ width: '100%', paddingBottom: '0.1em' }"
+                      :style="{width: '18.4em', paddingBottom: '0.1em' }"
                       class="loader-file"
                       @on-change="file => saveImage('passPhoto2', file)"
                     ></loader-field>
                   </div>
                 </div>
-                <div class="loadernav">
+                <div v-if="userDataStore.secondPhotoFile != null" class="loadernav">
                   <div class="icons-group">
                     <div class="icons1">
                       <div class="iconsfile">
@@ -923,15 +927,12 @@
                           alt=""
                           src="../public/vector.svg"
                         />
-
-                        <div class="jpg">JPG</div>
                       </div>
                     </div>
                     <div class="frame-wrapper1">
                       <div class="goa-filejpg-wrapper">
                         <div class="goa-filejpg">
-                          Goa_file2
-                          <span class="jpg1">.jpg</span>
+                         {{ userDataStore.secondPhotoFile.name }}
                         </div>
                       </div>
                     </div>
@@ -947,6 +948,11 @@
                       <div class="div69">100%</div>
                     </div>-->
                     <img
+                    @click="
+                          () => {
+                            userDataStore.secondPhotoFile = null;
+                          }
+                        "
                       class="loader-child"
                       alt=""
                       src="../public/remove.svg"
@@ -1014,7 +1020,7 @@
                 </div>
                 <div class="loader-group">
                   <loader-field
-                    name="Загрузите и разворот с датой выдачи"
+                    name="Cелфи с разворотом паспорта и датой выдачи"
                     :obligatory-field="true"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                     class="loader-file"
@@ -1022,7 +1028,7 @@
                   ></loader-field>
                 </div>
               </div>
-              <div class="loadernav">
+              <div v-if="userDataStore.selfieFile != null" class="loadernav">
                 <div class="icons-group">
                   <div class="icons1">
                     <div class="iconsfile">
@@ -1032,29 +1038,26 @@
                         src="../public/vector.svg"
                       />
 
-                      <div class="jpg">JPG</div>
                     </div>
                   </div>
                   <div class="frame-wrapper1">
                     <div class="goa-filejpg-wrapper">
                       <div class="goa-filejpg">
-                        Goa_file2
-                        <span class="jpg1">.jpg</span>
+                        {{ userDataStore.selfieFile.name }}
+                        
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="loader">
-                  <!--<div class="loader5">
-                    <img
-                      class="loader-child"
-                      alt=""
-                      src="../public/frame-18174861.svg"
-                    />
-
-                    <div class="div69">12%</div>
-                  </div>-->
-                  <img class="loader-child" alt="" src="../public/remove.svg" />
+                  <img 
+                  @click="
+                          () => {
+                            userDataStore.selfieFile = null;
+                          }
+                        "
+                    class="loader-child" alt="" 
+                    src="../public/remove.svg" />
                 </div>
               </div>
             </div>
@@ -2219,7 +2222,6 @@ const isSameAddressHandler = (ev: boolean) => {
   justify-content: flex-start;
 }
 .icons-container {
-  width: 17.25em;
   flex-direction: column;
   align-items: center;
   gap: 1.06em;
@@ -2255,7 +2257,6 @@ const isSameAddressHandler = (ev: boolean) => {
 .organizmloader {
   border-radius: 16px;
   background-color: rgba(237, 244, 255, 0.3);
-  width: 88%;
   padding: 3em 0.75em 1.25em;
   box-sizing: border-box;
   align-items: flex-start;
@@ -2475,7 +2476,6 @@ const isSameAddressHandler = (ev: boolean) => {
 .organizmloader1 {
   border-radius: 16px;
   background-color: rgba(237, 244, 255, 0.3);
-  width: 88%;
   overflow: hidden;
   padding: 3em 0.75em 1.25em;
   box-sizing: border-box;

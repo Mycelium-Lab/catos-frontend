@@ -41,6 +41,7 @@
                 </div>
                 <input-data
                   :model-value="passportData"
+                  name="passport"
                   @update:model-value="
                     event => {
                       passportDataStore.passportDTO.series = Number(
@@ -739,13 +740,13 @@
                     <loader-field
                       name="Разворот с датой выдачи и фотографией"
                       :obligatory-field="true"
-                      :style="{ width: '100%', paddingBottom: '0.1em' }"
+                      :style="{ paddingBottom: '0.1em' }"
                       class="loader-file"
                       @on-change="file => saveImage('passPhoto1', file)"
                     ></loader-field>
                   </div>
                 </div>
-                <div class="loadernav">
+                <div v-if="userDataStore.firstPhotoFile != null" class="loadernav">
                   <div class="icons-group">
                     <div class="icons1">
                       <div class="iconsfile">
@@ -754,15 +755,12 @@
                           alt=""
                           src="../public/vector.svg"
                         />
-
-                        <div class="jpg">JPG</div>
                       </div>
                     </div>
                     <div class="frame-wrapper1">
                       <div class="goa-filejpg-wrapper">
                         <div class="goa-filejpg">
-                          Goa_file2
-                          <span class="jpg1">.jpg</span>
+                          {{ userDataStore.firstPhotoFile.name }}
                         </div>
                       </div>
                     </div>
@@ -781,6 +779,11 @@
                       class="loader-child"
                       alt=""
                       src="../public/remove.svg"
+                      @click="
+                          () => {
+                            userDataStore.firstPhotoFile = null;
+                          }
+                        "
                     />
                   </div>
                 </div>
@@ -810,13 +813,13 @@
                     <loader-field
                       name="Страница с регистрацией"
                       :obligatory-field="true"
-                      :style="{ width: '100%', paddingBottom: '0.1em' }"
+                      :style="{ width: '18.04em', paddingBottom: '0.1em' }"
                       class="loader-file"
                       @on-change="file => saveImage('passPhoto2', file)"
                     ></loader-field>
                   </div>
                 </div>
-                <div class="loadernav">
+                <div v-if="userDataStore.secondPhotoFile != null" class="loadernav">
                   <div class="icons-group">
                     <div class="icons1">
                       <div class="iconsfile">
@@ -825,15 +828,12 @@
                           alt=""
                           src="../public/vector.svg"
                         />
-
-                        <div class="jpg">JPG</div>
                       </div>
                     </div>
                     <div class="frame-wrapper1">
                       <div class="goa-filejpg-wrapper">
                         <div class="goa-filejpg">
-                          Goa_file2
-                          <span class="jpg1">.jpg</span>
+                            {{ userDataStore.secondPhotoFile.name }}
                         </div>
                       </div>
                     </div>
@@ -849,6 +849,11 @@
                       <div class="div68">100%</div>
                     </div>-->
                     <img
+                    @click="
+                          () => {
+                            userDataStore.secondPhotoFile = null;
+                          }
+                        "
                       class="loader-child"
                       alt=""
                       src="../public/remove.svg"
@@ -919,14 +924,14 @@
                     <loader-field
                       name="Cелфи с разворотом паспорта и датой выдачи"
                       :obligatory-field="true"
-                      :style="{ width: '100%', paddingBottom: '0.1em', position: 'relative', left: '1.5em' }"
+                      :style="{  paddingBottom: '0.1em', position: 'relative', left: '1.5em' }"
                       class="loader-file"
                       @on-change="file => saveImage('selfie', file)"
                     ></loader-field>
                   </div>
                 </div>
               </div>
-              <div class="loadernav">
+              <div v-if="userDataStore.selfieFile != null" class="loadernav">
                 <div class="icons-group">
                   <div class="icons1">
                     <div class="iconsfile">
@@ -935,15 +940,12 @@
                         alt=""
                         src="../public/vector.svg"
                       />
-
-                      <div class="jpg">JPG</div>
                     </div>
                   </div>
                   <div class="frame-wrapper1">
                     <div class="goa-filejpg-wrapper">
                       <div class="goa-filejpg">
-                        Goa_file2
-                        <span class="jpg1">.jpg</span>
+                        {{ userDataStore.selfieFile.name }}
                       </div>
                     </div>
                   </div>
@@ -958,7 +960,14 @@
 
                     <div class="div68">12%</div>
                   </div>-->
-                  <img class="loader-child" alt="" src="../public/remove.svg" />
+                  <img 
+                  @click="
+                          () => {
+                            userDataStore.selfieFile = null;
+                          }
+                        "
+                    class="loader-child" alt="" 
+                    src="../public/remove.svg" />
                 </div>
               </div>
             </div>

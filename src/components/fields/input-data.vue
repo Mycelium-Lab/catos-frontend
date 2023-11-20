@@ -6,7 +6,7 @@
       :readonly="readonly"
       :placeholder="mutatePlaceholder"
       :type="type"
-      @input="$emit('update:modelValue',($event.target as HTMLInputElement).value)"
+      @input="handleInput"
       :style="
         left
           ? { paddingLeft: '3.3em' }
@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-const { placeholder, simulate } = defineProps<{
+const { placeholder, simulate, name } = defineProps<{
   modelValue?: string
   placeholder?: string
   type?: string
@@ -41,20 +41,49 @@ const { placeholder, simulate } = defineProps<{
   border?: string
   readonly?: boolean
   simulate?: boolean
+  name?: string
 }>();
+
 const emit = defineEmits(['update:modelValue'])
+
 const mutatePlaceholder = computed(() => {
   switch (placeholder) {
     case "Ваша почта":
       return "Введите вашу почту";
     case "Ваш номер телефона":
-      return "Введите ваш номер телефона";
+      return "79008001234";
     case "Пароль":
       return "Введите ваш пароль";
     default:
       return placeholder;
   }
 });
+
+const handleInput = (event: any) => 
+{
+  if (name === "tel") {
+    event.target.value = event.target.value.replace(/[^0-9]/g, "");
+    if (String(event.target.value).length > 11) {
+      event.target.value = String(event.target.value).slice(0, 11);
+    }
+  }
+
+  if (name === 'passport') {
+    event.target.value = event.target.value.replace(/[^0-9]/g, "");
+    
+    const val = event.target.value.replace(/^(.{4})(.*)$/, "$1 $2");
+    event.target.value = val
+    if (String(event.target.value).length > 11) {
+      event.target.value = String(event.target.value).slice(0, 11);
+    }
+  }
+
+  if(name === 'revenue') {
+    event.target.value = event.target.value.replace(/[^0-9]/g, "");
+  }
+  emit('update:modelValue',(event.target as HTMLInputElement).value)
+}
+
 </script>
 
 <style scoped>

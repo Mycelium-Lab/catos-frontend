@@ -4,9 +4,11 @@ import { type Role } from "@/types/user.types";
 import { roleStorage, profileStorage } from "@/utils/localStorage";
 import { ref } from "vue";
 import { Profile } from "@/types/profile.types";
+import { useErrorDataStore } from "@/stores/errorData";
 
 export const useLoginApi = () => {
   const isLoginLoading = ref(false);
+  const errorData = useErrorDataStore()
   const userLoginCredentials = ref<LoginCredentials>({
     email: "",
     password: "",
@@ -19,6 +21,8 @@ export const useLoginApi = () => {
         return res.data;
       })
       .catch(e => {
+        const {setErrorText} = errorData
+        setErrorText(e.response.data.detail)
         console.error(e);
         return {
           email: '',
@@ -66,6 +70,6 @@ export const useLoginApi = () => {
     userLoginCredentials,
     isLoginLoading,
     handleLogin,
-    handleVerify
+    handleVerify, 
   };
 };

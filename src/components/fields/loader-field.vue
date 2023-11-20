@@ -106,7 +106,7 @@ const onFileChanged = ($event: Event) => {
   overflow: hidden;
   // padding: 1.25rem 1.2rem;
   padding: 0rem 1.2rem;
-  width: 18.4rem;
+  //width: 18.4rem;
   .frame-1817439-tk4 {
     position: relative;
     display: flex;
