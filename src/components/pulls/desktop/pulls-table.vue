@@ -601,6 +601,8 @@
           "
         ></my-depositor-pulls>
         <all-collector-pulls
+          :loan="loan"
+          :poolByLoan="poolByLoan"
           v-if="isAllCollector && !allCollectorState.buyModal"
           @by="
             () => {

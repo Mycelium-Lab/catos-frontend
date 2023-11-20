@@ -77,7 +77,7 @@
                     </div>
                     <div class="field-parent">
                       <div class="field">
-                        <div class="div3">Цена поупки:</div>
+                        <div class="div3">Цена покупки:</div>
                         <div class="ton">{{ loan?.price }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
