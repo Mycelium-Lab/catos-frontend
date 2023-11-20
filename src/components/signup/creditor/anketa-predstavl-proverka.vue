@@ -153,7 +153,7 @@
               </div>
               <button-slider
                 :style="{ width: '100%' }"
-                variant="right"
+                :variant="paperDataStore.paperDTO.ownership ? 'left' : 'right'"
                 @on-slide="
                   ev => (paperDataStore.paperDTO.ownership = Boolean(ev))
                 "

@@ -66,7 +66,7 @@ const { variantIndex, variant } = defineProps({
 import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();
-const isSide = ref(variant ? "right" : "left");
+const isSide = ref(variant);
 
 const emit = defineEmits(["onSlide"]);
 
