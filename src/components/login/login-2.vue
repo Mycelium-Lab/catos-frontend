@@ -43,12 +43,15 @@
         v-model="userLoginCredentials.email"
         :style="{ position: 'relative', zIndex: '1000', width: '100%' }"
       ></input-data>
+      <span class="prompt_email" v-if="!isValidEmail">
+        Некорректный email. Пример, example@mail.com
+      </span>
 
       <input-data
         v-if="activeForm === 'email'"
         placeholder="Введите пароль"
         v-model="userLoginCredentials.password"
-        :style="{ position: 'relative', zIndex: '1000', width: '100%' }"
+        :style="{ position: 'relative', zIndex: '1000', width: '100%', top: '5px' }"
         type="password"
       ></input-data>
       <input-data
@@ -71,7 +74,7 @@
       >
         <catos-button
           @click="login"
-          :disabled="isLoginLoading"
+          :disabled="isLoginLoading || !isLinkActive"
           :style="
             !isSmSize && activeForm === 'phone'
               ? {
@@ -87,6 +90,11 @@
           >Вход</catos-button
         >
       </router-link>
+      <span class="prompt_login" >
+        {{ errorMessage === 'No active account found with the given credentials' 
+        ? 'Учетная запись не найдена' 
+        : '' }}
+      </span>
 
       <div v-if="activeForm === 'email'" class="div7">Забыли пароль?</div>
     </div>
@@ -94,10 +102,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch, computed} from "vue";
 import { useLoginApi } from '@/composables/useLoginApi'
 import catosButton from "../ui-kit/buttons/catos-button.vue";
 import inputData from "../fields/input-data.vue";
+import { validateEmail } from '@/utils/validateInput'
+import { useErrorDataStore } from "@/stores/errorData";
 
 import { useRouter } from "vue-router";
 
@@ -133,6 +143,31 @@ const login = async () => {
       router.push(pathName)
     })
 }
+
+const isValidEmail = ref(true);
+const errorMessage = computed(() => {
+  const {errorText} = useErrorDataStore()
+  return errorText
+});
+
+const isLinkActive = computed(() => {
+  return (isValidEmail.value && userLoginCredentials.value.email && userLoginCredentials.value.password);
+});
+
+watch(userLoginCredentials, (newVal) => {
+  const {setErrorText} = useErrorDataStore()
+  setErrorText('')
+  if(newVal?.email !== undefined || newVal?.email !== null) {
+    const isValid = validateEmail(newVal?.email)  
+    if(!isValid) {
+      isValidEmail.value = false
+    }
+    else {
+      isValidEmail.value = true
+    }
+  }
+
+}, {deep: true})
 </script>
 
 <style scoped lang="scss">
@@ -461,6 +496,22 @@ const login = async () => {
     border-bottom: 2px solid rgba(254, 210, 106, 1);
     position: relative;
     top: 0.6em;
+  }
+}
+.prompt{
+  &_login{
+    position: absolute;
+  top: 50px;
+  
+  font-size: 10.8px;
+  color: #E93E33;
+  }
+  &_email{
+    position: absolute;
+  top: 45px;
+  left: 10px;
+  font-size: 10.8px;
+  color: #E93E33;
   }
 }
 .image-wrapp {
