@@ -128,33 +128,3 @@ export const depositor = [
     component: () => import("../components/pulls/depositor/depositor-sort.vue"),
   },
 ];
-
-export const collector = [
-  {
-    path: "/pulls/collector",
-    name: "pulls-collector",
-    component: () => import("../views/pulls/collector.vue"),
-  },
-  {
-    path: "/pulls/collector-detail",
-    name: "pulls-collector-detail",
-    component: () =>
-      import("../components/pulls/collector/collector-detail.vue"),
-  },
-  {
-    path: "/pulls/collector-debt-detail",
-    name: "pulls-collector-debt-detail",
-    component: () => import("../components/pulls/collector/debt-detail.vue"),
-  },
-  {
-    path: "/pulls/collector-filter",
-    name: "pulls-collector-filter",
-    component: () =>
-      import("../components/pulls/collector/collector-filter.vue"),
-  },
-  {
-    path: "/pulls/collector-sort",
-    name: "pulls-collector-sort",
-    component: () => import("../components/pulls/collector/collector-sort.vue"),
-  },
-];

@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { Pool } from "@/types/pool.type";
-import { LoansResponse } from "@/types/loan.types";
+import { LoansResponse, LoansBoughtResponse } from "@/types/loan.types";
 import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
 import { usePoolListStore } from "@/stores/poolList";
 import { useLoanListStore } from "@/stores/loanList";
@@ -55,7 +55,7 @@ const { variant, role } = defineProps({
 });
 
 
-const loans = computed<LoansResponse[]>(() => variant === 'marketplace' ? loanListStore.marketPlaceLoans : loanListStore.collectorLoans)
+const loans = computed<LoansResponse[] | LoansBoughtResponse[]>(() => variant === 'marketplace' ? loanListStore.marketPlaceLoans : loanListStore.collectorLoans)
 const pools = computed<Pool[]>(() => role === 'depositor' ? poolListStore.verifiedPools : poolListStore.pools);
 
 const emits = defineEmits(["mySoldLoans"]);

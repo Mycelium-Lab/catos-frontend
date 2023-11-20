@@ -1,16 +1,28 @@
 import { Ref, ref, computed } from "vue";
 import { defineStore } from "pinia";
 import { getUserId } from "@/utils/token";
-import {  LoansResponse } from "@/types/loan.types";
-import { listLoans } from "@/api/loans.api";
+import {  LoansBoughtResponse, LoansResponse } from "@/types/loan.types";
+import { listBoughtLoans, listLoans } from "@/api/loans.api";
 
 export const useLoanListStore = defineStore("useLoans", () => {
   const loans: Ref<LoansResponse[]> = ref([]);
+  const loansBought: Ref<LoansBoughtResponse[]> = ref([])
+
   const hasLoading = ref(true)
   const hasError = ref(false)
+
   listLoans().then(res => {
     loans.value = res.data;
-    console.log(loans.value)
+    })
+    .catch(e => {
+      hasError.value = true
+    }) 
+    .finally( () => {
+      hasLoading.value = false
+    })
+
+    listBoughtLoans().then(res => {
+      loansBought.value = res.data
     })
     .catch(e => {
       hasError.value = true
@@ -37,7 +49,7 @@ export const useLoanListStore = defineStore("useLoans", () => {
   })
   const collectorLoans = computed(() => {
     const userId = getUserId();
-    return loans.value.filter(val => val.status === 'sold' && val.buyer_id === userId)
+    return loansBought.value
   })
   return {
     loans,

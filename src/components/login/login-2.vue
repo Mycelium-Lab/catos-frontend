@@ -137,7 +137,7 @@ const login = async () => {
               : res?.role === 'creditor'
               ? 'pulls/creditor'
               : res?.role === 'collector'
-              ? 'pulls/collector'
+              ? 'loans/collector'
               : ''
 
       router.push(pathName)
