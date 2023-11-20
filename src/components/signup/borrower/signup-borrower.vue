@@ -41,6 +41,7 @@
                 </div>
                 <input-data
                   :model-value="passportData"
+                  name="passport"
                   @update:model-value="
                     event => {
                       passportDataStore.passportDTO.series = Number(

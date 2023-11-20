@@ -44,6 +44,7 @@
                   placeholder="1234 098761"
                   :right="true"
                   :model-value="passportData"
+                  name="passport"
                   @update:model-value="
                     event => {
                       passportDataStore.passportDTO.series = Number(

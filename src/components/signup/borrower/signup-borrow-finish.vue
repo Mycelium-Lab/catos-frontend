@@ -60,9 +60,9 @@
               placeholder="В рублях"
               :style="{ width: '100%' }"
               :right="true"
+              name="revenue"
               :model-value="valueRevenue"
               @update:model-value="borrowerDataStore.borrowerDTO.revenue = Number($event)"
-              type="number"
             >
               <template v-slot:right-icon>
                 <img src="@/assets/images/iconseditoutline-black.svg" />
@@ -253,9 +253,10 @@ import inputData from "../../../components/fields/input-data.vue";
 import { useDevice } from "@/compossables/useDevice";
 import { useBorrowerDataStore } from "@/stores/borrowerData";
 import { userinfo } from '@/api/documents.api';
+import { numberWithSpaces } from "@/utils/bitDepthNumbers"
 
 const { isMobile } = useDevice();
-const valueRevenue = computed(() => borrowerDataStore.borrowerDTO.revenue === 0 ? '' : borrowerDataStore.borrowerDTO.revenue.toString());
+const valueRevenue = computed(() => borrowerDataStore.borrowerDTO.revenue === 0 ? '' : numberWithSpaces(borrowerDataStore.borrowerDTO.revenue.toString()));
 const handleNextButton = async () => {
   await userinfo(borrowerDataStore.borrowerDTO)
     .then((res) => {

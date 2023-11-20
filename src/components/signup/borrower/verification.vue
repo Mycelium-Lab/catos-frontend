@@ -183,6 +183,7 @@
                   <span class="span1">* </span>
                 </div>
                 <input-data
+                  name="passport"
                   v-model:model-value="passportNumberString"
                   placeholder="1234 446462"
                 >
