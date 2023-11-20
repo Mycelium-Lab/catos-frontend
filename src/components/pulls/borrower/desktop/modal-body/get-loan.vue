@@ -193,24 +193,31 @@ const parsedTrim = computed(() => {
 })
 
 const sum = computed(() => {
-  const amountWithoutInterestRatePeriod = sumWithFreePeriod.value
+  let amountWithoutInterestRatePeriod = 0
+
   if(Number(term.value) - freePeriod <= 0 && freePeriod !== 0) {
-    // const { parsed } = useParsedNumber(amount);
+    amountWithoutInterestRatePeriod = sumWithFreePeriod.value
     return amountWithoutInterestRatePeriod
   }
+
   const value = interestRate / 100
-  //const sumWithInterestRate = Number(parsedTrim.value) * value + Number(parsedTrim.value);
+
   const sumWithInterestRate = Number(sumLoans.value) * value + Number(sumLoans.value);
-  //const {parsed} = useParsedNumber(sumWithInterestRate); 
-  //const a = parsed.replaceAll(' ', '')
+
   const withInterestRatePeriod = Number(term.value) - freePeriod
+
   const amountWithInterestRatePeriod = sumWithInterestRate * withInterestRatePeriod
-  //const { parsed: result } = useParsedNumber(amount);
-  return (amountWithInterestRatePeriod + amountWithoutInterestRatePeriod).toFixed(3)
+
+  return (amountWithInterestRatePeriod + amountWithoutInterestRatePeriod)
 });
 
 const sumWithFreePeriod = computed(() => {
-  return Number(sumLoans.value) * freePeriod
+  if (Number(term.value) - freePeriod <= 0 && freePeriod !== 0) {
+    return Number(sumLoans.value) * Number(term.value)
+  }
+  else {
+    return Number(sumLoans.value) * freePeriod
+  }
 })
 
 const isTransaction = ref(false)
