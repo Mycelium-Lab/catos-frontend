@@ -7,4 +7,17 @@ const validateEmail = (email: string) => {
       );   
 }
 
-export { validateEmail }
+const validatePhone = (phone: string) => {
+    console.log(phone)
+    if(phone === '') {
+        return true
+    }
+    else if ((phone.replace(/\D/g, "").length === 11)) {
+        return true
+    }
+    else {
+        return false
+    }
+}
+
+export { validateEmail, validatePhone }

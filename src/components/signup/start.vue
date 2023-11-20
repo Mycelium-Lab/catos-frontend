@@ -83,14 +83,20 @@
             </div>
             <div class="div13">
               <span class="txt">
+                <div v-if="!isValidPhone" class="div16_error div16_phone div16">
+                  Телефон должен состоять из 11 цифр
+                </div>
+              <template v-else>
                 <p class="p">Укажите действующий номер телефона организации</p>
                 <p class="p">для звонков и смс</p>
+              </template>
               </span>
             </div>
             <input-data
               class="phone-field"
               v-model:model-value="userDataStore.userDTO.phone"
-              type="phone"
+              type="tel"
+              name="tel"
               placeholder="Ваш номер телефона"
               :style="{ width: '90%' }"
               :left="true"
@@ -109,7 +115,7 @@
             </div>
             <div :class="isValidEmail ? 'div16' : 'div16_error div16'">
               {{ 
-                !isValidEmail ? errorMessage : ' Укажите действующую почту. Она будет использована для авторизации и восстановления доступа'  
+                !isValidEmail ? 'Некорректный адрес электронной почты. Пример, example@mail.com' : ' Укажите действующую почту. Она будет использована для авторизации и восстановления доступа'  
               }}
             </div>
             <input-data
@@ -214,7 +220,7 @@ import { useUserDataStore } from "@/stores/userData";
 import { roleStorage } from "@/utils/localStorage";
 import { register } from "@/api/users.api";
 import router from "@/router";
-import { validateEmail } from '@/utils/validateInput'
+import { validateEmail, validatePhone } from '@/utils/validateInput'
 
 const title = computed(() => {
   return window.history.state.title;
@@ -248,7 +254,7 @@ const isLinkActive = computed(() => {
     userDataStore.userDTO.email &&
     userDataStore.userDTO.password &&
     userDataStore.userDTO.phone &&
-    isValidEmail.value
+    isValidEmail.value && isValidPhone.value
   );
 });
 const handleNextClick = async () => {
@@ -270,25 +276,29 @@ const handleNextClick = async () => {
 };
 const errorMessage = ref("");
 const isValidEmail = ref(true);
+const isValidPhone = ref(true)
 
 
 watch(userDataStore, (newVal) => {
-  console.log('newVal', newVal.userDTO.email)
-  if(newVal?.userDTO?.email) {
+  if(newVal?.userDTO?.email !== undefined || newVal?.userDTO?.email !== null) {
     const isValid = validateEmail(newVal.userDTO.email)  
     if(!isValid) {
-      errorMessage.value = 'Некорректный адрес электронной почты. Пример, example@mail.com'
       isValidEmail.value = false
     }
     else {
-      errorMessage.value = ''
       isValidEmail.value = true
     }
   }
-  else {
-      errorMessage.value = ''
-      isValidEmail.value = true
+  if(newVal?.userDTO?.phone !== undefined || newVal?.userDTO?.phone !== null) {
+    const isValid = validatePhone(newVal.userDTO.phone)  
+    if(!isValid) {
+      isValidPhone.value = false
     }
+    else {
+      isValidPhone.value = true
+    }
+  }
+
 
 }, {deep: true})
 </script>
@@ -496,13 +506,16 @@ watch(userDataStore, (newVal) => {
 .div16 {
   top: 62.39%;
   left: 6.14%;
-  font-size: 0.63em;
+  font-size: 10.8px;
   line-height: 120%;
   font-weight: 300;
   color: rgba(59, 59, 59, 0.58);
   align-items: center;
   &_error{
     color: #E93E33;
+  }
+  &_phone{
+    left: 0;
   }
 }
 .alessowaitsongmailcom {
