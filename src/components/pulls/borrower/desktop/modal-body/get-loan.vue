@@ -200,25 +200,12 @@ const sum = computed(() => {
     return amountWithoutInterestRatePeriod
   }
 
-  const value = interestRate / 100
-
-  const sumWithInterestRate = Number(sumLoans.value) * value + Number(sumLoans.value);
-
   const withInterestRatePeriod = Number(term.value) - freePeriod
-
-  const amountWithInterestRatePeriod = sumWithInterestRate * withInterestRatePeriod
-
-  return (amountWithInterestRatePeriod + amountWithoutInterestRatePeriod)
+  const sumWithInterestRate = Number(sumLoans.value) + interestRate * withInterestRatePeriod;
+  return sumWithInterestRate
 });
 
-const sumWithFreePeriod = computed(() => {
-  if (Number(term.value) - freePeriod <= 0 && freePeriod !== 0) {
-    return Number(sumLoans.value) * Number(term.value)
-  }
-  else {
-    return Number(sumLoans.value) * freePeriod
-  }
-})
+const sumWithFreePeriod = computed(() => Number(sumLoans.value))
 
 const isTransaction = ref(false)
 const transactionStatus = ref('')
