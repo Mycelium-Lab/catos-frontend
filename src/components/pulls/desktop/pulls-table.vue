@@ -35,7 +35,7 @@
                           Цена:
                         </div>
                         <div class="ton18">
-                          {{ role === 'collector' ? 1 : pool?.available_liquidity }} TON
+                          {{ role === 'collector' ? loan?.price : pool?.available_liquidity }} TON
                         </div>
                         <div
                           v-if="role === 'borrower'"
@@ -175,6 +175,11 @@
                     <div v-if="pool?.millipercent" class="ton-wrapper">
                       <div class="div128">
                         {{ pool?.millipercent / 100 }}% в день
+                      </div>
+                    </div>
+                    <div v-if="loan?.millipercent" class="ton-wrapper">
+                      <div class="div128">
+                        {{ loan?.millipercent / 100 }}% в день
                       </div>
                     </div>
                   </div>
@@ -656,7 +661,7 @@ import { useRouter } from "vue-router";
 import { parse } from "tinyduration";
 import { Pool } from "@/types/pool.type";
 import { roleStorage } from "@/utils/localStorage";
-import { LoansResponse } from "@/types/loan.types";
+import { LoansResponse, LoansBoughtResponse } from "@/types/loan.types";
 
 const { variant } = defineProps({
   variant: {
@@ -666,7 +671,7 @@ const { variant } = defineProps({
     type: Object as PropType<Pool>,
   },
   loan : {
-    type: Object as PropType<LoansResponse>,
+    type: Object as PropType<LoansResponse | LoansBoughtResponse>,
   }
 });
 

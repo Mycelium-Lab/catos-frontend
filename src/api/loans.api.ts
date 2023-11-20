@@ -24,4 +24,8 @@ export const buyLoan = (id: number, value: number) => {
 
 export const prolongateLoan = (id: number, value: number) => {
     return baseApiClient.get(`${LOAN_END_POINT}prolongate/${id}?amount=${value}`)
-} 
+}
+ 
+export const listBoughtLoans = () => {
+    return baseApiClient.get(`${LOAN_END_POINT}bought`)
+}
