@@ -9,7 +9,9 @@
       <div class="div">МЕНЮ</div>
     </div>
     <div class="buttons">
-      <div class="component-21" @click="toPulls">
+      <div class="component-21"  
+        v-if="role !== 'collector'"
+        @click="toPulls">
         <div class="iconsmenu1">
           <img alt="" src="@/assets/desktop/menu-pulls.svg" />
         </div>
@@ -17,7 +19,7 @@
       </div>
       <div
         class="component-211"
-        v-if="role === 'creditor' || role === 'borrower'"
+        v-if="role === 'creditor' || role === 'borrower' || role === 'collector'"
         @click="toLoans"
       >
         <div class="iconsmenu1">

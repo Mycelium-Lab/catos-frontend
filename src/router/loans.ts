@@ -63,3 +63,33 @@ export const borrowerLoans = [
     component: () => import("../components/sort/sort-borrower.vue"),
   },
 ];
+
+export const collector = [
+  {
+    path: "/loans/collector",
+    name: "loans-collector",
+    component: () => import("../views/pulls/collector.vue"),
+  },
+  {
+    path: "/loans/collector-detail",
+    name: "loans-collector-detail",
+    component: () =>
+      import("../components/pulls/collector/collector-detail.vue"),
+  },
+  {
+    path: "/loans/collector-debt-detail",
+    name: "loans-collector-debt-detail",
+    component: () => import("../components/pulls/collector/debt-detail.vue"),
+  },
+  {
+    path: "/loans/collector-filter",
+    name: "loans-collector-filter",
+    component: () =>
+      import("../components/pulls/collector/collector-filter.vue"),
+  },
+  {
+    path: "/loans/collector-sort",
+    name: "loans-collector-sort",
+    component: () => import("../components/pulls/collector/collector-sort.vue"),
+  },
+];

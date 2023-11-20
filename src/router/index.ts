@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import { admin, adminMobile } from "./admin";
 
 import { dashboardDepositor, dashboardСreditor } from "./dashboard";
-import { borrowerLoans, loans } from "./loans";
-import { borrower, collector, creditor, depositor } from "./pulls";
+import { borrowerLoans, loans, collector } from "./loans";
+import { borrower, creditor, depositor } from "./pulls";
 import { setting } from "./settings";
 import { wallet } from "./wallet";
 
