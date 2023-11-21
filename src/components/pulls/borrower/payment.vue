@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="div8">
-      {{ from === "pulls" ? " Кредитные пуллы" : "Задолжности" }}
+      {{ from === "pulls" ? " Кредитные пуллы" : "Задолженности" }}
     </div>
   </div>
   <div class="statusapi">

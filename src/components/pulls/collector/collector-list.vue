@@ -3,7 +3,7 @@
     <div class="pull-stats-child">
       <div class="filtr">
         <div class="frame">
-          <div class="div9">Задолжность №1223</div>
+          <div class="div9">Задолженность №1223</div>
         </div>
       </div>
       <div class="pull-stats1">

@@ -30,7 +30,7 @@
                 <div>
                   <div class="frame-parent">
                   <div class="group">
-                    <div class="div2">Дневной ставке:</div>
+                    <div class="div2">Дневная ставка:</div>
                     <!-- <img
                       class="vector-icon"
                       alt=""
@@ -70,7 +70,7 @@
               </div>
               <div class="frame-parent"  :style="{ marginTop: '50px' }" >
                 <div class="group">
-                  <div class="div2">min_invest_amount</div>
+                  <div class="div2">Минимальный размер инвестиции (TON)</div>
                 </div>
                 <range-slider
                   :max="30"
