@@ -1,6 +1,6 @@
 <template>
    <h3 v-if="role === 'collector' && !loans.length">
-      Задолжности пока отсутствуют
+    Задолженности пока отсутствуют
     </h3>
     <h3 v-else-if="role !== 'collector' && !pools.length ">
       Пуллы пока отсутствуют
