@@ -60,7 +60,7 @@
                         alt=""
                         src="@/assets/images/percent.svg"
                       />
-                      <div v-if="role === 'collector'" class="div122">{{`1 день = ${poolByLoan?.millipercent / 100 }%`}}</div>
+                      <div v-if="role === 'collector'" class="div122">{{`1 день = ${loan?.millipercent ? loan?.millipercent / 100 : '' }%`}}</div>
                       <div v-else class="div122">1 день = 1%</div>
                     </div>
                     <div class="iconsbar-cards-parent">
@@ -70,7 +70,7 @@
                         src="@/assets/images/clock.svg"
                       />
                       <div v-if="poolByLoan?.free_period && role === 'collector'" class="div123"> {{ parse(poolByLoan?.free_period).days }} дней = 0%</div>
-                       <div v-else class="div123"> 3 дня = 0%</div>
+                      <div v-else class="div123"> 3 дня = 0%</div>
                     </div>
 
                     <div class="iconsbar-cards-parent">
@@ -1049,7 +1049,6 @@ li {
   flex-shrink: 0;
 }
 .frame-parent20 {
-  width: 6.56em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

@@ -1,6 +1,6 @@
 <template>
   <desktop-modal v-if="isDetail" @close="close">
-    <template v-slot:title> Информация о задолженности #12345 </template>
+    <template v-slot:title> Информация о задолженности #{{ loan?.id }} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -68,7 +68,7 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Тело займа:</div>
-                        <div class="ton">50 000 TON</div>
+                        <div class="ton">{{ loan?.amount }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -82,21 +82,21 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Выплачено по долгу:</div>
-                        <div class="ton">1 000 TON</div>
+                        <div class="ton">{{ loan?.paid_amount }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Одобренный лимит:</div>
-                        <div class="ton">до 40 000 TON</div>
+                        <div class="ton">до {{ poolByLoan?.available_liquidity }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">На срок:</div>
-                        <div class="ton">до 30 дней</div>
+                        <div v-if="poolByLoan?.max_duration" class="ton">до {{ parse(poolByLoan?.max_duration).days }} дней</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -248,13 +248,13 @@ import desktopModal from "@/components/base/desktop-modal.vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 // @ts-ignore
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
-import { LoansResponse, LoansBoughtResponse } from "@/types/loan.types";
+import { LoansResponse } from "@/types/loan.types";
 import { Pool } from "@/types/pool.type";
 import { parse } from "tinyduration";
 
 const {loan, poolByLoan} = defineProps({
   loan : {
-    type: Object as PropType<LoansResponse | LoansBoughtResponse>,
+    type: Object as PropType<LoansResponse>,
   },
   poolByLoan: {
     type: Object as PropType<Pool>,
