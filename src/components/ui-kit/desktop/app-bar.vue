@@ -9,9 +9,7 @@
       <div class="div">МЕНЮ</div>
     </div>
     <div class="buttons">
-      <div class="component-21"  
-        v-if="role !== 'collector'"
-        @click="toPulls">
+      <div class="component-21" v-if="role !== 'collector'" @click="toPulls">
         <div class="iconsmenu1">
           <img alt="" src="@/assets/desktop/menu-pulls.svg" />
         </div>
@@ -19,17 +17,21 @@
       </div>
       <div
         class="component-211"
-        v-if="role === 'creditor' || role === 'borrower' || role === 'collector'"
+        v-if="
+          role === 'creditor' || role === 'borrower' || role === 'collector'
+        "
         @click="toLoans"
       >
         <div class="iconsmenu1">
           <img alt="" src="@/assets/desktop/menu-loans.svg" />
         </div>
-        <div class="div1">Займы</div>
+        <div class="div1">
+          {{ role === "collector" ? "Задолженности" : "Займы" }}
+        </div>
       </div>
       <div
         class="component-211"
-        v-if="role === 'creditor' || role === 'depositor'"
+        v-if="role === 'creditor' || role === 'investor'"
         @click="toDashBoard"
       >
         <div class="iconsmenu1">
@@ -70,10 +72,10 @@
 import router from "@/router";
 import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
+import { roleStorage } from "@/utils/localStorage";
+
 const route = useRoute();
-const role = ref(
-  localStorage.getItem ? JSON.parse(localStorage.getItem("role")!) : ""
-);
+const role = ref(roleStorage.get());
 const currentPage = computed(() => {
   return route.name;
 });
@@ -83,7 +85,7 @@ const toPulls = () => {
     router.push({ name: "pulls" });
   } else if (role.value === "borrower") {
     router.push({ name: "pulls-borrower" });
-  } else if (role.value === "depositor") {
+  } else if (role.value === "investor") {
     router.push({ name: "pulls-depositor" });
   } else if (role.value === "collector") {
     router.push({ name: "pulls-collector" });
@@ -94,10 +96,12 @@ const toLoans = () => {
     router.push({ name: "loans-borrower" });
   } else if (role.value === "creditor") {
     router.push({ name: "loans" });
+  } else if (role.value === "collector") {
+    router.push({ name: "loans-collector" });
   }
 };
 const toDashBoard = () => {
-  if (role.value === "depositor") {
+  if (role.value === "investor") {
     router.push({ name: "dashboard-depositor" });
   } else if (role.value === "creditor") {
     router.push({ name: "dashboard" });
@@ -109,7 +113,7 @@ const toWallet = () => {
     router.push({ name: "wallet" });
   } else if (role.value === "borrower") {
     router.push({ name: "wallet" });
-  } else if (role.value === "depositor") {
+  } else if (role.value === "investor") {
     router.push({ name: "wallet" });
   } else if (role.value === "collector") {
     router.push({ name: "wallet" });
@@ -120,7 +124,7 @@ const toProfile = () => {
     router.push({ name: "setting" });
   } else if (role.value === "borrower") {
     router.push({ name: "setting" });
-  } else if (role.value === "depositor") {
+  } else if (role.value === "investor") {
     router.push({ name: "setting" });
   } else if (role.value === "collector") {
     router.push({ name: "setting" });
