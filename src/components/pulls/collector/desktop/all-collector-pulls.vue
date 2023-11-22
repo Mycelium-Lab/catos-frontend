@@ -54,7 +54,7 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Просрочен на:</div>
-                        <div class="ton">{{ expired }} дня</div>
+                        <div class="ton">{{ overdue }} дня</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -251,6 +251,7 @@ import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import { LoansResponse } from "@/types/loan.types";
 import { Pool } from "@/types/pool.type";
 import { parse } from "tinyduration";
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo"
 
 const {loan, poolByLoan} = defineProps({
   loan : {
@@ -271,27 +272,8 @@ const close = () => {
   emits("close");
 };
 const isCreditorInfo = ref(false);
-const duty = computed(() => {
-  if(loan?.amount && loan?.paid_amount) {
-    return loan?.amount - loan?.paid_amount
-  }
-  else {
-    return ''
-  }
-})
-const expired = computed(() => {
-  if(loan?.end) {
-    const end = new Date(loan?.end);
-    const now = new Date();
-    const result = new Date(Number(now) - Number(end)).getDate()
-    return result
-  }
-})
-const localeTime = computed(() => {
-  const date = new Date(loan?.start)
-  return date.toLocaleString("ru-RU")
-})
 
+const { duty, overdue, localeTime } = useComputedLoanInfo(loan)
 </script>
 <style scoped>
 .div {

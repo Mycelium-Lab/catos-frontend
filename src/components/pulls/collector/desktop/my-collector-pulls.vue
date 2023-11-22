@@ -71,7 +71,7 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Просрочен на:</div>
-                        <div class="ton">{{expired}} дня</div>
+                        <div class="ton">{{overdue}} дня</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -306,6 +306,7 @@ import desktopModal from "@/components/base/desktop-modal.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 import statusChange from "@/components/loans/creditor/desktop/modal-body/ status-change.vue";
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo"
 import { LoansBoughtResponse } from "@/types/loan.types";
 import { parse } from "tinyduration";
 import { Pool } from "@/types/pool.type";
@@ -325,37 +326,7 @@ const close = () => {
 };
 const isCreditorInfo = ref(false);
 
-const age = computed(() => {
-  if(loan?.borrower?.passport?.birthdate) {
-    const nowYear = new Date().getFullYear()  
-    const yearBirth = loan?.borrower?.passport?.birthdate.split('-')[0]
-    return nowYear - Number(yearBirth)
-  }
-  else return ''
-  
-})
-const duty = computed(() => {
-  if(loan?.amount && loan?.paid_amount) {
-    return loan?.amount - loan?.paid_amount
-  }
-  else {
-    return ''
-  }
-})
-
-const expired = computed(() => {
-  if(loan?.end) {
-    const end = new Date(loan?.end);
-    const now = new Date();
-    const result = new Date(Number(now) - Number(end)).getDate()
-    return result
-  }
-})
-
-const localeTime = computed(() => {
-  const date = new Date(loan?.start)
-  return date.toLocaleString("ru-RU")
-})
+const { duty, overdue, localeTime, age } = useComputedLoanInfo(loan)
 </script>
 <style scoped lang="scss">
 .div {
