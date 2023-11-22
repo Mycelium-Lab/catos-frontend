@@ -1,421 +1,424 @@
 <template>
   <div class="frame-div">
+    <div
+      :class="`desctopverpull-stats-parent_${role}-${variant} desctopverpull-stats-parent`"
+      @click="toDetail"
+    >
+      <div class="desctopverpull-stats">
         <div
-          :class="`desctopverpull-stats-parent_${role}-${variant} desctopverpull-stats-parent`"
-          @click="toDetail"
+          :class="`desctopverpull-stats-child_${role}-${variant} desctopverpull-stats-child`"
+        />
+        <div
+          :class="role === 'collector' ? 'filtr6_collector filtr6' : 'filtr6'"
         >
-          <div class="desctopverpull-stats">
-            <div
-              :class="`desctopverpull-stats-child_${role}-${variant} desctopverpull-stats-child`"
-            />
-            <div
-              :class="
-                role === 'collector' ? 'filtr6_collector filtr6' : 'filtr6'
-              "
-            >
-              <div class="wrapper">
-                <div class="div120">{{  role === 'collector' ? 'Задолженность №' :  'Пулл №' }} {{  role === 'collector' ? loan?.id : pool?.id }}</div>
-              </div>
+          <div class="wrapper">
+            <div class="div120">
+              {{ role === "collector" ? "Задолженность №" : "Пулл №" }}
+              {{ role === "collector" ? loan?.id : pool?.id }}
             </div>
-            <div class="pull-stats6">
-              <div class="statusbar-cards-parent">
-                <div class="statusbar-cards">
-                  <div class="buttons-tabs6">
-                    <div class="iconsbar-cards-parent">
-                      <img
-                        class="iconsbar-cards"
-                        alt=""
-                        src="@/assets/images/pie-chart.svg"
-                      />
-                      <div class="txt1-parent">
-                        <div
-                          v-if="role === 'collector'"
-                          class="txt2_borrower txt2"
-                        >
-                          Цена:
-                        </div>
-                        <div class="ton18">
-                          {{ role === 'collector' ? loan?.price : pool?.available_liquidity }} TON
-                        </div>
-                        <div
-                          v-if="role === 'borrower'"
-                          class="txt2_borrower txt2"
-                        >
-                          Одобренный лимит
-                        </div>
-                        <div
-                          v-if="role === 'creditor' || role === 'investor'"
-                          class="txt2"
-                        >
-                          Доступно ликвидности
-                        </div>
-                      </div>
+          </div>
+        </div>
+        <div class="pull-stats6">
+          <div class="statusbar-cards-parent">
+            <div class="statusbar-cards">
+              <div class="buttons-tabs6">
+                <div class="iconsbar-cards-parent">
+                  <img
+                    class="iconsbar-cards"
+                    alt=""
+                    src="@/assets/images/pie-chart.svg"
+                  />
+                  <div class="txt1-parent">
+                    <div v-if="role === 'collector'" class="txt2_borrower txt2">
+                      Цена:
                     </div>
-              
-                  </div>
-                  <div class="frame-parent20">
-                    <div class="iconsbar-cards-parent">
-                      <img
-                        class="icons2bar-cards"
-                        alt=""
-                        src="@/assets/images/percent.svg"
-                      />
-                      <div class="div122">1 день = 1%</div>
+                    <div class="ton18">
+                      {{
+                        role === "collector"
+                          ? loan?.price
+                          : pool?.available_liquidity
+                      }}
+                      TON
                     </div>
-                    <div class="iconsbar-cards-parent">
-                      <img
-                        class="icons2bar-cards1"
-                        alt=""
-                        src="@/assets/images/clock.svg"
-                      />
-                      <div class="div123">3 дня = 0%</div>
-                    </div>
-
-                    <div class="iconsbar-cards-parent">
-                      <img
-                        class="icons2bar-cards"
-                        alt=""
-                        src="@/assets/images/activity.svg"
-                      />
-                      <div class="div124">ROI = 75%</div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  v-if="role === 'borrower' || role === 'collector'"
-                  class="creditor-info"
-                >
-                  <div class="div127_creditor-info div127">Кредитор:</div>
-
-                  <div class="group-creditor">
-                    <span class="div127_creditor-info">Деньги до зарплаты</span>
-                    <img
-                      class="radiobutton-icon"
-                      alt=""
-                      src="@/assets/images/investore.svg"
-                    />
-                  </div>
-                </div>
-                <div v-if="role !== 'collector'" class="frame-parent21">
-                  <div class="frame">
-                    <div class="div121">Состояние:</div>
-                  </div>
-                  <div class="colors-graphsorders-group">
-                    <img
-                      class="colors-graphsorders-icon"
-                      alt=""
-                      src="@/assets/images/colors-graphsorders1.svg"
-                    />
-                    <div class="statuspull">
-                      <div class="div126">Активен</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="frame-parent22">
-                  <div
-                    v-if="role === 'collector' && variant === 'debt'"
-                    class="frame-parent23"
-                  >
-                    <div class="frame">
-                      <div class="div121">Статус:</div>
+                    <div v-if="role === 'borrower'" class="txt2_borrower txt2">
+                      Одобренный лимит
                     </div>
                     <div
-                      class="colors-graphsorders-group_red colors-graphsorders-group"
+                      v-if="role === 'creditor' || role === 'investor'"
+                      class="txt2"
                     >
-                      <img
-                        class="colors-graphsorders-icon"
-                        alt=""
-                        src="@/assets/images/colors-graphsorders3.svg"
-                      />
-                      <div class="statuspull_collector statuspull">
-                        <div class="div126">Не погашена</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    v-if="role === 'collector' && variant !== 'marketplace'"
-                    class="line-div"
-                  />
-                  <div
-                    v-if="role === 'borrower' && variant === 'all'"
-                    class="frame-parent23"
-                  >
-                    <div class="frame">
-                      <div class="div127">Одобренный лимит:</div>
-                    </div>
-                    <div class="ton-wrapper">
-                      <div class="div128">
-                        до {{ pool?.max_loan_amount }} TON
-                      </div>
-                    </div>
-                  </div>
-                  <div v-if="role === 'collector'" class="frame-parent23">
-                    <div class="frame">
-                      <div class="div127"><b>Цена продажи:</b></div>
-                    </div>
-                    <div class="ton-wrapper">
-                      <div class="div128"><b>4 000 TON</b></div>
-                    </div>
-                  </div>
-                  <div v-if="role === 'collector'" class="line-div" />
-                  <div v-if="role === 'collector'" class="frame-parent23">
-                    <div class="frame">
-                      <div class="div127">Текущий долг:</div>
-                    </div>
-                    <div class="ton-wrapper">
-                      <div class="div128">50 000 TON</div>
-                    </div>
-                  </div>
-                  <div class="line-div" />
-                  <div class="frame-parent23">
-                    <div class="frame">
-                      <div class="div127">Ставка:</div>
-                    </div>
-                    <div v-if="pool?.millipercent" class="ton-wrapper">
-                      <div class="div128">
-                        {{ pool?.millipercent / 100 }}% в день
-                      </div>
-                    </div>
-                    <div v-if="loan?.millipercent" class="ton-wrapper">
-                      <div class="div128">
-                        {{ loan?.millipercent / 100 }}% в день
-                      </div>
-                    </div>
-                  </div>
-                  <div v-if="role === 'collector'" class="line-div" />
-                  <div v-if="role === 'collector'" class="frame-parent23">
-                    <div class="frame">
-                      <div class="div127">Просрочен:</div>
-                    </div>
-                    <div class="ton-wrapper">
-                      <div class="div128">9 дней</div>
-                    </div>
-                  </div>
-                  <div v-if="role !== 'collector'" class="line-div" />
-                  <div v-if="role !== 'collector'" class="frame-parent23">
-                    <div class="frame">
-                      <div class="div127">На срок:</div>
-                    </div>
-                    <div v-if="pool?.max_duration" class="ton-wrapper">
-                      <div class="div128">
-                        до {{ parse(pool?.max_duration).days }} дней
-                      </div>
-                    </div>
-                  </div>
-                  <div v-if="role !== 'collector'" class="line-div" />
-                  <div v-if="role !== 'collector'" class="frame-parent23">
-                    <div class="frame_period frame">
-                      <div class="div127">Беспроцентный период:</div>
-                    </div>
-                    <div v-if="pool?.free_period" class="ton-wrapper">
-                      <div class="div128">
-                        {{ parse(pool?.free_period).days }} дней
-                      </div>
-                    </div>
-                  </div>
-                  <div v-if="role === 'borrower'" class="line-div" />
-                  <div
-                    v-if="role === 'collector' && variant === 'debt'"
-                    class="line-div"
-                  />
-                  <div
-                    v-if="role === 'collector' && variant === 'debt'"
-                    class="frame-parent23"
-                  >
-                    <div class="frame_period frame">
-                      <div class="div127">Стоимость покупки:</div>
-                    </div>
-                    <div class="ton-wrapper">
-                      <div class="div128">9 000 TON</div>
-                    </div>
-                  </div>
-                  <div
-                    v-if="
-                      role === 'creditor' ||
-                      role === 'investor' ||
-                      (role === 'borrower' && variant === 'my')
-                    "
-                    class="line-div"
-                  />
-                  <div
-                    v-if="
-                      role === 'creditor' ||
-                      role === 'investor' ||
-                      (role === 'borrower' && variant === 'my')
-                    "
-                    class="frame-parent23"
-                  >
-                    <div class="frame">
-                      <div class="div127">Всего ликвидности:</div>
-                    </div>
-                    <div class="ton-wrapper">
-                      <div class="div128">{{ pool?.all_liquidity }} TON</div>
-                    </div>
-                  </div>
-                  <div
-                    v-if="
-                      role === 'creditor' ||
-                      role === 'investor' ||
-                      (role === 'borrower' && variant === 'my')
-                    "
-                    class="line-div"
-                  />
-                  <div
-                    v-if="
-                      role === 'creditor' ||
-                      role === 'investor' ||
-                      (role === 'borrower' && variant === 'my')
-                    "
-                    class="frame-parent23"
-                  >
-                    <div class="frame">
-                      <div class="div127">Свободно:</div>
-                    </div>
-                    <div class="ton-wrapper">
-                      <div class="div128">
-                        {{ pool?.available_liquidity }} TON
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    v-if="role === 'investor' && variant === 'all'"
-                    class="line-div"
-                  />
-                  <div
-                    v-if="role === 'investor' && variant === 'all'"
-                    class="frame-parent23"
-                  >
-                    <div class="frame">
-                      <div class="div127">Сгенерированный доход:</div>
-                    </div>
-                    <div class="ton-wrapper">
-                      <div class="div128">273 000 TON</div>
-                    </div>
-                  </div>
-                  <div
-                    v-if="role === 'investor' && variant === 'all'"
-                    class="line-div"
-                  />
-                  <div
-                    v-if="role === 'investor' && variant === 'all'"
-                    class="frame-parent23"
-                  >
-                    <div class="frame">
-                      <div class="div127">Действующих инвесторов:</div>
-                    </div>
-                    <div class="ton-wrapper">
-                      <div class="div128">273</div>
-                    </div>
-                  </div>
-                  <div v-if="role === 'investor'" class="line-div" />
-                  <div v-if="role === 'investor'" class="frame-parent23">
-                    <div class="frame">
-                      <div class="div127">Доходность за 30 дней:</div>
-                    </div>
-                    <div class="ton-wrapper">
-                      <div class="div128">75% годовых</div>
-                    </div>
-                  </div>
-
-                  <div
-                    v-if="
-                      role === 'creditor' ||
-                      (role === 'borrower' && variant === 'my')
-                    "
-                    class="line-div"
-                  />
-                  <div
-                    v-if="
-                      role === 'creditor' ||
-                      (role === 'borrower' && variant === 'my')
-                    "
-                    class="frame-parent23"
-                  >
-                    <div class="frame">
-                      <div class="div127">ROI инвесторов:</div>
-                    </div>
-                    <div class="ton-wrapper">
-                      <div class="div128">75% годовых</div>
+                      Доступно ликвидности
                     </div>
                   </div>
                 </div>
-
-                <div
-                  v-if="role === 'investor' && variant === 'my'"
-                  class="frame-parent"
-                >
-                  <div class="wrapper">
-                    <div class="div">Мои инвестиции</div>
-                  </div>
-                  <div class="frame-group">
-                    <div class="frame-wrapper">
-                      <div class="frame-container">
-                        <div class="container">
-                          <div class="div1">Инвестировано:</div>
-                        </div>
-                        <div class="ton-wrapper">
-                          <div class="ton1">100 TON</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="frame-child" />
-                    <div class="frame-wrapper">
-                      <div class="frame-parent1">
-                        <div class="frame">
-                          <div class="div1">Доходность всего:</div>
-                        </div>
-                        <div class="ton-container">
-                          <div class="ton1">7 TON</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="frame-child" />
-                    <div class="frame-wrapper">
-                      <div class="frame-parent1">
-                        <div class="frame">
-                          <div class="div1">Текущая доходность:</div>
-                        </div>
-                        <div class="ton-container">
-                          <div class="ton1">45% годовых</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div v-else class="notification6">
+              </div>
+              <div class="frame-parent20">
+                <div class="iconsbar-cards-parent">
                   <img
-                    class="percent-icon12"
+                    class="icons2bar-cards"
                     alt=""
                     src="@/assets/images/percent.svg"
                   />
-                  <div class="div128_percent div128">
-                    Проценты начисляются с 12.12.2023 года
+                  <div class="div122">1 день = 1%</div>
+                </div>
+                <div class="iconsbar-cards-parent">
+                  <img
+                    class="icons2bar-cards1"
+                    alt=""
+                    src="@/assets/images/clock.svg"
+                  />
+                  <div class="div123">3 дня = 0%</div>
+                </div>
+
+                <div class="iconsbar-cards-parent">
+                  <img
+                    class="icons2bar-cards"
+                    alt=""
+                    src="@/assets/images/activity.svg"
+                  />
+                  <div class="div124">ROI = 75%</div>
+                </div>
+              </div>
+            </div>
+            <div
+              v-if="role === 'borrower' || role === 'collector'"
+              class="creditor-info"
+            >
+              <div class="div127_creditor-info div127">Кредитор:</div>
+
+              <div class="group-creditor">
+                <span class="div127_creditor-info">Деньги до зарплаты</span>
+                <img
+                  class="radiobutton-icon"
+                  alt=""
+                  src="@/assets/images/investore.svg"
+                />
+              </div>
+            </div>
+            <div v-if="role !== 'collector'" class="frame-parent21">
+              <div class="frame">
+                <div class="div121">Состояние:</div>
+              </div>
+              <div class="colors-graphsorders-group">
+                <img
+                  class="colors-graphsorders-icon"
+                  alt=""
+                  src="@/assets/images/colors-graphsorders1.svg"
+                />
+                <div class="statuspull">
+                  <div class="div126">Активен</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="frame-parent22">
+              <div
+                v-if="role === 'collector' && variant === 'debt'"
+                class="frame-parent23"
+              >
+                <div class="frame">
+                  <div class="div121">Статус:</div>
+                </div>
+                <div
+                  class="colors-graphsorders-group_red colors-graphsorders-group"
+                >
+                  <img
+                    class="colors-graphsorders-icon"
+                    alt=""
+                    src="@/assets/images/colors-graphsorders3.svg"
+                  />
+                  <div class="statuspull_collector statuspull">
+                    <div class="div126">Не погашена</div>
                   </div>
                 </div>
               </div>
-              <div class="des-and-bbn6">
-                <div class="text-and-button-parent">
-                  <div
-                    v-if="variant === 'my' && role === 'creditor'"
-                    class="text-and-button6"
-                  >
-                    <button
-                      class="buttons-tabs7_creditor buttons-tabs7"
-                      @click.stop="toLoans"
-                    >
-                      <div class="text6">Займы</div>
-                    </button>
-                    <button
-                      class="buttons-tabs7_creditor buttons-tabs7"
-                      @click.stop="toAnalytics"
-                    >
-                      <div class="text7">Аналитика</div>
-                    </button>
+              <div
+                v-if="role === 'collector' && variant !== 'marketplace'"
+                class="line-div"
+              />
+              <div
+                v-if="role === 'borrower' && variant === 'all'"
+                class="frame-parent23"
+              >
+                <div class="frame">
+                  <div class="div127">Одобренный лимит:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div128">до {{ pool?.max_loan_amount }} TON</div>
+                </div>
+              </div>
+              <div v-if="role === 'collector'" class="frame-parent23">
+                <div class="frame">
+                  <div class="div127"><b>Цена продажи:</b></div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div128">
+                    <b>{{ loan?.price }} TON</b>
                   </div>
-                  <div class="text-and-button6">
-                    <!--<button
+                </div>
+              </div>
+              <div v-if="role === 'collector'" class="line-div" />
+              <div v-if="role === 'collector'" class="frame-parent23">
+                <div class="frame">
+                  <div class="div127">Текущий долг:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div128">
+                    {{
+                      loan?.amount && loan?.paid_amount
+                        ? loan?.amount - loan?.paid_amount
+                        : ""
+                    }}
+                  </div>
+                </div>
+              </div>
+              <div class="line-div" />
+              <div class="frame-parent23">
+                <div class="frame">
+                  <div class="div127">Ставка:</div>
+                </div>
+                <div v-if="pool?.millipercent" class="ton-wrapper">
+                  <div class="div128">
+                    {{ pool?.millipercent / 100 }}% в день
+                  </div>
+                </div>
+                <div v-if="loan?.millipercent" class="ton-wrapper">
+                  <div class="div128">
+                    {{ loan?.millipercent / 100 }}% в день
+                  </div>
+                </div>
+              </div>
+              <div v-if="role === 'collector'" class="line-div" />
+              <div v-if="role === 'collector'" class="frame-parent23">
+                <div class="frame">
+                  <div class="div127">Просрочен:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div128">9 дней</div>
+                </div>
+              </div>
+              <div v-if="role !== 'collector'" class="line-div" />
+              <div v-if="role !== 'collector'" class="frame-parent23">
+                <div class="frame">
+                  <div class="div127">На срок:</div>
+                </div>
+                <div v-if="pool?.max_duration" class="ton-wrapper">
+                  <div class="div128">
+                    до {{ parse(pool?.max_duration).days }} дней
+                  </div>
+                </div>
+              </div>
+              <div v-if="role !== 'collector'" class="line-div" />
+              <div v-if="role !== 'collector'" class="frame-parent23">
+                <div class="frame_period frame">
+                  <div class="div127">Беспроцентный период:</div>
+                </div>
+                <div v-if="pool?.free_period" class="ton-wrapper">
+                  <div class="div128">
+                    {{ parse(pool?.free_period).days }} дней
+                  </div>
+                </div>
+              </div>
+              <div v-if="role === 'borrower'" class="line-div" />
+              <div
+                v-if="role === 'collector' && variant === 'debt'"
+                class="line-div"
+              />
+              <div
+                v-if="role === 'collector' && variant === 'debt'"
+                class="frame-parent23"
+              >
+                <div class="frame_period frame">
+                  <div class="div127">Стоимость покупки:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div128">9 000 TON</div>
+                </div>
+              </div>
+              <div
+                v-if="
+                  role === 'creditor' ||
+                  role === 'investor' ||
+                  (role === 'borrower' && variant === 'my')
+                "
+                class="line-div"
+              />
+              <div
+                v-if="
+                  role === 'creditor' ||
+                  role === 'investor' ||
+                  (role === 'borrower' && variant === 'my')
+                "
+                class="frame-parent23"
+              >
+                <div class="frame">
+                  <div class="div127">Всего ликвидности:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div128">{{ pool?.all_liquidity }} TON</div>
+                </div>
+              </div>
+              <div
+                v-if="
+                  role === 'creditor' ||
+                  role === 'investor' ||
+                  (role === 'borrower' && variant === 'my')
+                "
+                class="line-div"
+              />
+              <div
+                v-if="
+                  role === 'creditor' ||
+                  role === 'investor' ||
+                  (role === 'borrower' && variant === 'my')
+                "
+                class="frame-parent23"
+              >
+                <div class="frame">
+                  <div class="div127">Свободно:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div128">{{ pool?.available_liquidity }} TON</div>
+                </div>
+              </div>
+              <div
+                v-if="role === 'investor' && variant === 'all'"
+                class="line-div"
+              />
+              <div
+                v-if="role === 'investor' && variant === 'all'"
+                class="frame-parent23"
+              >
+                <div class="frame">
+                  <div class="div127">Сгенерированный доход:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div128">273 000 TON</div>
+                </div>
+              </div>
+              <div
+                v-if="role === 'investor' && variant === 'all'"
+                class="line-div"
+              />
+              <div
+                v-if="role === 'investor' && variant === 'all'"
+                class="frame-parent23"
+              >
+                <div class="frame">
+                  <div class="div127">Действующих инвесторов:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div128">273</div>
+                </div>
+              </div>
+              <div v-if="role === 'investor'" class="line-div" />
+              <div v-if="role === 'investor'" class="frame-parent23">
+                <div class="frame">
+                  <div class="div127">Доходность за 30 дней:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div128">75% годовых</div>
+                </div>
+              </div>
+
+              <div
+                v-if="
+                  role === 'creditor' ||
+                  (role === 'borrower' && variant === 'my')
+                "
+                class="line-div"
+              />
+              <div
+                v-if="
+                  role === 'creditor' ||
+                  (role === 'borrower' && variant === 'my')
+                "
+                class="frame-parent23"
+              >
+                <div class="frame">
+                  <div class="div127">ROI инвесторов:</div>
+                </div>
+                <div class="ton-wrapper">
+                  <div class="div128">75% годовых</div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              v-if="role === 'investor' && variant === 'my'"
+              class="frame-parent"
+            >
+              <div class="wrapper">
+                <div class="div">Мои инвестиции</div>
+              </div>
+              <div class="frame-group">
+                <div class="frame-wrapper">
+                  <div class="frame-container">
+                    <div class="container">
+                      <div class="div1">Инвестировано:</div>
+                    </div>
+                    <div class="ton-wrapper">
+                      <div class="ton1">100 TON</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="frame-child" />
+                <div class="frame-wrapper">
+                  <div class="frame-parent1">
+                    <div class="frame">
+                      <div class="div1">Доходность всего:</div>
+                    </div>
+                    <div class="ton-container">
+                      <div class="ton1">7 TON</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="frame-child" />
+                <div class="frame-wrapper">
+                  <div class="frame-parent1">
+                    <div class="frame">
+                      <div class="div1">Текущая доходность:</div>
+                    </div>
+                    <div class="ton-container">
+                      <div class="ton1">45% годовых</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div v-else class="notification6">
+              <img
+                class="percent-icon12"
+                alt=""
+                src="@/assets/images/percent.svg"
+              />
+              <div class="div128_percent div128">
+                Проценты начисляются с 12.12.2023 года
+              </div>
+            </div>
+          </div>
+          <div class="des-and-bbn6">
+            <div class="text-and-button-parent">
+              <div
+                v-if="variant === 'my' && role === 'creditor'"
+                class="text-and-button6"
+              >
+                <button
+                  class="buttons-tabs7_creditor buttons-tabs7"
+                  @click.stop="toLoans"
+                >
+                  <div class="text6">Займы</div>
+                </button>
+                <button
+                  class="buttons-tabs7_creditor buttons-tabs7"
+                  @click.stop="toAnalytics"
+                >
+                  <div class="text7">Аналитика</div>
+                </button>
+              </div>
+              <div class="text-and-button6">
+                <!--<button
                 v-if="variant === 'all'"
                 :class="`buttons-tabs7_${role} buttons-tabs7`"
                 @click.stop="() => (isMangae = true)"
@@ -430,216 +433,214 @@
                   <span class="span2">Взять займ</span>
                 </div>
               </button>-->
-                    <button
-                      v-if="role === 'creditor' && variant === 'my'"
-                      :class="`buttons-tabs7_${role} buttons-tabs7`"
-                      @click.stop="toManageLiquid"
-                    >
-                      <div v-if="role === 'creditor'" class="text8">
-                        <span class="span2">Упр</span>
-                        <span class="span3">. ликвид</span>
-                      </div>
-                    </button>
-
-                    <catos-button
-                      v-if="role === 'investor' && variant === 'my'"
-                      :style="{ width: '100%' }"
-                      variant="fourth"
-                      @click.stop="toWidthdrawLequid"
-                      >Вывести депозит</catos-button
-                    >
-                    <catos-button
-                      v-if="role === 'investor'"
-                      :style="{ width: '100%' }"
-                      variant="fourth"
-                      @click.stop="toAddLequid"
-                      >Инвестировать</catos-button
-                    >
-                    <catos-button
-                      v-if="role === 'borrower' && variant === 'all'"
-                      :style="{ width: '100%' }"
-                      variant="fourth"
-                      @click.stop="toGetLoan"
-                      >Взять займ</catos-button
-                    >
-                    <catos-button
-                      v-if="role === 'collector' && variant === 'marketplace'"
-                      :style="{ width: '100%' }"
-                      variant="fourth"
-                      @click.stop="toBuy"
-                      >Купить</catos-button
-                    >
-
-                    <button
-                      v-if="role === 'creditor' && variant === 'my'"
-                      :class="`buttons-tabs7_${role}-${variant} buttons-tabs7_${role} buttons-tabs7`"
-                      @click.stop="toDetail"
-                    >
-                      <div class="text9">Подробнее</div>
-                    </button>
-                    <catos-button
-                      v-else
-                      :style="{ width: '100%' }"
-                      variant="fourth_outline"
-                      @click.stop="toDetail"
-                      >Подробнее</catos-button
-                    >
+                <button
+                  v-if="role === 'creditor' && variant === 'my'"
+                  :class="`buttons-tabs7_${role} buttons-tabs7`"
+                  @click.stop="toManageLiquid"
+                >
+                  <div v-if="role === 'creditor'" class="text8">
+                    <span class="span2">Упр</span>
+                    <span class="span3">. ликвид</span>
                   </div>
-                </div>
+                </button>
+
+                <catos-button
+                  v-if="role === 'investor' && variant === 'my'"
+                  :style="{ width: '100%' }"
+                  variant="fourth"
+                  @click.stop="toWidthdrawLequid"
+                  >Вывести депозит</catos-button
+                >
+                <catos-button
+                  v-if="role === 'investor'"
+                  :style="{ width: '100%' }"
+                  variant="fourth"
+                  @click.stop="toAddLequid"
+                  >Инвестировать</catos-button
+                >
+                <catos-button
+                  v-if="role === 'borrower' && variant === 'all'"
+                  :style="{ width: '100%' }"
+                  variant="fourth"
+                  @click.stop="toGetLoan"
+                  >Взять займ</catos-button
+                >
+                <catos-button
+                  v-if="role === 'collector' && variant === 'marketplace'"
+                  :style="{ width: '100%' }"
+                  variant="fourth"
+                  @click.stop="toBuy"
+                  >Купить</catos-button
+                >
+
+                <button
+                  v-if="role === 'creditor' && variant === 'my'"
+                  :class="`buttons-tabs7_${role}-${variant} buttons-tabs7_${role} buttons-tabs7`"
+                  @click.stop="toDetail"
+                >
+                  <div class="text9">Подробнее</div>
+                </button>
+                <catos-button
+                  v-else
+                  :style="{ width: '100%' }"
+                  variant="fourth_outline"
+                  @click.stop="toDetail"
+                  >Подробнее</catos-button
+                >
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
 
+    <all-creditor-pulls
+      v-if="isAllCreditor"
+      @close="() => (isAllCreditor = false)"
+    ></all-creditor-pulls>
+    <my-creditor-pulls
+      :poolId="pool?.id ? pool?.id : 0"
+      v-if="isMyCreditor"
+      :state="myCreditorState"
+      @loans="toLoans"
+      @analytics="toAnalytics"
+      @close="
+        () => {
+          isMyCreditor = false;
+          resetState('my-creditor');
+        }
+      "
+    >
+    </my-creditor-pulls>
+    <all-borrower-pulls
+      :pool="pool"
+      :freePeriod="pool?.free_period ? parse(pool.free_period).days : 0"
+      v-if="isAllBorrower"
+      :state="allBorrowerState"
+      @close="
+        () => {
+          isAllBorrower = false;
+          resetState('all-borrower');
+        }
+      "
+    ></all-borrower-pulls>
+    <my-borrower-pulls
+      v-if="isMyBorrower"
+      :poolId="pool?.id ? pool?.id : 0"
+      :state="myBorrowerState"
+      @close="
+        () => {
+          isMyBorrower = false;
+          resetState('my-borrower');
+        }
+      "
+    >
+    </my-borrower-pulls>
 
-        <all-creditor-pulls
-          v-if="isAllCreditor"
-          @close="() => (isAllCreditor = false)"
-        ></all-creditor-pulls>
-        <my-creditor-pulls
-          :poolId="pool?.id ? pool?.id : 0"
-          v-if="isMyCreditor"
-          :state="myCreditorState"
-          @loans="toLoans"
-          @analytics="toAnalytics"
-          @close="
-            () => {
-              isMyCreditor = false;
-              resetState('my-creditor');
-            }
-          "
-        >
-        </my-creditor-pulls>
-        <all-borrower-pulls
-          :pool="pool"
-          :freePeriod="pool?.free_period ? parse(pool.free_period).days : 0"
-          v-if="isAllBorrower"
-          :state="allBorrowerState"
-          @close="
-            () => {
-              isAllBorrower = false;
-              resetState('all-borrower');
-            }
-          "
-        ></all-borrower-pulls>
-        <my-borrower-pulls  
-          v-if="isMyBorrower"
-          :poolId="pool?.id ? pool?.id : 0"
-          :state="myBorrowerState"
-          @close="
-            () => {
-              isMyBorrower = false;
-              resetState('my-borrower');
-            }
-            "
-  >
-  </my-borrower-pulls>
-
-        <add
-          v-if="
-            (isAllDepositor || isMyDepositor) &&
-            allDepositorState.addLiquidModal
-          "
-          @close="
-            () => {
-              isAllDepositor = false;
-              resetState('all-depositor');
-            }
-          "
-          :poolId="pool?.id ? pool?.id : 0"
-        ></add>
-        <withdraw
-          v-if="
-            (isAllDepositor || isMyDepositor) &&
-            allDepositorState.widthrawLiquidModal
-          "
-          @close="
-            () => {
-              isAllDepositor = false;
-              resetState('all-depositor');
-            }
-          "
-           :poolId="pool?.id ? pool?.id : 0"
-        ></withdraw>
-        <all-depositor-pulls
-          v-if="
-            isAllDepositor &&
-            !allDepositorState.addLiquidModal &&
-            !allDepositorState.widthrawLiquidModal
-          "
-          :poolId="pool?.id ? pool?.id : 0"
-          @close="
-            () => {
-              isAllDepositor = false;
-              resetState('all-depositor');
-            }
-          "
-        >
-        </all-depositor-pulls>
-        <my-depositor-pulls
-          @add="
-            () => {
-              isMyDepositor = false;
-              toAddLequid();
-            }
-          "
-          @widthraw="
-            () => {
-              isMyDepositor = false;
-              toWidthdrawLequid();
-            }
-          "
-          v-if="isMyDepositor"
-          @close="
-            () => {
-              isMyDepositor = false;
-              resetState('my-depositor');
-            }
-          "
-        ></my-depositor-pulls>
-        <all-collector-pulls
-          v-if="isAllCollector && !allCollectorState.buyModal"
-          @by="
-            () => {
-              isAllCollector = false;
-              toBuy();
-            }
-          "
-          @close="
-            () => {
-              isAllCollector = false;
-              resetState('all-collector');
-            }
-          "
-        ></all-collector-pulls>
-        <my-collector-pulls
-          v-if="isMyCollector"
-          :loan="loan"
-          @close="
-            () => {
-              isMyCollector = false;
-              resetState('my-collector');
-            }
-          "
-        >
-        </my-collector-pulls>
-        <buy
-          v-if="allCollectorState.buyModal"
-          :poolId="loan?.id ? loan?.id : 0"
-          @close="
-            () => {
-              isAllCollector = false;
-              resetState('all-collector');
-            }
-          "
-          @myLoans="
-            () => {
-              isAllCollector = false;
-              toMySold();
-              resetState('all-collector');
-            }
-          "
-        ></buy>
+    <add
+      v-if="
+        (isAllDepositor || isMyDepositor) && allDepositorState.addLiquidModal
+      "
+      @close="
+        () => {
+          isAllDepositor = false;
+          resetState('all-depositor');
+        }
+      "
+      :poolId="pool?.id ? pool?.id : 0"
+    ></add>
+    <withdraw
+      v-if="
+        (isAllDepositor || isMyDepositor) &&
+        allDepositorState.widthrawLiquidModal
+      "
+      @close="
+        () => {
+          isAllDepositor = false;
+          resetState('all-depositor');
+        }
+      "
+      :poolId="pool?.id ? pool?.id : 0"
+    ></withdraw>
+    <all-depositor-pulls
+      v-if="
+        isAllDepositor &&
+        !allDepositorState.addLiquidModal &&
+        !allDepositorState.widthrawLiquidModal
+      "
+      :poolId="pool?.id ? pool?.id : 0"
+      @close="
+        () => {
+          isAllDepositor = false;
+          resetState('all-depositor');
+        }
+      "
+    >
+    </all-depositor-pulls>
+    <my-depositor-pulls
+      @add="
+        () => {
+          isMyDepositor = false;
+          toAddLequid();
+        }
+      "
+      @widthraw="
+        () => {
+          isMyDepositor = false;
+          toWidthdrawLequid();
+        }
+      "
+      v-if="isMyDepositor"
+      @close="
+        () => {
+          isMyDepositor = false;
+          resetState('my-depositor');
+        }
+      "
+    ></my-depositor-pulls>
+    <all-collector-pulls
+      v-if="isAllCollector && !allCollectorState.buyModal"
+      @by="
+        () => {
+          isAllCollector = false;
+          toBuy();
+        }
+      "
+      @close="
+        () => {
+          isAllCollector = false;
+          resetState('all-collector');
+        }
+      "
+    ></all-collector-pulls>
+    <my-collector-pulls
+      v-if="isMyCollector"
+      :loan="loan"
+      @close="
+        () => {
+          isMyCollector = false;
+          resetState('my-collector');
+        }
+      "
+    >
+    </my-collector-pulls>
+    <buy
+      v-if="allCollectorState.buyModal"
+      :poolId="loan?.id ? loan?.id : 0"
+      @close="
+        () => {
+          isAllCollector = false;
+          resetState('all-collector');
+        }
+      "
+      @myLoans="
+        () => {
+          isAllCollector = false;
+          toMySold();
+          resetState('all-collector');
+        }
+      "
+    ></buy>
   </div>
 </template>
 
@@ -671,16 +672,16 @@ const { variant } = defineProps({
   pool: {
     type: Object as PropType<Pool>,
   },
-  loan : {
+  loan: {
     type: Object as PropType<LoansResponse | LoansBoughtResponse>,
-  }
+  },
 });
 
 const emits = defineEmits(["mySoldLoans"]);
 
 const role = computed(() => {
-  return roleStorage.get()
-})
+  return roleStorage.get();
+});
 
 const toMySold = () => {
   emits("mySoldLoans");
@@ -690,7 +691,7 @@ const isMyCreditor = ref(false);
 const isAllBorrower = ref(false);
 const isAllDepositor = ref(false);
 const isMyDepositor = ref(false);
-const isMyBorrower = ref(false)
+const isMyBorrower = ref(false);
 const isAllCollector = ref(false);
 const isMyCollector = ref(false);
 
@@ -705,7 +706,7 @@ const allBorrowerState = {
 };
 const myBorrowerState = {
   detailMyModal: false,
-}
+};
 
 const allDepositorState = {
   detailOtherModal: false,
@@ -734,7 +735,7 @@ const resetState = (state: string) => {
       allBorrowerState.detailOtherModal = false;
       allBorrowerState.getLoanModal = false;
     case "my-borrower":
-      myBorrowerState.detailMyModal = false
+      myBorrowerState.detailMyModal = false;
     case "all-depositor":
       allDepositorState.addLiquidModal = false;
       allDepositorState.detailOtherModal = false;
@@ -810,8 +811,6 @@ const toDetail = () => {
       myCollectorState.detailOtherModal = true;
     }
   }
-
-
 };
 const router = useRouter();
 const toLoans = () => {
