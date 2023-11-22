@@ -601,7 +601,7 @@
           "
         ></my-depositor-pulls>
         <all-collector-pulls
-          :loan="loan"
+          :loan="loan as LoansResponse"
           :poolByLoan="poolByLoan"
           v-if="isAllCollector && !allCollectorState.buyModal"
           @by="
@@ -620,7 +620,7 @@
         <my-collector-pulls
           v-if="isMyCollector"
           :poolByLoan="poolByLoan"
-          :loan="loan"
+          :loan="(loan as LoansBoughtResponse)"
           @close="
             () => {
               isMyCollector = false;

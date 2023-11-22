@@ -1,6 +1,6 @@
 <template>
      <h3 v-if="!actualLoans.length">
-      {{ `${role === 'collector' ? 'Задолжности пока отсутствуют' : 'Займы пока отсутствуют'}` }}
+      {{ `${role === 'collector' ? 'Задолженности пока отсутствуют' : 'Займы пока отсутствуют'}` }}
     </h3>
     <ul class="list-desktop">
       <li

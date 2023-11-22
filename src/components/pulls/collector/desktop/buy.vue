@@ -1,8 +1,8 @@
 <template>
   <transaction-desktop v-if="isTransaction && !transactionStatus" @close="isTransaction = false" 
       :status="transactionStatus"
-      title="Подтвердите покупку задолжности"
-      subtitle="Пожалуйста, подтвердите покупку задолжности в своем кошельке"
+      title="Подтвердите покупку задолженности"
+      subtitle="Пожалуйста, подтвердите покупку задолженности в своем кошельке"
     ></transaction-desktop>
 
     <status-modal-desktop
@@ -33,7 +33,7 @@
   </status-modal-desktop>
     <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" 
       :status="transactionStatus"
-      title="Произошла ошибка при покупке задолжности"
+      title="Произошла ошибка при покупке задолженности"
     >
     </transaction-desktop>
 </template>
