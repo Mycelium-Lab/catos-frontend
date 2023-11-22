@@ -59,7 +59,13 @@
                     alt=""
                     src="@/assets/images/percent.svg"
                   />
-                  <div class="div122">1 день = 1%</div>
+                  <div class="div122">
+                    {{
+                      loan?.millipercent
+                        ? "1 день = " + loan?.millipercent / 100 + "%"
+                        : ""
+                    }}
+                  </div>
                 </div>
                 <div class="iconsbar-cards-parent">
                   <img
@@ -615,7 +621,7 @@
     ></all-collector-pulls>
     <my-collector-pulls
       v-if="isMyCollector"
-      :loan="loan"
+      :loan="(loan as LoansBoughtResponse)"
       @close="
         () => {
           isMyCollector = false;

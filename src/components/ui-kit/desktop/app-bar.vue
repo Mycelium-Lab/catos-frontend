@@ -107,28 +107,28 @@ const toDashBoard = () => {
     router.push({ name: "dashboard" });
   }
 };
-const toWallet = () => {
-  console.log(role.value);
-  if (role.value === "creditor") {
-    router.push({ name: "wallet" });
-  } else if (role.value === "borrower") {
-    router.push({ name: "wallet" });
-  } else if (role.value === "investor") {
-    router.push({ name: "wallet" });
-  } else if (role.value === "collector") {
-    router.push({ name: "wallet" });
-  }
-};
+// const toWallet = () => {
+//   console.log(role.value);
+//   if (role.value === "creditor") {
+//     router.push({ name: "wallet" });
+//   } else if (role.value === "borrower") {
+//     router.push({ name: "wallet" });
+//   } else if (role.value === "investor") {
+//     router.push({ name: "wallet" });
+//   } else if (role.value === "collector") {
+//     router.push({ name: "wallet" });
+//   }
+// };
 const toProfile = () => {
-  if (role.value === "creditor") {
+  // if (role.value === "creditor") {
+  //   router.push({ name: "setting" });
+  // } else if (role.value === "borrower") {
+  //   router.push({ name: "setting" });
+  // } else if (role.value === "investor") {
+  //   router.push({ name: "setting" });
+  // } else if (role.value === "collector") {
     router.push({ name: "setting" });
-  } else if (role.value === "borrower") {
-    router.push({ name: "setting" });
-  } else if (role.value === "investor") {
-    router.push({ name: "setting" });
-  } else if (role.value === "collector") {
-    router.push({ name: "setting" });
-  }
+  // }
 };
 </script>
 <style scoped lang="scss">
