@@ -3,7 +3,7 @@
     <div class="div">
       <div class="header-pop-up">
         <div class="page-title-parent">
-          <div class="page-title">Пулл №1223</div>
+          <div class="page-title">Пулл #{{ pool?.id }}</div>
           <img
             class="close-icon-action close-icon"
             alt=""
@@ -35,7 +35,7 @@
                   alt=""
                   src="@/assets/images/percent.svg"
                 />
-                <div class="div3">1 день = 1%</div>
+                <div class="div3">{{interestRateString}}</div>
               </div>
               <div class="percent-parent">
                 <img
@@ -43,11 +43,11 @@
                   alt=""
                   src="@/assets/images/clock.svg"
                 />
-                <div class="div3">3 дня = 0%</div>
+                <div class="div3">{{freePeriodString}}</div>
               </div>
               <div class="percent-parent">
                 <img class="percent-icon" src="@/assets/images/activity.svg" />
-                <div class="div3">ROI = 75%</div>
+                <div class="div3">{{`ROI = ${pool?.roi}%`}}</div>
               </div>
             </div>
           </div>
@@ -57,13 +57,20 @@
             </div>
             <div class="status-all">
               <div class="colors-graphsorders-parent">
-                <img
-                  class="colors-graphsorders-icon"
-                  alt=""
-                  src="@/assets/images/colors-graphsorders1.svg"
-                />
+                <img 
+                      v-if="pool?.status === 'active'"
+                      class="colors-graphsorders-icon"
+                      alt=""
+                      src="@/assets/images/colors-graphsorders1.svg"
+                    />
+                    <img 
+                      v-else-if="pool?.status === 'inactive'"
+                      class="colors-graphsorders-icon_inactive colors-graphsorders-icon"
+                      alt=""
+                      src="@/assets/images/colors-graphsorders3.svg"
+                    />
                 <div class="c">
-                  <span>Активен </span>
+                  <span>{{  i18n.global.t(`pools-status.${pool?.status}`)}}</span>
                 </div>
               </div>
             </div>
@@ -91,77 +98,77 @@
           <div class="field-parent">
             <div class="field">
               <div class="roi">Ставка:</div>
-              <div class="div9">1% в день</div>
+              <div  v-if="pool?.millipercent" class="div9">{{ pool?.millipercent / 100 }}% в день</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="roi">На срок:</div>
-              <div class="div9">до 30 дней</div>
+              <div class="div9">  до {{maxDuration}}</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="roi">Беспроцентный период:</div>
-              <div class="div9">3 дня</div>
+              <div class="div9">{{ freePeriod }} дней</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="roi">Всего ликвидности:</div>
-              <div class="div9">450 000 TON</div>
+              <div class="div9">{{ pool?.all_liquidity }} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
-              <div class="roi">Выдано::</div>
-              <div class="div9">769 000 TON</div>
+              <div class="roi">Выдано:</div>
+              <div class="div9"> TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="roi">Займов выдано:</div>
-              <div class="div9">10 574 раз</div>
+              <div class="div9"> раз</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="roi">Процент невозврата:</div>
-              <div class="div9">4,5%</div>
+              <div  v-if="pool?.millipercent" class="div9">{{ pool?.overdue_millipercent / 100 }}%</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="roi">Доступно ликвидности:</div>
-              <div class="div9">37 000 TON</div>
+              <div class="div9">{{ pool?.available_liquidity}} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="roi">Дата создания:</div>
-              <div class="div9">22. 05. 2023</div>
+              <div class="div9"></div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="roi">Доход:</div>
-              <div class="div9">103 311 TON</div>
+              <div class="div9">TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-wrapper">
             <div class="field">
               <div class="roi">ROI инвесторов:</div>
-              <div class="div9">75% годовых</div>
+              <div class="div9">{{pool?.roi}}% годовых</div>
             </div>
           </div>
         </div>
@@ -198,11 +205,26 @@
   ></creditor-info>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType } from "vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
+import { i18n } from "@/i18n";
 const emits = defineEmits(["close", "management", "loans"]);
+import { Pool } from "@/types/pool.type";
+import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo";
 
 const isCreditoreInfo = ref(false);
+
+const { pool } = defineProps({
+  pool: {
+    type: Object as PropType<Pool>,
+  },
+
+});
+
+const {
+  interestRate, monthInterestRateString, 
+  maxDuration, freePeriod, interestRateString,
+  freePeriodString } = useComputedPoolInfo(pool)
 
 const toLoans = () => {
   emits("loans");

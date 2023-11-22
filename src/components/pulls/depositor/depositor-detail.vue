@@ -1,7 +1,7 @@
 <template>
   <modal from="pulls">
     <div class="wrapper">
-      <div class="header">Информация о пулле №1223</div>
+      <div class="header">Информация о пулле #{{ pool?.id }}</div>
 
       <div class="pull-stats">
         <div class="pull-stats1">
@@ -229,18 +229,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType } from "vue";
 import { computed } from "vue";
 import modal from "@/components/ui-kit/modal.vue";
 import { useRouter } from "vue-router";
 import satusModal from "@/components/base/status-modal.vue";
 import withrow from "../creditor/liquidity/withrow.vue";
 import add from "../creditor/liquidity/add.vue";
+import { Pool } from "@/types/pool.type";
+import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo";
 
 const variant = computed(() => {
   console.log("window.history.state.variant");
   return window.history.state.variant;
 });
+
+const { pool } = defineProps({
+  pool: {
+    type: Object as PropType<Pool>,
+  },
+});
+
+const {
+  interestRate, monthInterestRateString, 
+  maxDuration, freePeriod, interestRateString,
+  freePeriodString } = useComputedPoolInfo(pool)
 
 const isAdd = ref(false);
 const isWithrow = ref(false);

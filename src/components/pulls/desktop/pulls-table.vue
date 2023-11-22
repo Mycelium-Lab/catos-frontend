@@ -61,7 +61,7 @@
                         src="@/assets/images/percent.svg"
                       />
                       <div v-if="role === 'collector'" class="div122">{{`1 день = ${loan?.millipercent ? loan?.millipercent / 100 : '' }%`}}</div>
-                      <div v-else class="div122">1 день = 1%</div>
+                      <div v-else class="div122">{{interestRateString}}</div>
                     </div>
                     <div class="iconsbar-cards-parent">
                       <img
@@ -70,7 +70,7 @@
                         src="@/assets/images/clock.svg"
                       />
                       <div v-if="poolByLoan?.free_period && role === 'collector'" class="div123"> {{ parse(poolByLoan?.free_period).days }} дней = 0%</div>
-                      <div v-else class="div123"> 3 дня = 0%</div>
+                      <div v-else-if="pool?.free_period" class="div123"> {{ freePeriodString }}</div>
                     </div>
 
                     <div class="iconsbar-cards-parent">
@@ -80,7 +80,7 @@
                         src="@/assets/images/activity.svg"
                       />
                       <div v-if="role === 'collector'" class="div124">{{`ROI = ${poolByLoan?.roi}%`}}</div>
-                      <div v-else class="div124">ROI = 50%</div>
+                      <div v-else class="div124">{{`ROI = ${pool?.roi}%`}}</div>
                     </div>
                   </div>
                 </div>
@@ -104,13 +104,20 @@
                     <div class="div121">Состояние:</div>
                   </div>
                   <div class="colors-graphsorders-group">
-                    <img
+                    <img 
+                      v-if="pool?.status === 'active'"
                       class="colors-graphsorders-icon"
                       alt=""
                       src="@/assets/images/colors-graphsorders1.svg"
                     />
+                    <img 
+                      v-else-if="pool?.status === 'inactive'"
+                      class="colors-graphsorders-icon_inactive colors-graphsorders-icon"
+                      alt=""
+                      src="@/assets/images/colors-graphsorders3.svg"
+                    />
                     <div class="statuspull">
-                      <div class="div126">Активен</div>
+                      <div class="div126">{{  i18n.global.t(`pools-status.${pool?.status}`)}}</div>
                     </div>
                   </div>
                 </div>
@@ -149,7 +156,7 @@
                     </div>
                     <div class="ton-wrapper">
                       <div class="div128">
-                        до {{ pool?.max_loan_amount }} TON
+                        до {{ pool?.available_liquidity }} TON
                       </div>
                     </div>
                   </div>
@@ -177,7 +184,7 @@
                     </div>
                     <div v-if="pool?.millipercent" class="ton-wrapper">
                       <div class="div128">
-                        {{ pool?.millipercent / 100 }}% в день
+                        {{ interestRate }}% в день
                       </div>
                     </div>
                     <div v-if="loan?.millipercent" class="ton-wrapper">
@@ -202,7 +209,7 @@
                     </div>
                     <div v-if="pool?.max_duration" class="ton-wrapper">
                       <div class="div128">
-                        до {{ parse(pool?.max_duration).days }} дней
+                        до {{maxDuration}}
                       </div>
                     </div>
                   </div>
@@ -213,7 +220,7 @@
                     </div>
                     <div v-if="pool?.free_period" class="ton-wrapper">
                       <div class="div128">
-                        {{ parse(pool?.free_period).days }} дней
+                       {{ freePeriod }} дней
                       </div>
                     </div>
                   </div>
@@ -293,7 +300,7 @@
                       <div class="div127">Сгенерированный доход:</div>
                     </div>
                     <div class="ton-wrapper">
-                      <div class="div128">273 000 TON</div>
+                      <div class="div128"> TON</div>
                     </div>
                   </div>
                   <div
@@ -308,7 +315,7 @@
                       <div class="div127">Действующих инвесторов:</div>
                     </div>
                     <div class="ton-wrapper">
-                      <div class="div128">273</div>
+                      <div class="div128"></div>
                     </div>
                   </div>
                   <div v-if="role === 'investor'" class="line-div" />
@@ -317,7 +324,7 @@
                       <div class="div127">Доходность за 30 дней:</div>
                     </div>
                     <div class="ton-wrapper">
-                      <div class="div128">75% годовых</div>
+                      <div class="div128">% годовых</div>
                     </div>
                   </div>
 
@@ -339,7 +346,7 @@
                       <div class="div127">ROI инвесторов:</div>
                     </div>
                     <div class="ton-wrapper">
-                      <div class="div128">75% годовых</div>
+                      <div class="div128">{{ pool?.roi }}% годовых</div>
                     </div>
                   </div>
                 </div>
@@ -497,9 +504,11 @@
 
         <all-creditor-pulls
           v-if="isAllCreditor"
+          :pool="pool"
           @close="() => (isAllCreditor = false)"
         ></all-creditor-pulls>
         <my-creditor-pulls
+          :pool="pool"
           :poolId="pool?.id ? pool?.id : 0"
           v-if="isMyCreditor"
           :state="myCreditorState"
@@ -515,7 +524,6 @@
         </my-creditor-pulls>
         <all-borrower-pulls
           :pool="pool"
-          :freePeriod="pool?.free_period ? parse(pool.free_period).days : 0"
           v-if="isAllBorrower"
           :state="allBorrowerState"
           @close="
@@ -527,7 +535,7 @@
         ></all-borrower-pulls>
         <my-borrower-pulls  
           v-if="isMyBorrower"
-          :poolId="pool?.id ? pool?.id : 0"
+          :pool="pool"
           :state="myBorrowerState"
           @close="
             () => {
@@ -570,7 +578,7 @@
             !allDepositorState.addLiquidModal &&
             !allDepositorState.widthrawLiquidModal
           "
-          :poolId="pool?.id ? pool?.id : 0"
+          :pool="pool"
           @close="
             () => {
               isAllDepositor = false;
@@ -580,6 +588,7 @@
         >
         </all-depositor-pulls>
         <my-depositor-pulls
+        :pool="pool"
           @add="
             () => {
               isMyDepositor = false;
@@ -665,13 +674,15 @@ import allCollectorPulls from "@/components/pulls/collector/desktop/all-collecto
 import myCollectorPulls from "@/components/pulls/collector/desktop/my-collector-pulls.vue";
 import buy from "@/components/pulls/collector/desktop/buy.vue";
 import { useRouter } from "vue-router";
-import { parse } from "tinyduration";
+import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
 import { Pool } from "@/types/pool.type";
 import { roleStorage } from "@/utils/localStorage";
 import { LoansResponse, LoansBoughtResponse } from "@/types/loan.types";
 import { usePoolItemStore } from "@/stores/poolItem"
+import { i18n } from "@/i18n";
+import { parse } from "tinyduration";
 
-const { variant, loan } = defineProps({
+const { variant, loan, pool } = defineProps({
   variant: {
     type: String,
   },
@@ -691,6 +702,11 @@ const role = computed(() => {
 
 const { poolItem } = usePoolItemStore()
 
+const {
+  interestRate, monthInterestRateString, 
+  maxDuration, freePeriod, interestRateString,
+  freePeriodString } = useComputedPoolInfo(pool)
+
 // @ts-ignore
 const poolByLoan = computed(() => poolItem(loan?.pool_id))
 
@@ -701,6 +717,7 @@ const duty = computed(() => {
   else {
     return ''
   }
+  
 })
 
 const expired = computed(() => {
@@ -967,6 +984,10 @@ li {
   position: relative;
   width: 1em;
   height: 1em;
+  &_inactive{
+    position: relative;
+    right: 15px;
+  }
 }
 .div121 {
   position: relative;

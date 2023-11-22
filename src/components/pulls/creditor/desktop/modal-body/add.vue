@@ -8,12 +8,12 @@
       {{ role === "investor" ? "Инвестировать" : "Добавить ликвидность" }} в
       пулл #{{ poolId }}
     </template>
-    <template v-slot:first-row>
+    <!--<template v-slot:first-row>
       <div class="field">
         <div class="roi">Баланс кошелька:</div>
         <div class="div9">257 324 TON</div>
       </div>
-    </template>
+    </template>-->
     <template v-slot:form>
       <div class="text-and-button_action text-and-button">
         <div class="fieldsinput-parent_add fieldsinput-parent">
