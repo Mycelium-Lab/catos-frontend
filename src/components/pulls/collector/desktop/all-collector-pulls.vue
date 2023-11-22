@@ -1,6 +1,6 @@
 <template>
   <desktop-modal v-if="isDetail" @close="close">
-    <template v-slot:title> Информация о задолженности #12345 </template>
+    <template v-slot:title> Информация о задолженности #{{ loan?.id }} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -33,28 +33,28 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3"><b>Цена продажи:</b></div>
-                        <div class="ton"><b>4 000 TON</b></div>
+                        <div class="ton"><b>{{ loan?.price }} TON</b></div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Текущий долг:</div>
-                        <div class="ton">50 000 TON</div>
+                        <div class="ton">{{ duty }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Ставка:</div>
-                        <div class="ton">1% в день</div>
+                        <div class="ton">{{ loan?.millipercent ? loan?.millipercent / 100 : '' }}% в день</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Просрочен на:</div>
-                        <div class="ton">3 дня</div>
+                        <div class="ton">{{ overdue }} дня</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -68,7 +68,7 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Тело займа:</div>
-                        <div class="ton">50 000 TON</div>
+                        <div class="ton">{{ loan?.amount }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -82,35 +82,35 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Выплачено по долгу:</div>
-                        <div class="ton">1 000 TON</div>
+                        <div class="ton">{{ loan?.paid_amount }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Одобренный лимит:</div>
-                        <div class="ton">до 40 000 TON</div>
+                        <div class="ton">до {{ poolByLoan?.available_liquidity }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">На срок:</div>
-                        <div class="ton">до 30 дней</div>
+                        <div v-if="poolByLoan?.max_duration" class="ton">до {{ parse(poolByLoan?.max_duration).days }} дней</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Беспроцентный лимит:</div>
-                        <div class="ton">3 дня</div>
+                        <div v-if="poolByLoan?.free_period" class="ton">{{ parse(poolByLoan?.free_period).days }} дня</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Взят:</div>
-                        <div class="ton">31.12.2023, 16.00</div>
+                        <div class="ton">{{ localeTime }}</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -124,7 +124,7 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Цена покупки:</div>
-                        <div class="ton">1000 TON</div>
+                        <div class="ton">{{ loan?.price }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -188,7 +188,7 @@
                       />
                       <div class="container">
                         <div class="div34">Стоимость:</div>
-                        <div class="ton5">1 537 000 TON</div>
+                        <div class="ton5">{{ loan?.price }} TON</div>
                       </div>
                     </div>
                     <div class="frame-child" />
@@ -199,7 +199,7 @@
                           alt=""
                           src="@/assets/images/percent.svg"
                         />
-                        <div class="div35">1 день = 1%</div>
+                        <div v-if="poolByLoan?.millipercent" class="div35">1 день = {{ poolByLoan?.millipercent / 100  }} %</div>
                       </div>
                       <div class="percent-parent">
                         <img
@@ -207,7 +207,8 @@
                           alt=""
                           src="@/assets/images/clock.svg"
                         />
-                        <div class="div35">3 дня = 0%</div>
+                        <div v-if="poolByLoan?.free_period" class="div37">{{ parse(poolByLoan?.free_period).days }} дня = 0%</div>
+                     
                       </div>
                       <div class="icons2bar-cards-parent">
                         <!--<img
@@ -215,7 +216,7 @@
                           alt=""
                           src="/icons2bar-cards.svg"
                         />-->
-                        <div class="div37">30 дней = 30%</div>
+                        <div class="div35">30 дней = 30%</div>
                       </div>
                     </div>
                   </div>
@@ -241,12 +242,26 @@
   ></creditor-info>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType, computed } from "vue";
 // @ts-ignore
 import desktopModal from "@/components/base/desktop-modal.vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 // @ts-ignore
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
+import { LoansResponse } from "@/types/loan.types";
+import { Pool } from "@/types/pool.type";
+import { parse } from "tinyduration";
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo"
+
+const {loan, poolByLoan} = defineProps({
+  loan : {
+    type: Object as PropType<LoansResponse>,
+  },
+  poolByLoan: {
+    type: Object as PropType<Pool>,
+  },
+})
+
 const isDetail = ref(true);
 const emits = defineEmits(["close", "by"]);
 const toBy = () => {
@@ -257,6 +272,8 @@ const close = () => {
   emits("close");
 };
 const isCreditorInfo = ref(false);
+
+const { duty, overdue, localeTime } = useComputedLoanInfo(loan)
 </script>
 <style scoped>
 .div {
