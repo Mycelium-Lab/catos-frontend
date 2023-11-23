@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 import { getUserId } from "@/utils/token";
 import { LoansBoughtResponse, LoansResponse } from "@/types/loan.types";
 import { listBoughtLoans, listLoans } from "@/api/loans.api";
+import { roleStorage } from "@/utils/localStorage";
 
 export const useLoanListStore = defineStore("useLoans", () => {
   const loans: Ref<LoansResponse[]> = ref([]);
@@ -22,7 +23,8 @@ export const useLoanListStore = defineStore("useLoans", () => {
       hasLoading.value = false;
     });
 
-  listBoughtLoans()
+  if (roleStorage.get() === 'collector') {
+    listBoughtLoans()
     .then(res => {
       loansBought.value = res.data;
     })
@@ -32,7 +34,8 @@ export const useLoanListStore = defineStore("useLoans", () => {
     .finally(() => {
       hasLoading.value = false;
     });
-
+  }
+  
   const borrowerLoan = computed(() => {
     const userId = getUserId();
     return loans.value.filter(val => val.borrower_id == userId);
