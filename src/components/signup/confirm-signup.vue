@@ -67,6 +67,7 @@
               @input="handlePhoneInput"
               @keypress="isNumber"
               @keydown.delete="handleDelete"
+              @paste="onPhonePaste"
             />
           </div>
         </div>
@@ -133,7 +134,7 @@
             @input="handleEmailInput"
             @keypress="isNumber"
             @keydown.delete="handleDelete"
-            @paste="onPaste"
+            @paste="onEmailPaste"
           />
         </div>
       </div>
@@ -191,7 +192,9 @@ import {
 
 let phoneCode: string[] = Array(6);
 let emailCode = ref<String[]>(Array(6));
-let pastedCode: string[] | undefined;
+let pastedEmailCode: string[] | undefined;
+let pastedPhoneCode: string[] | undefined;
+
 const keysAllowed: string[] = [
   "0",
   "1",
@@ -221,8 +224,8 @@ function handlePhoneInput(event: Event) {
   if (inputType === "insertText")
     (activeElement.nextElementSibling as HTMLElement)?.focus();
 
-  if (inputType === "insertFromPaste" && pastedCode) {
-    for (const num of pastedCode) {
+  if (inputType === "insertFromPaste" && pastedPhoneCode) {
+    for (const num of pastedPhoneCode) {
       let id: number = parseInt(activeElement.id.split("_")[1]);
       activeElement.value = num;
       phoneCode[id] = num;
@@ -260,8 +263,8 @@ function handleEmailInput(event: Event) {
   if (inputType === "insertText")
     (activeElement.nextElementSibling as HTMLElement)?.focus();
 
-  if (inputType === "insertFromPaste" && pastedCode) {
-    for (const num of pastedCode) {
+  if (inputType === "insertFromPaste" && pastedEmailCode) {
+    for (const num of pastedEmailCode) {
       let id: number = parseInt(activeElement.id.split("_")[1]);
       activeElement.value = num;
       emailCode.value[id] = num;
@@ -297,13 +300,24 @@ function handleDelete(event: Event) {
   let activeElement = event.target as HTMLInputElement;
   if (!value) (activeElement.previousElementSibling as HTMLElement)?.focus();
 }
-function onPaste(event: Event) {
-  pastedCode = (event as ClipboardEvent).clipboardData
+function onPhonePaste(event: Event) {
+  pastedPhoneCode = (event as ClipboardEvent).clipboardData
     ?.getData("text")
     .trim()
     .split("");
-  if (pastedCode) {
-    for (const num of pastedCode) {
+  if (pastedPhoneCode) {
+    for (const num of pastedPhoneCode) {
+      if (!keysAllowed.includes(num)) event.preventDefault();
+    }
+  }
+}
+function onEmailPaste(event: Event) {
+  pastedEmailCode = (event as ClipboardEvent).clipboardData
+    ?.getData("text")
+    .trim()
+    .split("");
+  if (pastedEmailCode) {
+    for (const num of pastedEmailCode) {
       if (!keysAllowed.includes(num)) event.preventDefault();
     }
   }

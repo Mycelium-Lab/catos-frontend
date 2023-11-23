@@ -24,7 +24,7 @@
               src="@/assets/home-not-active.svg"
               alt=""
             />
-            <span class="name">Задолжности</span>
+            <span class="name">Задолженности</span>
           </router-link>
         </li>
         <li class="item">

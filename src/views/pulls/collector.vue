@@ -6,7 +6,7 @@
   >
     <div class="pull"></div>
     <div class="header">
-      <div class="div8">Задолжности</div>
+      <div class="div8">Задолженности</div>
     </div>
     <button-slider
       :style="{
@@ -16,7 +16,7 @@
         width: '87.7vw',
       }"
       :variantIndex="3"
-      :tabs="['Маркетплейс', 'Выкупленные задолжности']"
+      :tabs="['Маркетплейс', 'Выкупленные задолженности']"
       @on-slide="toggleSlide"
     ></button-slider>
     <div class="frame-parent9">
@@ -49,7 +49,7 @@
     <app-bar v-if="isAppBar"></app-bar>
   </div>
   <default-desktop v-else>
-    <template v-slot:title> Задолжности </template>
+    <template v-slot:title> Задолженности </template>
     <template v-slot:slider>
       <button-slider
         :style="{ width: '311px', margin: '0' }"

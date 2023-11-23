@@ -7,7 +7,7 @@ import { getUserId } from "@/utils/token";
 export const usePoolListStore = defineStore("poolList", () => {
   const pools: Ref<Pool[]> = ref([]);
   listPools().then(res => {
-    console.log(res);
+    // console.log(res);
     pools.value = res.data;
   });
   const creditorPools = computed(() => {
@@ -17,9 +17,14 @@ export const usePoolListStore = defineStore("poolList", () => {
   const verifiedPools = computed(() => {
     return pools.value.filter(val => val.is_verified == true);
   });
+  const poolItem = (poolId: number) => {
+    // console.log('poolId', poolId);
+    return pools.value.filter(val => val.id === poolId)[0];
+  };
   return {
     pools,
     creditorPools,
     verifiedPools,
+    poolItem
   };
 });
