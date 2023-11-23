@@ -2,7 +2,13 @@ import { type InternalAxiosRequestConfig } from "axios";
 import router from "@/router";
 import { walletStorage } from "@/utils/localStorage";
 
-const urlsRequireWallet = ["/pool", "/loanRequests/"];
+const urlsRequireWallet = [
+  "/pool",
+  "/loanRequests/",
+  "/pool/invest",
+  "/pool/deposit",
+  "/pool/withdraw",
+];
 
 export const walletConnectedInterceptor = async (
   config: InternalAxiosRequestConfig
@@ -13,11 +19,11 @@ export const walletConnectedInterceptor = async (
     urlsRequireWallet.includes(config.url) &&
     config.method == "post"
   ) {
-      if (walletStorage.get()?.address === '') {
-        controller.abort();
-        config.signal = controller.signal;
-        router.push({ name: "connect-wallet-finish" });
-      }
+    if (walletStorage.get()?.address === "") {
+      controller.abort();
+      config.signal = controller.signal;
+      router.push({ name: "connect-wallet-finish" });
+    }
   }
   return config;
 };
