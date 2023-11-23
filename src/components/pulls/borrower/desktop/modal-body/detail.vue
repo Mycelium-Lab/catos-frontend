@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title> Информация о пулле №1223 </template>
+    <template v-slot:title> Информация о пулле # {{ pool?.id }} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -12,7 +12,7 @@
                 src="@/assets/images/pie-chart.svg"
               />
               <div class="ton-parent">
-                <div class="ton">1 537 000 TON</div>
+                <div class="ton">{{ pool?.available_liquidity }} TON</div>
                 <div class="div1">Одобренный лимит</div>
               </div>
             </div>
@@ -24,7 +24,7 @@
                   alt=""
                   src="@/assets/images/percent.svg"
                 />
-                <div class="div2">1 день = 1%</div>
+                <div class="div2">{{ interestRateString }}</div>
               </div>
               <div class="percent-parent">
                 <img
@@ -32,7 +32,7 @@
                   alt=""
                   src="@/assets/images/clock.svg"
                 />
-                <div class="div2">3 дня = 0%</div>
+                <div class="div2">{{ freePeriodString }}</div>
               </div>
               <div class="icons2bar-cards-parent">
                 <img
@@ -40,7 +40,7 @@
                   alt=""
                   src="@/assets/images/iconscalendar-mini.svg"
                 />
-                <div class="div4">30 дней = 30%</div>
+                <div class="div4">{{ monthInterestRateString }}</div>
               </div>
             </div>
           </div>
@@ -65,56 +65,56 @@
           <div class="field-parent">
             <div class="field">
               <div class="div7">Одобренный лимит:</div>
-              <div class="ton1">до 50 000 TON</div>
+              <div class="ton1">до {{ pool?.available_liquidity }}  TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div7">Ставка:</div>
-              <div class="ton1">1% в день</div>
+              <div class="ton1">{{ interestRate }}% в день</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div7">Беспроцентный период:</div>
-              <div class="ton1">3 дня</div>
+              <div class="ton1">{{ freePeriod }} дня</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div7">Всего ликвидности:</div>
-              <div class="ton1">450 000 TON</div>
+              <div class="ton1">{{ pool?.all_liquidity }} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div7">Выдано:</div>
-              <div class="ton1">37 000 TON</div>
+              <div class="ton1"> TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div7">Доступно для выдачи:</div>
-              <div class="ton1">257 547 раз</div>
+              <div class="ton1"> раз</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div7">Дата создания:</div>
-              <div class="ton1">22. 05. 2023</div>
+              <div class="ton1"></div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-wrapper">
             <div class="field">
               <div class="div7">Доход инвестора пулла:</div>
-              <div class="ton1">102 311 TON</div>
+              <div class="ton1"></div>
             </div>
           </div>
         </div>
@@ -141,13 +141,27 @@
   ></creditor-info>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType } from "vue";
 // @ts-ignore
 import desktopModal from "@/components/base/desktop-modal.vue";
 // @ts-ignore
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
+import { Pool } from "@/types/pool.type";
+import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo";
+
 const emits = defineEmits(["close", "add", "widthdraw"]);
+
+const { pool } = defineProps({
+  pool: {
+    type: Object as PropType<Pool>,
+  },
+});
+
+const {
+  interestRate, monthInterestRateString, 
+  maxDuration, freePeriod, interestRateString,
+  freePeriodString } = useComputedPoolInfo(pool)
 
 const toAdd = () => {
   emits("add");

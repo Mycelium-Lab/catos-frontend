@@ -1,6 +1,7 @@
 <template>
   <detail-personal-desktop
     v-if="isDetailOther"
+    :pool="pool"
     @close="close"
     @management="
       () => {
@@ -23,6 +24,7 @@
   ></detail-personal-desktop>
   <liquidity-management-desktop
     v-if="isMangaeLiquid"
+    :pool="pool"
     @close="close"
     @withdraw="
       () => {
@@ -149,13 +151,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType} from "vue";
 import detailPersonalDesktop from "../detail-personal-desktop.vue";
 import liquidityManagementDesktop from "@/components/pulls/creditor/liquidity/liquidity-management-desktop.vue";
 import withdraw from "./modal-body/withdraw.vue";
 import add from "./modal-body/add.vue";
 import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
 import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
+import { Pool } from "@/types/pool.type";
+
 const { state } = defineProps({
   state: {
     type: Object,
@@ -164,7 +168,10 @@ const { state } = defineProps({
   poolId: {
     type: Number,
     required: true
-  }
+  },
+  pool: {
+    type: Object as PropType<Pool>,
+  },
 });
 
 const isDetailOther = ref(state.detailOtherModal);

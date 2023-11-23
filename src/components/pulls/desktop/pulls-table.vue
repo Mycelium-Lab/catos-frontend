@@ -546,7 +546,6 @@
       "
     >
     </my-borrower-pulls>
-
     <add
       v-if="
         (isAllDepositor || isMyDepositor) && allDepositorState.addLiquidModal
@@ -673,13 +672,13 @@ import allCollectorPulls from "@/components/pulls/collector/desktop/all-collecto
 import myCollectorPulls from "@/components/pulls/collector/desktop/my-collector-pulls.vue";
 import buy from "@/components/pulls/collector/desktop/buy.vue";
 import { useRouter } from "vue-router";
-import { parse } from "tinyduration";
+import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
 import { Pool } from "@/types/pool.type";
 import { roleStorage } from "@/utils/localStorage";
 import { LoansResponse, LoansBoughtResponse } from "@/types/loan.types";
 import { usePoolListStore } from "@/stores/poolList";
 
-const { variant, loan } = defineProps({
+const { variant, loan, pool } = defineProps({
   variant: {
     type: String,
   },
@@ -698,6 +697,11 @@ const role = computed(() => {
 });
 
 const { poolItem } = usePoolListStore();
+
+const {
+  interestRate, monthInterestRateString, 
+  maxDuration, freePeriod, interestRateString,
+  freePeriodString } = useComputedPoolInfo(pool)
 
 // @ts-ignore
 const poolByLoan = computed(() => poolItem(loan?.pool_id));
@@ -971,6 +975,10 @@ li {
   position: relative;
   width: 1em;
   height: 1em;
+  &_inactive{
+    position: relative;
+    right: 15px;
+  }
 }
 .div121 {
   position: relative;

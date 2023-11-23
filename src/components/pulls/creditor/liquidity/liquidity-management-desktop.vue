@@ -26,7 +26,7 @@
                       src="@/assets/images/pie-chart.svg"
                     />
                     <div class="ton-parent">
-                      <div class="ton">Управление ликвидностью пулл #12345</div>
+                      <div class="ton">Управление ликвидностью пулл #{{ pool.id }}</div>
                       <div class="div2">Доход</div>
                     </div>
                   </div>
@@ -38,56 +38,56 @@
                 <div class="field-parent">
                   <div class="field">
                     <div class="div3">Всего ликвидности:</div>
-                    <div class="ton1">1 053 324 TON</div>
+                    <div class="ton1">{{ pool?.all_liquidity }} TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
                 <div class="field-parent">
                   <div class="field">
                     <div class="div3">Кредитных пуллов:</div>
-                    <div class="ton1">796 000 TON</div>
+                    <div class="ton1">TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
                 <div class="field-parent">
                   <div class="field">
                     <div class="div3">Доступно для выдачи:</div>
-                    <div class="ton1">257 324 TON</div>
+                    <div class="ton1">TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
                 <div class="field-parent">
                   <div class="field">
                     <div class="div3">Доступно для изьятия</div>
-                    <div class="ton1">257 324 TON</div>
+                    <div class="ton1"> TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
                 <div class="field-parent">
                   <div class="field">
                     <div class="div3">Процент невозврата:</div>
-                    <div class="ton1">4,5%</div>
+                    <div  v-if="pool?.millipercent"  class="ton1">{{ pool?.overdue_millipercent / 100 }}%</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
                 <div class="field-parent">
                   <div class="field">
                     <div class="div3">Не вернули:</div>
-                    <div class="ton1">100 246 TON</div>
+                    <div class="ton1">TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
                 <div class="field-parent">
                   <div class="field">
                     <div class="div3">Продано коллекторам:</div>
-                    <div class="ton1">57 273 TON</div>
+                    <div class="ton1">TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
                 <div class="field-parent">
                   <div class="field">
                     <div class="div3">На продаже коллекторам:</div>
-                    <div class="ton1">33 211 TON</div>
+                    <div class="ton1">TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
@@ -118,6 +118,14 @@
   </div>
 </template>
 <script setup lang="ts">
+import { Pool } from "@/types/pool.type";
+import { PropType} from "vue";
+
+const { pool } = defineProps({
+  pool: {
+    type: Object as PropType<Pool>,
+  },
+});
 const emtis = defineEmits(["close", "withdraw", "add"]);
 
 const close = () => {

@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title> Информация о пулле №1223 </template>
+    <template v-slot:title> Информация о пулле # {{ pool?.id }} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -24,7 +24,7 @@
                   alt=""
                   src="@/assets/images/percent.svg"
                 />
-                <div class="div2">1 день = 1%</div>
+                <div class="div2">{{interestRateString}}</div>
               </div>
               <div class="percent-parent">
                 <img
@@ -32,7 +32,7 @@
                   alt=""
                   src="@/assets/images/clock.svg"
                 />
-                <div class="div2">3 дня = 0%</div>
+                <div class="div2">{{freePeriodString}}</div>
               </div>
               <div class="percent-parent">
                 <img
@@ -40,7 +40,7 @@
                   alt=""
                   src="@/assets/images/activity.svg"
                 />
-                <div class="div2">ROI = 75%</div>
+                <div class="div2">{{`ROI = ${pool?.roi}%`}}</div>
               </div>
             </div>
           </div>
@@ -50,13 +50,20 @@
             </div>
             <div class="status-all">
               <div class="colors-graphsorders-parent">
-                <img
-                  class="colors-graphsorders-icon"
-                  alt=""
-                  src="@/assets/images/colors-graphsorders1.svg"
-                />
+                <img 
+                      v-if="pool?.status === 'active'"
+                      class="colors-graphsorders-icon"
+                      alt=""
+                      src="@/assets/images/colors-graphsorders1.svg"
+                    />
+                    <img 
+                      v-else-if="pool?.status === 'inactive'"
+                      class="colors-graphsorders-icon_inactive colors-graphsorders-icon"
+                      alt=""
+                      src="@/assets/images/colors-graphsorders3.svg"
+                    />
                 <div class="c">
-                  <span>Активен </span>
+                  <span>{{  i18n.global.t(`pools-status.${pool?.status}`)}}</span>
                 </div>
               </div>
             </div>
@@ -66,77 +73,77 @@
           <div class="field-parent">
             <div class="field">
               <div class="div5">Ставка:</div>
-              <div class="div6">1% в день</div>
+              <div  v-if="pool?.millipercent" class="div6">{{ pool?.millipercent / 100 }}% в день</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div5">На срок:</div>
-              <div class="div6">до 30 дней</div>
+              <div class="div6">  до {{maxDuration}}</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div5">Беспроцентный период:</div>
-              <div class="div6">3 дня</div>
+              <div class="div6">{{ freePeriod }} дней</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div5">Всего ликвидности:</div>
-              <div class="div6">450 000 TON</div>
+              <div class="div6">{{ pool?.all_liquidity }} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div5">Доступно ликвидности:</div>
-              <div class="div6">37 000 TON</div>
+              <div class="div6">{{ pool?.available_liquidity }} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div5">Доход за 30 дней:</div>
-              <div class="div6">75% годовых</div>
+              <div class="div6">% годовых</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div5">% Просроченных займов:</div>
-              <div class="div6">2%</div>
+              <div class="div6">%</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div5">% Проданных займов:</div>
-              <div class="div6">20%</div>
+              <div class="div6">%</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div5">Пуллов сгенерировано для инвесторов:</div>
-              <div class="div6">10 574 раз</div>
+              <div class="div6">раз</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div5">Количество инвесторов:</div>
-              <div class="div6">130 человек</div>
+              <div class="div6">человек</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-wrapper">
             <div class="field">
               <div class="div5">Дата создания:</div>
-              <div class="div6">22. 05. 2023</div>
+              <div class="div6"></div>
             </div>
           </div>
         </div>
@@ -203,9 +210,14 @@
   </desktop-modal>
 </template>
 <script setup lang="ts">
+import { PropType } from "vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 const emits = defineEmits(["close", "add", "widthraw"]);
+import { Pool } from "@/types/pool.type";
+import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo";
+import { i18n } from "@/i18n";
+
 const add = () => {
   emits("add");
 };
@@ -215,6 +227,17 @@ const widthraw = () => {
 const close = () => {
   emits("close");
 };
+
+const { pool } = defineProps({
+  pool: {
+    type: Object as PropType<Pool>,
+  },
+});
+
+const {
+  interestRate, monthInterestRateString, 
+  maxDuration, freePeriod, interestRateString,
+  freePeriodString } = useComputedPoolInfo(pool)
 </script>
 <style scoped>
 .pie-chart-icon {

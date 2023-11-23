@@ -1,7 +1,6 @@
 <template>
   <detail-other
    :pool="pool"
-   :freePeriod="freePeriod"
     v-if="isDetailOther"
     @close="close"
     @get-loan="
@@ -32,9 +31,7 @@
     <template v-slot:title>{{ `Получить займ из пулла # ${pool?.id}`  }}</template>
     <template v-slot:body>
       <get-loan 
-      :id="pool?.id"
-      :interestRate="pool?.millipercent ? pool?.millipercent / 100 : 0"
-      :freePeriod="freePeriod"
+        :pool="pool"
       >
     </get-loan>
     </template>
@@ -77,11 +74,7 @@ const { state } = defineProps({
   },
   pool: {
     type: Object as PropType<Pool>,
-  },
-  freePeriod: {
-    type: Number,
-    required: true,
-  },
+  }
 })
 
 const isDetailOther = ref(state.detailOtherModal);

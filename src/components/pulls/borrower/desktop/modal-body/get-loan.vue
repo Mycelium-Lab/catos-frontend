@@ -25,7 +25,7 @@
           <div class="container">
             <div class="div2">Беспроцентный период:</div>
           </div>
-          <div class="div3">{{ `${freePeriod ? freePeriod + ' дня': '-'} ` }}</div>
+          <div class="div3">{{ freePeriod }} дней</div>
         </div>
       </div>
       <div class="fields-parent">
@@ -167,7 +167,7 @@
     ></transaction-desktop>
 </template>
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, PropType } from "vue";
 // @ts-ignore
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
@@ -175,12 +175,19 @@ import rangeSlider from "@/components/ui-kit/range-slider.vue";
 import useParsedNumber from "@/compossables/useParsedNumber";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import { createLoanRequest } from "@/api/loanRequests.api";
+import { Pool } from "@/types/pool.type";
+import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
 
-const {id, interestRate, freePeriod} = defineProps({
-  id: {type: Number},
-  interestRate: {type: Number, required: true},
-  freePeriod: {type: Number, required: true},
+const {pool} = defineProps({
+  pool: {
+    type: Object as PropType<Pool>
+  } 
 }) 
+
+const {
+  interestRate, monthInterestRateString, 
+  maxDuration, freePeriod, interestRateString,
+  freePeriodString } = useComputedPoolInfo(pool)
 
 const emits = defineEmits(["close"]);
 const isCreditorInfo = ref(false);
@@ -195,13 +202,13 @@ const parsedTrim = computed(() => {
 const sum = computed(() => {
   let amountWithoutInterestRatePeriod = 0
 
-  if(Number(term.value) - freePeriod <= 0 && freePeriod !== 0) {
+  if(Number(term.value) - freePeriod.value <= 0 && freePeriod.value !== 0) {
     amountWithoutInterestRatePeriod = sumWithFreePeriod.value
     return amountWithoutInterestRatePeriod
   }
 
-  const withInterestRatePeriod = Number(term.value) - freePeriod
-  const sumWithInterestRate = Number(sumLoans.value) + interestRate * withInterestRatePeriod;
+  const withInterestRatePeriod = Number(term.value) - freePeriod.value
+  const sumWithInterestRate = Number(sumLoans.value) + interestRate.value * withInterestRatePeriod;
   return sumWithInterestRate
 });
 
@@ -213,7 +220,7 @@ const transactionStatus = ref('')
 const take = async () => {
   isTransaction.value = true
   await createLoanRequest({
-    pool_id: id ? id : 0,
+    pool_id: pool?.id ? pool?.id : 0,
     amount: Number(sumLoans.value),
     duration: Number(term.value)
   }).then(res => {
