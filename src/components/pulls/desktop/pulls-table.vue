@@ -672,6 +672,7 @@ import allCollectorPulls from "@/components/pulls/collector/desktop/all-collecto
 import myCollectorPulls from "@/components/pulls/collector/desktop/my-collector-pulls.vue";
 import buy from "@/components/pulls/collector/desktop/buy.vue";
 import { useRouter } from "vue-router";
+import { parse } from "tinyduration";
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
 import { Pool } from "@/types/pool.type";
 import { roleStorage } from "@/utils/localStorage";
