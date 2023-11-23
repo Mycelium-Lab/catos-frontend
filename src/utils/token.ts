@@ -4,8 +4,8 @@ import { authStorage } from "@/utils/localStorage";
 export const getUserId = (): number | undefined => {
   const authData = authStorage.get();
   if (authData !== undefined) {
-    const { userId } = jwtDecode(authData.access);
-    return userId;
+    const { user_id } = jwtDecode(authData.access);
+    return user_id;
   }
 };
 export const isExpired = (token: string) => {
