@@ -1,5 +1,5 @@
 import { login, type LoginCredentials, verify } from "@/api/token.api";
-import { authStorage } from "@/utils/localStorage";
+import { authStorage, walletStorage } from "@/utils/localStorage";
 import { type Role } from "@/types/user.types";
 import { roleStorage, profileStorage } from "@/utils/localStorage";
 import { ref } from "vue";
@@ -46,6 +46,9 @@ export const useLoginApi = () => {
     const setProfile = (profile: Profile) => {
       profileStorage.set(profile);
     };
+    const setWallet = (address: string) => {
+      walletStorage.set({address});
+    }
    return verify({token})
    .then(res => {
     localStorage.setItem('role', JSON.stringify(res.data.role))
@@ -55,8 +58,9 @@ export const useLoginApi = () => {
       phone: res.data?.phone ? res.data?.phone : '', 
       name: res.data?.passport?.name ? res.data?.passport?.name : '',
       surname: res.data?.passport?.surname ? res.data?.passport?.surname : '',
-      middlename: res.data?.passport?.middlename ? res.data?.passport?.middlename : ''
+      middlename: res.data?.passport?.middlename ? res.data?.passport?.middlename : '',
     })
+    setWallet(res.data?.address ? res.data?.address : '');
   
     return {
       role: res.data.role

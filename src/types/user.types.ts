@@ -13,3 +13,7 @@ export type UserData = {
   password: string;
   role: string;
 };
+
+export type Wallet = {
+  address: string;
+}

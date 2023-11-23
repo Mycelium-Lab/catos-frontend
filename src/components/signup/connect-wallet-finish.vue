@@ -141,16 +141,22 @@ import {
   isWalletConnected,
   WalletConnectionStatusResponseEnum,
 } from "@/api/users.api";
-import { useUserDataStore } from "@/stores/userData";
+import { useLoginApi } from '@/composables/useLoginApi';
+import { walletStorage, authStorage } from "@/utils/localStorage";
 import router from "@/router";
 import QrCodeStyling from "../qr-code-styling.vue";
 
+const { handleVerify } = useLoginApi();
 function waitForWalletConnection() {
   setTimeout(() => {
     isWalletConnected()
       .then(response => {
         if (response.data === WalletConnectionStatusResponseEnum.successful) {
           loading.value = false;
+          const token = authStorage.get()?.access;
+          if (token) {
+            handleVerify(token);
+          }
           router.push({ name: "success" });
         } else if (
           response.data === WalletConnectionStatusResponseEnum.rejected
