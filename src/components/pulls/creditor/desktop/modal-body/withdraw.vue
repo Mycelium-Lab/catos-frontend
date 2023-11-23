@@ -159,7 +159,6 @@ const minWithdrawAmount = ref(10); // TON
 const maxWithdrawAmount = ref(10000); // TON
 const amountOutOfRange = computed(() => {
   if (amount.value != "") {
-    console.log("bingo");
     return (
       Number(amount.value) < minWithdrawAmount.value ||
       Number(amount.value) > maxWithdrawAmount.value

@@ -90,7 +90,6 @@ const handleInput = (event: any) => {
 };
 
 const handleBlur = (event: any) => {
-
   if (type === "number") {
     try {
       if (
