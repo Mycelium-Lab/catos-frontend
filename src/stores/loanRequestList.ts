@@ -7,7 +7,6 @@ import { listLoanRequest } from "@/api/loanRequests.api";
 export const useLoanRequestListStroe = defineStore("loanRequests", () => {
   const loanRequests: Ref<LoansRequestResponse[]> = ref([]);
   listLoanRequest().then(res => {
-    console.log(res);
     loanRequests.value = res.data;
   });
   const borrowerLoanRequests = computed(() => {

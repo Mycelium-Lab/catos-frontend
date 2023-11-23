@@ -4,6 +4,12 @@
     "inactive": "Неактивен",
     "banned": "Запрещен"
   },
+  "loans-status" : {
+    "approved": "Одобрена",
+    "pending": "Ожидание",
+    "declined": "Отклонена",
+    "taken": "Взята"
+  },
   "pulls-statistic-table": {
     "pull": "Пулл",
     "issued_loans": "Выдано займов",
