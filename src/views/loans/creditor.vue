@@ -103,8 +103,13 @@
         </div>
         <div v-if="currentWindow !== 'loans'" class="div11">Отклоненные</div>
       </div>
+      <loans 
+          :variant="currentWindow"
+          :key="currentWindow"
+      >
+      </loans>
     </template>
-    <template v-slot:list>
+    <!--<template v-slot:list>
       <ul>
         <li v-for="n in 5" :key="n">
           <loans-table
@@ -138,23 +143,25 @@
           ></loans-table>
         </li>
       </ul>
-    </template>
+    </template>-->
   </default-desktop>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
-import inputData from "../fields/input-data.vue";
-import multiButtonSlider from "../ui-kit/buttons/multi-button-slider.vue";
-import defaultDesktop from "../layouts/default-desktop.vue";
-import loansTable from "./creditor/loans-table.vue";
-import toolBar from "../base/desktop/tool-bar.vue";
+import inputData from "../../components/fields/input-data.vue";
+import multiButtonSlider from "../../components/ui-kit/buttons/multi-button-slider.vue";
+import defaultDesktop from "../../components/layouts/default-desktop.vue";
+import statusTag from "../../components/ui-kit/buttons/status-tag.vue";
+import toolBar from "../../components/base/desktop/tool-bar.vue";
+import action from "../../components/loans/action.vue";
+import loans from "./loans.vue";
 
-import loansList from "./loans-list.vue";
-import appBar from "../ui-kit/app-bar.vue";
+import loansList from "../../components/loans/loans-list.vue";
+import appBar from "../../components/ui-kit/app-bar.vue";
 
-import loadModal from "../base/load-modal.vue";
+import loadModal from "../../components/base/load-modal.vue";
 
 import { useDevice } from "@/compossables/useDevice";
 
