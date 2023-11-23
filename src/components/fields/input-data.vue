@@ -1,12 +1,15 @@
 <template>
   <div class="catos-fields__wrapper">
     <input
+      :min="min"
+      :max="max"
       :value="modelValue"
       class="catos-fields"
       :readonly="readonly"
       :placeholder="mutatePlaceholder"
       :type="type"
       @input="handleInput"
+      @blur="handleBlur"
       :style="
         left
           ? { paddingLeft: '3.3em' }
@@ -32,19 +35,22 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-const { placeholder, simulate, name } = defineProps<{
-  modelValue?: string
-  placeholder?: string
-  type?: string
-  left?: boolean
-  background?: string
-  border?: string
-  readonly?: boolean
-  simulate?: boolean
-  name?: string
-}>();
+const { modelValue, placeholder, simulate, name, min, max, type } =
+  defineProps<{
+    modelValue?: string;
+    placeholder?: string;
+    type?: string;
+    left?: boolean;
+    background?: string;
+    border?: string;
+    readonly?: boolean;
+    simulate?: boolean;
+    name?: string;
+    min?: number;
+    max?: number;
+  }>();
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(["update:modelValue"]);
 
 const mutatePlaceholder = computed(() => {
   switch (placeholder) {
@@ -59,8 +65,7 @@ const mutatePlaceholder = computed(() => {
   }
 });
 
-const handleInput = (event: any) => 
-{
+const handleInput = (event: any) => {
   if (name === "tel") {
     event.target.value = event.target.value.replace(/[^0-9]/g, "");
     if (String(event.target.value).length > 11) {
@@ -68,22 +73,36 @@ const handleInput = (event: any) =>
     }
   }
 
-  if (name === 'passport') {
+  if (name === "passport") {
     event.target.value = event.target.value.replace(/[^0-9]/g, "");
-    
+
     const val = event.target.value.replace(/^(.{4})(.*)$/, "$1 $2");
-    event.target.value = val
+    event.target.value = val;
     if (String(event.target.value).length > 11) {
       event.target.value = String(event.target.value).slice(0, 11);
     }
   }
 
-  if(name === 'revenue') {
+  if (name === "revenue") {
     event.target.value = event.target.value.replace(/[^0-9]/g, "");
   }
-  emit('update:modelValue',(event.target as HTMLInputElement).value)
-}
+  emit("update:modelValue", (event.target as HTMLInputElement).value);
+};
 
+const handleBlur = (event: any) => {
+  if (type === "number") {
+    try {
+      if (
+        (min && Number(event.target.value) < min) ||
+        (max && Number(event.target.value) > max)
+      ) {
+        event.target.value = "";
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+};
 </script>
 
 <style scoped>

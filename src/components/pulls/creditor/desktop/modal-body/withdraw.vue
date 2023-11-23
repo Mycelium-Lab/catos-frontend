@@ -1,12 +1,12 @@
 <template>
   <liquidity-managment-modal @close="close">
-    <template v-slot:header> Пулл #{{ poolId }} </template>
+    <template v-slot:header> Пул #{{ poolId }} </template>
     <template v-slot:subheaderIcon>
       <img class="header-icon" alt="" src="@/assets/images/change-cash.svg" />
     </template>
     <template v-slot:subheader>
       {{ role === "investor" ? "Вывести депозит" : "Изъять ликвидность" }} из
-      пулла #{{poolId}}
+      пула #{{ poolId }}
     </template>
     <template v-slot:first-row>
       <div class="field">
@@ -43,6 +43,8 @@
           <div class="fieldsinput">
             <div class="div16">Введите сумму для вывода:</div>
             <input-data
+              :min="minWithdrawAmount"
+              :max="maxWithdrawAmount"
               :style="{ width: '456px' }"
               placeholder="10 000 TON"
               v-model="amount"
@@ -53,12 +55,21 @@
             <div class="min-10-ton-container">
               <span>Min: </span>
               <span class="span8"> </span>
-              <span class="ton1">10 TON</span>
+              <span class="ton1">{{ minWithdrawAmount + " TON" }}</span>
+            </div>
+            <div v-if="amountOutOfRange" class="min-10-ton-container">
+              <span class="warn-text">{{
+                "Сумма должна быть больше " +
+                minWithdrawAmount +
+                " TON и меньше " +
+                maxWithdrawAmount +
+                " TON"
+              }}</span>
             </div>
             <div class="min-10-ton-container">
               <span>Max: </span>
               <span class="span8"> </span>
-              <span class="ton1">257 324 TON</span>
+              <span class="ton1">{{ maxWithdrawAmount }}</span>
             </div>
           </div>
         </div>
@@ -66,7 +77,7 @@
     </template>
     <template v-slot:action>
       <div class="des-and-bbn_withdraw des-and-bbn">
-      <!--  <catos-button
+        <!--  <catos-button
           variant="fourth"
           :style="{ width: '100%', margin: '0' }"
           @click="qr"
@@ -90,22 +101,44 @@
       </div>
     </template>
   </liquidity-managment-modal>
-  <transaction-desktop v-if="isTransaction && !transactionStatus" @close="isTransaction = false" 
+  <transaction-desktop
+    v-if="isTransaction && !transactionStatus"
+    @close="isTransaction = false"
     :status="transactionStatus"
-    :title="role === 'investor' ? 'Подтвердите вывод депозита из пулла' : 'Подтвердите изъятие ликвидности из пулла'"
-    :subtitle="role === 'investor' ? 'Пожалуйста, подтвердите вывод депозита из пулла в своем кошельке' : 'Пожалуйста, изъятие ликвидности из пулла в своем кошельке'"
+    :title="
+      role === 'investor'
+        ? 'Подтвердите вывод депозита из пула'
+        : 'Подтвердите изъятие ликвидности из пула'
+    "
+    :subtitle="
+      role === 'investor'
+        ? 'Пожалуйста, подтвердите вывод депозита из пула в своем кошельке'
+        : 'Пожалуйста, изъятие ликвидности из пула в своем кошельке'
+    "
   >
   </transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" @close="isTransaction = false" 
-      :status="transactionStatus"
-      :subtitle="role === 'investor' ? 'Вы успешно вывели депозит из пулла' : 'Вы успешно изъяли ликвидность из пулла'"
-    >
-    </transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" 
-      :status="transactionStatus"
-      :title="role === 'investor' ? 'Произошла ошибка при выводе депозита из пулла' : 'Произошла ошибка при изъятии ликвидности из пулла'"
-      >
-    </transaction-desktop>
+  <transaction-desktop
+    v-else-if="isTransaction && transactionStatus === 'success'"
+    @close="isTransaction = false"
+    :status="transactionStatus"
+    :subtitle="
+      role === 'investor'
+        ? 'Вы успешно вывели депозит из пула'
+        : 'Вы успешно изъяли ликвидность из пула'
+    "
+  >
+  </transaction-desktop>
+  <transaction-desktop
+    v-else-if="isTransaction && transactionStatus === 'fail'"
+    @close="isTransaction = false"
+    :status="transactionStatus"
+    :title="
+      role === 'investor'
+        ? 'Произошла ошибка при выводе депозита из пула'
+        : 'Произошла ошибка при изъятии ликвидности из пула'
+    "
+  >
+  </transaction-desktop>
 </template>
 
 <script setup lang="ts">
@@ -117,16 +150,27 @@ import { roleStorage } from "@/utils/localStorage";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import { withdrawFromPool } from "@/api/pools.api";
 
-const {poolId} = defineProps({
-  poolId: {type: Number, required: true}
-})
+const { poolId } = defineProps({
+  poolId: { type: Number, required: true },
+});
 
-const amount = ref("")
-const isTransaction = ref(false)
-const transactionStatus = ref('')
+const amount = ref("");
+const minWithdrawAmount = ref(10); // TON
+const maxWithdrawAmount = ref(10000); // TON
+const amountOutOfRange = computed(() => {
+  if (amount.value != "") {
+    return (
+      Number(amount.value) < minWithdrawAmount.value ||
+      Number(amount.value) > maxWithdrawAmount.value
+    );
+  }
+  return false;
+});
+const isTransaction = ref(false);
+const transactionStatus = ref("");
 
 const role = computed(() => {
-  return roleStorage.get()
+  return roleStorage.get();
 });
 
 const emits = defineEmits(["close"]);
@@ -136,18 +180,19 @@ const close = () => {
 };
 
 const handleWithdraw = async () => {
-  isTransaction.value = true
+  isTransaction.value = true;
   await withdrawFromPool({
     pool_id: poolId,
-    amount: Number(amount.value)
+    amount: Number(amount.value),
   })
-  .then(res => {
-    transactionStatus.value = 'success'
-  }).catch(e => {
-    transactionStatus.value = 'fail'
-    console.error(e)
-  })
-}
+    .then(res => {
+      transactionStatus.value = "success";
+    })
+    .catch(e => {
+      transactionStatus.value = "fail";
+      console.error(e);
+    });
+};
 
 const input = ref("");
 const deposit = computed(() => Number(Number(input.value) * 0.8).toFixed(3));
@@ -260,5 +305,8 @@ const comis = computed(() => Number(Number(profit.value) * 0.05).toFixed(3));
 }
 .text-and-button_action {
   width: 30em;
+}
+.warn-text {
+  color: coral;
 }
 </style>
