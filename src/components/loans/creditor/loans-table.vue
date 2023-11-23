@@ -13,7 +13,7 @@
 
             <div class="txt1-parent">
               <div class="txt1">Иван Иванов Иванович</div>
-              <div class="txt2">ID 12345</div>
+              <div class="txt2">{{`ID ${loanRequest?.borrower_id}` }}</div>
             </div>
           </div>
           <div class="status-all-parent">
@@ -21,13 +21,13 @@
               <div class="colors-graphsorders-parent">
                 <template v-if="variant === 'bids'">
                   <img
-                    v-if="loanRequestStatus === 'approved'"
+                    v-if="loanRequest?.status === 'approved'"
                     class="colors-graphsorders-icon"
                     alt=""
                     src="@/assets/images/colors-graphsorders1.svg"
                   />
                   <img
-                    v-else-if="loanRequestStatus === 'rejected'"
+                    v-else-if="loanRequest?.status === 'declined'"
                     class="colors-graphsorders-icon"
                     alt=""
                     src="@/assets/images/colors-graphsorders3.svg"
@@ -75,13 +75,7 @@
                 </template>
 
                 <div v-if="variant === 'bids'" class="div">
-                  {{
-                    loanRequestStatus === "approved"
-                      ? "Одобрена"
-                      : loanRequestStatus === "rejected"
-                      ? "Отклонена"
-                      : "Ожидание"
-                  }}
+                  {{  i18n.global.t(`loans-status.${loanRequest?.status}`)}}
                 </div>
                 <div v-else-if="variant === 'loans'" class="div">
                   {{
@@ -243,7 +237,7 @@
             </template>
             <template v-else>
               <div class="div2">Одобренный период</div>
-              <div class="ton">2 месяца</div>
+              <div class="ton">{{ duration }}</div>
             </template>
           </div>
           <div class="col-titles-bg" />
@@ -253,7 +247,10 @@
             <div class="div2">
               {{ variant === "marketplace" ? "Долг" : "Одобренная сумма" }}:
             </div>
-            <div class="ton">4 000 TON</div>
+            <div class="ton">{{
+             variant === "marketplace" ? 4000 
+            : !loanRequest?.approved_amount ? 0
+            :loanRequest?.approved_amount }} TON</div>
           </div>
           <div class="col-titles-bg" />
         </div>
@@ -365,7 +362,7 @@
               role === 'creditor' && loanRequestStatus !== 'repaid' && loanRequestStatus !== 'sold'
             "
             class="buttons-tabs1"
-            @click="toAction"
+            @click.stop="toAction"
           >
             <div class="text">
               {{
@@ -390,8 +387,13 @@
   ></loans-modal-desktop>-->
 
   <bids
-    v-if="isBids"
+    v-if="isBids && bidsState.detailModal"
     :state="bidsState"
+    :loanRequest="loanRequest"
+    @on-handle-change-status="() =>{
+      bidsState.statusChangeModal = true;
+      isBids = true;
+    }"
     @close="
       () => {
         isBids = false;
@@ -451,6 +453,14 @@
     "
   >
   </repaid>
+  <status-change 
+      v-if="isBids && bidsState.statusChangeModal" 
+      :amount="amountToChangeStatus === 0 ? 1 : amountToChangeStatus"
+      @close="() => {
+        isBids = false;
+        resetState('bids');
+      }"> 
+  </status-change>
   <sold v-if="isSold" @close="() => (isSold = false)"></sold>
 </template>
 <script setup lang="ts">
@@ -463,26 +473,39 @@ import marketplace from "./desktop/marketplace.vue";
 import active from "../borrower/desktop/active.vue";
 import repaid from "../borrower/desktop/repaid.vue";
 import sold from "../borrower/desktop/sold.vue";
+import StatusChange from "./desktop/modal-body/ status-change.vue";
 import { LoansResponse } from "@/types/loan.types";
+import { LoansRequestResponse } from "@/types/loan.types";
+import { useComputedLoanRequestInfo } from "@/composables/infoCalculation/useComputedLoanRequestInfo";
+import { i18n } from "@/i18n";
 
-const { variant, loan, loanRequestStatus } = defineProps({
+const { variant, loan, loanRequest, loanRequestStatus } = defineProps({
   variant: {
     type: String,
   },
   loan: {
     type: Object as PropType<LoansResponse>,
-    required: true,
+  },
+  loanRequest: {
+    type: Object as PropType<LoansRequestResponse>,
   },
   loanRequestStatus: {
     type: String
+  },
+  amountToChangeStatus: {
+    type: Number
   }
 });
 
+const {duration} = useComputedLoanRequestInfo(loanRequest)
+
 const status = computed(() => {
-  const end = new Date(loan.end);
-  const now = new Date();
-  if(now > end) {
-    return 'overdue'
+  if (loan?.end) {
+    const end = new Date(loan?.end);
+    const now = new Date();
+    if(now > end) {
+      return 'overdue'
+    }
   }
   return 'active'
 })
@@ -492,7 +515,6 @@ const role = computed(() => {
 
 const bidsState = {
   detailModal: false,
-
   statusChangeModal: false,
 };
 const loansState = {
@@ -543,11 +565,13 @@ const isSold = ref(false);
 
 const isChecked = ref(false);
 
+const emits = defineEmits(['onActiveCheckbox', 'onInactiveCheckbox'])
+
 const toAction = () => {
   if (role.value === "creditor") {
     if (variant === "bids") {
       bidsState.statusChangeModal = true;
-      bids.value = true;
+      isBids.value = true;
     }
 
     if (status.value === "overdue") {
@@ -558,6 +582,7 @@ const toAction = () => {
 };
 
 const toDetail = () => {
+  console.log('Detail')
   if (role.value === "creditor") {
     if (variant === "bids") {
       bidsState.detailModal = true;
@@ -601,9 +626,15 @@ const toActive = (init: string) => {
       return (activeState.detailModal = true);
   }
 };
+
 const handleCheckBox = (ev: any) => {
   if (ev) {
-    if (variant === "bids") {
+    emits('onActiveCheckbox')
+  }
+  else{
+    emits('onInactiveCheckbox')
+  }
+  if (variant === "bids") {
       bidsState.statusChangeModal = true;
       isBids.value = true;
     }
@@ -611,8 +642,6 @@ const handleCheckBox = (ev: any) => {
       isLoans.value = true;
       loansState.statusManageModal = true;
     }
-  }
-  console.log(ev);
 };
 </script>
 <style scoped lang="scss">

@@ -1,6 +1,8 @@
 <template>
   <bids-detail
-    v-if="isDetail"
+  v-if="isDetail"
+    :loanRequest="loanRequest"
+    @on-handle-change-status="handleChangeStatus"
     @close="close"
     @api="
       () => {
@@ -67,31 +69,36 @@
       </div>
     </template>
   </desktop-modal>
-  <status-change v-if="isStatusChange" @close="close"> </status-change>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType } from "vue";
 import bidsDetail from "./modal-body/bids-detail.vue";
 import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import CatosButton from "@/components/ui-kit/buttons/catos-button.vue";
-import StatusChange from "./modal-body/ status-change.vue";
+import { LoansRequestResponse } from "@/types/loan.types";
+
 const { state } = defineProps({
   state: {
     type: Object,
     required: true,
   },
+  loanRequest: {
+    type: Object as PropType<LoansRequestResponse>,
+  },
 });
 const isDetail = ref(state.detailModal);
 const isRepeadAPI = ref(false);
 const isBlank = ref(false);
-const isStatusChange = ref(state.statusChangeModal);
 
-const emtis = defineEmits(["close"]);
+const emtis = defineEmits(["close", "onHandleChangeStatus"]);
 const close = () => {
   emtis("close");
 };
+const handleChangeStatus = () => {
+  emtis('onHandleChangeStatus')
+}
 </script>
 
 <style scoped>

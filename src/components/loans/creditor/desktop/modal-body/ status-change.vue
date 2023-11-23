@@ -7,8 +7,8 @@
       <div class="frame-parent">
         <div v-if="variant === 'loans'" class="wrapper">
           <div class="div">
-            <span>Изменить статус для для </span>
-            <span class="span">3</span>
+            <span>Изменить статус для </span>
+            <span class="span">{{ amount }}</span>
             <span> займов:</span>
           </div>
         </div>
@@ -73,6 +73,9 @@ const { variant } = defineProps({
     type: String,
     default: "loans",
   },
+  amount: {
+    type: Number
+  }
 });
 const updateStatus = () => {
   //TODO: Добавить логику по смене статуса
