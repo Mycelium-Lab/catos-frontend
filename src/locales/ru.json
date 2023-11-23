@@ -1,4 +1,9 @@
 {
+  "pools-status" : {
+    "active": "Активен",
+    "inactive": "Неактивен",
+    "banned": "Запрещен"
+  },
   "pulls-statistic-table": {
     "pull": "Пулл",
     "issued_loans": "Выдано займов",
