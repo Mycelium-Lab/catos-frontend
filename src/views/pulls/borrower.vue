@@ -42,14 +42,6 @@
   </div>
   <default-desktop v-else>
     <template v-slot:title> Кредитные пуллы </template>
-    <template v-slot:slider>
-      <button-slider
-      :style="{ width: '254px', margin: '0' }"
-        :variantIndex="2"
-        :tabs="['Все пуллы', 'Мои пуллы']"
-        @on-slide="toggleSlide"
-      ></button-slider>
-    </template>
     <template v-slot:tools>
       <tool-bar role="borrower" variant="pulls"></tool-bar>
     </template>
