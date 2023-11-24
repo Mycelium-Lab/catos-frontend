@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="status-all-parent">
-          <button class="status-all" @click="updateStatus">
+          <button class="status-all" @click="() => openApprove = true">
             <div class="colors-graphsorders-parent">
               <img
                 class="colors-graphsorders-icon"
@@ -63,24 +63,33 @@
       </div>
     </template>
   </desktop-modal>
+  <approve v-if="openApprove" :id="id" @close="openApprove = false"></approve>
 </template>
 <script setup lang="ts">
+import { ref } from "vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
+import approve from '@/components/loans/creditor/desktop/approve.vue'
+
 const emtis = defineEmits(["close"]);
 
-const { variant } = defineProps({
+const { variant, id } = defineProps({
   variant: {
     type: String,
     default: "loans",
   },
   amount: {
     type: Number
+  },
+  id: {
+    type: Number,
+    required: true,
   }
 });
-const updateStatus = () => {
-  //TODO: Добавить логику по смене статуса
-  close();
-};
+
+const openApprove = ref(false)
+
+const updateStatus = () => {}
+
 const close = () => {
   emtis("close");
 };

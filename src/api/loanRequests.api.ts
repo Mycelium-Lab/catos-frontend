@@ -1,5 +1,5 @@
 import { baseApiClient } from "./baseApiClient";
-import { LoansRequestPayload, LoansRequestResponse } from "../types/loan.types"
+import { LoansRequestApprovePayload, LoansRequestPayload, LoansRequestResponse } from "../types/loan.types"
 
 const LOAN_REQUESTS_END_POINT = "/loanRequests/";
 
@@ -15,6 +15,6 @@ export const retrieveLoanRequest = (id: number) => {
     return baseApiClient.get(`${LOAN_REQUESTS_END_POINT}/${id}`)
 }
 
-export const approveLoanRequest = (id: number) => {
-    return baseApiClient.patch(`${LOAN_REQUESTS_END_POINT}/${id}`)
+export const approveLoanRequest = (id: number, payload: LoansRequestApprovePayload) => {
+    return baseApiClient.patch(`${LOAN_REQUESTS_END_POINT}/${id}`, payload)
 }

@@ -458,6 +458,7 @@
   </repaid>
   <status-change 
       v-if="isBids && bidsState.statusChangeModal" 
+      :id="loanRequest?.id ? loanRequest?.id : 0"
       :amount="amountToChangeStatus === 0 ? 1 : amountToChangeStatus"
       @close="() => {
         isBids = false;
