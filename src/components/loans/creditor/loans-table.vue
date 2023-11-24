@@ -233,7 +233,7 @@
                 <b> Цена продажи:</b>
               </div>
               <div class="ton">
-                <b> 4000 TON</b>
+                <b> {{ loan?.price }} TON</b>
               </div>
             </template>
             <template v-else>

@@ -48,9 +48,14 @@ import { useLoanListStore } from "@/stores/loanList";
 import { computed, ref } from "vue";
 import { roleStorage } from "@/utils/localStorage";
 import { useLoanRequestListStroe } from "@/stores/loanRequestList";
-const { variant} = defineProps({
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+
+const { variant, selector} = defineProps({
  variant: {
    type: String,
+ },
+ selector: {
+  type: String
  }
 });
 
@@ -63,7 +68,16 @@ const loansStore = useLoanListStore();
 const loanRequestStore = useLoanRequestListStroe()
 
 const actualLoanRequests = computed(() => {
-    return loanRequestStore.creditorLoanRequests
+   if(selector === 'Одобренные') {
+    return loanRequestStore.creditorLoanRequests.filter((v) => v.status === 'approved')
+  }
+  else if(selector === 'Ожидание') {
+    return loanRequestStore.creditorLoanRequests.filter((v) => v.status === 'pending')
+  }
+  else if(selector === 'Отклоненные') {
+    return loanRequestStore.creditorLoanRequests.filter((v) => v.status === 'declined')
+  }
+  return loanRequestStore.creditorLoanRequests
 })
 const actualLoans = computed(() => {
   if(role.value === 'collector' ) {
@@ -72,8 +86,34 @@ const actualLoans = computed(() => {
   else if(role.value === 'borrower') {
     return loansStore.loans.filter(v => v.status === variant) 
   }
+  
+  else if(role.value === 'creditor' && variant === 'loans' && selector === 'Погашенные') {
+      return loansStore.loans.filter((v) => {
+        const {duty, isOverdue} = useComputedLoanInfo(v)
+        return v.status === 'paid' && !isOverdue.value
+      })
+  }
+  else if(role.value === 'creditor' && variant === 'loans' && selector === 'Проданные') {
+      return loansStore.loans.filter((v) => {
+        const {duty, isOverdue} = useComputedLoanInfo(v)
+        return v.status === 'sold' && !isOverdue.value
+      })
+  }
+  else if(role.value === 'creditor' && variant === 'loans' && selector === 'Просроченные') {
+      return loansStore.loans.filter((v) => {
+        const {duty, isOverdue} = useComputedLoanInfo(v)
+        return isOverdue.value
+      })
+  }
   else if(role.value === 'creditor' && variant === 'loans') {
-      return loansStore.loans.filter((v) => v.status !== 'for_sale')
+      return loansStore.loans.filter((v) => v.status !== 'for_sale' && v.status !== 'active')
+  }
+
+  else if(role.value === 'creditor' && variant === 'marketplace' && selector === 'На продаже') {
+      return loansStore.loans.filter((v) => v.status === 'for_sale')
+  }
+  else if(role.value === 'creditor' && variant === 'marketplace' && selector === 'Проданные') {
+      return loansStore.loans.filter((v) => v.status === 'sold')
   }
   else if(role.value === 'creditor' && variant === 'marketplace') {
       return loansStore.loans.filter((v) => v.status === 'for_sale' || v.status === 'sold')

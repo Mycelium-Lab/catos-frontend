@@ -3,7 +3,7 @@
     <div class="col-titles-bg"></div>
     <div class="rectangle-group">
       <div class="group-item"></div>
-      <div class="div8">Все</div>
+      <div :class="selector === 'Все' ? 'select_active div8' : 'div8'">Все</div>
       <div class="div9">
         {{ currentWindow === "loans" ? "На продаже" : "Выданные" }}
       </div>
@@ -93,19 +93,31 @@
     </template>
     <template v-slot:body>
       <div class="rectangle-group_desktop rectangle-group">
-        <div class="group-item"></div>
-        <div class="div8">Все</div>
-        <div class="div9">
-          {{ currentWindow === "loans" ? "На продаже" : "Выданные" }}
+        <div v-if="selector === 'Все'" class="group-item"></div>
+        <div :class="selector === 'Все' ? 'select_active div8' : 'div8'" @click="setSelector">Все</div>
+        <div v-if="selector === 'Одобренные'" class="group-item_approved group-item"></div>
+        <div v-else-if="selector === 'Погашенные'" class="group-item_paid group-item"></div>
+        <div v-else-if="selector === 'На продаже'" class="group-item_for_sale group-item"></div>
+        <div :class="selector === 'Одобренные' || selector === 'Погашенные' || selector === 'На продаже' ? 'select_active div9' : 'div9'" @click="setSelector">
+          {{ currentWindow === "loans" ? "Погашенные" : currentWindow === "bids" ? "Одобренные"  : 'На продаже'}}
         </div>
-        <div class="div10">
-          {{ currentWindow === "loans" ? "Проданные" : "Одобренные" }}
+        <div v-if="selector === 'Ожидание'" class="group-item_pending group-item"></div>
+        <div v-else-if="selector === 'Проданные'" class="group-item_sold group-item"></div>
+        <div :class="selector === 'Ожидание' || selector === 'Проданные' || selector === 'Проданные' ? 'select_active div10' : 'div10'" @click="setSelector">
+          {{ currentWindow === "loans" ? "Проданные" : currentWindow === "bids" ? "Ожидание" :  'Проданные'}}
         </div>
-        <div v-if="currentWindow !== 'loans'" class="div11">Отклоненные</div>
+        <template v-if="currentWindow !== 'marketplace'">
+          <div v-if="selector === 'Отклоненные'" class="group-item_decline group-item"></div>
+          <div v-else-if="selector === 'Просроченные'" class="group-item_overdue group-item"></div>
+          <div :class="selector === 'Отклоненные' || selector === 'Просроченные'  ? 'select_active div11' : 'div11'" @click="setSelector" >
+            {{ currentWindow === "loans" ? "Просроченные" : currentWindow === "bids" ? "Отклоненные"  : ''}}
+          </div>
+        </template>
       </div>
       <loans 
           :variant="currentWindow"
-          :key="currentWindow"
+          :key="key"
+          :selector="selector"
       >
       </loans>
     </template>
@@ -148,7 +160,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, watch, onMounted} from "vue";
 import { useRouter } from "vue-router";
 import inputData from "../../components/fields/input-data.vue";
 import multiButtonSlider from "../../components/ui-kit/buttons/multi-button-slider.vue";
@@ -168,6 +180,7 @@ import { useDevice } from "@/compossables/useDevice";
 const { isMobile } = useDevice();
 
 const isAppBar = ref(true);
+const selector = ref('Все')
 
 const router = useRouter();
 const currentWindow = ref("bids");
@@ -176,7 +189,24 @@ const toSort = () => {
   router.push({ name: "loans-sort" });
 };
 
+const setSelector = (e: any) => {
+  selector.value = e.target.innerText
+}
+
 const isTable = ref(false);
+
+
+const key = ref('')
+
+watch([currentWindow, selector], ([newA, newB], [prevA, prevB]) => {
+      if(newA !== prevA) {
+        key.value = newA
+        selector.value = 'Все'
+      }
+      else if (newB !== prevB) {
+        key.value = newB
+      }
+});
 
 const title = computed(() => {
   if (currentWindow.value === "bids") {
@@ -237,6 +267,38 @@ ul {
   background-color: #a592dd;
   width: 1.94em;
   height: 0.25em;
+  &_approved{
+    left: 44px;
+    width: 5.9em;
+  }
+  &_pending{
+    left: 148px;
+    width: 5em;
+  }
+  &_decline{
+    left: 243px;
+    width: 6.5em;
+  }
+  &_paid{
+    left: 41.5px;
+    width: 6em;
+  }
+  &_sold{
+    left: 147px;
+    width: 5.6em;
+  }
+  &_overdue{
+    left: 241px;
+    width: 7.3em;
+  }
+  &_for_sale{
+    left: 41px;
+    width: 6em;
+  }
+}
+.select_active{
+  font-weight: 500;
+  color: #3b3b3b;
 }
 .div10,
 .div11,
@@ -250,17 +312,18 @@ ul {
 }
 .div8 {
   left: 0.14em;
-  font-weight: 500;
-  color: #3b3b3b;
+  cursor: pointer;
+  
 }
 .div10,
 .div11,
 .div9 {
+  cursor: pointer;
   left: 3.14em;
 }
 .div10,
 .div11 {
-  left: 9.64em;
+  left: 10.64em;
 }
 .div11 {
   left: 17.36em;

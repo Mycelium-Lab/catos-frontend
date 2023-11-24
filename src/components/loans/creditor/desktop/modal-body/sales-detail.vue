@@ -46,7 +46,7 @@
                     <div class="fieldsinput-parent">
                       <div class="field">
                         <div class="div4"><b>Цена:</b></div>
-                        <div class="div5"><b>4000 TON</b></div>
+                        <div class="div5"><b>{{ loan?.price }} TON</b></div>
                       </div>
                       <div class="col-titles-bg" />
                       <div class="field">

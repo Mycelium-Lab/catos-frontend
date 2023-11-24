@@ -30,7 +30,7 @@
                   <div class="component">
                     <div class="field">
                       <div class="div2"><b>Цена:</b></div>
-                      <div class="div3"><b>4000 TON</b></div>
+                      <div class="div3"><b>{{loan?.price}} TON</b></div>
                     </div>
                     <div class="col-titles-bg" />
                     <div class="field">

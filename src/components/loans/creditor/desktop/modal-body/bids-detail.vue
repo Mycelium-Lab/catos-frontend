@@ -41,7 +41,7 @@
                     src="@/assets/images/colors-graphsorders4.svg"
                   />
                   <div class="div1">
-                    {{  i18n.global.t(`loans-status.${loanRequest?.status}`)}}
+                    {{  i18n.global.t(`loans-request-status.${loanRequest?.status}`)}}
                   </div>
                 </div>
                 <img
