@@ -13,7 +13,7 @@
 
             <div class="txt1-parent">
               <div class="txt1">Иван Иванов Иванович</div>
-              <div class="txt2">{{`ID ${loanRequest?.borrower_id}` }}</div>
+              <div class="txt2">{{`ID ${loanRequest ? loanRequest?.borrower_id : loan?.borrower_id}` }}</div>
             </div>
           </div>
           <div class="status-all-parent">
@@ -41,16 +41,16 @@
                 </template>
                 <template v-else-if="variant === 'loans'">
                   <img
-                    v-if="loanRequestStatus === 'repaid'"
-                    class="colors-graphsorders-icon"
-                    alt=""
-                    src="@/assets/images/colors-graphsorders1.svg"
-                  />
-                  <img
-                    v-else-if="status === 'overdue'"
+                    v-if="isOverdue"
                     class="colors-graphsorders-icon"
                     alt=""
                     src="@/assets/images/colors-graphsorders3.svg"
+                  />
+                  <img
+                    v-else-if="loan?.status === 'paid'"
+                    class="colors-graphsorders-icon"
+                    alt=""
+                    src="@/assets/images/colors-graphsorders1.svg"
                   />
                   <img
                     v-else
@@ -75,16 +75,17 @@
                 </template>
 
                 <div v-if="variant === 'bids'" class="div">
-                  {{  i18n.global.t(`loans-status.${loanRequest?.status}`)}}
+                  {{  i18n.global.t(`loans-request-status.${loanRequest?.status}`)}}
                 </div>
                 <div v-else-if="variant === 'loans'" class="div">
-                  {{
-                    loanRequestStatus === "repaid"
+                  {{ isOverdue ? i18n.global.t(`loans-status.overdue`) : i18n.global.t(`loans-status.${loan?.status}`)}}
+                  <!--{{
+                    loan?.status === "paid"
                       ? "Погашен"
                       : status === "overdue"
                       ? "Просрочен"
                       : "Продан"
-                  }}
+                  }}-->
                 </div>
                 <div v-else-if="variant === 'marketplace'" class="div">
                   {{ loanRequestStatus === "sales" ? "Продается" : "Продан" }}
@@ -237,7 +238,7 @@
             </template>
             <template v-else>
               <div class="div2">Одобренный период</div>
-              <div class="ton">{{ duration }}</div>
+              <div class="ton">{{ loanRequest ? durationLoanRequest : durationLoan }} дней</div>
             </template>
           </div>
           <div class="col-titles-bg" />
@@ -359,7 +360,7 @@
           </div>
           <button
             v-else-if="
-              role === 'creditor' && loanRequestStatus !== 'repaid' && loanRequestStatus !== 'sold'
+              role === 'creditor' && loan?.status !== 'paid' && loan?.status !== 'sold' || isOverdue
             "
             class="buttons-tabs1"
             @click.stop="toAction"
@@ -368,7 +369,7 @@
               {{
                 variant === "bids"
                   ? "Сменить статус"
-                  : variant === "loans" && status === "overdue"
+                  : variant === "loans" && isOverdue
                   ? "Выставить займ на продажу"
                   : "Изменить цену продажи TON"
               }}
@@ -407,6 +408,7 @@
     v-if="isLoans"
     :state="loansState"
     :status="status"
+    :loan="loan"
     @close="
       () => {
         isLoans = false;
@@ -478,6 +480,7 @@ import { LoansResponse } from "@/types/loan.types";
 import { LoansRequestResponse } from "@/types/loan.types";
 import { useComputedLoanRequestInfo } from "@/composables/infoCalculation/useComputedLoanRequestInfo";
 import { i18n } from "@/i18n";
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
 
 const { variant, loan, loanRequest, loanRequestStatus } = defineProps({
   variant: {
@@ -497,7 +500,8 @@ const { variant, loan, loanRequest, loanRequestStatus } = defineProps({
   }
 });
 
-const {duration} = useComputedLoanRequestInfo(loanRequest)
+const {isOverdue, duration: durationLoan} = useComputedLoanInfo(loan)
+const {duration: durationLoanRequest} = useComputedLoanRequestInfo(loanRequest)
 
 const status = computed(() => {
   if (loan?.end) {
@@ -582,7 +586,6 @@ const toAction = () => {
 };
 
 const toDetail = () => {
-  console.log('Detail')
   if (role.value === "creditor") {
     if (variant === "bids") {
       bidsState.detailModal = true;

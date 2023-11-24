@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title> Информация о займе #12345 </template>
+    <template v-slot:title> Информация о займе #{{ loan?.id }} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-wrapper">
@@ -16,7 +16,7 @@
                     alt=""
                     src="@/assets/images/colors-graphsorders1.svg"
                   />
-                  <div class="div">Погашен</div>
+                  <div class="div">  {{ isOverdue ? i18n.global.t(`loans-status.overdue`) : i18n.global.t(`loans-status.${loan?.status}`)}}</div>
                 </div>
                 <img
                   class="iconchange"
@@ -41,28 +41,28 @@
                 <div class="component">
                   <div class="field">
                     <div class="div3">Дата получения займа:</div>
-                    <div class="div4">18.12.2022</div>
+                    <div class="div4">{{ startTerm }}</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
                 <div class="component">
                   <div class="field">
                     <div class="div3">Ставка:</div>
-                    <div class="div4">1% в день</div>
+                    <div class="div4">{{ interestRate }}% в день</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
                 <div class="component">
                   <div class="field">
                     <div class="div3">Срок:</div>
-                    <div class="div4">на 30 дней</div>
+                    <div class="div4">на {{ duration }} дней</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
                 <div class="component">
                   <div class="field">
                     <div class="div3">Займ:</div>
-                    <div class="div4">13 000 TON</div>
+                    <div class="div4">{{ loan?.amount }} TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
@@ -99,12 +99,12 @@
                 <p class="p">
                   <span>
                     <span class="span">Беспроцентный период: </span>
-                    <span>до 05.02.22, 16:00</span>
+                    <span>до {{ freePeriod }} дней</span>
                   </span>
                 </p>
-                <p class="p1">
+                <p :class="freePeriodStatus === 'длится' ? 'p1_active p1' : 'p1'">
                   <span>
-                    <span>(закончен)</span>
+                    <span>{{ `(${freePeriodStatus})` }}</span>
                   </span>
                 </p>
               </div>
@@ -124,13 +124,44 @@
   </desktop-modal>
 </template>
 <script setup lang="ts">
+import { PropType, ref, onMounted } from "vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 const emtis = defineEmits(["close", "blank"]);
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
+import { LoansResponse } from "@/types/loan.types";
+import { i18n } from "@/i18n";
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+import { usePoolListStore } from "@/stores/poolList";
+import { useComputedPoolInfo } from "@/composables/infoCalculation/useComputedPoolInfo";
+
+onMounted(async() => {
+  const poolListStore = usePoolListStore()
+  pool.value = await poolListStore.poolItem(loan?.pool_id ? loan?.pool_id : 0)
+  if(pool.value) {
+    const {freePeriod: fp} = useComputedPoolInfo(pool.value)
+    const {freePeriodStatus: fps} = useComputedLoanInfo(loan, fp.value)
+    freePeriod.value = fp.value
+    freePeriodStatus.value = fps.value
+  }
+})
+
+const { loan } = defineProps({
+  loan: {
+    type: Object as PropType<LoansResponse>,
+  },
+});
+
+const pool = ref()
+const freePeriod = ref()
+const freePeriodStatus = ref()
+
+const {isOverdue, interestRate, duration, startTerm} = useComputedLoanInfo(loan)
+
 const toBlank = () => [emtis("blank")];
 const close = () => {
   emtis("close");
 };
+
 </script>
 <style scoped lang="scss">
 .div {
@@ -291,6 +322,9 @@ const close = () => {
 .p1 {
   margin: 0;
   color: #ff9901;
+  &_active{
+    color: #469f25;
+  }
 }
 .notification {
   align-self: stretch;

@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title> Информация о займе #12345 </template>
+    <template v-slot:title> Информация о займе #{{loan?.id}} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -18,7 +18,7 @@
                         alt=""
                         src="@/assets/images/colors-graphsorders3.svg"
                       />
-                      <div class="div">Просрочен повторно</div>
+                      <div class="div">Просрочен</div>
                     </div>
                     <img
                       class="iconchange"
@@ -44,14 +44,14 @@
                   <div class="component">
                     <div class="field">
                       <div class="div3">Ставка:</div>
-                      <div class="div4">1% в день</div>
+                      <div class="div4">{{ interestRate }}% в день</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
                   <div class="component">
                     <div class="field">
                       <div class="div3">Займ:</div>
-                      <div class="div4">13 000 TON</div>
+                      <div class="div4">{{ loan?.amount }} TON</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
@@ -65,7 +65,7 @@
                   <div class="component">
                     <div class="field">
                       <div class="div3">Срок:</div>
-                      <div class="div4">на 30 дней</div>
+                      <div class="div4">на {{ duration }} дней</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
@@ -92,8 +92,8 @@
                   src="@/assets/images/alerttriangle.svg"
                 />
                 <div class="min-10-ton-container">
-                  <p class="p">Вернуть не позднее: до 13.02.22, 16:00</p>
-                  <p class="p1">(просрочен повторно)</p>
+                  <p class="p">Вернуть не позднее: до {{endTerm}}</p>
+                  <p class="p1">(просрочен)</p>
                 </div>
               </div>
             </div>
@@ -130,9 +130,21 @@
   </desktop-modal>
 </template>
 <script setup lang="ts">
+import {PropType, onMounted, ref} from "vue"
 import inputData from "@/components/fields/input-data.vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+import { LoansResponse } from "@/types/loan.types";
+
+const { loan } = defineProps({
+  loan: {
+    type: Object as PropType<LoansResponse>,
+  },
+});
+
+const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanInfo(loan)
+
 const emtis = defineEmits(["close", "result"]);
 const result = () => {
   emtis("result");
@@ -140,6 +152,7 @@ const result = () => {
 const close = () => {
   emtis("close");
 };
+
 </script>
 <style scoped>
 .div {

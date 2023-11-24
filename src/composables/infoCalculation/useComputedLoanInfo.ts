@@ -1,6 +1,7 @@
 import { computed } from "vue"
 
-const useComputedLoanInfo = (loan: any) => {
+const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
+
     const duty = computed(() => {
         if(loan?.amount && loan?.paid_amount) {
           return loan?.amount - loan?.paid_amount
@@ -19,6 +20,14 @@ const useComputedLoanInfo = (loan: any) => {
         }
       })
 
+      const isOverdue = computed(() => {
+        if(loan?.end) {
+          const end = new Date(loan?.end);
+          const now = new Date();
+          return now > end
+        }
+      })
+
       const localeTime = computed(() => {
         const date = new Date(loan?.start)
         return date.toLocaleString("ru-RU")
@@ -33,11 +42,47 @@ const useComputedLoanInfo = (loan: any) => {
         else return ''
       })
 
+      const interestRate = computed(() => {
+        return loan?.millipercent ? loan?.millipercent / 100 : 0
+      })
+
+      const duration = computed(() => {
+        const start = new Date(loan?.start).getDay();
+        const end = new Date(loan?.end).getDay();
+        return Number(end) - Number(start)
+      })
+
+      const startTerm = computed(() => {
+        const start = new Date(loan?.start);
+        return `${start.getDate()}.${start.getMonth()+1}.${start.getFullYear()}`
+      })
+
+      const endTerm = computed(() => {
+        const end = new Date(loan?.end);
+        return `${end.getDate()}.${end.getMonth()+1}.${end.getFullYear()}, ${end.getHours()}:${end.getMinutes()}`
+      })
+
+      const freePeriodStatus = computed(() => {
+        const start = new Date(loan?.start)
+        const currentDay = Number(new Date().getTime())
+        let lastFreeDay = start
+        lastFreeDay.setDate(start.getDate() + freePeriod)
+        const dif = currentDay > lastFreeDay.getTime()
+        return dif ? 'закончен' : 'длится'
+    })
+    
+    
     return {
         duty,
         overdue,
         localeTime,
-        age
+        age,
+        isOverdue,
+        interestRate,
+        duration,
+        startTerm,
+        endTerm,
+        freePeriodStatus
     }
 }
 

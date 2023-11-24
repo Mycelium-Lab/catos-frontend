@@ -6,7 +6,7 @@
       {{ `Займы пока отсутствуют` }}
     </h3>
     <ul class="list-desktop">
-      <template  v-if="role === 'creditor'">
+      <template v-if="role === 'creditor' && variant === 'bids'">
         <li
             v-for="loan in actualLoanRequests"
             :key="loan.id"
@@ -34,7 +34,7 @@
             <loans-table
                 :key="variant"
                 :loan="loan"
-                :variant ="loan.status"
+                :variant ="role === 'creditor' ? variant : loan.status"
             >
           </loans-table>
        </li> 
@@ -69,8 +69,11 @@ const actualLoans = computed(() => {
   if(role.value === 'collector' ) {
     return loansStore.loans.filter(v => v.status === "for_sale") 
   }
-  // bayerLoans
+  else if(role.value === 'borrower') {
     return loansStore.loans.filter(v => v.status === variant) 
+  }
+  return loansStore.loans
+  
 })
 
 </script>

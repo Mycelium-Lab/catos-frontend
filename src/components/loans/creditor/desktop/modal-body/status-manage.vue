@@ -1,6 +1,6 @@
 <template>
   <desktop-modal v-if="isStatus" @close="close">
-    <template v-slot:title>Информация о займе #12345</template>
+    <template v-slot:title>Информация о займе #{{ loan?.id }}</template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -14,16 +14,16 @@
                   <div class="status-all">
                     <div class="colors-graphsorders-parent">
                       <img
-                        v-if="status === 'repaid'"
-                        class="colors-graphsorders-icon"
-                        alt=""
-                        src="@/assets/images/colors-graphsorders1.svg"
-                      />
-                      <img
-                        v-else-if="status === 'overdue'"
+                        v-if="isOverdue"
                         class="colors-graphsorders-icon"
                         alt=""
                         src="@/assets/images/colors-graphsorders3.svg"
+                      />
+                      <img
+                        v-else-if="loan?.status === 'paid'"
+                        class="colors-graphsorders-icon"
+                        alt=""
+                        src="@/assets/images/colors-graphsorders1.svg"
                       />
                       <img
                         v-else
@@ -32,13 +32,7 @@
                         src="@/assets/images/colors-graphsorders2.svg"
                       />
                       <div class="div">
-                        {{
-                          status === "repaid"
-                            ? "Погашен"
-                            : status === "overdue"
-                            ? "Просрочен повторно"
-                            : "Продан"
-                        }}
+                        {{ isOverdue ? i18n.global.t(`loans-status.overdue`) : i18n.global.t(`loans-status.${loan?.status}`)}}
                       </div>
                     </div>
                     <img
@@ -47,7 +41,7 @@
                       src="@/assets/images/iconchange.svg"
                     />
                   </div>
-                  <div class="container">
+                  <div v-if="loan?.status === 'for_sale'" class="container">
                     <div class="div">Снять с продажи</div>
                   </div>
                 </div>
@@ -96,28 +90,28 @@
                   <div class="component">
                     <div class="field">
                       <div class="div7">Дата получения займа:</div>
-                      <div class="div4">18.12.2022</div>
+                      <div class="div4">{{ startTerm }}</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
                   <div class="component">
                     <div class="field">
                       <div class="div7">Ставка:</div>
-                      <div class="div4">1% в день</div>
+                      <div class="div4">{{interestRate }}% в день</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
                   <div class="component">
                     <div class="field">
                       <div class="div7">Срок:</div>
-                      <div class="div4">на 30 дней</div>
+                      <div class="div4">на {{ duration }} дней</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
                   <div class="component">
                     <div class="field">
                       <div class="div7">Займ:</div>
-                      <div class="div4">13 000 TON</div>
+                      <div class="div4">{{ loan?.amount }} TON</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
@@ -163,14 +157,14 @@
                   <p class="p">
                     <span>
                       <span class="span">Беспроцентный период: </span>
-                      <span>до 05.02.22, 16:00</span>
+                      <span>до {{ freePeriod }} дней</span>
                     </span>
                   </p>
-                  <p class="p1">
-                    <span>
-                      <span>(закончен)</span>
-                    </span>
-                  </p>
+                  <p :class="freePeriodStatus === 'длится' ? 'p1_active p1' : 'p1'">
+                  <span>
+                    <span>{{ `(${freePeriodStatus})` }}</span>
+                  </span>
+                </p>
                 </div>
               </div>
             </div>
@@ -224,16 +218,39 @@
   </desktop-modal>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType, onMounted } from "vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
-const { status } = defineProps({
-  status: {
-    type: String,
+import { LoansResponse } from "@/types/loan.types";
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+import { useComputedPoolInfo } from "@/composables/infoCalculation/useComputedPoolInfo";
+import { usePoolListStore } from "@/stores/poolList";
+import { i18n } from "@/i18n";
+
+onMounted(async() => {
+  const poolListStore = usePoolListStore()
+  pool.value = await poolListStore.poolItem(loan?.pool_id ? loan?.pool_id : 0)
+  if(pool.value) {
+    const {freePeriod: fp} = useComputedPoolInfo(pool.value)
+    const {freePeriodStatus: fps} = useComputedLoanInfo(loan, fp.value)
+    freePeriod.value = fp.value
+    freePeriodStatus.value = fps.value
+  }
+})
+
+const { loan } = defineProps({
+  loan: {
+    type: Object as PropType<LoansResponse>,
   },
 });
+
 const isStatus = ref(true);
 const isBlank = ref(false);
+const pool = ref()
+const freePeriod = ref()
+const freePeriodStatus = ref()
+
+const {isOverdue, interestRate, duration, startTerm} = useComputedLoanInfo(loan)
 const emtis = defineEmits(["close"]);
 const close = () => {
   emtis("close");
@@ -268,6 +285,7 @@ const close = () => {
   position: relative;
   width: 2.5em;
   height: 2.5em;
+  left: 0.4em
 }
 .status-all {
   border-radius: 8px;
@@ -495,6 +513,9 @@ const close = () => {
 .p1 {
   margin: 0;
   color: #ff9901;
+  &_active{
+    color: #469f25;
+  }
 }
 .notification {
   align-self: stretch;
