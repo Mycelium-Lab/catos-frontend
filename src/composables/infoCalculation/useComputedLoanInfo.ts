@@ -4,7 +4,8 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
 
     const duty = computed(() => {
         if(loan?.amount && loan?.paid_amount) {
-          return loan?.amount - loan?.paid_amount
+          const dif = loan?.amount - loan?.paid_amount
+          return loan?.overdue_millipercent / 100 * dif + dif
         }
         else {
           return ''
@@ -49,7 +50,7 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
       const duration = computed(() => {
         const start = new Date(loan?.start).getDay();
         const end = new Date(loan?.end).getDay();
-        return Number(end) - Number(start)
+        return `${Number(end) - Number(start)} дней`
       })
 
       const startTerm = computed(() => {

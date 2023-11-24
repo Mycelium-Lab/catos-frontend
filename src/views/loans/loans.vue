@@ -72,6 +72,12 @@ const actualLoans = computed(() => {
   else if(role.value === 'borrower') {
     return loansStore.loans.filter(v => v.status === variant) 
   }
+  else if(role.value === 'creditor' && variant === 'loans') {
+      return loansStore.loans.filter((v) => v.status !== 'for_sale')
+  }
+  else if(role.value === 'creditor' && variant === 'marketplace') {
+      return loansStore.loans.filter((v) => v.status === 'for_sale' || v.status === 'sold')
+  }
   return loansStore.loans
   
 })

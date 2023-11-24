@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title> Просроченная заявка на займ #12346 </template>
+    <template v-slot:title> Просроченная заявка на займ #{{ loan?.id }} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -51,14 +51,14 @@
                       <div class="col-titles-bg" />
                       <div class="field">
                         <div class="div4">Ставка:</div>
-                        <div class="div5">1% в день</div>
+                        <div class="div5">{{ interestRate }}% в день</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="fieldsinput-parent">
                       <div class="field">
                         <div class="div4">Займ:</div>
-                        <div class="div5">13 000 TON</div>
+                        <div class="div5">{{ loan?.amount }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -79,7 +79,7 @@
                     <div class="fieldsinput-parent">
                       <div class="field">
                         <div class="div4">Вернуть не позднее:</div>
-                        <div class="div5">22.05.2023</div>
+                        <div class="div5">{{ endTerm }}</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -179,9 +179,21 @@
   </desktop-modal>
 </template>
 <script setup lang="ts">
+import { PropType } from "vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import inputData from "@/components/fields/input-data.vue";
+import { LoansResponse } from "@/types/loan.types";
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+
+const { loan } = defineProps({
+  loan: {
+    type: Object as PropType<LoansResponse>,
+  },
+});
+
+const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanInfo(loan)
+
 const emtis = defineEmits(["close", "api"]);
 const api = () => {
   emtis("api");

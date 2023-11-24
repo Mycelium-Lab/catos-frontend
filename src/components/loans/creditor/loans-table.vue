@@ -61,7 +61,7 @@
                 </template>
                 <template v-else-if="variant === 'marketplace'">
                   <img
-                    v-if="loanRequestStatus === 'sales'"
+                    v-if="loan?.status === 'for_sale'"
                     class="colors-graphsorders-icon"
                     alt=""
                     src="@/assets/images/colors-graphsorders2.svg"
@@ -88,7 +88,7 @@
                   }}-->
                 </div>
                 <div v-else-if="variant === 'marketplace'" class="div">
-                  {{ loanRequestStatus === "sales" ? "Продается" : "Продан" }}
+                  {{ loan?.status === "for_sale" ? "Продается" : "Продан" }}
                 </div>
               </div>
               <img
@@ -238,7 +238,7 @@
             </template>
             <template v-else>
               <div class="div2">Одобренный период</div>
-              <div class="ton">{{ loanRequest ? durationLoanRequest : durationLoan }} дней</div>
+              <div class="ton">{{ loanRequest ? durationLoanRequest : durationLoan }}</div>
             </template>
           </div>
           <div class="col-titles-bg" />
@@ -249,7 +249,7 @@
               {{ variant === "marketplace" ? "Долг" : "Одобренная сумма" }}:
             </div>
             <div class="ton">{{
-             variant === "marketplace" ? 4000 
+             variant === "marketplace" ? duty 
             : !loanRequest?.approved_amount ? 0
             :loanRequest?.approved_amount }} TON</div>
           </div>
@@ -421,6 +421,7 @@
 
   <marketplace
     v-if="isMarketplace"
+    :loan="loan"
     :state="marketplaceState"
     @close="
       () => {
@@ -500,7 +501,7 @@ const { variant, loan, loanRequest, loanRequestStatus } = defineProps({
   }
 });
 
-const {isOverdue, duration: durationLoan} = useComputedLoanInfo(loan)
+const {duty, isOverdue, duration: durationLoan} = useComputedLoanInfo(loan)
 const {duration: durationLoanRequest} = useComputedLoanRequestInfo(loanRequest)
 
 const status = computed(() => {
@@ -597,7 +598,7 @@ const toDetail = () => {
     }
     if (variant === "marketplace") {
       isMarketplace.value = true;
-      if (loanRequestStatus === "sales") {
+      if (loan?.status === "for_sale") {
         marketplaceState.salesDetailModal = true;
       } else {
         marketplaceState.soldDetailModal = true;

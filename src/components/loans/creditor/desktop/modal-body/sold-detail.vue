@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title> Просроченная заявка на займ #12346 </template>
+    <template v-slot:title> Просроченная заявка на займ #{{ loan?.id }} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-wrapper">
@@ -56,14 +56,14 @@
                   <div class="component">
                     <div class="field">
                       <div class="div2">Дата создания заявки:</div>
-                      <div class="div3">18.12.2022</div>
+                      <div class="div3">{{ startTerm }}</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
                   <div class="component">
                     <div class="field">
                       <div class="div2">Вернуть не позднее:</div>
-                      <div class="div3">22.05.2023</div>
+                      <div class="div3">{{ endTerm }}</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
@@ -161,8 +161,20 @@
   </desktop-modal>
 </template>
 <script setup lang="ts">
+import { PropType } from "vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
+import { LoansResponse } from "@/types/loan.types";
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+
+const { loan } = defineProps({
+  loan: {
+    type: Object as PropType<LoansResponse>,
+  },
+});
+
+const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanInfo(loan)
+
 const emtis = defineEmits(["close", "api", "blank"]);
 const toBlank = () => {
   emtis("blank");
