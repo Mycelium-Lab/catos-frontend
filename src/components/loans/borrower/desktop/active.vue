@@ -1,6 +1,6 @@
 <template>
-  <prolong v-if="isProlong" :toInit="setInit" :id="loan.id" @close="close"></prolong>
-  <repay v-if="isRepay" @close="close" :id="loan.id"></repay>
+  <prolong v-if="isProlong" :toInit="setInit" :id="loan?.id ? loan?.id : 0" @close="close"></prolong>
+  <repay v-if="isRepay" @close="close" :id="loan?.id ? loan?.id : 0"></repay>
   <active-detail v-if="isDetail && status === 'active'" @close="close">
   </active-detail>
   <overdue-detail
@@ -32,7 +32,6 @@ const { status, state } = defineProps({
   },
   loan: {
     type: Object as PropType<LoansResponse>,
-    required: true,
   }
 });
 

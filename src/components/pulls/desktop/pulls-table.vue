@@ -542,19 +542,6 @@
         }
       "
     ></all-borrower-pulls>
-    <my-borrower-pulls
-      v-if="isMyBorrower"
-      :pool="pool"
-      :state="myBorrowerState"
-      @close="
-        () => {
-          isMyBorrower = false;
-          resetState('my-borrower');
-        }
-      "
-    >
-    </my-borrower-pulls>
-
     <add
       v-if="
         (isAllDepositor || isMyDepositor) && allDepositorState.addLiquidModal
@@ -672,7 +659,6 @@ import { Ref, computed, ref, PropType, onMounted } from "vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import allCreditorPulls from "@/components/pulls/creditor/desktop/all-creditor-pulls.vue";
 import myCreditorPulls from "@/components/pulls/creditor/desktop/my-creditor-pulls.vue";
-import myBorrowerPulls from "@/components/pulls/borrower/desktop/my-borrower-pulls.vue";
 import allBorrowerPulls from "@/components/pulls/borrower/desktop/all-borrower-pulls.vue";
 import allDepositorPulls from "@/components/pulls/depositor/desktop/all-depositor-pulls.vue";
 import add from "@/components/pulls/creditor/desktop/modal-body/add.vue";
@@ -689,6 +675,12 @@ import { LoansResponse, LoansBoughtResponse } from "@/types/loan.types";
 import { usePoolListStore } from "@/stores/poolList";
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
 import { i18n } from "@/i18n";
+
+onMounted(async () => {
+  if(loan?.pool_id) {
+    poolByLoan.value = poolItem(loan?.pool_id)
+  }
+})
 
 const { variant, loan, pool } = defineProps({
   variant: {
@@ -715,8 +707,9 @@ const {
   maxDuration, freePeriod, interestRateString,
   freePeriodString } = useComputedPoolInfo(pool)
 
-// @ts-ignore
-const poolByLoan = computed(() => poolItem(loan?.pool_id));
+const poolByLoan = ref()
+
+
 const duty = computed(() => {
   if (loan?.amount && loan?.paid_amount) {
     return loan?.amount - loan?.paid_amount;
@@ -742,7 +735,6 @@ const isMyCreditor = ref(false);
 const isAllBorrower = ref(false);
 const isAllDepositor = ref(false);
 const isMyDepositor = ref(false);
-const isMyBorrower = ref(false);
 const isAllCollector = ref(false);
 const isMyCollector = ref(false);
 
@@ -754,10 +746,7 @@ const allBorrowerState = {
   detailOtherModal: false,
   getLoanModal: false,
   toInvestModal: false,
-};
-const myBorrowerState = {
-  detailMyModal: false,
-};
+};;
 
 const allDepositorState = {
   detailOtherModal: false,
@@ -785,8 +774,6 @@ const resetState = (state: string) => {
     case "all-borrower":
       allBorrowerState.detailOtherModal = false;
       allBorrowerState.getLoanModal = false;
-    case "my-borrower":
-      myBorrowerState.detailMyModal = false;
     case "all-depositor":
       allDepositorState.addLiquidModal = false;
       allDepositorState.detailOtherModal = false;
@@ -836,10 +823,6 @@ const toDetail = () => {
       isAllCreditor.value = true;
     }
   } else if (role.value === "borrower") {
-    if (variant === "my") {
-      isMyBorrower.value = true;
-      myBorrowerState.detailMyModal = true;
-    }
     if (variant === "all") {
       isAllBorrower.value = true;
       allBorrowerState.detailOtherModal = true;
