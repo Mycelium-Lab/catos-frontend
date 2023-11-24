@@ -3,7 +3,7 @@
     <div class="div">
       <div class="header-pop-up">
         <div class="page-title-parent">
-          <div class="page-title">Заявка на займ #12346</div>
+          <div class="page-title">Заявка на займ #{{ loanRequest?.id }}</div>
           <img
             class="close-icon-action close-icon"
             alt=""
@@ -23,16 +23,32 @@
               <div class="status-all">
                 <div class="colors-graphsorders-parent">
                   <img
+                    v-if="loanRequest?.status === 'approved'"
                     class="colors-graphsorders-icon"
                     alt=""
-                    src="@/assets/images/colors-graphsorders2.svg"
+                    src="@/assets/images/colors-graphsorders1.svg"
                   />
-                  <div class="div1">Одобрено</div>
+                  <img
+                    v-else-if="loanRequest?.status === 'declined'"
+                    class="colors-graphsorders-icon"
+                    alt=""
+                    src="@/assets/images/colors-graphsorders3.svg"
+                  />
+                  <img
+                    v-else
+                    class="colors-graphsorders-icon"
+                    alt=""
+                    src="@/assets/images/colors-graphsorders4.svg"
+                  />
+                  <div class="div1">
+                    {{  i18n.global.t(`loans-request-status.${loanRequest?.status}`)}}
+                  </div>
                 </div>
                 <img
                   class="iconchange"
                   alt=""
                   src="@/assets/desktop/iconchange.svg"
+                  @click="handleChangeStatus"
                 />
               </div>
             </div>
@@ -153,7 +169,16 @@
   </div>
 </template>
 <script setup lang="ts">
-const emtis = defineEmits(["close", "blank", "api"]);
+import { PropType } from "vue";
+import { LoansRequestResponse } from "@/types/loan.types";
+import { i18n } from "@/i18n";
+
+const { loanRequest } = defineProps({
+  loanRequest: {
+    type: Object as PropType<LoansRequestResponse>,
+  },
+});
+const emtis = defineEmits(["close", "blank", "api", 'onHandleChangeStatus']);
 
 const toRepeadAPI = () => {
   emtis("api");
@@ -164,6 +189,10 @@ const toBlank = () => {
 const close = () => {
   emtis("close");
 };
+
+const handleChangeStatus = () => {
+  emtis("onHandleChangeStatus");
+}
 </script>
 <style scoped lang="scss">
 .modal-wrapper {
@@ -250,6 +279,7 @@ const close = () => {
   position: relative;
   width: 2.5em;
   height: 2.5em;
+  cursor: pointer;
 }
 .status-all {
   flex: 1;

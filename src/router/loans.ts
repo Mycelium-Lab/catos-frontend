@@ -2,7 +2,7 @@ export const loans = [
   {
     path: "/loans",
     name: "loans",
-    component: () => import("../components/loans/loans.vue"),
+    component: () => import("../views/loans/creditor.vue"),
   },
   {
     path: "/loans/sort",

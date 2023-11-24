@@ -1,6 +1,7 @@
 <template>
   <sales-detail
     v-if="isSalesDetail"
+    :loan="loan"
     @close="close"
     @api="
       () => {
@@ -11,6 +12,7 @@
   ></sales-detail>
   <sold-detail
     v-if="isSoldDetail"
+    :loan="loan"
     @close="close"
     @api="
       () => {
@@ -81,12 +83,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType } from "vue";
 import SalesDetail from "./modal-body/sales-detail.vue";
 import soldDetail from "./modal-body/sold-detail.vue";
 import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
+import { LoansResponse } from "@/types/loan.types";
+
 const { state } = defineProps({
   state: {
     type: Object,
@@ -94,6 +98,9 @@ const { state } = defineProps({
   },
   status: {
     type: String,
+  },
+  loan: {
+    type: Object as PropType<LoansResponse>,
   },
 });
 const isSalesDetail = ref(state.salesDetailModal);

@@ -17,8 +17,8 @@ export const usePoolListStore = defineStore("poolList", () => {
   const verifiedPools = computed(() => {
     return pools.value.filter(val => val.is_verified == true);
   });
-  const poolItem = (poolId: number) => {
-    // console.log('poolId', poolId);
+  const poolItem = async (poolId: number) => {
+    pools.value = await (await listPools()).data
     return pools.value.filter(val => val.id === poolId)[0];
   };
   return {

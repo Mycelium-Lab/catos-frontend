@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title>Информация о займе #12345</template>
+    <template v-slot:title>Информация о займе #{{loan?.id}}</template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-wrapper">
@@ -16,7 +16,7 @@
                     alt=""
                     src="@/assets/images/colors-graphsorders3.svg"
                   />
-                  <div class="div">Просрочен повторно</div>
+                  <div class="div">Просрочен</div>
                 </div>
                 <img
                   class="iconchange"
@@ -41,28 +41,28 @@
                 <div class="component">
                   <div class="field">
                     <div class="div2">Дата получения займа:</div>
-                    <div class="div3">18.12.2022</div>
+                    <div class="div3">{{ startTerm }}</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
                 <div class="component">
                   <div class="field">
                     <div class="div2">Ставка:</div>
-                    <div class="div3">1% в день</div>
+                    <div class="div3">{{ interestRate }}% в день</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
                 <div class="component">
                   <div class="field">
                     <div class="div2">Срок:</div>
-                    <div class="div3">на 30 дней</div>
+                    <div class="div4">на {{ duration }} дней</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
                 <div class="component">
                   <div class="field">
                     <div class="div2">Займ:</div>
-                    <div class="div3">13 000 TON</div>
+                    <div class="div4">{{ loan?.amount }} TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
@@ -99,12 +99,12 @@
                 <p class="p">
                   <span>
                     <span class="span">Беспроцентный период: </span>
-                    <span>до 05.02.22, 16:00</span>
+                    <span>до {{ freePeriod }} дней</span>
                   </span>
                 </p>
-                <p class="p1">
+                <p :class="freePeriodStatus === 'длится' ? 'p1_active p1' : 'p1'">
                   <span>
-                    <span>(закончен)</span>
+                    <span>{{ `(${freePeriodStatus})` }}</span>
                   </span>
                 </p>
               </div>
@@ -116,8 +116,12 @@
                 src="@/assets/images/alerttriangle.svg"
               />
               <div class="div19">
-                <p class="p">Вернуть не позднее: до 13.02.22, 16:00</p>
-                <p class="p3">(просрочен повторно)</p>
+                <p class="p">Вернуть не позднее: до {{endTerm}}</p>
+                <p class="p1">
+                  <span>
+                    <span :style="{ color: 'red' }">(просрочен)</span>
+                  </span>
+                </p>
               </div>
             </div>
           </div>
@@ -143,8 +147,36 @@
 </template>
 
 <script setup lang="ts">
+import {PropType, onMounted, ref} from "vue"
 import desktopModal from "@/components/base/desktop-modal.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
+import { LoansResponse } from "@/types/loan.types";
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+import { usePoolListStore } from "@/stores/poolList";
+import { useComputedPoolInfo } from "@/composables/infoCalculation/useComputedPoolInfo";
+
+onMounted(async() => {
+  const poolListStore = usePoolListStore()
+  pool.value = await poolListStore.poolItem(loan?.pool_id ? loan?.pool_id : 0)
+  if(pool.value) {
+    const {freePeriod: fp} = useComputedPoolInfo(pool.value)
+    const {freePeriodStatus: fps} = useComputedLoanInfo(loan, fp.value)
+    freePeriod.value = fp.value
+    freePeriodStatus.value = fps.value
+  }
+})
+
+const { loan } = defineProps({
+  loan: {
+    type: Object as PropType<LoansResponse>,
+  },
+});
+
+const pool = ref()
+const freePeriod = ref()
+const freePeriodStatus = ref()
+
+const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanInfo(loan)
 
 const emtis = defineEmits(["close", "blank", "sell"]);
 
@@ -188,6 +220,7 @@ const close = () => {
   position: relative;
   width: 2.5em;
   height: 2.5em;
+  left: 0.4em
 }
 .status-all {
   flex: 1;
@@ -308,6 +341,9 @@ const close = () => {
 .p1 {
   margin: 0;
   color: #ff9901;
+  &_active{
+    color: #469f25;
+  }
 }
 .notification {
   align-self: stretch;

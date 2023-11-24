@@ -37,7 +37,8 @@
     </template>
   </desktop-modal>
   <repaid-detail
-    v-if="isDetail && status == 'repaid'"
+    v-if="isDetail && loan?.status === 'paid'"
+    :loan="loan"
     @close="close"
     @blank="
       () => {
@@ -48,6 +49,7 @@
   ></repaid-detail>
   <overdue-detail
     v-if="isDetail && status == 'overdue'"
+    :loan="loan"
     @close="close"
     @blank="
       () => {
@@ -56,11 +58,12 @@
       }
     "
   ></overdue-detail>
-  <status-manage v-if="isStatusManage" @close="close" :status="status">
+  <status-manage v-if="isStatusManage" @close="close" :loan="loan">
     <status-change v-if="isStatusChange" @close="close"></status-change>
   </status-manage>
   <expose
     v-if="isExpose"
+    :loan="loan"
     @close="close"
     @blank="
       () => {
@@ -77,6 +80,7 @@
   ></expose>
   <sell-out
     v-if="isSell"
+    :loan="loan"
     @close="close"
     @result="
       () => {
@@ -103,7 +107,7 @@
   </status-modal-desktop>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType } from "vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import statusManage from "./modal-body/status-manage.vue";
@@ -113,6 +117,7 @@ import sellOut from "./modal-body/sell-out.vue";
 import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
 import RepaidDetail from "./modal-body/repaid-detail.vue";
 import OverdueDetail from "./modal-body/overdue-detail.vue";
+import { LoansResponse } from "@/types/loan.types";
 
 const { state } = defineProps({
   state: {
@@ -121,6 +126,9 @@ const { state } = defineProps({
   },
   status: {
     type: String,
+  },
+  loan: {
+    type: Object as PropType<LoansResponse>,
   },
 });
 const emtis = defineEmits(["close"]);
