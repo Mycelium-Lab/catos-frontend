@@ -360,7 +360,18 @@
           </div>
           <button
             v-else-if="
-              role === 'creditor' && loan?.status !== 'paid' && loan?.status !== 'sold' || isOverdue
+              role === 'creditor' && variant === 'loans' && isOverdue
+            "
+            class="buttons-tabs1"
+            @click.stop="toAction"
+          >
+            <div class="text">
+              Выставить займ на продажу
+            </div>
+          </button>
+          <button
+            v-else-if="
+              role === 'creditor' && loan?.status !== 'paid' && loan?.status !== 'sold'
             "
             class="buttons-tabs1"
             @click.stop="toAction"
@@ -369,8 +380,6 @@
               {{
                 variant === "bids"
                   ? "Сменить статус"
-                  : variant === "loans" && isOverdue
-                  ? "Выставить займ на продажу"
                   : "Изменить цену продажи TON"
               }}
             </div>
