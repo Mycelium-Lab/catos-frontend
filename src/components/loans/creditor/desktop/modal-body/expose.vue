@@ -166,6 +166,9 @@ onMounted(async() => {
   }
 })
 
+const isTransaction = ref(false)
+const transactionStatus = ref('')
+
 const { loan } = defineProps({
   loan: {
     type: Object as PropType<LoansResponse>,
@@ -181,6 +184,7 @@ const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanI
 const emtis = defineEmits(["close", "blank", "sell"]);
 
 const toSell = () => {
+  
   emtis("sell");
 };
 const toBlank = () => {
