@@ -6,11 +6,13 @@
     <template v-slot:body>
       <div class="frame-parent">
         <div v-if="variant === 'loans'" class="wrapper">
-          <div class="div">
+          <!-- На беке пока нельзя менять статус для нескольких заявок сразу-->
+          <!--<div class="div">
             <span>Изменить статус для </span>
             <span class="span">{{ amount }}</span>
             <span> займов:</span>
           </div>
+        -->
         </div>
         <div class="status-all-parent">
           <button class="status-all" @click="() => variant === 'collector' ? updateStatus() : openApprove = true">
@@ -46,7 +48,7 @@
             </div>
           </button>
           <button
-            v-if="variant === 'loans'"
+            v-if="variant === 'loans' && currentStatus === 'pending'"
             class="status-all"
             @click="updateStatus"
           >
@@ -106,7 +108,8 @@ const { variant, id } = defineProps({
   id: {
     type: Number,
     required: true,
-  }
+  },
+  currentStatus : String
 });
 
 const openApprove = ref(false)
