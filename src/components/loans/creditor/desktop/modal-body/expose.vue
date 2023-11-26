@@ -55,7 +55,7 @@
                 <div class="component">
                   <div class="field">
                     <div class="div2">Срок:</div>
-                    <div class="div4">на {{ duration }} дней</div>
+                    <div class="div4">на {{ duration }}</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
@@ -165,9 +165,6 @@ onMounted(async() => {
     freePeriodStatus.value = fps.value
   }
 })
-
-const isTransaction = ref(false)
-const transactionStatus = ref('')
 
 const { loan } = defineProps({
   loan: {

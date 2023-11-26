@@ -20,5 +20,5 @@ export const approveLoanRequest = (id: number, payload: LoansRequestApprovePaylo
 }
 
 export const declineLoanRequest = (id: number) => {
-    return baseApiClient.patch(`${LOAN_REQUESTS_END_POINT}/${id}`)
+    return baseApiClient.patch(`${LOAN_REQUESTS_END_POINT}decline/${id}`)
 }
