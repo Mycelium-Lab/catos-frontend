@@ -187,7 +187,7 @@
               <div class="text">Упр. ликвид</div>
             </div>
           </button>
-          <button class="button">
+          <button class="button" @click="toAnalytics">
             <div class="buttons-tabs">
               <div class="text">Аналитика</div>
             </div>
@@ -208,7 +208,7 @@
 import { ref, PropType } from "vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 import { i18n } from "@/i18n";
-const emits = defineEmits(["close", "management", "loans"]);
+const emits = defineEmits(["close", "management", "loans", "analytics"]);
 import { Pool } from "@/types/pool.type";
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo";
 
@@ -231,6 +231,9 @@ const toLoans = () => {
 };
 const toManagement = () => {
   emits("management");
+};
+const toAnalytics = () => {
+  emits("analytics");
 };
 const close = () => {
   emits("close");
