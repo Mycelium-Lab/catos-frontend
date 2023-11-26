@@ -514,6 +514,8 @@
     <all-creditor-pulls
       v-if="isAllCreditor"
       @close="() => (isAllCreditor = false)"
+      @loans="toLoans"
+      @analytics="toAnalytics"
       :pool="pool"
     ></all-creditor-pulls>
     <my-creditor-pulls
