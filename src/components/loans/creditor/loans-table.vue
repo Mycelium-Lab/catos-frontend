@@ -4,12 +4,13 @@
       <div class="statusbar-cards" v-if="role === 'creditor'">
         <div class="buttons-tabs">
           <div class="checkboxdone-parent">
-            <catos-checkbox
+            <!-- На беке пока нельзя менять статус для нескольких заявок сразу -->
+            <!--<catos-checkbox
               @onChange="handleCheckBox"
               :isChecked="isChecked"
               :key="Number(isChecked)"
             >
-            </catos-checkbox>
+            </catos-checkbox>-->
 
             <div class="txt1-parent">
               <div class="txt1">Иван Иванов Иванович</div>
@@ -360,7 +361,18 @@
           </div>
           <button
             v-else-if="
-              role === 'creditor' && loan?.status !== 'paid' && loan?.status !== 'sold' || isOverdue
+              role === 'creditor' && variant === 'loans' && isOverdue
+            "
+            class="buttons-tabs1"
+            @click.stop="toAction"
+          >
+            <div class="text">
+              Выставить займ на продажу
+            </div>
+          </button>
+          <button
+            v-else-if="
+              role === 'creditor' && loan?.status !== 'paid' && loan?.status !== 'sold'
             "
             class="buttons-tabs1"
             @click.stop="toAction"
@@ -369,8 +381,6 @@
               {{
                 variant === "bids"
                   ? "Сменить статус"
-                  : variant === "loans" && isOverdue
-                  ? "Выставить займ на продажу"
                   : "Изменить цену продажи TON"
               }}
             </div>
@@ -458,7 +468,9 @@
   </repaid>
   <status-change 
       v-if="isBids && bidsState.statusChangeModal" 
+      :id="loanRequest?.id ? loanRequest?.id : 0"
       :amount="amountToChangeStatus === 0 ? 1 : amountToChangeStatus"
+      :currentStatus="loanRequest?.status"
       @close="() => {
         isBids = false;
         resetState('bids');

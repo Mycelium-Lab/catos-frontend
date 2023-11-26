@@ -117,3 +117,10 @@ export type LoansRequestPayload = {
     amount: number,
     duration: number
 }
+
+export type LoansRequestApprovePayload = {
+  "duration": number,
+  "millipercent": number,
+  "overdue_millipercent": number,
+  "approved_amount": number
+}

@@ -55,7 +55,7 @@
                 <div class="component">
                   <div class="field">
                     <div class="div3">Срок:</div>
-                    <div class="div4">на {{ duration }} дней</div>
+                    <div class="div4">на {{ duration }}</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>

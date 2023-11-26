@@ -55,7 +55,7 @@
                 <div class="component">
                   <div class="field">
                     <div class="div2">Срок:</div>
-                    <div class="div4">на {{ duration }} дней</div>
+                    <div class="div4">на {{ duration }}</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
@@ -181,6 +181,7 @@ const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanI
 const emtis = defineEmits(["close", "blank", "sell"]);
 
 const toSell = () => {
+  
   emtis("sell");
 };
 const toBlank = () => {

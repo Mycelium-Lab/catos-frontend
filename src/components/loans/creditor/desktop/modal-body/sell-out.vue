@@ -102,7 +102,7 @@
             <div class="component">
               <div class="fieldsinput">
                 <div class="div16">Установить цену продажи:</div>
-                <input-data :style="{ width: '100%' }"></input-data>
+                <input-data  v-model="price" :style="{ width: '100%' }"></input-data>
               </div>
               <div class="min-10-ton-parent">
                 <div class="min-10-ton-container">
@@ -120,7 +120,7 @@
             <catos-button
               variant="fourth"
               :style="{ width: '100%', magin: '0' }"
-              @click="result"
+              @click="sell"
               >Продать</catos-button
             >
           </div>
@@ -128,6 +128,24 @@
       </div>
     </template>
   </desktop-modal>
+  <transaction-desktop 
+    v-if="isTransaction && !transactionStatus" 
+    @close="isTransaction = false" 
+    :status="transactionStatus"
+    title="Продажа займа"
+    subtitle="Пожалуйста, подождите пока завершится процесс продажи займа"
+    ></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" 
+    @close="handleSuccess" 
+    :status="transactionStatus"
+     title="Операция успешно выполнена"
+    subtitle="Займ успешно продан"
+    ></transaction-desktop>
+    <transaction-desktop 
+    v-else-if="isTransaction && transactionStatus === 'fail'" 
+    @close="isTransaction = false" 
+    title="Произошла ошибка при продаже займа"
+    :status="transactionStatus"></transaction-desktop>
 </template>
 <script setup lang="ts">
 import {PropType, onMounted, ref} from "vue"
@@ -136,6 +154,8 @@ import desktopModal from "@/components/base/desktop-modal.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
 import { LoansResponse } from "@/types/loan.types";
+import { sellLoan } from "@/api/loans.api";
+import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 
 const { loan } = defineProps({
   loan: {
@@ -143,12 +163,28 @@ const { loan } = defineProps({
   },
 });
 
+const price = ref()
+const isTransaction = ref(false)
+const transactionStatus = ref('')
+
 const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanInfo(loan)
 
 const emtis = defineEmits(["close", "result"]);
-const result = () => {
-  emtis("result");
+
+const sell = async () => {
+  isTransaction.value = true
+    await sellLoan(loan?.id ? loan?.id : 0, Number(price.value)).then(res => {
+        transactionStatus.value = 'success'
+    }).catch(e => {
+        transactionStatus.value = 'fail'
+        console.error(e)
+  })
+  //emtis("result");
 };
+const handleSuccess= () => {
+    isTransaction.value = false;
+    location.reload()
+}
 const close = () => {
   emtis("close");
 };

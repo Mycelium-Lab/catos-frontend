@@ -69,56 +69,56 @@ const loanRequestStore = useLoanRequestListStroe()
 
 const actualLoanRequests = computed(() => {
    if(selector === 'Одобренные') {
-    return loanRequestStore.creditorLoanRequests.filter((v) => v.status === 'approved')
+    return loanRequestStore.creditorLoanRequests.filter((v) => v.status === 'approved').sort((a, b) => b.id - a.id)
   }
   else if(selector === 'Ожидание') {
-    return loanRequestStore.creditorLoanRequests.filter((v) => v.status === 'pending')
+    return loanRequestStore.creditorLoanRequests.filter((v) => v.status === 'pending').sort((a, b) => b.id - a.id)
   }
   else if(selector === 'Отклоненные') {
-    return loanRequestStore.creditorLoanRequests.filter((v) => v.status === 'declined')
+    return loanRequestStore.creditorLoanRequests.filter((v) => v.status === 'declined').sort((a, b) => b.id - a.id)
   }
-  return loanRequestStore.creditorLoanRequests
+  return loanRequestStore.creditorLoanRequests.sort((a, b) => b.id - a.id)
 })
 const actualLoans = computed(() => {
   if(role.value === 'collector' ) {
-    return loansStore.loans.filter(v => v.status === "for_sale") 
+    return loansStore.loans.filter(v => v.status === "for_sale").sort((a, b) => b.id - a.id)
   }
   else if(role.value === 'borrower') {
-    return loansStore.loans.filter(v => v.status === variant) 
+    return loansStore.loans.filter(v => v.status === variant).sort((a, b) => b.id - a.id)
   }
   
   else if(role.value === 'creditor' && variant === 'loans' && selector === 'Погашенные') {
       return loansStore.loans.filter((v) => {
         const {duty, isOverdue} = useComputedLoanInfo(v)
         return v.status === 'paid' && !isOverdue.value
-      })
+      }).sort((a, b) => b.id - a.id)
   }
   else if(role.value === 'creditor' && variant === 'loans' && selector === 'Проданные') {
       return loansStore.loans.filter((v) => {
         const {duty, isOverdue} = useComputedLoanInfo(v)
         return v.status === 'sold' && !isOverdue.value
-      })
+      }).sort((a, b) => b.id - a.id)
   }
   else if(role.value === 'creditor' && variant === 'loans' && selector === 'Просроченные') {
       return loansStore.loans.filter((v) => {
         const {duty, isOverdue} = useComputedLoanInfo(v)
         return isOverdue.value
-      })
+      }).sort((a, b) => b.id - a.id)
   }
   else if(role.value === 'creditor' && variant === 'loans') {
-      return loansStore.loans.filter((v) => v.status !== 'for_sale' && v.status !== 'active')
+      return loansStore.loans.filter((v) => v.status !== 'for_sale' && v.status !== 'active').sort((a, b) => b.id - a.id)
   }
 
   else if(role.value === 'creditor' && variant === 'marketplace' && selector === 'На продаже') {
-      return loansStore.loans.filter((v) => v.status === 'for_sale')
+      return loansStore.loans.filter((v) => v.status === 'for_sale').sort((a, b) => b.id - a.id)
   }
   else if(role.value === 'creditor' && variant === 'marketplace' && selector === 'Проданные') {
-      return loansStore.loans.filter((v) => v.status === 'sold')
+      return loansStore.loans.filter((v) => v.status === 'sold').sort((a, b) => b.id - a.id)
   }
   else if(role.value === 'creditor' && variant === 'marketplace') {
-      return loansStore.loans.filter((v) => v.status === 'for_sale' || v.status === 'sold')
+      return loansStore.loans.filter((v) => v.status === 'for_sale' || v.status === 'sold').sort((a, b) => b.id - a.id)
   }
-  return loansStore.loans
+  return loansStore.loans.sort((a, b) => b.id - a.id)
   
 })
 

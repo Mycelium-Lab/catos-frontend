@@ -6,14 +6,16 @@
     <template v-slot:body>
       <div class="frame-parent">
         <div v-if="variant === 'loans'" class="wrapper">
-          <div class="div">
+          <!-- На беке пока нельзя менять статус для нескольких заявок сразу-->
+          <!--<div class="div">
             <span>Изменить статус для </span>
             <span class="span">{{ amount }}</span>
             <span> займов:</span>
           </div>
+        -->
         </div>
         <div class="status-all-parent">
-          <button class="status-all" @click="updateStatus">
+          <button class="status-all" @click="() => variant === 'collector' ? updateStatus() : openApprove = true">
             <div class="colors-graphsorders-parent">
               <img
                 class="colors-graphsorders-icon"
@@ -29,7 +31,7 @@
               </div>
             </div>
           </button>
-          <button class="status-all" @click="updateStatus">
+          <button class="status-all" @click="() => variant === 'collector' ? updateStatus() : decline()">
             <div class="colors-graphsorders-parent">
               <img
                 class="colors-graphsorders-icon"
@@ -46,7 +48,7 @@
             </div>
           </button>
           <button
-            v-if="variant === 'loans'"
+            v-if="variant === 'loans' && currentStatus === 'pending'"
             class="status-all"
             @click="updateStatus"
           >
@@ -63,24 +65,74 @@
       </div>
     </template>
   </desktop-modal>
+  <approve v-if="openApprove" :id="id" @close="openApprove = false"></approve>
+  <transaction-desktop 
+    v-if="isTransaction && !transactionStatus" 
+    @close="isTransaction = false" 
+    :status="transactionStatus"
+    title="Одобрение займа"
+    subtitle="Пожалуйста, подождите пока завершится процесс одобрения займа"
+    ></transaction-desktop>
+    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" 
+    @close="handleSuccess"
+    :status="transactionStatus"
+     title="Операция успешно выполнена"
+    subtitle="Займ успешно ободрен"
+    ></transaction-desktop>
+    <transaction-desktop 
+    v-else-if="isTransaction && transactionStatus === 'fail'" 
+    @close="isTransaction = false" 
+    title="Произошла ошибка при одобрении займа"
+    :status="transactionStatus"></transaction-desktop>
 </template>
 <script setup lang="ts">
+import { ref } from "vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
+import approve from '@/components/loans/creditor/desktop/approve.vue'
+import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
+import { declineLoanRequest } from "@/api/loanRequests.api";
+
 const emtis = defineEmits(["close"]);
 
-const { variant } = defineProps({
+const isTransaction = ref(false)
+const transactionStatus = ref('')
+
+const { variant, id } = defineProps({
   variant: {
     type: String,
     default: "loans",
   },
   amount: {
     type: Number
-  }
+  },
+  id: {
+    type: Number,
+    required: true,
+  },
+  currentStatus : String
 });
+
+const openApprove = ref(false)
+
+const decline = async () => {
+  isTransaction.value = true
+  await declineLoanRequest(id).then(res => {
+        transactionStatus.value = 'success'
+    }).catch(e => {
+        transactionStatus.value = 'fail'
+        console.error(e)
+    })
+}
+
+const handleSuccess = () => {
+  isTransaction.value = false;
+  location.reload()
+}
 const updateStatus = () => {
-  //TODO: Добавить логику по смене статуса
   close();
-};
+}
+
+
 const close = () => {
   emtis("close");
 };
