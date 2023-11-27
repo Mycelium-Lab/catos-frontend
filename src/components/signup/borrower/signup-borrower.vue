@@ -1011,9 +1011,12 @@ import { useUserDataStore } from "@/stores/userData";
 import { usePassportDataStore } from "@/stores/passportData";
 import { useCityList } from "@/composables/useCityList";
 import { useNeighborhoodList } from "@/composables/useNeighborhoodList";
+import { useUploadApi } from "@/composables/useUploadApi";
 import countries from "@/json/countries.json";
 import regions from "@/json/regions.json";
+import { useDevice } from "@/compossables/useDevice";
 
+const { isMobile } = useDevice();
 const userDataStore = useUserDataStore();
 const passportDataStore = usePassportDataStore();
 const isSameAddress = ref(false);
@@ -1087,32 +1090,36 @@ const isSameAddressHandler = (ev: boolean) => {
     };
   }
 }
+const { isFileLoading, handleUpload } = useUploadApi();
 const saveImage = async (boxName: string, file: File | null) => {
   if (file) {
-    switch (boxName) {
+    const path = await handleUpload(file);
+    if (path) {
+      switch (boxName) {
       case "passPhoto1":
         userDataStore.firstPhotoFile = file;
-        passportDataStore.passportDTO.first_photo = "TEMP_DATA"; //await fileToBase64(file);
+        passportDataStore.passportDTO.first_photo = path;
         break;
       case "passPhoto2":
         userDataStore.secondPhotoFile = file;
-        passportDataStore.passportDTO.second_photo = "TEMP_DATA"; //await fileToBase64(file);
+        passportDataStore.passportDTO.second_photo = path;
         break;
       case "selfie":
         userDataStore.selfieFile = file;
-        passportDataStore.passportDTO.selfie = "TEMP_DATA"; //await fileToBase64(file);
+        passportDataStore.passportDTO.selfie = path;
         break;
       default:
         break;
+      }
+      console.log(`File ${file.name} saved to data store.`);
+    } else {
+      console.log("API response invalid.");
     }
-    console.log("File saved");
   } else {
-    console.log("File is null");
+    console.log("File is null.");
   }
 };
-import { useDevice } from "@/compossables/useDevice";
 
-const { isMobile } = useDevice();
 </script>
 
 <style scoped lang="scss">

@@ -659,9 +659,9 @@ const regNumberString = reactive({
       ? ""
       : paperDataStore.paperDTO.registration_number.toString(),
 });
-const addressString = computed(() => {
-  return paperDataStore.paperDTO.address.toString();
-});
+// const addressString = computed(() => {
+//   return paperDataStore.paperDTO.address.toString();
+// });
 const { isFileLoading, handleUpload } = useUploadApi();
 const saveImage = async (boxName: string, file: File | null) => {
   if (file) {

@@ -1103,6 +1103,7 @@ import { useCityList } from "@/composables/useCityList";
 import { useNeighborhoodList } from "@/composables/useNeighborhoodList";
 import countries from "@/json/countries.json";
 import regions from "@/json/regions.json";
+import { useUploadApi } from "@/composables/useUploadApi";
 
 const paperDataStore = usePaperDataStore();
 const passportDataStore = usePassportDataStore();
@@ -1140,28 +1141,33 @@ const isSelectedRadioButton2 = ref(false);
 import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();
-
+const { isFileLoading, handleUpload } = useUploadApi();
 const saveImage = async (boxName: string, file: File | null) => {
   if (file) {
-    switch (boxName) {
+    const path = await handleUpload(file);
+    if (path) {
+      switch (boxName) {
       case "passPhoto1":
         userDataStore.firstPhotoFile = file;
-        passportDataStore.passportDTO.first_photo = "Goa_file2.jpg";
+        passportDataStore.passportDTO.first_photo = path;
         break;
       case "passPhoto2":
         userDataStore.secondPhotoFile = file;
-        passportDataStore.passportDTO.second_photo = "Goa_file2.jpg";
+        passportDataStore.passportDTO.second_photo = path;
         break;
       case "selfie":
         userDataStore.selfieFile = file;
-        passportDataStore.passportDTO.selfie = "Goa_file2.jpg";
+        passportDataStore.passportDTO.selfie = path;
         break;
       default:
         break;
+      }
+      console.log(`File ${file.name} saved to data store.`);
+    } else {
+      console.log("API response invalid.");
     }
-    console.log("File saved");
   } else {
-    console.log("File is null");
+    console.log("File is null.");
   }
 };
 const passportData = computed(() => {
