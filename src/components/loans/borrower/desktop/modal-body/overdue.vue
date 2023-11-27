@@ -5,8 +5,8 @@
         <div class="frame-container">
           <div class="frame-div">
             <div class="parent">
-              <div class="div">Займ #12456 получен</div>
-              <div class="ton">13 000 TON</div>
+              <div class="div">Займ #{{ loan?.id }} получен</div>
+              <div class="ton">{{ loan?.amount }} TON</div>
               <div class="eqb5dze1h44-wrapper">
                 <div class="eqb5dze1h44">
                   <p class="p">
@@ -67,7 +67,7 @@
               <div class="parent1">
                 <div class="div2">Пулл:</div>
                 <div class="wrapper">
-                  <div class="div5">#123445</div>
+                  <div class="div5">#{{ poolId }}</div>
                 </div>
               </div>
               <div class="frame-child" />
@@ -76,7 +76,7 @@
                   <div class="div6">Ставка:</div>
                 </div>
                 <div class="wrapper1">
-                  <div class="div7">1% в день</div>
+                  <div class="div7">{{interestRate}}% в день</div>
                 </div>
               </div>
               <div class="frame-child" />
@@ -85,8 +85,8 @@
                   <div class="div2">Беспроцентный период:</div>
                 </div>
                 <div class="div9">
-                  <span class="span2">до 12.05.23, 16:00 </span>
-                  <span class="span3">(Закончен)</span>
+                  <span class="span2">до {{ endTerm }} </span>
+                  <span :class="freePeriodStatus ==='закончен' ? 'span3': 'span3_green'"> {{  ` (${freePeriodStatus})` }}</span>
                 </div>
               </div>
               <div class="frame-child" />
@@ -151,7 +151,41 @@
   </div>
 </template>
 <script setup lang="ts">
+import { ref, PropType, onMounted } from "vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
+import { LoansResponse } from "@/types/loan.types";
+import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+import { usePoolListStore } from "@/stores/poolList";
+
+onMounted(async() => {
+  if(loan?.pool_id) {
+    poolByLoan.value = await poolItem(loan?.pool_id)
+    freePeriod.value = useComputedPoolInfo(poolByLoan.value).freePeriod.value
+
+    interestRate.value = useComputedPoolInfo(poolByLoan.value).interestRate.value
+    endTerm.value = useComputedLoanInfo(loan).endTerm.value
+    freePeriodStatus.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodStatus.value
+  }
+})
+
+const { loan } = defineProps({
+  loan: {
+    type: Object as PropType<LoansResponse>,
+  },
+  poolId: {
+    type: Number
+  }
+});
+
+const interestRate = ref()
+const poolByLoan = ref()
+const endTerm = ref()
+const freePeriodStatus = ref()
+const freePeriod = ref()
+
+const { poolItem } = usePoolListStore();
+
 const emits = defineEmits(["close", "repay", "prolong"]);
 const prolong = () => {
   emits("prolong");
@@ -401,6 +435,7 @@ const close = () => {
   text-decoration: underline;
   line-height: 130%;
   font-weight: 300;
+  text-align: end;
 }
 .wrapper {
   width: 3.69em;
@@ -467,6 +502,9 @@ const close = () => {
 }
 .span3 {
   color: #ff0000;
+  &_green{
+    color: #469f25;
+  }
 }
 .div9 {
   flex: 1;

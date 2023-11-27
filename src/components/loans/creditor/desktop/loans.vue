@@ -59,7 +59,7 @@
     "
   ></overdue-detail>
   <status-manage v-if="isStatusManage" @close="close" :loan="loan">
-    <status-change v-if="isStatusChange" @close="close"></status-change>
+    <status-change :id="loan?.id ? loan?.id : 0" v-if="isStatusChange" @close="close"></status-change>
   </status-manage>
   <expose
     v-if="isExpose"

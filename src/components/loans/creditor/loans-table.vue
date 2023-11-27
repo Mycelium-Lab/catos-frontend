@@ -116,7 +116,7 @@
               <div v-if="role === 'borrower'" class="txt2_borrower txt2">
                 {{ variant === "sold" ? "Текущий долг" : "Займ на" }}:
               </div>
-              <div class="ton18">37 000 TON</div>
+              <div class="ton18">{{loan?.amount}} TON</div>
 
               <div
                 v-if="loanRequestStatus === 'creditor' || role === 'investor'"
@@ -144,7 +144,7 @@
               alt=""
               src="@/assets/images/percent.svg"
             />
-            <div class="div122">1 день = 1%</div>
+            <div class="div122">{{interestRateString}}</div>
           </div>
           <div class="iconsbar-cards-parent">
             <img
@@ -152,7 +152,7 @@
               alt=""
               src="@/assets/images/clock.svg"
             />
-            <div class="div123">3 дня = 0%</div>
+            <div class="div123">{{ freePeriodString }}</div>
           </div>
 
           <div class="iconsbar-cards-parent">
@@ -161,7 +161,7 @@
               alt=""
               src="@/assets/images/iconscalendar-mini.svg"
             />
-            <div class="div124">30 дней = 15%</div>
+            <div class="div124">{{ monthInterestRateString }}</div>
           </div>
         </div>
       </div>
@@ -173,35 +173,35 @@
         <div v-if="role === 'borrower'" class="field-parent">
           <div class="field">
             <div class="div2">Займ:</div>
-            <div class="ton">13 000 TON</div>
+            <div class="ton">{{ loan?.amount }} TON</div>
           </div>
           <div class="col-titles-bg" />
         </div>
         <div v-if="role === 'borrower'" class="field-parent">
           <div class="field">
             <div class="div2">Ставка:</div>
-            <div class="ton">15%</div>
+            <div class="ton">{{ interestRate }}% в день</div>
           </div>
           <div class="col-titles-bg" />
         </div>
         <div v-if="role === 'borrower'" class="field-parent">
           <div class="field">
             <div class="div2">Начисленные проценты:</div>
-            <div class="ton">512 TON</div>
+            <div class="ton"> TON</div>
           </div>
           <div class="col-titles-bg" />
         </div>
         <div v-if="role === 'borrower'" class="field-parent">
           <div class="field">
             <div class="div2">На срок:</div>
-            <div class="ton">до 30 дней</div>
+            <div class="ton">до {{ maxDuration }}</div>
           </div>
           <div class="col-titles-bg" />
         </div>
         <div v-if="role === 'borrower'" class="field-parent">
           <div class="field">
             <div class="div2">Беспроцентный период:</div>
-            <div class="ton">до 05.02.22, 16:00 (завершен)</div>
+            <div class="ton">до {{`${freePeriodDate} (${freePeriodStatus})` }}</div>
           </div>
           <div class="col-titles-bg" />
         </div>
@@ -209,17 +209,17 @@
           <div class="field">
             <div class="div2">
               {{
-                variant === "repaid"
+                variant === "paid"
                   ? "Сумма погашения"
                   : "Сумма к возвращению"
               }}:
             </div>
-            <div class="ton">13 512 TON</div>
+            <div class="ton">TON</div>
           </div>
-          <div v-if="variant === 'repaid'" class="col-titles-bg" />
+          <div v-if="variant === 'paid'" class="col-titles-bg" />
         </div>
         <div
-          v-if="role === 'borrower' && variant === 'repaid'"
+          v-if="role === 'borrower' && variant === 'paid'"
           class="field-parent"
         >
           <div class="field">
@@ -292,7 +292,7 @@
           src="@/assets/images/alerttriangle-white.svg"
         />
         <div class="div128">
-          Вернуть не позднее: до 13.02.22, 16:00 (осталось 29 дней)
+          Вернуть не позднее: до {{ endTerm }} (осталось {{restDays}} дней)
         </div>
       </div>
       <div
@@ -307,7 +307,7 @@
           src="@/assets/images/alerttriangle-white.svg"
         />
         <div class="div128">
-          Вернуть не позднее: до 13.02.22, 16:00 (займ просрочен)
+          Вернуть не позднее: до {{endTerm}} (займ просрочен)
         </div>
       </div>
       <div
@@ -447,6 +447,7 @@
     :state="activeState"
     :status="status"
     :loan="loan"
+    :poolId="poolByLoan.id"
     @close="
       () => {
         isActive = false;
@@ -461,7 +462,7 @@
     @close="
       () => {
         isRepaid = false;
-        resetState('repaid');
+        resetState('paid');
       }
     "
   >
@@ -479,7 +480,7 @@
   <sold v-if="isSold" @close="() => (isSold = false)"></sold>
 </template>
 <script setup lang="ts">
-import { ref, PropType, computed } from "vue";
+import { ref, PropType, computed, onMounted } from "vue";
 import { roleStorage } from "@/utils/localStorage";
 import catosCheckbox from "../../ui-kit/catos-checkbox.vue";
 import bids from "./desktop/bids.vue";
@@ -494,6 +495,28 @@ import { LoansRequestResponse } from "@/types/loan.types";
 import { useComputedLoanRequestInfo } from "@/composables/infoCalculation/useComputedLoanRequestInfo";
 import { i18n } from "@/i18n";
 import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
+import { usePoolListStore } from "@/stores/poolList";
+
+onMounted(async() => {
+  if(loan?.pool_id && role.value === 'borrower') {
+    poolByLoan.value = await poolItem(loan?.pool_id)
+    interestRate.value = useComputedPoolInfo(poolByLoan.value).interestRate.value
+    monthInterestRateString.value = useComputedPoolInfo(poolByLoan.value).monthInterestRateString.value
+    maxDuration.value = useComputedPoolInfo(poolByLoan.value).maxDuration.value
+    freePeriod.value = useComputedPoolInfo(poolByLoan.value).freePeriod.value
+    interestRateString.value = useComputedPoolInfo(poolByLoan.value).interestRateString.value
+    freePeriodString.value = useComputedPoolInfo(poolByLoan.value).freePeriodString.value
+
+    duty.value = useComputedLoanInfo(loan).duty.value
+    isOverdue.value = useComputedLoanInfo(loan).duty.value
+    durationLoan.value = useComputedLoanInfo(loan).duration.value
+    freePeriodStatus.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodStatus.value
+    freePeriodDate.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodDate.value
+    endTerm.value = useComputedLoanInfo(loan).endTerm.value
+    restDays.value = useComputedLoanInfo(loan).restDays.value
+  }
+})
 
 const { variant, loan, loanRequest, loanRequestStatus } = defineProps({
   variant: {
@@ -513,8 +536,23 @@ const { variant, loan, loanRequest, loanRequestStatus } = defineProps({
   }
 });
 
-const {duty, isOverdue, duration: durationLoan} = useComputedLoanInfo(loan)
+const { poolItem } = usePoolListStore();
 const {duration: durationLoanRequest} = useComputedLoanRequestInfo(loanRequest)
+
+const interestRate = ref()
+const monthInterestRateString = ref()
+const maxDuration = ref()
+const freePeriod = ref()
+const interestRateString = ref()
+const freePeriodString = ref()
+
+const duty = ref()
+const isOverdue = ref()
+const durationLoan = ref()
+const freePeriodStatus = ref()
+const freePeriodDate = ref()
+const endTerm = ref()
+const restDays = ref()
 
 const status = computed(() => {
   if (loan?.end) {
@@ -529,6 +567,7 @@ const status = computed(() => {
 const role = computed(() => {
   return roleStorage.get()
 })
+const poolByLoan = ref()
 
 const bidsState = {
   detailModal: false,
@@ -568,7 +607,7 @@ const resetState = (state: string) => {
       activeState.prolongModal = false;
       activeState.repayModal = false;
       activeState.detailModal = false;
-    case "repaid":
+    case "paid":
       repaidState.detailModal = false;
   }
 };
@@ -621,7 +660,7 @@ const toDetail = () => {
     if (variant === "active") {
       isActive.value = true;
       toActive("detail");
-    } else if (variant === "repaid") {
+    } else if (variant === "paid") {
       repaidState.detailModal = true;
       isRepaid.value = true;
     } else if (variant === "sold") {
