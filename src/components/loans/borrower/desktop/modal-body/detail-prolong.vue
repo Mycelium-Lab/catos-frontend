@@ -1,6 +1,6 @@
 <template>
   <desktop-modal variant="back" :toBack="toBack" @close="close">
-    <template v-slot:title> Займ из пулла #12345 </template>
+    <template v-slot:title> Займ из пулла #3 </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-wrapper">
