@@ -108,7 +108,7 @@ const handleSlide = (index: any) => {
   if (index === 0) {
     currentWindow.value = "active";
   } else if (index === 1) {
-    currentWindow.value = "repaid";
+    currentWindow.value = "paid";
   } else if (index === 2) {
     currentWindow.value = "sold";
   }

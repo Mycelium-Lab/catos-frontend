@@ -209,17 +209,17 @@
           <div class="field">
             <div class="div2">
               {{
-                variant === "repaid"
+                variant === "paid"
                   ? "Сумма погашения"
                   : "Сумма к возвращению"
               }}:
             </div>
             <div class="ton">TON</div>
           </div>
-          <div v-if="variant === 'repaid'" class="col-titles-bg" />
+          <div v-if="variant === 'paid'" class="col-titles-bg" />
         </div>
         <div
-          v-if="role === 'borrower' && variant === 'repaid'"
+          v-if="role === 'borrower' && variant === 'paid'"
           class="field-parent"
         >
           <div class="field">
@@ -462,7 +462,7 @@
     @close="
       () => {
         isRepaid = false;
-        resetState('repaid');
+        resetState('paid');
       }
     "
   >
@@ -607,7 +607,7 @@ const resetState = (state: string) => {
       activeState.prolongModal = false;
       activeState.repayModal = false;
       activeState.detailModal = false;
-    case "repaid":
+    case "paid":
       repaidState.detailModal = false;
   }
 };
@@ -660,7 +660,7 @@ const toDetail = () => {
     if (variant === "active") {
       isActive.value = true;
       toActive("detail");
-    } else if (variant === "repaid") {
+    } else if (variant === "paid") {
       repaidState.detailModal = true;
       isRepaid.value = true;
     } else if (variant === "sold") {
