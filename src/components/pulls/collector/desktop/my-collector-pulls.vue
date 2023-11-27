@@ -295,6 +295,7 @@
   <status-change
     v-if="isStatusChange"
     variant="collector"
+    :id="loan?.id ? loan?.id : 0"
     @close="() => (isStatusChange = false)"
   ></status-change>
 </template>

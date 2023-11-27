@@ -680,7 +680,15 @@ import { i18n } from "@/i18n";
 
 onMounted(async () => {
   if(loan?.pool_id) {
-    poolByLoan.value = poolItem(loan?.pool_id)
+    poolByLoan.value = await poolItem(loan?.pool_id)
+  }
+  if(pool) {
+    interestRate.value = useComputedPoolInfo(pool).interestRate.value
+    monthInterestRateString.value = useComputedPoolInfo(pool).monthInterestRateString.value
+    maxDuration.value = useComputedPoolInfo(pool).maxDuration.value
+    freePeriod.value = useComputedPoolInfo(pool).freePeriod.value
+    interestRateString.value = useComputedPoolInfo(pool).interestRateString.value
+    freePeriodString.value = useComputedPoolInfo(pool).freePeriodString.value
   }
 })
 
@@ -704,12 +712,13 @@ const role = computed(() => {
 
 const { poolItem } = usePoolListStore();
 
-const {
-  interestRate, monthInterestRateString, 
-  maxDuration, freePeriod, interestRateString,
-  freePeriodString } = useComputedPoolInfo(pool)
-
 const poolByLoan = ref()
+const interestRate = ref()
+const monthInterestRateString = ref()
+const maxDuration = ref()
+const freePeriod = ref()
+const interestRateString = ref()
+const freePeriodString = ref()
 
 
 const duty = computed(() => {
