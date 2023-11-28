@@ -116,7 +116,7 @@
               <div v-if="role === 'borrower'" class="txt2_borrower txt2">
                 {{ variant === "sold" ? "Текущий долг" : "Займ на" }}:
               </div>
-              <div class="ton18">{{loan?.amount}} TON</div>
+              <div class="ton18">{{ variant === "sold" ? duty : loan?.amount}} TON</div>
 
               <div
                 v-if="loanRequestStatus === 'creditor' || role === 'investor'"
@@ -224,7 +224,7 @@
         >
           <div class="field">
             <div class="div2">Дата погашения:</div>
-            <div class="ton">13.02.22 в 19.32</div>
+            <div class="ton"></div>
           </div>
         </div>
         <div v-if="role === 'creditor'" class="field-parent">
@@ -457,6 +457,7 @@
   ></active>
   <repaid
     v-if="isRepaid"
+    :loan="loan"
     :state="repaidState"
     :status="status"
     @close="
@@ -477,7 +478,7 @@
         resetState('bids');
       }"> 
   </status-change>
-  <sold v-if="isSold" @close="() => (isSold = false)"></sold>
+  <sold v-if="isSold" @close="() => (isSold = false)" :loan="loan"></sold>
 </template>
 <script setup lang="ts">
 import { ref, PropType, computed, onMounted } from "vue";
@@ -501,19 +502,14 @@ import { usePoolListStore } from "@/stores/poolList";
 onMounted(async() => {
   if(loan?.pool_id && role.value === 'borrower') {
     poolByLoan.value = await poolItem(loan?.pool_id)
-    interestRate.value = useComputedPoolInfo(poolByLoan.value).interestRate.value
     monthInterestRateString.value = useComputedPoolInfo(poolByLoan.value).monthInterestRateString.value
     maxDuration.value = useComputedPoolInfo(poolByLoan.value).maxDuration.value
     freePeriod.value = useComputedPoolInfo(poolByLoan.value).freePeriod.value
-    interestRateString.value = useComputedPoolInfo(poolByLoan.value).interestRateString.value
     freePeriodString.value = useComputedPoolInfo(poolByLoan.value).freePeriodString.value
 
-    duty.value = useComputedLoanInfo(loan).duty.value
-    isOverdue.value = useComputedLoanInfo(loan).duty.value
     durationLoan.value = useComputedLoanInfo(loan).duration.value
     freePeriodStatus.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodStatus.value
     freePeriodDate.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodDate.value
-    endTerm.value = useComputedLoanInfo(loan).endTerm.value
     restDays.value = useComputedLoanInfo(loan).restDays.value
   }
 })
@@ -537,21 +533,18 @@ const { variant, loan, loanRequest, loanRequestStatus } = defineProps({
 });
 
 const { poolItem } = usePoolListStore();
+
+const {duty, isOverdue, interestRate, duration, startTerm, endTerm, interestRateString} = useComputedLoanInfo(loan)
 const {duration: durationLoanRequest} = useComputedLoanRequestInfo(loanRequest)
 
-const interestRate = ref()
 const monthInterestRateString = ref()
 const maxDuration = ref()
 const freePeriod = ref()
-const interestRateString = ref()
 const freePeriodString = ref()
 
-const duty = ref()
-const isOverdue = ref()
 const durationLoan = ref()
 const freePeriodStatus = ref()
 const freePeriodDate = ref()
-const endTerm = ref()
 const restDays = ref()
 
 const status = computed(() => {

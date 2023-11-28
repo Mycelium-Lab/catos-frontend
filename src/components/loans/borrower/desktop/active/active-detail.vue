@@ -121,12 +121,11 @@ import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import { usePoolListStore } from "@/stores/poolList";
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
 
 onMounted(async () => {
   if(loan?.pool_id) {
     poolByLoan.value = await poolItem(loan?.pool_id)
-    interestRate.value = useComputedPoolInfo(poolByLoan.value).interestRate.value
-    interestRateString.value = useComputedPoolInfo(poolByLoan.value).interestRateString.value 
     freePeriod.value = useComputedPoolInfo(poolByLoan.value).freePeriod.value 
     freePeriodString.value = useComputedPoolInfo(poolByLoan.value).freePeriodString.value
     maxDuration.value = useComputedPoolInfo(poolByLoan.value).maxDuration.value
@@ -135,19 +134,18 @@ onMounted(async () => {
 
 const poolByLoan = ref()
 const freePeriod = ref()
-const interestRate = ref()
-const interestRateString = ref()
 const freePeriodString = ref()
 const maxDuration = ref()
-
-const { poolItem } = usePoolListStore();
-const emits = defineEmits(["close"]);
 
 const { loan } = defineProps({
   loan: {
     type: Object as PropType<LoansResponse>,
   }
 });
+
+const { poolItem } = usePoolListStore();
+const {isOverdue, interestRate, duration, startTerm, endTerm, interestRateString} = useComputedLoanInfo(loan)
+const emits = defineEmits(["close"]);
 
 const close = () => {
   emits("close");

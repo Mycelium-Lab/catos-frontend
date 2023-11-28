@@ -47,6 +47,10 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
         return loan?.millipercent ? loan?.millipercent / 100 : 0
       })
 
+       const interestRateString = computed(() => {
+        return `1 день = ${interestRate.value}%`
+     })
+
       const duration = computed(() => {
         const start = new Date(loan?.start).getDay();
         const end = new Date(loan?.end).getDay();
@@ -99,7 +103,8 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
         endTerm,
         freePeriodStatus,
         freePeriodDate,
-        restDays
+        restDays,
+        interestRateString
     }
 }
 
