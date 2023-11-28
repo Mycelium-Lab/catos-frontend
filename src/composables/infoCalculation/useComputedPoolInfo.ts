@@ -28,6 +28,11 @@ const useComputedPoolInfo = (pool: any) => {
     const freePeriodString = computed(() => {
         return `${freePeriod.value} дней = 0%`
     })
+
+    const createdTerm = computed(() => {
+        const created = new Date(pool?.created_at)
+        return `${created.getDate()}.${created.getMonth()+1}.${created.getFullYear()}`
+    })
       
     return {
         interestRate,
@@ -35,7 +40,8 @@ const useComputedPoolInfo = (pool: any) => {
         maxDuration,
         freePeriod,
         interestRateString,
-        freePeriodString
+        freePeriodString,
+        createdTerm
     }
 }
 

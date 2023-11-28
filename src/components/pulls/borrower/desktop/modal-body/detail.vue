@@ -107,7 +107,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div7">Дата создания:</div>
-              <div class="ton1"></div>
+              <div class="ton1">{{ createdTerm }}</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -155,7 +155,7 @@ const { pool } = defineProps({
 const {
   interestRate, monthInterestRateString, 
   maxDuration, freePeriod, interestRateString,
-  freePeriodString } = useComputedPoolInfo(pool)
+  freePeriodString, createdTerm } = useComputedPoolInfo(pool)
 
 const toAdd = () => {
   emits("add");

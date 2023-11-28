@@ -35,14 +35,14 @@
                     <div class="col-titles-bg" />
                     <div class="field">
                       <div class="div2">Дата смены статуса:</div>
-                      <div class="div3">28.12.22</div>
+                      <div class="div3"></div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
                   <div class="component">
                     <div class="field">
                       <div class="div2">Заявитель:</div>
-                      <div class="div3">Алексей Иванов</div>
+                      <div class="div3"></div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>

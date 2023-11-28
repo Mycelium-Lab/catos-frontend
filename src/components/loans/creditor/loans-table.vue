@@ -80,13 +80,6 @@
                 </div>
                 <div v-else-if="variant === 'loans'" class="div">
                   {{ isOverdue ? i18n.global.t(`loans-status.overdue`) : i18n.global.t(`loans-status.${loan?.status}`)}}
-                  <!--{{
-                    loan?.status === "paid"
-                      ? "Погашен"
-                      : status === "overdue"
-                      ? "Просрочен"
-                      : "Продан"
-                  }}-->
                 </div>
                 <div v-else-if="variant === 'marketplace'" class="div">
                   {{ loan?.status === "for_sale" ? "Продается" : "Продан" }}
@@ -238,8 +231,8 @@
               </div>
             </template>
             <template v-else>
-              <div class="div2">Одобренный период</div>
-              <div class="ton">{{ loanRequest ? durationLoanRequest : durationLoan }}</div>
+              <div class="div2">Одобренный период:</div>
+              <div class="ton">{{ loanRequest ? durationLoanRequest : duration }}</div>
             </template>
           </div>
           <div class="col-titles-bg" />
@@ -259,7 +252,7 @@
         <div v-if="role === 'creditor'" class="field-parent">
           <div class="field">
             <div class="div2">Дата смены статуса:</div>
-            <div class="ton">28.12.22</div>
+            <div class="ton"></div>
           </div>
           <div class="col-titles-bg" />
         </div>
@@ -507,7 +500,6 @@ onMounted(async() => {
     freePeriod.value = useComputedPoolInfo(poolByLoan.value).freePeriod.value
     freePeriodString.value = useComputedPoolInfo(poolByLoan.value).freePeriodString.value
 
-    durationLoan.value = useComputedLoanInfo(loan).duration.value
     freePeriodStatus.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodStatus.value
     freePeriodDate.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodDate.value
     restDays.value = useComputedLoanInfo(loan).restDays.value
@@ -636,11 +628,15 @@ const toDetail = () => {
       bidsState.detailModal = true;
       isBids.value = true;
     }
-    if (variant === "loans") {
+    else if (variant === "loans" && loan?.status === "sold") {
+      isMarketplace.value = true
+      marketplaceState.soldDetailModal = true;
+    }
+    else if (variant === "loans") {
       loansState.detailModal = true;
       isLoans.value = true;
     }
-    if (variant === "marketplace") {
+    else if (variant === "marketplace") {
       isMarketplace.value = true;
       if (loan?.status === "for_sale") {
         marketplaceState.salesDetailModal = true;

@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close" v-if="isDetail">
-    <template v-slot:title> Информация о пулле №{{ pool?.id }} </template>
+    <template v-slot:title> Информация о пулле #{{ pool?.id }} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -143,7 +143,7 @@
           <div class="field-wrapper">
             <div class="field">
               <div class="div5">Дата создания:</div>
-              <div class="div6"></div>
+              <div class="div6">{{ createdTerm }}</div>
             </div>
           </div>
         </div>
@@ -165,7 +165,7 @@
   </desktop-modal>
   <add  
   v-if="isAdd"
-    :poolId="poolId"
+    :poolId="pool?.id ? pool?.id : 0"
     @close="
       () => {
         isAdd = false;
@@ -199,7 +199,7 @@ const { pool } = defineProps({
 const {
   interestRate, monthInterestRateString, 
   maxDuration, freePeriod, interestRateString,
-  freePeriodString } = useComputedPoolInfo(pool)
+  freePeriodString, createdTerm } = useComputedPoolInfo(pool)
 
 const close = () => {
   emits("close");

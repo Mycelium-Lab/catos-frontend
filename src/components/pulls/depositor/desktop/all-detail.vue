@@ -8,7 +8,7 @@
             <div class="div">
               <img class="pie-chart-icon" alt="" src="/piechart.svg" />
               <div class="ton-parent">
-                <div class="ton">1 537 000 TON</div>
+                <div class="ton">TON</div>
                 <div class="div1">Доход</div>
               </div>
             </div>

@@ -58,14 +58,14 @@
           <div class="field-parent">
             <div class="field">
               <div class="div3">Дата смены статуса:</div>
-              <div class="div4">21.12.2022</div>
+              <div class="div4"></div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div3">Заявитель:</div>
-              <div class="div4">Иван Иванов</div>
+              <div class="div4"></div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -79,7 +79,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div3">Дата создания:</div>
-              <div class="div4">22. 05. 2023</div>
+              <div class="div4"></div>
             </div>
             <div class="col-titles-bg" />
           </div>

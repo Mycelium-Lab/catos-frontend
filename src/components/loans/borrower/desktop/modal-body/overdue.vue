@@ -163,7 +163,7 @@ onMounted(async() => {
     poolByLoan.value = await poolItem(loan?.pool_id)
     freePeriod.value = useComputedPoolInfo(poolByLoan.value).freePeriod.value
 
-    interestRate.value = useComputedPoolInfo(poolByLoan.value).interestRate.value
+    interestRate.value = useComputedLoanInfo(loan).interestRate
     endTerm.value = useComputedLoanInfo(loan).endTerm.value
     freePeriodStatus.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodStatus.value
   }
