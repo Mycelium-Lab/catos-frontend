@@ -8,7 +8,7 @@ export const useBorrowerDataStore = defineStore("borrowerData", () => {
     revenue: 0,
     education: "",
     relationship: "",
-    children: 0,
+    children: 6,
     criminal: "",
     survey: "",
   });

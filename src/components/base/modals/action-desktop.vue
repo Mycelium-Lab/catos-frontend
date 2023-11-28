@@ -18,12 +18,9 @@
             @close="handleClose"
         >
             <template v-slot:header> Транзакция №591561351 </template>
-            <template v-slot:title> Транзакция успешно выполнена </template>
+            <template v-slot:title> {{ title }} </template>
             <template v-slot:subtitle> 
             <p class="status-subtitle"> {{ subtitle }} <a class="status-subtitle-link"></a> </p>
-            <p class="status-subtitle"> 
-                <a class="status-subtitle-link">Просмотр транзакции в Tonscan</a>
-            </p>
             </template>
             <template v-slot:image>
             <img src="@/assets/images/success-transaction.svg" />

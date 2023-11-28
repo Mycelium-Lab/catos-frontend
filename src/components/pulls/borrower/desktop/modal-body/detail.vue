@@ -111,12 +111,6 @@
             </div>
             <div class="col-titles-bg" />
           </div>
-          <div class="field-wrapper">
-            <div class="field">
-              <div class="div7">Доход инвестора пулла:</div>
-              <div class="ton1"></div>
-            </div>
-          </div>
         </div>
         <div class="des-and-bbn">
           <catos-button
