@@ -10,7 +10,7 @@
           />
           <div class="group">
             <div class="div1">Займ на:</div>
-            <div class="ton">1 537 000 TON</div>
+            <div class="ton">{{ loan?.amount }} TON</div>
           </div>
         </div>
 
@@ -21,7 +21,7 @@
               alt=""
               src="@/assets/images/percent.svg"
             />
-            <div class="div2">1 день = 1%</div>
+            <div class="div2">{{ interestRateString }}</div>
           </div>
           <div class="percent-parent">
             <img class="percent-icon" alt="" src="@/assets/images/clock.svg" />
@@ -34,7 +34,7 @@
       <div class="field-parent">
         <div class="field">
           <div class="div4">Ставка:</div>
-          <div class="ton-kepeer">1% в день</div>
+          <div class="ton-kepeer">{{ interestRate }}% в день</div>
         </div>
         <div class="col-titles-bg" />
       </div>
@@ -42,8 +42,8 @@
         <div class="field">
           <div class="div4">Беспроцентный период:</div>
           <div class="ton-kepeer">
-            <span>до 05.02.22, 16:00 </span>
-            <span class="span">(закончен)</span>
+            <span>до {{`${freePeriodDate}` }} </span>
+            <span :class="freePeriodStatus === 'закончен' ? 'span' : 'span_green'">{{ ` (${freePeriodStatus})` }}</span>
           </div>
         </div>
         <div class="col-titles-bg" />
@@ -51,21 +51,21 @@
       <div class="field-parent">
         <div class="field">
           <div class="div4">Начисленные проценты:</div>
-          <div class="ton-kepeer">450 000 TON</div>
+          <div class="ton-kepeer">TON</div>
         </div>
         <div class="col-titles-bg" />
       </div>
       <div class="field-parent">
         <div class="field">
           <div class="div4">Сумма к возвращению:</div>
-          <div class="ton-kepeer">1 987 000 TON</div>
+          <div class="ton-kepeer">TON</div>
         </div>
         <div class="col-titles-bg" />
       </div>
       <div class="field-parent">
         <div class="field">
           <div class="div4">Сумма к погашению для пролонгации:</div>
-          <div class="ton-kepeer">512 TON</div>
+          <div class="ton-kepeer"> TON</div>
         </div>
         <div class="col-titles-bg" />
       </div>
@@ -73,8 +73,8 @@
         <div class="field">
           <div class="div4">Вернуть не позднее:</div>
           <div class="ton-kepeer">
-            <span>13.02.22, 16:00 </span>
-            <span class="span1">(займ просрочен)</span>
+            <span>до {{ endTerm }} </span>
+            <span class="span1"> (займ просрочен)</span>
           </div>
         </div>
       </div>
@@ -115,10 +115,44 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, PropType, onMounted } from "vue";
 import catosButton from "@/components//ui-kit/buttons/catos-button.vue";
 import inputData from "@/components/fields/input-data.vue";
 const emtis = defineEmits(["close", "prolong"]);
+import { LoansResponse } from "@/types/loan.types";
+import { usePoolListStore } from "@/stores/poolList";
+import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+
+onMounted(async() => {
+  if(loan?.pool_id) {
+    poolByLoan.value = await poolItem(loan?.pool_id)
+    interestRateString.value = useComputedPoolInfo(poolByLoan.value).interestRateString.value
+    interestRate.value = useComputedPoolInfo(poolByLoan.value).interestRate.value
+    freePeriod.value = useComputedPoolInfo(poolByLoan.value).freePeriod.value
+
+    freePeriodStatus.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodStatus.value
+    freePeriodDate.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodDate.value
+    endTerm.value = useComputedLoanInfo(loan).endTerm.value
+  }
+})
+
+
+const { loan } = defineProps({
+  loan: {
+    type: Object as PropType<LoansResponse>,
+  }
+});
+
+const poolByLoan = ref()
+const interestRateString = ref()
+const interestRate = ref()
+const freePeriod = ref()
+const freePeriodStatus = ref()
+const freePeriodDate = ref()
+const endTerm = ref()
+
+const { poolItem } = usePoolListStore();
 
 const close = () => {
   emtis("close");
@@ -132,7 +166,7 @@ const isDisabled = computed(() => {
   return Number(amount.value) <= 0 || '' ? true : false
 })
 </script>
-<style scoped>
+<style scoped lang="scss">
 .pie-chart-icon {
   position: relative;
   width: 1.5em;
@@ -262,6 +296,9 @@ const isDisabled = computed(() => {
 }
 .span {
   color: #ff9901;
+  &_green{
+    color: #469f25;
+  }
 }
 .span1 {
   color: #ff0000;

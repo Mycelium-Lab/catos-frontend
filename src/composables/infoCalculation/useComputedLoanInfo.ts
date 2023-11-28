@@ -47,6 +47,10 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
         return loan?.millipercent ? loan?.millipercent / 100 : 0
       })
 
+       const interestRateString = computed(() => {
+        return `1 день = ${interestRate.value}%`
+     })
+
       const duration = computed(() => {
         const start = new Date(loan?.start).getDay();
         const end = new Date(loan?.end).getDay();
@@ -71,6 +75,20 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
         const dif = currentDay > lastFreeDay.getTime()
         return dif ? 'закончен' : 'длится'
     })
+
+    const freePeriodDate = computed(() => {
+      const start = new Date(loan?.start)
+        let lastFreeDay = start
+        const limitDate = new Date(lastFreeDay.setDate(start.getDate() + freePeriod))
+        return `${limitDate.getDate()}.${limitDate.getMonth() + 1}.${limitDate.getFullYear()}, ${limitDate.getHours()}:${limitDate.getMinutes()}`
+    })
+
+    const restDays = computed(() => {
+      const end = new Date(loan?.end)
+      const now = new Date();
+      const dif = Number(end) - Number(now)
+      return new Date(dif).getDate() - 1
+    })
     
     
     return {
@@ -83,7 +101,10 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
         duration,
         startTerm,
         endTerm,
-        freePeriodStatus
+        freePeriodStatus,
+        freePeriodDate,
+        restDays,
+        interestRateString
     }
 }
 

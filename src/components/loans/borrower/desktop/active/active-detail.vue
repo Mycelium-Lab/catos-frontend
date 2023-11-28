@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title>Информация о займе №1223</template>
+    <template v-slot:title>Информация о займе #{{ loan?.id }}</template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -13,7 +13,7 @@
                   src="@/assets/images/pie-chart.svg"
                 />
                 <div class="ton-parent">
-                  <div class="ton">1 537 000 TON</div>
+                  <div class="ton">TON</div>
                   <div class="div1">Доход</div>
                 </div>
               </div>
@@ -25,7 +25,7 @@
                     alt=""
                     src="@/assets/images/percent.svg"
                   />
-                  <div class="div2">1 день = 1%</div>
+                  <div class="div2">{{ interestRateString }}</div>
                 </div>
                 <div class="percent-parent">
                   <img
@@ -33,7 +33,7 @@
                     alt=""
                     src="@/assets/images/clock.svg"
                   />
-                  <div class="div2">3 дня = 0%</div>
+                  <div class="div2">{{ freePeriodString }}</div>
                 </div>
                 <div class="percent-parent">
                   <img
@@ -41,7 +41,7 @@
                     alt=""
                     src="@/assets/images/activity.svg"
                   />
-                  <div class="div2">ROI = 75%</div>
+                  <div class="div2">ROI = {{poolByLoan?.roi}}%</div>
                 </div>
               </div>
             </div>
@@ -50,28 +50,28 @@
             <div class="field-parent">
               <div class="field">
                 <div class="div5">Ставка:</div>
-                <div class="div6">1% в день</div>
+                <div class="div6">{{interestRate }}% в день</div>
               </div>
               <div class="col-titles-bg" />
             </div>
             <div class="field-parent">
               <div class="field">
                 <div class="div5">На срок:</div>
-                <div class="div6">до 30 дней</div>
+                <div class="div6">до {{ maxDuration }}</div>
               </div>
               <div class="col-titles-bg" />
             </div>
             <div class="field-parent">
               <div class="field">
                 <div class="div5">Беспроцентный период:</div>
-                <div class="div6">3 дня</div>
+                <div class="div6">до {{freePeriod}} дней</div>
               </div>
               <div class="col-titles-bg" />
             </div>
             <div class="field-parent">
               <div class="field">
                 <div class="div5">Всего ликвидности:</div>
-                <div class="div6">450 000 TON</div>
+                <div class="div6">{{ poolByLoan?.all_liquidity }} TON</div>
               </div>
               <div class="col-titles-bg" />
             </div>
@@ -79,14 +79,14 @@
             <div class="field-parent">
               <div class="field">
                 <div class="div5">Свободно:</div>
-                <div class="div6">37 000 TON</div>
+                <div class="div6">{{ poolByLoan?.available_liquidity }} TON</div>
               </div>
               <div class="col-titles-bg" />
             </div>
             <div class="field-parent">
               <div class="field">
                 <div class="div5">ROI инвесторов:</div>
-                <div class="div6">75% годовых</div>
+                <div class="div6">{{ poolByLoan?.roi}}% годовых</div>
               </div>
               <div class="col-titles-bg" />
             </div>
@@ -114,29 +114,38 @@
   </desktop-modal>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType, onMounted } from "vue";
+import { LoansResponse } from "@/types/loan.types";
 // @ts-ignore
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
-// @ts-ignore
-import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
-// @ts-ignore
-import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
-// @ts-ignore
 import desktopModal from "@/components/base/desktop-modal.vue";
-// @ts-ignore
-import withdraw from "@/components/pulls/creditor/desktop/modal-body/withdraw.vue";
-// @ts-ignore
-import add from "@/components/pulls/creditor/desktop/modal-body/add.vue";
+import { usePoolListStore } from "@/stores/poolList";
+import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
 
+onMounted(async () => {
+  if(loan?.pool_id) {
+    poolByLoan.value = await poolItem(loan?.pool_id)
+    freePeriod.value = useComputedPoolInfo(poolByLoan.value).freePeriod.value 
+    freePeriodString.value = useComputedPoolInfo(poolByLoan.value).freePeriodString.value
+    maxDuration.value = useComputedPoolInfo(poolByLoan.value).maxDuration.value
+  }
+})
+
+const poolByLoan = ref()
+const freePeriod = ref()
+const freePeriodString = ref()
+const maxDuration = ref()
+
+const { loan } = defineProps({
+  loan: {
+    type: Object as PropType<LoansResponse>,
+  }
+});
+
+const { poolItem } = usePoolListStore();
+const {isOverdue, interestRate, duration, startTerm, endTerm, interestRateString} = useComputedLoanInfo(loan)
 const emits = defineEmits(["close"]);
-
-const isDetail = ref(true);
-const isWithdraw = ref(false);
-const isAdd = ref(false);
-const isWithdrawQr = ref(false);
-const isAddQr = ref(false);
-const isSuccessWithdraw = ref(false);
-const isSuccessAdd = ref(false);
 
 const close = () => {
   emits("close");

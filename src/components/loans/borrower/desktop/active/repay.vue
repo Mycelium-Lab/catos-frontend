@@ -1,6 +1,6 @@
 <template>
   <confirm-qr-destop @close="close" @result="repay" :disabled="isDisabled">
-    <template v-slot:header> Займ из пулла № {{ id }} </template>
+    <template v-slot:header> Займ из пулла  #{{ id }} </template>
     <template v-slot:title>Погасить займ</template>
     <template v-slot:subtitle>
       <input-data

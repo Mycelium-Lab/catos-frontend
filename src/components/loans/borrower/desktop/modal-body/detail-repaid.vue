@@ -42,7 +42,7 @@
                 <div class="div1">Дата получения займа:</div>
               </div>
               <div class="container">
-                <div class="div2">11.06.22, 16:00</div>
+                <div class="div2"></div>
               </div>
             </div>
             <div class="frame-child" />
@@ -51,8 +51,8 @@
                 <div class="div3">Беспроцентный период:</div>
               </div>
               <div class="ton">
-                до 12.05.23
-                <span class="span">, 16:00</span>
+                до {{ freePeriodDate }}
+                
               </div>
             </div>
             <div class="frame-child" />
@@ -99,7 +99,7 @@
               <div class="div1">Дата погашения займа:</div>
             </div>
             <div class="container">
-              <div class="div2">11.06.22, 16:00</div>
+              <div class="div2"></div>
             </div>
           </div>
           <div class="frame-child" />
@@ -107,7 +107,7 @@
             <div class="frame">
               <div class="div3">Пролонгирован:</div>
             </div>
-            <a class="div9" @click="toProlong">2 раза</a>
+            <a class="div9" @click="toProlong"> раза</a>
           </div>
           <div class="frame-child" />
           <div class="frame-wrapper2">
@@ -132,7 +132,7 @@
               <div class="div3">Пулл:</div>
             </div>
             <div class="wrapper5">
-              <div class="div13">#66389563</div>
+              <div class="div13">#{{ poolByLoan?.id }}</div>
             </div>
           </div>
           <div class="frame-child" />
@@ -141,7 +141,7 @@
               <div class="div3">Ставка:</div>
             </div>
             <div class="frame">
-              <div class="ton">1% в день</div>
+              <div class="ton">{{interestRate}}% в день</div>
             </div>
           </div>
           <div class="frame-child" />
@@ -150,7 +150,7 @@
               <div class="div3">Начиленные проценты:</div>
             </div>
             <div class="frame">
-              <div class="ton">327 TON</div>
+              <div class="ton"> TON</div>
             </div>
           </div>
           <div class="frame-child" />
@@ -159,7 +159,7 @@
               <div class="div3">Сумма погашения:</div>
             </div>
             <div class="frame">
-              <div class="ton">13 327 TON</div>
+              <div class="ton"> TON</div>
             </div>
           </div>
         </div>
@@ -172,12 +172,38 @@
   ></creditor-info>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType, onMounted } from "vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
+import { LoansResponse } from "@/types/loan.types";
+import { usePoolListStore } from "@/stores/poolList";
+import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+
+onMounted(async () => {
+  if(loan?.pool_id) {
+    poolByLoan.value = await poolItem(loan?.pool_id)
+    freePeriod.value = useComputedPoolInfo(poolByLoan.value).freePeriod.value
+    freePeriodDate.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodDate.value
+  }
+})
+
+const { loan } = defineProps({
+  loan: {
+    type: Object as PropType<LoansResponse>,
+  }
+});
+
 const emits = defineEmits(["prolong"]);
 const toProlong = () => {
   emits("prolong");
 };
+
+const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanInfo(loan)
+const { poolItem } = usePoolListStore();
+
+const poolByLoan = ref()
+const freePeriod = ref()
+const freePeriodDate = ref()
 const isCreditorInfo = ref(false);
 </script>
 <style scoped lang="scss">

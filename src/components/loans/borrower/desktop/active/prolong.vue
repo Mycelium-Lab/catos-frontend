@@ -1,11 +1,12 @@
 <template>
   <desktop-modal v-if="isEnter" @close="close" variant="back" :toBack="toInit">
     <template v-slot:title> Пролонгация займа </template>
-    <template v-slot:title-link> #557946 </template>
+    <template v-slot:title-link>#{{loan?.id }} </template>
     <template v-slot:body>
       <prolong-body
+        :loan="loan"
         @close="close"
-       @prolong="handlePayment"
+        @prolong="handlePayment"
       ></prolong-body>
     </template>
   </desktop-modal>
@@ -21,7 +22,7 @@
     "
   >
     <template v-slot:title> Пролонгация займа </template>
-    <template v-slot:title-link> #557946 </template>
+    <template v-slot:title-link> #{{loan?.id }} </template>
     <template v-slot:body>
       <payment-method
         @qr="
@@ -41,8 +42,8 @@
     @close="close"
   >
     <template v-slot:header> Пролонгация займа </template>
-    <template v-slot:header-link> #557946 </template>
-    <template v-slot:title> Займ #557946 пролонгирован </template>
+    <template v-slot:header-link> #{{loan?.id }} </template>
+    <template v-slot:title> Займ #{{loan?.id }} пролонгирован </template>
     <template v-slot:image>
       <img width="142" src="@/assets/images/revert-cash.svg" />
     </template>
@@ -73,18 +74,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType } from "vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import prolongBody from "../modal-body/prolong-body.vue";
 import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import { prolongateLoan } from "@/api/loans.api";
+import { LoansResponse } from "@/types/loan.types";
 
 const { toInit, id } = defineProps({
   toInit: {
     type: Function,
   },
-  id: {type: Number, required: true}
+  id: {type: Number, required: true},
+  loan: {
+    type: Object as PropType<LoansResponse>,
+  },
 });
 const emits = defineEmits(["close"]);
 
