@@ -109,13 +109,6 @@
               <div class="div7">Дата создания:</div>
               <div class="ton1"></div>
             </div>
-            <div class="col-titles-bg" />
-          </div>
-          <div class="field-wrapper">
-            <div class="field">
-              <div class="div7">Доход инвестора пулла:</div>
-              <div class="ton1">TON</div>
-            </div>
           </div>
         </div>
         <div class="des-and-bbn">
@@ -124,12 +117,6 @@
             :style="{ width: '100%', margin: '0' }"
             @click="getLoan"
             >Получить займ</catos-button
-          >
-          <catos-button
-            variant="fourth"
-            :style="{ width: '100%', margin: '0' }"
-            @click="toInvest"
-            >Инвестировать в пулл</catos-button
           >
         </div>
       </div>

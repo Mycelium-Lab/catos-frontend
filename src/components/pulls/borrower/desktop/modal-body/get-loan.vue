@@ -149,14 +149,23 @@
     v-if="isCreditorInfo"
     @close="() => (isCreditorInfo = false)"
   ></creditor-info>
-  <transaction-desktop v-if="isTransaction" 
-    @close="isTransaction = false" 
-    :uid="uid"
-    titlePending="Подтвердите создание заявки на займ"
-    subtitlePending="Пожалуйста, подтвердите создание заявки на займ в своем кошельке"
-    subtitleSuccess="Ваша заявка на займ успешно принята, ожидайде подтверждени"
-    titleFaild="Произошла ошибка при отправки заявки на займ"
-    ></transaction-desktop>
+  <action-desktop 
+    v-if="isAction && !actionStatus" 
+    @close="isAction = false" 
+    :status="actionStatus"
+    title="Создание заявки на займ"
+    subtitle="Пожалуйста, подождите пока завершится процесс создания заявки на займ"
+    ></action-desktop>
+    <action-desktop v-else-if="isAction && actionStatus === 'success'" 
+    :status="actionStatus"
+     title="Заявка успешно принята"
+     subtitle="Ваша заявка на займ успешно принята, ожидайде подтверждения"
+    ></action-desktop>
+    <action-desktop 
+    v-else-if="isAction && actionStatus === 'fail'" 
+    @close="isAction = false" 
+    title="Произошла ошибка при создании заявки на займ"
+    :status="actionStatus"></action-desktop>
 </template>
 <script setup lang="ts">
 import { ref, computed, PropType } from "vue";
@@ -186,6 +195,9 @@ const isCreditorInfo = ref(false);
 const sumLoans = ref(1);
 const term = ref(1);
 
+const isAction = ref(false)
+const actionStatus = ref('')
+
 const parsedTrim = computed(() => {
   const { parsed } = useParsedNumber(sumLoans.value);
   return parsed.replaceAll(' ', '')
@@ -206,19 +218,17 @@ const sum = computed(() => {
 
 const sumWithFreePeriod = computed(() => Number(sumLoans.value))
 
-const isTransaction = ref(false)
-const uid = ref()
-
 const take = async () => {
+  isAction.value = true
   await createLoanRequest({
     pool_id: pool?.id ? pool?.id : 0,
     amount: Number(sumLoans.value),
     duration: Number(term.value)
   }).then(res => {
-    isTransaction.value = true
-    uid.value = res.data
+    actionStatus.value = 'success'
   }).catch(e => {
-    
+    actionStatus.value = 'fail'
+        console.error(e)
   })
 };
 

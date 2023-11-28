@@ -305,7 +305,7 @@ const optionsFamaly = [
   "В разводе",
   "Вдовец / Вдова",
 ];
-const optionsChildren = ["Нет", "1", "2", "3", "4", "5 и более"];
+const optionsChildren = ["Нет", "1", "2", "3", "4", "5 и более", ""];
 const optionsCriminal = [
   "Нет судимости",
   "Есть судимость",
@@ -645,7 +645,7 @@ const optionsChannel = [
   border-radius: 40px 40px 0 0;
   background-color: #fff;
   width: 100vw;
-  height: 65.19em;
+  height: 68.19em;
 }
 .page-title1 {
   position: absolute;
@@ -788,7 +788,7 @@ const optionsChannel = [
   position: relative;
   background-color: #fdd674;
   width: 100%;
-  height: 77.44em;
+  height: 80.44em;
   overflow-y: auto;
   text-align: left;
   color: #3b3b3b;

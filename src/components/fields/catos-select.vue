@@ -230,6 +230,7 @@ watch(isOpen, () => {
     padding: 0.8em 1em 0 1em;
   }
 }
+
 .catos-select__option:not(:first-child) {
   margin-top: 0.4em;
 }
@@ -255,7 +256,7 @@ watch(isOpen, () => {
   -webkit-tap-highlight-color: transparent;
   background: rgba(230, 221, 255, 0.07);
   width: 100%;
-  text-align: center;
+  text-align: start;
   font-size: var(--font-size-base);
   height: 2.5em;
   color: #262626;
