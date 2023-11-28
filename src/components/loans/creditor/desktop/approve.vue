@@ -97,7 +97,7 @@
           </div>
         </div>
       </div>
-      <transaction-desktop 
+      <!--<transaction-desktop 
     v-if="isTransaction" 
     @close="isTransaction = false" 
     :uid="uid"
@@ -105,7 +105,28 @@
     subtitlePending="Пожалуйста, подождите пока завершится процесс одобрения займа"
     subtitleSuccess="Займ успешно ободрен"
     titleFaild="Произошла ошибка при одобрении займа"
-    ></transaction-desktop>
+    ></transaction-desktop>-->
+    <action-desktop 
+    v-if="isAction && !actionStatus" 
+    @close="isAction = false" 
+    :status="actionStatus"
+    header="Сменить статус"
+    title="Одобрение займа"
+    subtitle="Пожалуйста, подождите пока завершится процесс одобрения займа"
+    ></action-desktop>
+    <action-desktop v-else-if="isAction && actionStatus === 'success'" 
+    @close="handleSuccessApprove"
+    :status="actionStatus"
+    header="Сменить статус"
+     title="Операция успешно выполнена"
+    subtitle="Займ успешно отклонен"
+    ></action-desktop>
+    <action-desktop 
+    v-else-if="isAction && actionStatus === 'fail'" 
+    @close="isAction = false" 
+    title="Произошла ошибка при одобрении займа"
+    header="Сменить статус"
+    :status="actionStatus"></action-desktop>
     </div>
   </template>
   <script setup lang="ts">
@@ -121,7 +142,8 @@
   }
 });
 
-const isTransaction = ref(false)
+const isAction = ref(false)
+const actionStatus = ref('')
   
   const emtis = defineEmits(["close"]);
 
@@ -129,9 +151,9 @@ const isTransaction = ref(false)
   const overdueMillipercent = ref(0);
   const duration = ref(0);
   const approvedAmount = ref(0)
-  const uid = ref()
 
   const approve = async() => {
+    isAction.value = true
     const payload = {
         "duration": duration.value,
         "millipercent": millipercent.value,
@@ -139,16 +161,16 @@ const isTransaction = ref(false)
         "approved_amount": approvedAmount.value
     }
     await approveLoanRequest(id, payload).then(res => {
-      isTransaction.value = true
-    uid.value = res.data
+      actionStatus.value = 'success'
     }).catch(e => {
-
+      actionStatus.value = 'fail'
+        console.error(e)
     })
     }
 
 const handleSuccessApprove = () => {
-    isTransaction.value = false;
-    location.reload()
+  isAction.value = false;
+  location.reload()
 }
 
   const close = () => {
