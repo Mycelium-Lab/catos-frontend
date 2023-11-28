@@ -2,6 +2,7 @@
   <detail
     v-if="isDetail"
     @close="close"
+    :loan="loan"
     @prolong="
       () => {
         isDetail = false;
@@ -22,9 +23,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, PropType } from "vue";
 import detail from "./repaid/detail.vue";
 import detailProlong from "./modal-body/detail-prolong.vue";
+import { LoansResponse } from "@/types/loan.types";
 
 const { status, state } = defineProps({
   state: {
@@ -34,6 +36,9 @@ const { status, state } = defineProps({
   status: {
     type: String,
   },
+  loan: {
+    type: Object as PropType<LoansResponse>,
+  }
 });
 const emits = defineEmits(["close", "link"]);
 const close = () => {

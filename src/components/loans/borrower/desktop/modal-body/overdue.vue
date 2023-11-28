@@ -85,7 +85,7 @@
                   <div class="div2">Беспроцентный период:</div>
                 </div>
                 <div class="div9">
-                  <span class="span2">до {{ endTerm }} </span>
+                  <span class="span2">до {{ freePeriod }} дней</span>
                   <span :class="freePeriodStatus ==='закончен' ? 'span3': 'span3_green'"> {{  ` (${freePeriodStatus})` }}</span>
                 </div>
               </div>

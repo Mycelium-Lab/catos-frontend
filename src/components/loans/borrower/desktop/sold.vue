@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title>Займ #12456 продан</template>
+    <template v-slot:title>Займ #{{ loan?.id }} продан</template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -40,14 +40,14 @@
                   <div class="component">
                     <div class="field">
                       <div class="div4">Пулл:</div>
-                      <div class="div5">#123445</div>
+                      <div class="div5">#{{poolByLoan?.id}}</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
                   <div class="component">
                     <div class="field">
                       <div class="div4">Ставка</div>
-                      <div class="div7">1% в день</div>
+                      <div class="div7">{{interestRate}}% в день</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
@@ -55,8 +55,8 @@
                     <div class="field">
                       <div class="div4">Беспроцентный период:</div>
                       <div class="div7">
-                        <span>до 12.05.23, 16:00</span>
-                        <span class="span"> (Закончен)</span>
+                        <span>до {{ freePeriodDate }}</span>
+                        <span :class="freePeriodStatus === 'длится' ? 'span_green span' : 'span'"> {{ ` (${freePeriodStatus})` }}</span>
                       </div>
                     </div>
                     <div class="col-titles-bg" />
@@ -64,7 +64,7 @@
                   <div class="component">
                     <div class="field">
                       <div class="div4">Вернуть не позднее:</div>
-                      <div class="div7">13.05.23, 16:00</div>
+                      <div class="div7">до {{endTerm}}</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
@@ -77,8 +77,8 @@
                   src="/alerttriangle.svg"
                 />-->
                 <div class="div12">
-                  <p class="p">Вернуть не позднее: до 13.02.22, 16:00</p>
-                  <p class="p1">(просрочен повторно)</p>
+                  <p class="p">Вернуть не позднее: до {{ endTerm }}</p>
+                  <p v-if="isOverdue" class="p1">(просрочен)</p>
                 </div>
               </div>
             </div>
@@ -117,14 +117,43 @@
   </desktop-modal>
 </template>
 <script setup lang="ts">
+import { ref, PropType, onMounted } from "vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
+import { LoansResponse } from "@/types/loan.types";
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
+import { usePoolListStore } from "@/stores/poolList";
+
+onMounted(async() => {
+  if(loan?.pool_id) {
+    poolByLoan.value = await poolItem(loan?.pool_id)
+    freePeriodStatus.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodStatus.value
+    freePeriod.value = useComputedPoolInfo(poolByLoan.value).freePeriod.value
+    freePeriodDate.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodDate.value
+  } 
+})
+
+const { loan } = defineProps({
+  loan: {
+    type: Object as PropType<LoansResponse>,
+  }
+});
+
+const poolByLoan = ref()
+const freePeriod = ref()
+const freePeriodDate = ref()
+const freePeriodStatus = ref()
+const { poolItem } = usePoolListStore();
+
+const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanInfo(loan)
+
 const emits = defineEmits(["close"]);
 const close = () => {
   emits("close");
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 .div {
   position: relative;
   font-size: 0.75em;
@@ -276,6 +305,9 @@ const close = () => {
 }
 .span {
   color: #ff0000;
+  &_green{
+    color: #469f25;
+  }
 }
 .component-parent {
   flex: 1;
