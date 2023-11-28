@@ -17,7 +17,7 @@
                 <div class="div1-repay">Cумма к погашению:</div>
               </div>
               <div class="ton-wrapper-repay">
-                <div class="ton1-repay">512 TON</div>
+                <div class="ton1-repay">{{ amount }} TON</div>
               </div>
             </div>
           </div>
@@ -94,10 +94,8 @@ const isDisabled = computed(() => {
 })
 
 const toRepay = computed(() => {
-  const sumRepay = 512
-  const calculated = Math.ceil(sumRepay * 1.05 * Number(amount.value));
-  const { parsed } = useParsedNumber(calculated);
-  return parsed;
+  const calculated = Number(1.05 * Number(amount.value)).toFixed(3);
+  return calculated;
 });
 
 const repay = async () => {

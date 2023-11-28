@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title> Информация о пулле # {{ pool?.id }} </template>
+    <template v-slot:title> Информация о пулле #{{ pool?.id }} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -12,7 +12,7 @@
                 src="@/assets/images/pie-chart.svg"
               />
               <div class="ton-parent">
-                <div class="ton">1 537 000 TON</div>
+                <div class="ton">TON</div>
                 <div class="div1">Доход</div>
               </div>
             </div>
@@ -80,7 +80,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div5">На срок:</div>
-              <div class="div6">  до {{maxDuration}}</div>
+              <div class="div6"> до {{maxDuration}}</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -143,7 +143,7 @@
           <div class="field-wrapper">
             <div class="field">
               <div class="div5">Дата создания:</div>
-              <div class="div6"></div>
+              <div class="div6">{{ createdTerm }}</div>
             </div>
           </div>
         </div>
@@ -237,7 +237,7 @@ const { pool } = defineProps({
 const {
   interestRate, monthInterestRateString, 
   maxDuration, freePeriod, interestRateString,
-  freePeriodString } = useComputedPoolInfo(pool)
+  freePeriodString, createdTerm } = useComputedPoolInfo(pool)
 </script>
 <style scoped>
 .pie-chart-icon {

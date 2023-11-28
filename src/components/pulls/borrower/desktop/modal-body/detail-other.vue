@@ -107,7 +107,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div7">Дата создания:</div>
-              <div class="ton1"></div>
+              <div class="ton1">{{ createdTerm }}</div>
             </div>
           </div>
         </div>
@@ -159,7 +159,8 @@ const isCreditorInfo = ref(false);
 const {
   interestRate, monthInterestRateString,
   maxDuration, freePeriod,
-  interestRateString, freePeriodString
+  interestRateString, freePeriodString,
+  createdTerm
   } = useComputedPoolInfo(pool)
 </script>
 <style scoped>

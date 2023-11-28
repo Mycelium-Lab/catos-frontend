@@ -103,7 +103,7 @@
         :style="{ width: '100%' }"
         @click="handle"
         :disabled="isDisabled"
-        >Оплатить 512 TON и пролонгировтаь</catos-button
+        >Оплатить {{ amount }} TON и пролонгировтаь</catos-button
       >
 
       <div class="button">

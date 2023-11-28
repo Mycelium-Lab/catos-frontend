@@ -160,7 +160,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="roi">Дата создания:</div>
-              <div class="div9"></div>
+              <div class="div9">{{createdTerm}}</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -226,7 +226,7 @@ const { pool } = defineProps({
 const {
   interestRate, monthInterestRateString, 
   maxDuration, freePeriod, interestRateString,
-  freePeriodString } = useComputedPoolInfo(pool)
+  freePeriodString, createdTerm } = useComputedPoolInfo(pool)
 
 const emits = defineEmits(["close", "management", "loans", "analytics"]);
 

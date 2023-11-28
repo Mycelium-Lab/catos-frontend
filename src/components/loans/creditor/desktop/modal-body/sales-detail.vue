@@ -65,14 +65,14 @@
                     <div class="fieldsinput-parent">
                       <div class="field">
                         <div class="div4">Начисленные проценты:</div>
-                        <div class="div5">512 TON</div>
+                        <div class="div5">TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="fieldsinput-parent">
                       <div class="field">
                         <div class="div4">Сумма к возвращению:</div>
-                        <div class="div5">13 000 TON</div>
+                        <div class="div5"> TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
