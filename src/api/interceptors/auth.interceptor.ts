@@ -33,7 +33,12 @@ export const authRequestInterceptor = async (
   if (authData?.access) {
     config.headers["Authorization"] = `Bearer ${authData.access}`;
   }
-  config.headers["Content-Type"] = "application/json";
+  if (config.url != '/files/upload') {
+    config.headers["Content-Type"] = "application/json";
+  }
+  else {
+    config.headers["Content-Type"] = "multipart/form-data";
+  }
   config.headers["Access-Control-Allow-Origin"] = "*";
   return config;
 };

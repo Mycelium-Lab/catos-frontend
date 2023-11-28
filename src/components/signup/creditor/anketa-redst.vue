@@ -621,6 +621,7 @@ import regions from "@/json/regions.json";
 import { useCityList } from "@/composables/useCityList";
 import { useNeighborhoodList } from "@/composables/useNeighborhoodList";
 import { useDevice } from "@/compossables/useDevice";
+import { useUploadApi } from "@/composables/useUploadApi";
 
 const userDataStore = useUserDataStore();
 const paperDataStore = usePaperDataStore();
@@ -658,30 +659,36 @@ const regNumberString = reactive({
       ? ""
       : paperDataStore.paperDTO.registration_number.toString(),
 });
-const addressString = computed(() => {
-  return paperDataStore.paperDTO.address.toString();
-});
+// const addressString = computed(() => {
+//   return paperDataStore.paperDTO.address.toString();
+// });
+const { isFileLoading, handleUpload } = useUploadApi();
 const saveImage = async (boxName: string, file: File | null) => {
   if (file) {
-    switch (boxName) {
-      case "regProof":
-        userDataStore.regProof = file;
-        paperDataStore.paperDTO.first_photo = "Goa_file2.jpg";
-        break;
-      case "addrProof":
-        userDataStore.addrProof = file;
-        paperDataStore.paperDTO.second_photo = "Goa_file2.jpg";
-        break;
-      case "extraDocs":
-        userDataStore.extraDocs = file;
-        paperDataStore.paperDTO.third_photo = " Goa_file2.jpg";
-        break;
-      default:
-        break;
+    const path = await handleUpload(file);
+    if (path) {
+      switch (boxName) {
+        case "regProof":
+          userDataStore.regProof = file;
+          paperDataStore.paperDTO.first_photo = path;
+          break;
+        case "addrProof":
+          userDataStore.addrProof = file;
+          paperDataStore.paperDTO.second_photo = path;
+          break;
+        case "extraDocs":
+          userDataStore.extraDocs = file;
+          paperDataStore.paperDTO.third_photo = path;
+          break;
+        default:
+          break;
+      }
+      console.log(`File ${file.name} saved to data store.`);
+    } else {
+      console.log("API response invalid.");
     }
-    console.log("File saved");
   } else {
-    console.log("File is null");
+    console.log("File is null.");
   }
 };
 const calcIndex = computed(() => {
