@@ -1,12 +1,14 @@
 <template>
-  <transaction-desktop v-if="isTransaction && !transactionStatus" @close="isTransaction = false" 
-      :status="transactionStatus"
-      title="Подтвердите покупку задолженности"
-      subtitle="Пожалуйста, подтвердите покупку задолженности в своем кошельке"
+  <transaction-desktop v-if="isTransaction" @close="isTransaction = false" 
+    :uid="uid"
+    titlePending="Подтвердите покупку задолженности"
+    subtitlePending="Пожалуйста, подтвердите покупку задолженности в своем кошельке"
+    subtitleSuccess="Вы успешно создали пулл"
+    titleFaild="Произошла ошибка при покупке задолженности"
     ></transaction-desktop>
 
     <status-modal-desktop
-      v-else-if="isTransaction && transactionStatus === 'success'"
+      v-else-if="isTransaction"
       actionGroupColumn
       :firstAction="toMyLoans"
       :lastAction="close"
@@ -31,11 +33,6 @@
       >Продолжить покупки</template
     >
   </status-modal-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" @close="isTransaction = false" 
-      :status="transactionStatus"
-      title="Произошла ошибка при покупке задолженности"
-    >
-    </transaction-desktop>
 </template>
 
 <script setup lang="ts">
@@ -45,16 +42,15 @@ import transactionDesktop from "@/components/base/modals/transaction-desktop.vue
 import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
 
 const isTransaction = ref(false)
-const transactionStatus = ref('')
+const uid = ref()
 
 onMounted(async () =>{
   isTransaction.value = true
   await buyLoan(poolId, 1)
   .then(res => {
-    transactionStatus.value = 'success'
+    isTransaction.value = true
+    uid.value = res.data
   }).catch(e => {
-    transactionStatus.value = 'fail'
-    console.error(e)
   })
 })
 

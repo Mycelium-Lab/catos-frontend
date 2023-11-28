@@ -149,21 +149,13 @@
     v-if="isCreditorInfo"
     @close="() => (isCreditorInfo = false)"
   ></creditor-info>
-  <transaction-desktop v-if="isTransaction && !transactionStatus" 
+  <transaction-desktop v-if="isTransaction" 
     @close="isTransaction = false" 
-    :status="transactionStatus"
-    title="Подтвердите создание заявки на займ"
-    subtitle="Пожалуйста, подтвердите создание заявки на займ в своем кошельке"
-    ></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" 
-    @close="isTransaction = false" 
-    :status="transactionStatus"
-    subtitle="Ваша заявка на займ успешно принята, ожидайде подтверждения"
-    ></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" 
-    @close="isTransaction = false" 
-    :status="transactionStatus"
-    title="Произошла ошибка при отправки заявки на займ"
+    :uid="uid"
+    titlePending="Подтвердите создание заявки на займ"
+    subtitlePending="Пожалуйста, подтвердите создание заявки на займ в своем кошельке"
+    subtitleSuccess="Ваша заявка на займ успешно принята, ожидайде подтверждени"
+    titleFaild="Произошла ошибка при отправки заявки на займ"
     ></transaction-desktop>
 </template>
 <script setup lang="ts">
@@ -215,20 +207,18 @@ const sum = computed(() => {
 const sumWithFreePeriod = computed(() => Number(sumLoans.value))
 
 const isTransaction = ref(false)
-const transactionStatus = ref('')
+const uid = ref()
 
 const take = async () => {
-  isTransaction.value = true
   await createLoanRequest({
     pool_id: pool?.id ? pool?.id : 0,
     amount: Number(sumLoans.value),
     duration: Number(term.value)
   }).then(res => {
-    console.log(res);
-    transactionStatus.value = 'success'
+    isTransaction.value = true
+    uid.value = res.data
   }).catch(e => {
-    transactionStatus.value = 'fail'
-    console.error(e)
+    
   })
 };
 

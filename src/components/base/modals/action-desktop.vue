@@ -5,8 +5,8 @@
         @close="handleClose"
       >
         <template v-slot:header> Транзакция №591561351 </template>
-        <template v-slot:title> {{ titlePending }}</template>
-        <template v-slot:subtitle> {{ subtitlePending }} </template>
+        <template v-slot:title> {{ title }}</template>
+        <template v-slot:subtitle> {{ subtitle }} </template>
         <template v-slot:image>
          <loader></loader>
         </template>
@@ -20,7 +20,7 @@
             <template v-slot:header> Транзакция №591561351 </template>
             <template v-slot:title> Транзакция успешно выполнена </template>
             <template v-slot:subtitle> 
-            <p class="status-subtitle"> {{ subtitleSuccess }} <a class="status-subtitle-link"></a> </p>
+            <p class="status-subtitle"> {{ subtitle }} <a class="status-subtitle-link"></a> </p>
             <p class="status-subtitle"> 
                 <a class="status-subtitle-link">Просмотр транзакции в Tonscan</a>
             </p>
@@ -30,15 +30,33 @@
             </template>
             <template v-slot:action> Ок </template>
       </status-modal-desktop>
+      <status-modal-desktop
+        v-if="isFail"
+        @result="() => (isFail = false)"
+        @close="handleClose"
+      >
+        <template v-slot:header> Транзакция №591561351 </template>
+        <template v-slot:title> {{ title }} </template>
+        <template v-slot:subtitle> 
+          <p class="status-subtitle">Указание причины: <br>Причина 01</p>
+          <p class="status-subtitle"> 
+              <a class="status-subtitle-link">Просмотр транзакции в Tonscan</a>
+          </p>
+          </template>
+          <template v-slot:image>
+          <img src="@/assets/images/success-transaction.svg" />
+          </template>
+          <template v-slot:action> Ок </template>
+    </status-modal-desktop>
     <status-modal-desktop
       v-if="isFail"
       @result="() => (isFail = false)"
       @close="handleClose"
     >
       <template v-slot:header> Транзакция №591561351 </template>
-      <template v-slot:title> {{ titleFaild }} </template>
+      <template v-slot:title> {{ title }} </template>
       <template v-slot:subtitle> 
-        <p class="status-subtitle">Указание причины: <br>{{ faildCause }}</p>
+        <p class="status-subtitle">Указание причины: <br>Причина 01</p>
         <p class="status-subtitle"> 
           <a class="status-subtitle-link">Повторить транзакциию</a>
         </p>
@@ -51,39 +69,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
 import loader from "@/components/base/loader.vue"
-import { transaction } from "@/api/transaction"
 
-onMounted(async() => {
-    await transaction(uid)
-    .then((res) => {
-      console.log(res.data)
-      const response = res.data
-      status.value = response.status
-    })
-    .catch(e => {
-      console.error(e)
-      //faildCause.value = e
-    })
-})
-
-const {uid} = defineProps({
-  uid: {type: String, required: true}, 
-  titlePending: {type: String},
-  subtitlePending: {type: String},
-  subtitleSuccess: {type: String},
-  titleFaild: {type: String},
+const {status} = defineProps({
+  status: {type: String},
+  title: {type: String},
+  subtitle: {type: String},
 })
 const emits = defineEmits(['close'])
 
-const status = ref('')
 const isProgress = ref(true);
-const isSuccess = ref(status.value === 'success' ? true : false);
-const isFail = ref(status.value === 'fail' ? true : false)
-
-const faildCause = ref('')
+const isSuccess = ref(status === 'success' ? true : false);
+const isFail = ref(status === 'fail' ? true : false)
 
 const handleClose = () => {
   isProgress.value = false

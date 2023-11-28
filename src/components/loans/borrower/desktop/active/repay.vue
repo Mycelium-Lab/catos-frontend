@@ -57,22 +57,14 @@
       </p>
     </template>
   </confirm-qr-destop>
-    <transaction-desktop v-if="isTransaction && !transactionStatus" 
+    <transaction-desktop v-if="isTransaction" 
       @close="isTransaction = false" 
-      :status="transactionStatus"
-      title="Подтвердите погашение займа"
-      subtitle="Пожалуйста, подтвердите погашение займ в своем кошельке"
+      :uid="uid"
+      titlePending="Подтвердите погашение займа"
+      subtitlePending="Пожалуйста, подтвердите погашение займ в своем кошельке"
+      subtitleSuccess="Вы успешно погасили займ"
+      titleFaild="Произошла ошибка при погашении займа"
       ></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" 
-    @close="isTransaction = false" 
-    :status="transactionStatus"
-    subtitle="Вы успешно погасили займ"
-    ></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" 
-    @close="isTransaction = false" 
-    :status="transactionStatus"
-    title="Произошла ошибка при погашении займа"
-    ></transaction-desktop>
 </template>
 
 <script setup lang="ts">
@@ -93,9 +85,9 @@ const close = () => {
 };
 
 const isTransaction = ref(false)
-const transactionStatus = ref('')
 
 const amount = ref("");
+const uid = ref()
 
 const isDisabled = computed(() => {
   return Number(amount.value) <= 0 || '' ? true : false
@@ -109,13 +101,12 @@ const toRepay = computed(() => {
 });
 
 const repay = async () => {
-  isTransaction.value = true
   await repayLoan(id, Number(amount.value))
   .then(res => {
-    transactionStatus.value = 'success'
+    isTransaction.value = true
+    uid.value = res.data
   }).catch(e => {
-    transactionStatus.value = 'fail'
-    console.error(e)
+
   })
 }
 </script>
