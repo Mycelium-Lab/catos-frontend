@@ -153,17 +153,21 @@
     v-if="isAction && !actionStatus" 
     @close="isAction = false" 
     :status="actionStatus"
+    header="Заявка на займ"
     title="Создание заявки на займ"
     subtitle="Пожалуйста, подождите пока завершится процесс создания заявки на займ"
     ></action-desktop>
     <action-desktop v-else-if="isAction && actionStatus === 'success'" 
+    @close="isAction = false" 
     :status="actionStatus"
+    header="Заявка на займ"
      title="Заявка успешно принята"
      subtitle="Ваша заявка на займ успешно принята, ожидайде подтверждения"
     ></action-desktop>
     <action-desktop 
     v-else-if="isAction && actionStatus === 'fail'" 
     @close="isAction = false" 
+    header="Заявка на займ"
     title="Произошла ошибка при создании заявки на займ"
     :status="actionStatus"></action-desktop>
 </template>
@@ -174,7 +178,7 @@ import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 import rangeSlider from "@/components/ui-kit/range-slider.vue";
 import useParsedNumber from "@/compossables/useParsedNumber";
-import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
+import actionDesktop from "@/components/base/modals/action-desktop.vue";
 import { createLoanRequest } from "@/api/loanRequests.api";
 import { Pool } from "@/types/pool.type";
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
@@ -204,6 +208,7 @@ const parsedTrim = computed(() => {
 })
 
 const sum = computed(() => {
+  console.log('sumLoans.value', sumLoans.value)
   let amountWithoutInterestRatePeriod = 0
 
   if(Number(term.value) - freePeriod.value <= 0 && freePeriod.value !== 0) {
@@ -222,7 +227,7 @@ const take = async () => {
   isAction.value = true
   await createLoanRequest({
     pool_id: pool?.id ? pool?.id : 0,
-    amount: Number(sumLoans.value),
+    amount: Number(sum.value),
     duration: Number(term.value)
   }).then(res => {
     actionStatus.value = 'success'

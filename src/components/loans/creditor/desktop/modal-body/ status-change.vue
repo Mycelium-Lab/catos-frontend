@@ -70,19 +70,22 @@
     v-if="isAction && !actionStatus" 
     @close="isAction = false" 
     :status="actionStatus"
-    title="Одобрение займа"
-    subtitle="Пожалуйста, подождите пока завершится процесс одобрения займа"
+    title="Отклонение займа"
+    header="Сменить статус"
+    subtitle="Пожалуйста, подождите пока завершится процесс отклонения займа"
     ></action-desktop>
     <action-desktop v-else-if="isAction && actionStatus === 'success'" 
     @close="handleSuccess"
     :status="actionStatus"
+    header="Сменить статус"
      title="Операция успешно выполнена"
-    subtitle="Займ успешно ободрен"
+    subtitle="Займ успешно отклонен"
     ></action-desktop>
     <action-desktop 
     v-else-if="isAction && actionStatus === 'fail'" 
     @close="isAction = false" 
-    title="Произошла ошибка при одобрении займа"
+    header="Сменить статус"
+    title="Произошла ошибка при отклонении займа"
     :status="actionStatus"></action-desktop>
 </template>
 <script setup lang="ts">

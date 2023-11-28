@@ -4,7 +4,7 @@
         @result="() => (isProgress = false)"
         @close="handleClose"
       >
-        <template v-slot:header> Транзакция №591561351 </template>
+        <template v-slot:header> {{ header }} </template>
         <template v-slot:title> {{ title }}</template>
         <template v-slot:subtitle> {{ subtitle }} </template>
         <template v-slot:image>
@@ -17,7 +17,7 @@
             @result="() => (isSuccess = false)"
             @close="handleClose"
         >
-            <template v-slot:header> Транзакция №591561351 </template>
+            <template v-slot:header> {{ header }} </template>
             <template v-slot:title> {{ title }} </template>
             <template v-slot:subtitle> 
             <p class="status-subtitle"> {{ subtitle }} <a class="status-subtitle-link"></a> </p>
@@ -50,7 +50,7 @@
       @result="() => (isFail = false)"
       @close="handleClose"
     >
-      <template v-slot:header> Транзакция №591561351 </template>
+      <template v-slot:header> {{ header }} </template>
       <template v-slot:title> {{ title }} </template>
       <template v-slot:subtitle> 
         <p class="status-subtitle">Указание причины: <br>Причина 01</p>
@@ -72,6 +72,7 @@ import loader from "@/components/base/loader.vue"
 
 const {status} = defineProps({
   status: {type: String},
+  header: {type: String},
   title: {type: String},
   subtitle: {type: String},
 })
