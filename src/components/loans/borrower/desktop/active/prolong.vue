@@ -56,21 +56,14 @@
     <template v-slot:action-first>Посмотреть информацию о займе</template>
     <template v-slot:action-last>Перейти в мои займы</template>
   </status-modal-desktop>
-  <transaction-desktop v-if="isTransaction && !transactionStatus" 
+  <transaction-desktop v-if="isTransaction" 
     @close="isTransaction = false" 
-    :status="transactionStatus"
-    title="Подтвердите пролонгацию займа"
-    subtitle="Пожалуйста, подтвердите пролонгацию займа в своем кошельке"
+    :uid="uid"
+    titlePending="Подтвердите пролонгацию займа"
+    subtitlePending="Пожалуйста, подтвердите пролонгацию займа в своем кошельке"
+    subtitleSuccess="Вы успешно пролонгировали займ"
+    titleFaild="Произошла ошибка при пролонгации займа"
     ></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" 
-    @close="isTransaction = false" 
-    :status="transactionStatus"
-    subtitle="Вы успешно пролонгировали займ"
-    ></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'fail'" 
-    @close="isTransaction = false" 
-    title="Произошла ошибка при пролонгации займа"
-    :status="transactionStatus"></transaction-desktop>
 </template>
 
 <script setup lang="ts">
@@ -94,7 +87,7 @@ const { toInit, id } = defineProps({
 const emits = defineEmits(["close"]);
 
 const isTransaction = ref(false)
-const transactionStatus = ref('')
+
 
 
 const close = () => {
@@ -107,13 +100,12 @@ const finish = () => {
 };
 
 const handlePayment = async (value: number) => {
-  isTransaction.value = true
   await prolongateLoan(id, value)
   .then(res => {
-    transactionStatus.value = 'success'
+    isTransaction.value = true
+    uid.value = res.data
   }).catch(e => {
-    transactionStatus.value = 'fail'
-    console.error(e)
+    
   })
 }
 
@@ -121,6 +113,7 @@ const isEnter = ref(true);
 const isPayment = ref(false);
 const isExtend = ref(false);
 const isResult = ref(false);
+const uid = ref()
 </script>
 
 <style scoped></style>

@@ -66,36 +66,36 @@
     </template>
   </desktop-modal>
   <approve v-if="openApprove" :id="id" @close="openApprove = false"></approve>
-  <transaction-desktop 
-    v-if="isTransaction && !transactionStatus" 
-    @close="isTransaction = false" 
-    :status="transactionStatus"
+  <action-desktop 
+    v-if="isAction && !actionStatus" 
+    @close="isAction = false" 
+    :status="actionStatus"
     title="Одобрение займа"
     subtitle="Пожалуйста, подождите пока завершится процесс одобрения займа"
-    ></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" 
+    ></action-desktop>
+    <action-desktop v-else-if="isAction && actionStatus === 'success'" 
     @close="handleSuccess"
-    :status="transactionStatus"
+    :status="actionStatus"
      title="Операция успешно выполнена"
     subtitle="Займ успешно ободрен"
-    ></transaction-desktop>
-    <transaction-desktop 
-    v-else-if="isTransaction && transactionStatus === 'fail'" 
-    @close="isTransaction = false" 
+    ></action-desktop>
+    <action-desktop 
+    v-else-if="isAction && actionStatus === 'fail'" 
+    @close="isAction = false" 
     title="Произошла ошибка при одобрении займа"
-    :status="transactionStatus"></transaction-desktop>
+    :status="actionStatus"></action-desktop>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import approve from '@/components/loans/creditor/desktop/approve.vue'
-import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
+import actionDesktop from "@/components/base/modals/action-desktop.vue";
 import { declineLoanRequest } from "@/api/loanRequests.api";
 
 const emtis = defineEmits(["close"]);
 
-const isTransaction = ref(false)
-const transactionStatus = ref('')
+const isAction = ref(false)
+const actionStatus = ref('')
 
 const { variant, id } = defineProps({
   variant: {
@@ -115,17 +115,17 @@ const { variant, id } = defineProps({
 const openApprove = ref(false)
 
 const decline = async () => {
-  isTransaction.value = true
+  isAction.value = true
   await declineLoanRequest(id).then(res => {
-        transactionStatus.value = 'success'
+    actionStatus.value = 'success'
     }).catch(e => {
-        transactionStatus.value = 'fail'
+      actionStatus.value = 'fail'
         console.error(e)
     })
 }
 
 const handleSuccess = () => {
-  isTransaction.value = false;
+  isAction.value = false;
   location.reload()
 }
 const updateStatus = () => {

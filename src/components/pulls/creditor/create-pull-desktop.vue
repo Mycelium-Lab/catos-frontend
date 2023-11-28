@@ -103,23 +103,14 @@
       </div>
     </div>
     <transaction-desktop 
-    v-if="isTransaction && !transactionStatus" 
+    v-if="isTransaction" 
+    :uid="uid"
     @close="isTransaction = false" 
-    :status="transactionStatus"
-    title="Подтвердите создание пулла"
-    subtitle="Пожалуйста, подтвердите создание пулла в своем кошельке"
+    titlePending="Подтвердите создание пулла"
+    subtitlePending="Пожалуйста, подтвердите создание пулла в своем кошельке"
+    subtitleSuccess="Вы успешно создали пулл"
+    titleFaild="Произошла ошибка при создании пулла"
     ></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" 
-    @close="isTransaction = 
-    false" 
-    :status="transactionStatus"
-    subtitle="Вы успешно создали пулл"
-    ></transaction-desktop>
-    <transaction-desktop 
-    v-else-if="isTransaction && transactionStatus === 'fail'" 
-    @close="isTransaction = false" 
-    title="Произошла ошибка при создании пулла"
-    :status="transactionStatus"></transaction-desktop>
   </div>
 </template>
 <script setup lang="ts">
@@ -130,7 +121,6 @@ import transactionDesktop from "@/components/base/modals/transaction-desktop.vue
 import { createPool } from "@/api/pools.api";
 
 const isTransaction = ref(false)
-const transactionStatus = ref('')
 
 const emtis = defineEmits(["close", "create"]);
 // const valueToken = ref("");
@@ -139,13 +129,13 @@ const percent = ref(0);
 const freePeriod = ref(0);
 const duration = ref(0);
 const minInvestAmount = ref(0)
+const uid = ref()
 
 const close = () => {
   emtis("close");
 };
 const toSeconds = (days: number) => days * 24 * 60 * 60;
 const create = async () => {
-  isTransaction.value = true
   await createPool({
     millipercent: percent.value * 100,
     overdue_millipercent: percent.value * 100, // TODO: добавить поля для ввода остальных данных
@@ -154,11 +144,12 @@ const create = async () => {
     max_duration: toSeconds(duration.value),
     free_period: toSeconds(freePeriod.value),
   }).then(res => {
-    console.log(res);
-    transactionStatus.value = 'success'
+    isTransaction.value = true
+    uid.value = res.data
+   // transactionStatus.value = 'success'
   }).catch(e => {
-    transactionStatus.value = 'fail'
-    console.error(e)
+    //transactionStatus.value = 'fail'
+   // console.error(e)
   })
 };
 </script>

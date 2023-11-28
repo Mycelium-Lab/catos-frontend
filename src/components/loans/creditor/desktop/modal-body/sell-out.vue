@@ -129,23 +129,14 @@
     </template>
   </desktop-modal>
   <transaction-desktop 
-    v-if="isTransaction && !transactionStatus" 
-    @close="isTransaction = false" 
-    :status="transactionStatus"
-    title="Продажа займа"
-    subtitle="Пожалуйста, подождите пока завершится процесс продажи займа"
+    v-if="isTransaction" 
+    @close="isTransaction = false"
+    :uid="uid" 
+    titlePending="Продажа займа"
+    subtitlePending="Пожалуйста, подождите пока завершится процесс продажи займа"
+    subtitleSuccess="Займ успешно продан"
+    titleFaild="Произошла ошибка при продаже займа"
     ></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" 
-    @close="handleSuccess" 
-    :status="transactionStatus"
-     title="Операция успешно выполнена"
-    subtitle="Займ успешно продан"
-    ></transaction-desktop>
-    <transaction-desktop 
-    v-else-if="isTransaction && transactionStatus === 'fail'" 
-    @close="isTransaction = false" 
-    title="Произошла ошибка при продаже займа"
-    :status="transactionStatus"></transaction-desktop>
 </template>
 <script setup lang="ts">
 import {PropType, onMounted, ref} from "vue"
@@ -165,19 +156,18 @@ const { loan } = defineProps({
 
 const price = ref()
 const isTransaction = ref(false)
-const transactionStatus = ref('')
+const uid = ref()
 
 const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanInfo(loan)
 
 const emtis = defineEmits(["close", "result"]);
 
 const sell = async () => {
-  isTransaction.value = true
     await sellLoan(loan?.id ? loan?.id : 0, Number(price.value)).then(res => {
-        transactionStatus.value = 'success'
+      isTransaction.value = true
+      uid.value = res.data
     }).catch(e => {
-        transactionStatus.value = 'fail'
-        console.error(e)
+        
   })
   //emtis("result");
 };

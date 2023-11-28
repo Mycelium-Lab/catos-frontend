@@ -102,36 +102,25 @@
     </template>
   </liquidity-managment-modal>
   <transaction-desktop
-    v-if="isTransaction && !transactionStatus"
+    v-if="isTransaction"
     @close="isTransaction = false"
-    :status="transactionStatus"
-    :title="
+    :uid="uid"
+    :titlePending="
       role === 'investor'
         ? 'Подтвердите вывод депозита из пула'
         : 'Подтвердите изъятие ликвидности из пула'
     "
-    :subtitle="
+    subtitlePending="
       role === 'investor'
         ? 'Пожалуйста, подтвердите вывод депозита из пула в своем кошельке'
         : 'Пожалуйста, изъятие ликвидности из пула в своем кошельке'
     "
-  >
-  </transaction-desktop>
-  <transaction-desktop
-    v-else-if="isTransaction && transactionStatus === 'success'"
-    @close="isTransaction = false"
-    :status="transactionStatus"
-    :subtitle="
-      role === 'investor'
+    :subtitleSuccess="
+      role == 'investor'
         ? 'Вы успешно вывели депозит из пула'
         : 'Вы успешно изъяли ликвидность из пула'
     "
-  >
-  </transaction-desktop>
-  <transaction-desktop
-    v-else-if="isTransaction && transactionStatus === 'fail'"
-    @close="isTransaction = false"
-    :status="transactionStatus"
+    titleFaild="transactionStatus"
     :title="
       role === 'investor'
         ? 'Произошла ошибка при выводе депозита из пула'
@@ -167,7 +156,7 @@ const amountOutOfRange = computed(() => {
   return false;
 });
 const isTransaction = ref(false);
-const transactionStatus = ref("");
+const uid = ref()
 
 const role = computed(() => {
   return roleStorage.get();
@@ -180,17 +169,16 @@ const close = () => {
 };
 
 const handleWithdraw = async () => {
-  isTransaction.value = true;
   await withdrawFromPool({
     pool_id: poolId,
     amount: Number(amount.value),
   })
     .then(res => {
-      transactionStatus.value = "success";
+      isTransaction.value = true
+    uid.value = res.data
     })
     .catch(e => {
-      transactionStatus.value = "fail";
-      console.error(e);
+    
     });
 };
 

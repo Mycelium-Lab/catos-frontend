@@ -98,23 +98,14 @@
         </div>
       </div>
       <transaction-desktop 
-    v-if="isTransaction && !transactionStatus" 
+    v-if="isTransaction" 
     @close="isTransaction = false" 
-    :status="transactionStatus"
-    title="Одобрение займа"
-    subtitle="Пожалуйста, подождите пока завершится процесс одобрения займа"
+    :uid="uid"
+    titlePending="Одобрение займа"
+    subtitlePending="Пожалуйста, подождите пока завершится процесс одобрения займа"
+    subtitleSuccess="Займ успешно ободрен"
+    titleFaild="Произошла ошибка при одобрении займа"
     ></transaction-desktop>
-    <transaction-desktop v-else-if="isTransaction && transactionStatus === 'success'" 
-    @close="handleSuccessApprove" 
-    :status="transactionStatus"
-     title="Операция успешно выполнена"
-    subtitle="Займ успешно ободрен"
-    ></transaction-desktop>
-    <transaction-desktop 
-    v-else-if="isTransaction && transactionStatus === 'fail'" 
-    @close="isTransaction = false" 
-    title="Произошла ошибка при одобрении займа"
-    :status="transactionStatus"></transaction-desktop>
     </div>
   </template>
   <script setup lang="ts">
@@ -131,7 +122,6 @@
 });
 
 const isTransaction = ref(false)
-const transactionStatus = ref('')
   
   const emtis = defineEmits(["close"]);
 
@@ -139,9 +129,9 @@ const transactionStatus = ref('')
   const overdueMillipercent = ref(0);
   const duration = ref(0);
   const approvedAmount = ref(0)
+  const uid = ref()
 
   const approve = async() => {
-    isTransaction.value = true
     const payload = {
         "duration": duration.value,
         "millipercent": millipercent.value,
@@ -149,10 +139,10 @@ const transactionStatus = ref('')
         "approved_amount": approvedAmount.value
     }
     await approveLoanRequest(id, payload).then(res => {
-        transactionStatus.value = 'success'
+      isTransaction.value = true
+    uid.value = res.data
     }).catch(e => {
-        transactionStatus.value = 'fail'
-        console.error(e)
+
     })
     }
 

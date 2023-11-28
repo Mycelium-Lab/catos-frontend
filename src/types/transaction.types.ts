@@ -1,5 +1,7 @@
-export enum TransactionStatuses {
-    success = 'success',
-    fail = 'fail',
+export type Transaction = {
+    "id": string,
+    "hash": any,
+    "exit_code": number,
+    "sender_id": number,
+    "status": "string"
 }
-export type TransactionStatus = keyof typeof TransactionStatuses;
