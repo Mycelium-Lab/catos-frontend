@@ -45,7 +45,7 @@
                   <div class="div2">Одобренная сумма (TON)</div>
                 </div>
                 <range-slider
-                  :max="poolByLoan?.max_loan_amount"
+                  :max="initMaxApprovedAmount"
                   v-model="approvedAmount"
                   rangeWidth="100%"
                   inputLabel="invest"
@@ -81,7 +81,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 import rangeSlider from "@/components/ui-kit/range-slider.vue";
 import { approveLoanRequest } from "@/api/loanRequests.api";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
@@ -90,15 +90,29 @@ import { usePoolListStore } from "@/stores/poolList";
 
 onMounted(async () => {
   if(id) {
-    const poolId = await (await loanRequestItem(id)).pool_id
+    loanRequest.value = await (await loanRequestItem(id))
+    approvedAmount.value = loanRequest?.value.amount
+    const poolId = loanRequest.value.pool_id
     poolByLoan.value = await usePoolListStore().poolItem(poolId)
     millipercent.value = poolByLoan.value.millipercent
     overdueMillipercent.value = poolByLoan.value.overdue_millipercent
   }
 })
 
-const { id } = defineProps({
+const { id, initDuration, initApprovedAmount, initMaxApprovedAmount } = defineProps({
 id: {
+  type: Number,
+  required: true,
+},
+initDuration : {
+  type: Number,
+  required: true,
+},
+initApprovedAmount: {
+  type: Number,
+  required: true,
+},
+initMaxApprovedAmount: {
   type: Number,
   required: true,
 }
@@ -106,6 +120,7 @@ id: {
 
 const {loanRequestItem} = useLoanRequestListStroe()
 
+const loanRequest = ref()
 const poolByLoan = ref()
 const isTransaction = ref(false)
 
@@ -113,8 +128,8 @@ const emtis = defineEmits(["close"]);
 
 const millipercent = ref(0);
 const overdueMillipercent = ref(0);
-const duration = ref(0);
-const approvedAmount = ref(0)
+const duration = ref(initDuration);
+const approvedAmount = ref(initApprovedAmount)
 const uid = ref()
 
 const approve = async() => {
