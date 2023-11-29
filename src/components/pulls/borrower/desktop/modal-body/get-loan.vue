@@ -209,6 +209,7 @@ const parsedTrim = computed(() => {
 })
 
 const sum = computed(() => {
+  console.log('term', term.value)
   let amountWithoutInterestRatePeriod = 0
 
   if(Number(term.value) - freePeriod.value <= 0 && freePeriod.value !== 0) {
@@ -228,7 +229,7 @@ const take = async () => {
   await createLoanRequest({
     pool_id: pool?.id ? pool?.id : 0,
     amount: Number(sum.value),
-    duration: Number(term.value)
+    duration: Number(term.value) * 86400
   }).then(res => {
     actionStatus.value = 'success'
   }).catch(e => {
