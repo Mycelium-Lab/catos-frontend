@@ -24,11 +24,11 @@ import overdueDetail from "./active/overdue-detail.vue";
 import activeDetail from "./active/active-detail.vue";
 import { LoansResponse } from "@/types/loan.types";
 import { LoansRequestResponse } from "@/types/loan.types";
-import { retrieveLoanRequest } from "@/api/loanRequests.api"
+import { takeLoan } from "@/api/loans.api";
 
 onMounted(async () => {
   if(state.retrieveLoanRequest && loanRequest) {
-    await retrieveLoanRequest(loanRequest.id)
+    await takeLoan(loanRequest.id)
   .then(res => {
     console.log(res)
   }).catch(e => {
