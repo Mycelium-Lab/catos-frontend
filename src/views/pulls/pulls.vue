@@ -58,9 +58,13 @@ if (roleStorage.get() === "collector") {
       : loanListStore.collectorLoans
   );
 }
-const pools = computed<Pool[]>(() =>
-  role === "depositor" ? poolListStore.verifiedPools.sort((a, b) => b.id - a.id) : poolListStore.pools.sort((a, b) => b.id - a.id)
-);
+
+const pools = computed<Pool[]>(() => {
+  if(role === 'creditor') {
+    return variant === "all" ? poolListStore.pools.sort((a, b) => b.id - a.id) : poolListStore.creditorPools
+  }
+  return role === "depositor" ? poolListStore.verifiedPools.sort((a, b) => b.id - a.id) : poolListStore.pools.sort((a, b) => b.id - a.id)
+});
 
 const emits = defineEmits(["mySoldLoans"]);
 const toMySold = () => {
