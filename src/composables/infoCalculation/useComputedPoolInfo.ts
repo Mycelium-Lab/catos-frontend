@@ -19,6 +19,10 @@ const useComputedPoolInfo = (pool: any) => {
         return parse(pool?.max_duration).days ? `${parse(pool?.max_duration).days} дней` : `${parse(pool?.max_duration).hours} часов`
       })
 
+    const maxDurationValue = computed(() => {
+        return parse(pool?.max_duration).days ? parse(pool?.max_duration).days : parse(pool?.max_duration).hours
+      })
+
     const freePeriod = computed(() => {
         const period = parse(pool?.free_period).days !== undefined ? parse(pool?.free_period).days 
         : parse(pool?.free_period).hours !== undefined ? parse(pool?.free_period).hours
@@ -41,7 +45,8 @@ const useComputedPoolInfo = (pool: any) => {
         freePeriod,
         interestRateString,
         freePeriodString,
-        createdTerm
+        createdTerm,
+        maxDurationValue
     }
 }
 
