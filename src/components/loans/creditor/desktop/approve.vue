@@ -45,7 +45,7 @@
                   <div class="div2">Одобренная сумма (TON)</div>
                 </div>
                 <range-slider
-                  :max="10000"
+                  :max="poolByLoan?.max_loan_amount"
                   v-model="approvedAmount"
                   rangeWidth="100%"
                   inputLabel="invest"
@@ -86,7 +86,6 @@ import rangeSlider from "@/components/ui-kit/range-slider.vue";
 import { approveLoanRequest } from "@/api/loanRequests.api";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import { useLoanRequestListStroe } from "@/stores/loanRequestList";
-import { useComputedPoolInfo } from "@/composables/infoCalculation/useComputedPoolInfo";
 import { usePoolListStore } from "@/stores/poolList";
 
 onMounted(async () => {
@@ -125,7 +124,6 @@ const approve = async() => {
       "overdue_millipercent": overdueMillipercent.value,
       "approved_amount": approvedAmount.value
   }
-  console.log('payload', payload)
   await approveLoanRequest(id, payload).then(res => {
     isTransaction.value = true
   uid.value = res.data
