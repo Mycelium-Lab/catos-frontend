@@ -17,9 +17,14 @@ export const useLoanRequestListStroe = defineStore("loanRequests", () => {
     const userId = getUserId();
     return loanRequests.value.filter(val => val.creditor_id == userId);
   });
+  const loanRequestItem = async (loanRequestlId: number) => {
+    await (await listLoanRequest()).data
+    return loanRequests.value.filter(val => val.id === loanRequestlId)[0];
+  };
   return {
     loanRequests,
     borrowerLoanRequests,
-    creditorLoanRequests
+    creditorLoanRequests,
+    loanRequestItem
   };
 });
