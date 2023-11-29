@@ -109,8 +109,10 @@
               <div v-if="role === 'borrower'" class="txt2_borrower txt2">
                 {{ variant === "sold" ? "Текущий долг" : "Займ на" }}:
               </div>
-              <div class="ton18">{{ variant === "sold" ? duty : loan?.amount}} TON</div>
-
+              <div class="ton18">{{ 
+              variant === "sold" ? duty 
+              : role === 'borrower' && loanRequest?.id ? loanRequest?.approved_amount
+              : loan?.amount}} TON</div>
               <div
                 v-if="loanRequestStatus === 'creditor' || role === 'investor'"
                 class="txt2"
@@ -137,7 +139,7 @@
               alt=""
               src="@/assets/images/percent.svg"
             />
-            <div class="div122">{{interestRateString}}</div>
+            <div class="div122">{{ loanRequest ? interestRateStringLoanRequest : interestRateString}}</div>
           </div>
           <div class="iconsbar-cards-parent">
             <img
@@ -158,47 +160,62 @@
           </div>
         </div>
       </div>
+      <div></div>
       <div v-if="role === 'borrower'" class="creditor-info">
         <div class="div127">Кредитор:</div>
         <span class="div127">Деньги до зарплаты</span>
       </div>
-      <div class="frame-parent">
-        <div v-if="role === 'borrower'" class="field-parent">
+      <div :class="role === 'borrower' && loanRequest ? 'frame-parent_loanrequest frame-parent' : 'frame-parent'">
+        <div v-if="role === 'borrower' && loanRequest" class="field-parent">
+          <div class="field">
+            <div class="div2">Одобренная сумма:</div>
+            <div class="ton">{{ loanRequest?.approved_amount }} TON</div>
+          </div>
+          <div class="col-titles-bg" />
+        </div>
+        <div v-if="role === 'borrower' && !loanRequest" class="field-parent">
           <div class="field">
             <div class="div2">Займ:</div>
             <div class="ton">{{ loan?.amount }} TON</div>
           </div>
           <div class="col-titles-bg" />
         </div>
-        <div v-if="role === 'borrower'" class="field-parent">
+        <div v-if="role === 'borrower' && loanRequest" class="field-parent">
           <div class="field">
-            <div class="div2">Ставка:</div>
-            <div class="ton">{{ interestRate }}% в день</div>
+            <div class="div2">Одобренный период:</div>
+            <div class="ton">{{  durationLoanRequest  }}</div>
           </div>
           <div class="col-titles-bg" />
         </div>
         <div v-if="role === 'borrower'" class="field-parent">
+          <div class="field">
+            <div class="div2">Ставка:</div>
+            <div class="ton">{{ loanRequest ? interestRateLoanRequest : interestRate }}% в день</div>
+          </div>
+          <div v-if="!loanRequest" class="col-titles-bg" />
+        </div>
+        <div v-if="role === 'borrower' && !loanRequest" class="field-parent">
           <div class="field">
             <div class="div2">Начисленные проценты:</div>
             <div class="ton"> TON</div>
           </div>
           <div class="col-titles-bg" />
         </div>
-        <div v-if="role === 'borrower'" class="field-parent">
+        <div v-if="role === 'borrower' && !loanRequest" class="field-parent">
           <div class="field">
             <div class="div2">На срок:</div>
             <div class="ton">до {{ maxDuration }}</div>
           </div>
           <div class="col-titles-bg" />
         </div>
-        <div v-if="role === 'borrower'" class="field-parent">
+        <div v-if="role === 'borrower' && !loanRequest" class="field-parent">
           <div class="field">
             <div class="div2">Беспроцентный период:</div>
             <div class="ton">до {{`${freePeriodDate} (${freePeriodStatus})` }}</div>
           </div>
           <div class="col-titles-bg" />
         </div>
-        <div v-if="role === 'borrower'" class="field-parent">
+        <div v-if="role === 'borrower' && !loanRequest" class="field-parent">
           <div class="field">
             <div class="div2">
               {{
@@ -266,6 +283,21 @@
       </div>
       <div
         v-if="
+          role === 'borrower' && loanRequest
+        "
+        class="notification6"
+      >
+        <img
+          class="percent-icon12"
+          alt=""
+          src="@/assets/images/alerttriangle-white.svg"
+        />
+        <div class="div128">
+          Ваша заявка на займ была успешно одобрена
+        </div>
+      </div>
+      <div
+        v-if="
           role === 'borrower' && status === 'active' && variant === 'active'
         "
         class="notification6"
@@ -324,7 +356,16 @@
         <div class="field-parent">
           <button
             v-if="
-              role === 'borrower' && status === 'active' && variant === 'active'
+              role === 'borrower' && loanRequest
+            "
+            class="buttons-tabs1"
+            @click.stop="() => toActive('retrieveLoanRequest')"
+          >
+            <div class="text">Взять займ</div>
+          </button>
+          <button
+            v-if="
+              role === 'borrower' && status === 'active' && variant === 'active' && !loanRequest
             "
             class="buttons-tabs1"
             @click.stop="() => toActive('repay')"
@@ -335,7 +376,8 @@
             v-if="
               role === 'borrower' &&
               status === 'overdue' &&
-              variant === 'active'
+              variant === 'active' && 
+              !loanRequest
             "
             class="group-action"
           >
@@ -434,9 +476,20 @@
       }
     "
   ></marketplace>
-
   <active
-    v-if="isActive"
+    v-if="isActive && loanRequest"
+    :state="activeState"
+    :status="status"
+    :loanRequest="loanRequest"
+    @close="
+      () => {
+        isActive = false;
+        resetState('active');
+      }
+    "
+  ></active>
+  <active
+    v-if="isActive && !loanRequest"
     :state="activeState"
     :status="status"
     :loan="loan"
@@ -495,14 +548,21 @@ import { usePoolListStore } from "@/stores/poolList";
 onMounted(async() => {
   if(loan?.pool_id && role.value === 'borrower') {
     poolByLoan.value = await poolItem(loan?.pool_id)
-    monthInterestRateString.value = useComputedPoolInfo(poolByLoan.value).monthInterestRateString.value
     maxDuration.value = useComputedPoolInfo(poolByLoan.value).maxDuration.value
     freePeriod.value = useComputedPoolInfo(poolByLoan.value).freePeriod.value
     freePeriodString.value = useComputedPoolInfo(poolByLoan.value).freePeriodString.value
 
+    monthInterestRateString.value = useComputedLoanInfo(loan, freePeriod.value).monthInterestRateString.value
     freePeriodStatus.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodStatus.value
     freePeriodDate.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodDate.value
     restDays.value = useComputedLoanInfo(loan).restDays.value
+  }
+  else if(loanRequest?.pool_id && role.value === 'borrower') {
+    poolByLoan.value = await poolItem(loanRequest?.pool_id)
+    freePeriod.value = useComputedPoolInfo(poolByLoan.value).freePeriod.value
+    freePeriodString.value = useComputedPoolInfo(poolByLoan.value).freePeriodString.value
+
+    monthInterestRateString.value = useComputedLoanRequestInfo(loanRequest, freePeriod.value).monthInterestRateString.value
   }
 })
 
@@ -524,20 +584,19 @@ const { variant, loan, loanRequest, loanRequestStatus } = defineProps({
   }
 });
 
-const { poolItem } = usePoolListStore();
-
-const {duty, isOverdue, interestRate, duration, startTerm, endTerm, interestRateString} = useComputedLoanInfo(loan)
-const {duration: durationLoanRequest} = useComputedLoanRequestInfo(loanRequest)
-
-const monthInterestRateString = ref()
 const maxDuration = ref()
+const monthInterestRateString = ref()
 const freePeriod = ref()
 const freePeriodString = ref()
-
-const durationLoan = ref()
 const freePeriodStatus = ref()
 const freePeriodDate = ref()
 const restDays = ref()
+
+const { poolItem } = usePoolListStore();
+
+const {duty, isOverdue, interestRate, duration, startTerm, endTerm, interestRateString} = useComputedLoanInfo(loan)
+const {interestRate: interestRateLoanRequest, interestRateString: interestRateStringLoanRequest, duration: durationLoanRequest} = useComputedLoanRequestInfo(loanRequest)
+
 
 const status = computed(() => {
   if (loan?.end) {
@@ -571,6 +630,7 @@ const activeState = {
   prolongModal: false,
   repayModal: false,
   detailModal: false,
+  retrieveLoanRequest: false
 };
 const repaidState = {
   detailModal: false,
@@ -592,6 +652,7 @@ const resetState = (state: string) => {
       activeState.prolongModal = false;
       activeState.repayModal = false;
       activeState.detailModal = false;
+      activeState.retrieveLoanRequest = false
     case "paid":
       repaidState.detailModal = false;
   }
@@ -668,6 +729,8 @@ const toActive = (init: string) => {
       return (activeState.repayModal = true);
     case "detail":
       return (activeState.detailModal = true);
+    case "retrieveLoanRequest":
+    return (activeState.retrieveLoanRequest = true);
   }
 };
 
@@ -857,6 +920,9 @@ const handleCheckBox = (ev: any) => {
   align-items: flex-end;
   justify-content: flex-start;
   gap: 0.63em;
+  &_loanrequest{
+    height: 46%;
+  }
 }
 .text {
   position: relative;
@@ -930,13 +996,14 @@ const handleCheckBox = (ev: any) => {
   flex-direction: column;
   padding: 0.63em;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 1.25em;
+  height: 100%;
 }
 .cards-parent {
   position: relative;
   width: 100%;
-
+  height: 100%;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;

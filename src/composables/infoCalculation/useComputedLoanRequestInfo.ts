@@ -25,7 +25,6 @@ const useComputedLoanRequestInfo = (loanRequest: any, freePeriod?: any) => {
         }
         return parse(loanRequest?.duration).days !== undefined ? parse(loanRequest?.duration).days : 0
       })
-
    
         const durationValue = computed(() => {
           if(parse(loanRequest?.duration).days !== undefined) {
@@ -49,8 +48,6 @@ const useComputedLoanRequestInfo = (loanRequest: any, freePeriod?: any) => {
           return `30 дней = ${Number(dayInterestRate * (30 - freePeriod)).toFixed(2)}%`
         })
   
-        
-
     return {
       interestRate,
       interestRateString,

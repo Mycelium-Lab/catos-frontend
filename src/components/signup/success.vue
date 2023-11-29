@@ -89,7 +89,7 @@ const toPools = () => {
       break;
     }
     case 'collector': {
-      router.push(`/pulls/collector`);
+      router.push(`/loans/collector`);
       break;
     }
     case 'investor': {
