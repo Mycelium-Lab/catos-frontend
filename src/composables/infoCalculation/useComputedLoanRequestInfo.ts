@@ -8,7 +8,7 @@ const useComputedLoanRequestInfo = (loanRequest: any, freePeriod?: any) => {
   const interestRateString = computed(() => {
     return `1 день = ${interestRate.value}%`
   })
-
+  
       const duration = computed(() => {
         if(parse(loanRequest?.duration).days !== undefined) {
            return parse(loanRequest?.duration).months 
@@ -25,17 +25,35 @@ const useComputedLoanRequestInfo = (loanRequest: any, freePeriod?: any) => {
         }
         return parse(loanRequest?.duration).days !== undefined ? parse(loanRequest?.duration).days : 0
       })
+   
+        const durationValue = computed(() => {
+          if(parse(loanRequest?.duration).days !== undefined) {
+             return parse(loanRequest?.duration).months 
+              ? parse(loanRequest?.duration).months
+              : parse(loanRequest?.duration).weeks
+              ? parse(loanRequest?.duration).weeks
+              : parse(loanRequest?.duration).days
+              ? parse(loanRequest?.duration).days
+              : parse(loanRequest?.duration).hours
+              ? parse(loanRequest?.duration).hours
+              : parse(loanRequest?.duration).minutes
+              ? parse(loanRequest?.duration).minutes
+              : parse(loanRequest?.duration).seconds
+          }
+          return parse(loanRequest?.duration).days !== undefined ? parse(loanRequest?.duration).days : 0
+        })
 
-      const monthInterestRateString = computed(() => {
-        const dayInterestRate = loanRequest?.millipercent ? loanRequest?.millipercent / 100 : 0
-        return `30 дней = ${Number(dayInterestRate * (30 - freePeriod)).toFixed(2)}%`
-      })
-
+        const monthInterestRateString = computed(() => {
+          const dayInterestRate = loanRequest?.millipercent ? loanRequest?.millipercent / 100 : 0
+          return `30 дней = ${Number(dayInterestRate * (30 - freePeriod)).toFixed(2)}%`
+        })
+  
     return {
       interestRate,
       interestRateString,
       duration,
-      monthInterestRateString
+      monthInterestRateString,
+      durationValue
     }
 }
 

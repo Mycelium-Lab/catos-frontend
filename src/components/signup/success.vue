@@ -38,7 +38,7 @@
           </div>
         </div>
         <div class="buttonnext" id="buttonNextContainer" @click="toPools">
-          <b class="b1">Выбрать пулл</b>
+          <b class="b1">{{ roleStorage.get() === "creditor" ? 'Создать пулл' : roleStorage.get() === "collector"  ? 'Выбрать задолженность' : 'Выбрать пулл' }}</b>
         </div>
         <div class="frame-div">
           <div class="wrapper1">
