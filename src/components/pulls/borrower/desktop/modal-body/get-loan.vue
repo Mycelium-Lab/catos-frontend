@@ -52,7 +52,7 @@
                   <div class="div2">
                     <span class="span">
                       <span class="span">до </span>
-                      <span class="span1">50 000 </span>
+                      <span class="span1">{{maxSumLoans}} </span>
                     </span>
                   </div>
                 </div>
@@ -72,15 +72,15 @@
                   </div>
                 </div>
                 <range-slider
-                  :max="30"
+                  :max="maxDurationValue"
                   :modelValue="1"
                   rangeWidth="100%"
                   @update:model-value="e => (term = e)"
                 ></range-slider>
                 <div class="tag">
                   <div class="div2">
-                    <span class="span1">30 </span>
-                    <span class="span">дней</span>
+                    <span class="span1">{{ maxDurationValue }} </span>
+                    <span class="span"> дней</span>
                   </div>
                 </div>
               </div>
@@ -192,7 +192,7 @@ const {pool} = defineProps({
 const {
   interestRate, monthInterestRateString, 
   maxDuration, freePeriod, interestRateString,
-  freePeriodString } = useComputedPoolInfo(pool)
+  freePeriodString, maxDurationValue } = useComputedPoolInfo(pool)
 
 const emits = defineEmits(["close"]);
 const isCreditorInfo = ref(false);
@@ -209,7 +209,6 @@ const parsedTrim = computed(() => {
 })
 
 const sum = computed(() => {
-  console.log('sumLoans.value', sumLoans.value)
   let amountWithoutInterestRatePeriod = 0
 
   if(Number(term.value) - freePeriod.value <= 0 && freePeriod.value !== 0) {
@@ -218,7 +217,7 @@ const sum = computed(() => {
   }
 
   const withInterestRatePeriod = Number(term.value) - freePeriod.value
-  const sumWithInterestRate = Number(sumLoans.value) + interestRate.value * withInterestRatePeriod;
+  const sumWithInterestRate = Number(sumLoans.value) * (interestRate.value / 100 * withInterestRatePeriod) + Number(sumLoans.value);
   return sumWithInterestRate
 });
 
