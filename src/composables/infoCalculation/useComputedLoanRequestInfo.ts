@@ -2,6 +2,12 @@ import { computed } from "vue"
 import { parse } from "tinyduration";
 
 const useComputedLoanRequestInfo = (loanRequest: any) => {
+  const interestRate = computed(() => {
+    return loanRequest?.millipercent ? loanRequest?.millipercent / 100 : 0
+  })
+  const interestRateString = computed(() => {
+    return `1 день = ${interestRate.value}%`
+  })
       const duration = computed(() => {
         if(parse(loanRequest?.duration).days !== undefined) {
            return parse(loanRequest?.duration).months 
@@ -37,9 +43,19 @@ const useComputedLoanRequestInfo = (loanRequest: any) => {
           return parse(loanRequest?.duration).days !== undefined ? parse(loanRequest?.duration).days : 0
         })
 
+        const monthInterestRateString = computed(() => {
+          const dayInterestRate = loanRequest?.millipercent ? loanRequest?.millipercent / 100 : 0
+          return `30 дней = ${Number(dayInterestRate * (30 - freePeriod)).toFixed(2)}%`
+        })
+  
+        
+
     return {
-        duration,
-        durationValue
+      interestRate,
+      interestRateString,
+      duration,
+      monthInterestRateString,
+      durationValue
     }
 }
 
