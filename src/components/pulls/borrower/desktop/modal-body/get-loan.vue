@@ -41,7 +41,7 @@
                   </div>
                 </div>
                 <range-slider
-                  :max="50000"
+                  :max="maxSumLoans"
                   :modelValue="1"
                   rangeWidth="159px"
                   inputLabel="ton"
@@ -196,6 +196,7 @@ const {
 
 const emits = defineEmits(["close"]);
 const isCreditorInfo = ref(false);
+const maxSumLoans = ref(pool?.max_loan_amount)
 const sumLoans = ref(1);
 const term = ref(1);
 
