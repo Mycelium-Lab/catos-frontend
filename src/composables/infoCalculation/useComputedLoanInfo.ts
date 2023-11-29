@@ -1,7 +1,6 @@
 import { computed } from "vue"
 
 const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
-
     const duty = computed(() => {
         if(loan?.amount && loan?.paid_amount) {
           const dif = loan?.amount - loan?.paid_amount
@@ -89,6 +88,11 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
       const dif = Number(end) - Number(now)
       return new Date(dif).getDate() - 1
     })
+
+    const monthInterestRateString = computed(() => {
+      const dayInterestRate = loan?.millipercent ? loan?.millipercent / 100 : 0
+      return `30 дней = ${Number(dayInterestRate * (30 - freePeriod)).toFixed(2)}%`
+    })
     
     
     return {
@@ -104,7 +108,8 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
         freePeriodStatus,
         freePeriodDate,
         restDays,
-        interestRateString
+        interestRateString,
+        monthInterestRateString
     }
 }
 

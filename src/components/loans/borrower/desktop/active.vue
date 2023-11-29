@@ -17,14 +17,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref, PropType } from "vue";
+import { ref, PropType, onMounted } from "vue";
 import prolong from "./active/prolong.vue";
 import repay from "./active/repay.vue";
 import overdueDetail from "./active/overdue-detail.vue";
 import activeDetail from "./active/active-detail.vue";
 import { LoansResponse } from "@/types/loan.types";
+import { LoansRequestResponse } from "@/types/loan.types";
+import { takeLoan } from "@/api/loans.api";
 
-const { status, state } = defineProps({
+onMounted(async () => {
+  if(state.retrieveLoanRequest && loanRequest) {
+    await takeLoan(loanRequest.id)
+  .then(res => {
+    console.log(res)
+  }).catch(e => {
+    
+  }) 
+  }
+})
+
+const { status, state, loanRequest } = defineProps({
   state: {
     type: Object,
     required: true,
@@ -34,6 +47,9 @@ const { status, state } = defineProps({
   },
   loan: {
     type: Object as PropType<LoansResponse>,
+  },
+  loanRequest: {
+    type: Object as PropType<LoansRequestResponse>,
   },
   poolId: {
     type: Number,
@@ -51,6 +67,7 @@ const close = () => {
 const isDetail = ref(state.detailModal);
 const isProlong = ref(state.prolongModal);
 const isRepay = ref(state.repayModal);
+const isRetrieveLoan = ref(state.retrieveLoanRequest)
 const isInit = ref("table");
 
 const setInit = () => {

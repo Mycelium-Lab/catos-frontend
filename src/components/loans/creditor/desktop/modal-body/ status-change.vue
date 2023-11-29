@@ -65,7 +65,13 @@
       </div>
     </template>
   </desktop-modal>
-  <approve v-if="openApprove" :id="id" @close="openApprove = false"></approve>
+  <approve 
+    v-if="openApprove" 
+    :id="id"
+    :initDuration="initDuration" 
+    :initApprovedAmount="initApprovedAmount"
+    :initMaxApprovedAmount="initMaxApprovedAmount"
+    @close="openApprove = false"></approve>
   <action-desktop 
     v-if="isAction && !actionStatus" 
     @close="isAction = false" 
@@ -89,12 +95,28 @@
     :status="actionStatus"></action-desktop>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import approve from '@/components/loans/creditor/desktop/approve.vue'
 import actionDesktop from "@/components/base/modals/action-desktop.vue";
 import { declineLoanRequest } from "@/api/loanRequests.api";
+import { useLoanRequestListStroe } from "@/stores/loanRequestList";
+import { usePoolListStore } from "@/stores/poolList";
+import { useComputedLoanRequestInfo } from "@/composables/infoCalculation/useComputedLoanRequestInfo";
 
+onMounted(async () => {
+  if(id) {
+    loanRequest.value = await (await loanRequestItem(id))
+    initApprovedAmount.value = loanRequest.value.amount
+    initDuration.value = useComputedLoanRequestInfo(loanRequest.value).durationValue
+    const poolId = loanRequest.value.pool_id
+    const poolByLoan = await usePoolListStore().poolItem(poolId)
+    initMaxApprovedAmount.value = poolByLoan.max_loan_amount
+  }
+})
+
+
+const {loanRequestItem} = useLoanRequestListStroe()
 const emtis = defineEmits(["close"]);
 
 const isAction = ref(false)
@@ -116,6 +138,10 @@ const { variant, id } = defineProps({
 });
 
 const openApprove = ref(false)
+const loanRequest = ref()
+const initDuration = ref()
+const initApprovedAmount = ref()
+const initMaxApprovedAmount = ref()
 
 const decline = async () => {
   isAction.value = true

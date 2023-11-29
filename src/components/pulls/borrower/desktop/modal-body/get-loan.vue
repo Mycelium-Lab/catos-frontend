@@ -209,7 +209,6 @@ const parsedTrim = computed(() => {
 })
 
 const sum = computed(() => {
-  console.log('term', term.value)
   let amountWithoutInterestRatePeriod = 0
 
   if(Number(term.value) - freePeriod.value <= 0 && freePeriod.value !== 0) {

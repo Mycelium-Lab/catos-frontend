@@ -404,7 +404,7 @@
               </div>
             </div>
 
-            <div v-else class="notification6">
+            <div v-else-if="role !== 'creditor'" class="notification6">
               <img
                 class="percent-icon12"
                 alt=""
@@ -1309,12 +1309,12 @@ li {
   top: 0em;
   left: 0em;
   width: 21.38em;
-  height: 34em;
+  height: 30em;
 }
 .desctopverpull-stats-parent {
   position: relative;
   width: 100%;
-  height: 34em;
+  height: 30em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
@@ -1325,7 +1325,7 @@ li {
     height: 46.5em;
   }
   &_creditor-my {
-    height: 36.3em;
+    height: 32.5em;
   }
   &_borrower-all {
     height: 36em;

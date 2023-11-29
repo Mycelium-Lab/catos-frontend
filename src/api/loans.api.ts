@@ -10,6 +10,10 @@ export const takeLoan = (id: number) => {
     return baseApiClient.get(`${LOAN_END_POINT}take/${id}`)
 };
 
+export const retrieveLoan = (id: number) => {
+    return baseApiClient.get(`${LOAN_END_POINT}/${id}`)
+};
+
 export const repayLoan = (id: number, value: number) => {
     return baseApiClient.get(`${LOAN_END_POINT}pay/${id}?amount=${value}`)
 } 
