@@ -41,12 +41,12 @@
             <div class="min-10-ton-container">
               <span>Min: </span>
               <span class="span8"> </span>
-              <span class="ton1">10 TON</span>
+              <span class="ton1">{{minInvest}} TON</span>
             </div>
             <div class="min-10-ton-container">
               <span>Max: </span>
               <span class="span8"> </span>
-              <span class="ton1">257 324 TON</span>
+              <span class="ton1">{{ maxInvest }} TON</span>
             </div>
           </div>
         </div>
@@ -59,8 +59,9 @@
     <template v-slot:action>
       <div class="des-and-bbn_add des-and-bbn">
         <catos-button
+          :disabled="Number(amount) < minInvest || Number(amount) > maxInvest"
           variant="fourth"
-          @click="handleAdd"
+          @click="() => Number(amount) < minInvest || Number(amount) > maxInvest ? null : handleAdd()"
           :style="{ width: '100%', margin: '0' }"
           >{{
             role === "investor" ? "Инвестировать" : "Добавить ликвидность"
@@ -94,13 +95,15 @@ import calculator from "@/components/base/calculator.vue";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import { investToPool } from "@/api/pools.api";
 
-const {poolId} = defineProps({
-  poolId: {type: Number, required: true}
+const {poolId, minInvest} = defineProps({
+  poolId: {type: Number, required: true},
+  minInvest: {type: Number, default: 0},
+  maxInvest: {type: Number, default: 257324},
 })
 
 const emits = defineEmits(["close"]);
 
-const amount = ref("")
+const amount = ref('')
 const isTransaction = ref(false)
 const uid = ref()
 
