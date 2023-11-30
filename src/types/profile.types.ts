@@ -62,4 +62,5 @@ export type Profile = {
     "name": string,
     "surname": string,
     "middlename": string
+    "hasVerified": boolean
 }

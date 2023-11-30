@@ -59,6 +59,7 @@ export const useLoginApi = () => {
       name: res.data?.passport?.name ? res.data?.passport?.name : '',
       surname: res.data?.passport?.surname ? res.data?.passport?.surname : '',
       middlename: res.data?.passport?.middlename ? res.data?.passport?.middlename : '',
+      hasVerified: res.data?.wl_status === 'in'
     })
     setWallet(res.data?.address ? res.data?.address : '');
   
