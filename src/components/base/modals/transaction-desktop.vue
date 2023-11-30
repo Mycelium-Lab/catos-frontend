@@ -51,20 +51,37 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch, onUnmounted } from "vue";
 import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
 import loader from "@/components/base/loader.vue"
 import { transaction } from "@/api/transaction"
 
 onMounted(async() => {
-  const refreshTransactionId = setInterval(async function () {
+  refreshTransaction()
+})
+
+onUnmounted(() => {
+  // @ts-ignore
+  clearInterval(window.refreshTransactionId)
+})
+
+const refreshTransaction = () => {
+  // @ts-ignore
+  if(window.refreshTransactionId) {
+      // @ts-ignore
+      clearInterval(window.refreshTransactionId)
+     }
+
+      // @ts-ignore
+    window.refreshTransactionId = setInterval(async function () {
     await transaction(uid)
     .then((res) => {
       const response = res.data
       status.value = response.status
       hash.value = response.hash
       if(status.value !== 'pending') {
-        clearInterval(refreshTransactionId);
+          // @ts-ignore
+        clearInterval(window.refreshTransactionId)
       }
     })
     .catch(e => {
@@ -72,7 +89,7 @@ onMounted(async() => {
       //faildCause.value = e
     })
   }, 5000)
-})
+}
 
 const {uid} = defineProps({
   uid: {type: String, required: true}, 
