@@ -106,7 +106,6 @@ const sliderMaxValue = ref(maxValue);
 
 const parseMin = computed(() => {
   const arrValue = String(sliderMinValue.value).split("");
-  console.log(arrValue.length);
   if (String(sliderMinValue.value).length === 4) {
     arrValue.splice(1, 0, " ");
   } else if (String(sliderMinValue.value).length > 4) {
@@ -117,7 +116,6 @@ const parseMin = computed(() => {
 
 const parseMax = computed(() => {
   const arrValue = String(sliderMaxValue.value).split("");
-  console.log(arrValue.length);
   if (String(sliderMaxValue.value).length === 4) {
     arrValue.splice(1, 0, " ");
   } else if (String(sliderMaxValue.value).length > 4) {
@@ -167,6 +165,7 @@ watchEffect(() => {
 });
 const handle = (target: any) => {
   if (target.id === "min") {
+    //console.log(target.value)
     sliderMinValue.value = parseFloat(target.value);
   } else if (target.id === "max") {
     sliderMaxValue.value = parseFloat(target.value);

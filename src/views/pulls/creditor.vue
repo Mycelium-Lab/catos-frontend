@@ -161,7 +161,6 @@ const toggleSlide = (slideIndex: any) => {
   } else if (slideIndex === 1) {
     curentWindow.value = "my";
   }
-  console.log(curentWindow.value);
 };
 </script>
 

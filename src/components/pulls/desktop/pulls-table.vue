@@ -677,6 +677,7 @@ import { roleStorage } from "@/utils/localStorage";
 import { LoansResponse, LoansBoughtResponse } from "@/types/loan.types";
 import { usePoolListStore } from "@/stores/poolList";
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo"
 import { i18n } from "@/i18n";
 
 onMounted(async () => {
@@ -712,6 +713,7 @@ const role = computed(() => {
 });
 
 const { poolItem } = usePoolListStore();
+const {duty} = useComputedLoanInfo(loan)
 
 const poolByLoan = ref()
 const interestRate = ref()
@@ -722,13 +724,6 @@ const interestRateString = ref()
 const freePeriodString = ref()
 
 
-const duty = computed(() => {
-  if (loan?.amount && loan?.paid_amount) {
-    return loan?.amount - loan?.paid_amount;
-  } else {
-    return "";
-  }
-});
 
 const expired = computed(() => {
   if (loan?.end) {

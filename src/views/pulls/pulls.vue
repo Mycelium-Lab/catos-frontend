@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { ComputedRef } from "vue";
 import { Pool } from "@/types/pool.type";
 import { LoansResponse, LoansBoughtResponse } from "@/types/loan.types";
@@ -38,33 +38,64 @@ import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
 import { usePoolListStore } from "@/stores/poolList";
 import { useLoanListStore } from "@/stores/loanList";
 import { roleStorage } from "@/utils/localStorage";
+import { useFilterDataStore } from "@/stores/filter";
+import { conditionsFilterPool, conditionsFilterLoans } from "@/utils/conditionsFilter"
 
-const { variant, role } = defineProps({
+onMounted(() => {
+  filterDataStore.reset()
+  filterDataStore.isActiveFilter = false
+})
+
+const { variant } = defineProps({
   variant: {
     type: String,
-  },
-  role: {
-    type: String,
-  },
+  }
 });
 const poolListStore = usePoolListStore();
+const filterDataStore = useFilterDataStore();
+
+const role = computed(() => {
+ return roleStorage.get()
+})
 
 let loans: ComputedRef<LoansResponse[] | LoansBoughtResponse[]>;
-if (roleStorage.get() === "collector") {
+if (role.value === "collector") {
   const loanListStore = useLoanListStore();
-  loans = computed<LoansResponse[] | LoansBoughtResponse[]>(() =>
-    variant === "marketplace"
+  loans = computed<LoansResponse[] | LoansBoughtResponse[]>(() => {
+    if(filterDataStore.isActiveFilter) {
+      const actualLoans = variant === "marketplace"
       ? loanListStore.marketPlaceLoans
       : loanListStore.collectorLoans
-  );
-}
+      return actualLoans.filter((v: any) => {
+    const {conditionsOfMillipercent, conditionsOfDuty, conditionsOfExpired, conditionsOfDbt} = conditionsFilterLoans(v)
+     return conditionsOfMillipercent && conditionsOfDuty && conditionsOfExpired && conditionsOfDbt
+    })
+    }
+    return variant === "marketplace"
+      ? loanListStore.marketPlaceLoans
+      : loanListStore.collectorLoans
+    }
+  )}
 
 const pools = computed<Pool[]>(() => {
-  if(role === 'creditor') {
+  if((role.value === 'creditor' || role.value === "investor" || role.value === 'borrower') && filterDataStore.isActiveFilter) {
+    const pools = role.value === "investor" ? poolListStore.verifiedPools : poolListStore.pools
+    return pools
+    .filter((v) => {
+    const {conditionsOfMillipercent, conditionsOfFreePeriod, conditionsOfDuration, conditionsOfOverudeMillipercent, conditionsOfAvailableLiquidity} = conditionsFilterPool(v)
+    if(role.value === 'borrower') {
+      return conditionsOfMillipercent && conditionsOfFreePeriod && conditionsOfDuration && conditionsOfAvailableLiquidity
+    }
+     return conditionsOfMillipercent && conditionsOfFreePeriod && conditionsOfDuration && conditionsOfOverudeMillipercent
+    })
+    .sort((a, b) => b.id - a.id)
+  }
+  else if(role.value === 'creditor') {
     return variant === "all" ? poolListStore.pools.sort((a, b) => b.id - a.id) : poolListStore.creditorPools
   }
-  return role === "depositor" ? poolListStore.verifiedPools.sort((a, b) => b.id - a.id) : poolListStore.pools.sort((a, b) => b.id - a.id)
+  return role.value === "investor" ? poolListStore.verifiedPools.sort((a, b) => b.id - a.id) : poolListStore.pools.sort((a, b) => b.id - a.id)
 });
+
 
 const emits = defineEmits(["mySoldLoans"]);
 const toMySold = () => {

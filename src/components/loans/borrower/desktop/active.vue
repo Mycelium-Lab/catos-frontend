@@ -14,6 +14,15 @@
     }"
     @prolong="prolongation"
   ></overdue-detail>
+  <transaction-desktop 
+    v-if="isTransaction" 
+    :uid="uid"
+    @close="isTransaction = false" 
+    titlePending="Подтвердите взятие займа"
+    subtitlePending="Пожалуйста, подтвердите взятие займа в своем кошельке"
+    subtitleSuccess="Вы успешно взяли займ"
+    titleFaild="Произошла ошибка при взятии займа"
+    ></transaction-desktop>
 </template>
 
 <script setup lang="ts">
@@ -22,6 +31,7 @@ import prolong from "./active/prolong.vue";
 import repay from "./active/repay.vue";
 import overdueDetail from "./active/overdue-detail.vue";
 import activeDetail from "./active/active-detail.vue";
+import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import { LoansResponse } from "@/types/loan.types";
 import { LoansRequestResponse } from "@/types/loan.types";
 import { takeLoan } from "@/api/loans.api";
@@ -30,7 +40,8 @@ onMounted(async () => {
   if(state.retrieveLoanRequest && loanRequest) {
     await takeLoan(loanRequest.id)
   .then(res => {
-    console.log(res)
+    isTransaction.value = true
+    uid.value = res.data
   }).catch(e => {
     
   }) 
@@ -64,10 +75,12 @@ const close = () => {
   isRepay.value = false;
   emits("close");
 };
+
+const isTransaction = ref(false)
+const uid = ref()
 const isDetail = ref(state.detailModal);
 const isProlong = ref(state.prolongModal);
 const isRepay = ref(state.repayModal);
-const isRetrieveLoan = ref(state.retrieveLoanRequest)
 const isInit = ref("table");
 
 const setInit = () => {

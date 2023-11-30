@@ -29,7 +29,7 @@
           <div class="parent">
             <chips-bar desktop></chips-bar>
             <div class="fieldsinputchoise-parent">
-              <div v-if="role === 'creditor'" class="fieldsinputchoise">
+              <!--<div v-if="role === 'creditor'" class="fieldsinputchoise">
                 <div class="div1">Настройте токен:</div>
                 <catos-select
                   placeholder="Catos"
@@ -39,7 +39,7 @@
                   :optionWidthDesk="710"
                   @selected="ev => (value = ev)"
                 ></catos-select>
-              </div>
+              </div>-->
               <div
                 v-if="role === 'collector'"
                 :style="{
@@ -49,7 +49,7 @@
                   gap: '1.88em',
                 }"
               >
-                <div
+                <!--<div
                   v-if="role === 'collector'"
                   :style="{ width: '100%' }"
                   class="fieldsinputchoise"
@@ -78,7 +78,7 @@
                     :optionWidthDesk="340"
                     @selected="ev => (valuePlace = ev)"
                   ></catos-select>
-                </div>
+                </div>-->
               </div>
 
               <!--Admin - user and Admin - bids-->
@@ -339,18 +339,18 @@
               <div v-if="role === 'borrower'" class="frame-group">
                 <div class="instance-parent">
                   <div class="group">
-                    <div class="div6">Одобренному лимиту:</div>
+                    <div class="div6">Одобренный лимит:</div>
 
                     <range-minmax-slider
-                      :max="3000"
+                      :max="30000"
                       v-model:min-value="sliderMinDbt"
                       v-model:max-value="sliderMaxDbt"
-                      inputLabel="cat"
+                      inputLabel="ton"
                       desktop
                     ></range-minmax-slider>
                   </div>
                   <div class="group">
-                    <div class="div6">Сроку:</div>
+                    <div class="div6">Срок:</div>
                     <range-minmax-slider
                       :max="365"
                       v-model:min-value="sliderMinOverdue"
@@ -362,7 +362,7 @@
                 </div>
                 <div class="instance-parent">
                   <div class="parent1">
-                    <div class="div6">Дневной ставке:</div>
+                    <div class="div6">Дневная ставка:</div>
                     <range-minmax-slider
                       :max="30"
                       v-model:min-value="sliderMinRange"
@@ -371,13 +371,13 @@
                       desktop
                     ></range-minmax-slider>
                   </div>
-                  <div class="parent1">
-                    <div class="div6">Беспроцентному периоду:</div>
+                  <div class="group">
+                    <div class="div6">Беспроцентный период:</div>
                     <range-minmax-slider
                       :max="30"
                       v-model:min-value="sliderMinCost"
                       v-model:max-value="sliderMaxCost"
-                      inputLabel="percent"
+                      inputLabel="day"
                       desktop
                     ></range-minmax-slider>
                   </div>
@@ -387,7 +387,7 @@
               <div v-else-if="role === 'creditor'" class="frame-group">
                 <div class="instance-parent">
                   <div class="group">
-                    <div class="div6">Дневной ставке:</div>
+                    <div class="div6">Дневная ставка:</div>
 
                     <range-minmax-slider
                       :max="30"
@@ -398,7 +398,7 @@
                     ></range-minmax-slider>
                   </div>
                   <div class="group">
-                    <div class="div6">Сроку:</div>
+                    <div class="div6">Срок:</div>
                     <range-minmax-slider
                       :max="365"
                       v-model:min-value="sliderMinOverdue"
@@ -409,13 +409,13 @@
                   </div>
                 </div>
                 <div class="instance-parent">
-                  <div class="parent1">
-                    <div class="div6">Беспроцентному периоду:</div>
+                  <div class="group">
+                    <div class="div6">Беспроцентный период:</div>
                     <range-minmax-slider
                       :max="30"
                       v-model:min-value="sliderMinCost"
                       v-model:max-value="sliderMaxCost"
-                      inputLabel="percent"
+                      inputLabel="day"
                       desktop
                     ></range-minmax-slider>
                   </div>
@@ -431,13 +431,13 @@
                   </div>
                 </div>
               </div>
-              <div v-else-if="role === 'depositor'" class="frame-group">
+              <div v-else-if="role === 'investor'" class="frame-group">
                 <div class="instance-parent">
                   <div class="group">
-                    <div class="div6">Доходности:</div>
+                    <div class="div6">Доходность:</div>
 
                     <range-minmax-slider
-                      :max="3000"
+                      :max="30000"
                       v-model:min-value="sliderMinDbt"
                       v-model:max-value="sliderMaxDbt"
                       inputLabel="ton"
@@ -445,19 +445,19 @@
                     ></range-minmax-slider>
                   </div>
                   <div class="group">
-                    <div class="div6">Количеству инвесторов:</div>
+                    <div class="div6">Количество инвесторов:</div>
                     <range-minmax-slider
                       :max="3650"
                       v-model:min-value="sliderMinDepositor"
                       v-model:max-value="sliderMaxDepositor"
-                      inputLabel="depositor"
+                      inputLabel="investor"
                       desktop
                     ></range-minmax-slider>
                   </div>
                 </div>
                 <div class="instance-parent">
                   <div class="parent1">
-                    <div class="div6">Дневной ставки:</div>
+                    <div class="div6">Дневная ставка:</div>
                     <range-minmax-slider
                       :max="30"
                       v-model:min-value="sliderMinRange"
@@ -467,7 +467,7 @@
                     ></range-minmax-slider>
                   </div>
                   <div class="parent1">
-                    <div class="div6">Беспроцентному периоду:</div>
+                    <div class="div6">Беспроцентный период:</div>
                     <range-minmax-slider
                       :max="30"
                       v-model:min-value="sliderMinCost"
@@ -481,18 +481,18 @@
               <div v-else-if="role === 'collector'" class="frame-group">
                 <div class="instance-parent">
                   <div class="group">
-                    <div class="div6">Текущему долгу:</div>
+                    <div class="div6">Текущий долг:</div>
 
                     <range-minmax-slider
-                      :max="3000"
-                      v-model:min-value="sliderMinDbt"
-                      v-model:max-value="sliderMaxDbt"
+                      :max="10000"
+                      v-model:min-value="sliderMinDuty"
+                      v-model:max-value="sliderMaxDuty"
                       inputLabel="ton"
                       desktop
                     ></range-minmax-slider>
                   </div>
                   <div class="group">
-                    <div class="div6">Просроченных дней:</div>
+                    <div class="div6">Просроченные дни:</div>
                     <range-minmax-slider
                       :max="365"
                       v-model:min-value="sliderMinOverdue"
@@ -504,7 +504,7 @@
                 </div>
                 <div class="instance-parent">
                   <div class="parent1">
-                    <div class="div6">Дневной ставки:</div>
+                    <div class="div6">Дневная ставка:</div>
                     <range-minmax-slider
                       :max="30"
                       v-model:min-value="sliderMinRange"
@@ -516,7 +516,7 @@
                   <div class="parent1">
                     <div class="div6">Стоимость займа:</div>
                     <range-minmax-slider
-                      :max="3000"
+                      :max="30000"
                       v-model:min-value="sliderMinDbt"
                       v-model:max-value="sliderMaxDbt"
                       inputLabel="ton"
@@ -535,7 +535,7 @@
                     <div class="div6">Стоимости займа:</div>
 
                     <range-minmax-slider
-                      :max="3000"
+                      :max="30000"
                       v-model:min-value="sliderMinDbt"
                       v-model:max-value="sliderMaxDbt"
                       inputLabel="ton"
@@ -568,7 +568,7 @@
                       :max="3650"
                       v-model:min-value="sliderMinDepositor"
                       v-model:max-value="sliderMaxDepositor"
-                      inputLabel="depositor"
+                      inputLabel="investor"
                       desktop
                     ></range-minmax-slider>
                   </div>
@@ -662,10 +662,10 @@
             </div>
           </div>
           <div class="buttonnext-parent">
-            <div class="buttonnext" @click="close">
+            <div class="buttonnext" @click="save">
               <b class="ton-kepeer">Сохранить и выйти</b>
             </div>
-            <div class="div18">Сбросить параметры</div>
+            <div class="div18" @click="reset">Сбросить параметры</div>
           </div>
         </div>
       </div>
@@ -673,15 +673,41 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import chipsBar from "../ui-kit/chips-bar.vue";
 import inputData from "../fields/input-data.vue";
-
+import { useFilterDataStore } from "@/stores/filter";
 import catosSelect from "../fields/catos-select.vue";
 import rangeMinmaxSlider from "../ui-kit/range-minmax-slider.vue";
+import { roleStorage } from "@/utils/localStorage"
+
+const filterDataStore = useFilterDataStore();
+
+onMounted(() => {
+  if(role.value !== 'collector' && Object.values(filterDataStore.poolsFilter).every((v) => v === 0)) {
+    filterDataStore.poolsFilter.maxDuration = sliderMaxOverdue.value
+    filterDataStore.poolsFilter.minDuration = sliderMinOverdue.value
+    filterDataStore.poolsFilter.maxFreePeriod = sliderMaxCost.value
+    filterDataStore.poolsFilter.minFreePeriod = sliderMinCost.value
+    filterDataStore.poolsFilter.maxOverdueMillipercent = sliderMaxReturn.value
+    filterDataStore.poolsFilter.minOverdueMillipercent = sliderMinReturn.value
+    filterDataStore.poolsFilter.maxMillipercent = sliderMaxRange.value
+    filterDataStore.poolsFilter.minMillipercent = sliderMinRange.value
+  }
+  else if (role.value === 'collector' && Object.values(filterDataStore.poolsFilter).every((v) => v === 0)){
+    filterDataStore.poolsFilter.maxDuty = sliderMaxDuty.value
+    filterDataStore.poolsFilter.minDuty = sliderMinDuty.value
+    filterDataStore.poolsFilter.minExpired = sliderMinOverdue.value
+    filterDataStore.poolsFilter.maxExpired = sliderMaxOverdue.value
+    filterDataStore.poolsFilter.maxPrice = sliderMaxDbt.value
+    filterDataStore.poolsFilter.minPrice = sliderMinDbt.value
+    filterDataStore.poolsFilter.maxMillipercent = sliderMaxRange.value
+  filterDataStore.poolsFilter.minMillipercent = sliderMinRange.value
+  }
+})
 
 const role = computed(() => {
-  return JSON.parse(localStorage.getItem("role") || "{}");
+  return roleStorage.get()
 });
 const manage = computed(() => {
   return JSON.parse(localStorage.getItem("manage") || "{}");
@@ -700,26 +726,58 @@ const emtis = defineEmits(["close"]);
 const close = () => {
   emtis("close");
 };
-const sliderMinOverdue = ref(1);
-const sliderMaxOverdue = ref(365);
-const sliderMinDbt = ref(0);
-const sliderMaxDbt = ref(3000);
-const sliderMinRange = ref(
-  role.value === "depositor" ||
-    role.value === "collector" ||
-    manage.value === "pulls"
-    ? 1
-    : 0.1
-);
-const sliderMaxRange = ref(30);
-const sliderMinCost = ref(0.1);
-const sliderMaxCost = ref(30);
-const sliderMinReturn = ref(0.1);
-const sliderMaxReturn = ref(30);
+
+const save = () => {
+  if(role.value !== 'collector') {
+    filterDataStore.poolsFilter.maxDuration = sliderMaxOverdue.value
+    filterDataStore.poolsFilter.minDuration = sliderMinOverdue.value
+    filterDataStore.poolsFilter.maxFreePeriod = sliderMaxCost.value
+    filterDataStore.poolsFilter.minFreePeriod = sliderMinCost.value
+    filterDataStore.poolsFilter.maxPrice = sliderMaxDbt.value
+    filterDataStore.poolsFilter.minPrice = sliderMinDbt.value
+    filterDataStore.poolsFilter.maxOverdueMillipercent = sliderMaxReturn.value 
+    filterDataStore.poolsFilter.minOverdueMillipercent = sliderMinReturn.value
+    filterDataStore.poolsFilter.maxMillipercent = sliderMaxRange.value
+    filterDataStore.poolsFilter.minMillipercent = sliderMinRange.value
+  }
+
+  else {
+    filterDataStore.poolsFilter.maxDuty = sliderMaxDuty.value
+    filterDataStore.poolsFilter.minDuty = sliderMinDuty.value
+    filterDataStore.poolsFilter.minExpired = sliderMinOverdue.value
+    filterDataStore.poolsFilter.maxExpired = sliderMaxOverdue.value
+    filterDataStore.poolsFilter.maxPrice = sliderMaxDbt.value
+    filterDataStore.poolsFilter.minPrice = sliderMinDbt.value
+    filterDataStore.poolsFilter.maxMillipercent = sliderMaxRange.value
+  filterDataStore.poolsFilter.minMillipercent = sliderMinRange.value
+  }
+  filterDataStore.isActiveFilter = true
+  close()
+}
+
+const reset = () => {
+  filterDataStore.isActiveFilter = false
+  filterDataStore.reset()
+  close()
+}
+
+const sliderMinOverdue = ref(filterDataStore.poolsFilter.minDuration ? filterDataStore.poolsFilter.minDuration : 1);
+const sliderMaxOverdue = ref(filterDataStore.poolsFilter.maxDuration ? filterDataStore.poolsFilter.maxDuration : 365);
+const sliderMinDbt = ref(filterDataStore.poolsFilter.minPrice ? filterDataStore.poolsFilter.minPrice : 0);
+const sliderMinDuty = ref(filterDataStore.poolsFilter.minDuty ? filterDataStore.poolsFilter.minDuty : 0)
+const sliderMaxDbt = ref(filterDataStore.poolsFilter.maxPrice ? filterDataStore.poolsFilter.maxPrice : 30000);
+const sliderMaxDuty = ref(filterDataStore.poolsFilter.maxDuty ? filterDataStore.poolsFilter.maxDuty : 10000)
+const sliderMinRange = ref(filterDataStore.poolsFilter.minMillipercent ? filterDataStore.poolsFilter.minMillipercent  : 0);
+const sliderMaxRange = ref(filterDataStore.poolsFilter.maxMillipercent ? filterDataStore.poolsFilter.maxMillipercent : 30);
+const sliderMinCost = ref(filterDataStore.poolsFilter.minFreePeriod ? filterDataStore.poolsFilter.minFreePeriod : 0);
+const sliderMaxCost = ref(filterDataStore.poolsFilter.maxFreePeriod ? filterDataStore.poolsFilter.maxFreePeriod : 30);
+const sliderMinReturn = ref(filterDataStore.poolsFilter.minOverdueMillipercent ? filterDataStore.poolsFilter.minOverdueMillipercent  : 0);
+const sliderMaxReturn = ref(filterDataStore.poolsFilter.minOverdueMillipercent ? filterDataStore.poolsFilter.maxOverdueMillipercent  : 30 );
 const sliderMinNotReturn = ref(0.1);
 const sliderMaxNotReturn = ref(100);
 const sliderMinDepositor = ref(1);
 const sliderMaxDepositor = ref(3650);
+
 </script>
 <style scoped lang="scss">
 .modal-wrapper {
