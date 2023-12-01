@@ -35,9 +35,10 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
       })
 
       const age = computed(() => {
-        if(loan?.borrower?.passport?.birthdate) {
+        if(loan?.borrower?.passport?.birthdate || loan?.borrower?.birthdate) {
+          const birthdate = loan?.borrower?.passport?.birthdate ? loan?.borrower?.passport?.birthdate : loan?.borrower?.birthdate
           const nowYear = new Date().getFullYear()  
-          const yearBirth = loan?.borrower?.passport?.birthdate.split('-')[0]
+          const yearBirth = birthdate.split('-')[0]
           return nowYear - Number(yearBirth)
         }
         else return ''

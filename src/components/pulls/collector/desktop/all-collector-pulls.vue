@@ -117,7 +117,7 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Пролонгирован:</div>
-                        <div class="ton">10.02.2024, 19.20</div>
+                        <div class="ton"></div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -144,35 +144,35 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div23">Имя:</div>
-                        <div class="ton">Иван ******</div>
+                        <div class="ton">{{ loan?.borrower.name  }} ******</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div23">Проживает в:</div>
-                        <div class="ton">Москве</div>
+                        <div class="ton">{{ loan?.borrower.region }}</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div23">Возраст:</div>
-                        <div class="ton">37 лет</div>
+                        <div class="ton">{{ age }} лет</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div23">Годовой доход:</div>
-                        <div class="ton">2 700 000 руб</div>
+                        <div class="ton">{{ loan?.borrower?.userinfo?.revenue ? loan?.borrower?.userinfo?.revenue : '' }} руб</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div23">Сфера деятельности:</div>
-                        <div class="ton">Програмист</div>
+                        <div class="ton">{{ loan?.borrower?.userinfo?.employment_type ? loan?.borrower?.userinfo?.employment_type : ''}}</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -273,7 +273,7 @@ const close = () => {
 };
 const isCreditorInfo = ref(false);
 
-const { duty, overdue, localeTime } = useComputedLoanInfo(loan)
+const { duty, overdue, localeTime, age } = useComputedLoanInfo(loan)
 </script>
 <style scoped>
 .div {

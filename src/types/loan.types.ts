@@ -28,7 +28,24 @@ export type LoansResponse = {
         end: string,
         status: LoansStatusString,
         buyer_id: number,
-        price: number
+        price: number,
+        "borrower": {
+          "name": string,
+          "surname": string,
+          "region": string,
+          "neighborhood": string,
+          "birthdate": string,
+          "userinfo": {
+            "id": number,
+            "employment_type": string,
+            "revenue": number,
+            "education": string,
+            "relationship": string,
+            "children": number,
+            "criminal": string,
+            "survey": string
+          }
+        },
 }
 
 export type LoansRequestResponse = {

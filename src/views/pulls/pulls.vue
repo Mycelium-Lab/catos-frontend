@@ -54,7 +54,7 @@ if (roleStorage.get() === "collector") {
   const loanListStore = useLoanListStore();
   loans = computed<LoansResponse[] | LoansBoughtResponse[]>(() =>
     variant === "marketplace"
-      ? loanListStore.marketPlaceLoans
+      ? loanListStore.loans
       : loanListStore.collectorLoans
   );
 }

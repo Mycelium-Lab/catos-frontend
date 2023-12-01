@@ -165,6 +165,7 @@
                         <div class="div23">Имя:</div>
                         <div class="ton">
                           {{ loan?.borrower?.passport?.name ? loan?.borrower?.passport?.name : ''}} 
+                          {{ loan?.borrower?.passport?.surname ? loan?.borrower?.passport?.surname : ''}} 
                         </div>
                       </div>
                       <div class="col-titles-bg" />
