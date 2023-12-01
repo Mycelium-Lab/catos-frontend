@@ -10,9 +10,12 @@
     </template>
     <template v-slot:first-row>
       <div class="field">
-        <div class="roi">Доступно для изьятия:</div>
-        <div class="div9">
+        <div class="roi">Доступно для изъятия:</div>
+        <!--<div class="div9">
           {{ input ? Number(input).toFixed(3) : "0.000" }} TON
+        </div>-->
+        <div class="div9">
+          {{availableLiquidity}} TON
         </div>
       </div>
 
@@ -141,6 +144,7 @@ import { withdrawFromPool } from "@/api/pools.api";
 
 const { poolId } = defineProps({
   poolId: { type: Number, required: true },
+  availableLiquidity: { type: Number, required: true },
 });
 
 const amount = ref("");

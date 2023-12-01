@@ -13,7 +13,7 @@
         >
           <div class="wrapper">
             <div class="div120">
-              {{ role === "collector" ? "Задолжность №" : "Пулл №" }}
+              {{ role === "collector" ? "Задолженность №" : "Пулл №" }}
               {{ role === "collector" ? loan?.id : pool?.id }}
             </div>
           </div>
@@ -569,6 +569,7 @@
         }
       "
       :poolId="pool?.id ? pool?.id : 0"
+      :availableLiquidity ="pool?.available_liquidity ? pool?.available_liquidity : 0"
     ></withdraw>
     <all-depositor-pulls
       v-if="
