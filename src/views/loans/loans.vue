@@ -47,9 +47,20 @@
             >
           </loans-table>
        </li> 
+       <li
+            v-for="loan in actualLoans"
+            :key="loan.id"
+        >
+            <loans-table
+                :key="variant"
+                :loan="loan"
+                :variant ="loan.status"
+            >
+          </loans-table>
+       </li> 
       </template>
-      <template v-else-if="(role === 'creditor' && variant !== 'bids') || (role === 'borrower' && variant === 'active')">
         <li
+            v-else-if="(role === 'creditor' && variant !== 'bids')"
             v-for="loan in actualLoans"
             :key="loan.id"
         >
@@ -60,7 +71,6 @@
             >
           </loans-table>
        </li> 
-      </template>
       <template v-else>
         <li
             v-for="loan in actualLoans"

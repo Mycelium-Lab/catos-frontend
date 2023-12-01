@@ -32,11 +32,11 @@
                       <div class="div2"><b>Цена:</b></div>
                       <div class="div3"><b>{{loan?.price}} TON</b></div>
                     </div>
-                    <div class="col-titles-bg" />
+                    <!--<div class="col-titles-bg" />
                     <div class="field">
                       <div class="div2">Дата смены статуса:</div>
                       <div class="div3"></div>
-                    </div>
+                    </div>-->
                     <div class="col-titles-bg" />
                   </div>
                   <div class="component">
@@ -65,18 +65,7 @@
                       <div class="div2">Вернуть не позднее:</div>
                       <div class="div3">{{ endTerm }}</div>
                     </div>
-                    <div class="col-titles-bg" />
                   </div>
-                </div>
-              </div>
-              <div class="frame-wrapper">
-                <div class="notification">
-                  <img
-                    class="percent-icon"
-                    alt=""
-                    src="@/assets/images/percent.svg"
-                  />
-                  <div class="div12">Начисленные проценты TON</div>
                 </div>
               </div>
               <div class="frame-parent2">

@@ -42,7 +42,9 @@
                 <div class="div1">Дата получения займа:</div>
               </div>
               <div class="container">
-                <div class="div2"></div>
+                <div class="div2">
+                  {{ startTerm }}
+                </div>
               </div>
             </div>
             <div class="frame-child" />
@@ -52,7 +54,6 @@
               </div>
               <div class="ton">
                 до {{ freePeriodDate }}
-                
               </div>
             </div>
             <div class="frame-child" />

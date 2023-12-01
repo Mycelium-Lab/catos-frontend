@@ -13,8 +13,8 @@
                   src="@/assets/images/pie-chart.svg"
                 />
                 <div class="ton-parent">
-                  <div class="ton">TON</div>
-                  <div class="div1">Доход</div>
+                  <div class="div1">Займ на </div>
+                  <div class="ton">{{ loan?.amount }} TON</div>
                 </div>
               </div>
               <div class="frame-child" />

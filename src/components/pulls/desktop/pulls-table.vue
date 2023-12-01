@@ -1313,7 +1313,7 @@ li {
     height: 32.5em;
   }
   &_borrower-all {
-    height: 36em;
+    height: 32em;
   }
   &_borrower-my {
     height: 38em;

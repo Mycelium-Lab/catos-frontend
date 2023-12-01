@@ -493,7 +493,7 @@
     :state="activeState"
     :status="status"
     :loan="loan"
-    :poolId="poolByLoan.id"
+    :poolId="poolByLoan?.id ? poolByLoan?.id : 0"
     @close="
       () => {
         isActive = false;

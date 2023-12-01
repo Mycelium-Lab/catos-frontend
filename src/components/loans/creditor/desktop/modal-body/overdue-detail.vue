@@ -69,7 +69,7 @@
                 <div class="component">
                   <div class="field">
                     <div class="div3">Сумма к возвращению:</div>
-                    <div class="div4">13 512 TON</div>
+                    <div class="div4"> TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
