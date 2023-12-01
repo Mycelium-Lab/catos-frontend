@@ -183,11 +183,11 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
+import { roleStorage } from "@/utils/localStorage";
+
 const route = useRoute();
 
-const role = ref(
-  localStorage.getItem ? JSON.parse(localStorage.getItem("role")!) : ""
-);
+const role = ref(roleStorage.get());
 
 const currentPage = computed(() => {
   return route.name;
