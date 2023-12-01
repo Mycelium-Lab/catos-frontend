@@ -26,7 +26,7 @@
                       src="@/assets/images/pie-chart.svg"
                     />
                     <div class="ton-parent">
-                      <div class="ton">Управление ликвидностью пулл #{{ pool.id }}</div>
+                      <div class="ton">Управление ликвидностью пулл #{{ pool?.id }}</div>
                       <div class="div2">Доход</div>
                     </div>
                   </div>
@@ -58,8 +58,8 @@
                 </div>
                 <div class="field-parent">
                   <div class="field">
-                    <div class="div3">Доступно для изьятия</div>
-                    <div class="ton1"> TON</div>
+                    <div class="div3">Доступно для изъятия:</div>
+                    <div class="ton1">{{ pool?.available_liquidity }} TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
@@ -97,7 +97,7 @@
             <div class="des-and-bbn">
               <button class="button" @click="toWithdraw">
                 <div class="buttons-tabs">
-                  <div class="text">Изьять ликвидность</div>
+                  <div class="text">Изъять ликвидность</div>
                 </div>
               </button>
               <button class="button" @click="toAdd">

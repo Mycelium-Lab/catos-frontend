@@ -22,7 +22,7 @@
             <template v-slot:subtitle> 
             <p class="status-subtitle"> {{ subtitleSuccess }} <a class="status-subtitle-link"></a> </p>
             <p class="status-subtitle"> 
-                <a class="status-subtitle-link">Просмотр транзакции в Tonscan</a>
+                <a class="status-subtitle-link" :href="hash" target="_blank">Просмотр транзакции в Tonscan</a>
             </p>
             </template>
             <template v-slot:image>
@@ -51,23 +51,45 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch, onUnmounted } from "vue";
 import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
 import loader from "@/components/base/loader.vue"
 import { transaction } from "@/api/transaction"
 
 onMounted(async() => {
+  refreshTransaction()
+})
+
+onUnmounted(() => {
+  // @ts-ignore
+  clearInterval(window.refreshTransactionId)
+})
+
+const refreshTransaction = () => {
+  // @ts-ignore
+  if(window.refreshTransactionId) {
+      // @ts-ignore
+      clearInterval(window.refreshTransactionId)
+     }
+
+      // @ts-ignore
+    window.refreshTransactionId = setInterval(async function () {
     await transaction(uid)
     .then((res) => {
-      console.log(res.data)
       const response = res.data
       status.value = response.status
+      hash.value = response.hash
+      if(status.value !== 'pending') {
+          // @ts-ignore
+        clearInterval(window.refreshTransactionId)
+      }
     })
     .catch(e => {
       console.error(e)
       //faildCause.value = e
     })
-})
+  }, 5000)
+}
 
 const {uid} = defineProps({
   uid: {type: String, required: true}, 
@@ -79,9 +101,10 @@ const {uid} = defineProps({
 const emits = defineEmits(['close'])
 
 const status = ref('')
+const hash = ref('')
 const isProgress = ref(true);
-const isSuccess = ref(status.value === 'success' ? true : false);
-const isFail = ref(status.value === 'fail' ? true : false)
+const isSuccess = ref(false);
+const isFail = ref(false)
 
 const faildCause = ref('')
 
@@ -89,6 +112,18 @@ const handleClose = () => {
   isProgress.value = false
   emits('close')
 }
+
+watch(status, (newValue) => {
+  status.value = newValue
+  if(newValue === 'approved') {
+    isProgress.value = false
+    isSuccess.value = true
+  }
+  else if(newValue === 'failed') {
+    isProgress.value = false
+    isFail.value = true
+  }
+})
 </script>
 
 <style scoped lang="scss">

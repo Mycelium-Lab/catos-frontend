@@ -4,7 +4,7 @@
       <div class="div">
         <div class="header-pop-up">
           <div class="page-title-parent">
-            <div class="page-title">Одобрение заявки</div>
+            <div class="page-title">Одобрение займа</div>
             <img
               class="close-icon-action close-icon"
               alt=""
@@ -75,7 +75,7 @@
   :uid="uid"
   titlePending="Одобрение займа"
   subtitlePending="Пожалуйста, подождите пока завершится процесс одобрения займа"
-  subtitleSuccess="Займ успешно ободрен"
+  subtitleSuccess="Займ успешно одобрен"
   titleFaild="Произошла ошибка при одобрении займа"
   ></transaction-desktop>
   </div>

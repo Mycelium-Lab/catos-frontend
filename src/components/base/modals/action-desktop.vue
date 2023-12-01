@@ -27,24 +27,6 @@
             </template>
             <template v-slot:action> Ок </template>
       </status-modal-desktop>
-      <status-modal-desktop
-        v-if="isFail"
-        @result="() => (isFail = false)"
-        @close="handleClose"
-      >
-        <template v-slot:header> Транзакция №591561351 </template>
-        <template v-slot:title> {{ title }} </template>
-        <template v-slot:subtitle> 
-          <p class="status-subtitle">Указание причины: <br>Причина 01</p>
-          <p class="status-subtitle"> 
-              <a class="status-subtitle-link">Просмотр транзакции в Tonscan</a>
-          </p>
-          </template>
-          <template v-slot:image>
-          <img src="@/assets/images/success-transaction.svg" />
-          </template>
-          <template v-slot:action> Ок </template>
-    </status-modal-desktop>
     <status-modal-desktop
       v-if="isFail"
       @result="() => (isFail = false)"
@@ -53,10 +35,7 @@
       <template v-slot:header> {{ header }} </template>
       <template v-slot:title> {{ title }} </template>
       <template v-slot:subtitle> 
-        <p class="status-subtitle">Указание причины: <br>Причина 01</p>
-        <p class="status-subtitle"> 
-          <a class="status-subtitle-link">Повторить транзакциию</a>
-        </p>
+        <p class="status-subtitle"><span :style="{display: 'flex', justifyContent: 'center'}">Указание причины:</span><span :style="{display: 'flex', justifyContent: 'center'}">Причина 01</span></p>
       </template>
       <template v-slot:image>
         <img src="@/assets/images/fail-transaction.svg" />

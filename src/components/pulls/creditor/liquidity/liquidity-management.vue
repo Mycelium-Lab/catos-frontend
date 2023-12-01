@@ -33,7 +33,7 @@
             <div class="pull-stats-child"></div>
             <div class="frame-group">
               <div class="frame">
-                <div class="roi">Доступно для изьятия</div>
+                <div class="roi">Доступно для изъятия:</div>
               </div>
               <div class="ton-wrapper">
                 <div class="ton">257 324 TON</div>

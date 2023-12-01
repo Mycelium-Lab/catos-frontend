@@ -47,13 +47,23 @@ const useComputedLoanRequestInfo = (loanRequest: any, freePeriod?: any) => {
           const dayInterestRate = loanRequest?.millipercent ? loanRequest?.millipercent / 100 : 0
           return `30 дней = ${Number(dayInterestRate * (30 - freePeriod)).toFixed(2)}%`
         })
-  
+        
+        const statusChangedTerm = computed(() => {
+
+          const created = new Date(loanRequest?.status_changed)
+          return `${created.getDate()}.${created.getMonth()+1}.${created.getFullYear()}`
+        })
+        const createdTerm = computed(() => {
+          const created = new Date(loanRequest?.created_at)
+          return `${created.getDate()}.${created.getMonth()+1}.${created.getFullYear()}`
+        })
     return {
       interestRate,
       interestRateString,
       duration,
       monthInterestRateString,
-      durationValue
+      durationValue, statusChangedTerm,
+      createdTerm
     }
 }
 

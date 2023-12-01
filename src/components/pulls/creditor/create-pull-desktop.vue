@@ -111,6 +111,22 @@
     subtitleSuccess="Вы успешно создали пулл"
     titleFaild="Произошла ошибка при создании пулла"
     ></transaction-desktop>
+
+    <status-modal-desktop
+      v-if="isFail"
+      @result="() => (isFail = false)"
+      @close="() => (isFail = false)"
+    >
+      <template v-slot:header> Создание пулла </template>
+      <template v-slot:title> Произошла ошибка при создании пулла </template>
+      <template v-slot:subtitle> 
+        <p class="status-subtitle"><span :style="{display: 'flex', justifyContent: 'center'}">Указание причины:</span><span :style="{display: 'flex', justifyContent: 'center'}">{{  i18n.global.t(`errors.401`)}}</span></p>
+      </template>
+      <template v-slot:image>
+        <img src="@/assets/images/fail-transaction.svg" />
+      </template>
+      <template v-slot:action> Ок </template>
+    </status-modal-desktop>
   </div>
 </template>
 <script setup lang="ts">
@@ -118,7 +134,11 @@ import { ref } from "vue";
 // import catosSelect from "@/components/fields/catos-select.vue";
 import rangeSlider from "@/components/ui-kit/range-slider.vue";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
+import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
 import { createPool } from "@/api/pools.api";
+import { authStorage, profileStorage } from "@/utils/localStorage";
+import { useLoginApi } from "@/composables/useLoginApi";
+import { i18n } from "@/i18n";
 
 const isTransaction = ref(false)
 
@@ -130,27 +150,42 @@ const freePeriod = ref(0);
 const duration = ref(0);
 const minInvestAmount = ref(0)
 const uid = ref()
+const isFail = ref(false)
 
 const close = () => {
   emtis("close");
 };
 const toSeconds = (days: number) => days * 24 * 60 * 60;
 const create = async () => {
-  await createPool({
-    millipercent: percent.value * 100,
-    overdue_millipercent: percent.value * 100, // TODO: добавить поля для ввода остальных данных
-    max_loan_amount: 1000,
-    min_invest_amount: minInvestAmount.value,
-    max_duration: toSeconds(duration.value),
-    free_period: toSeconds(freePeriod.value),
-  }).then(res => {
-    isTransaction.value = true
-    uid.value = res.data
-   // transactionStatus.value = 'success'
-  }).catch(e => {
-    //transactionStatus.value = 'fail'
-   // console.error(e)
-  })
+
+  const token = authStorage.get()?.access
+
+    if(token) {
+      await useLoginApi().handleVerify(token)
+
+      const hasVerified = profileStorage.get()?.hasVerified
+
+      if(hasVerified) {
+      await createPool({
+      millipercent: percent.value * 100,
+      overdue_millipercent: percent.value * 100, // TODO: добавить поля для ввода остальных данных
+      max_loan_amount: 1000,
+      min_invest_amount: minInvestAmount.value,
+      max_duration: toSeconds(duration.value),
+      free_period: toSeconds(freePeriod.value),
+    }).then(res => {
+      isTransaction.value = true
+      uid.value = res.data
+    // transactionStatus.value = 'success'
+    }).catch(e => {
+      //transactionStatus.value = 'fail'
+    // console.error(e)
+    })
+  }
+  else{
+    isFail.value = true
+  }
+  }
 };
 </script>
 <style scoped lang="scss">

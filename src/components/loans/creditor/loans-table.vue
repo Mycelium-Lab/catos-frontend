@@ -261,7 +261,7 @@
             </div>
             <div class="ton">{{
              variant === "marketplace" ? duty 
-            : !loanRequest?.approved_amount ? 0
+            : loan?.amount ? loan?.amount
             :loanRequest?.approved_amount }} TON</div>
           </div>
           <div class="col-titles-bg" />
@@ -269,7 +269,7 @@
         <div v-if="role === 'creditor'" class="field-parent">
           <div class="field">
             <div class="div2">Дата смены статуса:</div>
-            <div class="ton"></div>
+          <div class="ton">{{ loanRequest ? statusChangedTerm : ''}}</div>
           </div>
           <div class="col-titles-bg" />
         </div>
@@ -420,7 +420,7 @@
               }}
             </div>
           </button>
-          <button class="buttons-tabs2" @click="toDetail">
+          <button v-if="role !== 'borrower' || !loanRequest" class="buttons-tabs2" @click="toDetail">
             <div class="text">Подробнее</div>
           </button>
         </div>
@@ -595,7 +595,7 @@ const restDays = ref()
 const { poolItem } = usePoolListStore();
 
 const {duty, isOverdue, interestRate, duration, startTerm, endTerm, interestRateString} = useComputedLoanInfo(loan)
-const {interestRate: interestRateLoanRequest, interestRateString: interestRateStringLoanRequest, duration: durationLoanRequest} = useComputedLoanRequestInfo(loanRequest)
+const {interestRate: interestRateLoanRequest, interestRateString: interestRateStringLoanRequest, duration: durationLoanRequest, statusChangedTerm} = useComputedLoanRequestInfo(loanRequest)
 
 
 const status = computed(() => {

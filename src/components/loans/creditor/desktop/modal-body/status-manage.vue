@@ -83,7 +83,7 @@
                   <div class="component">
                     <div class="field">
                       <div class="div7">Дата смены статуса:</div>
-                      <div class="div4">21.12.2022</div>
+                      <div class="div4"></div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
@@ -118,7 +118,7 @@
                   <div class="component">
                     <div class="field">
                       <div class="div7">Сумма к возвращению:</div>
-                      <div class="div4">13 512 TON</div>
+                      <div class="div4"> TON</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>

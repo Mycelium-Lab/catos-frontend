@@ -58,7 +58,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div3">Дата смены статуса:</div>
-              <div class="div4"></div>
+              <div class="div4">{{ statusChangedTerm }}</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -79,7 +79,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div3">Дата создания:</div>
-              <div class="div4"></div>
+              <div class="div4">{{ createdTerm }}</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -170,6 +170,7 @@
 </template>
 <script setup lang="ts">
 import { PropType } from "vue";
+import { useComputedLoanRequestInfo } from "@/composables/infoCalculation/useComputedLoanRequestInfo"
 import { LoansRequestResponse } from "@/types/loan.types";
 import { i18n } from "@/i18n";
 
@@ -193,6 +194,7 @@ const close = () => {
 const handleChangeStatus = () => {
   emtis("onHandleChangeStatus");
 }
+const {statusChangedTerm, createdTerm} = useComputedLoanRequestInfo(loanRequest)
 </script>
 <style scoped lang="scss">
 .modal-wrapper {

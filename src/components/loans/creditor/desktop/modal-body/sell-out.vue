@@ -58,21 +58,21 @@
                   <div class="component">
                     <div class="field">
                       <div class="div3">Начисленные проценты:</div>
-                      <div class="div4">512 TON</div>
+                      <div class="div4">TON</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
                   <div class="component">
                     <div class="field">
                       <div class="div3">Срок:</div>
-                      <div class="div4">на {{ duration }} дней</div>
+                      <div class="div4">на {{ duration }}</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
                   <div class="component">
                     <div class="field">
                       <div class="div3">Сумма к возвращению:</div>
-                      <div class="div4">13 512 TON</div>
+                      <div class="div4">TON</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>

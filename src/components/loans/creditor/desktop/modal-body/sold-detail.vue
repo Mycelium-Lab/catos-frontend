@@ -76,7 +76,7 @@
                     alt=""
                     src="@/assets/images/percent.svg"
                   />
-                  <div class="div12">Начисленные проценты 12 000 TON</div>
+                  <div class="div12">Начисленные проценты TON</div>
                 </div>
               </div>
               <div class="frame-parent2">

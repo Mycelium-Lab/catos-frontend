@@ -34,7 +34,7 @@
                 <div class="component">
                   <div class="field">
                     <div class="div3">Дата смены статуса:</div>
-                    <div class="div4">21.12.2022</div>
+                    <div class="div4"></div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
