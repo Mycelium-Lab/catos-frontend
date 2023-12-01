@@ -92,35 +92,35 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Тело займа:</div>
-                        <div class="ton">50 000 TON</div>
+                        <div class="ton">{{ loan?.amount }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Накопленный процент:</div>
-                        <div class="ton">10 000 TON</div>
+                        <div class="ton">TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Выплачено по долгу:</div>
-                        <div class="ton">1 000 TON</div>
+                        <div class="ton">{{ loan?.paid_amount }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Одобренный лимит:</div>
-                        <div class="ton">до 40 000 TON</div>
+                        <div class="ton">до {{ poolByLoan?.available_liquidity }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">На срок:</div>
-                        <div class="ton">до 30 дней</div>
+                        <div v-if="poolByLoan?.max_duration" class="ton">до {{ parse(poolByLoan?.max_duration).days }} дней</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -141,14 +141,14 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Пролонгирован:</div>
-                        <div class="ton">10.02.2024, 19.20</div>
+                        <div class="ton"></div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Выкуплен:</div>
-                        <div class="ton">1000 TON</div>
+                        <div class="ton"></div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>

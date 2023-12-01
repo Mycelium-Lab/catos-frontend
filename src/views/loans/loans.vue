@@ -8,7 +8,10 @@
     <h3 v-else-if="!actualLoans.length && role === 'borrower' && variant === 'active' && !actualBorrowerApprovedLoanRequests.length">
       {{ 'Займы пока отсутствуют'}}
     </h3>
-    <h3 v-else-if="!actualLoanRequests.length && role === 'creditor'">
+    <h3 v-else-if="!actualLoanRequests.length && role === 'creditor' && variant === 'bids'">
+      {{ `Заявки пока отсутствуют` }}
+    </h3>
+    <h3 v-else-if="!actualLoans.length && role === 'creditor'">
       {{ `Займы пока отсутствуют` }}
     </h3>
     <ul class="list-desktop">
@@ -32,7 +35,7 @@
           </loans-table>
       </li>
       </template>
-      <template v-if="role === 'borrower' && variant === 'active'">
+      <template v-else-if="role === 'borrower' && variant === 'active'">
         <li
             v-for="loan in actualBorrowerApprovedLoanRequests"
             :key="loan.id"
@@ -45,7 +48,20 @@
           </loans-table>
        </li> 
       </template>
-      <template v-if="(role === 'creditor' && variant !== 'bids') || (role === 'borrower' && variant === 'active')">
+      <template v-else-if="(role === 'creditor' && variant !== 'bids') || (role === 'borrower' && variant === 'active')">
+        <li
+            v-for="loan in actualLoans"
+            :key="loan.id"
+        >
+            <loans-table
+                :key="variant"
+                :loan="loan"
+                :variant ="role === 'creditor' ? variant : loan.status"
+            >
+          </loans-table>
+       </li> 
+      </template>
+      <template v-else>
         <li
             v-for="loan in actualLoans"
             :key="loan.id"

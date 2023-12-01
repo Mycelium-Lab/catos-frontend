@@ -75,7 +75,7 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Накопленный процент:</div>
-                        <div class="ton">10 000 TON</div>
+                        <div class="ton">TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
