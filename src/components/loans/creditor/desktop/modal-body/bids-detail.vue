@@ -55,7 +55,7 @@
           </div>
         </div>
         <div class="frame-div">
-          <div class="field-parent">
+          <div v-if="statusChangedTerm" class="field-parent">
             <div class="field">
               <div class="div3">Дата смены статуса:</div>
               <div class="div4">{{ statusChangedTerm }}</div>
@@ -83,10 +83,6 @@
             </div>
             <div class="col-titles-bg" />
           </div>
-        </div>
-        <div class="notification">
-          <img class="percent-icon" alt="" src="@/assets/images/percent.svg" />
-          <div class="div11">Проценты начисляются с 12 апреля 2023 года</div>
         </div>
         <div class="frame-parent1">
           <div class="parent">

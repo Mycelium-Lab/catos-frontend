@@ -266,10 +266,10 @@
           </div>
           <div class="col-titles-bg" />
         </div>
-        <div v-if="role === 'creditor'" class="field-parent">
+        <div v-if="role === 'creditor' && statusChangedTerm" class="field-parent">
           <div class="field">
             <div class="div2">Дата смены статуса:</div>
-          <div class="ton">{{ loanRequest ? statusChangedTerm : ''}}</div>
+            <div class="ton">{{ loanRequest ? statusChangedTerm : ''}}</div>
           </div>
           <div class="col-titles-bg" />
         </div>

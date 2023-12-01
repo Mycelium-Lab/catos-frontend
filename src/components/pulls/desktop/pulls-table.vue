@@ -403,17 +403,6 @@
                 </div>
               </div>
             </div>
-
-            <div v-else-if="role !== 'creditor'" class="notification6">
-              <img
-                class="percent-icon12"
-                alt=""
-                src="@/assets/images/percent.svg"
-              />
-              <div class="div128_percent div128">
-                Проценты начисляются с 12.12.2023 года
-              </div>
-            </div>
           </div>
           <div class="des-and-bbn6">
             <div class="text-and-button-parent">
@@ -1330,10 +1319,10 @@ li {
     height: 38em;
   }
   &_collector-debt {
-    height: 34.5em;
+    height: 31.5em;
   }
   &_collector-marketplace {
-    height: 33em;
+    height: 30em;
   }
 }
 .header-icon {

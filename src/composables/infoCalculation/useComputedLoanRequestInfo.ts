@@ -49,9 +49,10 @@ const useComputedLoanRequestInfo = (loanRequest: any, freePeriod?: any) => {
         })
         
         const statusChangedTerm = computed(() => {
-
-          const created = new Date(loanRequest?.status_changed)
-          return `${created.getDate()}.${created.getMonth()+1}.${created.getFullYear()}`
+          if(loanRequest?.status_changed) {
+            const created = new Date(loanRequest?.status_changed)
+            return `${created.getDate()}.${created.getMonth ()+1}.${created.getFullYear()}`
+          }
         })
         const createdTerm = computed(() => {
           const created = new Date(loanRequest?.created_at)

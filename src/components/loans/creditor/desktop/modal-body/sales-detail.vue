@@ -85,18 +85,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="frame-wrapper">
-                  <div class="notification">
-                    <img
-                      class="percent-icon"
-                      alt=""
-                      src="@/assets/images/percent.svg"
-                    />
-                    <div class="min-10-ton-container">
-                      Проценты начисляются с 12 апреля 2023 года
-                    </div>
-                  </div>
-                </div>
+
                 <div class="frame-parent5">
                   <div class="parent">
                     <div class="div15">Одобренные ранее:</div>
