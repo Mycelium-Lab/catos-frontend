@@ -431,7 +431,7 @@
                   </div>
                 </div>
               </div>
-              <div v-else-if="role === 'depositor'" class="frame-group">
+              <div v-else-if="role ==='investor'" class="frame-group">
                 <div class="instance-parent">
                   <div class="group">
                     <div class="div6">Доходности:</div>
@@ -676,12 +676,13 @@
 import { ref, computed } from "vue";
 import chipsBar from "../ui-kit/chips-bar.vue";
 import inputData from "../fields/input-data.vue";
+import { roleStorage } from "@/utils/localStorage";
 
 import catosSelect from "../fields/catos-select.vue";
 import rangeMinmaxSlider from "../ui-kit/range-minmax-slider.vue";
 
 const role = computed(() => {
-  return JSON.parse(localStorage.getItem("role") || "{}");
+  return roleStorage.get()
 });
 const manage = computed(() => {
   return JSON.parse(localStorage.getItem("manage") || "{}");
@@ -705,7 +706,7 @@ const sliderMaxOverdue = ref(365);
 const sliderMinDbt = ref(0);
 const sliderMaxDbt = ref(3000);
 const sliderMinRange = ref(
-  role.value === "depositor" ||
+  role.value === "investor" ||
     role.value === "collector" ||
     manage.value === "pulls"
     ? 1

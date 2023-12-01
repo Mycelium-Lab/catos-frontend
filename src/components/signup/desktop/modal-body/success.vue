@@ -59,14 +59,17 @@
 </template>
 <script setup lang="ts">
 import { useRouter } from "vue-router";
+import { roleStorage } from "@/utils/localStorage";
+
 const router = useRouter();
+
 const toPulls = () => {
-  const role = JSON.parse(localStorage.getItem("role")!);
+  const role = roleStorage.get();
   let pulls = "";
-  console.log(role);
+
   if (role === "borrower") {
     pulls = "pulls-borrower";
-  } else if (role === "depositor") {
+  } else if (role === "investor") {
     pulls = "pulls-depositor";
   } else if (role === "creditor") {
     pulls = "pulls";

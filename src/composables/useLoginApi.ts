@@ -51,7 +51,6 @@ export const useLoginApi = () => {
     }
    return verify({token})
    .then(res => {
-    localStorage.setItem('role', JSON.stringify(res.data.role))
     setRole(res.data.role)
     setProfile({
       email: res.data?.email ? res.data?.email : '', 

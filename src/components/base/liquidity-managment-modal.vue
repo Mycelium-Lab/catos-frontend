@@ -57,6 +57,7 @@
 </template>
 <script setup lang="ts">
 import { computed } from "vue";
+import { roleStorage } from "@/utils/localStorage";
 const emtis = defineEmits(["close"]);
 
 const { variant } = defineProps({
@@ -64,7 +65,7 @@ const { variant } = defineProps({
 });
 
 const role = computed(() => {
-  return JSON.parse(localStorage.getItem("role")!);
+  return roleStorage.get();
 });
 
 const close = () => {
