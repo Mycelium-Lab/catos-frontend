@@ -142,8 +142,6 @@ const { pool } = defineProps({
   pool: {
     type: Object as PropType<Pool>,
   },
-  freePeriod: {type: Number, required: true},
-  durationParsed: {type: String}
 });
 
 const emits = defineEmits(["close", "get-loan", "invest"]);

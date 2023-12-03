@@ -5,7 +5,7 @@
         <div class="parent">
           <div class="div">Кредитор:</div>
           <div class="group" @click="() => (isCreditorInfo = true)">
-            <a class="div1">Деньги до зарплаты</a>
+            <a class="div1">{{ pool?.organization }}</a>
             <img
               class="radiobutton-icon"
               alt=""
@@ -146,6 +146,7 @@
     </div>
   </div>
   <creditor-info
+    :pool="pool"
     v-if="isCreditorInfo"
     @close="() => (isCreditorInfo = false)"
   ></creditor-info>
