@@ -52,6 +52,7 @@
         :key="curentWindow"
       > 
       </pools>
+      <pagination></pagination>
     </template>
   </default-desktop>
 </template>
@@ -62,6 +63,7 @@ import { useRouter } from "vue-router";
 import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
 import pools from "./pulls.vue"
+import pagination from "@/components/ui-kit/pagination.vue"
 
 import { useDevice } from "@/compossables/useDevice";
 

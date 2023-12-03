@@ -25,6 +25,7 @@
     "qr-code-styling": "^1.6.0-rc.1",
     "tinyduration": "^3.3.0",
     "vue": "^3.3.2",
+    "vue-awesome-paginate": "^1.1.46",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.2.0"
   },

@@ -8,8 +8,11 @@ export type LiquidityPayload = {
   amount: number;
 }; 
 
-export const listPools = () => {
-  return baseApiClient.get<Pool[]>(POOL_END_POINT);
+export const listPools = (offset: number) => {
+  return baseApiClient.get<Pool[]>(`${POOL_END_POINT}?limit=10&offset=${offset}`);
+};
+export const listPoolsHundred = () => {
+  return baseApiClient.get<Pool[]>(`${POOL_END_POINT}?limit=100&offset=0`);
 };
 export const createPool = (payload: CreatePoolData) => {
   return baseApiClient.post(POOL_END_POINT, payload);
