@@ -90,54 +90,16 @@
                   <div class="parent">
                     <div class="div15">Одобренные ранее:</div>
                     <div class="dividing" />
-                    <div class="frame-wrapper2">
+                    <div v-for="v in previouslyApproved" :key="v.id" class="frame-wrapper2">
                       <div class="frame-wrapper3">
                         <div class="frame-wrapper1">
                           <div class="ton-wrapper">
                             <div class="ton3">
                               <span>Пулл </span>
-                              <span class="span5">#12345</span>
-                              <span>, срок 30 дней, сумма 10 000 TON </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="frame-wrapper2">
-                      <div class="frame-wrapper3">
-                        <div class="frame-wrapper1">
-                          <div class="ton-wrapper">
-                            <div class="ton3">
-                              <span>Пулл </span>
-                              <span class="span5">#12344</span>
-                              <span>, срок 14 дней, сумма 3 000 TON </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="frame-wrapper2">
-                      <div class="frame-wrapper3">
-                        <div class="frame-wrapper1">
-                          <div class="ton-wrapper">
-                            <div class="ton3">
-                              <span>Пулл </span>
-                              <span class="span5">#12343</span>
-                              <span class="span8">, </span>
-                              <span class="span9">не одобрено</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="frame-wrapper2">
-                      <div class="frame-wrapper3">
-                        <div class="frame-wrapper1">
-                          <div class="ton-wrapper">
-                            <div class="ton3">
-                              <span>Пулл </span>
-                              <span class="span5">#12342</span>
-                              <span>, срок 14 дней, сумма 3 000 TON </span>
+                              <span class="span5">#{{ v.pool_id }}</span>
+                              <span>, </span>
+                            <span v-if="v.status === 'approved'"> срок {{ useComputedLoanRequestInfo(v).duration.value }}, сумма {{ v.approved_amount }} TON </span>
+                            <span class="span9" v-else-if="v.status === 'declined'">не одобрено</span>
                             </div>
                           </div>
                         </div>
@@ -174,6 +136,7 @@ import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import inputData from "@/components/fields/input-data.vue";
 import { LoansResponse } from "@/types/loan.types";
 import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+import { useComputedLoanRequestInfo } from "@/composables/infoCalculation/useComputedLoanRequestInfo"
 
 const { loan } = defineProps({
   loan: {
@@ -182,6 +145,7 @@ const { loan } = defineProps({
 });
 
 const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanInfo(loan)
+const {previouslyApproved} = useComputedLoanRequestInfo()
 
 const emtis = defineEmits(["close", "api"]);
 const api = () => {

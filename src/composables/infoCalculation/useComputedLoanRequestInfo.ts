@@ -1,7 +1,9 @@
 import { computed } from "vue"
+import { useLoanRequestListStroe } from "@/stores/loanRequestList"
 import { parse } from "tinyduration";
 
-const useComputedLoanRequestInfo = (loanRequest: any, freePeriod?: any) => {
+const useComputedLoanRequestInfo = (loanRequest?: any, freePeriod?: any) => {
+  const loanRequestListStore = useLoanRequestListStroe()
   const interestRate = computed(() => {
     return loanRequest?.millipercent ? loanRequest?.millipercent / 100 : 0
   })
@@ -51,20 +53,27 @@ const useComputedLoanRequestInfo = (loanRequest: any, freePeriod?: any) => {
         const statusChangedTerm = computed(() => {
           if(loanRequest?.status_changed) {
             const created = new Date(loanRequest?.status_changed)
-            return `${created.getDate()}.${created.getMonth ()+1}.${created.getFullYear()}`
+            return `${created.getDate()}.${created.getMonth()+1}.${created.getFullYear()}`
           }
         })
         const createdTerm = computed(() => {
           const created = new Date(loanRequest?.created_at)
           return `${created.getDate()}.${created.getMonth()+1}.${created.getFullYear()}`
         })
+
+        const previouslyApproved = computed(() => {
+          const loanRequest = loanRequestListStore.loanRequests.filter((v) => v.status === 'approved' || v.status === 'declined')
+          return loanRequest
+        })
+
+
     return {
       interestRate,
       interestRateString,
       duration,
       monthInterestRateString,
       durationValue, statusChangedTerm,
-      createdTerm
+      createdTerm, previouslyApproved
     }
 }
 
