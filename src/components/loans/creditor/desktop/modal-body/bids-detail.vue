@@ -81,7 +81,6 @@
               <div class="div3">Дата создания:</div>
               <div class="div4">{{ createdTerm }}</div>
             </div>
-            <div class="col-titles-bg" />
           </div>
         </div>
         <div class="frame-parent1">
@@ -149,11 +148,11 @@
           </button>
         </div>
         <div class="des-and-bbn">
-          <button class="button1" @click="toRepeadAPI">
+          <!--<button class="button1" @click="toRepeadAPI">
             <div class="buttons-tabs1">
               <div class="text">Отправить API повторно</div>
             </div>
-          </button>
+          </button>-->
           <button class="button1_detail button1">
             <div class="buttons-tabs1_detail buttons-tabs1" @click="close">
               <div class="text">Закрыть</div>

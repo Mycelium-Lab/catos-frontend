@@ -180,6 +180,6 @@ const actualLoans = computed(() => {
  padding: 0em;
  display: flex;
  flex-wrap: wrap;
- gap: 38px 20px;
+ gap: 20px 20px;
 }
 </style>

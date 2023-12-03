@@ -163,7 +163,7 @@
     :status="actionStatus"
     header="Заявка на займ"
      title="Заявка успешно принята"
-     subtitle="Ваша заявка на займ успешно принята, ожидайде подтверждения"
+     subtitle="Ваша заявка на займ успешно принята, ожидайте подтверждения"
     ></action-desktop>
     <action-desktop 
     v-else-if="isAction && actionStatus === 'fail'" 

@@ -14,7 +14,7 @@
 
             <div class="txt1-parent">
               <div class="txt1">Иван Иванов Иванович</div>
-              <div class="txt2">{{`ID ${loanRequest ? loanRequest?.borrower_id : loan?.borrower_id}` }}</div>
+              <div class="txt2">{{`ID ${loanRequest ? loanRequest?.id : loan?.id}` }}</div>
             </div>
           </div>
           <div class="status-all-parent">
@@ -169,7 +169,7 @@
         <div v-if="role === 'borrower' && loanRequest" class="field-parent">
           <div class="field">
             <div class="div2">Одобренная сумма:</div>
-            <div class="ton">{{ loanRequest?.approved_amount }} TON</div>
+            <div class="ton">{{ loanRequest?.approved_amount ? loanRequest?.approved_amount : 0 }}TON</div>
           </div>
           <div class="col-titles-bg" />
         </div>
@@ -278,7 +278,7 @@
             <div class="div2">Анкета заявителя:</div>
             <div class="div8">Открыть</div>
           </div>
-          <div class="col-titles-bg" />
+         
         </div>
       </div>
       <div

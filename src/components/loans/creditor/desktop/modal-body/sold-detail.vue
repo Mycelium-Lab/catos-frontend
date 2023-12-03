@@ -131,12 +131,12 @@
           </div>
         </div>
         <div class="des-and-bbn">
-          <catos-button
+          <!--<catos-button
             variant="secondary"
             :style="{ width: '100%', margin: '0', fontSize: '14.px' }"
             @click="api"
             >Отправить API повторно</catos-button
-          >
+          >-->
 
           <catos-button
             variant="fourth_outline"
