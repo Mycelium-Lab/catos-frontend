@@ -30,6 +30,9 @@
         <div class="buttons-icon-outline-arr">
           <img class="icon" alt="" src="@/assets/desktop/more.svg" />
         </div>
+        <div class="logout" @click="logout">
+          Выход
+        </div>
       </div>
     </div>
     <div class="tags-grey1">
@@ -82,7 +85,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { roleStorage, profileStorage } from "@/utils/localStorage";
+import router from "@/router";
+import { roleStorage, profileStorage, authStorage, walletStorage } from "@/utils/localStorage";
 import { computed } from "vue";
 
 const role = computed(() => {
@@ -92,6 +96,13 @@ const role = computed(() => {
 const profile = computed(() => {
   return profileStorage.get()!
 })
+const logout = () => {
+  roleStorage.clear();
+  profileStorage.clear();
+  authStorage.clear();
+  walletStorage.clear();
+  router.push({name: "roles"});
+}
 </script>
 <style scoped>
 .bg-hover-icon {
@@ -303,6 +314,19 @@ const profile = computed(() => {
   font-size: 0.88em;
   line-height: 130%;
   color: #8181a5;
+}
+.logout {
+  position: relative;
+  padding: 0.5em;
+  text-align: center;
+  font-size: 0.88em;
+  width: 5em;
+  height: 2.5em;
+  line-height: 130%;
+  color: #8181a5;
+  border-radius: 8px;
+  border: 1px solid #ececf2;
+  cursor: pointer;
 }
 .name {
   display: flex;
