@@ -115,6 +115,7 @@
           </div>
         </template>
       </confirm-qr-destop>
+      <pagination></pagination>
     </template>
   </default-desktop>
 </template>
@@ -127,7 +128,7 @@ import creditorList from "@/components/pulls/creditor/creditor-list.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
 import pools from "./pulls.vue"
-
+import pagination from "@/components/ui-kit/pagination.vue"
 import createPullDesktop from "@/components/pulls/creditor/create-pull-desktop.vue";
 import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
 import DefaultDesktop from "@/components/layouts/default-desktop.vue";

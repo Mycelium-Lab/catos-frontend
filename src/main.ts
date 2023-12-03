@@ -7,9 +7,15 @@ import { i18n } from "./i18n";
 import App from "./App.vue";
 import router from "./router";
 
+// import the package
+import VueAwesomePaginate from "vue-awesome-paginate";
+
+// import the necessary css file
+import "vue-awesome-paginate/dist/style.css";
+
 const app = createApp(App);
 
-app.use(createPinia()).use(router).use(i18n);
+app.use(createPinia()).use(VueAwesomePaginate).use(router).use(i18n);
 let vh = window.innerHeight / 100;
 document.documentElement.style.setProperty("--vh", `${vh}px`);
 window.addEventListener("resize", () => {
