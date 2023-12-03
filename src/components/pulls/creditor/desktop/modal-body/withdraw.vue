@@ -142,14 +142,14 @@ import { roleStorage } from "@/utils/localStorage";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import { withdrawFromPool } from "@/api/pools.api";
 
-const { poolId } = defineProps({
+const { poolId, availableLiquidity } = defineProps({
   poolId: { type: Number, required: true },
   availableLiquidity: { type: Number, required: true },
 });
 
 const amount = ref("");
 const minWithdrawAmount = ref(10); // TON
-const maxWithdrawAmount = ref(10000); // TON
+const maxWithdrawAmount = ref(availableLiquidity); // TON
 const amountOutOfRange = computed(() => {
   if (amount.value != "") {
     return (

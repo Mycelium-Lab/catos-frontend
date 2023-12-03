@@ -23,7 +23,7 @@
                 src="@/assets/images/pie-chart.svg"
               />
               <div class="ton-parent">
-                <div class="ton">1 537 000 TON</div>
+                <div class="ton">{{ pool?.revenue }} TON</div>
                 <div class="div2">Доход</div>
               </div>
             </div>
@@ -92,7 +92,7 @@
               }
             "
           >
-            <a class="div7">Деньги до зарплаты</a>
+            <a class="div7">{{ pool?.organization }}</a>
             <img
               class="radiobutton-icon"
               alt=""
@@ -131,15 +131,15 @@
           </div>
           <div class="field-parent">
             <div class="field">
-              <div class="roi">Выдано:</div>
-              <div class="div9"> TON</div>
+              <div class="roi">Количество выданных займов:</div>
+              <div class="div9">{{ pool?.loan_count }} раз</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
-              <div class="roi">Займов выдано:</div>
-              <div class="div9">раз</div>
+              <div class="roi">Сумма выданных займов:</div>
+              <div class="div9"> {{ loansSummIssue }} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -167,7 +167,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="roi">Доход:</div>
-              <div class="div9">TON</div>
+              <div class="div9">{{ pool?.revenue }} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -203,6 +203,7 @@
   </div>
   <creditor-info
     v-if="isCreditoreInfo"
+    :pool="pool"
     @close="() => (isCreditoreInfo = false)"
   ></creditor-info>
 </template>
@@ -222,7 +223,7 @@ const { pool } = defineProps({
 const {
   interestRate, monthInterestRateString, 
   maxDuration, freePeriod, interestRateString,
-  freePeriodString, createdTerm } = useComputedPoolInfo(pool)
+  freePeriodString, createdTerm, loansSummIssue } = useComputedPoolInfo(pool)
 
 const emits = defineEmits(["close", "management", "loans", "analytics"]);
 

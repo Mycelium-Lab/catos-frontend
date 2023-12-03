@@ -38,6 +38,7 @@ import pullsTable from "@/components/pulls/desktop/pulls-table.vue";
 import { usePoolListStore } from "@/stores/poolList";
 import { useLoanListStore } from "@/stores/loanList";
 import { roleStorage } from "@/utils/localStorage";
+import { getUserId } from "@/utils/token";
 
 const { variant, role } = defineProps({
   variant: {
@@ -61,7 +62,8 @@ if (roleStorage.get() === "collector") {
 
 const pools = computed<Pool[]>(() => {
   if(role === 'creditor') {
-    return variant === "all" ? poolListStore.pools.sort((a, b) => b.id - a.id) : poolListStore.creditorPools
+    const creditorId = getUserId()
+    return variant === "all" ? poolListStore.pools.sort((a, b) => b.id - a.id) : poolListStore.creditorPools(creditorId ? creditorId : 0)
   }
   return role === "depositor" ? poolListStore.verifiedPools.sort((a, b) => b.id - a.id) : poolListStore.pools.sort((a, b) => b.id - a.id)
 });

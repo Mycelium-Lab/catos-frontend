@@ -18,6 +18,10 @@ export type Pool = {
   available_liquidity: number;
   is_verified: boolean;
   roi: number;
+  organization: string;
+  loan_count: number;
+  revenue: number;
+  overdue_amount: number;
 };
 
 export type CreatePoolData = {

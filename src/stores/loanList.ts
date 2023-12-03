@@ -36,6 +36,14 @@ export const useLoanListStore = defineStore("useLoans", () => {
     });
   }
   
+  const poolLoan = (poolId: number) => {
+    return loans.value.filter(val => val.pool_id === poolId);
+  };
+
+  const creditorLoan = (creditorId: number) => {
+    return loans.value.filter(val => val.creditor_id === creditorId);
+  };
+
   const borrowerLoan = computed(() => {
     const userId = getUserId();
     return loans.value.filter(val => val.borrower_id == userId);
@@ -61,5 +69,7 @@ export const useLoanListStore = defineStore("useLoans", () => {
     soldLoan,
     collectorLoans,
     hasLoading,
+    creditorLoan, 
+    poolLoan
   };
 });

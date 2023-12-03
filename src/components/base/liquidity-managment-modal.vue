@@ -41,12 +41,12 @@
             <slot name="first-row"></slot>
             <div class="col-titles-bg" />
           </div>
-          <div class="field-parent">
+          <!--<div class="field-parent">
             <div class="field">
               <div class="roi">Адрес кошелька: EQB5...dzE1h</div>
               <div class="div9"><span>(Изменить)</span></div>
             </div>
-          </div>
+          </div>-->
         </div>
         <slot name="form"></slot>
 
