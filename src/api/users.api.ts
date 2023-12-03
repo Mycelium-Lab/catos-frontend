@@ -48,3 +48,9 @@ export const confirmEmail = (code: string) => {
 export const isWalletConnected = () => {
   return baseApiClient.get<WalletConnectionStatusResponse>(USER_END_POINT + `/walletConnectionStatus`);
 };
+export const securityCode = (userId: string) => {
+  return baseApiClient.get(USER_END_POINT + `/${userId}/securityCode`)
+}
+export const changePassword = (userId: string) => {
+  return baseApiClient.put(USER_END_POINT + `/${userId}/changePassword`)
+}

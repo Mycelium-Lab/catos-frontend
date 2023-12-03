@@ -73,6 +73,13 @@ const handleInput = (event: any) => {
     }
   }
 
+  if (name === "code") {
+    event.target.value = event.target.value.replace(/[^0-9]/g, "");
+    if (String(event.target.value).length > 6) {
+      event.target.value = String(event.target.value).slice(0, 6);
+    }
+  }
+
   if (name === "passport") {
     event.target.value = event.target.value.replace(/[^0-9]/g, "");
 
