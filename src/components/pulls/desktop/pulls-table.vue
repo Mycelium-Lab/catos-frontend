@@ -103,7 +103,7 @@
               <div class="div127_creditor-info div127">Кредитор:</div>
 
               <div class="group-creditor">
-                <span class="div127_creditor-info">Деньги до зарплаты</span>
+                <span class="div127_creditor-info">{{ pool?.organization }}</span>
                 <img
                   class="radiobutton-icon"
                   alt=""
@@ -1304,7 +1304,7 @@ li {
   color: #3b3b3b;
   font-family: Inter;
   &_investor-all {
-    height: 42.3em;
+    height: 38.3em;
   }
   &_investor-my {
     height: 46.5em;

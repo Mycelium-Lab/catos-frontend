@@ -5,7 +5,7 @@
         <div class="parent">
           <div class="div">Кредитор:</div>
           <div class="group" @click="() => (isCreditorInfo = true)">
-            <a class="div1">Деньги до зарплаты</a>
+            <a class="div1">{{ pool?.organization }}</a>
             <img
               class="radiobutton-icon"
               alt=""
@@ -146,6 +146,7 @@
     </div>
   </div>
   <creditor-info
+    :pool="pool"
     v-if="isCreditorInfo"
     @close="() => (isCreditorInfo = false)"
   ></creditor-info>
@@ -162,7 +163,7 @@
     :status="actionStatus"
     header="Заявка на займ"
      title="Заявка успешно принята"
-     subtitle="Ваша заявка на займ успешно принята, ожидайде подтверждения"
+     subtitle="Ваша заявка на займ успешно принята, ожидайте подтверждения"
     ></action-desktop>
     <action-desktop 
     v-else-if="isAction && actionStatus === 'fail'" 

@@ -41,6 +41,7 @@
   ></liquidity-management-desktop>
   <withdraw
     :poolId="pool?.id ? pool?.id : 0"
+    :availableLiquidity="pool?.available_liquidity ? pool?.available_liquidity : 0"
     v-if="isWithdraw"
     @close="close"
   ></withdraw>

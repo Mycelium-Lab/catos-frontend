@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title> {{ `Информация о пулле # ${pool?.id}`}} </template>
+    <template v-slot:title> {{ `Информация о пулле #${pool?.id}`}} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -51,7 +51,7 @@
                 class="radiobutton-parent"
                 @click="() => (isCreditorInfo = true)"
               >
-                <div class="div6">Деньги до зарплаты</div>
+                <div class="div6">{{ pool?.organization }}</div>
                 <img
                   class="radiobutton-icon"
                   alt=""
@@ -79,7 +79,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div7">Беспроцентный период:</div>
-              <div class="ton1">{{ `${freePeriod ? freePeriod + ' дня': '-'} ` }}</div>
+              <div class="ton1">{{ freePeriod }} дней</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -92,15 +92,15 @@
           </div>
           <div class="field-parent">
             <div class="field">
-              <div class="div7">Выдано:</div>
-              <div class="ton1">{{  }} TON</div>
+              <div class="div7">Количество выданных займов:</div>
+              <div class="ton1">{{ pool?.loan_count }} раз</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
-              <div class="div7">Доступно для выдачи:</div>
-              <div class="ton1">раз</div>
+              <div class="div7">Сумма выданных займов:</div>
+              <div class="ton1">{{ loansSummIssue }} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -124,6 +124,7 @@
   </desktop-modal>
   <creditor-info
     v-if="isCreditorInfo"
+    :pool="pool"
     @close="() => (isCreditorInfo = false)"
   ></creditor-info>
 </template>
@@ -141,8 +142,6 @@ const { pool } = defineProps({
   pool: {
     type: Object as PropType<Pool>,
   },
-  freePeriod: {type: Number, required: true},
-  durationParsed: {type: String}
 });
 
 const emits = defineEmits(["close", "get-loan", "invest"]);
@@ -160,7 +159,7 @@ const {
   interestRate, monthInterestRateString,
   maxDuration, freePeriod,
   interestRateString, freePeriodString,
-  createdTerm
+  createdTerm, loansSummIssue
   } = useComputedPoolInfo(pool)
 </script>
 <style scoped>

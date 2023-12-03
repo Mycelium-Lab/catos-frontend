@@ -72,54 +72,16 @@
                 <div class="parent">
                   <div class="div13">Одобренные ранее:</div>
                   <div class="dividing" />
-                  <div class="frame-wrapper3">
+                  <div v-for="v in previouslyApproved" :key="v.id" class="frame-wrapper3">
                     <div class="frame-wrapper4">
                       <div class="frame-wrapper2">
                         <div class="ton-wrapper">
                           <div class="ton">
                             <span>Пулл </span>
-                            <span class="span">#12345</span>
-                            <span>, срок 30 дней, сумма 10 000 TON </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="frame-wrapper3">
-                    <div class="frame-wrapper4">
-                      <div class="frame-wrapper2">
-                        <div class="ton-wrapper">
-                          <div class="ton">
-                            <span>Пулл </span>
-                            <span class="span">#12344</span>
-                            <span>, срок 14 дней, сумма 3 000 TON </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="frame-wrapper3">
-                    <div class="frame-wrapper4">
-                      <div class="frame-wrapper2">
-                        <div class="ton-wrapper">
-                          <div class="ton">
-                            <span>Пулл </span>
-                            <span class="span">#12343</span>
-                            <span class="span3">, </span>
-                            <span class="span4">не одобрено</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="frame-wrapper3">
-                    <div class="frame-wrapper4">
-                      <div class="frame-wrapper2">
-                        <div class="ton-wrapper">
-                          <div class="ton">
-                            <span>Пулл </span>
-                            <span class="span">#12342</span>
-                            <span>, срок 14 дней, сумма 3 000 TON </span>
+                            <span class="span">#{{ v.pool_id }}</span>
+                            <span>, </span>
+                            <span v-if="v.status === 'approved'"> срок {{ useComputedLoanRequestInfo(v).duration.value }}, сумма {{ v.approved_amount }} TON </span>
+                            <span class="span4" v-else-if="v.status === 'declined'">не одобрено</span>
                           </div>
                         </div>
                       </div>
@@ -131,12 +93,12 @@
           </div>
         </div>
         <div class="des-and-bbn">
-          <catos-button
+          <!--<catos-button
             variant="secondary"
             :style="{ width: '100%', margin: '0', fontSize: '14.px' }"
             @click="api"
             >Отправить API повторно</catos-button
-          >
+          >-->
 
           <catos-button
             variant="fourth_outline"
@@ -155,6 +117,7 @@ import desktopModal from "@/components/base/desktop-modal.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import { LoansResponse } from "@/types/loan.types";
 import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+import { useComputedLoanRequestInfo } from "@/composables/infoCalculation/useComputedLoanRequestInfo"
 
 const { loan } = defineProps({
   loan: {
@@ -163,6 +126,7 @@ const { loan } = defineProps({
 });
 
 const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanInfo(loan)
+const {previouslyApproved} = useComputedLoanRequestInfo()
 
 const emtis = defineEmits(["close", "api", "blank"]);
 const toBlank = () => {

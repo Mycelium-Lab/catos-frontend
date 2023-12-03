@@ -30,7 +30,7 @@
                 <div>
                   <div class="frame-parent">
                   <div class="group">
-                    <div class="div2">Дневная ставка:</div>
+                    <div class="div2">Дневная ставка</div>
                     <!-- <img
                       class="vector-icon"
                       alt=""

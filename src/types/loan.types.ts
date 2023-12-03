@@ -29,6 +29,7 @@ export type LoansResponse = {
         status: LoansStatusString,
         buyer_id: number,
         price: number,
+        creditor_id: number,
         "borrower": {
           "name": string,
           "surname": string,

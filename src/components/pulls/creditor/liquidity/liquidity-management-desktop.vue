@@ -42,17 +42,17 @@
                   </div>
                   <div class="col-titles-bg" />
                 </div>
-                <div class="field-parent">
+                <!--<div class="field-parent">
                   <div class="field">
                     <div class="div3">Кредитных пуллов:</div>
                     <div class="ton1">TON</div>
                   </div>
                   <div class="col-titles-bg" />
-                </div>
+                </div>-->
                 <div class="field-parent">
                   <div class="field">
                     <div class="div3">Доступно для выдачи:</div>
-                    <div class="ton1">TON</div>
+                    <div class="ton1">{{ availableForLoan }} TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
@@ -73,21 +73,21 @@
                 <div class="field-parent">
                   <div class="field">
                     <div class="div3">Не вернули:</div>
-                    <div class="ton1">TON</div>
+                    <div class="ton1">{{debt}} TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
                 <div class="field-parent">
                   <div class="field">
                     <div class="div3">Продано коллекторам:</div>
-                    <div class="ton1">TON</div>
+                    <div class="ton1">{{ sold}} TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
                 <div class="field-parent">
                   <div class="field">
                     <div class="div3">На продаже коллекторам:</div>
-                    <div class="ton1">TON</div>
+                    <div class="ton1">{{ forSale }} TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
@@ -119,6 +119,7 @@
 </template>
 <script setup lang="ts">
 import { Pool } from "@/types/pool.type";
+import { useComputedPoolInfo } from "@/composables/infoCalculation/useComputedPoolInfo";
 import { PropType} from "vue";
 
 const { pool } = defineProps({
@@ -127,6 +128,8 @@ const { pool } = defineProps({
   },
 });
 const emtis = defineEmits(["close", "withdraw", "add"]);
+
+const {availableForLoan, sold, forSale, debt} = useComputedPoolInfo(pool)
 
 const close = () => {
   emtis("close");

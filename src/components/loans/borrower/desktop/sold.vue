@@ -27,10 +27,15 @@
           <div class="frame-container">
             <div class="parent">
               <div class="div2">Кредитор:</div>
-              <div class="radiobutton-parent">
-                <!--<img class="radiobutton-icon" alt="" src="/radiobutton.svg" />-->
-                <div class="div3">МФО доверие</div>
-              </div>
+      
+              <div class="group"  @click="() => (isCreditorInfo = true)">
+            <span class="div5_link div5">{{ poolByLoan?.organization }}</span>
+            <img
+                  class="radiobutton-icon"
+                  alt=""
+                  src="@/assets/images/investore.svg"
+              />
+          </div>
             </div>
           </div>
           <div class="frame-wrapper2">
@@ -113,11 +118,17 @@
           </div>
         </div>
       </div>
+      <creditor-info
+    v-if="isCreditorInfo"
+    :pool="poolByLoan"
+    @close="() => (isCreditorInfo = false)"
+  ></creditor-info>
     </template>
   </desktop-modal>
 </template>
 <script setup lang="ts">
 import { ref, PropType, onMounted } from "vue";
+import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import { LoansResponse } from "@/types/loan.types";
@@ -145,6 +156,7 @@ const freePeriod = ref()
 const freePeriodDate = ref()
 const freePeriodStatus = ref()
 const { poolItem } = usePoolListStore();
+const isCreditorInfo = ref(false);
 
 const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanInfo(loan)
 
@@ -258,7 +270,7 @@ const close = () => {
   flex-direction: row;
   padding: 0.25em 0.81em;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 0.63em;
 }
 .div4 {
@@ -274,6 +286,9 @@ const close = () => {
   text-decoration: underline;
   line-height: 130%;
   color: rgba(87, 126, 247, 0.96);
+  &_link{
+    font-size: 12px;
+  }
 }
 .field {
   align-self: stretch;
@@ -460,6 +475,12 @@ const close = () => {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 1.25em;
+}
+.group{
+  display: flex;
+  align-items: center;
+  font-size: 0.75em;
+  gap: 6px;
 }
 .frame-parent {
   position: relative;

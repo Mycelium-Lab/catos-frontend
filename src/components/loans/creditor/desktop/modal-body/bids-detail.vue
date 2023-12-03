@@ -81,66 +81,27 @@
               <div class="div3">Дата создания:</div>
               <div class="div4">{{ createdTerm }}</div>
             </div>
-            <div class="col-titles-bg" />
           </div>
         </div>
         <div class="frame-parent1">
           <div class="parent">
             <div class="div12">Одобренные ранее:</div>
             <div class="dividing" />
-            <div class="frame-wrapper1">
-              <div class="frame-wrapper2">
-                <div class="frame-wrapper3">
-                  <div class="ton-wrapper">
-                    <div class="ton">
-                      <span>Пулл </span>
-                      <span class="span">#12345</span>
-                      <span>, срок 30 дней, сумма 10 000 TON </span>
+              <div v-for="v in previouslyApproved" :key="v.id" class="frame-wrapper1">
+                <div class="frame-wrapper2">
+                  <div class="frame-wrapper3">
+                    <div class="ton-wrapper">
+                      <div class="ton">
+                        <span>Пулл </span>
+                        <span class="span">#{{ v.pool_id }}</span>
+                        <span>, </span>
+                        <span v-if="v.status === 'approved'"> срок {{ useComputedLoanRequestInfo(v).duration.value }}, сумма {{ v.approved_amount }} TON </span>
+                        <span class="span4" v-else-if="v.status === 'declined'">не одобрено</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="frame-wrapper1">
-              <div class="frame-wrapper2">
-                <div class="frame-wrapper3">
-                  <div class="ton-wrapper">
-                    <div class="ton">
-                      <span>Пулл </span>
-                      <span class="span">#12344</span>
-                      <span>, срок 14 дней, сумма 3 000 TON </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="frame-wrapper1">
-              <div class="frame-wrapper2">
-                <div class="frame-wrapper3">
-                  <div class="ton-wrapper">
-                    <div class="ton">
-                      <span>Пулл </span>
-                      <span class="span">#12343</span>
-                      <span class="span3">, </span>
-                      <span class="span4">не одобрено</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="frame-wrapper1">
-              <div class="frame-wrapper2">
-                <div class="frame-wrapper3">
-                  <div class="ton-wrapper">
-                    <div class="ton">
-                      <span>Пулл </span>
-                      <span class="span">#12342</span>
-                      <span>, срок 14 дней, сумма 3 000 TON </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <button class="button">
             <div class="buttons-tabs">
@@ -149,11 +110,11 @@
           </button>
         </div>
         <div class="des-and-bbn">
-          <button class="button1" @click="toRepeadAPI">
+          <!--<button class="button1" @click="toRepeadAPI">
             <div class="buttons-tabs1">
               <div class="text">Отправить API повторно</div>
             </div>
-          </button>
+          </button>-->
           <button class="button1_detail button1">
             <div class="buttons-tabs1_detail buttons-tabs1" @click="close">
               <div class="text">Закрыть</div>
@@ -190,7 +151,7 @@ const close = () => {
 const handleChangeStatus = () => {
   emtis("onHandleChangeStatus");
 }
-const {statusChangedTerm, createdTerm} = useComputedLoanRequestInfo(loanRequest)
+const {statusChangedTerm, createdTerm, previouslyApproved} = useComputedLoanRequestInfo(loanRequest)
 </script>
 <style scoped lang="scss">
 .modal-wrapper {
@@ -600,6 +561,7 @@ const {statusChangedTerm, createdTerm} = useComputedLoanRequestInfo(loanRequest)
   color: #3b3b3b;
   font-family: Inter;
 }
+
 .group-action {
   display: flex;
   gap: 10px;

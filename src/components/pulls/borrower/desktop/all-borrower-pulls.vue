@@ -28,7 +28,7 @@
       }
     "
   >
-    <template v-slot:title>{{ `Получить займ из пулла # ${pool?.id}`  }}</template>
+    <template v-slot:title>{{ `Получить займ из пулла #${pool?.id}`  }}</template>
     <template v-slot:body>
       <get-loan 
         :pool="pool"

@@ -1,5 +1,6 @@
 import { computed } from "vue"
 import { parse } from "tinyduration";
+import { useLoanListStore } from "@/stores/loanList";
 
 const useComputedPoolInfo = (pool: any) => {
     const interestRate = computed(() => {
@@ -37,6 +38,63 @@ const useComputedPoolInfo = (pool: any) => {
         const created = new Date(pool?.created_at)
         return `${created.getDate()}.${created.getMonth()+1}.${created.getFullYear()}`
     })
+
+    const loansSummIssue = computed(() => {
+        const poolLoan = useLoanListStore().poolLoan(pool?.id)
+        return poolLoan.map((v) => v.amount).reduce(
+            (accumulator, currentValue) => accumulator + currentValue,
+            0,
+          );
+    })
+
+    const availableForLoan = computed(() => {
+        const poolLoan = useLoanListStore().poolLoan(pool?.id)
+        const onLoan = poolLoan.map((v) => v.amount)
+        const onLoanSumm = onLoan.reduce(
+            (accumulator, currentValue) => accumulator + currentValue,
+            0,
+          );
+       return  pool?.available_liquidity - onLoanSumm
+    })
+
+    const sold = computed(() => {
+        const poolLoan = useLoanListStore().poolLoan(pool?.id)
+        const onSold = poolLoan.filter((v) => v.buyer_id && v.status === 'sold')
+        const amount = onSold.map((v) => v.amount).reduce(
+            (accumulator, currentValue) => accumulator + currentValue,
+            0,
+          );
+        return amount
+    })
+
+    const forSale = computed(() => {
+        const poolLoan = useLoanListStore().poolLoan(pool?.id)
+        const onForSale = poolLoan.filter((v) => v.status === 'for_sale')
+        const amount = onForSale.map((v) => v.amount).reduce(
+            (accumulator, currentValue) => accumulator + currentValue,
+            0,
+          );
+        return amount
+    })
+
+    const debt = computed(() => {
+        const poolLoan = useLoanListStore().poolLoan(pool?.id)
+        const onDebt = poolLoan.filter((v) => {
+            const end = new Date(v.end);
+            const now = new Date();
+            return now > end
+        })
+        const amount = onDebt.map((v) => {
+            const dif = v.amount - v.paid_amount
+            const overduePercent = v.overdue_millipercent / 100
+            return dif * overduePercent / 100 + dif
+        })
+        const amountSumm = amount.reduce(
+            (accumulator, currentValue) => accumulator + currentValue,
+            0,
+          );
+        return amountSumm
+    })
       
     return {
         interestRate,
@@ -46,7 +104,12 @@ const useComputedPoolInfo = (pool: any) => {
         interestRateString,
         freePeriodString,
         createdTerm,
-        maxDurationValue
+        maxDurationValue,
+        loansSummIssue,
+        availableForLoan,
+        sold,
+        forSale,
+        debt
     }
 }
 

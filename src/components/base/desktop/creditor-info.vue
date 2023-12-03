@@ -18,7 +18,7 @@
           <div class="frame-group">
             <div class="icon-parent">
               <img class="icon" alt="" src="@/assets/images/iconsperson.svg" />
-              <div class="div1">Деньги до зарплаты</div>
+              <div class="div1">{{ pool?.organization }}</div>
             </div>
             <div class="frame-wrapper">
               <div class="group">
@@ -29,7 +29,7 @@
                     src="@/assets/images/pie-chart.svg"
                   />
                   <div class="ton-parent">
-                    <div class="ton">1 537 000 TON</div>
+                    <div class="ton">{{ revenueSumm }} TON</div>
                     <div class="div3">Доход</div>
                   </div>
                 </div>
@@ -41,7 +41,7 @@
                       alt=""
                       src="@/assets/images/percent.svg"
                     />
-                    <div class="div4">1 день = 1%</div>
+                    <div class="div4">1 день = {{ midMillipercent }}%</div>
                   </div>
                   <div class="icon-parent">
                     <img
@@ -49,7 +49,7 @@
                       alt=""
                       src="@/assets/images/clock.svg"
                     />
-                    <div class="div4">3 дня = 0%</div>
+                    <div class="div4">{{ midFreePeriod }} дня = 0%</div>
                   </div>
                   <div class="icon-parent">
                     <img
@@ -57,7 +57,7 @@
                       alt=""
                       src="@/assets/images/activity.svg"
                     />
-                    <div class="div4">ROI = 75%</div>
+                    <div class="div4">ROI = {{ midRoi }}%</div>
                   </div>
                 </div>
               </div>
@@ -67,7 +67,7 @@
             <div class="field-parent">
               <div class="field">
                 <div class="roi">Дата регистрации:</div>
-                <div class="n">22.09.2022</div>
+                <div class="n"></div>
               </div>
               <div class="col-titles-bg" />
             </div>
@@ -75,9 +75,9 @@
               <div class="field">
                 <div class="roi">Кредитных пуллов:</div>
                 <div class="div9">
-                  <span class="span">3 </span>
-                  <span class="span1">(</span>
-                  <span class="span">2</span>
+                  <span class="span">{{ allPoolsCount }} </span>
+                  <span class="span1"> (</span>
+                  <span class="span">{{ activePoolsCount }}</span>
                   <span class="span1"> активно)</span>
                 </div>
               </div>
@@ -86,51 +86,50 @@
             <div class="field-parent">
               <div class="field">
                 <div class="roi">Всего ликвидности:</div>
-                <div class="n">1 053 324 TON</div>
+                <div class="n">{{ allLiquiditySumm }} TON</div>
               </div>
               <div class="col-titles-bg" />
             </div>
             <div class="field-parent">
               <div class="field">
                 <div class="roi">Доступно для выдачи:</div>
-                <div class="n">257 324 TON</div>
+                <div class="n">{{ availableLiquiditySumm }} TON</div>
               </div>
               <div class="col-titles-bg" />
             </div>
             <div class="field-parent">
               <div class="field">
                 <div class="roi">Доход:</div>
-                <div class="n">102 311 ТОN</div>
+                <div class="n">{{ revenueSumm }} ТОN</div>
               </div>
               <div class="col-titles-bg" />
             </div>
             <div class="field-parent">
               <div class="field">
                 <div class="roi">ROI:</div>
-                <div class="n">58% годовых</div>
+                <div class="n">{{ midRoi }}% годовых</div>
               </div>
               <div class="col-titles-bg" />
             </div>
             <div class="field-parent">
               <div class="field">
-                <div class="roi">Займов выдано:</div>
-                <div class="n">40 574 раз</div>
+                <div class="roi">Количество выданных займов:</div>
+                <div class="n">{{loansIssue}} раз</div>
               </div>
               <div class="col-titles-bg" />
             </div>
             <div class="field-parent">
               <div class="field">
-                <div class="roi">Выдано:</div>
-                <div class="n">796 000 TON</div>
+                <div class="roi">Сумма выданных займов:</div>
+                <div class="n">{{ loansSummIssue }} TON</div>
               </div>
               <div class="col-titles-bg" />
             </div>
             <div class="field-parent">
               <div class="field">
-                <div class="roi">Процент не возврата в пуллах</div>
-                <div class="n">4,5%</div>
+                <div class="roi">Процент невозврата:</div>
+                <div class="n">{{midOverdueMillipercent}}%</div>
               </div>
-              <div class="col-titles-bg" />
             </div>
           </div>
           <div class="des-and-bbn">
@@ -144,8 +143,22 @@
   </div>
 </template>
 <script setup lang="ts">
-import catosCheckbox from "@/components/ui-kit/catos-checkbox.vue";
+import { PropType } from "vue";
+import { Pool } from "@/types/pool.type";
+import { useComputedCreditorInfo } from "@/composables/infoCalculation/useComputedCreditorInfo";
 const emtis = defineEmits(["close"]);
+
+const { pool } = defineProps({
+  pool: {
+    type: Object as PropType<Pool>,
+  },
+});
+
+const {
+  allPoolsCount, activePoolsCount, loansSummIssue, loansIssue, 
+  allLiquiditySumm, availableLiquiditySumm, midRoi, midMillipercent,
+  midFreePeriod, midOverdueMillipercent, revenueSumm
+} = useComputedCreditorInfo(pool?.owner_id ? pool?.owner_id : 0)
 
 const close = () => {
   emtis("close");
@@ -340,7 +353,7 @@ const close = () => {
   gap: 0.63em;
 }
 .span {
-  text-decoration: underline;
+  //text-decoration: underline;
 }
 .span1 {
   color: #3b3b3b;
@@ -349,7 +362,7 @@ const close = () => {
   position: relative;
   font-size: 0.88em;
   line-height: 130%;
-  color: rgba(87, 126, 247, 0.96);
+  //color: rgba(87, 126, 247, 0.96);
 }
 .n {
   position: relative;
@@ -442,7 +455,6 @@ const close = () => {
   display: flex;
   flex-direction: column;
   padding: 1.25em;
-  align-items: center;
   justify-content: flex-start;
   gap: 1.25em;
   text-align: right;
@@ -450,7 +462,7 @@ const close = () => {
 }
 .div {
   position: absolute;
-  top: calc(50% - 359.5px);
+  top: calc(50% - 259.5px);
   left: calc(50% - 320px);
   border-radius: 15px;
 
