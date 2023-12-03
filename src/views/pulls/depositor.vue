@@ -65,6 +65,7 @@
         :variant="curentWindow"
         :key="curentWindow">
       </pools>
+      <pagination></pagination>
     </template>
   </default-desktop>
 </template>
@@ -80,6 +81,7 @@ import toolBar from "@/components/base/desktop/tool-bar.vue";
 import { useDevice } from "@/compossables/useDevice";
 import pools from "./pulls.vue"
 import appBar from "@/components/ui-kit/app-bar.vue";
+import pagination from "@/components/ui-kit/pagination.vue"
 
 const { isMobile } = useDevice();
 const isBackSide = ref(false);
