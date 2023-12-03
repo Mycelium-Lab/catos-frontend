@@ -161,15 +161,22 @@
         </div>
       </div>
       <div></div>
-      <div v-if="role === 'borrower'" class="creditor-info">
+      <div v-if="role === 'borrower' && loan" class="creditor-info">
         <div class="div127">Кредитор:</div>
-        <span class="div127">Деньги до зарплаты</span>
-      </div>
+          <div class="group">
+            <a class="div127">{{ poolByLoan?.organization }}</a>
+            <img
+                  class="radiobutton-icon"
+                  alt=""
+                  src="@/assets/images/investore.svg"
+              />
+          </div>
+        </div>
       <div :class="role === 'borrower' && loanRequest ? 'frame-parent_loanrequest frame-parent' : 'frame-parent'">
         <div v-if="role === 'borrower' && loanRequest" class="field-parent">
           <div class="field">
             <div class="div2">Одобренная сумма:</div>
-            <div class="ton">{{ loanRequest?.approved_amount ? loanRequest?.approved_amount : 0 }}TON</div>
+            <div class="ton">{{ loanRequest?.approved_amount ? loanRequest?.approved_amount : 0 }} TON</div>
           </div>
           <div class="col-titles-bg" />
         </div>
@@ -1067,6 +1074,7 @@ li {
   height: 30px;
   align-items: center;
   gap: 10px;
+  justify-content: space-between;
 }
 .div127 {
   position: relative;
@@ -1095,6 +1103,12 @@ li {
   overflow: hidden;
   flex-shrink: 0;
 }
+
+.radiobutton-icon {
+  position: relative;
+  width: 1.75em;
+  height: 1.75em;
+}
 .div128 {
   flex: 1;
   position: relative;
@@ -1106,6 +1120,11 @@ li {
   display: flex;
   gap: 10px;
   width: 100%;
+}
+.group{
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 .prolong-result {
   color: rgba(59, 59, 59, 0.72);

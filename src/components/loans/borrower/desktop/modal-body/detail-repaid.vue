@@ -118,7 +118,7 @@
                 class="radiobutton-parent"
                 @click="() => (isCreditorInfo = true)"
               >
-                <div class="div11">Деньги до зарплаты</div>
+                <div class="div11">{{ poolByLoan?.organization }}</div>
                 <img
                   class="radiobutton-icon"
                   alt=""
@@ -169,6 +169,7 @@
   </div>
   <creditor-info
     v-if="isCreditorInfo"
+    :pool="poolByLoan"
     @close="() => (isCreditorInfo = false)"
   ></creditor-info>
 </template>
