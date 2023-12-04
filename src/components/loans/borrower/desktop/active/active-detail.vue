@@ -98,7 +98,7 @@
               alt=""
               src="@/assets/images/percent.svg"
             />
-            <div class="div26">Проценты начисляются с 12 апреля 2023 года</div>
+            <div class="div26">Проценты начисляются с {{ accrualDate }}</div>
           </div>
           <div class="des-and-bbn">
             <catos-button
@@ -129,6 +129,7 @@ onMounted(async () => {
     freePeriod.value = useComputedPoolInfo(poolByLoan.value).freePeriod.value 
     freePeriodString.value = useComputedPoolInfo(poolByLoan.value).freePeriodString.value
     maxDuration.value = useComputedPoolInfo(poolByLoan.value).maxDuration.value
+    accrualDate.value = useComputedLoanInfo(loan, freePeriod.value).interestAccrualDate.value
   }
 })
 
@@ -136,6 +137,7 @@ const poolByLoan = ref()
 const freePeriod = ref()
 const freePeriodString = ref()
 const maxDuration = ref()
+const accrualDate = ref()
 
 const { loan } = defineProps({
   loan: {

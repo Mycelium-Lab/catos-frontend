@@ -95,7 +95,12 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
       const dayInterestRate = loan?.millipercent ? loan?.millipercent / 100 : 0
       return `30 дней = ${Number(dayInterestRate * (30 - freePeriod)).toFixed(2)}%`
     })
-    
+
+    const interestAccrualDate = computed(() => {
+      const start = new Date(loan?.start)
+      const accrualDate = new Date(start.setDate(start.getDate() + freePeriod))
+      return `${accrualDate.getDate()}.${accrualDate.getMonth() + 1}.${accrualDate.getFullYear()}`
+    })
     
     return {
         duty,
@@ -111,7 +116,8 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
         freePeriodDate,
         restDays,
         interestRateString,
-        monthInterestRateString
+        monthInterestRateString,
+        interestAccrualDate
     }
 }
 

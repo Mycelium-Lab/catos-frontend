@@ -310,7 +310,7 @@
         class="notification6"
       >
         <img class="percent-icon12" alt="" src="@/assets/images/percent.svg" />
-        <div class="div128">Проценты начисляются с 12/12/2023 года</div>
+        <div class="div128">Проценты начисляются с {{accrualDate}}</div>
       </div>
       <div
         v-if="
@@ -563,6 +563,7 @@ onMounted(async() => {
     freePeriodStatus.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodStatus.value
     freePeriodDate.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodDate.value
     restDays.value = useComputedLoanInfo(loan).restDays.value
+    accrualDate.value = useComputedLoanInfo(loan, freePeriod.value).interestAccrualDate.value
   }
   else if(loanRequest?.pool_id && role.value === 'borrower') {
     poolByLoan.value = await poolItem(loanRequest?.pool_id)
@@ -598,6 +599,7 @@ const freePeriodString = ref()
 const freePeriodStatus = ref()
 const freePeriodDate = ref()
 const restDays = ref()
+const accrualDate = ref()
 
 const { poolItem } = usePoolListStore();
 
