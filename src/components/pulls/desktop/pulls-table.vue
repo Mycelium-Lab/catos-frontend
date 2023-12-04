@@ -211,7 +211,7 @@
                   <div class="div127">Просрочен:</div>
                 </div>
                 <div class="ton-wrapper">
-                  <div class="div128">{{ expired }} дней</div>
+                  <div class="div128">{{ expired }} дн</div>
                 </div>
               </div>
               <div v-if="role !== 'collector'" class="line-div" />
@@ -232,7 +232,7 @@
                 </div>
                 <div v-if="pool?.free_period" class="ton-wrapper">
                   <div class="div128">
-                    {{ freePeriod }} дней
+                    {{ freePeriod }} дн
                   </div>
                 </div>
               </div>

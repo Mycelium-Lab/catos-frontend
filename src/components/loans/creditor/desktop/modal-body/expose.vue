@@ -69,7 +69,7 @@
                 <div class="component">
                   <div class="field">
                     <div class="div2">Сумма к возвращению:</div>
-                    <div class="div3">TON</div>
+                    <div class="div3">13 512 TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
@@ -99,7 +99,7 @@
                 <p class="p">
                   <span>
                     <span class="span">Беспроцентный период: </span>
-                    <span>до {{ freePeriod }} дней</span>
+                    <span>до {{ freePeriod }} дн</span>
                   </span>
                 </p>
                 <p :class="freePeriodStatus === 'длится' ? 'p1_active p1' : 'p1'">

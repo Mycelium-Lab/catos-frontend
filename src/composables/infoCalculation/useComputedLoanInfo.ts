@@ -55,7 +55,7 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
       const duration = computed(() => {
         const start = new Date(loan?.start).getDate();
         const end = new Date(loan?.end).getDate();
-        return `${Number(end) - Number(start)} дней`
+        return `${Number(end) - Number(start)} дн`
       })
 
       const startTerm = computed(() => {
