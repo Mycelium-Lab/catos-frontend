@@ -22,6 +22,10 @@ export const usePoolListStore = defineStore("poolList", () => {
     return poolsHundred.value.filter(val => val.owner_id == creditorId);
   };
 
+  const ownCreditorPools = (creditorId: number) => {
+    return pools.value.filter(val => val.owner_id == creditorId);
+  };
+
   const poolItem = async (poolId: number) => {
     pools.value = await (await listPoolsHundred()).data
     return pools.value.filter(val => val.id === poolId)[0];
@@ -43,6 +47,7 @@ export const usePoolListStore = defineStore("poolList", () => {
     poolItem, 
     offset,
     setOffset,
-    poolsHundred
+    poolsHundred,
+    ownCreditorPools
   };
 });

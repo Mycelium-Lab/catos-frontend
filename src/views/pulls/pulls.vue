@@ -63,7 +63,7 @@ if (roleStorage.get() === "collector") {
 const pools = computed<Pool[]>(() => {
   if(role === 'creditor') {
     const creditorId = getUserId()
-    return variant === "all" ? poolListStore.pools.sort((a, b) => b.id - a.id) : poolListStore.creditorPools(creditorId ? creditorId : 0)
+    return variant === "all" ? poolListStore.pools.sort((a, b) => b.id - a.id) : poolListStore.ownCreditorPools(creditorId ? creditorId : 0).sort((a, b) => b.id - a.id)
   }
   return role === "depositor" ? poolListStore.verifiedPools.sort((a, b) => b.id - a.id) : poolListStore.pools.sort((a, b) => b.id - a.id)
 });

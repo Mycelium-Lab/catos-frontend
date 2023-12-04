@@ -91,9 +91,9 @@
                 src="@/assets/desktop/iconchange.svg"
               />
             </div>
-            <div class="wrapper">
-              <div class="div">1д 1 ч</div>
-            </div>
+            <!--<div class="wrapper">
+              <div class="div">1д 1ч</div>
+            </div>-->
           </div>
         </div>
       </div>
