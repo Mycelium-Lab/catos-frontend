@@ -103,7 +103,7 @@
               <div class="div127_creditor-info div127">Кредитор:</div>
 
               <div class="group-creditor">
-                <span class="div127_creditor-info">{{ pool?.organization }}</span>
+                <span class="div127_creditor-info">{{ loan ? poolByLoan?.organization : pool?.organization }}</span>
                 <img
                   class="radiobutton-icon"
                   alt=""
@@ -211,7 +211,7 @@
                   <div class="div127">Просрочен:</div>
                 </div>
                 <div class="ton-wrapper">
-                  <div class="div128">{{ expired }} дней</div>
+                  <div class="div128">{{ expired }} дн</div>
                 </div>
               </div>
               <div v-if="role !== 'collector'" class="line-div" />
@@ -232,7 +232,7 @@
                 </div>
                 <div v-if="pool?.free_period" class="ton-wrapper">
                   <div class="div128">
-                    {{ freePeriod }} дней
+                    {{ freePeriod }} дн
                   </div>
                 </div>
               </div>

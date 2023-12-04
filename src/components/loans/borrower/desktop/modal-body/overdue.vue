@@ -85,7 +85,7 @@
                   <div class="div2">Беспроцентный период:</div>
                 </div>
                 <div class="div9">
-                  <span class="span2">до {{ freePeriod }} дней</span>
+                  <span class="span2">до {{ freePeriod }} дн</span>
                   <span :class="freePeriodStatus ==='закончен' ? 'span3': 'span3_green'"> {{  ` (${freePeriodStatus})` }}</span>
                 </div>
               </div>
@@ -98,8 +98,7 @@
                     src="@/assets/images/percent.svg"
                   />
                   <div class="div10">
-                    Проценты начнут начисляться с 12 апреля 2023 года, после
-                    16:00
+                    Проценты начисляются с {{ accrualDate }}
                   </div>
                 </div>
               </div>
@@ -166,6 +165,7 @@ onMounted(async() => {
     interestRate.value = useComputedLoanInfo(loan).interestRate
     endTerm.value = useComputedLoanInfo(loan).endTerm.value
     freePeriodStatus.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodStatus.value
+    accrualDate.value = useComputedLoanInfo(loan, freePeriod.value).interestAccrualDate.value
   }
 })
 
@@ -183,6 +183,7 @@ const poolByLoan = ref()
 const endTerm = ref()
 const freePeriodStatus = ref()
 const freePeriod = ref()
+const accrualDate = ref()
 
 const { poolItem } = usePoolListStore();
 

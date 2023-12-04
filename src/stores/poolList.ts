@@ -2,7 +2,6 @@ import { Ref, ref, computed, watch } from "vue";
 import { defineStore } from "pinia";
 import { Pool } from "@/types/pool.type";
 import { listPools, listPoolsHundred } from "@/api/pools.api";
-import { getUserId } from "@/utils/token";
 
 export const usePoolListStore = defineStore("poolList", () => {
   const offset = ref(0)
@@ -15,15 +14,20 @@ export const usePoolListStore = defineStore("poolList", () => {
     poolsHundred.value = res.data;
   });
 
-  const creditorPools = computed(() => {
-    const userId = getUserId();
-    return pools.value.filter(val => val.owner_id == userId);
-  });
   const verifiedPools = computed(() => {
     return pools.value.filter(val => val.is_verified == true);
   });
+
+  const creditorPools = (creditorId: number) => {
+    return poolsHundred.value.filter(val => val.owner_id == creditorId);
+  };
+
+  const ownCreditorPools = (creditorId: number) => {
+    return pools.value.filter(val => val.owner_id == creditorId);
+  };
+
   const poolItem = async (poolId: number) => {
-    pools.value = await (await listPools(offset.value)).data
+    pools.value = await (await listPoolsHundred()).data
     return pools.value.filter(val => val.id === poolId)[0];
   };
   const setOffset = (count: number) => {
@@ -43,6 +47,7 @@ export const usePoolListStore = defineStore("poolList", () => {
     poolItem, 
     offset,
     setOffset,
-    poolsHundred
+    poolsHundred,
+    ownCreditorPools
   };
 });

@@ -12,7 +12,7 @@
                 src="@/assets/images/pie-chart.svg"
               />
               <div class="ton-parent">
-                <div class="ton">1 537 000 TON</div>
+                <div class="ton">{{ pool?.revenue }} TON</div>
                 <div class="div1">Доход</div>
               </div>
             </div>
@@ -87,7 +87,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div5">Беспроцентный период:</div>
-              <div class="div6">{{ freePeriod }} дней</div>
+              <div class="div6">{{ freePeriod }} дн</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -101,7 +101,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div5">Доступно ликвидности:</div>
-              <div class="div6">{{ pool?.all_liquidity }} TON</div>
+              <div class="div6">{{ pool?.available_liquidity }} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>

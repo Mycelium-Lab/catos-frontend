@@ -14,16 +14,16 @@ const useComputedLoanRequestInfo = (loanRequest?: any, freePeriod?: any) => {
       const duration = computed(() => {
         if(parse(loanRequest?.duration).days !== undefined) {
            return parse(loanRequest?.duration).months 
-            ? `${parse(loanRequest?.duration).months} месяца`
+            ? `${parse(loanRequest?.duration).months} мес`
             : parse(loanRequest?.duration).weeks
-            ? `${parse(loanRequest?.duration).weeks} недель`
+            ? `${parse(loanRequest?.duration).weeks} нед`
             : parse(loanRequest?.duration).days
-            ? `${parse(loanRequest?.duration).days} дней`
+            ? `${parse(loanRequest?.duration).days} дн`
             : parse(loanRequest?.duration).hours
-            ? `${parse(loanRequest?.duration).hours} часов`
+            ? `${parse(loanRequest?.duration).hours} ч`
             : parse(loanRequest?.duration).minutes
-            ? `${parse(loanRequest?.duration).minutes} минут`
-            : `${parse(loanRequest?.duration).seconds} секунд`
+            ? `${parse(loanRequest?.duration).minutes} мин`
+            : `${parse(loanRequest?.duration).seconds} сек`
         }
         return parse(loanRequest?.duration).days !== undefined ? parse(loanRequest?.duration).days : 0
       })

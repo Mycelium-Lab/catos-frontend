@@ -17,7 +17,7 @@ const useComputedPoolInfo = (pool: any) => {
     })
 
     const maxDuration = computed(() => {
-        return parse(pool?.max_duration).days ? `${parse(pool?.max_duration).days} дней` : `${parse(pool?.max_duration).hours} часов`
+        return parse(pool?.max_duration).days ? `${parse(pool?.max_duration).days} дн` : `${parse(pool?.max_duration).hours} ч`
       })
 
     const maxDurationValue = computed(() => {
@@ -31,7 +31,7 @@ const useComputedPoolInfo = (pool: any) => {
         return period
     })
     const freePeriodString = computed(() => {
-        return `${freePeriod.value} дней = 0%`
+        return `${freePeriod.value} дн = 0%`
     })
 
     const createdTerm = computed(() => {

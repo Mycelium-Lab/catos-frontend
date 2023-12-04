@@ -21,7 +21,7 @@
                           class="radiobutton-parent"
                           @click="() => (isCreditorInfo = true)"
                         >
-                          <div class="div2">Деньги до зарплаты</div>
+                          <div class="div2">{{ poolByLoan?.organization }}</div>
                           <img
                             class="radiobutton-icon"
                             alt=""
@@ -54,7 +54,7 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Просрочен на:</div>
-                        <div class="ton">{{ overdue }} дня</div>
+                        <div class="ton">{{ overdue }} дн</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -96,14 +96,14 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">На срок:</div>
-                        <div v-if="poolByLoan?.max_duration" class="ton">до {{ parse(poolByLoan?.max_duration).days }} дней</div>
+                        <div v-if="poolByLoan?.max_duration" class="ton">до {{ parse(poolByLoan?.max_duration).days }} дн</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Беспроцентный лимит:</div>
-                        <div v-if="poolByLoan?.free_period" class="ton">{{ parse(poolByLoan?.free_period).days }} дня</div>
+                        <div v-if="poolByLoan?.free_period" class="ton">{{ parse(poolByLoan?.free_period).days }} дн</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -237,6 +237,7 @@
     </template>
   </desktop-modal>
   <creditor-info
+    :pool="poolByLoan"
     v-if="isCreditorInfo"
     @close="() => (isCreditorInfo = false)"
   ></creditor-info>

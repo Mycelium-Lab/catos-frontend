@@ -17,7 +17,7 @@ export const useComputedCreditorInfo = (creditorId: number) => {
             (accumulator, currentValue) => accumulator + currentValue,
             0,
         )
-          return millipercentSumm / millipercent.length
+          return (millipercentSumm / millipercent.length).toFixed(3)
     })
 
     const midOverdueMillipercent = computed(() => {
@@ -26,7 +26,7 @@ export const useComputedCreditorInfo = (creditorId: number) => {
             (accumulator, currentValue) => accumulator + currentValue,
             0,
         )
-          return overdueMillipercentSumm / overdueMillipercent.length
+          return (overdueMillipercentSumm / overdueMillipercent.length).toFixed(3)
     })
 
     const midFreePeriod = computed(() => {
@@ -48,7 +48,7 @@ export const useComputedCreditorInfo = (creditorId: number) => {
             (accumulator, currentValue) => accumulator + currentValue,
             0,
         )
-          return roiSumm / roi.length
+          return (roiSumm / roi.length).toFixed(3)
     })
 
     const revenueSumm = computed(() => {

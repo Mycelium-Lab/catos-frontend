@@ -79,7 +79,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div7">Беспроцентный период:</div>
-              <div class="ton1">{{ freePeriod }} дней</div>
+              <div class="ton1">{{ freePeriod }} дн</div>
             </div>
             <div class="col-titles-bg" />
           </div>
