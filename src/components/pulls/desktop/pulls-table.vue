@@ -103,7 +103,7 @@
               <div class="div127_creditor-info div127">Кредитор:</div>
 
               <div class="group-creditor">
-                <span class="div127_creditor-info">{{ pool?.organization }}</span>
+                <span class="div127_creditor-info">{{ loan ? poolByLoan?.organization : pool?.organization }}</span>
                 <img
                   class="radiobutton-icon"
                   alt=""

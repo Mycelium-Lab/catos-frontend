@@ -12,7 +12,7 @@
                 src="@/assets/images/pie-chart.svg"
               />
               <div class="ton-parent">
-                <div class="ton">TON</div>
+                <div class="ton">{{ pool?.revenue }} TON</div>
                 <div class="div1">Доход</div>
               </div>
             </div>

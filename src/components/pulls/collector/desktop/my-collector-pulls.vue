@@ -21,7 +21,7 @@
                           class="radiobutton-parent"
                           @click="() => (isCreditorInfo = true)"
                         >
-                          <div class="div2">Деньги до зарплаты</div>
+                          <div class="div2">{{ poolByLoan?.organization }} </div>
                           <img
                             class="radiobutton-icon"
                             alt=""
@@ -291,6 +291,7 @@
   </desktop-modal>
   <creditor-info
     v-if="isCreditorInfo"
+    :pool="poolByLoan"
     @close="() => (isCreditorInfo = false)"
   ></creditor-info>
   <status-change
