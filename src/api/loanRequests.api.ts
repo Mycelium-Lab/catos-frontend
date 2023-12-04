@@ -12,11 +12,11 @@ export const createLoanRequest = (payload: LoansRequestPayload) => {
 };
 
 export const retrieveLoanRequest = (id: number) => {
-    return baseApiClient.get(`${LOAN_REQUESTS_END_POINT}/${id}`)
+    return baseApiClient.get(`${LOAN_REQUESTS_END_POINT}${id}`)
 }
 
 export const approveLoanRequest = (id: number, payload: LoansRequestApprovePayload) => {
-    return baseApiClient.patch(`${LOAN_REQUESTS_END_POINT}/${id}`, payload)
+    return baseApiClient.patch(`${LOAN_REQUESTS_END_POINT}${id}`, payload)
 }
 
 export const declineLoanRequest = (id: number) => {

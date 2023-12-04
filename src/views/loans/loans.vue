@@ -2,17 +2,17 @@
      <h3 v-if="!actualLoans.length && role === 'collector'">
       {{ 'Задолженности пока отсутствуют'}}
     </h3>
+    <h3 v-if="!actualLoanRequests.length && role === 'creditor' && variant === 'bids'">
+      {{ `Заявки пока отсутствуют` }}
+    </h3>
+    <h3 v-else-if="!actualLoans.length && role === 'creditor' && variant !== 'bids' ">
+      {{ `Займы пока отсутствуют` }}
+    </h3>
     <h3 v-else-if="!actualLoans.length && role === 'borrower' && variant !== 'active'">
       {{ 'Займы пока отсутствуют'}}
     </h3>
     <h3 v-else-if="!actualLoans.length && role === 'borrower' && variant === 'active' && !actualBorrowerApprovedLoanRequests.length">
       {{ 'Займы пока отсутствуют'}}
-    </h3>
-    <h3 v-else-if="!actualLoanRequests.length && role === 'creditor' && variant === 'bids'">
-      {{ `Заявки пока отсутствуют` }}
-    </h3>
-    <h3 v-else-if="!actualLoans.length && role === 'creditor'">
-      {{ `Займы пока отсутствуют` }}
     </h3>
     <ul class="list-desktop">
       <template v-if="role === 'creditor' && variant === 'bids'">

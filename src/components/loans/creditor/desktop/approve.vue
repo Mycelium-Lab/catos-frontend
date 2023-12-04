@@ -74,7 +74,7 @@
   @close="isTransaction = false" 
   :uid="uid"
   titlePending="Одобрение займа"
-  subtitlePending="Пожалуйста, подождите пока завершится процесс одобрения займа"
+  subtitlePending="Пожалуйста, подтвердите одобрение займа в своем кошельке"
   subtitleSuccess="Займ успешно одобрен"
   titleFaild="Произошла ошибка при одобрении займа"
   ></transaction-desktop>
