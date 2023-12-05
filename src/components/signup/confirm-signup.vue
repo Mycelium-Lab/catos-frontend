@@ -276,7 +276,9 @@ function handleEmailInput(event: Event) {
     }
   }
   // Call email verification API
-  if (emailCode.value.filter(el => el !== undefined && el !== "").length === 6) {
+  if (
+    emailCode.value.filter(el => el !== undefined && el !== "").length === 6
+  ) {
     confirmEmail(emailCode.value.join(""))
       .then(res => {
         if (res.status === 200) {
