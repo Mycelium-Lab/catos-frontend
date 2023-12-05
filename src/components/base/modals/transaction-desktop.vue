@@ -13,6 +13,19 @@
         <template v-slot:action> Ок </template>
     </status-modal-desktop>
     <status-modal-desktop
+        v-if="isApproved"
+        @result="() => (isProgress = false)"
+        @close="handleClose"
+      >
+        <template v-slot:header> Транзакция №591561351 </template>
+        <template v-slot:title> Транзакция успешно одобрена</template>
+        <template v-slot:subtitle> Пожалуйста, дождитесь завершения транзакции </template>
+        <template v-slot:image>
+         <loader></loader>
+        </template>
+        <template v-slot:action> Ок </template>
+    </status-modal-desktop>
+    <status-modal-desktop
             v-if="isSuccess"
             @result="() => (isSuccess = false)"
             @close="handleClose"
@@ -103,6 +116,7 @@ const emits = defineEmits(['close'])
 const status = ref('')
 const hash = ref('')
 const isProgress = ref(true);
+const isApproved = ref(false)
 const isSuccess = ref(false);
 const isFail = ref(false)
 
@@ -116,6 +130,10 @@ const handleClose = () => {
 watch(status, (newValue) => {
   status.value = newValue
   if(newValue === 'approved') {
+    isProgress.value = false
+    isApproved.value = true
+  }
+  else if(newValue === 'successfull') {
     isProgress.value = false
     isSuccess.value = true
   }
