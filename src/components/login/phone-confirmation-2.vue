@@ -30,7 +30,7 @@
       </div>
       <div class="div12">
         <span>Код для входа отправлен на номер:</span>
-        <span class="span1"> +7 (999) 215-43-26</span>
+        <span class="span1">2313312321</span>
       </div>
       <div class="div13">
         <span>Примерное время </span>
@@ -43,29 +43,134 @@
         <div class="frame-container">
           <div class="iconssend-parent">
             <img class="iconssend" alt="" src="./public/iconssend.svg" />
-            <div class="div14">Отправить код повторно:</div>
+            <button class="div14" @click="handleSendSMS">Отправить код повторно</button>
           </div>
-          <div class="frame">
+          <!--<div class="frame">
             <div class="div15">60 сек</div>
-          </div>
+          </div>-->
         </div>
-        <div class="iconssend-parent">
+        <!--<div class="iconssend-parent">
           <img class="iconsmobile" alt="" src="./public/iconsedit1.svg" />
           <div class="div14">Именить номер</div>
-        </div>
+        </div>-->
       </div>
       <div class="inputfields">
-        <input maxlength="1" class="component-4" />
-        <input maxlength="1" class="component-4" />
-        <input maxlength="1" class="component-4" />
-        <input maxlength="1" class="component-4" />
-        <input maxlength="1" class="component-4" />
+        <input
+              v-for="(n, index) in phoneCode"
+              class="component-4"
+              :key="index"
+              pattern="\d*"
+              :id="'input_' + index"
+              maxlength="1"
+              v-model="phoneCode[index]"
+              @input="handlePhoneInput"
+              @keypress="isNumber"
+              @keydown.delete="handleDelete"
+              @paste="onPhonePaste"
+            />
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useLoginApi } from '@/composables/useLoginApi'
+import {
+  verifyPhone,
+} from "@/api/users.api";
+import { useRouter } from "vue-router";
+const { handleLoginByPhone, handleVerify } = useLoginApi();
+
+const keysAllowed: string[] = [
+  "0",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+]
+
+function isNumber(event: Event) {
+  (event.currentTarget as HTMLInputElement).value = "";
+  const keyPressed: string = (event as KeyboardEvent).key;
+  if (!keysAllowed.includes(keyPressed)) {
+    event.preventDefault();
+  }
+}
+
+let phoneCode: string[] = Array(6);
+let pastedPhoneCode: string[] | undefined;
+
+const handleSendSMS = () => {
+  verifyPhone()
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+function handlePhoneInput(event: Event) {
+  const inputType = (event as InputEvent).inputType;
+  let activeElement = event.target as HTMLInputElement;
+
+  if (inputType === "insertText")
+    (activeElement.nextElementSibling as HTMLElement)?.focus();
+
+  if (inputType === "insertFromPaste" && pastedPhoneCode) {
+    for (const num of pastedPhoneCode) {
+      let id: number = parseInt(activeElement.id.split("_")[1]);
+      activeElement.value = num;
+      phoneCode[id] = num;
+
+      if (activeElement.nextElementSibling) {
+        activeElement = activeElement.nextElementSibling as HTMLInputElement;
+        (activeElement.nextElementSibling as HTMLElement)?.focus();
+      }
+    }
+  }
+
+  const router = useRouter();
+  if (phoneCode.filter(el => el !== undefined && el !== "").length === 6) {
+    handleLoginByPhone()
+      .then(res => handleVerify(res.access))
+      .then(res => {
+      const pathName = res?.role === 'borrower'
+              ? 'pulls/borrower'
+              : res?.role === 'investor'
+              ? 'pulls/depositor'
+              : res?.role === 'creditor'
+              ? 'pulls/creditor'
+              : res?.role === 'collector'
+              ? 'loans/collector'
+              : ''
+
+        router.push(pathName)
+      })
+  }
+}
+function handleDelete(event: Event) {
+  let value = (event.target as HTMLInputElement).value;
+  let activeElement = event.target as HTMLInputElement;
+  if (!value) (activeElement.previousElementSibling as HTMLElement)?.focus();
+}
+function onPhonePaste(event: Event) {
+  pastedPhoneCode = (event as ClipboardEvent).clipboardData
+    ?.getData("text")
+    .trim()
+    .split("");
+  if (pastedPhoneCode) {
+    for (const num of pastedPhoneCode) {
+      if (!keysAllowed.includes(num)) event.preventDefault();
+    }
+  }
+}
+</script>
 
 <style scoped>
 .iphone-70-child {
@@ -236,6 +341,7 @@
   font-size: 0.75em;
   letter-spacing: 0.02em;
   line-height: 120%;
+  cursor: pointer;
 }
 .iconssend-parent {
   display: flex;
@@ -338,7 +444,6 @@
   width: 100%;
   height: 52.75em;
   overflow: hidden;
-  cursor: pointer;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
@@ -355,9 +460,9 @@
   }
 }
 @media (min-width: 500px) {
-  .iphone-70 {
+  /*.iphone-70 {
     height: 100%;
-  }
+  }*/
   .page-title1 {
     font-size: 32px;
   }

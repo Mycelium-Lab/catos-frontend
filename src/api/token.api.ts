@@ -13,6 +13,12 @@ export type LoginCredentials = {
   password: string;
   email: string;
 };
+
+export type LoginCredentialsByPhone = {
+  phone: string;
+  password: string
+};
+
 type RefreshCredentials = {
   refresh: string;
 };
@@ -25,6 +31,9 @@ export const refresh = (payload: RefreshCredentials) => {
 };
 export const login = (payload: LoginCredentials) => {
   return baseApiClient.post<AuthResponse>(AUTH_END_POINT + "/pair", payload);
+};
+export const loginByPhone = (payload: LoginCredentialsByPhone) => {
+  return baseApiClient.post<AuthResponse>(AUTH_END_POINT + "/getByPhone", payload);
 };
 export const verify = (payload: TokenCredentials) => {
   return baseApiClient.post<ProfileData>(

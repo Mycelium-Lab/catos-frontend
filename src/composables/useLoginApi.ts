@@ -1,4 +1,4 @@
-import { login, type LoginCredentials, verify } from "@/api/token.api";
+import { login, type LoginCredentials, verify, LoginCredentialsByPhone, loginByPhone } from "@/api/token.api";
 import { authStorage, walletStorage } from "@/utils/localStorage";
 import { type Role } from "@/types/user.types";
 import { roleStorage, profileStorage } from "@/utils/localStorage";
@@ -13,6 +13,10 @@ export const useLoginApi = () => {
     email: "",
     password: "",
   });
+  const userLoginCredentialsByPhone = ref<LoginCredentialsByPhone>({
+    phone: '',
+    password: ''
+  })
   const handleLogin = async () => {
     isLoginLoading.value = true;
     return login(userLoginCredentials.value)
@@ -39,6 +43,35 @@ export const useLoginApi = () => {
         }
       });
   };
+
+ const handleLoginByPhone = async  () => {
+  isLoginLoading.value = true;
+  return loginByPhone(userLoginCredentialsByPhone.value)
+    .then(res => {
+        authStorage.set(res.data);
+        return res.data;
+      })
+    .catch(e => {
+      const {setErrorText} = errorData
+      setErrorText(e.response.data.detail)
+      console.error(e);
+      return {
+        email: '',
+        refresh: '',
+        access: ''
+      }
+    })
+    .finally(() => {
+      isLoginLoading.value = false;
+      return {
+        email: '',
+        refresh: '',
+        access: ''
+      }
+    });
+  }
+
+
   const handleVerify = async (token: string) => {
     const setRole = (role: Role) => {
       roleStorage.set(role);
@@ -75,5 +108,7 @@ export const useLoginApi = () => {
     isLoginLoading,
     handleLogin,
     handleVerify, 
+    userLoginCredentialsByPhone,
+    handleLoginByPhone
   };
 };
