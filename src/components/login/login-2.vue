@@ -10,7 +10,6 @@
     </div>
     <div
       class="catos-parent"
-      :style="activeForm === 'phone' ? { top: '34em' } : ''"
     >
       <div class="catos">Первый раз в CATOS?</div>
       <router-link
@@ -46,6 +45,14 @@
       <span class="prompt_email" v-if="!isValidEmail">
         Некорректный email. Пример, example@mail.com
       </span>
+      <input-data
+        v-else-if="activeForm === 'phone'"
+        placeholder="Ваш номер телефона"
+        v-model:model-value="userLoginCredentialsByPhone.phone"
+        :style="{ position: 'relative', zIndex: '1000', width: '100%' }"
+        type="tel"
+        name="tel"
+      ></input-data>
 
       <input-data
         v-if="activeForm === 'email'"
@@ -55,35 +62,27 @@
         type="password"
       ></input-data>
       <input-data
-        v-if="activeForm === 'phone'"
-        placeholder="Ваш номер телефона"
-        :style="{ position: 'relative', zIndex: '1000', width: '100%' }"
+        v-else-if="activeForm === 'phone'"
+        placeholder="Введите пароль"
+        v-model="userLoginCredentialsByPhone.password"
+        :style="{ position: 'relative', zIndex: '1000', width: '100%', top: '5px' }"
+        type="password"
       ></input-data>
     </div>
     <div
       class="iphone-68-item"
-      :style="activeForm === 'phone' ? { height: '24.18%' } : ''"
     ></div>
     <div
       class="group-parent"
-      :style="activeForm === 'phone' ? { top: '54%' } : ''"
-    >
+     >
       <router-link
         to=""
         :style="{ textDecoration: 'none' }"
       >
         <catos-button
-          @click="login"
+          @click="() => isLoginLoading || !isLinkActive ? null : login()"
           :disabled="isLoginLoading || !isLinkActive"
-          :style="
-            !isSmSize && activeForm === 'phone'
-              ? {
-                  height: '45px',
-                  width: '300px',
-                  marginRight: '0',
-                  top: '-6em',
-                }
-              : isSmSize
+          :style="isSmSize
               ? { height: '45px', width: '70vw', marginRight: '0' }
               : { height: '45px', width: '300px', marginRight: '0' }
           "
@@ -96,7 +95,7 @@
         : '' }}
       </span>
 
-      <div v-if="activeForm === 'email'" class="div7">Забыли пароль?</div>
+      <div class="div7">Забыли пароль?</div>
     </div>
   </div>
 </template>
@@ -106,13 +105,17 @@ import { ref, watch, computed} from "vue";
 import { useLoginApi } from '@/composables/useLoginApi'
 import catosButton from "../ui-kit/buttons/catos-button.vue";
 import inputData from "../fields/input-data.vue";
-import { validateEmail } from '@/utils/validateInput'
+import { validateEmail, validatePhone } from '@/utils/validateInput'
 import { useErrorDataStore } from "@/stores/errorData";
+import { useUserDataStore } from "@/stores/userData";
+
+const userDataStore = useUserDataStore();
 
 import { useRouter } from "vue-router";
+const isValidPhone = ref(true)
 
 const activeForm = ref("email");
-const { userLoginCredentials, isLoginLoading, handleLogin, handleVerify } = useLoginApi();
+const { userLoginCredentials, isLoginLoading, handleLogin, handleVerify, userLoginCredentialsByPhone, handleLoginByPhone } = useLoginApi();
 
 const isSmSize = ref(false);
 window.addEventListener(
@@ -123,14 +126,17 @@ window.addEventListener(
   false
 );
 
+watch(() => userLoginCredentialsByPhone.value.phone, (newVal) => {
+  isValidPhone.value = validatePhone(newVal)
+})
+
 const router = useRouter();
 const login = async () => {
- handleLogin()
+  if(activeForm.value === 'phone') {
+    handleLoginByPhone()
     .then(res => handleVerify(res.access))
-    .then(res => {
-      const pathName = activeForm.value === 'phone'
-              ? 'phone-confirmation'
-              : res?.role === 'borrower'
+     .then(res => {
+      const pathName = res?.role === 'borrower'
               ? 'pulls/borrower'
               : res?.role === 'investor'
               ? 'pulls/depositor'
@@ -142,6 +148,24 @@ const login = async () => {
 
       router.push(pathName)
     })
+  }
+  else {
+    handleLogin()
+    .then(res => handleVerify(res.access))
+    .then(res => {
+      const pathName = res?.role === 'borrower'
+              ? 'pulls/borrower'
+              : res?.role === 'investor'
+              ? 'pulls/depositor'
+              : res?.role === 'creditor'
+              ? 'pulls/creditor'
+              : res?.role === 'collector'
+              ? 'loans/collector'
+              : ''
+
+      router.push(pathName)
+    })
+  }
 }
 
 const isValidEmail = ref(true);
@@ -151,7 +175,10 @@ const errorMessage = computed(() => {
 });
 
 const isLinkActive = computed(() => {
-  return (isValidEmail.value && userLoginCredentials.value.email && userLoginCredentials.value.password);
+  if(activeForm.value === 'email') {
+    return (isValidEmail.value && userLoginCredentials.value.email && userLoginCredentials.value.password);
+  }
+  return (isValidPhone.value && userLoginCredentialsByPhone.value.phone && userLoginCredentialsByPhone.value.password);
 });
 
 watch(userLoginCredentials, (newVal) => {
@@ -464,38 +491,42 @@ watch(userLoginCredentials, (newVal) => {
   &_email {
     font-size: 12px;
     color: rgba(59, 59, 59, 1);
+    cursor: pointer;
   }
   &_email::after {
     content: "";
     display: block;
     border-bottom: 2px solid rgba(230, 221, 255, 1);
     position: relative;
-    top: 0.6em;
+    top: 0.5em;
   }
   &_email_active::after {
     content: "";
     display: block;
     border-bottom: 2px solid rgba(254, 210, 106, 1);
     position: relative;
-    top: 0.6em;
+    top: 0.5em;
+    cursor: pointer;
   }
   &_phone {
     font-size: 12px;
     color: rgba(59, 59, 59, 1);
+    cursor: pointer;
   }
   &_phone::after {
     content: "";
     display: block;
     border-bottom: 2px solid rgba(230, 221, 255, 1);
     position: relative;
-    top: 0.6em;
+    top: 0.5em;
+    cursor: pointer;
   }
   &_phone_active::after {
     content: "";
     display: block;
     border-bottom: 2px solid rgba(254, 210, 106, 1);
     position: relative;
-    top: 0.6em;
+    top: 0.5em;
   }
 }
 .prompt{
@@ -508,10 +539,10 @@ watch(userLoginCredentials, (newVal) => {
   }
   &_email{
     position: absolute;
-  top: 45px;
-  left: 10px;
-  font-size: 10.8px;
-  color: #E93E33;
+    top: 45px;
+    left: 10px;
+    font-size: 10.8px;
+    color: #E93E33;
   }
 }
 .image-wrapp {
