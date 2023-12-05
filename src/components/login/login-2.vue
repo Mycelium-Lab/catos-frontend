@@ -96,9 +96,13 @@
         : '' }}
       </span>
 
-      <div v-if="activeForm === 'email'" class="div7">Забыли пароль?</div>
+      <div v-if="activeForm === 'email'" class="div7" @click="() => isPasswordRetrieval = true">Забыли пароль?</div>
     </div>
   </div>
+  <password-recovery
+        v-if="isPasswordRetrieval"
+        @close="() => (isPasswordRetrieval = false)"
+      ></password-recovery>
 </template>
 
 <script setup lang="ts">
@@ -108,10 +112,12 @@ import catosButton from "../ui-kit/buttons/catos-button.vue";
 import inputData from "../fields/input-data.vue";
 import { validateEmail } from '@/utils/validateInput'
 import { useErrorDataStore } from "@/stores/errorData";
+import passwordRecovery from "./password-recovery.vue"
 
 import { useRouter } from "vue-router";
 
 const activeForm = ref("email");
+const isPasswordRetrieval = ref(false)
 const { userLoginCredentials, isLoginLoading, handleLogin, handleVerify } = useLoginApi();
 
 const isSmSize = ref(false);
@@ -428,6 +434,7 @@ watch(userLoginCredentials, (newVal) => {
   text-decoration: underline;
   letter-spacing: 1px;
   color: #737373;
+  cursor: pointer;
 }
 .group-parent {
   position: absolute;
