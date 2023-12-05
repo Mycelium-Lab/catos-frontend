@@ -53,7 +53,7 @@ const { variant, content, disabled } = defineProps({
   font-weight: 700;
   &:hover {
     background-color: rgba(251, 204, 63, 1);
-    border: 1px solid rgba(0, 0, 0, 0.14);
+    //border: 1px solid rgba(0, 0, 0, 0.14);
     cursor: pointer;
   }
   &_disabled {

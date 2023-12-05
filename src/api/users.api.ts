@@ -1,5 +1,5 @@
 import { baseApiClient } from "./baseApiClient";
-import { type UserData } from "@/types/user.types";
+import { type UserData, ChangePasswordCredentials } from "@/types/user.types";
 
 const USER_END_POINT = "/users";
 
@@ -48,3 +48,9 @@ export const confirmEmail = (code: string) => {
 export const isWalletConnected = () => {
   return baseApiClient.get<WalletConnectionStatusResponse>(USER_END_POINT + `/walletConnectionStatus`);
 };
+export const securityCode = (email: string) => {
+  return baseApiClient.get(USER_END_POINT + `/${email}/securityCode`)
+}
+export const changePassword = (email: string, payload: ChangePasswordCredentials) => {
+  return baseApiClient.put(USER_END_POINT + `/${email}/changePassword`, payload)
+}

@@ -14,6 +14,15 @@
     }"
     @prolong="prolongation"
   ></overdue-detail>
+  <transaction-desktop 
+    v-if="isTransaction" 
+    :uid="uid"
+    @close="isTransaction = false" 
+    titlePending="Подтвердите взятие займа"
+    subtitlePending="Пожалуйста, подтвердите взятие займа в своем кошельке"
+    subtitleSuccess="Вы успешно взяли займ"
+    titleFaild="Произошла ошибка при взятии займа"
+    ></transaction-desktop>
 </template>
 
 <script setup lang="ts">
@@ -25,17 +34,26 @@ import activeDetail from "./active/active-detail.vue";
 import { LoansResponse } from "@/types/loan.types";
 import { LoansRequestResponse } from "@/types/loan.types";
 import { takeLoan } from "@/api/loans.api";
+import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 
 onMounted(async () => {
   if(state.retrieveLoanRequest && loanRequest) {
     await takeLoan(loanRequest.id)
   .then(res => {
+    isTransaction.value = true
+    uid.value = res.data
     console.log(res)
   }).catch(e => {
     
+  })
+  .finally(() => {
+    close()
   }) 
   }
 })
+
+const uid = ref()
+const isTransaction = ref(false)
 
 const { status, state, loanRequest } = defineProps({
   state: {
