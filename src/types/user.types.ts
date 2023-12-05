@@ -17,3 +17,8 @@ export type UserData = {
 export type Wallet = {
   address: string;
 }
+
+export type ChangePasswordCredentials = {
+  "new_password": string,
+  "code": number
+}

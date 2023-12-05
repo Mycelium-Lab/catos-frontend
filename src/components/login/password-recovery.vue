@@ -4,7 +4,7 @@
         <div  class="div">
           <div class="header-pop-up">
             <div class="page-title-parent">
-              <div class="page-title">{{ stage1 ? 'Забыли пароль?' : stage2 ? 'Введите код' : stage3 ? 'Создание нового пароля' : 'Смена пароля'}}</div>
+              <div class="page-title">{{ stage1 ? 'Забыли пароль?' : stage2 ? 'Создание нового пароля' : 'Смена пароля'}}</div>
               <img
                 class="close-icon-action close-icon"
                 alt=""
@@ -15,26 +15,27 @@
             <div class="header-pop-up-child" />
           </div>
           <div class="fieldsinputchoise-parent">
-            <div class="image-wrapper">
-            <img v-if="stage4" class="component-17-icon" alt="" src="./public/success.svg" />
-          </div>
+            <div></div>
+            <div v-if="stage3" class="image-wrapper">
+              <img  class="component-17-icon" alt="" src="./public/success.svg" />
+            </div>
             <span v-if="stage1" class="prompt_stage1 prompt">
                 Введите адрес электронной почты, который вы использовали при регистрации, <br> и мы вышлем вам инструкции по сбросу пароля.
             </span>
-            <div v-if="stage2" >
+            <!--<div v-if="stage2" >
                 <div class="prompt2">Введите код из электронной почты</div>
                 <div  class="prompt">
                     Мы отправили код подтверждения на адрес <span>{{email}}.</span>
                 </div>
-            </div>
-            <div v-if="stage3" >
+            </div>-->
+            <div v-if="stage2" >
                 <div class="prompt2">Введите новый пароль</div>
                 
             </div>
-            <div v-if="stage4">
+            <div v-if="stage3">
                 <div class="prompt4-title">Ваш пароль был успешно изменен!</div>
             </div>
-            <div v-if="!stage4" :class="stage1 ? 'input-wrapper_stage1 input-wrapper' : stage3 ? '' : 'input-wrapper-row input-wrapper'">
+            <div v-else :class="stage1 ? 'input-wrapper_stage1 input-wrapper' : stage2 ? '' : ''">
                 <label v-if="stage1" class="label-email_stage1 label-email">Email <span class="required">*</span></label>
             <input-data
                 v-if="stage1"
@@ -45,7 +46,7 @@
             <span class="prompt_email" v-if="!isValidEmail">
               Некорректный email. Пример, example@mail.com
              </span>
-            <input-data 
+            <!--<input-data 
                 v-if="stage2"
                 placeholder="Код"
                 v-model="code"
@@ -54,31 +55,44 @@
             ></input-data>
             <span class="prompt_code prompt" v-if="!isValidCode">
               Неверный код
-             </span>
-            <div class="group-input" v-if="stage3">
+             </span>-->
+            <div class="group-input" v-if="stage2">
               <div>
-                <label v-if="stage3" class="label-email">Новый пароль <span class="required">*</span></label>
+                <label v-if="stage2" class="label-email">Новый пароль <span class="required">*</span></label>
                 <input-data 
                 placeholder="Пароль"
                 v-model="password"
                   ></input-data>
               </div>
               <div>
-                <label v-if="stage3" class="label-email">Подтверждение пароля <span class="required">*</span></label>
+                <label v-if="stage2" class="label-email">Подтверждение пароля <span class="required">*</span></label>
                 <input-data 
                 placeholder="Пароль"
                 v-model="repeatPassword"
                 ></input-data>
               </div>
+              <div>
+                <label v-if="stage2" class="label-email">Код подтверждения <span class="required">*</span></label>
+                <input-data 
+                placeholder="Код"
+                v-model="code"
+                name="code"
+                :style="{ position: 'relative', width: '60%' }"
+                ></input-data>
+                <span class="prompt_code prompt" v-if="!isValidCode">
+                  Неверный код
+                </span>
+              </div>
+              
               <span class="prompt_password prompt" v-if="notEqualPassword">
                 Пароли не совпадают
              </span>
             </div>
-                <catos-button
+               <!--<catos-button
                 v-if="stage2"
                 :style="{  width: '60%', height: '40px' }"
                 @click="handleConfirmEmail"
-                >Подтвердить</catos-button>
+                >Подтвердить</catos-button>-->
             </div>
 
             <catos-button
@@ -87,14 +101,14 @@
           :style="{  width: '40%', height: '40px', margin: '0 auto' }"
           >Продолжить</catos-button>
 
-          <div class="group-prompt" v-if="stage2">
+          <!--<div class="group-prompt" v-if="stage2">
                 <div class="prompt">
                 Отправить код повторно через 01:00
             </div>
             <div class="prompt">
                 Если вы не получили наше письмо, проверьте папку "Спам".
             </div>
-          </div>
+          </div>-->
           <!--<div class="group-info" v-if="stage3">
             В надежном пароле:
             <ul class="list">
@@ -106,16 +120,16 @@
                 <li class="list-item prompt">Цифры</li>
             </ul>
           </div>-->
-          <div class="prompt4 prompt" v-if="stage4">
+          <div class="prompt4 prompt" v-if="stage3">
             Теперь вы можете вернуться на страницу входа в систему
           </div>
           <catos-button
-                v-if="stage3"
+                v-if="stage2"
                 :style="{  width: '60%', height: '40px' }"
                 @click="handleChangePassowrd"
                 >Подтвердить</catos-button>
                 <catos-button
-                v-if="stage4"
+                v-if="stage3"
                 :style="{  width: '50%', height: '40px', margin: '0 auto' }"
                 @click="close"
                 >Войти</catos-button>
@@ -127,7 +141,7 @@
     </div>
   </template>
   <script setup lang="ts">
-  import { changePassword, confirmEmail, securityCode } from "@/api/users.api";
+  import { changePassword, securityCode } from "@/api/users.api";
   import { ref, watch } from "vue";
   import { useErrorDataStore } from "@/stores/errorData";
   import inputData from "../fields/input-data.vue";
@@ -142,7 +156,6 @@
   const stage1 = ref(true)
   const stage2 = ref(false)
   const stage3 = ref(false)
-  const stage4 = ref(false)
 
   const isValidEmail = ref(true);
   const isValidCode = ref(true)
@@ -156,11 +169,11 @@
     if(isValidEmail.value) {
       stage1.value = false
       stage2.value= true
-    //await securityCode()
+      await securityCode(email.value)
     }
   }
 
-  const handleConfirmEmail = async () => {
+  /*const handleConfirmEmail = async () => {
     if (code.value.length === 6) {
     confirmEmail(code.value)
       .then(res => {
@@ -180,18 +193,28 @@
   else {
     isValidCode.value = false
   }
-  }
+  }*/
 
   const handleChangePassowrd = async () => {
     if(password.value !== repeatPassword.value) {
       notEqualPassword.value = true
+      return
     }
-    /*await changePassword()
+    else{
+      notEqualPassword.value = false
+    }
+    if (code.value.length === 6) {
+      isValidCode.value = true
+      const payload = {
+      new_password: password.value,
+      code: Number(code.value)
+    }
+    await changePassword(email.value, payload)
     .then(res => {
         if (res.status === 200) {
           isValidPassword.value = true
-          stage3.value = false
-          stage4.value = true
+          stage2.value = false
+          stage3.value = true
         } else {
           console.log(res);
         }
@@ -199,7 +222,11 @@
       .catch(err => {
         isValidPassword.value = false
         console.log(err);
-      });*/
+      });
+    }
+    else {
+      isValidCode.value = false
+    }
   }
   
   const close = () => {
@@ -556,7 +583,7 @@
     }
     &_code {
       position: absolute;
-      top: 45px;
+      top: 230px;
       left: 5px;
       font-size: 10.8px;
       color: #E93E33;
