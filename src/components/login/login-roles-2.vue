@@ -151,7 +151,7 @@
           >Зарегистрируйтесь</router-link
         >
         <router-link v-else to="/" class="div11">Войдите</router-link>
-        <router-link to="/" @click="toAdmin"> Администратор </router-link>
+        <!-- <router-link to="/" @click="toAdmin"> Администратор </router-link> -->
       </div>
     </div>
     <div class="loader-parent">

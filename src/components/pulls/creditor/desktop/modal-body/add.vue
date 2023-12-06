@@ -94,6 +94,7 @@ import { roleStorage } from "@/utils/localStorage";
 import calculator from "@/components/base/calculator.vue";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import { investToPool } from "@/api/pools.api";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const {poolId, minInvest} = defineProps({
   poolId: {type: Number, required: true},
@@ -115,7 +116,7 @@ const handleAdd = async () => {
 
   await investToPool({
     pool_id: poolId,
-    amount: Number(amount.value)
+    amount: Number(amount.value) * NANO_MULTIPLIER
   })
   .then(res => {
     isTransaction.value = true

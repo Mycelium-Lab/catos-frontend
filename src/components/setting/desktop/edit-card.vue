@@ -34,7 +34,7 @@
           class="iconsedit-1"
           alt=""
           src="@/assets/images/iconseditoutline-black.svg"
-          @click="() => (isChangePassword = true)"
+          @click="() => changePasswordClicked()"
         />
       </div>
     </div>
@@ -226,7 +226,13 @@
     </template>
     <template v-else v-slot:body>
       <div>
-        <input-data
+        <catosCode
+          :style="{ width: '410px' }"
+          @codeEntered="isCodeEntered = true"
+          :code="verificationCode"
+        >
+        </catosCode>
+        <!-- <input-data
           :style="{ width: '410px' }"
           placeholder="Введите текущий пароль"
           type="password"
@@ -237,15 +243,16 @@
               :style="{ width: '1.13em', height: '1.13em' }"
             />
           </template>
-        </input-data>
+        </input-data> -->
         <span class="div29">
-          Текущий пароль можно посмотреть в настройках профиля
+          Введите код, который был отправлен на вашу почту.
         </span>
       </div>
       <input-data
         :style="{ width: '410px' }"
-        placeholder="Введите текущий пароль"
+        placeholder="Введите новый пароль"
         type="password"
+        v-model:model-value="newPassword"
       >
         <template v-slot:right-icon>
           <img
@@ -256,8 +263,9 @@
       </input-data>
       <input-data
         :style="{ width: '410px' }"
-        placeholder="Введите текущий пароль"
+        placeholder="Введите новый пароль"
         type="password"
+        v-model:model-value="copyNewPassword"
       >
         <template v-slot:right-icon>
           <img
@@ -274,12 +282,8 @@
           top: '0.5em',
           borderRadius: '24px',
         }"
-        @click="
-          () => {
-            isChangePassword = false;
-            isSuccessChangePassword = true;
-          }
-        "
+        :class="{ disabled: !buttonActive }"
+        @click="handleClick"
         >Изменить пароль</catos-button
       >
 
@@ -364,6 +368,31 @@
     </template>
   </desktop-modal>
   <desktop-modal
+    v-if="isFailedChangePassword"
+    @close="() => (isFailedChangePassword = false)"
+  >
+    <template v-slot:body>
+      <div class="fieldsregistration-options1">
+        <div class="text-and-fill1">
+          <img class="success-image" src="@/assets/images/fail-transaction.svg" />
+          <h3 class="title-info">Ошибка смены пароля!</h3>
+          <span class="div28">
+            Попробуйте изменить пароль снова, либо обратитесь в службу поддержки.
+          </span>
+        </div>
+      </div>
+      <catos-button
+        :style="{
+          width: '300px',
+          margin: '0 auto',
+          borderRadius: '24px',
+        }"
+        @click="() => (isFailedChangePassword = false)"
+        >Вернуться в профиль</catos-button
+      >
+    </template>
+  </desktop-modal>
+  <desktop-modal
     v-if="isRestorePassword"
     @close="() => (isRestorePassword = false)"
   >
@@ -437,23 +466,77 @@
 import { ref, computed } from "vue";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import inputData from "@/components/fields/input-data.vue";
+import catosCode from "@/components/fields/catos-code.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import { useRoute } from "vue-router";
+import { securityCode, changePassword } from "@/api/users.api";
+import { profileStorage } from "@/utils/localStorage";
+
+const userEmail = profileStorage.get()?.email;
 const isChangeEmail = ref(false);
 const isChangePhone = ref(false);
 const isChangePassword = ref(false);
 const isSuccessChangePassword = ref(false);
+const isFailedChangePassword = ref(false);
 const isRestorePassword = ref(false);
+const isCodeEntered = ref(false);
+const newPassword = ref("");
+const copyNewPassword = ref("");
+const buttonActive = computed(() => {
+  return (
+    newPassword.value != "" &&
+    newPassword.value === copyNewPassword.value &&
+    isCodeEntered.value
+  );
+});
 
-const {email, phone} = defineProps({
-  email: {type: String, required: true},
-  phone: {type: String, required: true},
-})
-
+const { email, phone } = defineProps({
+  email: { type: String, required: true },
+  phone: { type: String, required: true },
+});
+const verificationCode = ref<String[]>(Array(6));
 const route = useRoute();
 const currentPage = computed(() => {
   return route.name;
 });
+const handleClick = () => {
+  // isChangePassword = false;
+  // isSuccessChangePassword = true;
+  changePassword(userEmail ? userEmail : "", {
+    new_password: newPassword.value,
+    code: Number(verificationCode.value.join("")),
+  })
+    .then(res => {
+      if (res.status === 200) {
+        isChangePassword.value = false;
+        isSuccessChangePassword.value = true;
+      } else {
+        isChangePassword.value = false;
+        isFailedChangePassword.value = true;
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      isChangePassword.value = false;
+      isFailedChangePassword.value = true;
+    })
+  // verificationCode.value.map((_, index) => verificationCode.value[index] = '');
+};
+const changePasswordClicked = () => {
+  verificationCode.value.map(
+    (_, index) => (verificationCode.value[index] = "")
+  );
+  isCodeEntered.value = false;
+  newPassword.value = "";
+  copyNewPassword.value = "";
+  isChangePassword.value = true;
+  securityCode(userEmail ? userEmail : "")
+    .then(res => {
+      if (res.status === 200) console.log("Code sent");
+      else console.log("Error sending code");
+    })
+    .catch(err => console.error(err));
+};
 </script>
 <style scoped lang="scss">
 .component-4 {
@@ -756,16 +839,13 @@ const currentPage = computed(() => {
   margin: 14px 20px 0px 20px;
 }
 .div29 {
-  width: 84.21%;
-
+  width: 100%;
   font-size: 0.63em;
-  line-height: 120%;
   font-weight: 300;
   color: rgba(59, 59, 59, 0.58);
-  align-items: center;
-
+  justify-content: center;
   display: flex;
-  margin-top: 0.8em;
+  margin-top: 4em;
 }
 .frame-parent5,
 .instance-wrapper {
@@ -973,5 +1053,9 @@ const currentPage = computed(() => {
     text-align: center;
     width: 410px;
   }
+}
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 </style>

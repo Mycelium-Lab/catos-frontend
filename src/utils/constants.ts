@@ -1,0 +1,1 @@
+export const NANO_MULTIPLIER: number = 1000000000;
