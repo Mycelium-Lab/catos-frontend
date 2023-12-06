@@ -1,1 +1,3 @@
-export const NANO_MULTIPLIER: number = 1000000000;
+const NANO_MULTIPLIER: number = 1000000000;
+
+export { NANO_MULTIPLIER }
