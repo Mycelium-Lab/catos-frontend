@@ -228,7 +228,7 @@
       <div>
         <catosCode
           :style="{ width: '410px' }"
-          @codeEntered="ev => handleCode(ev)"
+          @codeEntered="isCodeEntered = true"
           :code="verificationCode"
         >
         </catosCode>
@@ -283,12 +283,7 @@
           borderRadius: '24px',
         }"
         :class="{ disabled: !buttonActive }"
-        @click="
-          () => {
-            isChangePassword = false;
-            isSuccessChangePassword = true;
-          }
-        "
+        @click="handleClick"
         >Изменить пароль</catos-button
       >
 
@@ -373,6 +368,31 @@
     </template>
   </desktop-modal>
   <desktop-modal
+    v-if="isFailedChangePassword"
+    @close="() => (isFailedChangePassword = false)"
+  >
+    <template v-slot:body>
+      <div class="fieldsregistration-options1">
+        <div class="text-and-fill1">
+          <img class="success-image" src="@/assets/images/fail-transaction.svg" />
+          <h3 class="title-info">Ошибка смены пароля!</h3>
+          <span class="div28">
+            Попробуйте изменить пароль снова, либо обратитесь в службу поддержки.
+          </span>
+        </div>
+      </div>
+      <catos-button
+        :style="{
+          width: '300px',
+          margin: '0 auto',
+          borderRadius: '24px',
+        }"
+        @click="() => (isFailedChangePassword = false)"
+        >Вернуться в профиль</catos-button
+      >
+    </template>
+  </desktop-modal>
+  <desktop-modal
     v-if="isRestorePassword"
     @close="() => (isRestorePassword = false)"
   >
@@ -450,18 +470,24 @@ import catosCode from "@/components/fields/catos-code.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import { useRoute } from "vue-router";
 import { securityCode, changePassword } from "@/api/users.api";
-import { useUserDataStore } from "@/stores/userData";
+import { profileStorage } from "@/utils/localStorage";
 
-const userData = useUserDataStore();
+const userEmail = profileStorage.get()?.email;
 const isChangeEmail = ref(false);
 const isChangePhone = ref(false);
 const isChangePassword = ref(false);
 const isSuccessChangePassword = ref(false);
+const isFailedChangePassword = ref(false);
 const isRestorePassword = ref(false);
+const isCodeEntered = ref(false);
 const newPassword = ref("");
 const copyNewPassword = ref("");
 const buttonActive = computed(() => {
-  return ( newPassword.value != '' && newPassword.value === copyNewPassword.value);
+  return (
+    newPassword.value != "" &&
+    newPassword.value === copyNewPassword.value &&
+    isCodeEntered.value
+  );
 });
 
 const { email, phone } = defineProps({
@@ -473,19 +499,38 @@ const route = useRoute();
 const currentPage = computed(() => {
   return route.name;
 });
-const handleCode = (ev: string[]) => {
-  changePassword(userData.userDTO.email, {
+const handleClick = () => {
+  // isChangePassword = false;
+  // isSuccessChangePassword = true;
+  changePassword(userEmail ? userEmail : "", {
     new_password: newPassword.value,
-    code: Number(verificationCode.value.join('')),
-  });
+    code: Number(verificationCode.value.join("")),
+  })
+    .then(res => {
+      if (res.status === 200) {
+        isChangePassword.value = false;
+        isSuccessChangePassword.value = true;
+      } else {
+        isChangePassword.value = false;
+        isFailedChangePassword.value = true;
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      isChangePassword.value = false;
+      isFailedChangePassword.value = true;
+    })
   // verificationCode.value.map((_, index) => verificationCode.value[index] = '');
 };
 const changePasswordClicked = () => {
-  verificationCode.value.map((_, index) => verificationCode.value[index] = '');
-  newPassword.value = '';
-  copyNewPassword.value = '';
+  verificationCode.value.map(
+    (_, index) => (verificationCode.value[index] = "")
+  );
+  isCodeEntered.value = false;
+  newPassword.value = "";
+  copyNewPassword.value = "";
   isChangePassword.value = true;
-  securityCode(userData.userDTO.email)
+  securityCode(userEmail ? userEmail : "")
     .then(res => {
       if (res.status === 200) console.log("Code sent");
       else console.log("Error sending code");
