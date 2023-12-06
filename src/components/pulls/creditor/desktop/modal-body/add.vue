@@ -93,7 +93,7 @@ import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import { roleStorage } from "@/utils/localStorage";
 import calculator from "@/components/base/calculator.vue";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
-import { investToPool } from "@/api/pools.api";
+import { investToPool, depositToPool } from "@/api/pools.api";
 import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const {poolId, minInvest} = defineProps({
@@ -111,19 +111,31 @@ const uid = ref()
 const close = () => {
   emits("close");
 };
-
 const handleAdd = async () => {
-
-  await investToPool({
-    pool_id: poolId,
-    amount: Number(amount.value) * NANO_MULTIPLIER
-  })
-  .then(res => {
-    isTransaction.value = true
-    uid.value = res.data
-  }).catch(e => {
-    
-  })
+  if (role.value === "creditor") {
+    await depositToPool({
+      pool_id: poolId,
+      amount: Number(amount.value) * NANO_MULTIPLIER
+    })
+    .then(res => {
+      isTransaction.value = true
+      uid.value = res.data
+    }).catch(e => {
+      console.log(e);
+    });
+  }
+  else {
+    await investToPool({
+      pool_id: poolId,
+      amount: Number(amount.value) * NANO_MULTIPLIER
+    })
+    .then(res => {
+      isTransaction.value = true
+      uid.value = res.data
+    }).catch(e => {
+      console.log(e);
+    });
+  }
 }
 
 const role = computed(() => {
