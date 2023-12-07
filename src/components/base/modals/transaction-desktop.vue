@@ -92,7 +92,7 @@ const refreshTransaction = () => {
       const response = res.data
       status.value = response.status
       hash.value = response.hash
-      if(status.value !== 'pending') {
+      if(status.value === 'failed' || status.value === 'successfull') {
           // @ts-ignore
         clearInterval(window.refreshTransactionId)
       }
