@@ -139,6 +139,7 @@ import { createPool } from "@/api/pools.api";
 import { authStorage, profileStorage } from "@/utils/localStorage";
 import { useLoginApi } from "@/composables/useLoginApi";
 import { i18n } from "@/i18n";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const isTransaction = ref(false)
 
@@ -169,8 +170,8 @@ const create = async () => {
       await createPool({
       millipercent: percent.value * 100,
       overdue_millipercent: percent.value * 100, // TODO: добавить поля для ввода остальных данных
-      max_loan_amount: 1000,
-      min_invest_amount: minInvestAmount.value,
+      max_loan_amount: 1000 * NANO_MULTIPLIER,
+      min_invest_amount: minInvestAmount.value * NANO_MULTIPLIER,
       max_duration: toSeconds(duration.value),
       free_period: toSeconds(freePeriod.value),
     }).then(res => {

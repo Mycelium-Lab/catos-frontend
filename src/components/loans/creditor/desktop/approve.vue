@@ -87,6 +87,7 @@ import { approveLoanRequest } from "@/api/loanRequests.api";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import { useLoanRequestListStroe } from "@/stores/loanRequestList";
 import { usePoolListStore } from "@/stores/poolList";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 onMounted(async () => {
   if(id) {
@@ -137,7 +138,7 @@ const approve = async() => {
       "duration": duration.value,
       "millipercent": millipercent.value,
       "overdue_millipercent": overdueMillipercent.value,
-      "approved_amount": approvedAmount.value
+      "approved_amount": approvedAmount.value * NANO_MULTIPLIER
   }
   await approveLoanRequest(id, payload).then(res => {
     isTransaction.value = true
