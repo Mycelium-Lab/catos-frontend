@@ -141,6 +141,7 @@ import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import { roleStorage } from "@/utils/localStorage";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import { withdrawFromPool } from "@/api/pools.api";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const { poolId, availableLiquidity } = defineProps({
   poolId: { type: Number, required: true },
@@ -175,7 +176,7 @@ const close = () => {
 const handleWithdraw = async () => {
   await withdrawFromPool({
     pool_id: poolId,
-    amount: Number(amount.value),
+    amount: Number(amount.value) * NANO_MULTIPLIER,
   })
     .then(res => {
       isTransaction.value = true
