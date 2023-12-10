@@ -269,7 +269,8 @@
             <div class="ton">{{
              variant === "marketplace" ? duty 
             : loan?.amount ? loan?.amount
-            :loanRequest?.approved_amount }} TON</div>
+            : loanRequest?.approved_amount ? loanRequest?.approved_amount 
+            : 0}} TON</div>
           </div>
           <div class="col-titles-bg" />
         </div>
