@@ -123,6 +123,7 @@ import { LoansResponse } from "@/types/loan.types";
 import { usePoolListStore } from "@/stores/poolList";
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
 import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 onMounted(async() => {
   if(loan?.pool_id) {
@@ -158,7 +159,7 @@ const close = () => {
   emtis("close");
 };
 const handle = () => {
-  emtis("prolong", Number(amount.value));
+  emtis("prolong", Number(amount.value) * NANO_MULTIPLIER);
 };
 const amount = ref("");
 

@@ -37,11 +37,12 @@
                 <div class="tag">
                   <div class="div2">
                     <span class="span">от</span>
-                    <span class="span1"> 0 </span>
+                    <span class="span1"> 1 </span>
                   </div>
                 </div>
                 <range-slider
                   :max="maxSumLoans"
+                  :min="1"
                   :modelValue="1"
                   rangeWidth="159px"
                   inputLabel="ton"
@@ -73,6 +74,7 @@
                 </div>
                 <range-slider
                   :max="maxDurationValue"
+                  :min="1"
                   :modelValue="1"
                   rangeWidth="100%"
                   @update:model-value="e => (term = e)"
@@ -183,6 +185,7 @@ import actionDesktop from "@/components/base/modals/action-desktop.vue";
 import { createLoanRequest } from "@/api/loanRequests.api";
 import { Pool } from "@/types/pool.type";
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const {pool} = defineProps({
   pool: {
@@ -228,7 +231,7 @@ const take = async () => {
   isAction.value = true
   await createLoanRequest({
     pool_id: pool?.id ? pool?.id : 0,
-    amount: Number(sum.value),
+    amount: Number(sumLoans.value) * NANO_MULTIPLIER,
     duration: Number(term.value) * 86400
   }).then(res => {
     actionStatus.value = 'success'

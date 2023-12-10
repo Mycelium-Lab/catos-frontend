@@ -74,6 +74,7 @@ import useParsedNumber from "@/compossables/useParsedNumber";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import inputData from "@/components/fields/input-data.vue";
 import { repayLoan } from "@/api/loans.api";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const {id} = defineProps({
   id: {type: Number, required: true}
@@ -99,7 +100,7 @@ const toRepay = computed(() => {
 });
 
 const repay = async () => {
-  await repayLoan(id, Number(amount.value))
+  await repayLoan(id, Number(amount.value) * NANO_MULTIPLIER)
   .then(res => {
     isTransaction.value = true
     uid.value = res.data

@@ -147,6 +147,7 @@ import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLo
 import { LoansResponse } from "@/types/loan.types";
 import { sellLoan } from "@/api/loans.api";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const { loan } = defineProps({
   loan: {
@@ -163,7 +164,7 @@ const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanI
 const emtis = defineEmits(["close", "result"]);
 
 const sell = async () => {
-    await sellLoan(loan?.id ? loan?.id : 0, Number(price.value)).then(res => {
+    await sellLoan(loan?.id ? loan?.id : 0, Number(price.value) * NANO_MULTIPLIER).then(res => {
       isTransaction.value = true
       uid.value = res.data
     }).catch(e => {
