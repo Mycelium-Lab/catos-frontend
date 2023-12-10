@@ -71,7 +71,7 @@
           </div>
           <div class="field-parent">
             <div class="field">
-              <div class="div3">Анкета заявителя:</div>
+              <div class="div3">Анкета заявителя </div>
               <a class="div8" @click="toBlank">Открыть</a>
             </div>
             <div class="col-titles-bg" />

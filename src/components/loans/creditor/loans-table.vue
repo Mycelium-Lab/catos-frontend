@@ -284,7 +284,7 @@
         <div v-if="role === 'creditor'" class="field-parent">
           <div class="field">
             <div class="div2">Анкета заявителя:</div>
-            <div class="div8">Открыть</div>
+            <div class="div8"  @click.stop="() => isBlank = true">Открыть</div>
           </div>
          
         </div>
@@ -533,6 +533,12 @@
       }"> 
   </status-change>
   <sold v-if="isSold" @close="() => (isSold = false)" :loan="loan"></sold>
+  <blank v-if="isBlank"  @close="() => isBlank = false" back  :toBack="
+      () => {
+        isBlank = false;
+      }
+    "
+  :title="`Анкета заявителя #${loanRequest?.borrower_id}`"></blank>
 </template>
 <script setup lang="ts">
 import { ref, PropType, computed, onMounted } from "vue";
@@ -552,6 +558,7 @@ import { i18n } from "@/i18n";
 import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
 import { usePoolListStore } from "@/stores/poolList";
+import blank from "@/components/base/desktop/blank.vue"
 
 onMounted(async() => {
   if(loan?.pool_id && role.value === 'borrower') {
@@ -601,6 +608,7 @@ const freePeriodStatus = ref()
 const freePeriodDate = ref()
 const restDays = ref()
 const accrualDate = ref()
+const isBlank = ref(false)
 
 const { poolItem } = usePoolListStore();
 

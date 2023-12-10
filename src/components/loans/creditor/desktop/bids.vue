@@ -43,7 +43,7 @@
       }
     "
   >
-    <template v-slot:title> Анкета заявителя: </template>
+    <template v-slot:title> Анкета заявителя #{{loanRequest?.borrower_id}} </template>
     <template v-slot:body>
       <div
         :style="{
