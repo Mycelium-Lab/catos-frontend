@@ -9,6 +9,36 @@
         <div class="div16">2 апреля</div>
       </div>
       <div class="pull">
+        <li v-for="transaction in transactions">
+          <div class="field-1" id="fieldContainer">
+            <div class="icons-info">
+              <div class="svg-gobbler-2-11">
+                <img
+                  class="group-icon1"
+                  alt=""
+                  src="@/assets/images/iconstransaction.svg"
+                />
+              </div>
+              <div class="name1">
+                <div class="invoice-aa-04-19-181">Действие: {{ transaction.data?.args[0][1] ? transaction.data?.args[0][1] : "Неизвестная операция" }}</div>
+                <div class="new-madieton-llc1">Пулл #12345</div>
+              </div>
+            </div>
+            <div class="details2">
+              <div class="total1">511 865.00 TON</div>
+              <div 
+                :class="
+                  transaction.status === 'successfull'
+                    ? 'paid1'
+                    : transaction.status === 'pending'
+                    ? 'paid3'
+                    : transaction.status === 'approved'
+                    ? 'paid4'
+                    : 'paid2'"
+                  >{{ TransactionStatusesEnum[transaction.status] }}</div>
+            </div>
+          </div>
+        </li>
         <div class="field-1" id="fieldContainer">
           <div class="icons-info">
             <div class="svg-gobbler-2-11">
@@ -241,7 +271,25 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted, ref } from 'vue';
+import { getTransactions } from '@/api/transaction';
+import { Transaction, TransactionStatusesEnum, TransactionStatuses } from "@/types/transaction.types";
+
+const transactions = ref<Transaction[]>([]);
+onMounted(() => {
+  getTransactions()
+    .then(res => {
+      if (res.status === 200) {
+        transactions.value = res.data;
+      }
+      else {
+        console.log(res);
+      }
+    })
+    .catch(err => console.error(err));
+});
+</script>
 
 <style scoped>
 .col-titles-bg {
@@ -648,10 +696,17 @@
   line-height: 130%;
 }
 .paid3 {
-  color: #fdd674;
+  color: #fddb74;
 }
 .paid4 {
   color: rgba(87, 126, 247, 0.96);
+}
+.paid2 {
+  align-self: stretch;
+  position: relative;
+  font-size: 0.75em;
+  line-height: 130%;
+  color: #a02929
 }
 .pull {
   justify-content: flex-start;
