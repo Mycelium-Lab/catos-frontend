@@ -48,27 +48,27 @@
         </div>
         <div class="col-titles-bg" />
       </div>
-      <div class="field-parent">
+      <!--<div class="field-parent">
         <div class="field">
           <div class="div4">Начисленные проценты:</div>
           <div class="ton-kepeer">TON</div>
         </div>
         <div class="col-titles-bg" />
-      </div>
-      <div class="field-parent">
+      </div>-->
+      <!--<div class="field-parent">
         <div class="field">
           <div class="div4">Сумма к возвращению:</div>
           <div class="ton-kepeer">TON</div>
         </div>
         <div class="col-titles-bg" />
-      </div>
-      <div class="field-parent">
+      </div>-->
+      <!--<div class="field-parent">
         <div class="field">
           <div class="div4">Сумма к погашению для пролонгации:</div>
           <div class="ton-kepeer"> TON</div>
         </div>
         <div class="col-titles-bg" />
-      </div>
+      </div>-->
       <div class="field-wrapper">
         <div class="field">
           <div class="div4">Вернуть не позднее:</div>

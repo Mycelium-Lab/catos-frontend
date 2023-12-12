@@ -141,7 +141,7 @@
                   <div class="component">
                     <div class="field">
                       <div class="div7">Заявитель:</div>
-                      <div class="div20">Иван Иванов</div>
+                      <div class="div20">{{ loan?.borrower.name }} {{ loan?.borrower.surname }}</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>

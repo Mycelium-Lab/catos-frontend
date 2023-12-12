@@ -107,36 +107,22 @@
           </div>
           <div class="field-parent">
             <div class="field">
-              <div class="div5">Доход за 30 дней:</div>
-              <div class="div6">% годовых</div>
+              <div class="div5">Просроченных займов:</div>
+              <div class="div6">{{ pool?.overdue_loans ? pool?.overdue_loans : 0 }}</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
-              <div class="div5">% Просроченных займов:</div>
-              <div class="div6"></div>
-            </div>
-            <div class="col-titles-bg" />
-          </div>
-          <div class="field-parent">
-            <div class="field">
-              <div class="div5">% Проданных займов:</div>
-              <div class="div6"></div>
-            </div>
-            <div class="col-titles-bg" />
-          </div>
-          <div class="field-parent">
-            <div class="field">
-              <div class="div5">Пуллов сгенерировано для инвесторов:</div>
-              <div class="div6">раз</div>
+              <div class="div5">Проданных займов:</div>
+              <div class="div6">{{ pool?.sold_loans ? pool?.sold_loans : 0 }}</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div5">Количество инвесторов:</div>
-              <div class="div6">человек</div>
+              <div class="div6">{{ pool?.investors_count ? pool?.investors_count : 0 }} человек</div>
             </div>
             <div class="col-titles-bg" />
           </div>

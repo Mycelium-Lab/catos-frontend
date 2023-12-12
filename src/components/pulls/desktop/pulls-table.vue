@@ -310,7 +310,7 @@
                   <div class="div127">Сгенерированный доход:</div>
                 </div>
                 <div class="ton-wrapper">
-                  <div class="div128"> TON</div>
+                  <div class="div128">{{ pool?.revenue }} TON</div>
                 </div>
               </div>
               <div
@@ -325,10 +325,10 @@
                   <div class="div127">Действующих инвесторов:</div>
                 </div>
                 <div class="ton-wrapper">
-                  <div class="div128"></div>
+                  <div class="div128">{{ pool?.investors_count ? pool?.investors_count : 0 }}</div>
                 </div>
               </div>
-              <div v-if="role === 'investor'" class="line-div" />
+              <!--<div v-if="role === 'investor'" class="line-div" />
               <div v-if="role === 'investor'" class="frame-parent23">
                 <div class="frame">
                   <div class="div127">Доходность за 30 дней:</div>
@@ -336,7 +336,7 @@
                 <div class="ton-wrapper">
                   <div class="div128">% годовых</div>
                 </div>
-              </div>
+              </div>-->
 
               <div
                 v-if="
@@ -361,7 +361,7 @@
               </div>
             </div>
 
-            <div
+            <!--<div
               v-if="role === 'investor' && variant === 'my'"
               class="frame-parent"
             >
@@ -402,7 +402,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div>-->
           </div>
           <div class="des-and-bbn6">
             <div class="text-and-button-parent">
@@ -1305,10 +1305,10 @@ li {
   color: #3b3b3b;
   font-family: Inter;
   &_investor-all {
-    height: 38.3em;
+    height: 36.3em;
   }
   &_investor-my {
-    height: 46.5em;
+    height: 34.5em;
   }
   &_creditor-my {
     height: 32.5em;

@@ -21,6 +21,9 @@ export type Pool = {
   organization: string;
   loan_count: number;
   revenue: number;
+  investors_count: number,
+  overdue_loans: number,
+  sold_loans: number,
   overdue_amount: number;
 };
 

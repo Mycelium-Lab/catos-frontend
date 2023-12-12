@@ -42,7 +42,7 @@ const useComputedPoolInfo = (pool: any) => {
 
     const loansSummIssue = computed(() => {
         const poolLoan = useLoanListStore().poolLoan(pool?.id)
-        return poolLoan.map((v) => v.amount).reduce(
+        return poolLoan.map((v) => v.amount / NANO_MULTIPLIER).reduce(
             (accumulator, currentValue) => accumulator + currentValue,
             0,
           );
@@ -50,7 +50,7 @@ const useComputedPoolInfo = (pool: any) => {
 
     const availableForLoan = computed(() => {
         const poolLoan = useLoanListStore().poolLoan(pool?.id)
-        const onLoan = poolLoan.map((v) => v.amount)
+        const onLoan = poolLoan.map((v) => v.amount / NANO_MULTIPLIER)
         const onLoanSumm = onLoan.reduce(
             (accumulator, currentValue) => accumulator + currentValue,
             0,
@@ -61,7 +61,7 @@ const useComputedPoolInfo = (pool: any) => {
     const sold = computed(() => {
         const poolLoan = useLoanListStore().poolLoan(pool?.id)
         const onSold = poolLoan.filter((v) => v.buyer_id && v.status === 'sold')
-        const amount = onSold.map((v) => v.amount).reduce(
+        const amount = onSold.map((v) => v.amount / NANO_MULTIPLIER).reduce(
             (accumulator, currentValue) => accumulator + currentValue,
             0,
           );
@@ -71,7 +71,7 @@ const useComputedPoolInfo = (pool: any) => {
     const forSale = computed(() => {
         const poolLoan = useLoanListStore().poolLoan(pool?.id)
         const onForSale = poolLoan.filter((v) => v.status === 'for_sale')
-        const amount = onForSale.map((v) => v.amount).reduce(
+        const amount = onForSale.map((v) => v.amount / NANO_MULTIPLIER).reduce(
             (accumulator, currentValue) => accumulator + currentValue,
             0,
           );

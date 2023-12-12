@@ -60,7 +60,7 @@ export const useComputedCreditorInfo = (creditorId: number) => {
     })
 
     const allLiquiditySumm = computed(() => {
-        return usePoolListStore().creditorPools(creditorId).map((v) => v.all_liquidity).reduce(
+        return usePoolListStore().creditorPools(creditorId).map((v) => v.all_liquidity / NANO_MULTIPLIER).reduce(
             (accumulator, currentValue) => accumulator + currentValue,
             0,
           );
@@ -77,7 +77,7 @@ export const useComputedCreditorInfo = (creditorId: number) => {
         return useLoanListStore().creditorLoan(creditorId).length
     })
     const loansSummIssue = computed(() => {
-        return useLoanListStore().creditorLoan(creditorId).map((v) => v.amount).reduce(
+        return useLoanListStore().creditorLoan(creditorId).map((v) => v.amount / NANO_MULTIPLIER).reduce(
             (accumulator, currentValue) => accumulator + currentValue,
             0,
           );

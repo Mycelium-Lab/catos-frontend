@@ -64,13 +64,13 @@
             </div>
           </div>
           <div class="frame-div">
-            <div class="field-parent">
+            <!--<div class="field-parent">
               <div class="field">
                 <div class="roi">Дата регистрации:</div>
                 <div class="n"></div>
               </div>
               <div class="col-titles-bg" />
-            </div>
+            </div>-->
             <div class="field-parent">
               <div class="field">
                 <div class="roi">Кредитных пуллов:</div>

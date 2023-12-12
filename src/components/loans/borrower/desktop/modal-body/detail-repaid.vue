@@ -95,7 +95,7 @@
           </div>
         </div>
         <div class="frame-parent5">
-          <div class="frame-parent2">
+          <!--<div class="frame-parent2">
             <div class="wrapper">
               <div class="div1">Дата погашения займа:</div>
             </div>
@@ -103,12 +103,12 @@
               <div class="div2"></div>
             </div>
           </div>
-          <div class="frame-child" />
+          <div class="frame-child" />-->
           <div class="frame-parent3">
             <div class="frame">
               <div class="div3">Пролонгирован:</div>
             </div>
-            <a class="div9" @click="toProlong"> раза</a>
+            <a class="div9" @click="toProlong"> {{loan?.prolongates ? loan.prolongates : 0}} </a>
           </div>
           <div class="frame-child" />
           <div class="frame-wrapper2">
