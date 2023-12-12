@@ -14,7 +14,7 @@
                 />
                 <div class="ton-parent">
                   <div class="div1">Займ на </div>
-                  <div class="ton">{{ loan?.amount }} TON</div>
+                  <div class="ton">{{ loan?.amount ? loan?.amount / NANO_MULTIPLIER  : 0 }} TON</div>
                 </div>
               </div>
               <div class="frame-child" />

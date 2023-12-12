@@ -111,7 +111,7 @@
                   <div class="component">
                     <div class="field">
                       <div class="div7">Займ:</div>
-                      <div class="div4">{{ loan?.amount }} TON</div>
+                      <div class="div4">{{ loan?.amount ? loan?.amount / NANO_MULTIPLIER : 0 }} TON</div>
                     </div>
                     <div class="col-titles-bg" />
                   </div>
@@ -226,6 +226,7 @@ import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLo
 import { useComputedPoolInfo } from "@/composables/infoCalculation/useComputedPoolInfo";
 import { usePoolListStore } from "@/stores/poolList";
 import { i18n } from "@/i18n";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 onMounted(async() => {
   const poolListStore = usePoolListStore()
