@@ -36,7 +36,7 @@
                       {{
                         role === "collector"
                           ? loan?.price
-                          : pool?.available_liquidity
+                          : pool?.available_liquidity / NANO_MULTIPLIER
                       }}
                       TON
                     </div>
@@ -167,7 +167,7 @@
                   <div class="div127">Одобренный лимит:</div>
                 </div>
                 <div class="ton-wrapper">
-                  <div class="div128">до {{ pool?.available_liquidity }}  TON</div>
+                  <div class="div128">до {{ pool?.available_liquidity ? pool?.available_liquidity / NANO_MULTIPLIER : 0}}  TON</div>
                 </div>
               </div>
               <div v-if="role === 'collector'" class="frame-parent23">
@@ -272,7 +272,7 @@
                   <div class="div127">Всего ликвидности:</div>
                 </div>
                 <div class="ton-wrapper">
-                  <div class="div128">{{ pool?.all_liquidity }} TON</div>
+                  <div class="div128">{{ pool?.all_liquidity ? pool?.all_liquidity / NANO_MULTIPLIER: 0}} TON</div>
                 </div>
               </div>
               <div
@@ -295,7 +295,7 @@
                   <div class="div127">Свободно:</div>
                 </div>
                 <div class="ton-wrapper">
-                  <div class="div128">{{ pool?.available_liquidity }} TON</div>
+                  <div class="div128">{{ pool?.available_liquidity ?  pool?.available_liquidity / NANO_MULTIPLIER : 0}} TON</div>
                 </div>
               </div>
               <div
@@ -544,7 +544,7 @@
         }
       "
       :poolId="pool?.id ? pool?.id : 0"
-      :minInvest="pool?.min_invest_amount ? pool?.min_invest_amount : 0"
+      :minInvest="pool?.min_invest_amount ? pool?.min_invest_amount / NANO_MULTIPLIER : 0"
     ></add>
     <withdraw
       v-if="
@@ -558,7 +558,7 @@
         }
       "
       :poolId="pool?.id ? pool?.id : 0"
-      :availableLiquidity ="pool?.available_liquidity ? pool?.available_liquidity : 0"
+      :availableLiquidity ="pool?.available_liquidity ? pool?.available_liquidity / NANO_MULTIPLIER : 0"
     ></withdraw>
     <all-depositor-pulls
       v-if="
@@ -669,6 +669,7 @@ import { usePoolListStore } from "@/stores/poolList";
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
 import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo"
 import { i18n } from "@/i18n";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 onMounted(async () => {
   if(loan?.pool_id) {

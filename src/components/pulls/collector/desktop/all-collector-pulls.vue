@@ -82,14 +82,14 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Выплачено по долгу:</div>
-                        <div class="ton">{{ loan?.paid_amount }} TON</div>
+                        <div class="ton">{{ loan?.paid_amount ? loan?.paid_amount / NANO_MULTIPLIER : 0 }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Одобренный лимит:</div>
-                        <div class="ton">до {{ poolByLoan?.available_liquidity }} TON</div>
+                        <div class="ton">до {{ poolByLoan?.available_liquidity ? poolByLoan?.available_liquidity / NANO_MULTIPLIER : 0}} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -253,6 +253,7 @@ import { LoansResponse } from "@/types/loan.types";
 import { Pool } from "@/types/pool.type";
 import { parse } from "tinyduration";
 import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo"
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const {loan, poolByLoan} = defineProps({
   loan : {
