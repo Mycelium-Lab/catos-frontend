@@ -20,13 +20,22 @@
                 />
               </div>
               <div class="name1">
-                <div class="invoice-aa-04-19-181">Действие: {{ transaction.data?.args[0][1] ? transaction.data?.args[0][1] : "Неизвестная операция" }}</div>
+                <div class="invoice-aa-04-19-181">
+                  {{
+                    transaction.data?.args[0][1]
+                    // @ts-ignore
+                      ? TransactionOpcodes[
+                          transaction.data?.args[0][1].toString()
+                        ]
+                      : "Неизвестная операция"
+                  }}
+                </div>
                 <div class="new-madieton-llc1">Пулл #12345</div>
               </div>
             </div>
             <div class="details2">
               <div class="total1">511 865.00 TON</div>
-              <div 
+              <div
                 :class="
                   transaction.status === 'successfull'
                     ? 'paid1'
@@ -34,8 +43,11 @@
                     ? 'paid3'
                     : transaction.status === 'approved'
                     ? 'paid4'
-                    : 'paid2'"
-                  >{{ TransactionStatusesEnum[transaction.status] }}</div>
+                    : 'paid2'
+                "
+              >
+                {{ TransactionStatusesEnum[transaction.status] }}
+              </div>
             </div>
           </div>
         </li>
@@ -272,9 +284,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { getTransactions } from '@/api/transaction';
-import { Transaction, TransactionStatusesEnum, TransactionStatuses } from "@/types/transaction.types";
+import { onMounted, ref } from "vue";
+import { getTransactions } from "@/api/transaction";
+import {
+  Transaction,
+  TransactionStatusesEnum,
+  TransactionOpcodes,
+} from "@/types/transaction.types";
 
 const transactions = ref<Transaction[]>([]);
 onMounted(() => {
@@ -282,8 +298,7 @@ onMounted(() => {
     .then(res => {
       if (res.status === 200) {
         transactions.value = res.data;
-      }
-      else {
+      } else {
         console.log(res);
       }
     })
@@ -706,7 +721,7 @@ onMounted(() => {
   position: relative;
   font-size: 0.75em;
   line-height: 130%;
-  color: #a02929
+  color: #a02929;
 }
 .pull {
   justify-content: flex-start;
