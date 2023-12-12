@@ -95,7 +95,7 @@
         : '' }}
       </span>
 
-      <div class="div7">Забыли пароль?</div>
+      <div class="div7" @click="() => isPasswordRetrieval = true">Забыли пароль?</div>
     </div>
   </div>
   <password-recovery

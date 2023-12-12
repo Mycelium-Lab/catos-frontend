@@ -1,9 +1,10 @@
 import { computed } from "vue"
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
     const duty = computed(() => {
         if(loan?.amount && loan?.paid_amount) {
-          const dif = loan?.amount - loan?.paid_amount
+          const dif = (loan?.amount / NANO_MULTIPLIER) - (loan?.paid_amount / NANO_MULTIPLIER)
           const overduePercent = loan?.overdue_millipercent / 100
           return dif * overduePercent / 100 + dif
         }

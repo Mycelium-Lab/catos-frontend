@@ -103,6 +103,7 @@ import { declineLoanRequest } from "@/api/loanRequests.api";
 import { useLoanRequestListStroe } from "@/stores/loanRequestList";
 import { usePoolListStore } from "@/stores/poolList";
 import { useComputedLoanRequestInfo } from "@/composables/infoCalculation/useComputedLoanRequestInfo";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 onMounted(async () => {
   if(id) {
@@ -111,7 +112,7 @@ onMounted(async () => {
     initDuration.value = useComputedLoanRequestInfo(loanRequest.value).durationValue
     const poolId = loanRequest.value.pool_id
     const poolByLoan = await usePoolListStore().poolItem(poolId)
-    initMaxApprovedAmount.value = poolByLoan.max_loan_amount
+    initMaxApprovedAmount.value = poolByLoan.max_loan_amount / NANO_MULTIPLIER
   }
 })
 

@@ -1,6 +1,7 @@
 import { computed } from "vue"
 import { parse } from "tinyduration";
 import { useLoanListStore } from "@/stores/loanList";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const useComputedPoolInfo = (pool: any) => {
     const interestRate = computed(() => {
@@ -54,7 +55,7 @@ const useComputedPoolInfo = (pool: any) => {
             (accumulator, currentValue) => accumulator + currentValue,
             0,
           );
-       return  pool?.available_liquidity - onLoanSumm
+       return  (pool?.available_liquidity / NANO_MULTIPLIER) - (onLoanSumm / NANO_MULTIPLIER)
     })
 
     const sold = computed(() => {
@@ -85,7 +86,7 @@ const useComputedPoolInfo = (pool: any) => {
             return now > end
         })
         const amount = onDebt.map((v) => {
-            const dif = v.amount - v.paid_amount
+            const dif = (v.amount / NANO_MULTIPLIER) - ( v.paid_amount / NANO_MULTIPLIER)
             const overduePercent = v.overdue_millipercent / 100
             return dif * overduePercent / 100 + dif
         })

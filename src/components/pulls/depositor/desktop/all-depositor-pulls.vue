@@ -94,14 +94,14 @@
           <div class="field-parent">
             <div class="field">
               <div class="div5">Всего ликвидности:</div>
-              <div class="div6">{{ pool?.all_liquidity }} TON</div>
+              <div class="div6">{{ pool?.all_liquidity ? pool?.all_liquidity / NANO_MULTIPLIER : 0}} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
           <div class="field-parent">
             <div class="field">
               <div class="div5">Доступно ликвидности:</div>
-              <div class="div6">{{ pool?.available_liquidity }} TON</div>
+              <div class="div6">{{ pool?.available_liquidity ? pool?.available_liquidity / NANO_MULTIPLIER  : 0}} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -184,6 +184,7 @@ import add from "../../creditor/desktop/modal-body/add.vue";
 import { Pool } from "@/types/pool.type";
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo";
 import { i18n } from "@/i18n";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const isDetail = ref(true);
 const isAdd = ref(false);

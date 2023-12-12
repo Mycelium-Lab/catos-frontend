@@ -38,7 +38,7 @@
                 <div class="field-parent">
                   <div class="field">
                     <div class="div3">Всего ликвидности:</div>
-                    <div class="ton1">{{ pool?.all_liquidity }} TON</div>
+                    <div class="ton1">{{ pool?.all_liquidity ? pool?.all_liquidity / NANO_MULTIPLIER : 0}} TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
@@ -59,7 +59,7 @@
                 <div class="field-parent">
                   <div class="field">
                     <div class="div3">Доступно для изъятия:</div>
-                    <div class="ton1">{{ pool?.available_liquidity }} TON</div>
+                    <div class="ton1">{{ pool?.available_liquidity ? pool?.available_liquidity  / NANO_MULTIPLIER: 0 }} TON</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
@@ -121,6 +121,7 @@
 import { Pool } from "@/types/pool.type";
 import { useComputedPoolInfo } from "@/composables/infoCalculation/useComputedPoolInfo";
 import { PropType} from "vue";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const { pool } = defineProps({
   pool: {

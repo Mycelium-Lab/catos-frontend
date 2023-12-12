@@ -71,7 +71,7 @@
             <div class="field-parent">
               <div class="field">
                 <div class="div5">Всего ликвидности:</div>
-                <div class="div6">{{ poolByLoan?.all_liquidity }} TON</div>
+                <div class="div6">{{ poolByLoan?.all_liquidity / NANO_MULTIPLIER}} TON</div>
               </div>
               <div class="col-titles-bg" />
             </div>
@@ -79,7 +79,7 @@
             <div class="field-parent">
               <div class="field">
                 <div class="div5">Свободно:</div>
-                <div class="div6">{{ poolByLoan?.available_liquidity }} TON</div>
+                <div class="div6">{{ poolByLoan?.available_liquidity / NANO_MULTIPLIER}} TON</div>
               </div>
               <div class="col-titles-bg" />
             </div>
@@ -122,6 +122,7 @@ import desktopModal from "@/components/base/desktop-modal.vue";
 import { usePoolListStore } from "@/stores/poolList";
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
 import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 onMounted(async () => {
   if(loan?.pool_id) {

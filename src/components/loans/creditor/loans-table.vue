@@ -111,8 +111,8 @@
               </div>
               <div class="ton18">{{ 
               variant === "sold" ? duty 
-              : role === 'borrower' && loanRequest?.id ? loanRequest?.approved_amount
-              : loan?.amount}} TON</div>
+              : role === 'borrower' && loanRequest?.id ? loanRequest?.approved_amount / NANO_MULTIPLIER
+              : loan?.amount / NANO_MULTIPLIER}} TON</div>
               <div
                 v-if="loanRequestStatus === 'creditor' || role === 'investor'"
                 class="txt2"
@@ -176,14 +176,14 @@
         <div v-if="role === 'borrower' && loanRequest" class="field-parent">
           <div class="field">
             <div class="div2">Одобренная сумма:</div>
-            <div class="ton">{{ loanRequest?.approved_amount ? loanRequest?.approved_amount : 0 }} TON</div>
+            <div class="ton">{{ loanRequest?.approved_amount ? loanRequest?.approved_amount / NANO_MULTIPLIER : 0 }} TON</div>
           </div>
           <div class="col-titles-bg" />
         </div>
         <div v-if="role === 'borrower' && !loanRequest" class="field-parent">
           <div class="field">
             <div class="div2">Займ:</div>
-            <div class="ton">{{ loan?.amount }} TON</div>
+            <div class="ton">{{ loan?.amount ? loan?.amount / NANO_MULTIPLIER : 0 }} TON</div>
           </div>
           <div class="col-titles-bg" />
         </div>
@@ -268,8 +268,8 @@
             </div>
             <div class="ton">{{
              variant === "marketplace" ? duty 
-            : loan?.amount ? loan?.amount
-            : loanRequest?.approved_amount ? loanRequest?.approved_amount 
+            : loan?.amount ? loan?.amount / NANO_MULTIPLIER
+            : loanRequest?.approved_amount ? loanRequest?.approved_amount  / NANO_MULTIPLIER
             : 0}} TON</div>
           </div>
           <div class="col-titles-bg" />
@@ -559,6 +559,7 @@ import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLo
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
 import { usePoolListStore } from "@/stores/poolList";
 import blank from "@/components/base/desktop/blank.vue"
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 onMounted(async() => {
   if(loan?.pool_id && role.value === 'borrower') {
