@@ -111,7 +111,7 @@
               </div>
               <div class="ton18">{{ 
               variant === "sold" ? duty 
-              : role === 'borrower' && loanRequest?.id ? loanRequest?.approved_amount / NANO_MULTIPLIER
+              : role === 'borrower' && loanRequest?.id ? loanRequest?.amount / NANO_MULTIPLIER
               : loan?.amount / NANO_MULTIPLIER}} TON</div>
               <div
                 v-if="loanRequestStatus === 'creditor' || role === 'investor'"
