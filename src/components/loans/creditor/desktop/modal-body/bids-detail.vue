@@ -95,7 +95,7 @@
                         <span>Пулл </span>
                         <span class="span">#{{ v.pool_id }}</span>
                         <span>, </span>
-                        <span v-if="v.status === 'approved'"> срок {{ useComputedLoanRequestInfo(v).duration.value }}, сумма {{ v.approved_amount }} TON </span>
+                        <span v-if="v.status === 'approved'"> срок {{ useComputedLoanRequestInfo(v).duration.value }}, сумма {{ v.approved_amount /  NANO_MULTIPLIER}} TON </span>
                         <span class="span4" v-else-if="v.status === 'declined'">не одобрено</span>
                       </div>
                     </div>
@@ -130,6 +130,7 @@ import { PropType } from "vue";
 import { useComputedLoanRequestInfo } from "@/composables/infoCalculation/useComputedLoanRequestInfo"
 import { LoansRequestResponse } from "@/types/loan.types";
 import { i18n } from "@/i18n";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const { loanRequest } = defineProps({
   loanRequest: {

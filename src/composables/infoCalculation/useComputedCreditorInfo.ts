@@ -2,6 +2,7 @@ import { usePoolListStore } from "@/stores/poolList"
 import { useLoanListStore } from "@/stores/loanList"
 import { parse } from "tinyduration";
 import { computed } from "vue"
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 export const useComputedCreditorInfo = (creditorId: number) => {
     const allPoolsCount = computed(() => {
@@ -66,7 +67,7 @@ export const useComputedCreditorInfo = (creditorId: number) => {
     })
 
     const availableLiquiditySumm = computed(() => {
-        return usePoolListStore().creditorPools(creditorId).map((v) => v.available_liquidity).reduce(
+        return usePoolListStore().creditorPools(creditorId).map((v) => v.available_liquidity / NANO_MULTIPLIER).reduce(
             (accumulator, currentValue) => accumulator + currentValue,
             0,
           );

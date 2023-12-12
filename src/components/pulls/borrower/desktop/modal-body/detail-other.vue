@@ -12,7 +12,7 @@
                 src="@/assets/images/pie-chart.svg"
               />
               <div class="ton-parent">
-                <div class="ton">{{ pool?.available_liquidity }} TON</div>
+                <div class="ton">{{ pool?.available_liquidity ? pool?.available_liquidity / NANO_MULTIPLIER  : 0}} TON</div>
                 <div class="div1">Одобренный лимит</div>
               </div>
             </div>
@@ -65,7 +65,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div7">Одобренный лимит:</div>
-              <div class="ton1">до {{ pool?.available_liquidity }} TON</div>
+              <div class="ton1">до {{ pool?.available_liquidity ? pool?.available_liquidity /  NANO_MULTIPLIER : 0 }} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -86,7 +86,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div7">Всего ликвидности:</div>
-              <div class="ton1">{{ pool?.all_liquidity }} TON</div>
+              <div class="ton1">{{ pool?.all_liquidity ? pool?.all_liquidity / NANO_MULTIPLIER : 0}} TON</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -137,6 +137,7 @@ import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
 import { Pool } from "@/types/pool.type";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const { pool } = defineProps({
   pool: {

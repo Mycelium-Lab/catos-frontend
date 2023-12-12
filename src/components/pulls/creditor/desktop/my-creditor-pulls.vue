@@ -41,7 +41,7 @@
   ></liquidity-management-desktop>
   <withdraw
     :poolId="poolId"
-    :availableLiquidity="pool?.available_liquidity ? pool?.available_liquidity : 0"
+    :availableLiquidity="pool?.available_liquidity ? pool?.available_liquidity / NANO_MULTIPLIER : 0"
     v-if="isWithdraw"
     @close="close"
     @qr="
@@ -160,6 +160,7 @@ import add from "./modal-body/add.vue";
 import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
 import statusModalDesktop from "@/components/base/status-modal-desktop.vue";
 import { Pool } from "@/types/pool.type";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const { state } = defineProps({
   state: {
