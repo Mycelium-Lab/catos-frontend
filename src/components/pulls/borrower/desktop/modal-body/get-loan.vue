@@ -200,7 +200,7 @@ const {
 
 const emits = defineEmits(["close"]);
 const isCreditorInfo = ref(false);
-const maxSumLoans = ref(pool?.max_loan_amount ? pool?.max_loan_amount / NANO_MULTIPLIER : 0)
+const maxSumLoans = ref(pool?.available_liquidity ? pool?.available_liquidity / NANO_MULTIPLIER : 0)
 const sumLoans = ref(1);
 const term = ref(1);
 
