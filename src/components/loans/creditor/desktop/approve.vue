@@ -130,7 +130,7 @@ const emtis = defineEmits(["close"]);
 const millipercent = ref(0);
 const overdueMillipercent = ref(0);
 const duration = ref(initDuration);
-const approvedAmount = ref(initApprovedAmount)
+const approvedAmount = ref(initApprovedAmount / NANO_MULTIPLIER)
 const uid = ref()
 
 const approve = async() => {
