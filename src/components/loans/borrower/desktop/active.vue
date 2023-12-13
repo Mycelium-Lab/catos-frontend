@@ -1,6 +1,6 @@
 <template>
   <prolong v-if="isProlong" :toInit="setInit" :id="loan?.id ? loan?.id : 0" :loan="loan" @close="close"></prolong>
-  <repay v-if="isRepay" @close="close" :id="poolId ? poolId : 0"></repay>
+  <repay v-if="isRepay" @close="close" :id="loan?.id ? loan?.id : 0"></repay>
   <active-detail v-if="isDetail && status === 'active'" :loan="loan" @close="close">
   </active-detail>
   <overdue-detail
