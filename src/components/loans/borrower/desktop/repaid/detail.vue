@@ -14,7 +14,7 @@
     </template>
     <template v-slot:subtitle>
       <div class="subtitle">
-        <b>{{ loan?.amount }} TON</b> <br />
+        <b>{{ loan?.amount ? loan?.amount / NANO_MULTIPLIER : 0 }} TON</b> <br />
         Были отправлены на ваш кошелек: <br />
         <a class="link">EQB5...dzE1hа44</a>
       </div>
@@ -34,6 +34,7 @@ import detailRepaid from "../modal-body/detail-repaid.vue";
 import { LoansResponse } from "@/types/loan.types";
 import { usePoolListStore } from "@/stores/poolList";
 import { useRouter } from "vue-router";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 onMounted(async () => {
   if(loan?.pool_id) {

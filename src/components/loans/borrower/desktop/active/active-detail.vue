@@ -14,7 +14,7 @@
                 />
                 <div class="ton-parent">
                   <div class="div1">Займ на </div>
-                  <div class="ton">{{ loan?.amount }} TON</div>
+                  <div class="ton">{{ loan?.amount ? loan?.amount / NANO_MULTIPLIER  : 0 }} TON</div>
                 </div>
               </div>
               <div class="frame-child" />
@@ -34,14 +34,6 @@
                     src="@/assets/images/clock.svg"
                   />
                   <div class="div2">{{ freePeriodString }}</div>
-                </div>
-                <div class="percent-parent">
-                  <img
-                    class="percent-icon"
-                    alt=""
-                    src="@/assets/images/activity.svg"
-                  />
-                  <div class="div2">ROI = {{poolByLoan?.roi}}%</div>
                 </div>
               </div>
             </div>
@@ -66,29 +58,7 @@
                 <div class="div5">Беспроцентный период:</div>
                 <div class="div6">до {{freePeriod}} дн</div>
               </div>
-              <div class="col-titles-bg" />
-            </div>
-            <div class="field-parent">
-              <div class="field">
-                <div class="div5">Всего ликвидности:</div>
-                <div class="div6">{{ poolByLoan?.all_liquidity / NANO_MULTIPLIER}} TON</div>
-              </div>
-              <div class="col-titles-bg" />
-            </div>
 
-            <div class="field-parent">
-              <div class="field">
-                <div class="div5">Свободно:</div>
-                <div class="div6">{{ poolByLoan?.available_liquidity / NANO_MULTIPLIER}} TON</div>
-              </div>
-              <div class="col-titles-bg" />
-            </div>
-            <div class="field-parent">
-              <div class="field">
-                <div class="div5">ROI инвесторов:</div>
-                <div class="div6">{{ poolByLoan?.roi}}% годовых</div>
-              </div>
-              <div class="col-titles-bg" />
             </div>
           </div>
 
@@ -565,7 +535,6 @@ const close = () => {
 .frame-parent {
   position: relative;
   width: 100%;
-  height: 55.94em;
   text-align: left;
   color: #3b3b3b;
   font-family: Inter;
@@ -593,7 +562,6 @@ const close = () => {
 }
 @media (max-height: 1100px) {
   .frame-parent {
-    height: 35.94em;
     overflow-y: auto;
   }
 }

@@ -13,7 +13,7 @@
             </catos-checkbox>-->
 
             <div class="txt1-parent">
-              <div class="txt1">Иван Иванов Иванович</div>
+              <div class="txt1">{{ loanRequest ? loanRequest?.borrower.name : loan?.borrower.name }} {{ loanRequest ? loanRequest?.borrower.surname : loan?.borrower.surname }}</div>
               <div class="txt2">{{`ID ${loanRequest ? loanRequest?.id : loan?.id}` }}</div>
             </div>
           </div>

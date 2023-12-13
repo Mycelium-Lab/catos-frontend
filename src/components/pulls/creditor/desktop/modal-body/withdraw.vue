@@ -15,7 +15,7 @@
           {{ input ? Number(input).toFixed(3) : "0.000" }} TON
         </div>-->
         <div class="div9">
-          {{availableLiquidity}} TON
+          {{availableLiquidity ? availableLiquidity / NANO_MULTIPLIER : 0}} TON
         </div>
       </div>
 
@@ -72,7 +72,7 @@
             <div class="min-10-ton-container">
               <span>Max: </span>
               <span class="span8"> </span>
-              <span class="ton1">{{ maxWithdrawAmount }}</span>
+              <span class="ton1">{{ maxWithdrawAmount }} TON</span>
             </div>
           </div>
         </div>
@@ -149,8 +149,8 @@ const { poolId, availableLiquidity } = defineProps({
 });
 
 const amount = ref("");
-const minWithdrawAmount = ref(10); // TON
-const maxWithdrawAmount = ref(availableLiquidity); // TON
+const minWithdrawAmount = ref(1); // TON
+const maxWithdrawAmount = ref(availableLiquidity / NANO_MULTIPLIER); // TON
 const amountOutOfRange = computed(() => {
   if (amount.value != "") {
     return (

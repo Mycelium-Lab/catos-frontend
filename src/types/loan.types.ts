@@ -30,21 +30,22 @@ export type LoansResponse = {
         buyer_id: number,
         price: number,
         creditor_id: number,
-        "borrower": {
-          "name": string,
-          "surname": string,
-          "region": string,
-          "neighborhood": string,
-          "birthdate": string,
-          "userinfo": {
-            "id": number,
-            "employment_type": string,
-            "revenue": number,
-            "education": string,
-            "relationship": string,
-            "children": number,
-            "criminal": string,
-            "survey": string
+        prolongates: number
+        borrower: {
+          name: string,
+          surname: string,
+          region: string,
+          neighborhood: string,
+          birthdate: string,
+          userinfo: {
+            id: number,
+            employment_type: string,
+            revenue: number,
+            education: string,
+            relationship: string,
+            children: number,
+            criminal: string,
+            survey: string
           }
         },
 }
@@ -59,7 +60,26 @@ export type LoansRequestResponse = {
         duration: number,
         millipercent: number,
         overdue_millipercent: number,
-        status: LoansRequestStatusSting
+        status: LoansRequestStatusSting,
+        borrower: {
+          name: string,
+          surname: string,
+          region: string,
+          neighborhood: string,
+          birthdate: string,
+          userinfo: {
+            id: number,
+            employment_type: string,
+            revenue: number,
+            education: string,
+            relationship: string,
+            children: number,
+            criminal: string,
+            survey: string,
+            pdf_form: string,
+            safe_pdf_form: string
+          }
+        }
 }
 
 export type LoansBoughtResponse = {

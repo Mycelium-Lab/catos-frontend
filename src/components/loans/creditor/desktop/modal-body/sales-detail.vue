@@ -58,7 +58,7 @@
                     <div class="fieldsinput-parent">
                       <div class="field">
                         <div class="div4">Займ:</div>
-                        <div class="div5">{{ loan?.amount }} TON</div>
+                        <div class="div5">{{ loan?.amount ? loan?.amount / NANO_MULTIPLIER : 0 }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>

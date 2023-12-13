@@ -10,7 +10,7 @@
           />
           <div class="group">
             <div class="div1">Займ на:</div>
-            <div class="ton">{{ loan?.amount }} TON</div>
+            <div class="ton">{{ loan?.amount ? loan?.amount / NANO_MULTIPLIER  : 0 }} TON</div>
           </div>
         </div>
 
@@ -48,27 +48,27 @@
         </div>
         <div class="col-titles-bg" />
       </div>
-      <div class="field-parent">
+      <!--<div class="field-parent">
         <div class="field">
           <div class="div4">Начисленные проценты:</div>
           <div class="ton-kepeer">TON</div>
         </div>
         <div class="col-titles-bg" />
-      </div>
-      <div class="field-parent">
+      </div>-->
+      <!--<div class="field-parent">
         <div class="field">
           <div class="div4">Сумма к возвращению:</div>
           <div class="ton-kepeer">TON</div>
         </div>
         <div class="col-titles-bg" />
-      </div>
-      <div class="field-parent">
+      </div>-->
+      <!--<div class="field-parent">
         <div class="field">
           <div class="div4">Сумма к погашению для пролонгации:</div>
           <div class="ton-kepeer"> TON</div>
         </div>
         <div class="col-titles-bg" />
-      </div>
+      </div>-->
       <div class="field-wrapper">
         <div class="field">
           <div class="div4">Вернуть не позднее:</div>

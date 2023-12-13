@@ -6,7 +6,7 @@
           <div class="frame-div">
             <div class="parent">
               <div class="div">Займ #{{ loan?.id }} получен</div>
-              <div class="ton">{{ loan?.amount }} TON</div>
+              <div class="ton">{{ loan?.amount ? loan?.amount / NANO_MULTIPLIER : 0 }} TON</div>
               <div class="eqb5dze1h44-wrapper">
                 <div class="eqb5dze1h44">
                   <p class="p">
@@ -156,6 +156,7 @@ import { LoansResponse } from "@/types/loan.types";
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
 import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
 import { usePoolListStore } from "@/stores/poolList";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 onMounted(async() => {
   if(loan?.pool_id) {

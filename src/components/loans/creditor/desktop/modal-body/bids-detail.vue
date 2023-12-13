@@ -65,7 +65,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div3">Заявитель:</div>
-              <div class="div4"></div>
+              <div class="div4">{{ loanRequest?.borrower.name }} {{ loanRequest?.borrower.surname }}</div>
             </div>
             <div class="col-titles-bg" />
           </div>
