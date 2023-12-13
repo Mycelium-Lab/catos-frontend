@@ -45,6 +45,7 @@ export const AmountPosition = {
   "1244269745": 1,
   "136447363": "amount",
   "2662142657": "amount",
+  "3089765306": 2, // Old contract version
   "2197034478": 3,
   "2797266325": 2,
   "634420970": 2,
