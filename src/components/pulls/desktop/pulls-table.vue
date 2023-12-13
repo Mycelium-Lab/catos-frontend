@@ -66,7 +66,7 @@
                       }%`
                     }}
                   </div>
-                  <div v-else class="div122">{{interestRateString}}</div>
+                  <div v-else class="div122">{{ interestRateString }}</div>
                 </div>
                 <div class="iconsbar-cards-parent">
                   <img
@@ -92,7 +92,7 @@
                   <div v-if="role === 'collector'" class="div124">
                     {{ `ROI = ${poolByLoan?.roi}%` }}
                   </div>
-                  <div v-else class="div124">{{`ROI = ${pool?.roi}%`}}</div>
+                  <div v-else class="div124">{{ `ROI = ${pool?.roi}%` }}</div>
                 </div>
               </div>
             </div>
@@ -103,7 +103,9 @@
               <div class="div127_creditor-info div127">Кредитор:</div>
 
               <div class="group-creditor">
-                <span class="div127_creditor-info">{{ loan ? poolByLoan?.organization : pool?.organization }}</span>
+                <span class="div127_creditor-info">{{
+                  loan ? poolByLoan?.organization : pool?.organization
+                }}</span>
                 <img
                   class="radiobutton-icon"
                   alt=""
@@ -116,20 +118,22 @@
                 <div class="div121">Состояние:</div>
               </div>
               <div class="colors-graphsorders-group">
-                <img 
-                      v-if="pool?.status === 'active'"
-                      class="colors-graphsorders-icon"
-                      alt=""
-                      src="@/assets/images/colors-graphsorders1.svg"
-                    />
-                    <img 
-                      v-else-if="pool?.status === 'inactive'"
-                      class="colors-graphsorders-icon_inactive colors-graphsorders-icon"
-                      alt=""
-                      src="@/assets/images/colors-graphsorders3.svg"
-                    />
+                <img
+                  v-if="pool?.status === 'active'"
+                  class="colors-graphsorders-icon"
+                  alt=""
+                  src="@/assets/images/colors-graphsorders1.svg"
+                />
+                <img
+                  v-else-if="pool?.status === 'inactive'"
+                  class="colors-graphsorders-icon_inactive colors-graphsorders-icon"
+                  alt=""
+                  src="@/assets/images/colors-graphsorders3.svg"
+                />
                 <div class="statuspull">
-                  <div class="div126">{{  i18n.global.t(`pools-status.${pool?.status}`)}}</div>
+                  <div class="div126">
+                    {{ i18n.global.t(`pools-status.${pool?.status}`) }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -167,7 +171,17 @@
                   <div class="div127">Одобренный лимит:</div>
                 </div>
                 <div class="ton-wrapper">
-                  <div class="div128">до {{ pool?.available_liquidity ? pool?.available_liquidity / NANO_MULTIPLIER : 0}}  TON</div>
+                  <div class="div128">
+                    до
+                    {{
+                      pool?.id
+                        ? borrowerMaxApprovedLimit(pool?.id)
+                          ? borrowerMaxApprovedLimit(pool?.id) / NANO_MULTIPLIER
+                          : 0
+                        : 0
+                    }}
+                    TON
+                  </div>
                 </div>
               </div>
               <div v-if="role === 'collector'" class="frame-parent23">
@@ -195,9 +209,7 @@
                   <div class="div127">Ставка:</div>
                 </div>
                 <div v-if="pool?.millipercent" class="ton-wrapper">
-                  <div class="div128">
-                    {{ interestRate }}% в день
-                  </div>
+                  <div class="div128">{{ interestRate }}% в день</div>
                 </div>
                 <div v-if="loan?.millipercent" class="ton-wrapper">
                   <div class="div128">
@@ -220,9 +232,7 @@
                   <div class="div127">На срок:</div>
                 </div>
                 <div v-if="pool?.max_duration" class="ton-wrapper">
-                  <div class="div128">
-                    до {{maxDuration}}
-                  </div>
+                  <div class="div128">до {{ maxDuration }}</div>
                 </div>
               </div>
               <div v-if="role !== 'collector'" class="line-div" />
@@ -231,9 +241,7 @@
                   <div class="div127">Беспроцентный период:</div>
                 </div>
                 <div v-if="pool?.free_period" class="ton-wrapper">
-                  <div class="div128">
-                    {{ freePeriod }} дн
-                  </div>
+                  <div class="div128">{{ freePeriod }} дн</div>
                 </div>
               </div>
               <div v-if="role === 'borrower'" class="line-div" />
@@ -272,7 +280,14 @@
                   <div class="div127">Всего ликвидности:</div>
                 </div>
                 <div class="ton-wrapper">
-                  <div class="div128">{{ pool?.all_liquidity ? pool?.all_liquidity / NANO_MULTIPLIER: 0}} TON</div>
+                  <div class="div128">
+                    {{
+                      pool?.all_liquidity
+                        ? pool?.all_liquidity / NANO_MULTIPLIER
+                        : 0
+                    }}
+                    TON
+                  </div>
                 </div>
               </div>
               <div
@@ -295,7 +310,14 @@
                   <div class="div127">Свободно:</div>
                 </div>
                 <div class="ton-wrapper">
-                  <div class="div128">{{ pool?.available_liquidity ?  pool?.available_liquidity / NANO_MULTIPLIER : 0}} TON</div>
+                  <div class="div128">
+                    {{
+                      pool?.available_liquidity
+                        ? pool?.available_liquidity / NANO_MULTIPLIER
+                        : 0
+                    }}
+                    TON
+                  </div>
                 </div>
               </div>
               <div
@@ -325,7 +347,9 @@
                   <div class="div127">Действующих инвесторов:</div>
                 </div>
                 <div class="ton-wrapper">
-                  <div class="div128">{{ pool?.investors_count ? pool?.investors_count : 0 }}</div>
+                  <div class="div128">
+                    {{ pool?.investors_count ? pool?.investors_count : 0 }}
+                  </div>
                 </div>
               </div>
               <!--<div v-if="role === 'investor'" class="line-div" />
@@ -544,7 +568,9 @@
         }
       "
       :poolId="pool?.id ? pool?.id : 0"
-      :minInvest="pool?.min_invest_amount ? pool?.min_invest_amount / NANO_MULTIPLIER : 0"
+      :minInvest="
+        pool?.min_invest_amount ? pool?.min_invest_amount / NANO_MULTIPLIER : 0
+      "
     ></add>
     <withdraw
       v-if="
@@ -558,7 +584,11 @@
         }
       "
       :poolId="pool?.id ? pool?.id : 0"
-      :availableLiquidity ="pool?.available_liquidity ? pool?.available_liquidity / NANO_MULTIPLIER : 0"
+      :availableLiquidity="
+        pool?.available_liquidity
+          ? pool?.available_liquidity / NANO_MULTIPLIER
+          : 0
+      "
     ></withdraw>
     <all-depositor-pulls
       v-if="
@@ -576,7 +606,7 @@
     >
     </all-depositor-pulls>
     <my-depositor-pulls
-    :pool="pool"
+      :pool="pool"
       @add="
         () => {
           isMyDepositor = false;
@@ -666,24 +696,27 @@ import { Pool } from "@/types/pool.type";
 import { roleStorage } from "@/utils/localStorage";
 import { LoansResponse, LoansBoughtResponse } from "@/types/loan.types";
 import { usePoolListStore } from "@/stores/poolList";
-import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
-import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo"
+import { useLoanRequestListStroe } from "@/stores/loanRequestList";
+import { useComputedPoolInfo } from "@/composables/infoCalculation/useComputedPoolInfo";
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
 import { i18n } from "@/i18n";
 import { NANO_MULTIPLIER } from "@/utils/constants";
 
 onMounted(async () => {
-  if(loan?.pool_id) {
-    poolByLoan.value = await poolItem(loan?.pool_id)
+  if (loan?.pool_id) {
+    poolByLoan.value = await poolItem(loan?.pool_id);
   }
-  if(pool) {
-    interestRate.value = useComputedPoolInfo(pool).interestRate.value
-    monthInterestRateString.value = useComputedPoolInfo(pool).monthInterestRateString.value
-    maxDuration.value = useComputedPoolInfo(pool).maxDuration.value
-    freePeriod.value = useComputedPoolInfo(pool).freePeriod.value
-    interestRateString.value = useComputedPoolInfo(pool).interestRateString.value
-    freePeriodString.value = useComputedPoolInfo(pool).freePeriodString.value
+  if (pool) {
+    interestRate.value = useComputedPoolInfo(pool).interestRate.value;
+    monthInterestRateString.value =
+      useComputedPoolInfo(pool).monthInterestRateString.value;
+    maxDuration.value = useComputedPoolInfo(pool).maxDuration.value;
+    freePeriod.value = useComputedPoolInfo(pool).freePeriod.value;
+    interestRateString.value =
+      useComputedPoolInfo(pool).interestRateString.value;
+    freePeriodString.value = useComputedPoolInfo(pool).freePeriodString.value;
   }
-})
+});
 
 const { variant, loan, pool } = defineProps({
   variant: {
@@ -698,22 +731,21 @@ const { variant, loan, pool } = defineProps({
 });
 
 const emits = defineEmits(["mySoldLoans"]);
-
+const { borrowerMaxApprovedLimit } = useLoanRequestListStroe();
 const role = computed(() => {
   return roleStorage.get();
 });
 
 const { poolItem } = usePoolListStore();
-const { duty } = useComputedLoanInfo(loan)
+const { duty } = useComputedLoanInfo(loan);
 
-const poolByLoan = ref()
-const interestRate = ref()
-const monthInterestRateString = ref()
-const maxDuration = ref()
-const freePeriod = ref()
-const interestRateString = ref()
-const freePeriodString = ref()
-
+const poolByLoan = ref();
+const interestRate = ref();
+const monthInterestRateString = ref();
+const maxDuration = ref();
+const freePeriod = ref();
+const interestRateString = ref();
+const freePeriodString = ref();
 
 const expired = computed(() => {
   if (loan?.end) {
@@ -743,7 +775,7 @@ const allBorrowerState = {
   detailOtherModal: false,
   getLoanModal: false,
   toInvestModal: false,
-};;
+};
 
 const allDepositorState = {
   detailOtherModal: false,
@@ -967,7 +999,7 @@ li {
   position: relative;
   width: 1em;
   height: 1em;
-  &_inactive{
+  &_inactive {
     position: relative;
     right: 15px;
   }

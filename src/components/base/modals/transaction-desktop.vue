@@ -35,7 +35,10 @@
             <template v-slot:subtitle> 
             <p class="status-subtitle"> {{ subtitleSuccess }} <a class="status-subtitle-link"></a> </p>
             <p class="status-subtitle"> 
-                <a class="status-subtitle-link" :href="hash" target="_blank">Просмотр транзакции в Tonscan</a>
+                <a class="status-subtitle-link" 
+                :href="`https://testnet.tonviewer.com/transaction/` + hash" 
+                rel="noopener noreferrer"
+                target="_blank">Просмотр транзакции в Tonscan</a>
             </p>
             </template>
             <template v-slot:image>

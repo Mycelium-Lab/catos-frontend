@@ -13,6 +13,14 @@ export const useLoanRequestListStroe = defineStore("loanRequests", () => {
     const userId = getUserId();
     return loanRequests.value.filter(val => val.borrower_id == userId);
   });
+  const borrowerMaxApprovedLimit = (poolId: number) => {
+    let maxAmount = 0;
+    borrowerLoanRequests.value.map((value) => {
+      if (value.pool_id === poolId)
+        maxAmount = Math.max(maxAmount, value.approved_amount);
+    });
+    return maxAmount;
+  };
   const creditorLoanRequests = computed(() => {
     const userId = getUserId();
     return loanRequests.value.filter(val => val.creditor_id == userId);
@@ -25,6 +33,7 @@ export const useLoanRequestListStroe = defineStore("loanRequests", () => {
     loanRequests,
     borrowerLoanRequests,
     creditorLoanRequests,
-    loanRequestItem
+    loanRequestItem,
+    borrowerMaxApprovedLimit
   };
 });
