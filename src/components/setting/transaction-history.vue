@@ -59,7 +59,7 @@
               </router-link>
             </catos-button>
             <div class="total-invoices">
-              1 <span class="span">, </span>520 транзакции
+              {{ transactionsLength }}            
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@
           </div>
         </div>
         <transaction-history-table></transaction-history-table>
-        <div class="fieldsregistration-options1">
+        <!-- <div class="fieldsregistration-options1">
           <catos-button
             :style="{ top: '2em', margin: '0 auto' }"
             variant="secondary"
@@ -127,7 +127,7 @@
           <div class="total-invoices">
             1 <span class="span">, </span>520 транзакции
           </div>
-        </div>
+        </div> -->
       </div>
     </template>
   </default-desktop>
@@ -144,6 +144,8 @@ const active = ref("day");
 import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();
+
+const transactionsLength = ref();
 </script>
 
 <style scoped lang="scss">

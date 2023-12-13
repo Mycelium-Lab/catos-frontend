@@ -13,7 +13,7 @@
               />
               <div class="ton-parent">
                 <div class="ton">{{ pool?.available_liquidity ? pool?.available_liquidity / NANO_MULTIPLIER  : 0}} TON</div>
-                <div class="div1">Одобренный лимит</div>
+                <div class="div1">Доступная ликвидность</div>
               </div>
             </div>
 

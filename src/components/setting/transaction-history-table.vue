@@ -9,32 +9,55 @@
         <div class="div16">2 апреля</div>
       </div>
       <div class="pull">
-        <li v-for="transaction in transactions">
-          <div class="field-1" id="fieldContainer">
-            <div class="icons-info">
-              <div class="svg-gobbler-2-11">
-                <img
-                  class="group-icon1"
-                  alt=""
-                  src="@/assets/images/iconstransaction.svg"
-                />
-              </div>
-              <div class="name1">
-                <div class="invoice-aa-04-19-181">
-                  {{
-                    transaction.data?.args[0][1]
-                    // @ts-ignore
-                      ? TransactionOpcodes[
-                          transaction.data?.args[0][1].toString()
-                        ]
-                      : "Неизвестная операция"
-                  }}
+        <li style="list-style-type: none" v-for="transaction in transactions">
+          <div v-if="transaction.data" class="field-1" id="fieldContainer">
+            <a
+              :href="`https://testnet.tonviewer.com/transaction/` + transaction.hash"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="icons-info">
+                <div class="svg-gobbler-2-11">
+                  <img
+                    class="group-icon1"
+                    alt=""
+                    src="@/assets/images/iconstransaction.svg"
+                  />
                 </div>
-                <div class="new-madieton-llc1">Пулл #12345</div>
+                <div class="name1">
+                  <div class="invoice-aa-04-19-181">
+                    {{
+                      // @ts-ignore
+                      TransactionOpcodes[
+                        transaction.data?.args[0][1].toString()
+                      ]
+                        ? // @ts-ignore
+                          TransactionOpcodes[
+                            transaction.data?.args[0][1].toString()
+                          ]
+                        : "Неизвестная операция"
+                    }}
+                  </div>
+                  <!-- <div class="new-madieton-llc1">Пулл #12345</div> -->
+                </div>
               </div>
-            </div>
+            </a>
             <div class="details2">
-              <div class="total1">511 865.00 TON</div>
+              <div class="total1">
+                {{
+                  // @ts-ignore
+                  AmountPosition[transaction.data?.args[0][1].toString()] ===
+                  "amount"
+                    ? transaction.amount / NANO_MULTIPLIER + " TON"
+                    : // @ts-ignore
+                    AmountPosition[transaction.data?.args[0][1].toString()]
+                    ? // @ts-ignore
+                      transaction.data.args[AmountPosition[transaction.data?.args[0][1].toString()]][1] /
+                        NANO_MULTIPLIER +
+                      " TON"
+                    : ""
+                }}
+              </div>
               <div
                 :class="
                   transaction.status === 'successfull'
@@ -51,233 +74,6 @@
             </div>
           </div>
         </li>
-        <div class="field-1" id="fieldContainer">
-          <div class="icons-info">
-            <div class="svg-gobbler-2-11">
-              <img
-                class="group-icon1"
-                alt=""
-                src="@/assets/images/iconstransaction.svg"
-              />
-            </div>
-            <div class="name1">
-              <div class="invoice-aa-04-19-181">Добалена ликвидность</div>
-              <div class="new-madieton-llc1">Пулл #12345</div>
-            </div>
-          </div>
-          <div class="details2">
-            <div class="total1">511 865.00 TON</div>
-            <div class="paid1">Внесено</div>
-          </div>
-        </div>
-        <div class="field-1" id="fieldContainer1">
-          <div class="icons-info">
-            <div class="svg-gobbler-2-11">
-              <img
-                class="group-icon1"
-                alt=""
-                src="@/assets/images/iconstransaction.svg"
-              />
-            </div>
-            <div class="name1">
-              <div class="invoice-aa-04-19-181">Добалена ликвидность</div>
-              <div class="new-madieton-llc1">Пулл #12345</div>
-            </div>
-          </div>
-          <div class="details2">
-            <div class="total1">555 865.00 TON</div>
-            <div class="paid1">Внесено</div>
-          </div>
-        </div>
-        <div class="field-1" id="fieldContainer2">
-          <div class="icons-info">
-            <div class="svg-gobbler-2-11">
-              <img
-                class="group-icon1"
-                alt=""
-                src="@/assets/images/iconstransaction.svg"
-              />
-            </div>
-            <div class="name1">
-              <div class="invoice-aa-04-19-181">Вывод ликвидности</div>
-              <div class="new-madieton-llc1">Пулл #12345</div>
-            </div>
-          </div>
-          <div class="details2">
-            <div class="total1">511 865.00 TON</div>
-            <div class="paid3">Ожидание</div>
-          </div>
-        </div>
-        <div class="field-1" id="fieldContainer3">
-          <div class="icons-info">
-            <div class="svg-gobbler-2-11">
-              <img
-                class="group-icon1"
-                alt=""
-                src="@/assets/images/iconstransaction.svg"
-              />
-            </div>
-            <div class="name1">
-              <div class="invoice-aa-04-19-181">Вывод ликвидности</div>
-              <div class="new-madieton-llc1">Пулл #12345</div>
-            </div>
-          </div>
-          <div class="details2">
-            <div class="total1">12 433.00 TON</div>
-            <div class="paid4">В процессе</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="frame-parent2">
-      <div class="frame">
-        <div class="div16">3 апреля</div>
-      </div>
-      <div class="pull-wrapper">
-        <div class="pull1">
-          <div class="field-1" id="fieldContainer4">
-            <div class="icons-info">
-              <div class="svg-gobbler-2-11">
-                <img
-                  class="group-icon1"
-                  alt=""
-                  src="@/assets/images/iconstransaction.svg"
-                />
-              </div>
-              <div class="name1">
-                <div class="invoice-aa-04-19-181">Добалена ликвидность</div>
-                <div class="new-madieton-llc1">Пулл #12345</div>
-              </div>
-            </div>
-            <div class="details2">
-              <div class="total1">511 865 TON</div>
-              <div class="paid1">Внесено</div>
-            </div>
-          </div>
-          <div class="field-1" id="fieldContainer5">
-            <div class="icons-info">
-              <div class="svg-gobbler-2-11">
-                <img
-                  class="group-icon1"
-                  alt=""
-                  src="@/assets/images/iconstransaction.svg"
-                />
-              </div>
-              <div class="name1">
-                <div class="invoice-aa-04-19-181">Добалена ликвидность</div>
-                <div class="new-madieton-llc1">Пулл #12345</div>
-              </div>
-            </div>
-            <div class="details2">
-              <div class="total1">2 000 TON</div>
-              <div class="paid1">Внесено</div>
-            </div>
-          </div>
-          <div class="field-1" id="fieldContainer6">
-            <div class="icons-info">
-              <div class="svg-gobbler-2-11">
-                <img
-                  class="group-icon1"
-                  alt=""
-                  src="@/assets/images/iconstransaction.svg"
-                />
-              </div>
-              <div class="name1">
-                <div class="invoice-aa-04-19-181">Добалена ликвидность</div>
-                <div class="new-madieton-llc1">Пулл #12345</div>
-              </div>
-            </div>
-            <div class="details2">
-              <div class="total1">84 865 TON</div>
-              <div class="paid1">Внесено</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="frame-parent2">
-      <div class="frame">
-        <div class="div16">4 апреля</div>
-      </div>
-      <div class="pull-wrapper">
-        <div class="pull1">
-          <div class="field-1" id="fieldContainer7">
-            <div class="icons-info">
-              <div class="svg-gobbler-2-11">
-                <img
-                  class="group-icon1"
-                  alt=""
-                  src="@/assets/images/iconstransaction.svg"
-                />
-              </div>
-              <div class="name1">
-                <div class="invoice-aa-04-19-181">Добалена ликвидность</div>
-                <div class="new-madieton-llc1">Пулл #12345</div>
-              </div>
-            </div>
-            <div class="details2">
-              <div class="total1">511 865.00 TON</div>
-              <div class="paid1">Внесено</div>
-            </div>
-          </div>
-          <div class="field-1" id="fieldContainer8">
-            <div class="icons-info">
-              <div class="svg-gobbler-2-11">
-                <img
-                  class="group-icon1"
-                  alt=""
-                  src="@/assets/images/iconstransaction.svg"
-                />
-              </div>
-              <div class="name1">
-                <div class="invoice-aa-04-19-181">Вывод ликвидности</div>
-                <div class="new-madieton-llc1">Пулл #12345</div>
-              </div>
-            </div>
-            <div class="details2">
-              <div class="total1">77 000 TON</div>
-              <div class="paid3">Ожидание</div>
-            </div>
-          </div>
-          <div class="field-1" id="fieldContainer9">
-            <div class="icons-info">
-              <div class="svg-gobbler-2-11">
-                <img
-                  class="group-icon1"
-                  alt=""
-                  src="@/assets/images/iconstransaction.svg"
-                />
-              </div>
-              <div class="name1">
-                <div class="invoice-aa-04-19-181">Добалена ликвидность</div>
-                <div class="new-madieton-llc1">Пулл #12345</div>
-              </div>
-            </div>
-            <div class="details2">
-              <div class="total1">889 000 994 TON</div>
-              <div class="paid3">Ожидание</div>
-            </div>
-          </div>
-          <div class="field-1" id="fieldContainer10">
-            <div class="icons-info">
-              <div class="svg-gobbler-2-11">
-                <img
-                  class="group-icon1"
-                  alt=""
-                  src="@/assets/images/iconstransaction.svg"
-                />
-              </div>
-              <div class="name1">
-                <div class="invoice-aa-04-19-181">Добалена ликвидность</div>
-                <div class="new-madieton-llc1">Пулл #12345</div>
-              </div>
-            </div>
-            <div class="details2">
-              <div class="total1">511 865.00 TON</div>
-              <div class="paid4">В процессе</div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -290,7 +86,9 @@ import {
   Transaction,
   TransactionStatusesEnum,
   TransactionOpcodes,
+  AmountPosition,
 } from "@/types/transaction.types";
+import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const transactions = ref<Transaction[]>([]);
 onMounted(() => {
