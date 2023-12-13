@@ -124,6 +124,9 @@ const faildCause = ref('')
 
 const handleClose = () => {
   isProgress.value = false
+  if(isSuccess) {
+    location.reload()
+  }
   emits('close')
 }
 
@@ -134,11 +137,11 @@ watch(status, (newValue) => {
     isApproved.value = true
   }
   else if(newValue === 'successfull') {
-    isProgress.value = false
+    isApproved.value = false
     isSuccess.value = true
   }
   else if(newValue === 'failed') {
-    isProgress.value = false
+    isApproved.value = false
     isFail.value = true
   }
 })

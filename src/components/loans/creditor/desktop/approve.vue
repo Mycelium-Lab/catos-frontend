@@ -148,11 +148,6 @@ const approve = async() => {
   })
   }
 
-const handleSuccessApprove = () => {
-  isTransaction.value = false;
-  location.reload()
-}
-
 const close = () => {
   emtis("close");
 };

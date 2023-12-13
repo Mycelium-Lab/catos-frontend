@@ -17,22 +17,13 @@
                 <div class="div1-repay">Cумма к погашению:</div>
               </div>
               <div class="ton-wrapper-repay">
-                <div class="ton1-repay">{{ amount }} TON</div>
+                <div class="ton1-repay">{{  }} TON</div>
               </div>
             </div>
           </div>
 
-          <div class="frame-wrapper-repay">
-            <div class="frame-parent1-repay">
-              <div class="frame-repay">
-                <div class="div1-repay">Комиссия CATOS:</div>
-              </div>
-              <div class="ton-container-repay">
-                <div class="ton1-repay">5%</div>
-              </div>
-            </div>
-          </div>
-          <div class="frame-child-repay" />
+          
+          
           <div class="frame-wrapper-repay">
             <div class="frame-parent1-repay">
               <div class="frame-repay">
@@ -40,7 +31,7 @@
               </div>
               <div class="ton-container-repay">
                 <div class="ton1-repay">
-                  <b>{{ toRepay }} TON</b>
+                  <b>{{ amount }} TON</b>
                 </div>
               </div>
             </div>
@@ -94,10 +85,10 @@ const isDisabled = computed(() => {
   return Number(amount.value) <= 0 || '' ? true : false
 })
 
-const toRepay = computed(() => {
+/*const toRepay = computed(() => {
   const calculated = Number(1.05 * Number(amount.value)).toFixed(3);
   return calculated;
-});
+});*/
 
 const repay = async () => {
   await repayLoan(id, Number(amount.value) * NANO_MULTIPLIER)

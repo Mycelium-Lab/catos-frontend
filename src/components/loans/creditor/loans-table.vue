@@ -203,13 +203,6 @@
         </div>
         <div v-if="role === 'borrower' && !loanRequest" class="field-parent">
           <div class="field">
-            <div class="div2">Начисленные проценты:</div>
-            <div class="ton"> TON</div>
-          </div>
-          <div class="col-titles-bg" />
-        </div>
-        <div v-if="role === 'borrower' && !loanRequest" class="field-parent">
-          <div class="field">
             <div class="div2">На срок:</div>
             <div class="ton">до {{ maxDuration }}</div>
           </div>
@@ -221,19 +214,6 @@
             <div class="ton">до {{`${freePeriodDate} (${freePeriodStatus})` }}</div>
           </div>
           <div class="col-titles-bg" />
-        </div>
-        <div v-if="role === 'borrower' && !loanRequest" class="field-parent">
-          <div class="field">
-            <div class="div2">
-              {{
-                variant === "paid"
-                  ? "Сумма погашения"
-                  : "Сумма к возвращению"
-              }}:
-            </div>
-            <div class="ton">TON</div>
-          </div>
-          <div v-if="variant === 'paid'" class="col-titles-bg" />
         </div>
         <div
           v-if="role === 'borrower' && variant === 'paid'"
