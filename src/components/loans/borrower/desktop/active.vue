@@ -42,13 +42,9 @@ onMounted(async () => {
   .then(res => {
     isTransaction.value = true
     uid.value = res.data
-    console.log(res)
   }).catch(e => {
     
   })
-  .finally(() => {
-    close()
-  }) 
   }
 })
 
