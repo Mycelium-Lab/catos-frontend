@@ -210,7 +210,7 @@
           <catos-button
             variant="fourth"
             :style="{ width: '165px', margin: '0' }"
-            >Скчать анкету</catos-button
+            >Скачать анкету</catos-button
           >
         </div>
       </div>
