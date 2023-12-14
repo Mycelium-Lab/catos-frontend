@@ -9,9 +9,10 @@
         <div class="div16">2 апреля</div>
       </div>
       <div class="pull">
-        <li style="list-style-type: none" v-for="transaction in transactions">
+        <li class="pull-list" v-for="transaction in transactions">
           <div v-if="transaction.data" class="field-1" id="fieldContainer">
             <a
+              class="pull-link"
               :href="`https://testnet.tonviewer.com/transaction/` + transaction.hash"
               target="_blank"
               rel="noopener noreferrer"
@@ -2086,6 +2087,13 @@ onMounted(() => {
   }
   .arrows-table1 {
     width: 16px;
+  }
+  .pull-list{
+    list-style-type: none;
+    width: 100%;
+  }
+  .pull-link{
+    width: 100%;
   }
 }
 </style>
