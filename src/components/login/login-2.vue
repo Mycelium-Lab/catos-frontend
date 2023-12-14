@@ -58,6 +58,7 @@
         v-if="activeForm === 'email'"
         placeholder="Введите пароль"
         v-model="userLoginCredentials.password"
+        @update:enter-hit="() => isLoginLoading || !isLinkActive ? null : login()"
         :style="{ position: 'relative', zIndex: '1000', width: '100%', top: '5px' }"
         type="password"
       ></input-data>
@@ -65,6 +66,7 @@
         v-else-if="activeForm === 'phone'"
         placeholder="Введите пароль"
         v-model="userLoginCredentialsByPhone.password"
+        @update:enter-hit="() => isLoginLoading || !isLinkActive ? null : login()"
         :style="{ position: 'relative', zIndex: '1000', width: '100%', top: '5px' }"
         type="password"
       ></input-data>
@@ -184,6 +186,9 @@ const isLinkActive = computed(() => {
   return (isValidPhone.value && userLoginCredentialsByPhone.value.phone && userLoginCredentialsByPhone.value.password);
 });
 
+const handlePasswordUpdate = () => {
+  
+}
 watch(userLoginCredentials, (newVal) => {
   const {setErrorText} = useErrorDataStore()
   setErrorText('')

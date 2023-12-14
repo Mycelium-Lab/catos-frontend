@@ -9,6 +9,7 @@
       :placeholder="mutatePlaceholder"
       :type="type"
       @input="handleInput"
+      @keyup="handleKeyup"
       @blur="handleBlur"
       :style="
         left
@@ -50,7 +51,7 @@ const { modelValue, placeholder, simulate, name, min, max, type } =
     max?: number;
   }>();
 
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue", "update:enterHit"]);
 
 const mutatePlaceholder = computed(() => {
   switch (placeholder) {
@@ -64,6 +65,12 @@ const mutatePlaceholder = computed(() => {
       return placeholder;
   }
 });
+
+const handleKeyup = (event: KeyboardEvent) => {
+  if (event.key === "Enter") {
+    emit("update:enterHit");
+  }
+}
 
 const handleInput = (event: any) => {
   if (name === "tel") {
