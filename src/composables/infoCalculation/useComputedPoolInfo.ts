@@ -55,7 +55,7 @@ const useComputedPoolInfo = (pool: any) => {
             (accumulator, currentValue) => accumulator + currentValue,
             0,
           );
-       return  (pool?.available_liquidity / NANO_MULTIPLIER) - (onLoanSumm / NANO_MULTIPLIER)
+       return  (pool?.available_liquidity - onLoanSumm) / NANO_MULTIPLIER;
     })
 
     const sold = computed(() => {

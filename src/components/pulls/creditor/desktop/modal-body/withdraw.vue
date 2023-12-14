@@ -15,7 +15,7 @@
           {{ input ? Number(input).toFixed(3) : "0.000" }} TON
         </div>-->
         <div class="div9">
-          {{availableLiquidity ? availableLiquidity / NANO_MULTIPLIER : 0}} TON
+          {{ availableLiquidity ? availableLiquidity : 0 }} TON
         </div>
       </div>
 
@@ -33,10 +33,24 @@
         </div>
       </div>
 
-      <div v-if="role === 'investor'" class="field">
-        <div class="roi">Сервисный сбор CATOS (5%)</div>
+      <div v-if="role === 'investor' || role === 'creditor'" class="field">
+        <div class="roi">
+          Сервисный сбор CATOS:
+          {{
+            platformSettingsStore.platformSettings
+              .liquidWithdrawFeeMillipercent / 100
+          }}%
+        </div>
         <div class="div9">
           <span>{{ comis }} TON</span>
+        </div>
+      </div>
+      <div v-if="role === 'investor' || role === 'creditor'" class="field">
+        <div class="roi">
+          Будет выведено на кошелек:
+        </div>
+        <div class="div9">
+          <span>{{ (Number(amount) - comis).toFixed(6) }} TON</span>
         </div>
       </div>
     </template>
@@ -141,16 +155,17 @@ import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import { roleStorage } from "@/utils/localStorage";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import { withdrawFromPool } from "@/api/pools.api";
+import { usePlatformSettingsStore } from "@/stores/platformSettings";
 import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const { poolId, availableLiquidity } = defineProps({
   poolId: { type: Number, required: true },
   availableLiquidity: { type: Number, required: true },
 });
-
+const platformSettingsStore = usePlatformSettingsStore();
 const amount = ref("");
 const minWithdrawAmount = ref(1); // TON
-const maxWithdrawAmount = ref(availableLiquidity / NANO_MULTIPLIER); // TON
+const maxWithdrawAmount = ref(availableLiquidity); // TON
 const amountOutOfRange = computed(() => {
   if (amount.value != "") {
     return (
@@ -161,7 +176,7 @@ const amountOutOfRange = computed(() => {
   return false;
 });
 const isTransaction = ref(false);
-const uid = ref()
+const uid = ref();
 
 const role = computed(() => {
   return roleStorage.get();
@@ -179,18 +194,21 @@ const handleWithdraw = async () => {
     amount: Number(amount.value) * NANO_MULTIPLIER,
   })
     .then(res => {
-      isTransaction.value = true
-    uid.value = res.data
+      isTransaction.value = true;
+      uid.value = res.data;
     })
-    .catch(e => {
-    
-    });
+    .catch(e => {});
 };
 
 const input = ref("");
 const deposit = computed(() => Number(Number(input.value) * 0.8).toFixed(3));
 const profit = computed(() => Number(Number(input.value) * 0.2).toFixed(3));
-const comis = computed(() => Number(Number(profit.value) * 0.05).toFixed(3));
+const comis = computed(
+  () =>
+    (Number(amount.value) *
+      platformSettingsStore.platformSettings.liquidWithdrawFeeMillipercent) /
+    10000
+);
 </script>
 
 <style scoped lang="scss">
