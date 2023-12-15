@@ -1,8 +1,10 @@
-export enum PoolStatus {
+export enum PoolStatusEnum {
   active = "Активен",
   inactive = "Не активен",
   banned = "Забанен",
 }
+
+export type PoolStatus = keyof typeof PoolStatusEnum;
 
 export type Pool = {
   id: number;

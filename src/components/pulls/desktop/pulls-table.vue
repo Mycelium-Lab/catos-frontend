@@ -36,15 +36,14 @@
                       {{
                         role === "collector"
                           ? loan?.price
-                          : pool?.available_liquidity / NANO_MULTIPLIER
+                          : pool?.available_liquidity
+                          ?  pool?.available_liquidity / NANO_MULTIPLIER
+                          : 0
                       }}
                       TON
                     </div>
-                    <div v-if="role === 'borrower'" class="txt2_borrower txt2">
-                      Одобренный лимит
-                    </div>
                     <div
-                      v-if="role === 'creditor' || role === 'investor'"
+                      v-if="role === 'creditor' || role === 'investor' || role === 'borrower'"
                       class="txt2"
                     >
                       Доступно ликвидности
