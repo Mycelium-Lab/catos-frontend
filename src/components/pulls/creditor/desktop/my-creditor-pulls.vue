@@ -52,7 +52,8 @@
     "
   ></withdraw>
   <add
-  :poolId="poolId"
+    :poolId="poolId"
+    :min-invest="pool?.min_invest_amount ? pool?.min_invest_amount : 0"
     v-if="isAdd"
     @close="close"
     @qr="

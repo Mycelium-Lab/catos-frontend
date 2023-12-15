@@ -43,11 +43,6 @@
               <span class="span8"> </span>
               <span class="ton1">{{minInvest}} TON</span>
             </div>
-            <div class="min-10-ton-container">
-              <span>Max: </span>
-              <span class="span8"> </span>
-              <span class="ton1">{{ maxInvest }} TON</span>
-            </div>
           </div>
         </div>
       </div>
@@ -59,9 +54,9 @@
     <template v-slot:action>
       <div class="des-and-bbn_add des-and-bbn">
         <catos-button
-          :disabled="Number(amount) < minInvest || Number(amount) > maxInvest"
+          :disabled="Number(amount) < minInvest"
           variant="fourth"
-          @click="() => Number(amount) < minInvest || Number(amount) > maxInvest ? null : handleAdd()"
+          @click="() => Number(amount) < minInvest  ? null : handleAdd()"
           :style="{ width: '100%', margin: '0' }"
           >{{
             role === "investor" ? "Инвестировать" : "Добавить ликвидность"
@@ -99,7 +94,6 @@ import { NANO_MULTIPLIER } from "@/utils/constants";
 const {poolId, minInvest} = defineProps({
   poolId: {type: Number, required: true},
   minInvest: {type: Number, default: 0},
-  maxInvest: {type: Number, default: 257324},
 })
 
 const emits = defineEmits(["close"]);

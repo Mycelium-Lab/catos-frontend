@@ -569,7 +569,7 @@
       "
       :poolId="pool?.id ? pool?.id : 0"
       :minInvest="
-        pool?.min_invest_amount ? pool?.min_invest_amount / NANO_MULTIPLIER : 0
+        pool?.min_invest_amount ? pool?.min_invest_amount : 0
       "
     ></add>
     <withdraw

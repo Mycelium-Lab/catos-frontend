@@ -64,6 +64,11 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
         return `${start.getDate()}.${start.getMonth()+1}.${start.getFullYear()}`
       })
 
+      const updatedStatusTerm = computed(() => {
+        const start = new Date(loan?.update_at);
+        return `${start.getDate()}.${start.getMonth()+1}.${start.getFullYear()}`
+      })
+
       const endTerm = computed(() => {
         const end = new Date(loan?.end);
         return `${end.getDate()}.${end.getMonth()+1}.${end.getFullYear()}, ${end.getHours()}:${end.getMinutes()}`
@@ -118,7 +123,8 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
         restDays,
         interestRateString,
         monthInterestRateString,
-        interestAccrualDate
+        interestAccrualDate,
+        updatedStatusTerm
     }
 }
 
