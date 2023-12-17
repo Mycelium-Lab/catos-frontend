@@ -4,10 +4,10 @@
       <div class="div">История транзакций</div>
       <img class="iconchange" alt="" src="@/views/public/iconchange.svg" />
     </button>
-    <button class="field-button" @click="() => (isScrinning = true)">
+    <!-- <button class="field-button" @click="() => (isScrinning = true)">
       <div class="div">Настроить API</div>
       <img class="iconchange" alt="" src="@/views/public/iconchange.svg" />
-    </button>
+    </button> -->
     <button class="field-button" @click="() => (isChangeWallet = true)">
       <div class="div">Изменить кошелек</div>
       <img class="iconchange" alt="" src="@/views/public/iconchange.svg" />
