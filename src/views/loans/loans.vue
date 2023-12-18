@@ -156,7 +156,13 @@ const actualLoans = computed(() => {
       }).sort((a, b) => b.id - a.id)
   }
   else if(role.value === 'creditor' && variant === 'loans') {
-      return loansStore.loans.filter((v) => v.status !== 'for_sale' && v.status !== 'active').sort((a, b) => b.id - a.id)
+      return loansStore.loans.filter((v) => {
+        const {duty} = useComputedLoanInfo(v)
+        if(duty) {
+          return v
+        }
+        return v.status !== 'for_sale' && v.status !== 'active'
+      }).sort((a, b) => b.id - a.id)
   }
 
   else if(role.value === 'creditor' && variant === 'marketplace' && selector === 'На продаже') {
@@ -168,7 +174,7 @@ const actualLoans = computed(() => {
   else if(role.value === 'creditor' && variant === 'marketplace') {
       return loansStore.loans.filter((v) => v.status === 'for_sale' || v.status === 'sold').sort((a, b) => b.id - a.id)
   }
-  return loansStore.loans.sort((a, b) => b.id - a.id)
+  return loansStore.loans
   
 })
 
