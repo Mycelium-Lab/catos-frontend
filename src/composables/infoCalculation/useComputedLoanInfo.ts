@@ -1,16 +1,16 @@
-import { computed } from "vue"
+import { computed } from "vue";
+import { useRetrieveLoanApi } from "../useRetrieveLoanApi";
+import { LoansResponse, LoansBoughtResponse } from "@/types/loan.types";
 import { NANO_MULTIPLIER } from "@/utils/constants";
 
-const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
+const useComputedLoanInfo = (loan: LoansResponse | LoansBoughtResponse, freePeriod?: any) => {
     const duty = computed(() => {
-        if(loan?.amount && loan?.paid_amount) {
-          const dif = (loan?.amount / NANO_MULTIPLIER) - (loan?.paid_amount / NANO_MULTIPLIER)
-          const overduePercent = loan?.overdue_millipercent / 100
-          return dif * overduePercent / 100 + dif
-        }
-        else {
-          return ''
-        }
+      let dutyAmount: number | undefined;
+      useRetrieveLoanApi(loan.id)
+        .then(({ remain }) => {
+          dutyAmount = remain.value; 
+        }) 
+      return dutyAmount;
       })
 
       const overdue = computed(() => {
@@ -36,13 +36,16 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
       })
 
       const age = computed(() => {
-        if(loan?.borrower?.passport?.birthdate || loan?.borrower?.birthdate) {
-          const birthdate = loan?.borrower?.passport?.birthdate ? loan?.borrower?.passport?.birthdate : loan?.borrower?.birthdate
+        let birthdate = '';
+        if ((loan as LoansBoughtResponse).borrower.passport) {
+          birthdate = (loan as LoansBoughtResponse).borrower?.passport?.birthdate;
+        }
+        else {
+          birthdate = (loan as LoansResponse).borrower?.birthdate;
+        }
           const nowYear = new Date().getFullYear()  
           const yearBirth = birthdate.split('-')[0]
           return nowYear - Number(yearBirth)
-        }
-        else return ''
       })
 
       const interestRate = computed(() => {

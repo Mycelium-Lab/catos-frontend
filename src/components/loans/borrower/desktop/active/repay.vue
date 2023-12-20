@@ -59,17 +59,21 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import ConfirmQrDestop from "@/components/base/confirm-qr-destop.vue";
 import useParsedNumber from "@/compossables/useParsedNumber";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import inputData from "@/components/fields/input-data.vue";
 import { repayLoan } from "@/api/loans.api";
 import { NANO_MULTIPLIER } from "@/utils/constants";
+import { useRetrieveLoanApi } from "@/composables/useRetrieveLoanApi";
 
 const {id} = defineProps({
   id: {type: Number, required: true}
 })
+onMounted(() => {
+  useRetrieveLoanApi(id);
+});
 
 const emits = defineEmits(["close"]);
 const close = () => {
