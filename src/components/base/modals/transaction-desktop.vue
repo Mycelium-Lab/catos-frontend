@@ -4,7 +4,7 @@
         @result="() => (isProgress = false)"
         @close="handleClose"
       >
-        <template v-slot:header> Транзакция №591561351 </template>
+        <template v-slot:header> Транзакция {{ uid }} </template>
         <template v-slot:title> {{ titlePending }}</template>
         <template v-slot:subtitle> {{ subtitlePending }} </template>
         <template v-slot:image>
@@ -17,7 +17,7 @@
         @result="() => (isProgress = false)"
         @close="handleClose"
       >
-        <template v-slot:header> Транзакция №591561351 </template>
+        <template v-slot:header> Транзакция {{ uid  }} </template>
         <template v-slot:title> Транзакция успешно одобрена</template>
         <template v-slot:subtitle> Пожалуйста, дождитесь завершения транзакции </template>
         <template v-slot:image>
@@ -30,7 +30,7 @@
             @result="() => (isSuccess = false)"
             @close="handleClose"
         >
-            <template v-slot:header> Транзакция №591561351 </template>
+            <template v-slot:header> Транзакция {{ uid }} </template>
             <template v-slot:title> Транзакция успешно выполнена </template>
             <template v-slot:subtitle> 
             <p class="status-subtitle"> {{ subtitleSuccess }} <a class="status-subtitle-link"></a> </p>
@@ -51,7 +51,7 @@
       @result="() => (isFail = false)"
       @close="handleClose"
     >
-      <template v-slot:header> Транзакция №591561351 </template>
+      <template v-slot:header> Транзакция {{ uid }} </template>
       <template v-slot:title> {{ titleFaild }} </template>
       <template v-slot:subtitle> 
         <p class="status-subtitle">Указание причины: <br>{{ faildCause }}</p>

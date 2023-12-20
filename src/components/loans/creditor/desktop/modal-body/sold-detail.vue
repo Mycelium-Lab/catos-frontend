@@ -32,11 +32,11 @@
                       <div class="div2"><b>Цена:</b></div>
                       <div class="div3"><b>{{loan?.price}} TON</b></div>
                     </div>
-                    <!--<div class="col-titles-bg" />
+                    <div class="col-titles-bg" />
                     <div class="field">
                       <div class="div2">Дата смены статуса:</div>
-                      <div class="div3"></div>
-                    </div>-->
+                      <div class="div3">{{ updatedStatusTerm }}</div>
+                    </div>
                     <div class="col-titles-bg" />
                   </div>
                   <div class="component">
@@ -127,7 +127,7 @@ const { loan } = defineProps({
   },
 });
 
-const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanInfo(loan)
+const {isOverdue, interestRate, duration, startTerm, endTerm, updatedStatusTerm} = useComputedLoanInfo(loan)
 const {previouslyApproved} = useComputedLoanRequestInfo()
 
 const emtis = defineEmits(["close", "api", "blank"]);

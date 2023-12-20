@@ -172,26 +172,6 @@
             </div>
           </div>
         </div>
-        <div class="des-and-bbn">
-          <button class="button" @click="toLoans">
-            <div class="buttons-tabs">
-              <div class="text">Займы</div>
-            </div>
-          </button>
-          <button class="button" @click="toManagement">
-            <div class="buttons-tabs">
-              <div class="text">Упр. ликвид</div>
-            </div>
-          </button>
-          <button class="button" @click="toAnalytics">
-            <div class="buttons-tabs">
-              <div class="text">Аналитика</div>
-            </div>
-          </button>
-          <button class="buttons-tabs3" @click="close">
-            <div class="text">Закрыть</div>
-          </button>
-        </div>
       </div>
     </div>
   </div>

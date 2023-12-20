@@ -96,7 +96,7 @@ onMounted(() => {
   getTransactions()
     .then(res => {
       if (res.status === 200) {
-        transactions.value = res.data;
+        transactions.value = res.data.filter((v) => v.status !== 'pending');
       } else {
         console.log(res);
       }

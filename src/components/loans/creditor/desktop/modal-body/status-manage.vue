@@ -115,13 +115,13 @@
                     </div>
                     <div class="col-titles-bg" />
                   </div>
-                  <div class="component">
+                  <!--<div class="component">
                     <div class="field">
                       <div class="div7">Сумма к возвращению:</div>
                       <div class="div4"> TON</div>
                     </div>
                     <div class="col-titles-bg" />
-                  </div>
+                  </div>-->
                   <div class="component">
                     <div class="field">
                       <div class="div7">Анкета заявителя:</div>

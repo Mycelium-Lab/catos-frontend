@@ -34,7 +34,7 @@
                 <div class="component">
                   <div class="field">
                     <div class="div3">Дата смены статуса:</div>
-                    <div class="div4"></div>
+                    <div class="div4">{{ updatedStatusTerm }}</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
@@ -66,13 +66,13 @@
                   </div>
                   <div class="col-titles-bg" />
                 </div>
-                <div class="component">
+                <!--<div class="component">
                   <div class="field">
                     <div class="div3">Сумма к возвращению:</div>
                     <div class="div4"> TON</div>
                   </div>
                   <div class="col-titles-bg" />
-                </div>
+                </div>-->
                 <div class="component">
                   <div class="field">
                     <div class="div3">Анкета заявителя:</div>
@@ -85,7 +85,7 @@
                     <div class="div3">Заявитель:</div>
                     <div class="div16">{{ loan?.borrower.name }} {{ loan?.borrower.surname }}</div>
                   </div>
-                  <div class="col-titles-bg" />
+                
                 </div>
               </div>
             </div>
@@ -174,7 +174,7 @@ const pool = ref()
 const freePeriod = ref()
 const freePeriodStatus = ref()
 
-const {interestRate, duration, startTerm, endTerm} = useComputedLoanInfo(loan)
+const {interestRate, duration, startTerm, endTerm, updatedStatusTerm} = useComputedLoanInfo(loan)
 
 const emtis = defineEmits(["close", "blank"]);
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";

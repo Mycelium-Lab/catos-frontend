@@ -34,7 +34,7 @@
                 <div class="component">
                   <div class="field">
                     <div class="div2">Дата смены статуса:</div>
-                    <div class="div3"></div>
+                    <div class="div3">{{ startTerm }}</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>
@@ -66,13 +66,13 @@
                   </div>
                   <div class="col-titles-bg" />
                 </div>
-                <div class="component">
+                <!--<div class="component">
                   <div class="field">
                     <div class="div2">Сумма к возвращению:</div>
                     <div class="div3">13 512 TON</div>
                   </div>
                   <div class="col-titles-bg" />
-                </div>
+                </div>-->
                 <div class="component">
                   <div class="field">
                     <div class="div2">Анкета заявителя:</div>
@@ -177,7 +177,7 @@ const pool = ref()
 const freePeriod = ref()
 const freePeriodStatus = ref()
 
-const {isOverdue, interestRate, duration, startTerm, endTerm} = useComputedLoanInfo(loan)
+const {isOverdue, interestRate, duration, startTerm, endTerm, updatedStatusTerm} = useComputedLoanInfo(loan)
 
 const emtis = defineEmits(["close", "blank", "sell"]);
 
