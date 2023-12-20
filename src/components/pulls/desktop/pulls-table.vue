@@ -35,7 +35,7 @@
                     <div class="ton18">
                       {{
                         role === "collector"
-                          ? loan?.price
+                          ? loan?.price / NANO_MULTIPLIER
                           : pool?.available_liquidity
                           ?  pool?.available_liquidity / NANO_MULTIPLIER
                           : 0
@@ -189,7 +189,7 @@
                 </div>
                 <div class="ton-wrapper">
                   <div class="div128">
-                    <b>{{ loan?.price }} TON</b>
+                    <b>{{ loan?.price ? loan?.price / NANO_MULTIPLIER : 0 }} TON</b>
                   </div>
                 </div>
               </div>
@@ -658,6 +658,7 @@
     <buy
       v-if="allCollectorState.buyModal"
       :poolId="loan?.id ? loan?.id : 0"
+      :price="loan?.price ? loan?.price : 0"
       @close="
         () => {
           isAllCollector = false;
@@ -736,7 +737,7 @@ const role = computed(() => {
 });
 
 const { poolItem } = usePoolListStore();
-const { duty } = useComputedLoanInfo(loan);
+const { duty } = useComputedLoanInfo(loan as LoansResponse);
 
 const poolByLoan = ref();
 const interestRate = ref();

@@ -231,7 +231,7 @@
                 <b> Цена продажи:</b>
               </div>
               <div class="ton">
-                <b> {{ loan?.price }} TON</b>
+                <b> {{ loan?.price ? loan?.price / NANO_MULTIPLIER : 0}} TON</b>
               </div>
             </template>
             <template v-else>

@@ -50,7 +50,7 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3"><b>Цена продажи:</b></div>
-                        <div class="ton"><b>{{ loan?.price }} TON</b></div>
+                        <div class="ton"><b>{{ loan?.price ? loan?.price / NANO_MULTIPLIER : 0 }} TON</b></div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
