@@ -99,8 +99,8 @@ const finish = () => {
   isResult.value = false;
 };
 
-const handlePayment = async (value: number) => {
-  await prolongateLoan(id, value)
+const handlePayment = async () => {
+  await prolongateLoan(id)
   .then(res => {
     isTransaction.value = true
     uid.value = res.data
