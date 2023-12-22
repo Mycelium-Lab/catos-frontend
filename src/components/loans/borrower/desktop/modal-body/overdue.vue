@@ -8,16 +8,16 @@
               <div class="div">Займ #{{ loan?.id }} получен</div>
               <div class="ton">{{ loan?.amount ? loan?.amount / NANO_MULTIPLIER : 0 }} TON</div>
               <div class="eqb5dze1h44-wrapper">
-                <div class="eqb5dze1h44">
+                <!-- <div class="eqb5dze1h44">
                   <p class="p">
                     <span class="span1"> Были отправлены на ваш кошелек: </span>
                   </p>
                   <a class="eqb5dze1h441">EQB5...dzE1hа44</a>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
-          <div class="frame-wrapper1">
+          <!-- <div class="frame-wrapper1">
             <div class="group">
               <div class="div1">Транзакция:</div>
               <div class="field-copykey-parent">
@@ -49,7 +49,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="frame-wrapper2">
             <div class="frame-parent1">
               <div class="container">
@@ -60,7 +60,7 @@
                     alt=""
                     src="@/assets/images/investore.svg"
                   />
-                  <div class="div3">Деньги до зарплаты</div>
+                  <div class="div3">{{ creditorName }}</div>
                 </div>
               </div>
               <div class="frame-child" />
@@ -115,8 +115,8 @@
                 <div class="div11">Займ просрочен</div>
               </div>
               <div class="div12">
-                Ваш долг вместе с персональными данными будет выставлен на
-                открытый аукцион для коллекторов через 23:59:59
+                Ваш долг вместе с персональными данными может быть выставлен на
+                открытый аукцион для коллекторов.
               </div>
             </div>
           </div>
@@ -153,6 +153,7 @@
 import { ref, PropType, onMounted } from "vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import { LoansResponse } from "@/types/loan.types";
+import { Pool } from "@/types/pool.type";
 import {useComputedPoolInfo} from "@/composables/infoCalculation/useComputedPoolInfo"
 import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
 import { usePoolListStore } from "@/stores/poolList";
@@ -162,7 +163,7 @@ onMounted(async() => {
   if(loan?.pool_id) {
     poolByLoan.value = await poolItem(loan?.pool_id)
     freePeriod.value = useComputedPoolInfo(poolByLoan.value).freePeriod.value
-
+    creditorName.value = poolByLoan.value.organization;
     interestRate.value = useComputedLoanInfo(loan).interestRate
     endTerm.value = useComputedLoanInfo(loan).endTerm.value
     freePeriodStatus.value = useComputedLoanInfo(loan, freePeriod.value).freePeriodStatus.value
@@ -180,12 +181,12 @@ const { loan } = defineProps({
 });
 
 const interestRate = ref()
-const poolByLoan = ref()
+const poolByLoan = ref<Pool>()
 const endTerm = ref()
 const freePeriodStatus = ref()
 const freePeriod = ref()
 const accrualDate = ref()
-
+const creditorName = ref()
 const { poolItem } = usePoolListStore();
 
 const emits = defineEmits(["close", "repay", "prolong"]);
