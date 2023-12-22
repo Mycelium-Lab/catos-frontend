@@ -17,7 +17,7 @@
                 <div class="div1-repay">Cумма к погашению:</div>
               </div>
               <div class="ton-wrapper-repay">
-                <div class="ton1-repay">{{  }} TON</div>
+                <div class="ton1-repay">{{ remainAmount }} TON</div>
               </div>
             </div>
           </div>
@@ -71,8 +71,12 @@ import { useRetrieveLoanApi } from "@/composables/useRetrieveLoanApi";
 const {id} = defineProps({
   id: {type: Number, required: true}
 })
+const remainAmount = ref<number>();
 onMounted(() => {
-  useRetrieveLoanApi(id);
+  useRetrieveLoanApi(id)
+    .then(res => {
+      remainAmount.value = res.remain.value;
+    })
 });
 
 const emits = defineEmits(["close"]);
