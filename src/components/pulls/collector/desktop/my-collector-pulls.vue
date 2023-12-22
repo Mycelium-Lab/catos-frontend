@@ -1,6 +1,8 @@
 <template>
   <desktop-modal v-if="isDetail" @close="close">
-    <template v-slot:title> Информация о задолженности #{{ loan?.id }} </template>
+    <template v-slot:title>
+      Информация о задолженности #{{ loan?.id }}
+    </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -21,7 +23,7 @@
                           class="radiobutton-parent"
                           @click="() => (isCreditorInfo = true)"
                         >
-                          <div class="div2">{{ poolByLoan?.organization }} </div>
+                          <div class="div2">{{ poolByLoan?.organization }}</div>
                           <img
                             class="radiobutton-icon"
                             alt=""
@@ -50,7 +52,14 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3"><b>Цена продажи:</b></div>
-                        <div class="ton"><b>{{ loan?.price ? loan?.price / NANO_MULTIPLIER : 0 }} TON</b></div>
+                        <div class="ton">
+                          <b
+                            >{{
+                              loan?.price ? loan?.price / NANO_MULTIPLIER : 0
+                            }}
+                            TON</b
+                          >
+                        </div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -64,14 +73,18 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Ставка:</div>
-                        <div class="ton">{{ loan?.millipercent ? loan?.millipercent / 100 : '' }}% в день</div>
+                        <div class="ton">
+                          {{
+                            loan?.millipercent ? loan?.millipercent / 100 : ""
+                          }}% в день
+                        </div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Просрочен на:</div>
-                        <div class="ton">{{overdue}} дн</div>
+                        <div class="ton">{{ overdue }} дн</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -92,7 +105,12 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Тело займа:</div>
-                        <div class="ton">{{ loan?.amount ? loan?.amount / NANO_MULTIPLIER: 0 }} TON</div>
+                        <div class="ton">
+                          {{
+                            loan?.amount ? loan?.amount / NANO_MULTIPLIER : 0
+                          }}
+                          TON
+                        </div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -106,35 +124,55 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Выплачено по долгу:</div>
-                        <div class="ton">{{ loan?.paid_amount ? loan?.paid_amount / NANO_MULTIPLIER : 0 }} TON</div>
+                        <div class="ton">
+                          {{
+                            loan?.paid_amount
+                              ? loan?.paid_amount / NANO_MULTIPLIER
+                              : 0
+                          }}
+                          TON
+                        </div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Одобренный лимит:</div>
-                        <div class="ton">до {{ poolByLoan?.available_liquidity ? poolByLoan?.available_liquidity / NANO_MULTIPLIER : 0 }} TON</div>
+                        <div class="ton">
+                          до
+                          {{
+                            poolByLoan?.available_liquidity
+                              ? poolByLoan?.available_liquidity /
+                                NANO_MULTIPLIER
+                              : 0
+                          }}
+                          TON
+                        </div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">На срок:</div>
-                        <div v-if="poolByLoan?.max_duration" class="ton">до {{ parse(poolByLoan?.max_duration).days }} дн</div>
+                        <div v-if="poolByLoan?.max_duration" class="ton">
+                          до {{ parse(poolByLoan?.max_duration).days }} дн
+                        </div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Беспроцентный лимит:</div>
-                        <div v-if="poolByLoan?.free_period" class="ton">{{ parse(poolByLoan?.free_period).days }} дн</div>
+                        <div v-if="poolByLoan?.free_period" class="ton">
+                          {{ parse(poolByLoan?.free_period).days }} дн
+                        </div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Взят:</div>
-                        <div  class="ton">{{localeTime}}</div>
+                        <div class="ton">{{ localeTime }}</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -164,8 +202,16 @@
                       <div class="field">
                         <div class="div23">Имя:</div>
                         <div class="ton">
-                          {{ loan?.borrower?.passport?.name ? loan?.borrower?.passport?.name : ''}} 
-                          {{ loan?.borrower?.passport?.surname ? loan?.borrower?.passport?.surname : ''}} 
+                          {{
+                            loan?.borrower?.passport?.name
+                              ? loan?.borrower?.passport?.name
+                              : ""
+                          }}
+                          {{
+                            loan?.borrower?.passport?.surname
+                              ? loan?.borrower?.passport?.surname
+                              : ""
+                          }}
                         </div>
                       </div>
                       <div class="col-titles-bg" />
@@ -173,7 +219,13 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div23">Проживает в:</div>
-                        <div class="ton">{{  loan?.borrower?.passport?.living_address?.city ? loan?.borrower?.passport?.living_address?.city : ''  }}</div>
+                        <div class="ton">
+                          {{
+                            loan?.borrower?.passport?.living_address?.city
+                              ? loan?.borrower?.passport?.living_address?.city
+                              : ""
+                          }}
+                        </div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -187,14 +239,27 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div23">Годовой доход:</div>
-                        <div class="ton">{{ loan?.borrower?.userinfo?.revenue ? loan?.borrower?.userinfo?.revenue : '' }} руб</div>
+                        <div class="ton">
+                          {{
+                            loan?.borrower?.userinfo?.revenue
+                              ? loan?.borrower?.userinfo?.revenue
+                              : ""
+                          }}
+                          руб
+                        </div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
                     <div class="field-parent">
                       <div class="field">
                         <div class="div23">Сфера деятельности:</div>
-                        <div class="ton">{{ loan?.borrower?.userinfo?.employment_type ? loan?.borrower?.userinfo?.employment_type : ''}}</div>
+                        <div class="ton">
+                          {{
+                            loan?.borrower?.userinfo?.employment_type
+                              ? loan?.borrower?.userinfo?.employment_type
+                              : ""
+                          }}
+                        </div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -247,7 +312,9 @@
                           alt=""
                           src="@/assets/images/percent.svg"
                         />
-                        <div v-if="poolByLoan?.millipercent" class="div35">1 день = {{ poolByLoan?.millipercent / 100  }} %</div>
+                        <div v-if="poolByLoan?.millipercent" class="div35">
+                          1 день = {{ poolByLoan?.millipercent / 100 }} %
+                        </div>
                       </div>
                       <div class="percent-parent">
                         <img
@@ -255,7 +322,9 @@
                           alt=""
                           src="@/assets/images/clock.svg"
                         />
-                        <div v-if="poolByLoan?.free_period" class="div35">{{ parse(poolByLoan?.free_period).days }} дня = 0%</div>
+                        <div v-if="poolByLoan?.free_period" class="div35">
+                          {{ parse(poolByLoan?.free_period).days }} дня = 0%
+                        </div>
                       </div>
                       <div class="icons2bar-cards-parent">
                         <!--<img
@@ -309,7 +378,7 @@ import desktopModal from "@/components/base/desktop-modal.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import creditorInfo from "@/components/base/desktop/creditor-info.vue";
 import statusChange from "@/components/loans/creditor/desktop/modal-body/ status-change.vue";
-import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo"
+import { useComputedLoanInfo } from "@/composables/infoCalculation/useComputedLoanInfo";
 import { LoansBoughtResponse } from "@/types/loan.types";
 import { parse } from "tinyduration";
 import { Pool } from "@/types/pool.type";
@@ -319,18 +388,18 @@ const isDetail = ref(true);
 const isStatusChange = ref(false);
 const emits = defineEmits(["close"]);
 
-const {loan, poolByLoan} = defineProps({
-  loan: { type: Object as PropType<LoansBoughtResponse>},
+const { loan, poolByLoan } = defineProps({
+  loan: { type: Object as PropType<LoansBoughtResponse>, required: true },
   poolByLoan: {
     type: Object as PropType<Pool>,
   },
-})
+});
 const close = () => {
   emits("close");
 };
 const isCreditorInfo = ref(false);
 
-const { duty, overdue, localeTime, age } = useComputedLoanInfo(loan)
+const { duty, overdue, localeTime, age } = useComputedLoanInfo(loan);
 </script>
 <style scoped lang="scss">
 .div {
