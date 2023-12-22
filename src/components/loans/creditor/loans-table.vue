@@ -569,6 +569,7 @@ const { variant, loan, loanRequest, loanRequestStatus } = defineProps({
   },
   loan: {
     type: Object as PropType<LoansResponse>,
+    required: true
   },
   loanRequest: {
     type: Object as PropType<LoansRequestResponse>,

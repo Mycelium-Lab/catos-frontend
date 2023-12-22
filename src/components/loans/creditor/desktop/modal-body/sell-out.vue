@@ -142,6 +142,7 @@ import { NANO_MULTIPLIER } from "@/utils/constants";
 const { loan } = defineProps({
   loan: {
     type: Object as PropType<LoansResponse>,
+      required: true
   },
 });
 

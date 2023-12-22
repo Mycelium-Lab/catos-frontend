@@ -35,7 +35,9 @@
                     <div class="ton18">
                       {{
                         role === "collector"
+                        ? loan?.price
                           ? loan?.price / NANO_MULTIPLIER
+                          : 0
                           : pool?.available_liquidity
                           ?  pool?.available_liquidity / NANO_MULTIPLIER
                           : 0
