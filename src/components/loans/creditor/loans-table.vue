@@ -398,7 +398,7 @@
           </button>
           <button
             v-else-if="
-              role === 'creditor' && loan?.status !== 'paid' && loan?.status !== 'sold'
+              role === 'creditor' && loan?.status !== 'paid' && loan?.status !== 'sold' && loan?.status !== 'active'
             "
             class="buttons-tabs1"
             @click.stop="toAction"

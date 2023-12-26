@@ -23,6 +23,8 @@ const useComputedLoanInfo = (loan: LoansResponse | LoansBoughtResponse, freePeri
       })
 
       const isOverdue = computed(() => {
+        if ((loan as LoansResponse).status === 'paid' ||  (loan as LoansResponse).status === 'sold') 
+          return undefined;
         if(loan?.end) {
           const end = new Date(loan?.end);
           const now = new Date();

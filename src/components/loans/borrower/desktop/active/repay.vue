@@ -17,13 +17,10 @@
                 <div class="div1-repay">Cумма к погашению:</div>
               </div>
               <div class="ton-wrapper-repay">
-                <div class="ton1-repay">{{ remainAmount }} TON</div>
+                <div class="ton1-repay">{{ remainAmount ? remainAmount / NANO_MULTIPLIER : ''}} TON</div>
               </div>
             </div>
           </div>
-
-          
-          
           <div class="frame-wrapper-repay">
             <div class="frame-parent1-repay">
               <div class="frame-repay">
