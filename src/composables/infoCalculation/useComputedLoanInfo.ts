@@ -1,17 +1,15 @@
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useRetrieveLoanApi } from "../useRetrieveLoanApi";
 import { LoansResponse, LoansBoughtResponse } from "@/types/loan.types";
 import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const useComputedLoanInfo = (loan: LoansResponse | LoansBoughtResponse, freePeriod?: any) => {
-    const duty = computed(() => {
-      let dutyAmount: number | undefined;
+      const duty = ref<number>();
       useRetrieveLoanApi(loan.id)
         .then(({ remain }) => {
-          dutyAmount = remain.value; 
-        }) 
-      return dutyAmount;
-      })
+          duty.value = remain.value? remain.value / NANO_MULTIPLIER : undefined; 
+          console.log(duty.value)
+      });
 
       const overdue = computed(() => {
         if(loan?.end) {
