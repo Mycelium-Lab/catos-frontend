@@ -5,10 +5,11 @@ import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const useComputedLoanInfo = (loan: LoansResponse | LoansBoughtResponse, freePeriod?: any) => {
       const duty = ref<number>();
+      const accruedInterest = ref<number>();
       useRetrieveLoanApi(loan.id)
-        .then(({ remain }) => {
-          duty.value = remain.value? remain.value / NANO_MULTIPLIER : undefined; 
-          console.log(duty.value)
+        .then(({ remain, accrued }) => {
+          duty.value = remain.value ? remain.value / NANO_MULTIPLIER : undefined; 
+          accruedInterest.value = accrued.value ? accrued.value / NANO_MULTIPLIER : undefined;
       });
 
       const overdue = computed(() => {
@@ -113,6 +114,7 @@ const useComputedLoanInfo = (loan: LoansResponse | LoansBoughtResponse, freePeri
     
     return {
         duty,
+        accruedInterest,
         overdue,
         localeTime,
         age,

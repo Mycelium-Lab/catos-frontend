@@ -98,7 +98,7 @@
               </div>
             </div>
             <div
-              v-if="role === 'borrower' || role === 'collector'"
+              v-if="role === 'borrower'"
               class="creditor-info"
             >
               <div class="div127_creditor-info div127">Кредитор:</div>
@@ -106,6 +106,23 @@
               <div class="group-creditor">
                 <span class="div127_creditor-info">{{
                   loan ? poolByLoan?.organization : pool?.organization
+                }}</span>
+                <img
+                  class="radiobutton-icon"
+                  alt=""
+                  src="@/assets/images/investore.svg"
+                />
+              </div>
+            </div>
+            <div
+              v-else="role === 'collector'"
+              class="creditor-info"
+            >
+              <div class="div127_creditor-info div127">Заемщик:</div>
+
+              <div class="group-creditor">
+                <span class="div127_creditor-info">{{
+                  loan?.borrower.name + ' ' + loan?.borrower.surname
                 }}</span>
                 <img
                   class="radiobutton-icon"

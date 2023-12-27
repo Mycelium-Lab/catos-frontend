@@ -16,12 +16,12 @@
                     </div>
                     <div class="frame-wrapper1">
                       <div class="parent">
-                        <div class="div1">Кредитор:</div>
+                        <div class="div1">Заемщик:</div>
                         <div
                           class="radiobutton-parent"
                           @click="() => (isCreditorInfo = true)"
                         >
-                          <div class="div2">{{ poolByLoan?.organization }}</div>
+                          <div class="div2">{{ loan?.borrower.name + ' ' + loan?.borrower.surname }}</div>
                           <img
                             class="radiobutton-icon"
                             alt=""
@@ -75,7 +75,7 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Накопленный процент:</div>
-                        <div class="ton">TON</div>
+                        <div class="ton">{{ accruedInterest + ` TON` }}</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -276,7 +276,7 @@ const close = () => {
 };
 const isCreditorInfo = ref(false);
 
-const { duty, overdue, localeTime, age } = useComputedLoanInfo(loan)
+const { duty, accruedInterest, overdue, localeTime, age } = useComputedLoanInfo(loan)
 </script>
 <style scoped>
 .div {
