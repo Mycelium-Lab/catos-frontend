@@ -16,7 +16,7 @@ export const takeLoan = (id: number) => {
 };
 
 export const retrieveLoan = (id: number) => {
-    return baseApiClient.get<RetrieveLoanData>(`${LOAN_END_POINT}/${id}`)
+    return baseApiClient.get<RetrieveLoanData>(`${LOAN_END_POINT}${id}`)
 };
 
 export const repayLoan = (id: number, value: number) => {
