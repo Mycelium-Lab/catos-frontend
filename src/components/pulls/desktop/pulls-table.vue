@@ -115,7 +115,7 @@
               </div>
             </div>
             <div
-              v-else="role === 'collector'"
+              v-if="role === 'collector'"
               class="creditor-info"
             >
               <div class="div127_creditor-info div127">Заемщик:</div>
