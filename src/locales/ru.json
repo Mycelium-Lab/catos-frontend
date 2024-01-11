@@ -11,6 +11,7 @@
     "taken": "Взята"
   },
   "loans-status" : {
+    "active": "Взят",
     "paid": "Погашен",
     "sold": "Продан",
     "overdue": "Просрочен"

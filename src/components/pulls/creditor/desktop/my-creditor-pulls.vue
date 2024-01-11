@@ -53,7 +53,7 @@
   ></withdraw>
   <add
     :poolId="poolId"
-    :min-invest="pool?.min_invest_amount ? pool?.min_invest_amount : 0"
+    :min-invest="pool?.min_invest_amount ? pool?.min_invest_amount / NANO_MULTIPLIER : 0"
     v-if="isAdd"
     @close="close"
     @qr="

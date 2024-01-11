@@ -9,7 +9,10 @@
             class="iconsedit-1"
             alt=""
             src="@/assets/images/iconseditoutline-black.svg"
-            @click="() => (isChangeEmail = true)"
+            @click="() => {
+              isChangeEmail = true; 
+              newValue = '';
+            }"
           />
         </div>
       </div>
@@ -21,7 +24,10 @@
             class="iconsedit-1"
             alt=""
             src="@/assets/images/iconseditoutline-black.svg"
-            @click="() => (isChangePhone = true)"
+            @click="() => {
+              isChangePhone = true; 
+              newValue = '';
+            }"
           />
         </div>
       </div>
@@ -42,7 +48,10 @@
   <desktop-modal
     v-if="isChangeEmail || isChangePhone"
     @close="
-      () => (isChangeEmail ? (isChangeEmail = false) : (isChangePhone = false))
+      () => {
+        isChangeEmail ? (isChangeEmail = false) : (isChangePhone = false);
+        newValue = '';
+      }
     "
   >
     <template v-slot:title>
@@ -65,17 +74,18 @@
             :left="true"
             :placeholder="isChangeEmail ? 'Ваша почта' : 'Ваш номер телефона'"
             :style="{ width: '333px', margin: '20px 20px 0 20px' }"
+            v-model:model-value="newValue"
           >
             <template v-slot:left-icon>
               <img v-if="isChangeEmail" src="@/assets/images/iconsmail.svg" />
               <img v-else src="@/assets/images/iconsmobile.svg" />
             </template>
           </input-data>
-          <div class="div292">
+          <!-- <div class="div292">
             Укажите новую почту на которую будет отправлен код
-          </div>
+          </div> -->
         </div>
-        <div class="des-and-bbn1">
+        <div v-if="isChangePhone" class="des-and-bbn1">
           <div class="text-and-button">
             <catos-button
               variant="fourth"
@@ -85,7 +95,7 @@
           </div>
         </div>
       </div>
-      <div class="fields">
+      <div v-if="isChangePhone" class="fields">
         <div class="fieldsregistration-options4">
           <div
             class="fieldsregistration-options-child_email fieldsregistration-options-child"
@@ -154,8 +164,12 @@
             :style="{ width: '100%' }"
             @click="
               () => {
+                isChangeEmail
+                ? handleChangeEmail()
+                : handleChangePhone();
                 isChangePhone = false;
                 isChangeEmail = false;
+                newValue = '';
               }
             "
           >
@@ -464,14 +478,17 @@
 </template>
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import router from "@/router";
 import desktopModal from "@/components/base/desktop-modal.vue";
 import inputData from "@/components/fields/input-data.vue";
 import catosCode from "@/components/fields/catos-code.vue";
 import catosButton from "@/components/ui-kit/buttons/catos-button.vue";
 import { useRoute } from "vue-router";
-import { securityCode, changePassword } from "@/api/users.api";
-import { profileStorage } from "@/utils/localStorage";
+import { securityCode, changePassword, changeEmail } from "@/api/users.api";
+import { profileStorage, authStorage } from "@/utils/localStorage";
+import { useLoginApi } from "@/composables/useLoginApi";
 
+const { handleVerify } = useLoginApi();
 const userEmail = profileStorage.get()?.email;
 const isChangeEmail = ref(false);
 const isChangePhone = ref(false);
@@ -499,6 +516,28 @@ const route = useRoute();
 const currentPage = computed(() => {
   return route.name;
 });
+const newValue = ref('');
+const handleChangeEmail = () => {
+  if (userEmail) {
+    changeEmail(userEmail, { new: newValue.value })
+      .then(res => {
+        if (res.status === 200) {
+          const token = authStorage.get()?.access;
+          if (token) {
+            handleVerify(token)
+              .then(() => location.reload())
+          }
+        }
+      })
+      .catch(err => console.error(err));
+  }
+  else {
+    console.error('Unable to read user email from Local storage');
+  }
+}
+const handleChangePhone = () => {
+  console.log("Not implemented yet");
+}
 const handleClick = () => {
   // isChangePassword = false;
   // isSuccessChangePassword = true;

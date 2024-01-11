@@ -138,7 +138,7 @@
           <div class="api">История транзакций</div>
           <img class="iconchange" alt="" src="./public/iconchange.svg" />
         </router-link>
-        <router-link
+        <!-- <router-link
           v-if="role === 'creditor'"
           class="field-button"
           id="fieldButtonContainer1"
@@ -146,7 +146,7 @@
         >
           <div class="api">Настроить API</div>
           <img class="iconchange" alt="" src="./public/iconchange.svg" />
-        </router-link>
+        </router-link> -->
         <router-link class="field-button" :to="{ name: 'setting-wallet' }">
           <div class="api">Изменить кошелек</div>
           <img class="iconchange" alt="" src="./public/iconchange.svg" />

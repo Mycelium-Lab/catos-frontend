@@ -2,6 +2,11 @@ import { baseApiClient } from "./baseApiClient";
 
 const LOAN_END_POINT = "/loans/";
 
+export type RetrieveLoanData = {
+    remain: number,
+    accrued: number,
+}
+
 export const listLoans = () => {
     return baseApiClient.get(LOAN_END_POINT)
 }
@@ -11,7 +16,7 @@ export const takeLoan = (id: number) => {
 };
 
 export const retrieveLoan = (id: number) => {
-    return baseApiClient.get(`${LOAN_END_POINT}/${id}`)
+    return baseApiClient.get<RetrieveLoanData>(`${LOAN_END_POINT}/${id}`)
 };
 
 export const repayLoan = (id: number, value: number) => {
@@ -26,8 +31,8 @@ export const buyLoan = (id: number, value: number) => {
     return baseApiClient.get(`${LOAN_END_POINT}buy/${id}?amount=${value}`)
 } 
 
-export const prolongateLoan = (id: number, value: number) => {
-    return baseApiClient.get(`${LOAN_END_POINT}prolongate/${id}?amount=${value}`)
+export const prolongateLoan = (id: number) => {
+    return baseApiClient.get(`${LOAN_END_POINT}prolongate/${id}`)
 }
  
 export const listBoughtLoans = () => {

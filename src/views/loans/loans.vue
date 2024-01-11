@@ -134,7 +134,10 @@ const actualLoans = computed(() => {
     return loansStore.loans.filter(v => v.status === "for_sale").sort((a, b) => b.id - a.id)
   }
   else if(role.value === 'borrower') {
-    return loansStore.loans.filter(v => v.status === variant).sort((a, b) => b.id - a.id)
+    return loansStore.loans.filter(v => (
+      v.status === variant
+      || variant === 'active' && v.status === 'for_sale'
+    )).sort((a, b) => b.id - a.id)
   }
   
   else if(role.value === 'creditor' && variant === 'loans' && selector === 'Погашенные') {

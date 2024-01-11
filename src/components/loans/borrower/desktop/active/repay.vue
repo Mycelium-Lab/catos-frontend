@@ -17,13 +17,10 @@
                 <div class="div1-repay">Cумма к погашению:</div>
               </div>
               <div class="ton-wrapper-repay">
-                <div class="ton1-repay">{{  }} TON</div>
+                <div class="ton1-repay">{{ remainAmount ? remainAmount / NANO_MULTIPLIER : ''}} TON</div>
               </div>
             </div>
           </div>
-
-          
-          
           <div class="frame-wrapper-repay">
             <div class="frame-parent1-repay">
               <div class="frame-repay">
@@ -59,17 +56,25 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import ConfirmQrDestop from "@/components/base/confirm-qr-destop.vue";
 import useParsedNumber from "@/compossables/useParsedNumber";
 import transactionDesktop from "@/components/base/modals/transaction-desktop.vue";
 import inputData from "@/components/fields/input-data.vue";
 import { repayLoan } from "@/api/loans.api";
 import { NANO_MULTIPLIER } from "@/utils/constants";
+import { useRetrieveLoanApi } from "@/composables/useRetrieveLoanApi";
 
 const {id} = defineProps({
   id: {type: Number, required: true}
 })
+const remainAmount = ref<number>();
+onMounted(() => {
+  useRetrieveLoanApi(id)
+    .then(res => {
+      remainAmount.value = res.remain.value;
+    })
+});
 
 const emits = defineEmits(["close"]);
 const close = () => {

@@ -22,6 +22,9 @@ export type RegisterBadRequestResponse = {
   object: string;
   details: string;
 };
+export type ChangeEmailBody = {
+  new: string,
+}
 
 export const register = (payload: UserData) => {
   return baseApiClient.post<
@@ -53,4 +56,7 @@ export const securityCode = (email: string) => {
 }
 export const changePassword = (email: string, payload: ChangePasswordCredentials) => {
   return baseApiClient.put(USER_END_POINT + `/${email}/changePassword`, payload)
+}
+export const changeEmail = (email: string, payload: ChangeEmailBody) => {
+  return baseApiClient.put(USER_END_POINT + `/changeEmail?email=${email}`, payload);
 }

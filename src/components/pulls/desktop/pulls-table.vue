@@ -35,7 +35,9 @@
                     <div class="ton18">
                       {{
                         role === "collector"
-                          ? loan?.price
+                        ? loan?.price
+                          ? loan?.price / NANO_MULTIPLIER
+                          : 0
                           : pool?.available_liquidity
                           ?  pool?.available_liquidity / NANO_MULTIPLIER
                           : 0
@@ -96,7 +98,7 @@
               </div>
             </div>
             <div
-              v-if="role === 'borrower' || role === 'collector'"
+              v-if="role === 'borrower'"
               class="creditor-info"
             >
               <div class="div127_creditor-info div127">Кредитор:</div>
@@ -104,6 +106,23 @@
               <div class="group-creditor">
                 <span class="div127_creditor-info">{{
                   loan ? poolByLoan?.organization : pool?.organization
+                }}</span>
+                <img
+                  class="radiobutton-icon"
+                  alt=""
+                  src="@/assets/images/investore.svg"
+                />
+              </div>
+            </div>
+            <div
+              v-else="role === 'collector'"
+              class="creditor-info"
+            >
+              <div class="div127_creditor-info div127">Заемщик:</div>
+
+              <div class="group-creditor">
+                <span class="div127_creditor-info">{{
+                  loan?.borrower.name + ' ' + loan?.borrower.surname
                 }}</span>
                 <img
                   class="radiobutton-icon"
@@ -189,7 +208,7 @@
                 </div>
                 <div class="ton-wrapper">
                   <div class="div128">
-                    <b>{{ loan?.price }} TON</b>
+                    <b>{{ loan?.price ? loan?.price / NANO_MULTIPLIER : 0 }} TON</b>
                   </div>
                 </div>
               </div>
@@ -568,7 +587,7 @@
       "
       :poolId="pool?.id ? pool?.id : 0"
       :minInvest="
-        pool?.min_invest_amount ? pool?.min_invest_amount : 0
+        pool?.min_invest_amount ? pool?.min_invest_amount / NANO_MULTIPLIER : 0
       "
     ></add>
     <withdraw
@@ -658,6 +677,7 @@
     <buy
       v-if="allCollectorState.buyModal"
       :poolId="loan?.id ? loan?.id : 0"
+      :price="loan?.price ? loan?.price : 0"
       @close="
         () => {
           isAllCollector = false;
@@ -736,7 +756,7 @@ const role = computed(() => {
 });
 
 const { poolItem } = usePoolListStore();
-const { duty } = useComputedLoanInfo(loan);
+const { duty } = useComputedLoanInfo(loan as LoansResponse);
 
 const poolByLoan = ref();
 const interestRate = ref();

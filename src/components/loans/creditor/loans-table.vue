@@ -231,7 +231,7 @@
                 <b> Цена продажи:</b>
               </div>
               <div class="ton">
-                <b> {{ loan?.price }} TON</b>
+                <b> {{ loan?.price ? loan?.price / NANO_MULTIPLIER : 0}} TON</b>
               </div>
             </template>
             <template v-else>
@@ -286,7 +286,7 @@
       </div>
       <div
         v-if="
-          role === 'borrower' && status === 'active' && variant === 'active'
+          role === 'borrower' && status === 'active' && ( variant === 'active' || variant === 'for_sale')
         "
         class="notification6"
       >
@@ -295,7 +295,7 @@
       </div>
       <div
         v-if="
-          role === 'borrower' && status === 'active' && variant === 'active'
+          role === 'borrower' && status === 'active' && ( variant === 'active' || variant === 'for_sale')
         "
         class="notification6"
       >
@@ -310,7 +310,7 @@
       </div>
       <div
         v-if="
-          role === 'borrower' && status === 'overdue' && variant === 'active'
+          role === 'borrower' && status === 'overdue' && ( variant === 'active' || variant === 'for_sale')
         "
         class="notification6"
       >
@@ -325,7 +325,7 @@
       </div>
       <div
         v-if="
-          role === 'borrower' && status === 'overdue' && variant === 'active'
+          role === 'borrower' && status === 'overdue' && ( variant === 'active' || variant === 'for_sale')
         "
         class="notification6_overdue notification6"
       >
@@ -335,8 +335,10 @@
           src="@/assets/images/alerttriangle-red.svg"
         />
         <div class="div128 div128">
-          Ваш долг вместе с персональными данными будет выставлен на открытый
-          аукцион для коллекторов через 23:59:59
+          {{ variant === 'active'
+          ? "Ваш долг вместе с персональными данными может быть выставлен на открытый аукцион для коллекторов."
+          : "Ваш долг вместе с персональными данными был выставлен на открытый аукцион для коллекторов." }}
+          
         </div>
       </div>
 
@@ -364,7 +366,7 @@
             v-if="
               role === 'borrower' &&
               status === 'overdue' &&
-              variant === 'active' && 
+              ( variant === 'active' || variant ==='for_sale' ) && 
               !loanRequest
             "
             class="group-action"
@@ -376,6 +378,7 @@
               <div class="text">Погасить</div>
             </button>
             <button
+              v-if="variant === 'active'"
               class="buttons-tabs1_overdue buttons-tabs1"
               @click.stop="() => toActive('prolong')"
             >
@@ -395,7 +398,7 @@
           </button>
           <button
             v-else-if="
-              role === 'creditor' && loan?.status !== 'paid' && loan?.status !== 'sold'
+              role === 'creditor' && loan?.status !== 'paid' && loan?.status !== 'sold' && loan?.status !== 'active'
             "
             class="buttons-tabs1"
             @click.stop="toAction"
@@ -592,7 +595,6 @@ const accrualDate = ref()
 const isBlank = ref(false)
 
 const { poolItem } = usePoolListStore();
-
 const {duty, isOverdue, interestRate, duration, startTerm, endTerm, interestRateString} = useComputedLoanInfo(loan)
 const {interestRate: interestRateLoanRequest, interestRateString: interestRateStringLoanRequest, duration: durationLoanRequest, statusChangedTerm} = useComputedLoanRequestInfo(loanRequest)
 

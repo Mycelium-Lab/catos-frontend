@@ -45,8 +45,7 @@ const isTransaction = ref(false)
 const uid = ref()
 
 onMounted(async () =>{
-  isTransaction.value = true
-  await buyLoan(poolId, 1)
+  await buyLoan(poolId, price)
   .then(res => {
     isTransaction.value = true
     uid.value = res.data
@@ -54,8 +53,9 @@ onMounted(async () =>{
   })
 })
 
-const {poolId} = defineProps({
-  poolId: {type: Number, required: true}
+const {poolId, price} = defineProps({
+  poolId: {type: Number, required: true},
+  price: {type: Number, required: true}
 })
 
 const emits = defineEmits(["close", "myLoans"]);

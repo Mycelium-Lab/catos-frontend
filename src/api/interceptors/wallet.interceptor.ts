@@ -19,7 +19,7 @@ export const walletConnectedInterceptor = async (
     urlsRequireWallet.includes(config.url) &&
     config.method == "post"
   ) {
-    if (walletStorage.get()?.address === "") {
+    if (!walletStorage.get()?.address) {
       controller.abort();
       config.signal = controller.signal;
       router.push({ name: "connect-wallet-finish" });

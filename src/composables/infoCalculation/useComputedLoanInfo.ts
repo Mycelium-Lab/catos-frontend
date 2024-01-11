@@ -1,17 +1,16 @@
-import { computed } from "vue"
+import { computed, ref } from "vue";
+import { useRetrieveLoanApi } from "../useRetrieveLoanApi";
+import { LoansResponse, LoansBoughtResponse } from "@/types/loan.types";
 import { NANO_MULTIPLIER } from "@/utils/constants";
 
-const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
-    const duty = computed(() => {
-        if(loan?.amount && loan?.paid_amount) {
-          const dif = (loan?.amount / NANO_MULTIPLIER) - (loan?.paid_amount / NANO_MULTIPLIER)
-          const overduePercent = loan?.overdue_millipercent / 100
-          return dif * overduePercent / 100 + dif
-        }
-        else {
-          return ''
-        }
-      })
+const useComputedLoanInfo = (loan: LoansResponse | LoansBoughtResponse, freePeriod?: any) => {
+      const duty = ref<number>();
+      const accruedInterest = ref<number>();
+      useRetrieveLoanApi(loan.id)
+        .then(({ remain, accrued }) => {
+          duty.value = remain.value ? remain.value / NANO_MULTIPLIER : undefined; 
+          accruedInterest.value = accrued.value ? accrued.value / NANO_MULTIPLIER : undefined;
+      });
 
       const overdue = computed(() => {
         if(loan?.end) {
@@ -23,6 +22,8 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
       })
 
       const isOverdue = computed(() => {
+        if ((loan as LoansResponse).status === 'paid' ||  (loan as LoansResponse).status === 'sold') 
+          return undefined;
         if(loan?.end) {
           const end = new Date(loan?.end);
           const now = new Date();
@@ -36,13 +37,16 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
       })
 
       const age = computed(() => {
-        if(loan?.borrower?.passport?.birthdate || loan?.borrower?.birthdate) {
-          const birthdate = loan?.borrower?.passport?.birthdate ? loan?.borrower?.passport?.birthdate : loan?.borrower?.birthdate
+        let birthdate = '';
+        if ((loan as LoansBoughtResponse).borrower.passport) {
+          birthdate = (loan as LoansBoughtResponse).borrower?.passport?.birthdate;
+        }
+        else {
+          birthdate = (loan as LoansResponse).borrower?.birthdate;
+        }
           const nowYear = new Date().getFullYear()  
           const yearBirth = birthdate.split('-')[0]
           return nowYear - Number(yearBirth)
-        }
-        else return ''
       })
 
       const interestRate = computed(() => {
@@ -110,6 +114,7 @@ const useComputedLoanInfo = (loan: any, freePeriod?: any) => {
     
     return {
         duty,
+        accruedInterest,
         overdue,
         localeTime,
         age,

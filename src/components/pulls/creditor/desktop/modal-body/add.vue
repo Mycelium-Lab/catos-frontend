@@ -37,7 +37,7 @@
               type="number"
             ></input-data>
           </div>
-          <div class="min-10-ton-parent">
+          <div v-if="role === 'investor'" class="min-10-ton-parent">
             <div class="min-10-ton-container">
               <span>Min: </span>
               <span class="span8"> </span>
@@ -54,7 +54,7 @@
     <template v-slot:action>
       <div class="des-and-bbn_add des-and-bbn">
         <catos-button
-          :disabled="Number(amount) < minInvest"
+          :disabled="Number(amount) < minInvest && role !== 'creditor'"
           variant="fourth"
           @click="() => Number(amount) < minInvest  ? null : handleAdd()"
           :style="{ width: '100%', margin: '0' }"
