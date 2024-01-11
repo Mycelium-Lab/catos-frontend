@@ -124,7 +124,7 @@
     :uid="uid" 
     titlePending="Продажа займа"
     subtitlePending="Пожалуйста, подождите пока завершится процесс продажи займа"
-    subtitleSuccess="Займ успешно продан"
+    subtitleSuccess="Займ успешно выставлен на продажу"
     titleFaild="Произошла ошибка при продаже займа"
     ></transaction-desktop>
 </template>

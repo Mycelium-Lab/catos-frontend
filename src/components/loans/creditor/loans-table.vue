@@ -387,13 +387,23 @@
           </div>
           <button
             v-else-if="
-              role === 'creditor' && variant === 'loans' && isOverdue
+              role === 'creditor' && variant === 'loans' && isOverdue && loan?.status !== 'for_sale'
             "
             class="buttons-tabs1"
             @click.stop="toAction"
           >
             <div class="text">
               Выставить займ на продажу
+            </div>
+          </button>
+          <button
+            v-else-if="
+              role === 'creditor' && variant === 'loans' && isOverdue && loan?.status === 'for_sale'
+            "
+            class="buttons-tabs1"
+          >
+            <div class="text">
+              Снять займ с продажи
             </div>
           </button>
           <button
