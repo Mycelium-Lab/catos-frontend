@@ -9,7 +9,7 @@
         <filter-board></filter-board>
 
         <div class="fields">
-          <div class="title-frame">
+          <!-- <div class="title-frame">
             <div class="title3">
               <div
                 :class="
@@ -40,7 +40,7 @@
                 <div class="tab-title2">Месяц</div>
               </div>
             </div>
-          </div>
+          </div> -->
           <transaction-history-table></transaction-history-table>
           <div class="fieldsregistration-options1">
             <catos-button
@@ -80,7 +80,7 @@
     ></template>
     <template v-slot:body>
       <div class="fields">
-        <div class="title-frame">
+        <!-- <div class="title-frame">
           <div class="title3">
             <div
               :class="active === 'day' ? 'tabstextactive tabstextresting' : ''"
@@ -107,7 +107,7 @@
               <div class="tab-title2">Месяц</div>
             </div>
           </div>
-        </div>
+        </div> -->
         <transaction-history-table></transaction-history-table>
         <!-- <div class="fieldsregistration-options1">
           <catos-button

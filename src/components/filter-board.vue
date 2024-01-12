@@ -36,7 +36,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="group">
+                <!-- <div class="group">
                   <div class="div11">Выберите дату:</div>
                   <input-data
                     type="date"
@@ -45,7 +45,7 @@
                     :value="date"
                     @selected="(e:any) => (date = e)"
                   ></input-data>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
