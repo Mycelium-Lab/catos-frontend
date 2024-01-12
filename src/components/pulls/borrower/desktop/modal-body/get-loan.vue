@@ -217,12 +217,12 @@ const sum = computed(() => {
 
   if(Number(term.value) - freePeriod.value <= 0 && freePeriod.value !== 0) {
     amountWithoutInterestRatePeriod = sumWithFreePeriod.value
-    return amountWithoutInterestRatePeriod
+    return amountWithoutInterestRatePeriod.toPrecision(3);
   }
 
   const withInterestRatePeriod = Number(term.value) - freePeriod.value
   const sumWithInterestRate = Number(sumLoans.value) * (interestRate.value / 100 * withInterestRatePeriod) + Number(sumLoans.value);
-  return sumWithInterestRate
+  return sumWithInterestRate.toPrecision(3);
 });
 
 const sumWithFreePeriod = computed(() => Number(sumLoans.value))
