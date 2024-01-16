@@ -115,7 +115,9 @@
           </div>
         </template>
       </confirm-qr-destop>
-      <pagination></pagination>
+      <pagination
+        :total-pools="poolListStore.allPools.length"
+      ></pagination>
     </template>
   </default-desktop>
 </template>
@@ -132,10 +134,11 @@ import pagination from "@/components/ui-kit/pagination.vue"
 import createPullDesktop from "@/components/pulls/creditor/create-pull-desktop.vue";
 import confirmQrDestop from "@/components/base/confirm-qr-destop.vue";
 import DefaultDesktop from "@/components/layouts/default-desktop.vue";
-
+import { usePoolListStore } from "@/stores/poolList";
 import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();
+const poolListStore = usePoolListStore();
 
 const isBackSide = ref(false);
 const isAppBar = ref(true);
