@@ -39,8 +39,8 @@
       <div class="frame-container">
         <div class="container">
           <div class="div2">
-            <span class="span">Если у вас возникли дополнительные </span>вопросы
-            или нашли ошибку нашей системе обратитесь в службу поддержки
+            <span class="span">Если у вас возникли дополнительные </span>вопросы,
+            или вы нашли ошибку в нашей системе, обратитесь в службу поддержки.
           </div>
         </div>
         <div class="frame-wrapper">

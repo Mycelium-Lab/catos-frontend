@@ -99,8 +99,8 @@
       <div class="frame-div">
         <div class="div10">Последний этап</div>
         <div class="scan-the-qr-container">
-          <p class="catos-">Scan the QR code with your phone's</p>
-          <p class="catos-">camera or Tonkeeper</p>
+          <p class="catos-">Сканируйте QR код камерой вашего телефона,</p>
+          <p class="catos-">либо в приложении TonKeeper</p>
         </div>
       </div>
       <div class="qr-code-2">
@@ -113,8 +113,7 @@
         </router-link> -->
       </div>
       <div class="we-do-not">
-        We do not receive or store your wallet login details, so your TON is
-        safe.
+        Мы не имеем доступа к приватным данным вашего кошелька, поэтому ваши TON в безопасности.
       </div>
     </div>
     <div class="slidersteps">

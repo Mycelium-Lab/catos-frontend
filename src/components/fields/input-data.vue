@@ -53,7 +53,7 @@ const { modelValue, placeholder, simulate, name, min, max, type } =
   }>();
 
 const emit = defineEmits(["update:modelValue", "update:enterHit"]);
-
+let tempDateStorage = '';
 const mutatePlaceholder = computed(() => {
   switch (placeholder) {
     case "Ваша почта":
@@ -73,33 +73,45 @@ const handleKeyup = (event: KeyboardEvent) => {
   }
 }
 
-const handleInput = (event: any) => {
+const handleInput = (event: Event) => {
+  const target = event.target as HTMLInputElement;
   if (name === "tel") {
-    event.target.value = event.target.value.replace(/[^0-9]/g, "");
-    if (String(event.target.value).length > 11) {
-      event.target.value = String(event.target.value).slice(0, 11);
+    target.value = target.value.replace(/[^0-9]/g, "");
+    if (String(target.value).length > 11) {
+      target.value = String(target.value).slice(0, 11);
     }
   }
 
   if (name === "code") {
-    event.target.value = event.target.value.replace(/[^0-9]/g, "");
-    if (String(event.target.value).length > 6) {
-      event.target.value = String(event.target.value).slice(0, 6);
+    target.value = target.value.replace(/[^0-9]/g, "");
+    if (String(target.value).length > 6) {
+      target.value = String(target.value).slice(0, 6);
     }
   }
 
   if (name === "passport") {
-    event.target.value = event.target.value.replace(/[^0-9]/g, "");
+    target.value = target.value.replace(/[^0-9]/g, "");
 
-    const val = event.target.value.replace(/^(.{4})(.*)$/, "$1 $2");
-    event.target.value = val;
-    if (String(event.target.value).length > 11) {
-      event.target.value = String(event.target.value).slice(0, 11);
+    const val = target.value.replace(/^(.{4})(.*)$/, "$1 $2");
+    target.value = val;
+    if (String(target.value).length > 11) {
+      target.value = String(target.value).slice(0, 11);
     }
   }
 
   if (name === "revenue") {
-    event.target.value = event.target.value.replace(/[^0-9]/g, "");
+    target.value = target.value.replace(/[^0-9]/g, "");
+  }
+  if (type === "date") {
+    const inputDate = (new Date((event.target as HTMLInputElement).value)).getTime();
+    if ((event as KeyboardEvent).code != "Backspace" && (event as KeyboardEvent).code != "Delete" && inputDate && inputDate > (new Date()).getTime())
+    {
+      (event.target as HTMLInputElement).value = tempDateStorage;
+    }
+    else {
+      console.log('pass')
+      tempDateStorage = (event.target as HTMLInputElement).value;
+    }
   }
   emit("update:modelValue", (event.target as HTMLInputElement).value);
 };
@@ -114,17 +126,16 @@ const handleBlur = (event: any) => {
         event.target.value = "";
       }
     } catch (e) {
-      console.log(e);
     }
   }
-  if (type === "date") {
-    const inputDate = (new Date(event.target.value.replace(/-/g,'/'))).getTime();
+  // if (type === "date") {
+  //   const inputDate = (new Date(event.target.value.replace(/-/g,'/'))).getTime();
 
-    if (inputDate && inputDate >  (new Date()).getTime())
-    {
-      event.target.value = currentDatetime();
-    }
-  }
+  //   if (inputDate && inputDate >  (new Date()).getTime())
+  //   {
+  //     event.target.value = currentDatetime();
+  //   }
+  // }
 };
 </script>
 

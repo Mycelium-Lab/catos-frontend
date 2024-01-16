@@ -52,7 +52,9 @@
         :key="curentWindow"
       > 
       </pools>
-      <pagination></pagination>
+      <pagination
+        :total-pools="poolListStore.allPools.length"  
+      ></pagination>
     </template>
   </default-desktop>
 </template>
@@ -64,7 +66,7 @@ import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import toolBar from "@/components/base/desktop/tool-bar.vue";
 import pools from "./pulls.vue"
 import pagination from "@/components/ui-kit/pagination.vue"
-
+import { usePoolListStore } from "@/stores/poolList";
 import { useDevice } from "@/compossables/useDevice";
 
 const { isMobile } = useDevice();
@@ -75,6 +77,7 @@ import borrowerList from "@/components/pulls/borrower/borrower-list.vue";
 import appBar from "@/components/ui-kit/app-bar.vue";
 const isBackSide = ref(false);
 const curentWindow = ref("all");
+const poolListStore = usePoolListStore();
 
 const router = useRouter();
 

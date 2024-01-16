@@ -65,7 +65,9 @@
         :variant="curentWindow"
         :key="curentWindow">
       </pools>
-      <pagination></pagination>
+      <pagination
+        :total-pools="poolListStore.verifiedPools.length"  
+      ></pagination>
     </template>
   </default-desktop>
 </template>
@@ -82,12 +84,14 @@ import { useDevice } from "@/compossables/useDevice";
 import pools from "./pulls.vue"
 import appBar from "@/components/ui-kit/app-bar.vue";
 import pagination from "@/components/ui-kit/pagination.vue"
+import { usePoolListStore } from "@/stores/poolList";
 
 const { isMobile } = useDevice();
 const isBackSide = ref(false);
 const curentWindow = ref("all");
 const isAppBar = ref(true);
 const router = useRouter();
+const poolListStore = usePoolListStore();
 
 const toSort = () => {
   router.push({ name: "pulls-depositor-sort" });
