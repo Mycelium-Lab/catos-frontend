@@ -90,7 +90,7 @@
             <catos-button
               variant="fourth"
               :style="{ width: '100%', margin: '0 auto' }"
-              >Отправить номер</catos-button
+              >Отправить код</catos-button
             >
           </div>
         </div>
@@ -102,7 +102,7 @@
           ></div>
           <div class="text-and-fill2">
             <div class="div282">
-              <span>Подтверждение почты </span>
+              <span>Подтверждение {{ isChangeEmail ? "почты" : "номера" }} </span>
               <span class="span">*</span>
             </div>
           </div>
@@ -111,7 +111,7 @@
               <div class="div32">Введите код:</div>
             </div>
           </div>
-          <a
+          <!-- <a
             class="koahyan123gmailcom"
             href="mailto:Koa.Hyan123@gmail.com"
             target="_blank"
@@ -124,7 +124,7 @@
                 isChangeEmail ? " Koa.Hyan123@gmail.com" : " +7 (999) 215-43-26"
               }}</span
             >
-          </a>
+          </a> -->
           <div class="div33">
             <span>Примерное время </span>
             <span class="span5">ожидания</span>

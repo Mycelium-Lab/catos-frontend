@@ -18,7 +18,7 @@
           src="./public/dffdfsdqfc4gigapixellow-resscale2-00x-1@2x.png"
         />
 
-        <div class="div8">&lt;Имя пользователя&gt;</div>
+        <div class="div8">{{ profileStorage.get()?.name + ' ' + profileStorage.get()?.surname}}</div>
         <div class="tonorg">Tonkeeper</div>
         <img class="component-17-icon" alt="" src="./public/component-17.svg" />
 
@@ -131,6 +131,8 @@
 
 <script setup lang="ts">
 import { useDevice } from "@/compossables/useDevice";
+import { profileStorage } from "@/utils/localStorage";
+
 const { isMobile } = useDevice();
 </script>
 

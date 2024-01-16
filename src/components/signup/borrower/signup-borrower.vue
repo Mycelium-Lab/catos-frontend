@@ -176,6 +176,8 @@
                     placeholder="01.02.1994"
                     :style="{ width: '100%' }"
                     :value="date"
+                    min="1900-01-01"
+                    max="2000-01-01"
                   ></input-data>
                   <!--<div class="iconscalendar-wrapper">
                     <img
@@ -1015,11 +1017,14 @@ import { useUploadApi } from "@/composables/useUploadApi";
 import countries from "@/json/countries.json";
 import regions from "@/json/regions.json";
 import { useDevice } from "@/compossables/useDevice";
+import { currentDatetime } from "@/utils/getCurrentDatetime";
 
 const { isMobile } = useDevice();
 const userDataStore = useUserDataStore();
 const passportDataStore = usePassportDataStore();
 const isSameAddress = ref(false);
+const datetime = currentDatetime();
+console.log(datetime);
 const isSelectedRadioButton1 = ref(
   passportDataStore.passportDTO.gender === "М"
 );

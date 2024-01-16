@@ -2,12 +2,12 @@
   <div class="frame-parent1">
     <div class="descrioption-parent">
       <div class="descrioption">
-        <div class="number3">Транзакции и дата</div>
+        <div class="number3">Транзакции</div>
         <div class="details1">Детали</div>
       </div>
-      <div class="frame">
+      <!-- <div class="frame">
         <div class="div16">2 апреля</div>
-      </div>
+      </div> -->
       <div class="pull">
         <li class="pull-list" v-for="transaction in transactions">
           <div v-if="transaction.data" class="field-1" id="fieldContainer">

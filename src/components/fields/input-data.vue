@@ -35,6 +35,7 @@
 </template>
 
 <script setup lang="ts">
+import { currentDatetime } from "@/utils/getCurrentDatetime";
 import { computed } from "vue";
 const { modelValue, placeholder, simulate, name, min, max, type } =
   defineProps<{
@@ -47,8 +48,8 @@ const { modelValue, placeholder, simulate, name, min, max, type } =
     readonly?: boolean;
     simulate?: boolean;
     name?: string;
-    min?: number;
-    max?: number;
+    min?: number | string;
+    max?: number | string;
   }>();
 
 const emit = defineEmits(["update:modelValue", "update:enterHit"]);
@@ -104,7 +105,7 @@ const handleInput = (event: any) => {
 };
 
 const handleBlur = (event: any) => {
-  if (type === "number") {
+  if (type === "number" && typeof min === "number" && typeof max === "number") {
     try {
       if (
         (min && Number(event.target.value) < min) ||
@@ -114,6 +115,14 @@ const handleBlur = (event: any) => {
       }
     } catch (e) {
       console.log(e);
+    }
+  }
+  if (type === "date") {
+    const inputDate = (new Date(event.target.value.replace(/-/g,'/'))).getTime();
+
+    if (inputDate && inputDate >  (new Date()).getTime())
+    {
+      event.target.value = currentDatetime();
     }
   }
 };
