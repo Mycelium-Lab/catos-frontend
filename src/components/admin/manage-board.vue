@@ -216,7 +216,7 @@
         <template v-slot:action> Продолжить </template>
         <template v-slot:footer-text>
           Если приложение установлено, <br />
-          жмите продолжить
+          нажмите продолжить
         </template>
       </auth>
     </template>

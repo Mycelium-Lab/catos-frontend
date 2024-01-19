@@ -47,7 +47,7 @@
           </router-link>
           <div class="div10">
             <p class="p">Если приложение установлено,</p>
-            <p class="p">жмите продолжить</p>
+            <p class="p">нажмите продолжить</p>
           </div>
         </div>
       </div>
