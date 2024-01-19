@@ -47,7 +47,9 @@
               >Для того, чтобы брать, гасить и предоставлять займы вашей
               организации необходим криптовалютный кошелек
             </span>
-            <span class="ton-keeper1">TON Keeper</span>
+            <a href="https://tonkeeper.com/" target="_blank" rel="noopener">
+              <span class="ton-keeper1">TON Keeper</span>
+            </a>
           </p>
         </span>
       </div>
@@ -86,21 +88,29 @@
           </div>
           <div class="frame-container">
             <div class="ios-parent">
-              <div class="android">iOS</div>
+              <a href="https://tonkeeper.com/" target="_blank" rel="noopener">
+                <div class="android">iOS</div>
+              </a>
               <img class="iconchange2" alt="" src="./public/iconchange1.svg" />
             </div>
             <div class="ios-parent">
-              <div class="android">Android</div>
+              <a href="https://tonkeeper.com/" target="_blank" rel="noopener">
+                <div class="android">Android</div>
+              </a>
               <img class="iconchange2" alt="" src="./public/iconchange2.svg" />
             </div>
           </div>
           <div class="frame-container">
             <div class="ios-parent">
-              <div class="android">Windows</div>
+              <a href="https://tonkeeper.com/" target="_blank" rel="noopener">
+                <div class="android">Windows</div>
+              </a>
               <img class="iconchange2" alt="" src="./public/iconchange1.svg" />
             </div>
             <div class="ios-parent">
-              <div class="android">Mac OS</div>
+              <a href="https://tonkeeper.com/" target="_blank" rel="noopener">
+                <div class="android">Mac OS</div>
+              </a>
               <img class="iconchange2" alt="" src="./public/iconchange2.svg" />
             </div>
           </div>

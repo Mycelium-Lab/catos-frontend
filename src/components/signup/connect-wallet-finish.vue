@@ -44,7 +44,9 @@
               >Для того, чтобы брать, гасить и предоставлять займы вашей
               организации необходим криптовалютный кошелек
             </span>
-            <span class="ton-keeper1">TON Keeper</span>
+            <a href="https://tonkeeper.com/" target="_blank" rel="noopener">
+              <span class="ton-keeper1">TON Keeper</span>
+            </a>
           </p>
         </span>
       </div>
@@ -77,13 +79,19 @@
           </div>
           <div class="frame-container">
             <div class="ios-parent">
-              <div class="ps">iOS</div>
+              <a href="https://tonkeeper.com/" target="_blank" rel="noopener">
+                <div class="ps">iOS</div>
+              </a>
             </div>
             <div class="ps-parent">
-              <div class="ps">PS</div>
+              <a href="https://tonkeeper.com/" target="_blank" rel="noopener">
+                <div class="ps">PC</div>
+              </a>
             </div>
             <div class="ios-parent">
-              <div class="ps">MAC</div>
+              <a href="https://tonkeeper.com/" target="_blank" rel="noopener">
+                <div class="ps">MAC</div>
+              </a>
             </div>
           </div>
         </div>
