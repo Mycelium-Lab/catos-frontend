@@ -3,7 +3,7 @@
     <div class="div">
       <div class="header-pop-up">
         <div class="page-title-parent">
-          <div class="page-title">пул # {{ pool?.id }}</div>
+          <div class="page-title">Пул # {{ pool?.id }}</div>
           <img
             class="close-icon-action close-icon"
             alt=""

@@ -44,7 +44,7 @@
           <div class="line-div"></div>
           <div class="frame-parent3">
             <div class="roi-wrapper">
-              <div class="roi">пулы:</div>
+              <div class="roi">Пулы:</div>
             </div>
             <div class="ton-wrapper">
               <div class="div16">3 шт</div>

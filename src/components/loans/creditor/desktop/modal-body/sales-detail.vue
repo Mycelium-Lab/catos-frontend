@@ -95,7 +95,7 @@
                         <div class="frame-wrapper1">
                           <div class="ton-wrapper">
                             <div class="ton3">
-                              <span>пул </span>
+                              <span>Пул </span>
                               <span class="span5">#{{ v.pool_id }}</span>
                               <span>, </span>
                             <span v-if="v.status === 'approved'"> срок {{ useComputedLoanRequestInfo(v).duration.value }}, сумма {{ v.approved_amount / NANO_MULTIPLIER}} TON </span>

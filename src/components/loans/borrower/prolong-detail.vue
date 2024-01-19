@@ -9,7 +9,7 @@
         <div class="pull-stats-child"></div>
         <div class="filtr">
           <div class="frame">
-            <div class="div10">пул №1223</div>
+            <div class="div10">Пул №1223</div>
           </div>
         </div>
         <div class="pull-stats1">
@@ -459,7 +459,7 @@
     <div class="nav-menu">
       <div class="iconsmenu">
         <div class="container1">
-          <div class="div65">пулы</div>
+          <div class="div65">Пулы</div>
         </div>
       </div>
       <div class="iconsmenu1">
@@ -629,7 +629,7 @@
           <div class="frame-child7"></div>
           <div class="frame-parent24">
             <div class="wrapper15">
-              <div class="div47">пул:</div>
+              <div class="div47">Пул:</div>
             </div>
             <div class="wrapper22">
               <div class="div80">#66389563</div>

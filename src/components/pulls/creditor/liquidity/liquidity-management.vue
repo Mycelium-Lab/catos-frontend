@@ -171,7 +171,7 @@
 
                   <div class="div26">
                     <p class="p">Управление ликвидностью</p>
-                    <p class="p">пул #12345</p>
+                    <p class="p">Пул #12345</p>
                   </div>
                 </div>
               </div>

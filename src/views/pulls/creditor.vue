@@ -56,7 +56,7 @@
   </div>
 
   <default-desktop v-else>
-    <template v-slot:title> пулы </template>
+    <template v-slot:title> Пулы </template>
     <template v-slot:slider>
       <button-slider
         :style="{ width: '254px', margin: '0' }"

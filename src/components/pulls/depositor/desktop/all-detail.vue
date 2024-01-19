@@ -107,7 +107,7 @@
           </div>
           <div class="field-parent">
             <div class="field">
-              <div class="div5">пулов сгенерировано для инвесторов</div>
+              <div class="div5">Пулов сгенерировано для инвесторов</div>
               <div class="div6">10 574 раз</div>
             </div>
             <div class="col-titles-bg" />

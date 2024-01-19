@@ -149,7 +149,7 @@
       </div>
       <div class="filtr">
         <div class="wrapper7">
-          <div class="div15">пул #12345</div>
+          <div class="div15">Пул #12345</div>
         </div>
       </div>
     </div>

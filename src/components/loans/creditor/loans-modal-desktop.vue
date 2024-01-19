@@ -81,7 +81,7 @@
                 <div class="frame-wrapper3">
                   <div class="ton-wrapper">
                     <div class="ton">
-                      <span>пул </span>
+                      <span>Пул </span>
                       <span class="span">#12345</span>
                       <span>, срок 30 дней, сумма 10 000 TON </span>
                     </div>
@@ -94,7 +94,7 @@
                 <div class="frame-wrapper3">
                   <div class="ton-wrapper">
                     <div class="ton">
-                      <span>пул </span>
+                      <span>Пул </span>
                       <span class="span">#12344</span>
                       <span>, срок 14 дней, сумма 3 000 TON </span>
                     </div>

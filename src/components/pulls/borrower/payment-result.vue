@@ -79,7 +79,7 @@
           </div>
           <div class="frame-child6"></div>
           <div class="alert-triangle-parent-1 alert-triangle-parent">
-            <div class="div47">пул:</div>
+            <div class="div47">Пул:</div>
             <div class="wrapper15">
               <div class="div76">#123445</div>
             </div>

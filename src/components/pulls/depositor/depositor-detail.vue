@@ -136,7 +136,7 @@
               <div class="line-div"></div>
               <div class="frame-parent3">
                 <div class="roi-wrapper">
-                  <div class="roi">пулов сгенерировано для инвесторов:</div>
+                  <div class="roi">Пулов сгенерировано для инвесторов:</div>
                 </div>
                 <div class="ton-wrapper">
                   <div class="div16">10 574 раз</div>

@@ -329,7 +329,7 @@
             <div class="frame-child7"></div>
             <div class="frame-parent24">
               <div class="wrapper15">
-                <div class="div47">пул:</div>
+                <div class="div47">Пул:</div>
               </div>
               <div class="wrapper22">
                 <div class="div80">#66389563</div>

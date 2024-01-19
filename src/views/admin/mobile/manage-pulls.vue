@@ -28,7 +28,7 @@
           </div>-->
     </div>
     <div class="header">
-      <div class="div6">пулы</div>
+      <div class="div6">Пулы</div>
     </div>
     <div class="col-titles-bg-parent">
       <tools-board

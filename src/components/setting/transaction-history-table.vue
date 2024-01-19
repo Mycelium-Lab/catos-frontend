@@ -39,7 +39,7 @@
                         : "Неизвестная операция"
                     }}
                   </div>
-                  <!-- <div class="new-madieton-llc1">пул #12345</div> -->
+                  <!-- <div class="new-madieton-llc1">Пул #12345</div> -->
                 </div>
               </div>
             </a>

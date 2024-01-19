@@ -172,7 +172,7 @@
       <button-slider
         :style="{ position: 'relative', width: '87.7vw' }"
         :variantIndex="2"
-        :tabs="['пулы Catos', 'пулы TON']"
+        :tabs="['Пулы Catos', 'Пулы TON']"
         @on-slide="toggleSlide"
       ></button-slider>
 

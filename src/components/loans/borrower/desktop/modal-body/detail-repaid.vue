@@ -130,7 +130,7 @@
           <div class="frame-child" />
           <div class="frame-parent2">
             <div class="wrapper4">
-              <div class="div3">пул:</div>
+              <div class="div3">Пул:</div>
             </div>
             <div class="wrapper5">
               <div class="div13">#{{ poolByLoan?.id }}</div>

@@ -13,7 +13,7 @@
         <div class="iconsmenu1">
           <img alt="" src="@/assets/desktop/menu-pulls.svg" />
         </div>
-        <div class="div1">пулы</div>
+        <div class="div1">Пулы</div>
       </div>
       <div
         class="component-211"
