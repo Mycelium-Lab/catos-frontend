@@ -147,7 +147,6 @@
                 <div class="div22">
                   <span class="span14">Отчество (если есть) </span>
                   <span class="span15">
-                    <span>*</span>
                     <span class="span10"> </span>
                   </span>
                 </div>
