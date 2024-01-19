@@ -20,7 +20,7 @@ import defaultDesktop from "@/components/layouts/default-desktop.vue";
 import dashboardCard from "@/components/dashboard/desktop/dashboard-card.vue";
 const rows = [
   {
-    first: "Пулл",
+    first: "пул",
     last: "Выдано займов",
     firstValue: [160, 190, 33, 11],
     lastValue: [30, 24, 7, 3],

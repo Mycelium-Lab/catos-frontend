@@ -123,7 +123,7 @@
       </div>
       <div class="filtr-wrapper">
         <div class="filtr">
-          <div class="div16">Пулл №1223</div>
+          <div class="div16">пул №1223</div>
         </div>
       </div>
     </div>

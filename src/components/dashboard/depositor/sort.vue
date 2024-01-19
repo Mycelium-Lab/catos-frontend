@@ -58,7 +58,7 @@
         </ul>
         <ul class="option-list">
           <li>
-            <label class="label">По количеству пуллов:</label>
+            <label class="label">По количеству пулов:</label>
             <ul class="option-list_filter inner-list">
               <li class="list-item">
                 По возрастанию

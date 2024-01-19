@@ -1,9 +1,9 @@
 <template>
   <default-desktop-admin back>
-    <template v-slot:title> Пуллы </template>
+    <template v-slot:title> пулы </template>
     <template v-slot:tools>
       <input-data
-        placeholder="Найти пуллы"
+        placeholder="Найти пулы"
         :style="{ width: '390px' }"
         background="#fff"
         left

@@ -10,7 +10,7 @@
     </template>
     <template v-slot:tools>
       <input-data
-        placeholder="Найти пуллы"
+        placeholder="Найти пулы"
         :style="{ width: '542px' }"
         background="#fff"
         left

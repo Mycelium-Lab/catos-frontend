@@ -33,7 +33,7 @@
       </div>
       <div class="buttonnext-wrapper">
         <div class="buttonnext" @click="toPulls">
-          <b class="b">Выбрать пулл</b>
+          <b class="b">Выбрать пул</b>
         </div>
       </div>
       <div class="frame-container">

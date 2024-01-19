@@ -15,7 +15,7 @@
                   <div class="div11">Выберите статус:</div>
                   <div class="fields-password-and-mail2">
                     <div class="frame-div">
-                      <div class="div12">Все пуллы</div>
+                      <div class="div12">Все пулы</div>
                       <img
                         class="chevron-right-icon"
                         alt=""
@@ -288,7 +288,7 @@
       </div>
       <div class="component-25">
         <div class="div31" @click="toCard">
-          Перейти к формату карточек пуллов:
+          Перейти к формату карточек пулов:
         </div>
         <img
           class="chevron-right-icon"
@@ -1801,7 +1801,7 @@
     <template v-slot:body>
       <pulls-statistic></pulls-statistic>
       <div class="component-25" @click="toCardDesktop">
-        <div class="div31">Перейти к формату карточек пуллов:</div>
+        <div class="div31">Перейти к формату карточек пулов:</div>
         <img
           class="chevron-right-icon"
           alt=""
@@ -2392,16 +2392,16 @@ const toCardDesktop = () => {
 
 const date = ref("");
 
-const pull = ref("Все пуллы");
+const pull = ref("Все пулы");
 const optionsPulls = [
-  "Все пуллы",
-  "Пуллл #1",
-  "Пуллл #2",
-  "Пуллл #3",
-  "Пуллл #4",
-  "Пуллл #5",
-  "Пуллл #6",
-  "Пуллл #7",
+  "Все пулы",
+  "пулл #1",
+  "пулл #2",
+  "пулл #3",
+  "пулл #4",
+  "пулл #5",
+  "пулл #6",
+  "пулл #7",
 ];
 
 const chartFinancePairs = ref(["profit", "income"]);

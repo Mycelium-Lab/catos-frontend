@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title> Получить займ из пулла #12345 </template>
+    <template v-slot:title> Получить займ из пула #12345 </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-wrapper">
@@ -79,7 +79,7 @@
                     </div>
                     <div class="frame-child" />
                     <div class="parent1">
-                      <div class="div2">Пулл:</div>
+                      <div class="div2">пул:</div>
                       <div class="wrapper">
                         <div class="div5">#123445</div>
                       </div>

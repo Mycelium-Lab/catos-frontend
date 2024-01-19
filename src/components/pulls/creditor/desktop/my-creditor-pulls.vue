@@ -73,7 +73,7 @@
       }
     "
   >
-    <template v-slot:header> Пулл #12345 </template>
+    <template v-slot:header> пул #12345 </template>
     <template v-slot:title>Withdraw liquidity</template>
     <template v-slot:subtitle> Scan the QR code with Tonkeeper using </template>
     <template v-slot:link> EQB5...dzE1h </template>
@@ -97,7 +97,7 @@
       }
     "
   >
-    <template v-slot:header> Пулл #12345 </template>
+    <template v-slot:header> пул #12345 </template>
     <template v-slot:title>Add liquidity</template>
     <template v-slot:subtitle>
       Scan the QR code and pay 13 512 TON <br />
@@ -125,7 +125,7 @@
         Вы успешно {{ isSuccessWithdraw ? "вывели" : "добавили" }} 257 324 TON
         <br />
         {{ isSuccessWithdraw ? "из" : "в" }}
-        {{ isSuccessWithdraw ? "пулла" : "пулл" }}
+        {{ isSuccessWithdraw ? "пула" : "пул" }}
         <a
           class="status-subtitle-link"
           @click="

@@ -1,7 +1,7 @@
 <template>
   <modal from="pulls">
     <div class="wrapper">
-      <div class="header">Информация о пулле №1223</div>
+      <div class="header">Информация о пуле №1223</div>
 
       <div class="pull-stats">
         <div class="pull-stats1">

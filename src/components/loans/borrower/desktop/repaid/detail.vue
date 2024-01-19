@@ -7,7 +7,7 @@
     :firstAction="close"
     :lastAction="toGetLoans"
   >
-    <template v-slot:header> Займ из пулла #{{ poolByLoan?.id }} </template>
+    <template v-slot:header> Займ из пула #{{ poolByLoan?.id }} </template>
     <template v-slot:title> Займ #{{ loan?.id }} получен </template>
     <template v-slot:image>
       <img src="@/assets/images/success-cash-2.svg" />

@@ -3,13 +3,13 @@
     <div class="pull"></div>
     <div class="header">
       <div class="div8">
-        {{ `${curentWindow === "all" ? "Кредитные" : "Мои"} пуллы` }}
+        {{ `${curentWindow === "all" ? "Кредитные" : "Мои"} пулы` }}
       </div>
     </div>
     <button-slider
       :style="{ position: 'relative', top: '5em' }"
       :variantIndex="2"
-      :tabs="['Все пуллы', 'Мои пуллы']"
+      :tabs="['Все пулы', 'Мои пулы']"
       @on-slide="toggleSlide"
     ></button-slider>
     <div class="frame-parent9">
@@ -35,7 +35,7 @@
       <div class="group-container">
         <img class="group-icon" alt="" src="@/assets/images/iconsstars.svg" />
 
-        <b class="b1">Создать пулл</b>
+        <b class="b1">Создать пул</b>
       </div>
     </div>
 
@@ -56,12 +56,12 @@
   </div>
 
   <default-desktop v-else>
-    <template v-slot:title> Пуллы </template>
+    <template v-slot:title> пулы </template>
     <template v-slot:slider>
       <button-slider
         :style="{ width: '254px', margin: '0' }"
         :variantIndex="2"
-        :tabs="['Все пуллы', 'Мои пуллы']"
+        :tabs="['Все пулы', 'Мои пулы']"
         @on-slide="toggleSlide"
       ></button-slider>
     </template>
@@ -74,7 +74,7 @@
               alt=""
               src="@/assets/images/iconsstars.svg"
             />
-            <b class="b">Создать пулл</b>
+            <b class="b">Создать пул</b>
           </div>
         </button>
 
@@ -98,7 +98,7 @@
         @result="() => (isСonfirmQr = false)"
         @close="() => (isСonfirmQr = false)"
       >
-        <template v-slot:header> Новый пулл </template>
+        <template v-slot:header> Новый пул </template>
         <template v-slot:title> Create pull </template>
         <template v-slot:subtitle>
           <p class="scan-the-qr">Scan the QR code and pay 13 512 TON with</p>

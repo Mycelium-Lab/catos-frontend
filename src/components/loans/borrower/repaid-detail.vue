@@ -3,7 +3,7 @@
     <div class="wrapper">
       <div class="new-pull">
         <div class="description1">
-          <div class="div46">Получить займ из пулла #12345</div>
+          <div class="div46">Получить займ из пула #12345</div>
         </div>
         <div class="fields-parent">
           <div class="fields">
@@ -329,7 +329,7 @@
             <div class="frame-child7"></div>
             <div class="frame-parent24">
               <div class="wrapper15">
-                <div class="div47">Пулл:</div>
+                <div class="div47">пул:</div>
               </div>
               <div class="wrapper22">
                 <div class="div80">#66389563</div>

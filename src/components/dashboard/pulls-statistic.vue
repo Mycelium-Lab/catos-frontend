@@ -1,5 +1,5 @@
 <template>
-  <h4 class="stats-title">Cтатистика по пуллам</h4>
+  <h4 class="stats-title">Cтатистика по пулам</h4>
 
   <table class="table">
     <thead class="table-head">

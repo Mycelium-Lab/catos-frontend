@@ -9,10 +9,10 @@
               <div class="search-parent">
                 <!--<div class="search">
                   <img class="search-icon" alt="" src="/search.svg" />
-                  <div class="div">Найти пулл</div>
+                  <div class="div">Найти пул</div>
                 </div>-->
                 <input-data
-                  placeholder="Найти пуллы"
+                  placeholder="Найти пулы"
                   :style="{ width: '418px' }"
                   background="#fff"
                   left
@@ -49,7 +49,7 @@
           </div>
           <div class="component-25-wrapper" @click="toPulls">
             <div class="component-25">
-              <div class="div3">Выбрать другой пулл</div>
+              <div class="div3">Выбрать другой пул</div>
               <img
                 class="iconscalendar"
                 alt=""

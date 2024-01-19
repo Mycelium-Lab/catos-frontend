@@ -1,22 +1,22 @@
 <template>
     <status-modal
         v-if="isProgress"
-        title="Подтвердите создание пулла"
-        subtitle="Пожалуйста, подтвердите создание пулла в своем кошельке"
+        title="Подтвердите создание пула"
+        subtitle="Пожалуйста, подтвердите создание пула в своем кошельке"
         :variant="0"
         isProgress
         @on-modal="handleClose"
   ></status-modal>
    <status-modal
         v-if="isSuccess"
-        title="Подтвердите создание пулла"
-        subtitle="Пожалуйста, подтвердите создание пулла в своем кошельке"
+        title="Подтвердите создание пула"
+        subtitle="Пожалуйста, подтвердите создание пула в своем кошельке"
         :variant="0"
         @on-modal="handleClose"
   ></status-modal>
   <status-modal
         v-if="isFail"
-        title="Произошла ошибка при создании пулла"
+        title="Произошла ошибка при создании пула"
         :variant="1"
         @on-modal="handleClose"
   ></status-modal>

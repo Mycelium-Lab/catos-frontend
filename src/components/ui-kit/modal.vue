@@ -8,7 +8,7 @@
 
   <default-pulls-overlay v-if="from === 'pulls' || from === 'collector'">
     <template v-slot:title>
-      {{ from === "pulls" ? " Кредитные пуллы" : "Задолженности" }}
+      {{ from === "pulls" ? " Кредитные пулы" : "Задолженности" }}
     </template>
     <div class="div">
       <div class="header-parent">

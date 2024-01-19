@@ -44,7 +44,7 @@
                 <div class="component-parent">
                   <div class="component">
                     <div class="field">
-                      <div class="div4">Пулл:</div>
+                      <div class="div4">пул:</div>
                       <div class="div5">#{{poolByLoan?.id}}</div>
                     </div>
                     <div class="col-titles-bg" />

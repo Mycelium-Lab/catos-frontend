@@ -68,7 +68,7 @@
               src="@/assets/home-not-active.svg"
               alt=""
             />
-            <span class="name">Пуллы</span>
+            <span class="name">пулы</span>
           </router-link>
         </li>
         <li class="item">
@@ -120,7 +120,7 @@
               alt=""
             />
             <img v-else src="@/assets/home-not-active.svg" alt="" />
-            <span class="name">Пуллы</span>
+            <span class="name">пулы</span>
           </router-link>
         </li>
         <li v-if="role === 'creditor'" class="item">

@@ -3,7 +3,7 @@
     Задолженности пока отсутствуют
   </h3>
   <h3 v-else-if="role !== 'collector' && !pools.length">
-    Пуллы пока отсутствуют
+    пулы пока отсутствуют
   </h3>
   <ul v-else-if="role === 'collector'" class="list-desktop">
     <li v-for="loan in loans" :key="loan.id">

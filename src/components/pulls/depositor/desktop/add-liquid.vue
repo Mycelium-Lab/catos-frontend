@@ -19,7 +19,7 @@
       }
     "
   >
-    <template v-slot:header> Пулл #12345 </template>
+    <template v-slot:header> пул #12345 </template>
     <template v-slot:title>Add liquidity</template>
     <template v-slot:subtitle>
       Scan the QR code and pay 13 512 TON <br />
@@ -46,7 +46,7 @@
       <p class="status-subtitle">
         Вы успешно инвестировали 257 324 TON
         <br />
-        в пулл
+        в пул
         <a class="status-subtitle-link">#123456</a>
       </p>
       <p class="status-subtitle">

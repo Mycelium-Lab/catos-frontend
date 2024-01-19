@@ -4,7 +4,7 @@
       <div class="div">
         <div class="header-pop-up">
           <div class="page-title-parent">
-            <div class="page-title">Кредитные пуллы</div>
+            <div class="page-title">Кредитные пулы</div>
             <img
               class="close-icon-action close-icon"
               alt=""
@@ -26,7 +26,7 @@
                       src="@/assets/images/pie-chart.svg"
                     />
                     <div class="ton-parent">
-                      <div class="ton">Управление ликвидностью пулл #{{ pool?.id }}</div>
+                      <div class="ton">Управление ликвидностью пул #{{ pool?.id }}</div>
                       <div class="div2">Доход</div>
                     </div>
                   </div>
@@ -44,7 +44,7 @@
                 </div>
                 <!--<div class="field-parent">
                   <div class="field">
-                    <div class="div3">Кредитных пуллов:</div>
+                    <div class="div3">Кредитных пулов:</div>
                     <div class="ton1">TON</div>
                   </div>
                   <div class="col-titles-bg" />

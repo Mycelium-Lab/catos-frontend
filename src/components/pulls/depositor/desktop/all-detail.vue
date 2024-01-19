@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title> Информация о пулле №1223 </template>
+    <template v-slot:title> Информация о пуле №1223 </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">
@@ -107,7 +107,7 @@
           </div>
           <div class="field-parent">
             <div class="field">
-              <div class="div5">Пуллов сгенерировано для инвесторов</div>
+              <div class="div5">пулов сгенерировано для инвесторов</div>
               <div class="div6">10 574 раз</div>
             </div>
             <div class="col-titles-bg" />

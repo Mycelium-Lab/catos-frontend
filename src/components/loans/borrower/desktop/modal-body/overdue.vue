@@ -65,7 +65,7 @@
               </div>
               <div class="frame-child" />
               <div class="parent1">
-                <div class="div2">Пулл:</div>
+                <div class="div2">пул:</div>
                 <div class="wrapper">
                   <div class="div5">#{{ poolId }}</div>
                 </div>

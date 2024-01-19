@@ -47,7 +47,7 @@
             <catos-switch></catos-switch>
           </div>
           <div class="field-button-switch2">
-            <div class="api">Управление пуллами</div>
+            <div class="api">Управление пулами</div>
             <catos-switch></catos-switch>
           </div>
           <div class="field-button-switch3">

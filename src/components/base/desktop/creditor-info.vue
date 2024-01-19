@@ -73,7 +73,7 @@
             </div>-->
             <div class="field-parent">
               <div class="field">
-                <div class="roi">Кредитных пуллов:</div>
+                <div class="roi">Кредитных пулов:</div>
                 <div class="div9">
                   <span class="span">{{ allPoolsCount }} </span>
                   <span class="span1"> (</span>

@@ -13,10 +13,10 @@
             <div class="frame-wrapper">
               <div class="frame-group">
                 <div class="group">
-                  <div class="div11">Выберите пулл:</div>
+                  <div class="div11">Выберите пул:</div>
                   <div class="fields-password-and-mail2">
                     <div class="frame-div">
-                      <div class="div12">Все пуллы</div>
+                      <div class="div12">Все пулы</div>
                     </div>
                   </div>
                 </div>
@@ -139,10 +139,10 @@
           <div class="frame-wrapper">
             <div class="frame-group">
               <div class="group">
-                <div class="div11">Выберите пулл:</div>
+                <div class="div11">Выберите пул:</div>
                 <div class="fields-password-and-mail2">
                   <div class="frame-div">
-                    <div class="div12">Все пуллы</div>
+                    <div class="div12">Все пулы</div>
                   </div>
                 </div>
               </div>
@@ -166,13 +166,13 @@
 
       <div class="graph-title_pulls graph-title">
         График доходности <br />
-        по пуллам
+        по пулам
       </div>
 
       <button-slider
         :style="{ position: 'relative', width: '87.7vw' }"
         :variantIndex="2"
-        :tabs="['Пуллы Catos', 'Пуллы TON']"
+        :tabs="['пулы Catos', 'пулы TON']"
         @on-slide="toggleSlide"
       ></button-slider>
 
@@ -1456,9 +1456,9 @@
           <div class="frame-wrapper-desktop">
             <div class="frame-group">
               <div class="group">
-                <div class="div11">Выберите пулл:</div>
+                <div class="div11">Выберите пул:</div>
                 <catos-select
-                  placeholder="Все пуллы"
+                  placeholder="Все пулы"
                   :options="optionsPulls"
                   :value="pull1"
                   @selected="ev => (pull1 = ev)"
@@ -1580,9 +1580,9 @@
             <div class="frame-wrapper">
               <div class="frame-group">
                 <div class="group">
-                  <div class="div11">Выберите пулл:</div>
+                  <div class="div11">Выберите пул:</div>
                   <catos-select
-                    placeholder="Все пуллы"
+                    placeholder="Все пулы"
                     :options="optionsPulls"
                     :value="pull2"
                     @selected="ev => (pull2 = ev)"
@@ -1608,7 +1608,7 @@
                 <div class="description1">
                   <div class="title">
                     График доходности <br />
-                    по пуллам
+                    по пулам
                   </div>
                 </div>
               </div>
@@ -1725,17 +1725,17 @@ const isSort = ref(false);
 
 const date = ref("");
 
-const pull1 = ref("Все пуллы");
-const pull2 = ref("Все пуллы");
+const pull1 = ref("Все пулы");
+const pull2 = ref("Все пулы");
 const optionsPulls = [
-  "Все пуллы",
-  "Пуллл #1",
-  "Пуллл #2",
-  "Пуллл #3",
-  "Пуллл #4",
-  "Пуллл #5",
-  "Пуллл #6",
-  "Пуллл #7",
+  "Все пулы",
+  "пулл #1",
+  "пулл #2",
+  "пулл #3",
+  "пулл #4",
+  "пулл #5",
+  "пулл #6",
+  "пулл #7",
 ];
 
 const chart1 = ref(0);

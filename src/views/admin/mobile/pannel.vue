@@ -57,7 +57,7 @@
             id="fieldButtonContainer1"
             :to="{ name: 'manage-pulls-mobile' }"
           >
-            <div class="api">Управление пуллами</div>
+            <div class="api">Управление пулами</div>
             <img class="iconchange" alt="" src="../../public/iconchange.svg" />
           </router-link>
         </div>

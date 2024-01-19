@@ -10,7 +10,7 @@
         <img class="iconchange" alt="" src="@//views/public/iconchange.svg" />
       </button>
       <button class="field-button" @click="toManagePulls">
-        <div class="div1">Управление пуллами</div>
+        <div class="div1">Управление пулами</div>
         <img class="iconchange" alt="" src="@//views/public/iconchange.svg" />
       </button>
       <button class="field-button" @click="toManageLoans">

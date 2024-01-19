@@ -1,7 +1,7 @@
 <template>
   <div class="div9">
     <div class="header6">
-      <div class="div10">Аналитика пулла #123345</div>
+      <div class="div10">Аналитика пула #123345</div>
     </div>
     <div class="tables-light-mode">
       <div class="header7">
@@ -15,7 +15,7 @@
             src="@/assets/images/iconssearch.svg"
           />
 
-          <div class="div11">Найти пулл</div>
+          <div class="div11">Найти пул</div>
         </div>
         <div class="button4">
           <img class="menu-2-icon" alt="" src="@/assets/images/iconssort.svg" />
@@ -32,7 +32,7 @@
       </div>
       <div class="component-25-wrapper">
         <div class="component-25" @click="toPulls">
-          <div class="div13">Выбрать другой пулл</div>
+          <div class="div13">Выбрать другой пул</div>
           <img
             class="menu-2-icon"
             alt=""

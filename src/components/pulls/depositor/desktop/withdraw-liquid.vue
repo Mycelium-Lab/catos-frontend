@@ -19,7 +19,7 @@
       }
     "
   >
-    <template v-slot:header> Пулл #12345 </template>
+    <template v-slot:header> пул #12345 </template>
     <template v-slot:title>Withdraw liquidity</template>
     <template v-slot:subtitle> Scan the QR code with Tonkeeper using </template>
     <template v-slot:link> EQB5...dzE1h </template>
@@ -43,7 +43,7 @@
       <p class="status-subtitle">
         Вы успешно вывели 257 324 TON
         <br />
-        из пулла
+        из пула
         <a class="status-subtitle-link">#123456</a>
 
         на свой кошелек <br /><a class="status-subtitle-link"
