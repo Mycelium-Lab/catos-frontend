@@ -18,7 +18,7 @@
           src="./public/dffdfsdqfc4gigapixellow-resscale2-00x-1@2x.png"
         />
 
-        <div class="div8">{{ profileStorage.get()?.name + ' ' + profileStorage.get()?.surname}}</div>
+        <div class="div8">{{ passportDataStore.passportDTO.name + ' ' + passportDataStore.passportDTO.surname}}</div>
         <div class="tonorg">Tonkeeper</div>
         <img class="component-17-icon" alt="" src="./public/component-17.svg" />
 
@@ -141,9 +141,10 @@
 
 <script setup lang="ts">
 import { useDevice } from "@/compossables/useDevice";
-import { profileStorage } from "@/utils/localStorage";
+import { usePassportDataStore } from "@/stores/passportData";
 
 const { isMobile } = useDevice();
+const passportDataStore = usePassportDataStore();
 </script>
 
 <style scoped lang="scss">
@@ -179,7 +180,14 @@ const { isMobile } = useDevice();
   height: 4.44em;
   object-fit: cover;
 }
-.div8,
+.div8 {
+  position: absolute;
+  top: 8.94em;
+  left: 1.13em;
+  font-size: 0.55em;
+  letter-spacing: 0.01em;
+  line-height: 110%;
+}
 .tonorg {
   position: absolute;
   top: 8.94em;
