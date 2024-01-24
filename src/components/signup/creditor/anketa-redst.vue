@@ -282,7 +282,7 @@
               <div class="organizmloader">
                 <div class="frame-group">
                   <loader-field
-                    name="Business registration proof"
+                    name="Подтверждение регистрации организации"
                     :obligatory-field="true"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                     class="loader-file"
@@ -381,7 +381,7 @@
                   <loader-field
                     class="loader-file"
                     :obligatory-field="true"
-                    name="Operating address proof"
+                    name="Подтверждение фактического адреса деятельности"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                     @on-change="file => saveImage('addrProof', file)"
                   ></loader-field>
@@ -440,7 +440,7 @@
                     @on-change="arg => handleCheckbox2Change(arg)"
                   ></catos-checkbox>
                   <div class="same-as-in">
-                    Same as in business registration proof
+                    Такой же, как в свидетельстве регистрации бизнеса
                   </div>
                 </div>
               </div>
@@ -448,7 +448,7 @@
                 <div class="business-registration-proof-group">
                   <loader-field
                     class="loader-file"
-                    name="Extra documents"
+                    name="Дополнительные документы"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                     @on-change="file => saveImage('extraDocs', file)"
                   ></loader-field>
