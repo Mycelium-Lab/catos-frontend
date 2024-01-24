@@ -519,14 +519,14 @@
             </div>
           </div>
           <div class="text-declaration">
-            <div class="declaration">Declaration:</div>
+            <div class="declaration">Подтверждение:</div>
             <div class="checkbox-group">
               <catos-checkbox
                 @on-change="arg => handleCheckboxChange(arg)"
               ></catos-checkbox>
 
               <div class="by-submitting-this">
-                By submitting this form, you confirm that:
+                Я подтверждаю, что:
               </div>
             </div>
             <div class="frame-parent1">
@@ -536,7 +536,7 @@
                 </div>
                 <div class="you-are-authorised-to-act-on-b-wrapper">
                   <div class="you-are-authorised">
-                    You are authorised to act on behalf of the business
+                    Я уполномочен действовать от лица своей организации
                   </div>
                 </div>
               </div>
@@ -545,8 +545,8 @@
                   <div class="frame-inner"></div>
                 </div>
                 <div class="all-beneficial-owners">
-                  All beneficial owners, directors, and partners have been
-                  declared and their details have been provided.
+                  Все бенефициарные владельцы, директора и партнеры были
+                  упомянуты, и их данные были предоставлены.
                 </div>
               </div>
               <div class="frame-parent3">
@@ -554,8 +554,8 @@
                   <div class="frame-inner"></div>
                 </div>
                 <div class="all-beneficial-owners">
-                  All information and documents provided are true, complete and
-                  accurate.
+                  Вся предоставленная информация и документы являются подлинными, полными и
+                  точными.
                 </div>
               </div>
             </div>
