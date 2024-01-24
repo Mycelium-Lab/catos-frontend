@@ -45,7 +45,7 @@ const isTransaction = ref(false)
 const uid = ref()
 
 onMounted(async () =>{
-  await buyLoan(poolId, price)
+  await buyLoan(poolId)
   .then(res => {
     isTransaction.value = true
     uid.value = res.data
