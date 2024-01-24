@@ -436,7 +436,9 @@
                   </div>
                 </div>
                 <div class="checkbox-parent">
-                  <catos-checkbox></catos-checkbox>
+                  <catos-checkbox
+                    @on-change="arg => handleCheckbox2Change(arg)"
+                  ></catos-checkbox>
                   <div class="same-as-in">
                     Same as in business registration proof
                   </div>
@@ -648,6 +650,11 @@ const checkbox = reactive({
 });
 const handleCheckboxChange = (checked: boolean) => {
   checkbox.checked = checked;
+};
+const handleCheckbox2Change = (checked: boolean) => {
+  checked ?
+  paperDataStore.paperDTO.second_photo = paperDataStore.paperDTO.first_photo :
+  paperDataStore.paperDTO.second_photo = ''
 };
 const isLinkActive = computed(() => {
   return checkbox.checked;
