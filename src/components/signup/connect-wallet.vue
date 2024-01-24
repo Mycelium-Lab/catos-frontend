@@ -18,7 +18,7 @@
           src="./public/dffdfsdqfc4gigapixellow-resscale2-00x-1@2x.png"
         />
 
-        <div class="div8">{{ profileStorage.get()?.name + ' ' + profileStorage.get()?.surname}}</div>
+        <div class="div8">{{ passportDataStore.passportDTO.name + ' ' + passportDataStore.passportDTO.surname}}</div>
         <div class="tonorg">Tonkeeper</div>
         <img class="component-17-icon" alt="" src="./public/component-17.svg" />
 
@@ -44,10 +44,12 @@
           <p class="catos-">&nbsp;</p>
           <p class="catos-">
             <span
-              >Для того, чтобы брать, гасить и предоставлять займы вашей
+              >Для того чтобы брать, гасить и предоставлять займы, вашей
               организации необходим криптовалютный кошелек
             </span>
-            <span class="ton-keeper1">TON Keeper</span>
+            <a href="https://tonkeeper.com/" target="_blank" rel="noopener">
+              <span class="ton-keeper1">TON Keeper</span>
+            </a>
           </p>
         </span>
       </div>
@@ -86,21 +88,29 @@
           </div>
           <div class="frame-container">
             <div class="ios-parent">
-              <div class="android">iOS</div>
+              <a href="https://tonkeeper.com/" target="_blank" rel="noopener">
+                <div class="android">iOS</div>
+              </a>
               <img class="iconchange2" alt="" src="./public/iconchange1.svg" />
             </div>
             <div class="ios-parent">
-              <div class="android">Android</div>
+              <a href="https://tonkeeper.com/" target="_blank" rel="noopener">
+                <div class="android">Android</div>
+              </a>
               <img class="iconchange2" alt="" src="./public/iconchange2.svg" />
             </div>
           </div>
           <div class="frame-container">
             <div class="ios-parent">
-              <div class="android">Windows</div>
+              <a href="https://tonkeeper.com/" target="_blank" rel="noopener">
+                <div class="android">Windows</div>
+              </a>
               <img class="iconchange2" alt="" src="./public/iconchange1.svg" />
             </div>
             <div class="ios-parent">
-              <div class="android">Mac OS</div>
+              <a href="https://tonkeeper.com/" target="_blank" rel="noopener">
+                <div class="android">Mac OS</div>
+              </a>
               <img class="iconchange2" alt="" src="./public/iconchange2.svg" />
             </div>
           </div>
@@ -131,9 +141,10 @@
 
 <script setup lang="ts">
 import { useDevice } from "@/compossables/useDevice";
-import { profileStorage } from "@/utils/localStorage";
+import { usePassportDataStore } from "@/stores/passportData";
 
 const { isMobile } = useDevice();
+const passportDataStore = usePassportDataStore();
 </script>
 
 <style scoped lang="scss">
@@ -169,7 +180,14 @@ const { isMobile } = useDevice();
   height: 4.44em;
   object-fit: cover;
 }
-.div8,
+.div8 {
+  position: absolute;
+  top: 8.94em;
+  left: 1.13em;
+  font-size: 0.55em;
+  letter-spacing: 0.01em;
+  line-height: 110%;
+}
 .tonorg {
   position: absolute;
   top: 8.94em;

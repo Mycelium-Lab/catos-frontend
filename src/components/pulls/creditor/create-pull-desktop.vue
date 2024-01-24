@@ -4,7 +4,7 @@
       <div class="div">
         <div class="header-pop-up">
           <div class="page-title-parent">
-            <div class="page-title">Новый пулл</div>
+            <div class="page-title">Новый пул</div>
             <img
               class="close-icon-action close-icon"
               alt=""
@@ -90,7 +90,7 @@
                   alt=""
                   src="@/assets/images/iconsstars.svg"
                 />
-                <b class="b">Создать пулл</b>
+                <b class="b">Создать пул</b>
               </div>
             </button>
             <button class="buttonnext1" @click="close">
@@ -106,10 +106,10 @@
     v-if="isTransaction" 
     :uid="uid"
     @close="isTransaction = false" 
-    titlePending="Подтвердите создание пулла"
-    subtitlePending="Пожалуйста, подтвердите создание пулла в своем кошельке"
-    subtitleSuccess="Вы успешно создали пулл"
-    titleFaild="Произошла ошибка при создании пулла"
+    titlePending="Подтвердите создание пула"
+    subtitlePending="Пожалуйста, подтвердите создание пула в своем кошельке"
+    subtitleSuccess="Вы успешно создали пул"
+    titleFaild="Произошла ошибка при создании пула"
     ></transaction-desktop>
 
     <status-modal-desktop
@@ -117,8 +117,8 @@
       @result="() => (isFail = false)"
       @close="() => (isFail = false)"
     >
-      <template v-slot:header> Создание пулла </template>
-      <template v-slot:title> Произошла ошибка при создании пулла </template>
+      <template v-slot:header> Создание пула </template>
+      <template v-slot:title> Произошла ошибка при создании пула </template>
       <template v-slot:subtitle> 
         <p class="status-subtitle"><span :style="{display: 'flex', justifyContent: 'center'}">Указание причины:</span><span :style="{display: 'flex', justifyContent: 'center'}">{{  i18n.global.t(`errors.401`)}}</span></p>
       </template>

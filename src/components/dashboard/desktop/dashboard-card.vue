@@ -7,7 +7,7 @@
             <div class="checkboxdone-parent">
               <div class="checkboxdone" />
               <div class="parent">
-                <div class="div">Пулл #12345</div>
+                <div class="div">Пул #12345</div>
                 <div class="id-100">
                   ID #
                   {{
@@ -31,7 +31,7 @@
         <div class="component-parent">
           <div v-if="currentTable === 'amount'" class="component">
             <div class="field">
-              <div class="div5">Пулл:</div>
+              <div class="div5">Пул:</div>
               <div class="div1_link div1">
                 {{ currPull }}
               </div>

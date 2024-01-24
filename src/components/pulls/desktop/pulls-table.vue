@@ -13,7 +13,7 @@
         >
           <div class="wrapper">
             <div class="div120">
-              {{ role === "collector" ? "Задолженность №" : "Пулл №" }}
+              {{ role === "collector" ? "Задолженность №" : "пул №" }}
               {{ role === "collector" ? loan?.id : pool?.id }}
             </div>
           </div>

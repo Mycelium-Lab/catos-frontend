@@ -2,13 +2,13 @@
   <div class="iphone-13-13-">
     <div class="pull"></div>
     <div class="header">
-      <div class="div8">Кредитные пуллы</div>
+      <div class="div8">Кредитные пулы</div>
     </div>
     <div class="pull-stats">
       <div class="pull-stats-child"></div>
       <div class="filtr">
         <div class="frame">
-          <div class="div9">Пулл №1223</div>
+          <div class="div9">Пул №1223</div>
         </div>
       </div>
       <div class="pull-stats1">
@@ -246,14 +246,14 @@
     </div>
     <div class="button-slider">
       <div class="fill"></div>
-      <div class="div53">Все пуллы</div>
-      <div class="div54" id="text49">Мои пуллы</div>
+      <div class="div53">Все пулы</div>
+      <div class="div54" id="text49">Мои пулы</div>
     </div>
     <div class="buttonnext1" id="buttonNextContainer1">
       <div class="group-container">
         <img class="group-icon" alt="" src="@/assets/images/iconsstars.svg" />
 
-        <b class="b1">Создать пулл</b>
+        <b class="b1">Создать пул</b>
       </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 <template>
   <modal from="pulls">
     <div class="decor-parent">
-      <span class="job-title">Новый пулл</span>
+      <span class="job-title">Новый пул</span>
 
       <div class="decor"></div>
       <div class="frame-parent3">
@@ -9,7 +9,7 @@
           <ul class="option-list">
             <li>
               <div class="label-wrapper">
-                <label class="label">Токен пулла:</label>
+                <label class="label">Токен пула:</label>
                 <img
                   :style="{ position: 'relative', top: '-0.5em', left: '-1em' }"
                   class="info"
@@ -71,7 +71,7 @@
             variant="secondary"
             @click="toScan"
           >
-            Создать пулл
+            Создать пул
             <template v-slot:icon>
               <img src="@/assets/images/iconsstars.svg" />
             </template>

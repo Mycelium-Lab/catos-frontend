@@ -1,7 +1,7 @@
 <template>
   <modal from="pulls">
     <div class="wrapper">
-      <div class="header">Информация о пулле №1223</div>
+      <div class="header">Информация о пуле №1223</div>
 
       <div class="pull-stats">
         <div class="pull-stats1">
@@ -127,7 +127,7 @@
               <div class="line-div"></div>
               <div class="frame-parent3">
                 <div class="roi-wrapper">
-                  <div class="roi">Пуллов сгенерировано для инвесторов:</div>
+                  <div class="roi">Пулов сгенерировано для инвесторов:</div>
                 </div>
                 <div class="ton-wrapper">
                   <div class="div16">10 574 раз</div>

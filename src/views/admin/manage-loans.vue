@@ -3,7 +3,7 @@
     <template v-slot:title> Займы </template>
     <template v-slot:tools>
       <input-data
-        placeholder="Найти пуллы"
+        placeholder="Найти пулы"
         :style="{ width: '390px' }"
         background="#fff"
         left

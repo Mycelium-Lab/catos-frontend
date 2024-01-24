@@ -81,7 +81,7 @@
                 <div class="frame-wrapper3">
                   <div class="ton-wrapper">
                     <div class="ton">
-                      <span>Пулл </span>
+                      <span>Пул </span>
                       <span class="span">#12345</span>
                       <span>, срок 30 дней, сумма 10 000 TON </span>
                     </div>
@@ -94,7 +94,7 @@
                 <div class="frame-wrapper3">
                   <div class="ton-wrapper">
                     <div class="ton">
-                      <span>Пулл </span>
+                      <span>Пул </span>
                       <span class="span">#12344</span>
                       <span>, срок 14 дней, сумма 3 000 TON </span>
                     </div>
@@ -107,7 +107,7 @@
                 <div class="frame-wrapper3">
                   <div class="ton-wrapper">
                     <div class="ton">
-                      <span>Пулл </span>
+                      <span>пул </span>
                       <span class="span">#12343</span>
                       <span class="span3">, </span>
                       <span class="span4">не одобрено</span>
@@ -121,7 +121,7 @@
                 <div class="frame-wrapper3">
                   <div class="ton-wrapper">
                     <div class="ton">
-                      <span>Пулл </span>
+                      <span>пул </span>
                       <span class="span">#12342</span>
                       <span>, срок 14 дней, сумма 3 000 TON </span>
                     </div>

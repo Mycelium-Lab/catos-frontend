@@ -7,13 +7,13 @@
     <div class="pull"></div>
     <div class="header">
       <div class="div8">
-        {{ `${curentWindow === "all" ? "Кредитные" : "Мои"} пуллы` }}
+        {{ `${curentWindow === "all" ? "Кредитные" : "Мои"} пулы` }}
       </div>
     </div>
     <button-slider
       :style="{ position: 'relative', top: '5em' }"
       :variantIndex="2"
-      :tabs="['Пуллы Catos', 'Мои пуллы']"
+      :tabs="['Пулы Catos', 'Мои пулы']"
       @on-slide="toggleSlide"
     ></button-slider>
     <div class="frame-parent9">
@@ -52,7 +52,7 @@
       <button-slider
         :style="{ width: '254px', margin: '0' }"
         :variantIndex="2"
-        :tabs="['Пуллы Catos', 'Мои пуллы']"
+        :tabs="['Пулы Catos', 'Мои пулы']"
         @on-slide="toggleSlide"
       ></button-slider>
     </template>

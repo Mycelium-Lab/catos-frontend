@@ -3,13 +3,13 @@
     <div class="pull-parent">
       <div class="pull"></div>
       <div class="header">
-        <div class="div9">Кредитные пуллы</div>
+        <div class="div9">Кредитные пулы</div>
       </div>
       <div class="pull-stats">
         <div class="pull-stats-child"></div>
         <div class="filtr">
           <div class="frame">
-            <div class="div10">Пулл №1223</div>
+            <div class="div10">Пул №1223</div>
           </div>
         </div>
         <div class="pull-stats1">
@@ -138,12 +138,12 @@
       </div>
       <div class="button-slider">
         <div class="fill"></div>
-        <div class="div26">Все пуллы</div>
-        <div class="div27">Мои пуллы</div>
+        <div class="div26">Все пулы</div>
+        <div class="div27">Мои пулы</div>
       </div>
       <div class="buttonnext" id="buttonNextContainer">
         <div class="group-container">
-          <b class="b1">Создать пулл</b>
+          <b class="b1">Создать пул</b>
         </div>
       </div>
       <div class="div28">
@@ -315,7 +315,7 @@
     <div class="new-pull">
       <div class="swipe-down1"></div>
       <div class="description1">
-        <div class="div46">Получить займ из пулла #12345</div>
+        <div class="div46">Получить займ из пула #12345</div>
       </div>
       <div class="fields-parent">
         <div class="fields">
@@ -459,7 +459,7 @@
     <div class="nav-menu">
       <div class="iconsmenu">
         <div class="container1">
-          <div class="div65">Пуллы</div>
+          <div class="div65">Пулы</div>
         </div>
       </div>
       <div class="iconsmenu1">
@@ -629,7 +629,7 @@
           <div class="frame-child7"></div>
           <div class="frame-parent24">
             <div class="wrapper15">
-              <div class="div47">Пулл:</div>
+              <div class="div47">Пул:</div>
             </div>
             <div class="wrapper22">
               <div class="div80">#66389563</div>

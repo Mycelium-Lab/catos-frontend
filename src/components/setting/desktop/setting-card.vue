@@ -143,7 +143,7 @@
     <template v-if="stage === 1" v-slot:body>
       <auth @change-stage="handleAuthStage" :stage="stage">
         <template v-slot:top-text>
-          Для большей защиты вашего акаунта используйте двухфакторную
+          Для большей защиты вашего аккаунта используйте двухфакторную
           авторизацию
         </template>
         <template v-slot:bottom-text>
@@ -174,7 +174,7 @@
         <template v-slot:action> Продолжить </template>
         <template v-slot:footer-text>
           Если приложение установлено, <br />
-          жмите продолжить
+          нажмите продолжить
         </template>
       </auth>
     </template>

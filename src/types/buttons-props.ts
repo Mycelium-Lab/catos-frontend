@@ -16,7 +16,7 @@ export enum ButtonIconTranslation {
   sharied = "Поделиться",
   copy = "Скопировать",
   copied = "Скопировано",
-  topulls = "Перейти к формату карточек пуллов:",
+  topulls = "Перейти к формату карточек пулов:",
 }
 
 export enum ButtonIconVariant {

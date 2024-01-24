@@ -5,12 +5,12 @@
     :class="isBackSide ? 'back-side' : ''"
   >
     <div class="header">
-      <div class="div8">Кредитные пуллы</div>
+      <div class="div8">Кредитные пулы</div>
     </div>
     <button-slider
       :style="{ position: 'relative', top: '5em' }"
       :variantIndex="2"
-      :tabs="['Все пуллы', 'Мои пуллы']"
+      :tabs="['Все пулы', 'Мои пулы']"
       @on-slide="toggleSlide"
     ></button-slider>
     <div class="frame-parent9">
@@ -41,7 +41,7 @@
     <app-bar></app-bar>
   </div>
   <default-desktop v-else>
-    <template v-slot:title> Кредитные пуллы </template>
+    <template v-slot:title> Кредитные пулы </template>
     <template v-slot:tools>
       <tool-bar role="borrower" variant="pulls"></tool-bar>
     </template>

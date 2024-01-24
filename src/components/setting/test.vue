@@ -84,7 +84,7 @@
                   </div>
                   <div class="name">
                     <div class="invoice-aa-04-19-18">Добалена ликвидность</div>
-                    <div class="new-madieton-llc">Пулл #12345</div>
+                    <div class="new-madieton-llc">Пул #12345</div>
                   </div>
                 </div>
                 <div class="details1">
@@ -106,7 +106,7 @@
                   </div>
                   <div class="name">
                     <div class="invoice-aa-04-19-18">Добалена ликвидность</div>
-                    <div class="new-madieton-llc">Пулл #12345</div>
+                    <div class="new-madieton-llc">Пул #12345</div>
                   </div>
                 </div>
                 <div class="details1">
@@ -128,7 +128,7 @@
                   </div>
                   <div class="name">
                     <div class="invoice-aa-04-19-18">Вывод ликвидности</div>
-                    <div class="new-madieton-llc">Пулл #12345</div>
+                    <div class="new-madieton-llc">Пул #12345</div>
                   </div>
                 </div>
                 <div class="details1">
@@ -150,7 +150,7 @@
                   </div>
                   <div class="name">
                     <div class="invoice-aa-04-19-18">Вывод ликвидности</div>
-                    <div class="new-madieton-llc">Пулл #12345</div>
+                    <div class="new-madieton-llc">Пул #12345</div>
                   </div>
                 </div>
                 <div class="details1">
@@ -182,7 +182,7 @@
                       <div class="invoice-aa-04-19-18">
                         Добалена ликвидность
                       </div>
-                      <div class="new-madieton-llc">Пулл #12345</div>
+                      <div class="new-madieton-llc">Пул #12345</div>
                     </div>
                   </div>
                   <div class="details1">
@@ -206,7 +206,7 @@
                       <div class="invoice-aa-04-19-18">
                         Добалена ликвидность
                       </div>
-                      <div class="new-madieton-llc">Пулл #12345</div>
+                      <div class="new-madieton-llc">Пул #12345</div>
                     </div>
                   </div>
                   <div class="details1">
@@ -230,7 +230,7 @@
                       <div class="invoice-aa-04-19-18">
                         Добалена ликвидность
                       </div>
-                      <div class="new-madieton-llc">Пулл #12345</div>
+                      <div class="new-madieton-llc">Пул #12345</div>
                     </div>
                   </div>
                   <div class="details1">
@@ -263,7 +263,7 @@
                       <div class="invoice-aa-04-19-18">
                         Добалена ликвидность
                       </div>
-                      <div class="new-madieton-llc">Пулл #12345</div>
+                      <div class="new-madieton-llc">пул #12345</div>
                     </div>
                   </div>
                   <div class="details1">
@@ -285,7 +285,7 @@
                     </div>
                     <div class="name">
                       <div class="invoice-aa-04-19-18">Вывод ликвидности</div>
-                      <div class="new-madieton-llc">Пулл #12345</div>
+                      <div class="new-madieton-llc">Пул #12345</div>
                     </div>
                   </div>
                   <div class="details1">
@@ -309,7 +309,7 @@
                       <div class="invoice-aa-04-19-18">
                         Добалена ликвидность
                       </div>
-                      <div class="new-madieton-llc">Пулл #12345</div>
+                      <div class="new-madieton-llc">Пул #12345</div>
                     </div>
                   </div>
                   <div class="details1">
@@ -333,7 +333,7 @@
                       <div class="invoice-aa-04-19-18">
                         Добалена ликвидность
                       </div>
-                      <div class="new-madieton-llc">Пулл #12345</div>
+                      <div class="new-madieton-llc">Пул #12345</div>
                     </div>
                   </div>
                   <div class="details1">

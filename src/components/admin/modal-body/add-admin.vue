@@ -53,7 +53,7 @@
             </div>
             <div class="field-item">
               <div class="text-icon">
-                <div class="div6">Управление пуллами</div>
+                <div class="div6">Управление пулами</div>
                 <catos-switch></catos-switch>
               </div>
             </div>

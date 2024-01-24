@@ -32,7 +32,7 @@
             </div>
             <div class="frame-child6"></div>
             <div class="alert-triangle-parent">
-              <div class="div75">Пулл:</div>
+              <div class="div75">Пул:</div>
               <div class="wrapper15">
                 <div class="div76">#123445</div>
               </div>

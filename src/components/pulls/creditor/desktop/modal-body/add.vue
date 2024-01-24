@@ -1,12 +1,12 @@
 <template>
   <liquidity-managment-modal @close="close" variant="add">
-    <template v-slot:header> Пулл #{{ poolId }} </template>
+    <template v-slot:header> пул #{{ poolId }} </template>
     <template v-slot:subheaderIcon>
       <img class="header-icon" alt="" src="@/assets/images/success-cash.svg" />
     </template>
     <template v-slot:subheader>
       {{ role === "investor" ? "Инвестировать" : "Добавить ликвидность" }} в
-      пулл #{{ poolId }}
+      пул #{{ poolId }}
     </template>
     <!--<template v-slot:first-row>
       <div class="field">
@@ -73,10 +73,10 @@
   </liquidity-managment-modal>
     <transaction-desktop v-if="isTransaction" @close="isTransaction = false" 
       :uid="uid"
-      :titlePending="role === 'investor' ? 'Подтвердите инвестирование в пулл' : 'Подтвердите добавление ликвидности в пулл'"
-      :subtitlePending="role === 'investor' ? 'Пожалуйста, подтвердите инвестирование в пулл в своем кошельке' : 'Пожалуйста, добавление ликвидности в пулл в своем кошельке'"
-      :subtitleSuccess="role === 'investor' ? 'Вы успешно инвестировали в пулл' : 'Вы успешно добавил ликвидность в пулл'"
-      :titleFaild="role === 'investor' ? 'Произошла ошибка при инвестировании в пулл' : 'Произошла ошибка при добавлении ликвидности в пулл'"
+      :titlePending="role === 'investor' ? 'Подтвердите инвестирование в пул' : 'Подтвердите добавление ликвидности в пул'"
+      :subtitlePending="role === 'investor' ? 'Пожалуйста, подтвердите инвестирование в пул в своем кошельке' : 'Пожалуйста, добавление ликвидности в пул в своем кошельке'"
+      :subtitleSuccess="role === 'investor' ? 'Вы успешно инвестировали в пул' : 'Вы успешно добавил ликвидность в пул'"
+      :titleFaild="role === 'investor' ? 'Произошла ошибка при инвестировании в пул' : 'Произошла ошибка при добавлении ликвидности в пул'"
     ></transaction-desktop>
 </template>
 

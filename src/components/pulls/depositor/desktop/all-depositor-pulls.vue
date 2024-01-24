@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close" v-if="isDetail">
-    <template v-slot:title> Информация о пулле #{{ pool?.id }} </template>
+    <template v-slot:title> Информация о пуле #{{ pool?.id }} </template>
     <template v-slot:body>
       <div class="frame-parent">
         <div class="frame-group">

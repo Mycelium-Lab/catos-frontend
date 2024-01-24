@@ -10,7 +10,7 @@
                 :width="54"
                 :height="54"
               />
-              <div class="status">Добавление ликвидности в пулл #12345</div>
+              <div class="status">Добавление ликвидности в пул #12345</div>
             </div>
           </div>
         </div>

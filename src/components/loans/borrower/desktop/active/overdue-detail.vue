@@ -1,6 +1,6 @@
 <template>
   <desktop-modal @close="close">
-    <template v-slot:title> Займ из пулла #{{ poolId }}</template>
+    <template v-slot:title> Займ из пула #{{ poolId }}</template>
     <template v-slot:body>
       <overdue @close="close" @repay="toRepay" @prolong="toProlong" :loan="loan" :poolId="poolId"> </overdue>
     </template>

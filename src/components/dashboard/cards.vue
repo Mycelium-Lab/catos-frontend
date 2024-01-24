@@ -34,7 +34,7 @@
         <div class="info">
           <div class="field">
             <div class="field1">
-              <div class="div15">Всего пуллов:</div>
+              <div class="div15">Всего пулов:</div>
               <div class="col-titles-bg1"></div>
               <div class="container-click">
                 <div class="div16">160</div>
@@ -147,7 +147,7 @@
         <div class="info">
           <div class="field">
             <div class="field1">
-              <div class="div15">Всего пуллов:</div>
+              <div class="div15">Всего пулов:</div>
               <div class="col-titles-bg1"></div>
               <div class="container-click">
                 <div class="div16">160</div>
@@ -260,7 +260,7 @@
         <div class="info">
           <div class="field">
             <div class="field1">
-              <div class="div15">Всего пуллов:</div>
+              <div class="div15">Всего пулов:</div>
               <div class="col-titles-bg1"></div>
               <div class="container-click">
                 <div class="div16">160</div>
@@ -373,7 +373,7 @@
         <div class="info">
           <div class="field">
             <div class="field1">
-              <div class="div15">Всего пуллов:</div>
+              <div class="div15">Всего пулов:</div>
               <div class="col-titles-bg1"></div>
               <div class="container-click">
                 <div class="div16">160</div>
@@ -494,7 +494,7 @@
               <div class="div94">Выберите статус:</div>
               <div class="fields-password-and-mail2">
                 <div class="parent4">
-                  <div class="div95">Все пуллы</div>
+                  <div class="div95">Все пулы</div>
                   <img
                     class="menu-2-icon"
                     alt=""

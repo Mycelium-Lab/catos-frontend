@@ -3,7 +3,7 @@
     :uid="uid"
     titlePending="Подтвердите покупку задолженности"
     subtitlePending="Пожалуйста, подтвердите покупку задолженности в своем кошельке"
-    subtitleSuccess="Вы успешно создали пулл"
+    subtitleSuccess="Вы успешно создали пул"
     titleFaild="Произошла ошибка при покупке задолженности"
     ></transaction-desktop>
 
@@ -14,7 +14,7 @@
       :lastAction="close"
       @close="close"
     >
-    <template v-slot:header> Получить займ из пулла #12345 </template>
+    <template v-slot:header> Получить займ из пула #12345 </template>
 
     <template v-slot:title> Транзакция успешно выполнена </template>
     <template v-slot:image>

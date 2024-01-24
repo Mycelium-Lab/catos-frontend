@@ -282,7 +282,7 @@
               <div class="organizmloader">
                 <div class="frame-group">
                   <loader-field
-                    name="Business registration proof"
+                    name="Подтверждение регистрации организации"
                     :obligatory-field="true"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                     class="loader-file"
@@ -381,7 +381,7 @@
                   <loader-field
                     class="loader-file"
                     :obligatory-field="true"
-                    name="Operating address proof"
+                    name="Подтверждение фактического адреса деятельности"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                     @on-change="file => saveImage('addrProof', file)"
                   ></loader-field>
@@ -436,9 +436,11 @@
                   </div>
                 </div>
                 <div class="checkbox-parent">
-                  <catos-checkbox></catos-checkbox>
+                  <catos-checkbox
+                    @on-change="arg => handleCheckbox2Change(arg)"
+                  ></catos-checkbox>
                   <div class="same-as-in">
-                    Same as in business registration proof
+                    Такой же, как в свидетельстве регистрации бизнеса
                   </div>
                 </div>
               </div>
@@ -446,7 +448,7 @@
                 <div class="business-registration-proof-group">
                   <loader-field
                     class="loader-file"
-                    name="Extra documents"
+                    name="Дополнительные документы"
                     :style="{ width: '100%', paddingBottom: '0.1em' }"
                     @on-change="file => saveImage('extraDocs', file)"
                   ></loader-field>
@@ -519,14 +521,14 @@
             </div>
           </div>
           <div class="text-declaration">
-            <div class="declaration">Declaration:</div>
+            <div class="declaration">Подтверждение:</div>
             <div class="checkbox-group">
               <catos-checkbox
                 @on-change="arg => handleCheckboxChange(arg)"
               ></catos-checkbox>
 
               <div class="by-submitting-this">
-                By submitting this form, you confirm that:
+                Я подтверждаю, что:
               </div>
             </div>
             <div class="frame-parent1">
@@ -536,7 +538,7 @@
                 </div>
                 <div class="you-are-authorised-to-act-on-b-wrapper">
                   <div class="you-are-authorised">
-                    You are authorised to act on behalf of the business
+                    Я уполномочен действовать от лица своей организации
                   </div>
                 </div>
               </div>
@@ -545,8 +547,8 @@
                   <div class="frame-inner"></div>
                 </div>
                 <div class="all-beneficial-owners">
-                  All beneficial owners, directors, and partners have been
-                  declared and their details have been provided.
+                  Все бенефициарные владельцы, директора и партнеры были
+                  упомянуты, и их данные были предоставлены.
                 </div>
               </div>
               <div class="frame-parent3">
@@ -554,8 +556,8 @@
                   <div class="frame-inner"></div>
                 </div>
                 <div class="all-beneficial-owners">
-                  All information and documents provided are true, complete and
-                  accurate.
+                  Вся предоставленная информация и документы являются подлинными, полными и
+                  точными.
                 </div>
               </div>
             </div>
@@ -648,6 +650,11 @@ const checkbox = reactive({
 });
 const handleCheckboxChange = (checked: boolean) => {
   checkbox.checked = checked;
+};
+const handleCheckbox2Change = (checked: boolean) => {
+  checked ?
+  paperDataStore.paperDTO.second_photo = paperDataStore.paperDTO.first_photo :
+  paperDataStore.paperDTO.second_photo = ''
 };
 const isLinkActive = computed(() => {
   return checkbox.checked;

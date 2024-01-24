@@ -1,7 +1,7 @@
 <template>
   <div class="new-pull">
     <div class="description1">
-      <div class="div46">Получить займ из пулла #12345</div>
+      <div class="div46">Получить займ из пула #12345</div>
     </div>
     <div class="fields-parent">
       <div class="fields">
