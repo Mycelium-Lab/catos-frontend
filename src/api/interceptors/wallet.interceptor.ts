@@ -9,6 +9,7 @@ const urlsRequireWallet = [
   "/pool/deposit",
   "/pool/withdraw",
 ];
+const getUrlsThatRequireWallet = ["/loans/buy/"];
 
 export const walletConnectedInterceptor = async (
   config: InternalAxiosRequestConfig
@@ -16,8 +17,10 @@ export const walletConnectedInterceptor = async (
   const controller = new AbortController();
   if (
     config.url &&
-    urlsRequireWallet.includes(config.url) &&
-    config.method == "post"
+    ((urlsRequireWallet.some(url => config.url?.startsWith(url)) &&
+      config.method == "post") ||
+      (getUrlsThatRequireWallet.some(url => config.url?.startsWith(url)) &&
+        config.method == "get"))
   ) {
     if (!walletStorage.get()?.address) {
       controller.abort();

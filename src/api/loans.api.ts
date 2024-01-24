@@ -27,8 +27,8 @@ export const sellLoan = (id: number, value: number) => {
     return baseApiClient.get(`${LOAN_END_POINT}sell/${id}?price=${value}`)
 } 
 
-export const buyLoan = (id: number, value: number) => {
-    return baseApiClient.get(`${LOAN_END_POINT}buy/${id}?amount=${value}`)
+export const buyLoan = (id: number) => {
+    return baseApiClient.get(`${LOAN_END_POINT}buy/${id}`)
 } 
 
 export const prolongateLoan = (id: number) => {
