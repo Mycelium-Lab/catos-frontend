@@ -168,8 +168,8 @@ const create = async () => {
 
       if(hasVerified) {
       await createPool({
-      millipercent: percent.value * 100,
-      overdue_millipercent: percent.value * 100, // TODO: добавить поля для ввода остальных данных
+      millipercent: percent.value * 1000,
+      overdue_millipercent: percent.value * 1000, // TODO: добавить поля для ввода остальных данных
       max_loan_amount: 1000 * NANO_MULTIPLIER,
       min_invest_amount: minInvestAmount.value * NANO_MULTIPLIER,
       max_duration: toSeconds(duration.value),

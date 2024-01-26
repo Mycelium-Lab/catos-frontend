@@ -63,7 +63,7 @@
                   <div v-if="role === 'collector'" class="div122">
                     {{
                       `1 день = ${
-                        loan?.millipercent ? loan?.millipercent / 100 : ""
+                        loan?.millipercent ? loan?.millipercent / 1000 : ""
                       }%`
                     }}
                   </div>
@@ -231,7 +231,7 @@
                 </div>
                 <div v-if="loan?.millipercent" class="ton-wrapper">
                   <div class="div128">
-                    {{ loan?.millipercent / 100 }}% в день
+                    {{ loan?.millipercent / 1000 }}% в день
                   </div>
                 </div>
               </div>
