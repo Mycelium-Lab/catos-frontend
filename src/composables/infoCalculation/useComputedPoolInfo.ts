@@ -5,14 +5,14 @@ import { NANO_MULTIPLIER } from "@/utils/constants";
 
 const useComputedPoolInfo = (pool: any) => {
     const interestRate = computed(() => {
-       return pool?.millipercent ? pool?.millipercent / 100 : 0
+       return pool?.millipercent ? pool?.millipercent / 1000 : 0
     })
     const interestRateString = computed(() => {
         return `1 день = ${interestRate.value}%`
      })
 
     const monthInterestRateString = computed(() => {
-        const dayInterestRate = pool?.millipercent ? pool?.millipercent / 100 : 0
+        const dayInterestRate = pool?.millipercent ? pool?.millipercent / 1000 : 0
         let freePeriodDay = parse(pool?.free_period).days !== undefined ? parse(pool?.free_period).days : 0
         return `30 дней = ${Number(dayInterestRate * (30 - freePeriodDay)).toFixed(2)}%`
     })
@@ -87,8 +87,8 @@ const useComputedPoolInfo = (pool: any) => {
         })
         const amount = onDebt.map((v) => {
             const dif = (v.amount / NANO_MULTIPLIER) - ( v.paid_amount / NANO_MULTIPLIER)
-            const overduePercent = v.overdue_millipercent / 100
-            return dif * overduePercent / 100 + dif
+            const overduePercent = v.overdue_millipercent / 1000
+            return dif * overduePercent / 1000 + dif
         })
         const amountSumm = amount.reduce(
             (accumulator, currentValue) => accumulator + currentValue,

@@ -47,7 +47,7 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Ставка:</div>
-                        <div class="ton">{{ loan?.millipercent ? loan?.millipercent / 100 : '' }}% в день</div>
+                        <div class="ton">{{ loan?.millipercent ? loan?.millipercent / 1000 : '' }}% в день</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -199,7 +199,7 @@
                           alt=""
                           src="@/assets/images/percent.svg"
                         />
-                        <div v-if="poolByLoan?.millipercent" class="div35">1 день = {{ poolByLoan?.millipercent / 100  }} %</div>
+                        <div v-if="poolByLoan?.millipercent" class="div35">1 день = {{ poolByLoan?.millipercent / 1000  }} %</div>
                       </div>
                       <div class="percent-parent">
                         <img

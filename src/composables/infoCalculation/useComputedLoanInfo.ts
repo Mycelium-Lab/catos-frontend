@@ -51,7 +51,7 @@ const useComputedLoanInfo = (loan: LoansResponse | LoansBoughtResponse, freePeri
       })
 
       const interestRate = computed(() => {
-        return loan?.millipercent ? loan?.millipercent / 100 : 0
+        return loan?.millipercent ? loan?.millipercent / 1000 : 0
       })
 
        const interestRateString = computed(() => {
@@ -103,7 +103,7 @@ const useComputedLoanInfo = (loan: LoansResponse | LoansBoughtResponse, freePeri
     })
 
     const monthInterestRateString = computed(() => {
-      const dayInterestRate = loan?.millipercent ? loan?.millipercent / 100 : 0
+      const dayInterestRate = loan?.millipercent ? loan?.millipercent / 1000 : 0
       return `30 дней = ${Number(dayInterestRate * (30 - freePeriod)).toFixed(2)}%`
     })
 

@@ -98,7 +98,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="roi">Ставка:</div>
-              <div  v-if="pool?.millipercent" class="div9">{{ pool?.millipercent / 100 }}% в день</div>
+              <div  v-if="pool?.millipercent" class="div9">{{ pool?.millipercent / 1000 }}% в день</div>
             </div>
             <div class="col-titles-bg" />
           </div>
@@ -140,7 +140,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="roi">Процент невозврата:</div>
-              <div  v-if="pool?.millipercent" class="div9">{{ pool?.overdue_millipercent / 100 }}%</div>
+              <div  v-if="pool?.millipercent" class="div9">{{ pool?.overdue_millipercent / 1000 }}%</div>
             </div>
             <div class="col-titles-bg" />
           </div>

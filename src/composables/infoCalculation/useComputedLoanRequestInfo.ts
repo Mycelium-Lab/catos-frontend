@@ -5,7 +5,7 @@ import { parse } from "tinyduration";
 const useComputedLoanRequestInfo = (loanRequest?: any, freePeriod?: any) => {
   const loanRequestListStore = useLoanRequestListStroe()
   const interestRate = computed(() => {
-    return loanRequest?.millipercent ? loanRequest?.millipercent / 100 : 0
+    return loanRequest?.millipercent ? loanRequest?.millipercent / 1000 : 0
   })
   const interestRateString = computed(() => {
     return `1 день = ${interestRate.value}%`
@@ -46,7 +46,7 @@ const useComputedLoanRequestInfo = (loanRequest?: any, freePeriod?: any) => {
         })
 
         const monthInterestRateString = computed(() => {
-          const dayInterestRate = loanRequest?.millipercent ? loanRequest?.millipercent / 100 : 0
+          const dayInterestRate = loanRequest?.millipercent ? loanRequest?.millipercent / 1000 : 0
           return `30 дней = ${Number(dayInterestRate * (30 - freePeriod)).toFixed(2)}%`
         })
         

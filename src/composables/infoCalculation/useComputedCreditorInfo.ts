@@ -13,7 +13,7 @@ export const useComputedCreditorInfo = (creditorId: number) => {
     })
 
     const midMillipercent = computed(() => {
-        const millipercent = usePoolListStore().creditorPools(creditorId).map((v) => v.millipercent / 100)
+        const millipercent = usePoolListStore().creditorPools(creditorId).map((v) => v.millipercent / 1000)
         const millipercentSumm = millipercent.reduce(
             (accumulator, currentValue) => accumulator + currentValue,
             0,
@@ -22,7 +22,7 @@ export const useComputedCreditorInfo = (creditorId: number) => {
     })
 
     const midOverdueMillipercent = computed(() => {
-        const overdueMillipercent = usePoolListStore().creditorPools(creditorId).map((v) => v.overdue_millipercent / 100)
+        const overdueMillipercent = usePoolListStore().creditorPools(creditorId).map((v) => v.overdue_millipercent / 1000)
         const overdueMillipercentSumm = overdueMillipercent.reduce(
             (accumulator, currentValue) => accumulator + currentValue,
             0,

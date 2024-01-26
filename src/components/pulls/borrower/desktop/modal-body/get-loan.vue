@@ -221,7 +221,7 @@ const sum = computed(() => {
   }
 
   const withInterestRatePeriod = Number(term.value) - freePeriod.value
-  const sumWithInterestRate = Number(sumLoans.value) * (interestRate.value / 100 * withInterestRatePeriod) + Number(sumLoans.value);
+  const sumWithInterestRate = Number(sumLoans.value) * (interestRate.value / 1000 * withInterestRatePeriod) + Number(sumLoans.value);
   return sumWithInterestRate.toPrecision(3);
 });
 

@@ -66,7 +66,7 @@
                 <div class="field-parent">
                   <div class="field">
                     <div class="div3">Процент невозврата:</div>
-                    <div  v-if="pool?.millipercent"  class="ton1">{{ pool?.overdue_millipercent / 100 }}%</div>
+                    <div  v-if="pool?.millipercent"  class="ton1">{{ pool?.overdue_millipercent / 1000 }}%</div>
                   </div>
                   <div class="col-titles-bg" />
                 </div>

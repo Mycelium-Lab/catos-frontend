@@ -73,7 +73,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div5">Ставка:</div>
-              <div  v-if="pool?.millipercent" class="div6">{{ pool?.millipercent / 100 }}% в день</div>
+              <div  v-if="pool?.millipercent" class="div6">{{ pool?.millipercent / 1000 }}% в день</div>
             </div>
             <div class="col-titles-bg" />
           </div>

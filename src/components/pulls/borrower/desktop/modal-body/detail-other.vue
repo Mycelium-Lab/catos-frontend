@@ -72,7 +72,7 @@
           <div class="field-parent">
             <div class="field">
               <div class="div7">Ставка:</div>
-              <div class="ton1">{{ pool?.millipercent ? pool?.millipercent / 100 : '' }}% в день</div>
+              <div class="ton1">{{ pool?.millipercent ? pool?.millipercent / 1000 : '' }}% в день</div>
             </div>
             <div class="col-titles-bg" />
           </div>
