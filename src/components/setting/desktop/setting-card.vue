@@ -298,16 +298,15 @@
     "
   >
     <template v-slot:header> Изменение кошелька </template>
-    <template v-slot:title> Connect TON </template>
+    <template v-slot:title> Подключить TonKeeper </template>
     <template v-slot:subtitle>
-      Scan the QR code and pay 13 512 TON <br />
-      with Tonkeeper using
+      Сканируйте QR код  <br />
+      в приложении TonKeeper
     </template>
-    <template v-slot:action> Sign in with Tokenkeeper </template>
+    <template v-slot:action> Войти в помощью TonKeeper </template>
     <template v-slot:footer>
       <span class="scan-footer">
-        We do not receive or store your wallet login details, so your TON is
-        safe.
+        Мы не храним приватные данные вашего кошелька, поэтому ваши TON в безопасности.
       </span>
     </template>
   </confirm-qr-destop>
