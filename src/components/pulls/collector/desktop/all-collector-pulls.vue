@@ -33,7 +33,7 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3"><b>Цена продажи:</b></div>
-                        <div class="ton"><b>{{ loan?.price ? loan?.price / NANO_MULTIPLIER : 0 }} TON</b></div>
+                        <div class="ton"><b>{{ loan?.price ? loan?.price / NANO_MULTIPLIER : '' }} TON</b></div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -124,7 +124,7 @@
                     <div class="field-parent">
                       <div class="field">
                         <div class="div3">Цена покупки:</div>
-                        <div class="ton">{{ loan?.price }} TON</div>
+                        <div class="ton">{{ loan?.price ? loan?.price / NANO_MULTIPLIER : '' }} TON</div>
                       </div>
                       <div class="col-titles-bg" />
                     </div>
@@ -188,7 +188,7 @@
                       />
                       <div class="container">
                         <div class="div34">Стоимость:</div>
-                        <div class="ton5">{{ loan?.price }} TON</div>
+                        <div class="ton5">{{ loan?.price ? loan?.price / NANO_MULTIPLIER : '' }} TON</div>
                       </div>
                     </div>
                     <div class="frame-child" />
