@@ -35,6 +35,7 @@
       () => {
         isChangeWallet = false;
         isScrinning = false;
+        isSuccessChangeWallet = false;
       }
     "
   >
